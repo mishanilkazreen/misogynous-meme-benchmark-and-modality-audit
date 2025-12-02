@@ -59,15 +59,7 @@ pytest --cov=models --cov=utils
 
 ## Project Structure
 
-```
-├── data/           # Datasets and annotations (see data/DATASETS.md)
-├── models/         # PyTorch model implementations
-│   ├── yolo/      # YOLO detection models
-│   ├── vlm/       # VLM dual-pathway models
-│   └── explainability/  # Heatmap and visualization
-├── utils/          # Preprocessing, OCR, and helpers
-└── tests/          # Unit, property-based, and integration tests
-```
+See [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) for detailed information about the codebase organization.
 
 ## Development
 
