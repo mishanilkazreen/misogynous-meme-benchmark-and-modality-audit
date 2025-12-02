@@ -1,48 +1,78 @@
-# Dataset Ideas for VLM Content Moderation
+# Dataset Directory
 
-This document tracks potential datasets for training and evaluating the content moderation system.
+This directory contains datasets for training and evaluating the content moderation models.
 
-## Requirements
+## Directory Structure
 
-Based on requirements.md, we need:
-- **Minimum 5000 annotated images** with hateful content
-- **Content types**: Both textual hate speech and visual hate symbols
-- **Visibility levels**: High visibility and low visibility content
+```
+data/
+├── raw/                    # Original, unprocessed images
+│   ├── train/             # Training images
+│   ├── val/               # Validation images
+│   └── test/              # Test images
+│
+├── processed/             # Preprocessed images
+│   ├── blur_equalized/   # Images with blur + histogram equalization
+│   └── augmented/        # Augmented training images
+│
+└── annotations/           # Annotation files
+    ├── yolo/             # YOLO format (bounding boxes)
+    └── vlm/              # VLM format (image-level labels)
+```
+
+## Dataset Requirements
+
+According to Requirements 1.1-1.3:
+
+- **Minimum size**: 5,000 annotated images
+- **Content types**: 
+  - High visibility + textual
+  - High visibility + symbolic
+  - Low visibility + textual
+  - Low visibility + symbolic
 - **Annotation quality**: Fleiss Kappa ≥ 0.783
-- **Annotations**: Bounding boxes for YOLO, image-level labels for VLM
 
-## Dataset Ideas
+## Annotation Formats
 
-### 1. [Add your dataset ideas here]
+### YOLO Format (Bounding Boxes)
 
-**Source**: 
-**Size**: 
-**Content types**: 
-**Visibility levels**: 
-**Annotations**: 
-**License**: 
-**Notes**: 
+```
+<class_id> <x_center> <y_center> <width> <height>
+```
 
-### 2. [Add your dataset ideas here]
+Example: `annotations/yolo/image001.txt`
+```
+0 0.5 0.3 0.2 0.15
+1 0.7 0.6 0.1 0.1
+```
 
-**Source**: 
-**Size**: 
-**Content types**: 
-**Visibility levels**: 
-**Annotations**: 
-**License**: 
-**Notes**: 
+Classes:
+- 0: Textual hate content
+- 1: Symbolic hate content
 
-## Dataset Preparation Plan
+### VLM Format (Image-Level Labels)
 
-1. **Collection**: 
-2. **Annotation**: 
-3. **Quality validation**: 
-4. **Train/val/test split**: 
-5. **Storage format**: 
+JSON format with metadata:
+
+```json
+{
+  "image_id": "image001.jpg",
+  "has_hateful_content": true,
+  "message_type": "textual",
+  "visibility_level": "low",
+  "extracted_text": "sample text"
+}
+```
+
+## Adding Datasets
+
+1. Place raw images in `data/raw/train/`, `data/raw/val/`, or `data/raw/test/`
+2. Add corresponding annotations in `data/annotations/`
+3. Run preprocessing pipeline to generate processed versions
+4. Validate annotation quality using `DatasetManager.validate_annotations()`
 
 ## Notes
 
-- Add your specific dataset ideas and sources here
-- Consider synthetic data generation for low-visibility content
-- Plan for annotation workflow and quality control
+- Raw data files are excluded from version control (see `.gitignore`)
+- Ensure proper licensing and ethical considerations for hate content datasets
+- Follow data privacy and security guidelines when handling sensitive content
