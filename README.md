@@ -41,33 +41,50 @@ pip install -r requirements.txt
 - **Ubuntu/Debian**: `sudo apt-get install tesseract-ocr`
 - **Windows**: Download from [GitHub](https://github.com/UB-Mannheim/tesseract/wiki)
 
+### Dataset Setup
+
+Download your hateful content dataset and organize it like this:
+
+```
+data/
+├── train/
+│   ├── image001.jpg
+│   ├── image002.jpg
+│   └── ...
+├── val/
+│   └── ...
+├── test/
+│   └── ...
+└── annotations/
+    ├── train/
+    │   ├── image001.txt  # YOLO format: <class> <x_center> <y_center> <width> <height>
+    │   └── ...
+    └── labels.json       # VLM format: {"image_id": "...", "message_type": "textual", ...}
+```
+
+**Example annotation (YOLO format)** - `data/annotations/train/image001.txt`:
+```
+0 0.5 0.3 0.2 0.15
+```
+Classes: 0=textual, 1=symbolic
+
+**Example annotation (VLM format)** - `data/annotations/labels.json`:
+```json
+{
+  "image001.jpg": {
+    "has_hateful_content": true,
+    "message_type": "textual",
+    "visibility_level": "low"
+  }
+}
+```
+
 ### Running Tests
 
 ```bash
-# Run all tests
 pytest
-
-# Run only unit tests
-pytest -m unit
-
-# Run only property-based tests
-pytest -m property
-
-# Run with coverage
-pytest --cov=models --cov=utils
 ```
-
-## Project Structure
-
-See [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) for detailed information about the codebase organization.
 
 ## Development
 
-This project follows a spec-driven development approach. See `.kiro/specs/vlm-content-moderation/` for:
-- `requirements.md`: System requirements and acceptance criteria
-- `design.md`: Technical design and architecture
-- `tasks.md`: Implementation task list
-
-## License
-
-[Add license information]
+See `.kiro/specs/vlm-content-moderation/` for requirements, design, and tasks.
