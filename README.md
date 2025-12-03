@@ -13,88 +13,150 @@ This system detects hateful messages (textual slurs, derogatory terms, visual ha
 
 ### Prerequisites
 
-- Python 3.8+
+- Python 3.10+
 - CUDA-capable GPU (recommended)
-- Tesseract OCR (for text extraction)
+- Kaggle account (for dataset download)
 
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone <repository-url>
 cd content-moderation
 ```
 
-2. Create and activate virtual environment:
+2. Install kagglehub globally (required for dataset download):
+
 ```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install kagglehub
 ```
 
-3. Install dependencies:
+3. Create and activate virtual environment:
+
+```bash
+# Create venv
+python -m venv venv
+
+# Activate (Windows)
+.\venv\Scripts\activate
+
+# Activate (Linux/macOS)
+source venv/bin/activate
+```
+
+4. Install project dependencies:
+
 ```bash
 pip install -r requirements.txt
 ```
-
-4. Install Tesseract OCR:
-- **macOS**: `brew install tesseract`
-- **Ubuntu/Debian**: `sudo apt-get install tesseract-ocr`
-- **Windows**: Download from [GitHub](https://github.com/UB-Mannheim/tesseract/wiki)
 
 ### Dataset Setup (MMHS150K)
 
 We use the [MMHS150K dataset](https://www.kaggle.com/datasets/victorcallejasf/multimodal-hate-speech) for training and evaluation.
 
-**Option 1: Using kagglehub (recommended)**
+**Option 1: Download via Python**
+
+```python
+from utils import download_mmhs150k_dataset
+
+# Downloads to ~/.cache/kagglehub/datasets/
+path = download_mmhs150k_dataset()
+print(f"Dataset at: {path}")
+```
+
+**Option 2: Download via CLI**
 
 ```bash
-# Install kagglehub globally (not in venv)
-pip install kagglehub
-
-# Download via Python
-python -c "from utils.dataset import download_mmhs150k_dataset; print(download_mmhs150k_dataset())"
+python -c "from utils import download_mmhs150k_dataset; print(download_mmhs150k_dataset())"
 ```
 
-This downloads to `~/.cache/kagglehub/datasets/victorcallejasf/multimodal-hate-speech/`.
-
-**Option 2: Manual download**
-
-1. Download from [Kaggle](https://www.kaggle.com/datasets/victorcallejasf/multimodal-hate-speech)
-2. Extract to a directory of your choice
+**Note:** First-time download requires Kaggle authentication. You'll be prompted to log in or provide your Kaggle API credentials.
 
 **Dataset Structure:**
-```
+
+```text
 mmhs150k/
 ├── img_resized/          # Images (shortest side = 500px)
 ├── img_txt/              # Pre-extracted OCR text per image
 ├── splits/
-│   ├── train_ids.txt
-│   ├── val_ids.txt
-│   └── test_ids.txt
+│   ├── train_ids.txt     # ~112K images
+│   ├── val_ids.txt       # ~19K images
+│   └── test_ids.txt      # ~19K images
 ├── MMHS150K_GT.json      # Ground truth annotations
 └── hatespeech_keywords.txt
 ```
 
-**Using the dataset:**
-```python
-from utils.dataset import DatasetManager
+**Annotation Format (MMHS150K_GT.json):**
 
-# Point to your dataset location
+Each image has 3 annotator labels (0-5):
+- 0: NotHate
+- 1: Racist
+- 2: Sexist
+- 3: Homophobe
+- 4: Religion
+- 5: OtherHate
+
+### Usage Example
+
+```python
+from utils import DatasetManager
+
+# Point to downloaded dataset
 manager = DatasetManager("/path/to/mmhs150k")
+
+# Load training data
 train_dataset = manager.load_dataset(split="train")
+print(f"Training samples: {len(train_dataset)}")
 
 # Get dataset statistics
-stats = manager.get_dataset_stats()
-print(f"Total images: {stats['total_images']}")
+stats = manager.get_dataset_stats(split="train")
+print(f"Hate images: {stats['hate_images']}")
 print(f"Fleiss Kappa: {stats['fleiss_kappa']:.3f}")
+
+# Validate annotation quality (should be >= 0.783)
+kappa = manager.validate_annotations(split="train")
+print(f"Annotation agreement: {kappa:.3f}")
+
+# Check dataset meets minimum size (5000+ images)
+print(f"Meets size requirement: {manager.supports_minimum_size(5000)}")
 ```
 
 ### Running Tests
 
 ```bash
+# Run all tests
 pytest
+
+# Run with verbose output
+pytest -v
+
+# Run specific test file
+pytest tests/unit/test_dataset.py -v
+```
+
+## Project Structure
+
+```text
+content-moderation/
+├── models/
+│   ├── yolo/           # YOLO detection models
+│   ├── vlm/            # VLM dual-pathway models
+│   └── explainability/ # Heatmap and visualization
+├── utils/
+│   ├── dataset.py      # DatasetManager, MMHS150KDataset
+│   └── ...
+├── tests/
+│   ├── unit/           # Unit tests
+│   ├── property/       # Property-based tests (Hypothesis)
+│   └── integration/    # Integration tests
+├── requirements.txt
+└── pytest.ini
 ```
 
 ## Development
 
-See `.kiro/specs/vlm-content-moderation/` for requirements, design, and tasks.
+See `.kiro/specs/vlm-content-moderation/` for:
+- `requirements.md` - Detailed requirements
+- `design.md` - Technical design and architecture
+- `tasks.md` - Implementation tasks and progress
