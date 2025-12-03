@@ -41,42 +41,52 @@ pip install -r requirements.txt
 - **Ubuntu/Debian**: `sudo apt-get install tesseract-ocr`
 - **Windows**: Download from [GitHub](https://github.com/UB-Mannheim/tesseract/wiki)
 
-### Dataset Setup
+### Dataset Setup (MMHS150K)
 
-Download your hateful content dataset and organize it like this:
+We use the [MMHS150K dataset](https://www.kaggle.com/datasets/victorcallejasf/multimodal-hate-speech) for training and evaluation.
 
-```
-data/
-├── train/
-│   ├── image001.jpg
-│   ├── image002.jpg
-│   └── ...
-├── val/
-│   └── ...
-├── test/
-│   └── ...
-└── annotations/
-    ├── train/
-    │   ├── image001.txt  # YOLO format: <class> <x_center> <y_center> <width> <height>
-    │   └── ...
-    └── labels.json       # VLM format: {"image_id": "...", "message_type": "textual", ...}
+**Option 1: Using kagglehub (recommended)**
+
+```bash
+# Install kagglehub globally (not in venv)
+pip install kagglehub
+
+# Download via Python
+python -c "from utils.dataset import download_mmhs150k_dataset; print(download_mmhs150k_dataset())"
 ```
 
-**Example annotation (YOLO format)** - `data/annotations/train/image001.txt`:
-```
-0 0.5 0.3 0.2 0.15
-```
-Classes: 0=textual, 1=symbolic
+This downloads to `~/.cache/kagglehub/datasets/victorcallejasf/multimodal-hate-speech/`.
 
-**Example annotation (VLM format)** - `data/annotations/labels.json`:
-```json
-{
-  "image001.jpg": {
-    "has_hateful_content": true,
-    "message_type": "textual",
-    "visibility_level": "low"
-  }
-}
+**Option 2: Manual download**
+
+1. Download from [Kaggle](https://www.kaggle.com/datasets/victorcallejasf/multimodal-hate-speech)
+2. Extract to a directory of your choice
+
+**Dataset Structure:**
+```
+mmhs150k/
+├── img_resized/          # Images (shortest side = 500px)
+├── img_txt/              # Pre-extracted OCR text per image
+├── splits/
+│   ├── train_ids.txt
+│   ├── val_ids.txt
+│   └── test_ids.txt
+├── MMHS150K_GT.json      # Ground truth annotations
+└── hatespeech_keywords.txt
+```
+
+**Using the dataset:**
+```python
+from utils.dataset import DatasetManager
+
+# Point to your dataset location
+manager = DatasetManager("/path/to/mmhs150k")
+train_dataset = manager.load_dataset(split="train")
+
+# Get dataset statistics
+stats = manager.get_dataset_stats()
+print(f"Total images: {stats['total_images']}")
+print(f"Fleiss Kappa: {stats['fleiss_kappa']:.3f}")
 ```
 
 ### Running Tests
