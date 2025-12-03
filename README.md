@@ -55,20 +55,12 @@ pip install -r requirements.txt
 
 We use the [MMHS150K dataset](https://www.kaggle.com/datasets/victorcallejasf/multimodal-hate-speech) for training and evaluation.
 
-**Option 1: Download via Python**
-
 ```python
 from utils import download_mmhs150k_dataset
 
 # Downloads to ~/.cache/kagglehub/datasets/
 path = download_mmhs150k_dataset()
 print(f"Dataset at: {path}")
-```
-
-**Option 2: Download via CLI**
-
-```bash
-python -c "from utils import download_mmhs150k_dataset; print(download_mmhs150k_dataset())"
 ```
 
 **Note:** First-time download requires Kaggle authentication. You'll be prompted to log in or provide your Kaggle API credentials.
@@ -97,42 +89,10 @@ Each image has 3 annotator labels (0-5):
 - 4: Religion
 - 5: OtherHate
 
-### Usage Example
-
-```python
-from utils import DatasetManager
-
-# Point to downloaded dataset
-manager = DatasetManager("/path/to/mmhs150k")
-
-# Load training data
-train_dataset = manager.load_dataset(split="train")
-print(f"Training samples: {len(train_dataset)}")
-
-# Get dataset statistics
-stats = manager.get_dataset_stats(split="train")
-print(f"Hate images: {stats['hate_images']}")
-print(f"Fleiss Kappa: {stats['fleiss_kappa']:.3f}")
-
-# Validate annotation quality (should be >= 0.783)
-kappa = manager.validate_annotations(split="train")
-print(f"Annotation agreement: {kappa:.3f}")
-
-# Check dataset meets minimum size (5000+ images)
-print(f"Meets size requirement: {manager.supports_minimum_size(5000)}")
-```
-
 ### Running Tests
 
 ```bash
-# Run all tests
 pytest
-
-# Run with verbose output
-pytest -v
-
-# Run specific test file
-pytest tests/unit/test_dataset.py -v
 ```
 
 ## Project Structure
