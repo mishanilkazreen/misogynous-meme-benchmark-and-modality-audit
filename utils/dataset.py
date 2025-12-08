@@ -4,7 +4,7 @@ Supports the HatefulIllusion dataset format from Hugging Face.
 """
 
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple
 
 import numpy as np
 import torch
@@ -158,7 +158,7 @@ class DatasetManager:
         try:
             dataset = self.load_dataset(split="train")
             return len(dataset) >= min_size
-        except Exception:
+        except (FileNotFoundError, ValueError, KeyError):
             return False
 
 
