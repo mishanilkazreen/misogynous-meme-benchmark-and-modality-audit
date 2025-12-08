@@ -67,13 +67,15 @@ import pandas as pd
 df = pd.read_json("hf://datasets/yiting/HatefulIllusion_Dataset/digits/metadata.jsonl", lines=True)
 ```
 
-**Dataset Structure:**
+**About the Dataset:**
 
-- `image`: Path to the image with embedded content
-- `message`: The embedded message (digit 0-9)
-- `condition_image`: Path to the message image
-- `prompt`: Description of the surface scene
-- `visibility`: Visibility level (1-5, higher = more visible)
+HatefulIllusion contains 300 images with hidden digits (0-9) embedded into surface scenes. Each image has:
+
+- `message`: The hidden digit embedded in the image
+- `visibility`: How visible the hidden content is (1-2 = low, 3-5 = high)
+- `prompt`: Description of the surface scene (e.g., "Post-earthquake reconstruction")
+
+This dataset tests detection of content that's intentionally hidden within normal-looking images.
 
 ### Running Tests
 

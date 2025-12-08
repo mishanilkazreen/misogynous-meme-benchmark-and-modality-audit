@@ -112,17 +112,8 @@ class DatasetManager:
             )
         return self._datasets[cache_key]
 
-    def validate_annotations(
-        self, annotations: Optional[List[Annotation]] = None, split: str = "train"
-    ) -> float:
-        if annotations is None:
-            dataset = self.load_dataset(split=split)
-            annotations = list(dataset.annotations.values())
-        if len(annotations) == 0:
-            return 0.0
-        return 1.0  # Single annotator dataset
-
     def get_dataset_stats(self, split: str = "train") -> Dict:
+        """Get statistics about the dataset."""
         dataset = self.load_dataset(split=split)
         annotations = list(dataset.annotations.values())
 
@@ -137,7 +128,6 @@ class DatasetManager:
             "low_visibility": low_vis,
             "textual_count": textual,
             "symbolic_count": symbolic,
-            "fleiss_kappa": self.validate_annotations(annotations),
         }
 
     def check_composition_completeness(self, split: str = "train") -> Dict[str, bool]:

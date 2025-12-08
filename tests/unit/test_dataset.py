@@ -127,17 +127,6 @@ class TestDatasetManager:
         assert dataset1 is dataset2
 
     @patch("datasets.load_dataset")
-    def test_validate_annotations_returns_float(self, mock_load):
-        """Test validate_annotations returns a float."""
-        mock_load.return_value = create_mock_hf_dataset(10)
-
-        manager = DatasetManager()
-        kappa = manager.validate_annotations(split="train")
-
-        assert isinstance(kappa, float)
-        assert kappa == 1.0  # Single annotator dataset
-
-    @patch("datasets.load_dataset")
     def test_get_dataset_stats(self, mock_load):
         """Test get_dataset_stats returns expected structure."""
         mock_load.return_value = create_mock_hf_dataset(10)
@@ -150,7 +139,6 @@ class TestDatasetManager:
         assert "low_visibility" in stats
         assert "textual_count" in stats
         assert "symbolic_count" in stats
-        assert "fleiss_kappa" in stats
 
     @patch("datasets.load_dataset")
     def test_check_composition_completeness(self, mock_load):
