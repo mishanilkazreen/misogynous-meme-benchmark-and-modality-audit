@@ -6,13 +6,13 @@ Contains preprocessing, data loading, and helper functions.
 from utils.dataset import (
     Annotation,
     DatasetManager,
-    ContentModerationDataset,
-    download_mmhs150k_dataset,
+    HatefulIllusionDataset,
+    download_hateful_illusion_dataset,
 )
 
 __all__ = [
     "Annotation",
     "DatasetManager",
-    "ContentModerationDataset",
-    "download_mmhs150k_dataset",
+    "HatefulIllusionDataset",
+    "download_hateful_illusion_dataset",
 ]
