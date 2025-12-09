@@ -10,6 +10,7 @@ from utils.dataset import (
     HatefulIllusionDataset,
     download_hateful_illusion_dataset,
 )
+from utils.ocr import OCRPipeline
 from utils.preprocessing import PreprocessingPipeline
 
 __all__ = [
@@ -18,6 +19,7 @@ __all__ = [
     "DataAugmentation",
     "DatasetManager",
     "HatefulIllusionDataset",
+    "OCRPipeline",
     "PreprocessingPipeline",
     "download_hateful_illusion_dataset",
 ]
