@@ -8,6 +8,7 @@ from typing import Dict, List, Optional, Tuple
 
 import numpy as np
 import torch
+from huggingface_hub import hf_hub_download
 from PIL import Image
 from torch.utils.data import Dataset
 
@@ -78,7 +79,22 @@ class HatefulIllusionDataset(Dataset):
         img_id = self.image_ids[idx]
         annotation = self.annotations[img_id]
 
-        pil_image = Image.new("RGB", (256, 256), color=(128, 128, 128))
+        # Load actual image from HuggingFace dataset
+        hf_item = self._hf_dataset[idx]
+        image_path = hf_item["image"]  # e.g., "images/0.png"
+        
+        # Download image from HuggingFace Hub
+        local_path = hf_hub_download(
+            repo_id="yiting/HatefulIllusion_Dataset",
+            filename=f"digits/{image_path}",
+            repo_type="dataset",
+            cache_dir=self.cache_dir,
+        )
+        pil_image = Image.open(local_path)
+        
+        # Ensure RGB format
+        if pil_image.mode != "RGB":
+            pil_image = pil_image.convert("RGB")
 
         if self.transform:
             image = self.transform(pil_image)

@@ -73,10 +73,20 @@ class TestHatefulIllusionDataset:
         assert len(dataset) == 5
         assert len(dataset.annotations) == 5
 
+    @patch("utils.dataset.hf_hub_download")
     @patch("datasets.load_dataset")
-    def test_getitem_returns_dict(self, mock_load):
+    def test_getitem_returns_dict(self, mock_load, mock_hf_download):
         """Test __getitem__ returns expected dictionary structure."""
+        import tempfile
+        from PIL import Image
+        
         mock_load.return_value = create_mock_hf_dataset(5)
+        
+        # Create a temporary test image
+        with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as f:
+            img = Image.new("RGB", (256, 256), color=(128, 128, 128))
+            img.save(f.name)
+            mock_hf_download.return_value = f.name
 
         dataset = HatefulIllusionDataset(split="train")
         sample = dataset[0]
@@ -90,10 +100,20 @@ class TestHatefulIllusionDataset:
         assert "visibility_score" in sample
         assert "prompt" in sample
 
+    @patch("utils.dataset.hf_hub_download")
     @patch("datasets.load_dataset")
-    def test_image_tensor_shape(self, mock_load):
+    def test_image_tensor_shape(self, mock_load, mock_hf_download):
         """Test image is converted to proper tensor shape."""
+        import tempfile
+        from PIL import Image
+        
         mock_load.return_value = create_mock_hf_dataset(5)
+        
+        # Create a temporary test image
+        with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as f:
+            img = Image.new("RGB", (256, 256), color=(128, 128, 128))
+            img.save(f.name)
+            mock_hf_download.return_value = f.name
 
         dataset = HatefulIllusionDataset(split="train")
         sample = dataset[0]
