@@ -10,18 +10,20 @@ Usage:
 Example:
     python scripts/visualize_transformations.py --output transformations.png --index 42
 """
-# pylint: disable=no-member
+# pylint: disable=no-member,wrong-import-position
 
 import argparse
 import sys
 from pathlib import Path
 
+# Add project root to path before local imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
 import cv2
 import numpy as np
+from datasets import load_dataset
+from huggingface_hub import hf_hub_download
 from PIL import Image
-
-# Add project root to path
-sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from utils.preprocessing import PreprocessingPipeline
 
@@ -36,9 +38,6 @@ def download_image_from_huggingface(image_path: str) -> np.ndarray:
     Returns:
         Image as numpy array (H, W, C) in RGB format
     """
-    from huggingface_hub import hf_hub_download
-
-    # The dataset stores images under digits/ folder
     filename = f"digits/{image_path}"
     print(f"Downloading: {filename}")
 
@@ -48,18 +47,17 @@ def download_image_from_huggingface(image_path: str) -> np.ndarray:
         repo_type="dataset"
     )
 
-    # Load image
-    img = Image.open(local_path)
-    img = img.convert("RGB")
+    pil_img = Image.open(local_path)
+    rgb_img = pil_img.convert("RGB")
 
-    return np.array(img)
+    return np.array(rgb_img)
 
 
 def load_dataset_image(index: int = None):
     """
     Load an image from the HatefulIllusion dataset.
 
-    Downloads the actual image from the GitHub repository.
+    Downloads the actual image from the HuggingFace repository.
 
     Args:
         index: Specific image index, or None for random
@@ -67,8 +65,6 @@ def load_dataset_image(index: int = None):
     Returns:
         Tuple of (image as numpy array, metadata dict)
     """
-    from datasets import load_dataset
-
     print("Loading HatefulIllusion dataset metadata...")
     ds = load_dataset("yiting/HatefulIllusion_Dataset", "digits", split="train")
 
@@ -77,7 +73,6 @@ def load_dataset_image(index: int = None):
 
     item = ds[index]
 
-    # Download actual image from GitHub
     image_path = item["image"]
     print(f"Selected sample {index}: {image_path}")
 
@@ -109,15 +104,12 @@ def create_visualization_grid(results: dict, metadata: dict) -> np.ndarray:
     Returns:
         Grid image as numpy array
     """
-    # Get all images and names
     names = ["original"] + PreprocessingPipeline.TRANSFORMATIONS
     images = [results[name] for name in names]
 
-    # Calculate grid dimensions (4 columns)
     n_cols = 4
     n_rows = (len(images) + n_cols - 1) // n_cols
 
-    # Resize all images to same size for grid
     target_size = (256, 256)
     resized = []
     for img in images:
@@ -125,14 +117,12 @@ def create_visualization_grid(results: dict, metadata: dict) -> np.ndarray:
             img = cv2.resize(img, target_size)
         resized.append(img)
 
-    # Create grid
     rows = []
     for i in range(n_rows):
         row_images = []
         for j in range(n_cols):
             idx = i * n_cols + j
             if idx < len(resized):
-                # Add label to image
                 img = resized[idx].copy()
                 label = names[idx].replace("_", " ").title()
                 cv2.putText(
@@ -145,7 +135,6 @@ def create_visualization_grid(results: dict, metadata: dict) -> np.ndarray:
                 )
                 row_images.append(img)
             else:
-                # Pad with black
                 row_images.append(
                     np.zeros((target_size[0], target_size[1], 3), dtype=np.uint8)
                 )
@@ -153,7 +142,6 @@ def create_visualization_grid(results: dict, metadata: dict) -> np.ndarray:
 
     grid = np.vstack(rows)
 
-    # Add title bar
     title_height = 60
     title_bar = np.zeros((title_height, grid.shape[1], 3), dtype=np.uint8)
     title = f"Message: '{metadata['message']}', Visibility: {metadata['visibility']}"
@@ -183,24 +171,19 @@ def main():
     )
     args = parser.parse_args()
 
-    # Load image
     image, metadata = load_dataset_image(args.index)
 
-    # Create pipeline and apply all transformations
     pipeline = PreprocessingPipeline()
     print("\nApplying transformations...")
     results = pipeline.apply_all_transformations(image)
 
-    # Create visualization
     print("Creating visualization grid...")
     grid = create_visualization_grid(results, metadata)
 
-    # Save result (convert RGB to BGR for OpenCV)
     output_path = Path(args.output)
     cv2.imwrite(str(output_path), cv2.cvtColor(grid, cv2.COLOR_RGB2BGR))
     print(f"\nVisualization saved to: {output_path.absolute()}")
 
-    # Print transformation list
     print("\nTransformations applied:")
     for i, name in enumerate(["original"] + PreprocessingPipeline.TRANSFORMATIONS, 1):
         print(f"  {i:2d}. {name}")

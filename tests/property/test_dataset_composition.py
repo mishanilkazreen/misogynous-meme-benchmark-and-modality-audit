@@ -144,7 +144,7 @@ class TestDatasetComposition:
             ("low", "symbolic"),
         ]
 
-        annotations = []
+        annotations: list[dict] = []
         for _ in range(total):
             vis, msg_type = categories[len(annotations) % 4]
             annotations.append({
