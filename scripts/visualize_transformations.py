@@ -53,7 +53,7 @@ def download_image_from_huggingface(image_path: str) -> np.ndarray:
     return np.array(rgb_img)
 
 
-def load_dataset_image(index: int = None):
+def load_dataset_image(index: int | None = None):
     """
     Load an image from the HatefulIllusion dataset.
 
