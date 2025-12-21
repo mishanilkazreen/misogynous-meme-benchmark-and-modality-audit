@@ -5,7 +5,7 @@ Integrates EasyOCR for text extraction and provides normalization utilities.
 
 import re
 import unicodedata
-from typing import Dict, List, Optional, Tuple, Union
+from typing import Dict, List, Union
 
 import numpy as np
 import torch
@@ -15,7 +15,7 @@ from PIL import Image
 class OCRPipeline:
     """
     OCR pipeline for extracting and normalizing text from images.
-    
+
     Uses EasyOCR for text detection and recognition.
     Provides text normalization for downstream VLM processing.
     """
@@ -60,16 +60,16 @@ class OCRPipeline:
             Extracted text as a single string
         """
         img = self._to_numpy(image)
-        
+
         # Run OCR
         results = self.reader.readtext(img)
-        
+
         # Filter by confidence and extract text
         texts = []
-        for bbox, text, confidence in results:
+        for _, text, confidence in results:
             if confidence >= self.confidence_threshold:
                 texts.append(text)
-        
+
         return " ".join(texts)
 
     def extract_text_with_boxes(
@@ -85,24 +85,24 @@ class OCRPipeline:
             List of dicts with 'text', 'bbox', and 'confidence' keys
         """
         img = self._to_numpy(image)
-        
+
         results = self.reader.readtext(img)
-        
+
         detections = []
-        for bbox, text, confidence in results:
+        for box, text, confidence in results:
             if confidence >= self.confidence_threshold:
                 # Convert bbox to (x, y, w, h) format
-                x_coords = [p[0] for p in bbox]
-                y_coords = [p[1] for p in bbox]
+                x_coords = [p[0] for p in box]
+                y_coords = [p[1] for p in box]
                 x, y = min(x_coords), min(y_coords)
                 w, h = max(x_coords) - x, max(y_coords) - y
-                
+
                 detections.append({
                     "text": text,
                     "bbox": (int(x), int(y), int(w), int(h)),
                     "confidence": confidence,
                 })
-        
+
         return detections
 
     def normalize_text(self, text: str) -> str:
@@ -123,19 +123,19 @@ class OCRPipeline:
         """
         if not text:
             return ""
-        
+
         # Unicode normalization
         text = unicodedata.normalize("NFKC", text)
-        
+
         # Lowercase
         text = text.lower()
-        
+
         # Remove special characters, keep alphanumeric, spaces, and basic punctuation
         text = re.sub(r"[^\w\s.,!?'-]", "", text)
-        
+
         # Normalize whitespace
         text = re.sub(r"\s+", " ", text).strip()
-        
+
         return text
 
     def extract_and_normalize(
@@ -172,11 +172,11 @@ class OCRPipeline:
                 img = (img * 255).astype(np.uint8)
         else:
             raise TypeError(f"Unsupported image type: {type(image)}")
-        
+
         # Ensure uint8 format
         if img.dtype != np.uint8:
             img = img.astype(np.uint8)
-        
+
         return img
 
     def get_config(self) -> Dict:

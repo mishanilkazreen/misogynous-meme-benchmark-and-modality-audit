@@ -2,20 +2,19 @@
 Data augmentation utilities for content moderation training.
 Supports rotation, scaling, brightness adjustments.
 """
+# pylint: disable=no-member
 
 import random
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Tuple
 
 import cv2
 import numpy as np
-import torch
-from PIL import Image
 
 
 class DataAugmentation:
     """
     Data augmentation for training content moderation models.
-    
+
     Supports rotation, scaling, and brightness adjustments while
     preserving the embedded content visibility characteristics.
     """
@@ -58,30 +57,30 @@ class DataAugmentation:
             Augmented image
         """
         img = image.copy()
-        
+
         # Rotation
         if random.random() < self.probability:
             angle = random.uniform(*self.rotation_range)
             img = self._rotate(img, angle)
-        
+
         # Scaling
         if random.random() < self.probability:
             scale = random.uniform(*self.scale_range)
             img = self._scale(img, scale)
-        
+
         # Brightness
         if random.random() < self.probability:
             factor = random.uniform(*self.brightness_range)
             img = self._adjust_brightness(img, factor)
-        
+
         # Horizontal flip
         if self.horizontal_flip and random.random() < self.probability:
             img = self._flip_horizontal(img)
-        
+
         # Vertical flip
         if self.vertical_flip and random.random() < self.probability:
             img = self._flip_vertical(img)
-        
+
         return img
 
     def _rotate(self, image: np.ndarray, angle: float) -> np.ndarray:
@@ -95,10 +94,10 @@ class DataAugmentation:
         """Scale image and crop/pad to original size."""
         h, w = image.shape[:2]
         new_h, new_w = int(h * scale), int(w * scale)
-        
+
         # Resize
         resized = cv2.resize(image, (new_w, new_h), interpolation=cv2.INTER_LINEAR)
-        
+
         # Crop or pad to original size
         if scale > 1.0:
             # Crop center
@@ -130,7 +129,7 @@ class DataAugmentation:
 class BalancedSampler:
     """
     Sampler that ensures balanced distribution across content types.
-    
+
     Balances by visibility level (high/low) and message type (textual/symbolic).
     """
 
@@ -152,7 +151,7 @@ class BalancedSampler:
             "low_visibility_textual": [],
             "low_visibility_symbolic": [],
         }
-        
+
         for idx, ann in enumerate(self.annotations):
             vis = ann.get("visibility_level", "high")
             msg_type = ann.get("message_type", "textual")
@@ -172,22 +171,22 @@ class BalancedSampler:
         """
         # Get non-empty categories
         non_empty = {k: v for k, v in self.category_indices.items() if v}
-        
+
         if not non_empty:
             return []
-        
+
         samples_per_category = num_samples // len(non_empty)
         remainder = num_samples % len(non_empty)
-        
+
         indices = []
-        for i, (category, cat_indices) in enumerate(non_empty.items()):
+        for i, (_, cat_indices) in enumerate(non_empty.items()):
             n = samples_per_category + (1 if i < remainder else 0)
             # Sample with replacement if needed
             if len(cat_indices) >= n:
                 indices.extend(random.sample(cat_indices, n))
             else:
                 indices.extend(random.choices(cat_indices, k=n))
-        
+
         random.shuffle(indices)
         return indices
 

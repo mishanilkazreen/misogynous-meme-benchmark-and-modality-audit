@@ -79,9 +79,9 @@ class TestHatefulIllusionDataset:
         """Test __getitem__ returns expected dictionary structure."""
         import tempfile
         from PIL import Image
-        
+
         mock_load.return_value = create_mock_hf_dataset(5)
-        
+
         # Create a temporary test image
         with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as f:
             img = Image.new("RGB", (256, 256), color=(128, 128, 128))
@@ -106,9 +106,9 @@ class TestHatefulIllusionDataset:
         """Test image is converted to proper tensor shape."""
         import tempfile
         from PIL import Image
-        
+
         mock_load.return_value = create_mock_hf_dataset(5)
-        
+
         # Create a temporary test image
         with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as f:
             img = Image.new("RGB", (256, 256), color=(128, 128, 128))

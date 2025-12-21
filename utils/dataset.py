@@ -82,7 +82,7 @@ class HatefulIllusionDataset(Dataset):
         # Load actual image from HuggingFace dataset
         hf_item = self._hf_dataset[idx]
         image_path = hf_item["image"]  # e.g., "images/0.png"
-        
+
         # Download image from HuggingFace Hub
         local_path = hf_hub_download(
             repo_id="yiting/HatefulIllusion_Dataset",
@@ -91,7 +91,7 @@ class HatefulIllusionDataset(Dataset):
             cache_dir=self.cache_dir,
         )
         pil_image = Image.open(local_path)
-        
+
         # Ensure RGB format
         if pil_image.mode != "RGB":
             pil_image = pil_image.convert("RGB")

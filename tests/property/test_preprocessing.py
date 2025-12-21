@@ -12,7 +12,7 @@ from utils.preprocessing import PreprocessingPipeline
 class TestPreprocessingOrder:
     """
     Property 11: Pathway B preprocessing order.
-    
+
     For any image in Pathway B, Gaussian blur should be applied before
     histogram equalization, both before feature extraction.
     """
@@ -26,13 +26,13 @@ class TestPreprocessingOrder:
     def test_preprocessing_preserves_dimensions(self, height, width, kernel_size):
         """Preprocessing should preserve image dimensions."""
         pipeline = PreprocessingPipeline(blur_kernel_size=kernel_size)
-        
+
         # Create random image
         image = np.random.randint(0, 256, (height, width, 3), dtype=np.uint8)
-        
+
         # Apply preprocessing
         result = pipeline.preprocess(image)
-        
+
         # Verify dimensions preserved
         assert result.shape == image.shape
         assert result.dtype == np.uint8
@@ -45,16 +45,16 @@ class TestPreprocessingOrder:
     def test_blur_before_equalization_order(self, height, width):
         """
         Verify blur is applied before equalization.
-        
+
         We test this by comparing:
         1. blur -> equalize (correct order)
         2. equalize -> blur (wrong order)
-        
+
         The results should be different, proving order matters.
         """
         # Create image with some structure
         image = np.random.randint(50, 200, (height, width, 3), dtype=np.uint8)
-        
+
         # Correct order: blur then equalize
         pipeline_correct = PreprocessingPipeline(
             blur_kernel_size=5,
@@ -62,7 +62,7 @@ class TestPreprocessingOrder:
             apply_equalization=True,
         )
         result_correct = pipeline_correct.preprocess(image)
-        
+
         # Manual wrong order: equalize then blur
         pipeline_blur_only = PreprocessingPipeline(
             blur_kernel_size=5,
@@ -73,11 +73,11 @@ class TestPreprocessingOrder:
             apply_blur=False,
             apply_equalization=True,
         )
-        
+
         # Wrong order: equalize first, then blur
         equalized_first = pipeline_eq_only.preprocess(image)
         result_wrong = pipeline_blur_only.preprocess(equalized_first)
-        
+
         # Results should be different (order matters)
         # Note: They might be similar but not identical
         assert result_correct.shape == result_wrong.shape
@@ -94,16 +94,16 @@ class TestPreprocessingOrder:
             apply_blur=True,
             apply_equalization=False,
         )
-        
+
         # Create image with high-frequency noise
         image = np.random.randint(0, 256, (height, width, 3), dtype=np.uint8)
-        
+
         result = pipeline.preprocess(image)
-        
+
         # Blurred image should have lower variance (smoother)
         original_var = np.var(image.astype(float))
         result_var = np.var(result.astype(float))
-        
+
         assert result_var <= original_var
 
     @given(
@@ -117,16 +117,16 @@ class TestPreprocessingOrder:
             apply_blur=False,
             apply_equalization=True,
         )
-        
+
         # Create low-contrast image
         image = np.random.randint(100, 150, (height, width, 3), dtype=np.uint8)
-        
+
         result = pipeline.preprocess(image)
-        
+
         # Equalized image should have wider range
         original_range = image.max() - image.min()
         result_range = result.max() - result.min()
-        
+
         assert result_range >= original_range
 
     def test_config_returns_settings(self):
@@ -137,9 +137,9 @@ class TestPreprocessingOrder:
             apply_blur=True,
             apply_equalization=False,
         )
-        
+
         config = pipeline.get_config()
-        
+
         assert config["blur_kernel_size"] == 7
         assert config["blur_sigma"] == 1.5
         assert config["apply_blur"] is True
