@@ -61,13 +61,13 @@ class HatefulIllusionDataset(Dataset):
             "yiting/HatefulIllusion_Dataset", "digits", cache_dir=self.cache_dir
         )[self.split]
 
-        for idx, item in enumerate(self._hf_dataset):  # type: ignore[arg-type]
+        for idx, item in enumerate(self._hf_dataset):  # type: ignore[arg-type, var-annotated]
             img_id = str(idx)
             annotation = Annotation(
                 image_id=img_id,
-                message=item["message"],
-                prompt=item["prompt"],
-                visibility=item["visibility"],
+                message=item["message"],  # type: ignore[index]
+                prompt=item["prompt"],  # type: ignore[index]
+                visibility=item["visibility"],  # type: ignore[index]
             )
             self.annotations[img_id] = annotation
             self.image_ids.append(img_id)
@@ -80,7 +80,7 @@ class HatefulIllusionDataset(Dataset):
         annotation = self.annotations[img_id]
 
         # Load actual image from HuggingFace dataset
-        hf_item = self._hf_dataset[idx]
+        hf_item = self._hf_dataset[idx]  # type: ignore[index]
         image_path = hf_item["image"]  # e.g., "images/0.png"
 
         # Download image from HuggingFace Hub
@@ -90,7 +90,7 @@ class HatefulIllusionDataset(Dataset):
             repo_type="dataset",
             cache_dir=self.cache_dir,
         )
-        pil_image = Image.open(local_path)
+        pil_image: Image.Image = Image.open(local_path)
 
         # Ensure RGB format
         if pil_image.mode != "RGB":

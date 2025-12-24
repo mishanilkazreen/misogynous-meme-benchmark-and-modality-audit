@@ -5,7 +5,7 @@ Integrates EasyOCR for text extraction and provides normalization utilities.
 
 import re
 import unicodedata
-from typing import Dict, List, Union
+from typing import Dict, List, Optional, Union
 
 import numpy as np
 import torch
@@ -22,7 +22,7 @@ class OCRPipeline:
 
     def __init__(
         self,
-        languages: List[str] = None,
+        languages: Optional[List[str]] = None,
         gpu: bool = False,
         confidence_threshold: float = 0.3,
     ):
