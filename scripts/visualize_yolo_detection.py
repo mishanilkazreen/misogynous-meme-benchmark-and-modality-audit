@@ -1,13 +1,11 @@
 """
-YOLO Classification Pipeline Visualization.
+YOLO Detection Model Evaluation and Visualization.
 
-This script demonstrates the YOLO classification pipeline on the HatefulIllusion dataset:
-1. Loads samples with varying visibility levels (prioritizing harder instances)
-2. Shows original, preprocessed, and ground truth (hidden digit) side by side
-3. Computes classification metrics: accuracy, precision, recall, F1
-
-The HatefulIllusion dataset contains AI-generated images with hidden digits (0-9).
-The model classifies whether an image contains hidden content and predicts the digit.
+This script evaluates a trained YOLO detection model on unseen test samples:
+1. Loads the trained model from checkpoint
+2. Selects random unseen samples from the dataset
+3. Runs inference and compares predictions vs ground truth
+4. Generates a visualization grid showing results
 
 Usage:
     python scripts/visualize_yolo_detection.py [--samples N] [--output PATH]
@@ -15,340 +13,372 @@ Usage:
 # pylint: disable=no-member,wrong-import-position
 
 import argparse
+import random
 import sys
-import time
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Tuple
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 import cv2
 import numpy as np
 import torch
+from torch import nn
+from torchvision import models  # type: ignore[import-untyped]
 from datasets import load_dataset
 from huggingface_hub import hf_hub_download
 from PIL import Image
 
-from models.yolo import YOLOClassifier, ClassificationResult
-from utils.preprocessing import PreprocessingPipeline
+
+class ResNetBackbone(nn.Module):
+    """Pretrained ResNet backbone for feature extraction."""
+
+    def __init__(self, pretrained: bool = True):
+        """Initialize ResNet18 backbone."""
+        super().__init__()
+        weights = models.ResNet18_Weights.DEFAULT if pretrained else None
+        resnet = models.resnet18(weights=weights)
+        self.features = nn.Sequential(*list(resnet.children())[:-2])
+        self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
+        self.feature_dim = 512
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        """Forward pass."""
+        x = self.features(x)
+        x = self.avgpool(x)
+        return x.flatten(1)
 
 
-def download_image(image_path: str) -> np.ndarray:
-    """Download an image from the HatefulIllusion dataset."""
-    filename = f"digits/{image_path}"
+class YOLODetector(nn.Module):
+    """YOLO-style detector with pretrained backbone."""
+
+    def __init__(self, num_classes: int = 10, pretrained: bool = True):
+        """Initialize detector."""
+        super().__init__()
+        self.backbone = ResNetBackbone(pretrained=pretrained)
+        self.classifier = nn.Sequential(
+            nn.Linear(self.backbone.feature_dim, 256),
+            nn.ReLU(),
+            nn.Dropout(0.5),
+            nn.Linear(256, num_classes),
+        )
+        self.bbox_head = nn.Sequential(
+            nn.Linear(self.backbone.feature_dim, 128),
+            nn.ReLU(),
+            nn.Dropout(0.3),
+            nn.Linear(128, 4),
+            nn.Sigmoid(),
+        )
+
+    def forward(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
+        """Forward pass."""
+        features = self.backbone(x)
+        return self.classifier(features), self.bbox_head(features)
+
+
+def extract_bbox_from_condition(condition_path: str, subset: str) -> Tuple[int, int, int, int]:
+    """Extract bounding box from condition image using OpenCV."""
     local_path = hf_hub_download(
         repo_id="yiting/HatefulIllusion_Dataset",
-        filename=filename,
-        repo_type="dataset"
+        filename=f"{subset}/{condition_path}",
+        repo_type="dataset",
     )
-    pil_img = Image.open(local_path)
-    return np.array(pil_img.convert("RGB"))
+    img = np.array(Image.open(local_path).convert("RGB"))
+    gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+    _, thresh = cv2.threshold(gray, 200, 255, cv2.THRESH_BINARY_INV)
+    contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    if contours:
+        largest = max(contours, key=cv2.contourArea)
+        x, y, w, h = cv2.boundingRect(largest)
+        return x * 2, y * 2, w * 2, h * 2
+    return 0, 0, 512, 512
 
 
-def download_condition_image(condition_path: str) -> np.ndarray:
-    """Download the condition/ground truth image (the hidden digit)."""
-    filename = f"digits/{condition_path}"
-    local_path = hf_hub_download(
-        repo_id="yiting/HatefulIllusion_Dataset",
-        filename=filename,
-        repo_type="dataset"
-    )
-    pil_img = Image.open(local_path)
-    return np.array(pil_img.convert("RGB"))
-
-
-def load_samples_by_visibility(  # pylint: disable=too-many-locals
-    num_samples: int = 10
+def load_test_samples(  # pylint: disable=too-many-locals
+    num_samples: int,
+    subsets: List[str],
+    seed: int = 42,
 ) -> List[Dict]:
-    """Load samples prioritizing lower visibility (harder instances)."""
-    print(f"Loading {num_samples} samples (prioritizing low visibility)...")
-    ds = load_dataset("yiting/HatefulIllusion_Dataset", "digits", split="train")
+    """Load random unseen test samples from specified subsets."""
+    random.seed(seed)
+    all_samples: List[Dict] = []
 
-    by_visibility: Dict[int, List[int]] = {i: [] for i in range(6)}
-    for idx, item in enumerate(ds):
-        by_visibility[item["visibility"]].append(idx)
+    for subset in subsets:
+        ds = load_dataset("yiting/HatefulIllusion_Dataset", subset, split="train")
+        total = len(ds)
+        test_start = int(total * 0.8)
+        test_indices = list(range(test_start, total))
 
-    print("  Visibility distribution:")
-    for vis, indices in sorted(by_visibility.items()):
-        print(f"    Level {vis}: {len(indices)} images")
+        for idx in test_indices:
+            item = ds[idx]
+            all_samples.append({
+                "subset": subset,
+                "index": idx,
+                "image_path": item["image"],
+                "condition_path": item["condition_image"],
+                "message": item["message"],
+                "visibility": item["visibility"],
+            })
 
-    selected: List[int] = []
-    for vis in range(6):
-        available = by_visibility[vis]
-        needed = num_samples - len(selected)
-        if needed <= 0:
-            break
-        step = max(1, len(available) // min(needed, len(available)))
-        for i in range(0, len(available), step):
-            if len(selected) >= num_samples:
-                break
-            selected.append(available[i])
-
-    samples: List[Dict] = []
-    for idx in selected:
-        item = ds[idx]
-        print(f"  Loading idx={idx}, digit={item['message']}, vis={item['visibility']}")
-        samples.append({
-            "index": idx,
-            "image": download_image(item["image"]),
-            "condition_image": download_condition_image(item["condition_image"]),
-            "message": int(item["message"]),
-            "visibility": item["visibility"],
-            "visibility_level": "low" if item["visibility"] <= 2 else "high",
-        })
-    return samples
+    selected = random.sample(all_samples, min(num_samples, len(all_samples)))
+    print(f"Selected {len(selected)} test samples from {len(all_samples)} available")
+    return selected
 
 
-def run_classification(
-    model: YOLOClassifier,
-    image: np.ndarray,
-    preprocessor: Optional[PreprocessingPipeline] = None,
-) -> Tuple[ClassificationResult, float, np.ndarray]:
-    """Run YOLO classification and return result, time, and processed image."""
-    input_size = (416, 416)
-    img_resized = cv2.resize(image, input_size)
+def load_and_preprocess_image(
+    image_path: str,
+    subset: str,
+    input_size: Tuple[int, int] = (224, 224),
+) -> Tuple[torch.Tensor, np.ndarray]:
+    """Load image and return tensor + original for visualization."""
+    local_path = hf_hub_download(
+        repo_id="yiting/HatefulIllusion_Dataset",
+        filename=f"{subset}/{image_path}",
+        repo_type="dataset",
+    )
+    pil_image = Image.open(local_path).convert("RGB")
+    img_resized = pil_image.resize(input_size, Image.Resampling.BILINEAR)
+    img_np = np.array(img_resized)
 
-    if preprocessor is not None:
-        img_resized = preprocessor.preprocess(img_resized)
+    mean = np.array([0.485, 0.456, 0.406])
+    std = np.array([0.229, 0.224, 0.225])
+    img_norm = (img_np / 255.0 - mean) / std
+    tensor = torch.from_numpy(img_norm.transpose(2, 0, 1)).float()
 
-    tensor = torch.from_numpy(img_resized.transpose(2, 0, 1)).float() / 255.0
-    tensor = tensor.unsqueeze(0)
-
-    start = time.perf_counter()
-    result = model.predict(tensor)
-    elapsed_ms = (time.perf_counter() - start) * 1000
-
-    return result, elapsed_ms, img_resized
+    return tensor, img_np
 
 
-def compute_metrics(  # pylint: disable=too-many-locals
+def load_condition_image(condition_path: str, subset: str) -> np.ndarray:
+    """Load condition/ground truth image."""
+    local_path = hf_hub_download(
+        repo_id="yiting/HatefulIllusion_Dataset",
+        filename=f"{subset}/{condition_path}",
+        repo_type="dataset",
+    )
+    return np.array(Image.open(local_path).convert("RGB"))
+
+
+def calculate_iou(pred: torch.Tensor, target: torch.Tensor) -> float:
+    """Calculate IoU between predicted and target bbox."""
+    pred_x1 = float(pred[0] - pred[2] / 2)
+    pred_y1 = float(pred[1] - pred[3] / 2)
+    pred_x2 = float(pred[0] + pred[2] / 2)
+    pred_y2 = float(pred[1] + pred[3] / 2)
+
+    target_x1 = float(target[0] - target[2] / 2)
+    target_y1 = float(target[1] - target[3] / 2)
+    target_x2 = float(target[0] + target[2] / 2)
+    target_y2 = float(target[1] + target[3] / 2)
+
+    inter_x1 = max(pred_x1, target_x1)
+    inter_y1 = max(pred_y1, target_y1)
+    inter_x2 = min(pred_x2, target_x2)
+    inter_y2 = min(pred_y2, target_y2)
+
+    inter_area = max(0.0, inter_x2 - inter_x1) * max(0.0, inter_y2 - inter_y1)
+    pred_area = float(pred[2] * pred[3])
+    target_area = float(target[2] * target[3])
+    union_area = pred_area + target_area - inter_area
+
+    return inter_area / (union_area + 1e-6)
+
+
+def draw_bbox(  # pylint: disable=too-many-arguments,too-many-positional-arguments
+    img: np.ndarray,
+    bbox: Tuple[float, float, float, float],
+    color: Tuple[int, int, int],
+    label: str,
+    thickness: int = 2,
+) -> np.ndarray:
+    """Draw bounding box on image."""
+    h, w = img.shape[:2]
+    cx, cy, bw, bh = bbox
+    x1 = int((cx - bw / 2) * w)
+    y1 = int((cy - bh / 2) * h)
+    x2 = int((cx + bw / 2) * w)
+    y2 = int((cy + bh / 2) * h)
+
+    result = img.copy()
+    cv2.rectangle(result, (x1, y1), (x2, y2), color, thickness)
+    cv2.putText(result, label, (x1, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.4, color, 1)
+    return result
+
+
+def evaluate_and_visualize(  # pylint: disable=too-many-locals,too-many-statements
+    model: YOLODetector,
     samples: List[Dict],
-    model: YOLOClassifier,
-    preprocessor: Optional[PreprocessingPipeline],
-) -> Dict:
-    """Compute accuracy, precision, recall, F1 metrics."""
+    device: torch.device,
+    label_to_idx: Dict[str, int],
+    idx_to_label: Dict[int, str],
+    target_size: Tuple[int, int] = (300, 300),
+) -> Tuple[np.ndarray, Dict]:
+    """Evaluate model and create visualization grid."""
+    model.eval()
+    rows: List[np.ndarray] = []
     correct = 0
-    total = len(samples)
-    total_time = 0.0
-    tp, fp, fn = 0, 0, 0
+    total_iou = 0.0
 
-    # Track predictions vs ground truth for detailed output
-    predictions: List[int] = []
-    ground_truth: List[int] = []
+    with torch.no_grad():
+        for i, sample in enumerate(samples):
+            tensor, img_np = load_and_preprocess_image(
+                sample["image_path"], sample["subset"]
+            )
+            condition_img = load_condition_image(
+                sample["condition_path"], sample["subset"]
+            )
 
-    for sample in samples:
-        result, elapsed, _ = run_classification(model, sample["image"], preprocessor)
-        total_time += elapsed
+            x, y, w, h = extract_bbox_from_condition(
+                sample["condition_path"], sample["subset"]
+            )
+            orig_size = 1024
+            gt_bbox = (
+                (x + w / 2) / orig_size,
+                (y + h / 2) / orig_size,
+                w / orig_size,
+                h / orig_size,
+            )
+            gt_bbox_tensor = torch.tensor(gt_bbox)
 
-        predicted_digit = result.predicted_class
-        actual_digit = sample["message"]
+            tensor = tensor.unsqueeze(0).to(device)
+            class_logits, bbox_pred = model(tensor)
+            pred_idx = class_logits.argmax(dim=1).item()
+            pred_label = idx_to_label.get(pred_idx, str(pred_idx))
+            pred_bbox = bbox_pred[0].cpu()
+            confidence = torch.softmax(class_logits, dim=1).max().item()
 
-        predictions.append(predicted_digit)
-        ground_truth.append(actual_digit)
+            actual_label = str(sample["message"])
+            actual_idx = label_to_idx.get(actual_label, -1)
+            is_correct = pred_idx == actual_idx
+            iou = calculate_iou(pred_bbox, gt_bbox_tensor)
 
-        if predicted_digit == actual_digit:
-            correct += 1
-            tp += 1
-        else:
-            fn += 1  # Missed the correct digit
+            if is_correct:
+                correct += 1
+            total_iou += iou
 
-    accuracy = correct / max(1, total)
-    precision = tp / max(1, tp + fp)
-    recall = tp / max(1, tp + fn)
-    f1 = 2 * precision * recall / max(1e-6, precision + recall)
+            img_vis = cv2.resize(img_np, target_size)
+            condition_vis = cv2.resize(condition_img, target_size)
 
-    return {
-        "accuracy": accuracy,
-        "precision": precision,
-        "recall": recall,
-        "f1": f1,
-        "avg_inference_ms": total_time / max(1, total),
-        "total_samples": total,
-        "correct": correct,
-        "predictions": predictions,
-        "ground_truth": ground_truth,
-    }
+            # Truncate long labels for display
+            pred_short = pred_label[:12] + ".." if len(pred_label) > 14 else pred_label
+            actual_short = actual_label[:12] + ".." if len(actual_label) > 14 else actual_label
 
+            img_with_pred = draw_bbox(
+                img_vis, tuple(pred_bbox.tolist()), (0, 0, 255), f"P:{pred_short}"
+            )
+            img_with_both = draw_bbox(img_with_pred, gt_bbox, (0, 255, 0), "GT")
 
-def create_row_visualization(  # pylint: disable=too-many-locals
-    sample: Dict,
-    model: YOLOClassifier,
-    preprocessor: PreprocessingPipeline,
-    target_size: Tuple[int, int] = (350, 350),
-) -> np.ndarray:
-    """Create a 3-column row: Original + Preprocessed + Ground Truth."""
-    res_orig, time_orig, img_orig = run_classification(model, sample["image"], None)
-    res_prep, time_prep, img_prep = run_classification(
-        model, sample["image"], preprocessor)
+            header_color = (0, 150, 0) if is_correct else (150, 0, 0)
+            header = np.zeros((30, target_size[0] * 3, 3), dtype=np.uint8)
+            header[:, :] = header_color
 
-    img_orig = cv2.resize(img_orig, target_size)
-    img_prep = cv2.resize(img_prep, target_size)
-    condition = cv2.resize(sample["condition_image"], target_size)
+            status = "CORRECT" if is_correct else "WRONG"
+            text = (f"#{i+1} | Pred: {pred_short} ({confidence:.2f}) | "
+                    f"GT: {actual_short} | IoU: {iou:.2f} | {status}")
+            cv2.putText(header, text, (10, 20), cv2.FONT_HERSHEY_SIMPLEX,
+                        0.45, (255, 255, 255), 1)
 
-    # Add prediction info to images with color coding
-    def add_label(img: np.ndarray, text: str, is_correct: bool) -> np.ndarray:
-        result = img.copy()
-        # Color: Green if correct, Red if wrong
-        color = (0, 150, 0) if is_correct else (150, 0, 0)
-        cv2.rectangle(result, (0, 0), (result.shape[1], 22), color, -1)
-        cv2.putText(result, text, (5, 16), cv2.FONT_HERSHEY_SIMPLEX,
-                    0.45, (255, 255, 255), 1)
-        return result
+            row_images = np.hstack([img_vis, img_with_both, condition_vis])
+            row = np.vstack([header, row_images])
+            rows.append(row)
 
-    actual = sample["message"]
-    correct_orig = res_orig.predicted_class == actual
-    correct_prep = res_prep.predicted_class == actual
+            print(f"  Sample {i+1}: Pred={pred_label}, GT={actual_label}, "
+                  f"IoU={iou:.2f}, {status}")
 
-    vis_orig = add_label(
-        img_orig,
-        f"Pred: {res_orig.predicted_class} ({time_orig:.0f}ms)",
-        correct_orig
-    )
-    vis_prep = add_label(
-        img_prep,
-        f"Pred: {res_prep.predicted_class} ({time_prep:.0f}ms)",
-        correct_prep
-    )
+    width = rows[0].shape[1]
+    title = np.zeros((50, width, 3), dtype=np.uint8)
+    cv2.putText(title, "YOLO Detection Model - Test Set Evaluation",
+                (10, 35), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255, 255, 255), 2)
 
-    # Ground truth with neutral color
-    gt_img = condition.copy()
-    cv2.rectangle(gt_img, (0, 0), (gt_img.shape[1], 22), (50, 50, 50), -1)
-    cv2.putText(gt_img, f"Ground Truth: {actual}",
-                (5, 16), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (255, 255, 255), 1)
-
-    # Info bar with prediction accuracy
-    status_orig = "✓" if correct_orig else "✗"
-    status_prep = "✓" if correct_prep else "✗"
-    info = f"Sample {sample['index']} | GT: {actual} | Vis: {sample['visibility']} | "
-    info += f"Orig: {res_orig.predicted_class}{status_orig} | "
-    info += f"Prep: {res_prep.predicted_class}{status_prep}"
-
-    info_bar = np.zeros((28, target_size[0] * 3, 3), dtype=np.uint8)
-    cv2.putText(info_bar, info, (10, 20), cv2.FONT_HERSHEY_SIMPLEX,
-                0.45, (255, 255, 255), 1)
-
-    row = np.hstack([vis_orig, vis_prep, gt_img])
-    return np.vstack([info_bar, row])
-
-
-def print_metrics_table(metrics: Dict, title: str) -> None:
-    """Print metrics in formatted table with prediction details."""
-    print(f"\n{'=' * 60}")
-    print(f" {title}")
-    print(f"{'=' * 60}")
-    print(f"{'Metric':<25} {'Value':>20}")
-    print("-" * 60)
-    print(f"{'Accuracy':<25} {metrics['accuracy']:>20.4f}")
-    print(f"{'Precision':<25} {metrics['precision']:>20.4f}")
-    print(f"{'Recall':<25} {metrics['recall']:>20.4f}")
-    print(f"{'F1 Score':<25} {metrics['f1']:>20.4f}")
-    print("-" * 60)
-    print(f"{'Avg Inference (ms)':<25} {metrics['avg_inference_ms']:>20.1f}")
-    print(f"{'Correct / Total':<25} "
-          f"{metrics['correct']:>10} / {metrics['total_samples']:<7}")
-
-    # Show prediction vs ground truth comparison
-    if 'predictions' in metrics and 'ground_truth' in metrics:
-        print("-" * 60)
-        print("Predictions vs Ground Truth:")
-        preds = metrics['predictions']
-        gt = metrics['ground_truth']
-        for i, (pred, actual) in enumerate(zip(preds, gt)):
-            status = "✓" if pred == actual else "✗"
-            print(f"  Sample {i+1}: Predicted {pred}, Actual {actual} {status}")
-
-    print("=" * 60)
-
-
-def build_visualization(
-    samples: List[Dict],
-    model: YOLOClassifier,
-    preprocessor: PreprocessingPipeline,
-) -> np.ndarray:
-    """Build the full visualization grid."""
-    rows = []
-    for i, sample in enumerate(samples):
-        print(f"  Processing {i+1}/{len(samples)}: "
-              f"digit={sample['message']}, vis={sample['visibility']}")
-        rows.append(create_row_visualization(sample, model, preprocessor))
-
-    title_width = rows[0].shape[1]
-    title_bar = np.zeros((45, title_width, 3), dtype=np.uint8)
-    cv2.putText(title_bar, "HatefulIllusion: Hidden Digit Classification",
-                (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 255, 255), 2)
-
-    col_width = title_width // 3
-    header = np.zeros((25, title_width, 3), dtype=np.uint8)
-    cv2.putText(header, "Original", (col_width // 2 - 30, 18),
+    col_header = np.zeros((25, width, 3), dtype=np.uint8)
+    col_w = width // 3
+    cv2.putText(col_header, "Original Image", (col_w // 2 - 50, 18),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (180, 180, 180), 1)
-    cv2.putText(header, "Preprocessed", (col_width + col_width // 2 - 50, 18),
+    cv2.putText(col_header, "Pred (Blue) vs GT (Green)",
+                (col_w + col_w // 2 - 80, 18),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (180, 180, 180), 1)
-    cv2.putText(header, "Ground Truth", (col_width * 2 + col_width // 2 - 50, 18),
+    cv2.putText(col_header, "Ground Truth",
+                (col_w * 2 + col_w // 2 - 50, 18),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (180, 180, 180), 1)
 
-    # Add legend
-    legend = np.zeros((30, title_width, 3), dtype=np.uint8)
-    cv2.putText(legend, "Legend: Green=Correct Prediction, Red=Wrong Prediction",
-                (10, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1)
+    accuracy = correct / len(samples)
+    avg_iou = total_iou / len(samples)
+    metrics = {"accuracy": accuracy, "avg_iou": avg_iou, "correct": correct,
+               "total": len(samples)}
 
-    return np.vstack([title_bar, header, legend] + rows)
+    summary = np.zeros((40, width, 3), dtype=np.uint8)
+    summary_text = (f"RESULTS: Accuracy={accuracy:.1%} ({correct}/{len(samples)}) | "
+                    f"Avg IoU={avg_iou:.2f}")
+    cv2.putText(summary, summary_text, (10, 28), cv2.FONT_HERSHEY_SIMPLEX,
+                0.7, (255, 255, 255), 2)
+
+    grid = np.vstack([title, col_header] + rows + [summary])
+    return grid, metrics
 
 
-def main() -> None:  # pylint: disable=too-many-locals
+def main() -> None:  # pylint: disable=too-many-locals,too-many-statements
     """Main entry point."""
     parser = argparse.ArgumentParser(
-        description="Visualize YOLO classification on HatefulIllusion dataset")
-    parser.add_argument("--samples", "-n", type=int, default=10)
-    parser.add_argument("--output", "-o", default="yolo_detection_results.png")
-    parser.add_argument("--conf", type=float, default=0.3)
+        description="Evaluate trained YOLO detector on test samples")
+    parser.add_argument("--samples", "-n", type=int, default=10,
+                        help="Number of test samples to evaluate")
+    parser.add_argument("--output", "-o", default="yolo_test_results.png",
+                        help="Output visualization path")
+    parser.add_argument("--checkpoint", "-c", default="checkpoints/best_detector.pt",
+                        help="Path to trained model checkpoint")
+    parser.add_argument("--subsets", type=str, default="digits,hate_slangs,hate_symbols",
+                        help="Dataset subsets to test on")
+    parser.add_argument("--seed", type=int, default=None,
+                        help="Random seed for sample selection (None=random)")
     args = parser.parse_args()
 
     print("\n" + "=" * 60)
-    print(" YOLO Classification - HatefulIllusion Dataset")
+    print(" YOLO Detection Model - Test Evaluation")
     print("=" * 60)
 
-    print("\nInitializing YOLO classifier (untrained weights)...")
-    model = YOLOClassifier(num_classes=10, conf_threshold=args.conf)
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print(f"Device: {device}")
 
-    print("Initializing preprocessor (blur + histogram eq)...")
-    preprocessor = PreprocessingPipeline(apply_blur=True, apply_equalization=True)
+    checkpoint_path = Path(args.checkpoint)
+    if not checkpoint_path.exists():
+        print(f"ERROR: Checkpoint not found at {checkpoint_path}")
+        print("Please train the model first:")
+        print("  python scripts/train_yolo_detection.py")
+        sys.exit(1)
 
-    samples = load_samples_by_visibility(args.samples)
+    print(f"\nLoading model from {checkpoint_path}...")
+    checkpoint = torch.load(checkpoint_path, map_location=device, weights_only=False)
+    num_classes = checkpoint.get("num_classes", 10)
+    label_to_idx = checkpoint.get("label_to_idx", {str(i): i for i in range(10)})
+    idx_to_label = checkpoint.get("idx_to_label", {i: str(i) for i in range(10)})
 
-    print("\nComputing classification metrics...")
-    print("(Note: Model has random weights - metrics show baseline)")
+    model = YOLODetector(num_classes=num_classes, pretrained=False).to(device)
+    model.load_state_dict(checkpoint["model_state_dict"])
+    print(f"  Checkpoint accuracy: {checkpoint.get('accuracy', 'N/A')}")
+    print(f"  Checkpoint IoU: {checkpoint.get('iou', 'N/A')}")
+    print(f"  Number of classes: {num_classes}")
 
-    metrics_orig = compute_metrics(samples, model, None)
-    print_metrics_table(metrics_orig, "Metrics WITHOUT Preprocessing")
+    subsets = [s.strip() for s in args.subsets.split(",")]
+    seed = args.seed if args.seed is not None else random.randint(0, 10000)
+    print(f"\nLoading test samples (seed={seed})...")
+    samples = load_test_samples(args.samples, subsets, seed)
 
-    metrics_prep = compute_metrics(samples, model, preprocessor)
-    print_metrics_table(metrics_prep, "Metrics WITH Preprocessing")
-
-    print(f"\nCreating visualization for {len(samples)} samples...")
-    grid = build_visualization(samples, model, preprocessor)
+    print("\nRunning evaluation...")
+    grid, metrics = evaluate_and_visualize(
+        model, samples, device, label_to_idx, idx_to_label
+    )
 
     output_path = Path(args.output)
     cv2.imwrite(str(output_path), cv2.cvtColor(grid, cv2.COLOR_RGB2BGR))
     print(f"\nVisualization saved to: {output_path.absolute()}")
 
     print("\n" + "=" * 60)
-    print(" Summary")
+    print(" EVALUATION SUMMARY")
     print("=" * 60)
-    print(f"{'Metric':<20} {'No Prep':>12} {'With Prep':>12}")
-    print("-" * 60)
-    for key in ["accuracy", "precision", "recall", "f1"]:
-        print(f"{key.capitalize():<20} {metrics_orig[key]:>12.4f} "
-              f"{metrics_prep[key]:>12.4f}")
-
-    print("\n" + "=" * 60)
-    print(" VISUALIZATION GUIDE")
+    print(f"  Test samples: {metrics['total']}")
+    print(f"  Correct predictions: {metrics['correct']}")
+    print(f"  Accuracy: {metrics['accuracy']:.1%}")
+    print(f"  Average IoU: {metrics['avg_iou']:.2f}")
     print("=" * 60)
-    print("• 3 columns: Original image | Preprocessed | Ground Truth digit")
-    print("• Green headers: Correct prediction")
-    print("• Red headers: Wrong prediction")
-    print("• Info bar shows: Sample ID, Ground Truth, Visibility, Predictions")
-    print("• ✓ = Correct, ✗ = Wrong")
-    print("• Model has untrained weights (random predictions)")
 
 
 if __name__ == "__main__":

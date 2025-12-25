@@ -110,19 +110,30 @@ class HatefulIllusionDetectionDataset(Dataset):  # pylint: disable=too-many-inst
         indices: Optional[List[int]] = None,
         augment: bool = False,
         subsets: Optional[List[str]] = None,
+        label_to_idx: Optional[Dict[str, int]] = None,
     ):
         self.input_size = input_size
         self.augment = augment and split == "train"
         self.samples: List[Dict] = []
 
-        # Load specified subsets (default: digits only for backward compatibility)
+        # Load specified subsets (default: all subsets)
         if subsets is None:
-            subsets = ["digits"]
+            subsets = ["digits", "hate_slangs", "hate_symbols"]
 
         for subset in subsets:
             ds = load_dataset("yiting/HatefulIllusion_Dataset", subset, split="train")
             for item in ds:
                 self.samples.append({"subset": subset, **item})
+
+        # Build label mapping from all unique messages
+        if label_to_idx is None:
+            unique_labels = sorted(set(str(s["message"]) for s in self.samples))
+            self.label_to_idx = {label: idx for idx, label in enumerate(unique_labels)}
+        else:
+            self.label_to_idx = label_to_idx
+
+        self.idx_to_label = {idx: label for label, idx in self.label_to_idx.items()}
+        self.num_classes = len(self.label_to_idx)
 
         total = len(self.samples)
         if indices is not None:
@@ -167,7 +178,7 @@ class HatefulIllusionDetectionDataset(Dataset):  # pylint: disable=too-many-inst
         img_resized = pil_image.resize(self.input_size, Image.Resampling.BILINEAR)
         img_np = np.array(img_resized)
 
-        # Data augmentation
+        # Data augmentation (stronger for better generalization)
         if self.augment:
             # Random horizontal flip
             if np.random.random() > 0.5:
@@ -176,13 +187,32 @@ class HatefulIllusionDetectionDataset(Dataset):  # pylint: disable=too-many-inst
 
             # Random brightness/contrast
             if np.random.random() > 0.5:
-                factor = np.random.uniform(0.8, 1.2)
+                factor = np.random.uniform(0.7, 1.3)
                 img_np = np.clip(img_np * factor, 0, 255).astype(np.uint8)
 
-            # Add noise
-            if np.random.random() > 0.7:
-                noise = np.random.normal(0, 10, img_np.shape).astype(np.int16)
+            # Color jitter (hue/saturation shift)
+            if np.random.random() > 0.5:
+                hsv = cv2.cvtColor(img_np, cv2.COLOR_RGB2HSV).astype(np.float32)
+                hsv[:, :, 0] = (hsv[:, :, 0] + np.random.uniform(-10, 10)) % 180
+                hsv[:, :, 1] = np.clip(hsv[:, :, 1] * np.random.uniform(0.8, 1.2), 0, 255)
+                img_np = cv2.cvtColor(hsv.astype(np.uint8), cv2.COLOR_HSV2RGB)
+
+            # Add Gaussian noise
+            if np.random.random() > 0.6:
+                noise = np.random.normal(0, 15, img_np.shape).astype(np.int16)
                 img_np = np.clip(img_np.astype(np.int16) + noise, 0, 255).astype(np.uint8)
+
+            # Random rotation (small angle)
+            if np.random.random() > 0.7:
+                angle = np.random.uniform(-15, 15)
+                h, w = img_np.shape[:2]
+                matrix = cv2.getRotationMatrix2D((w / 2, h / 2), angle, 1.0)
+                img_np = cv2.warpAffine(img_np, matrix, (w, h), borderMode=cv2.BORDER_REFLECT)
+
+            # Random blur
+            if np.random.random() > 0.8:
+                ksize = np.random.choice([3, 5])
+                img_np = cv2.GaussianBlur(img_np, (ksize, ksize), 0)
 
         # Normalize for pretrained model
         mean = np.array([0.485, 0.456, 0.406])
@@ -190,13 +220,15 @@ class HatefulIllusionDetectionDataset(Dataset):  # pylint: disable=too-many-inst
         img_norm = (img_np / 255.0 - mean) / std
 
         tensor = torch.from_numpy(img_norm.transpose(2, 0, 1)).float()
-        label = int(item["message"])
+        label_str = str(item["message"])
+        label_idx = self.label_to_idx[label_str]
 
         return {
             "image": tensor,
-            "label": torch.tensor(label, dtype=torch.long),
+            "label": torch.tensor(label_idx, dtype=torch.long),
             "bbox": bbox_norm,
             "visibility": item["visibility"],
+            "label_str": label_str,
         }
 
 
@@ -329,7 +361,7 @@ def main() -> None:  # pylint: disable=too-many-locals,too-many-statements
     parser.add_argument("--batch-size", type=int, default=16, help="Batch size")
     parser.add_argument("--lr", type=float, default=0.0001, help="Learning rate")
     parser.add_argument("--patience", type=int, default=10, help="Early stopping patience")
-    parser.add_argument("--subsets", type=str, default="digits",
+    parser.add_argument("--subsets", type=str, default="digits,hate_slangs,hate_symbols",
                         help="Dataset subsets (comma-separated): digits,hate_slangs,hate_symbols")
     args = parser.parse_args()
 
@@ -344,10 +376,15 @@ def main() -> None:  # pylint: disable=too-many-locals,too-many-statements
 
     print("\nLoading datasets...")
     train_dataset = HatefulIllusionDetectionDataset(split="train", augment=True, subsets=subsets)
-    val_dataset = HatefulIllusionDetectionDataset(split="val", augment=False, subsets=subsets)
+    # Share label mapping with validation dataset
+    val_dataset = HatefulIllusionDetectionDataset(
+        split="val", augment=False, subsets=subsets, label_to_idx=train_dataset.label_to_idx
+    )
+    num_classes = train_dataset.num_classes
     print(f"  Subsets: {subsets}")
     print(f"  Training samples: {len(train_dataset)}")
     print(f"  Validation samples: {len(val_dataset)}")
+    print(f"  Number of classes: {num_classes}")
 
     train_loader = DataLoader(
         train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=0
@@ -356,8 +393,8 @@ def main() -> None:  # pylint: disable=too-many-locals,too-many-statements
         val_dataset, batch_size=args.batch_size, shuffle=False, num_workers=0
     )
 
-    print("\nInitializing model with pretrained ResNet50 backbone...")
-    model = YOLODetector(num_classes=10, pretrained=True).to(device)
+    print("\nInitializing model with pretrained ResNet18 backbone...")
+    model = YOLODetector(num_classes=num_classes, pretrained=True).to(device)
 
     # Freeze backbone initially for first few epochs
     for param in model.backbone.parameters():
@@ -416,6 +453,9 @@ def main() -> None:  # pylint: disable=too-many-locals,too-many-statements
                 "accuracy": accuracy,
                 "iou": iou,
                 "epoch": epoch,
+                "num_classes": num_classes,
+                "label_to_idx": train_dataset.label_to_idx,
+                "idx_to_label": train_dataset.idx_to_label,
             }, checkpoint_dir / "best_detector.pt")
         else:
             epochs_without_improvement += 1
