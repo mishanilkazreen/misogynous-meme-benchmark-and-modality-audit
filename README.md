@@ -191,3 +191,48 @@ See `.kiro/specs/vlm-content-moderation/` for:
 3. **Ensemble methods**: Combine multiple model predictions
 4. **Test-time augmentation**: Average predictions over augmented inputs
 5. **Self-supervised pretraining**: Learn representations from unlabeled data
+
+## Third-Party Licenses
+
+This project uses the following open source libraries:
+
+### Core Framework (Permissive Licenses)
+
+| Package | License | Purpose |
+|---------|---------|---------|
+| PyTorch | BSD-3-Clause | Neural network framework |
+| torchvision | BSD-3-Clause | Image transforms and pretrained models |
+| transformers | Apache-2.0 | CLIP and VLM model support |
+| numpy | BSD-3-Clause | Numerical computing |
+| Pillow | HPND | Image loading and saving |
+| opencv-python | Apache-2.0 | Image processing (blur, equalization) |
+
+### OCR (Permissive Licenses)
+
+| Package | License | Purpose |
+|---------|---------|---------|
+| EasyOCR | Apache-2.0 | Text extraction from images |
+| pytesseract | Apache-2.0 | Alternative OCR wrapper |
+
+### Dataset Management (Permissive Licenses)
+
+| Package | License | Purpose |
+|---------|---------|---------|
+| datasets | Apache-2.0 | HuggingFace dataset loading |
+| huggingface_hub | Apache-2.0 | Model and dataset downloads |
+
+### Testing (Permissive/Weak Copyleft)
+
+| Package | License | Purpose |
+|---------|---------|---------|
+| pytest | MIT | Test framework |
+| pytest-cov | MIT | Coverage reporting |
+| hypothesis | MPL-2.0 | Property-based testing |
+
+### License Summary
+
+- All core dependencies use permissive licenses (MIT, BSD, Apache-2.0)
+- No GPL or AGPL dependencies that would require source disclosure
+- Hypothesis uses MPL-2.0 (weak copyleft) - only affects modifications to Hypothesis itself
+
+For detailed license information, see `.kiro/steering/dependency-licenses.md`.
