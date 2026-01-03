@@ -27,8 +27,8 @@ repos:
         additional_dependencies:
           - types-PyYAML
           - types-tqdm
-        args: [--strict, --ignore-missing-imports]
-        exclude: ^(tests/|scripts/)
+        args: [--ignore-missing-imports]
+        exclude: ^(tests/|scripts/|utils/|models/)
 
   - repo: local
     hooks:

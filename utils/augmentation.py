@@ -5,7 +5,6 @@ Supports rotation, scaling, brightness adjustments.
 # pylint: disable=no-member
 
 import random
-from typing import Dict, List, Tuple
 
 import cv2
 import numpy as np
@@ -21,9 +20,9 @@ class DataAugmentation:
 
     def __init__(
         self,
-        rotation_range: Tuple[float, float] = (-15.0, 15.0),
-        scale_range: Tuple[float, float] = (0.9, 1.1),
-        brightness_range: Tuple[float, float] = (0.8, 1.2),
+        rotation_range: tuple[float, float] = (-15.0, 15.0),
+        scale_range: tuple[float, float] = (0.9, 1.1),
+        brightness_range: tuple[float, float] = (0.8, 1.2),
         horizontal_flip: bool = True,
         vertical_flip: bool = False,
         probability: float = 0.5,
@@ -103,14 +102,13 @@ class DataAugmentation:
             # Crop center
             start_y = (new_h - h) // 2
             start_x = (new_w - w) // 2
-            return resized[start_y:start_y + h, start_x:start_x + w]
+            return resized[start_y : start_y + h, start_x : start_x + w]
         else:
             # Pad with reflection
             pad_y = (h - new_h) // 2
             pad_x = (w - new_w) // 2
             return cv2.copyMakeBorder(
-                resized, pad_y, h - new_h - pad_y, pad_x, w - new_w - pad_x,
-                cv2.BORDER_REFLECT
+                resized, pad_y, h - new_h - pad_y, pad_x, w - new_w - pad_x, cv2.BORDER_REFLECT
             )
 
     def _adjust_brightness(self, image: np.ndarray, factor: float) -> np.ndarray:
@@ -133,7 +131,7 @@ class BalancedSampler:
     Balances by visibility level (high/low) and message type (textual/symbolic).
     """
 
-    def __init__(self, annotations: List[Dict]):
+    def __init__(self, annotations: list[dict]):
         """
         Initialize with dataset annotations.
 
@@ -145,7 +143,7 @@ class BalancedSampler:
 
     def _build_indices(self) -> None:
         """Build indices for each category combination."""
-        self.category_indices: Dict[str, List[int]] = {
+        self.category_indices: dict[str, list[int]] = {
             "high_visibility_textual": [],
             "high_visibility_symbolic": [],
             "low_visibility_textual": [],
@@ -159,7 +157,7 @@ class BalancedSampler:
             if key in self.category_indices:
                 self.category_indices[key].append(idx)
 
-    def get_balanced_indices(self, num_samples: int) -> List[int]:
+    def get_balanced_indices(self, num_samples: int) -> list[int]:
         """
         Get balanced sample indices.
 
@@ -190,10 +188,10 @@ class BalancedSampler:
         random.shuffle(indices)
         return indices
 
-    def get_category_counts(self) -> Dict[str, int]:
+    def get_category_counts(self) -> dict[str, int]:
         """Get count of samples in each category."""
         return {k: len(v) for k, v in self.category_indices.items()}
 
-    def check_composition_completeness(self) -> Dict[str, bool]:
+    def check_composition_completeness(self) -> dict[str, bool]:
         """Check if all category combinations are present."""
         return {k: len(v) > 0 for k, v in self.category_indices.items()}

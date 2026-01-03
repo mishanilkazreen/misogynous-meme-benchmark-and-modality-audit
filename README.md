@@ -40,7 +40,7 @@ powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
 
 ```bash
 # Create venv with uv
-uv venv --python 3.10
+uv venv .venv --python 3.10
 
 # Activate (Windows)
 .venv\Scripts\activate
@@ -53,10 +53,10 @@ source .venv/bin/activate
 
 ```bash
 # Install project with dev dependencies
-uv pip install -e ".[dev]"
+uv sync --dev
 
-# Install PyTorch with CUDA support (optional)
-uv pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+# Add PyTorch with CPU support (optional)
+uv add torch torchvision --index-url https://download.pytorch.org/whl/cpu
 ```
 
 5. Set up pre-commit hooks:

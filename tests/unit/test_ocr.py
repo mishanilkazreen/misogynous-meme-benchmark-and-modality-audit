@@ -1,9 +1,10 @@
 """Unit tests for OCRPipeline."""
 
-import numpy as np
-import pytest
-from PIL import Image
 from unittest.mock import MagicMock
+
+import numpy as np
+from PIL import Image
+import pytest
 
 from utils.ocr import OCRPipeline
 

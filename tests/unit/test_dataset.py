@@ -53,9 +53,9 @@ def create_mock_hf_dataset(num_samples=10):
     ]
 
     mock_dataset = MagicMock()
-    mock_dataset.__iter__ = lambda self: iter(mock_data)
-    mock_dataset.__len__ = lambda self: len(mock_data)
-    mock_dataset.__getitem__ = lambda self, idx: mock_data[idx]
+    mock_dataset.__iter__ = lambda _: iter(mock_data)
+    mock_dataset.__len__ = lambda _: len(mock_data)
+    mock_dataset.__getitem__ = lambda _, idx: mock_data[idx]
 
     return {"train": mock_dataset}
 
@@ -78,6 +78,7 @@ class TestHatefulIllusionDataset:
     def test_getitem_returns_dict(self, mock_load, mock_hf_download):
         """Test __getitem__ returns expected dictionary structure."""
         import tempfile
+
         from PIL import Image
 
         mock_load.return_value = create_mock_hf_dataset(5)
@@ -105,6 +106,7 @@ class TestHatefulIllusionDataset:
     def test_image_tensor_shape(self, mock_load, mock_hf_download):
         """Test image is converted to proper tensor shape."""
         import tempfile
+
         from PIL import Image
 
         mock_load.return_value = create_mock_hf_dataset(5)

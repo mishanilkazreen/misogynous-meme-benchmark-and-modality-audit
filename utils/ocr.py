@@ -5,11 +5,10 @@ Integrates EasyOCR for text extraction and provides normalization utilities.
 
 import re
 import unicodedata
-from typing import Dict, List, Optional, Union
 
 import numpy as np
-import torch
 from PIL import Image
+import torch
 
 
 class OCRPipeline:
@@ -22,7 +21,7 @@ class OCRPipeline:
 
     def __init__(
         self,
-        languages: Optional[List[str]] = None,
+        languages: list[str] | None = None,
         gpu: bool = False,
         confidence_threshold: float = 0.3,
     ):
@@ -44,12 +43,11 @@ class OCRPipeline:
         """Lazy initialization of EasyOCR reader."""
         if self._reader is None:
             import easyocr
+
             self._reader = easyocr.Reader(self.languages, gpu=self.gpu)
         return self._reader
 
-    def extract_text(
-        self, image: Union[np.ndarray, Image.Image, torch.Tensor]
-    ) -> str:
+    def extract_text(self, image: np.ndarray | Image.Image | torch.Tensor) -> str:
         """
         Extract text from an image.
 
@@ -72,9 +70,7 @@ class OCRPipeline:
 
         return " ".join(texts)
 
-    def extract_text_with_boxes(
-        self, image: Union[np.ndarray, Image.Image, torch.Tensor]
-    ) -> List[Dict]:
+    def extract_text_with_boxes(self, image: np.ndarray | Image.Image | torch.Tensor) -> list[dict]:
         """
         Extract text with bounding box information.
 
@@ -97,11 +93,13 @@ class OCRPipeline:
                 x, y = min(x_coords), min(y_coords)
                 w, h = max(x_coords) - x, max(y_coords) - y
 
-                detections.append({
-                    "text": text,
-                    "bbox": (int(x), int(y), int(w), int(h)),
-                    "confidence": confidence,
-                })
+                detections.append(
+                    {
+                        "text": text,
+                        "bbox": (int(x), int(y), int(w), int(h)),
+                        "confidence": confidence,
+                    }
+                )
 
         return detections
 
@@ -138,9 +136,7 @@ class OCRPipeline:
 
         return text
 
-    def extract_and_normalize(
-        self, image: Union[np.ndarray, Image.Image, torch.Tensor]
-    ) -> str:
+    def extract_and_normalize(self, image: np.ndarray | Image.Image | torch.Tensor) -> str:
         """
         Extract text from image and normalize it.
 
@@ -153,9 +149,7 @@ class OCRPipeline:
         raw_text = self.extract_text(image)
         return self.normalize_text(raw_text)
 
-    def _to_numpy(
-        self, image: Union[np.ndarray, Image.Image, torch.Tensor]
-    ) -> np.ndarray:
+    def _to_numpy(self, image: np.ndarray | Image.Image | torch.Tensor) -> np.ndarray:
         """Convert input to numpy array in (H, W, C) format."""
         if isinstance(image, np.ndarray):
             img = image.copy()
@@ -179,7 +173,7 @@ class OCRPipeline:
 
         return img
 
-    def get_config(self) -> Dict:
+    def get_config(self) -> dict:
         """Return current configuration."""
         return {
             "languages": self.languages,

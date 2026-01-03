@@ -13,16 +13,16 @@ Example:
 # pylint: disable=no-member,wrong-import-position
 
 import argparse
-import sys
 from pathlib import Path
+import sys
 
 # Add project root to path before local imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 import cv2
-import numpy as np
 from datasets import load_dataset
 from huggingface_hub import hf_hub_download
+import numpy as np
 from PIL import Image
 
 from utils.preprocessing import PreprocessingPipeline
@@ -42,9 +42,7 @@ def download_image_from_huggingface(image_path: str) -> np.ndarray:
     print(f"Downloading: {filename}")
 
     local_path = hf_hub_download(
-        repo_id="yiting/HatefulIllusion_Dataset",
-        filename=filename,
-        repo_type="dataset"
+        repo_id="yiting/HatefulIllusion_Dataset", filename=filename, repo_type="dataset"
     )
 
     pil_img = Image.open(local_path)
@@ -104,7 +102,7 @@ def create_visualization_grid(results: dict, metadata: dict) -> np.ndarray:
     Returns:
         Grid image as numpy array
     """
-    names = ["original"] + PreprocessingPipeline.TRANSFORMATIONS
+    names = ["original", *PreprocessingPipeline.TRANSFORMATIONS]
     images = [results[name] for name in names]
 
     n_cols = 4
@@ -113,9 +111,10 @@ def create_visualization_grid(results: dict, metadata: dict) -> np.ndarray:
     target_size = (256, 256)
     resized = []
     for img in images:
-        if img.shape[:2] != target_size:
-            img = cv2.resize(img, target_size)
-        resized.append(img)
+        resized_image = img.copy()
+        if resized_image.shape[:2] != target_size:
+            resized_image = cv2.resize(resized_image, target_size)
+        resized.append(resized_image)
 
     rows = []
     for i in range(n_rows):
@@ -125,19 +124,11 @@ def create_visualization_grid(results: dict, metadata: dict) -> np.ndarray:
             if idx < len(resized):
                 img = resized[idx].copy()
                 label = names[idx].replace("_", " ").title()
-                cv2.putText(
-                    img, label, (5, 20), cv2.FONT_HERSHEY_SIMPLEX,
-                    0.5, (255, 255, 255), 2
-                )
-                cv2.putText(
-                    img, label, (5, 20), cv2.FONT_HERSHEY_SIMPLEX,
-                    0.5, (0, 0, 0), 1
-                )
+                cv2.putText(img, label, (5, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)
+                cv2.putText(img, label, (5, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1)
                 row_images.append(img)
             else:
-                row_images.append(
-                    np.zeros((target_size[0], target_size[1], 3), dtype=np.uint8)
-                )
+                row_images.append(np.zeros((target_size[0], target_size[1], 3), dtype=np.uint8))
         rows.append(np.hstack(row_images))
 
     grid = np.vstack(rows)
@@ -145,10 +136,7 @@ def create_visualization_grid(results: dict, metadata: dict) -> np.ndarray:
     title_height = 60
     title_bar = np.zeros((title_height, grid.shape[1], 3), dtype=np.uint8)
     title = f"Message: '{metadata['message']}', Visibility: {metadata['visibility']}"
-    cv2.putText(
-        title_bar, title, (10, 40), cv2.FONT_HERSHEY_SIMPLEX,
-        0.7, (255, 255, 255), 2
-    )
+    cv2.putText(title_bar, title, (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
 
     return np.vstack([title_bar, grid])
 
@@ -159,15 +147,13 @@ def main():
         description="Visualize image transformations on HatefulIllusion dataset"
     )
     parser.add_argument(
-        "--output", "-o",
+        "--output",
+        "-o",
         default="transformation_visualization.png",
-        help="Output file path (default: transformation_visualization.png)"
+        help="Output file path (default: transformation_visualization.png)",
     )
     parser.add_argument(
-        "--index", "-i",
-        type=int,
-        default=None,
-        help="Image index to use (default: random)"
+        "--index", "-i", type=int, default=None, help="Image index to use (default: random)"
     )
     args = parser.parse_args()
 
@@ -185,7 +171,7 @@ def main():
     print(f"\nVisualization saved to: {output_path.absolute()}")
 
     print("\nTransformations applied:")
-    for i, name in enumerate(["original"] + PreprocessingPipeline.TRANSFORMATIONS, 1):
+    for i, name in enumerate(["original", *PreprocessingPipeline.TRANSFORMATIONS], 1):
         print(f"  {i:2d}. {name}")
 
 

@@ -8,7 +8,6 @@ contains hidden hateful content (digits 0-9 embedded in AI-generated images).
 # pylint: disable=too-many-instance-attributes
 
 from dataclasses import dataclass
-from typing import List, Optional, Tuple
 
 import torch
 from torch import nn
@@ -18,6 +17,7 @@ import torch.nn.functional as F
 @dataclass
 class ClassificationResult:
     """Represents a single classification result."""
+
     is_hateful: bool
     confidence: float
     predicted_class: int  # 0-9 for digit classification
@@ -36,9 +36,7 @@ class ConvBlock(nn.Module):
         padding: int = 1,
     ):
         super().__init__()
-        self.conv = nn.Conv2d(
-            in_channels, out_channels, kernel_size, stride, padding, bias=False
-        )
+        self.conv = nn.Conv2d(in_channels, out_channels, kernel_size, stride, padding, bias=False)
         self.bn = nn.BatchNorm2d(out_channels)
         self.act = nn.LeakyReLU(0.1, inplace=True)
 
@@ -72,13 +70,9 @@ class YOLOBackbone(nn.Module):
         self.stage4 = self._make_stage(256, 512, num_blocks=8)
         self.stage5 = self._make_stage(512, 1024, num_blocks=4)
 
-    def _make_stage(
-        self, in_channels: int, out_channels: int, num_blocks: int
-    ) -> nn.Sequential:
+    def _make_stage(self, in_channels: int, out_channels: int, num_blocks: int) -> nn.Sequential:
         """Create a downsampling stage with residual blocks."""
-        layers: List[nn.Module] = [
-            ConvBlock(in_channels, out_channels, kernel_size=3, stride=2)
-        ]
+        layers: list[nn.Module] = [ConvBlock(in_channels, out_channels, kernel_size=3, stride=2)]
         for _ in range(num_blocks):
             layers.append(ResidualBlock(out_channels))
         return nn.Sequential(*layers)
@@ -110,7 +104,7 @@ class YOLOClassifier(nn.Module):
     def __init__(
         self,
         num_classes: int = 10,  # 0-9 digits
-        input_size: Tuple[int, int] = (416, 416),
+        input_size: tuple[int, int] = (416, 416),
         conf_threshold: float = 0.5,
     ):
         super().__init__()
@@ -146,7 +140,7 @@ class YOLOClassifier(nn.Module):
     def predict(
         self,
         image: torch.Tensor,
-        conf_threshold: Optional[float] = None,
+        conf_threshold: float | None = None,
     ) -> ClassificationResult:
         """
         Run inference on a single image.
@@ -182,8 +176,8 @@ class YOLOClassifier(nn.Module):
     def predict_batch(
         self,
         images: torch.Tensor,
-        conf_threshold: Optional[float] = None,
-    ) -> List[ClassificationResult]:
+        conf_threshold: float | None = None,
+    ) -> list[ClassificationResult]:
         """
         Run inference on a batch of images.
 
@@ -203,14 +197,16 @@ class YOLOClassifier(nn.Module):
             confidences, predicted_classes = probs.max(dim=1)
 
             results = []
-            for conf, pred_cls in zip(confidences, predicted_classes):
+            for conf, pred_cls in zip(confidences, predicted_classes, strict=False):
                 conf_val = float(conf.item())
-                results.append(ClassificationResult(
-                    is_hateful=conf_val >= threshold,
-                    confidence=conf_val,
-                    predicted_class=int(pred_cls.item()),
-                    visibility_level="high" if conf_val > 0.7 else "low",
-                ))
+                results.append(
+                    ClassificationResult(
+                        is_hateful=conf_val >= threshold,
+                        confidence=conf_val,
+                        predicted_class=int(pred_cls.item()),
+                        visibility_level="high" if conf_val > 0.7 else "low",
+                    )
+                )
             return results
 
     def get_config(self) -> dict:

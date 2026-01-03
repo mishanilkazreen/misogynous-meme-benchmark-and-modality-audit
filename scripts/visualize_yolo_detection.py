@@ -13,21 +13,20 @@ Usage:
 # pylint: disable=no-member,wrong-import-position
 
 import argparse
+from pathlib import Path
 import random
 import sys
-from pathlib import Path
-from typing import Dict, List, Tuple
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 import cv2
+from datasets import load_dataset
+from huggingface_hub import hf_hub_download
 import numpy as np
+from PIL import Image
 import torch
 from torch import nn
 from torchvision import models  # type: ignore[import-untyped]
-from datasets import load_dataset
-from huggingface_hub import hf_hub_download
-from PIL import Image
 
 
 class ResNetBackbone(nn.Module):
@@ -70,13 +69,13 @@ class YOLODetector(nn.Module):
             nn.Sigmoid(),
         )
 
-    def forward(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
+    def forward(self, x: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
         """Forward pass."""
         features = self.backbone(x)
         return self.classifier(features), self.bbox_head(features)
 
 
-def extract_bbox_from_condition(condition_path: str, subset: str) -> Tuple[int, int, int, int]:
+def extract_bbox_from_condition(condition_path: str, subset: str) -> tuple[int, int, int, int]:
     """Extract bounding box from condition image using OpenCV."""
     local_path = hf_hub_download(
         repo_id="yiting/HatefulIllusion_Dataset",
@@ -96,12 +95,12 @@ def extract_bbox_from_condition(condition_path: str, subset: str) -> Tuple[int, 
 
 def load_test_samples(  # pylint: disable=too-many-locals
     num_samples: int,
-    subsets: List[str],
+    subsets: list[str],
     seed: int = 42,
-) -> List[Dict]:
+) -> list[dict]:
     """Load random unseen test samples from specified subsets."""
     random.seed(seed)
-    all_samples: List[Dict] = []
+    all_samples: list[dict] = []
 
     for subset in subsets:
         ds = load_dataset("yiting/HatefulIllusion_Dataset", subset, split="train")
@@ -111,14 +110,16 @@ def load_test_samples(  # pylint: disable=too-many-locals
 
         for idx in test_indices:
             item = ds[idx]
-            all_samples.append({
-                "subset": subset,
-                "index": idx,
-                "image_path": item["image"],
-                "condition_path": item["condition_image"],
-                "message": item["message"],
-                "visibility": item["visibility"],
-            })
+            all_samples.append(
+                {
+                    "subset": subset,
+                    "index": idx,
+                    "image_path": item["image"],
+                    "condition_path": item["condition_image"],
+                    "message": item["message"],
+                    "visibility": item["visibility"],
+                }
+            )
 
     selected = random.sample(all_samples, min(num_samples, len(all_samples)))
     print(f"Selected {len(selected)} test samples from {len(all_samples)} available")
@@ -128,8 +129,8 @@ def load_test_samples(  # pylint: disable=too-many-locals
 def load_and_preprocess_image(
     image_path: str,
     subset: str,
-    input_size: Tuple[int, int] = (224, 224),
-) -> Tuple[torch.Tensor, np.ndarray]:
+    input_size: tuple[int, int] = (224, 224),
+) -> tuple[torch.Tensor, np.ndarray]:
     """Load image and return tensor + original for visualization."""
     local_path = hf_hub_download(
         repo_id="yiting/HatefulIllusion_Dataset",
@@ -185,8 +186,8 @@ def calculate_iou(pred: torch.Tensor, target: torch.Tensor) -> float:
 
 def draw_bbox(  # pylint: disable=too-many-arguments,too-many-positional-arguments
     img: np.ndarray,
-    bbox: Tuple[float, float, float, float],
-    color: Tuple[int, int, int],
+    bbox: tuple[float, float, float, float],
+    color: tuple[int, int, int],
     label: str,
     thickness: int = 2,
 ) -> np.ndarray:
@@ -206,30 +207,24 @@ def draw_bbox(  # pylint: disable=too-many-arguments,too-many-positional-argumen
 
 def evaluate_and_visualize(  # pylint: disable=too-many-locals,too-many-statements
     model: YOLODetector,
-    samples: List[Dict],
+    samples: list[dict],
     device: torch.device,
-    label_to_idx: Dict[str, int],
-    idx_to_label: Dict[int, str],
-    target_size: Tuple[int, int] = (300, 300),
-) -> Tuple[np.ndarray, Dict]:
+    label_to_idx: dict[str, int],
+    idx_to_label: dict[int, str],
+    target_size: tuple[int, int] = (300, 300),
+) -> tuple[np.ndarray, dict]:
     """Evaluate model and create visualization grid."""
     model.eval()
-    rows: List[np.ndarray] = []
+    rows: list[np.ndarray] = []
     correct = 0
     total_iou = 0.0
 
     with torch.no_grad():
         for i, sample in enumerate(samples):
-            tensor, img_np = load_and_preprocess_image(
-                sample["image_path"], sample["subset"]
-            )
-            condition_img = load_condition_image(
-                sample["condition_path"], sample["subset"]
-            )
+            tensor, img_np = load_and_preprocess_image(sample["image_path"], sample["subset"])
+            condition_img = load_condition_image(sample["condition_path"], sample["subset"])
 
-            x, y, w, h = extract_bbox_from_condition(
-                sample["condition_path"], sample["subset"]
-            )
+            x, y, w, h = extract_bbox_from_condition(sample["condition_path"], sample["subset"])
             orig_size = 1024
             gt_bbox = (
                 (x + w / 2) / orig_size,
@@ -272,63 +267,100 @@ def evaluate_and_visualize(  # pylint: disable=too-many-locals,too-many-statemen
             header[:, :] = header_color
 
             status = "CORRECT" if is_correct else "WRONG"
-            text = (f"#{i+1} | Pred: {pred_short} ({confidence:.2f}) | "
-                    f"GT: {actual_short} | IoU: {iou:.2f} | {status}")
-            cv2.putText(header, text, (10, 20), cv2.FONT_HERSHEY_SIMPLEX,
-                        0.45, (255, 255, 255), 1)
+            text = (
+                f"#{i + 1} | Pred: {pred_short} ({confidence:.2f}) | "
+                f"GT: {actual_short} | IoU: {iou:.2f} | {status}"
+            )
+            cv2.putText(header, text, (10, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (255, 255, 255), 1)
 
             row_images = np.hstack([img_vis, img_with_both, condition_vis])
             row = np.vstack([header, row_images])
             rows.append(row)
 
-            print(f"  Sample {i+1}: Pred={pred_label}, GT={actual_label}, "
-                  f"IoU={iou:.2f}, {status}")
+            print(
+                f"  Sample {i + 1}: Pred={pred_label}, GT={actual_label}, IoU={iou:.2f}, {status}"
+            )
 
     width = rows[0].shape[1]
     title = np.zeros((50, width, 3), dtype=np.uint8)
-    cv2.putText(title, "YOLO Detection Model - Test Set Evaluation",
-                (10, 35), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255, 255, 255), 2)
+    cv2.putText(
+        title,
+        "YOLO Detection Model - Test Set Evaluation",
+        (10, 35),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        1.0,
+        (255, 255, 255),
+        2,
+    )
 
     col_header = np.zeros((25, width, 3), dtype=np.uint8)
     col_w = width // 3
-    cv2.putText(col_header, "Original Image", (col_w // 2 - 50, 18),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (180, 180, 180), 1)
-    cv2.putText(col_header, "Pred (Blue) vs GT (Green)",
-                (col_w + col_w // 2 - 80, 18),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (180, 180, 180), 1)
-    cv2.putText(col_header, "Ground Truth",
-                (col_w * 2 + col_w // 2 - 50, 18),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (180, 180, 180), 1)
+    cv2.putText(
+        col_header,
+        "Original Image",
+        (col_w // 2 - 50, 18),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        0.5,
+        (180, 180, 180),
+        1,
+    )
+    cv2.putText(
+        col_header,
+        "Pred (Blue) vs GT (Green)",
+        (col_w + col_w // 2 - 80, 18),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        0.5,
+        (180, 180, 180),
+        1,
+    )
+    cv2.putText(
+        col_header,
+        "Ground Truth",
+        (col_w * 2 + col_w // 2 - 50, 18),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        0.5,
+        (180, 180, 180),
+        1,
+    )
 
     accuracy = correct / len(samples)
     avg_iou = total_iou / len(samples)
-    metrics = {"accuracy": accuracy, "avg_iou": avg_iou, "correct": correct,
-               "total": len(samples)}
+    metrics = {"accuracy": accuracy, "avg_iou": avg_iou, "correct": correct, "total": len(samples)}
 
     summary = np.zeros((40, width, 3), dtype=np.uint8)
-    summary_text = (f"RESULTS: Accuracy={accuracy:.1%} ({correct}/{len(samples)}) | "
-                    f"Avg IoU={avg_iou:.2f}")
-    cv2.putText(summary, summary_text, (10, 28), cv2.FONT_HERSHEY_SIMPLEX,
-                0.7, (255, 255, 255), 2)
+    summary_text = (
+        f"RESULTS: Accuracy={accuracy:.1%} ({correct}/{len(samples)}) | Avg IoU={avg_iou:.2f}"
+    )
+    cv2.putText(summary, summary_text, (10, 28), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
 
-    grid = np.vstack([title, col_header] + rows + [summary])
+    grid = np.vstack([title, col_header, *rows, summary])
     return grid, metrics
 
 
 def main() -> None:  # pylint: disable=too-many-locals,too-many-statements
     """Main entry point."""
-    parser = argparse.ArgumentParser(
-        description="Evaluate trained YOLO detector on test samples")
-    parser.add_argument("--samples", "-n", type=int, default=10,
-                        help="Number of test samples to evaluate")
-    parser.add_argument("--output", "-o", default="yolo_test_results.png",
-                        help="Output visualization path")
-    parser.add_argument("--checkpoint", "-c", default="checkpoints/best_detector.pt",
-                        help="Path to trained model checkpoint")
-    parser.add_argument("--subsets", type=str, default="digits,hate_slangs,hate_symbols",
-                        help="Dataset subsets to test on")
-    parser.add_argument("--seed", type=int, default=None,
-                        help="Random seed for sample selection (None=random)")
+    parser = argparse.ArgumentParser(description="Evaluate trained YOLO detector on test samples")
+    parser.add_argument(
+        "--samples", "-n", type=int, default=10, help="Number of test samples to evaluate"
+    )
+    parser.add_argument(
+        "--output", "-o", default="yolo_test_results.png", help="Output visualization path"
+    )
+    parser.add_argument(
+        "--checkpoint",
+        "-c",
+        default="checkpoints/best_detector.pt",
+        help="Path to trained model checkpoint",
+    )
+    parser.add_argument(
+        "--subsets",
+        type=str,
+        default="digits,hate_slangs,hate_symbols",
+        help="Dataset subsets to test on",
+    )
+    parser.add_argument(
+        "--seed", type=int, default=None, help="Random seed for sample selection (None=random)"
+    )
     args = parser.parse_args()
 
     print("\n" + "=" * 60)
@@ -363,9 +395,7 @@ def main() -> None:  # pylint: disable=too-many-locals,too-many-statements
     samples = load_test_samples(args.samples, subsets, seed)
 
     print("\nRunning evaluation...")
-    grid, metrics = evaluate_and_visualize(
-        model, samples, device, label_to_idx, idx_to_label
-    )
+    grid, metrics = evaluate_and_visualize(model, samples, device, label_to_idx, idx_to_label)
 
     output_path = Path(args.output)
     cv2.imwrite(str(output_path), cv2.cvtColor(grid, cv2.COLOR_RGB2BGR))

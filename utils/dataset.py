@@ -4,12 +4,11 @@ Supports the HatefulIllusion dataset format from Hugging Face.
 """
 
 from dataclasses import dataclass
-from typing import Dict, List, Optional, Tuple
 
-import numpy as np
-import torch
 from huggingface_hub import hf_hub_download
+import numpy as np
 from PIL import Image
+import torch
 from torch.utils.data import Dataset
 
 
@@ -21,8 +20,8 @@ class Annotation:
     message: str
     prompt: str
     visibility: int
-    labels: Optional[List[int]] = None
-    bbox: Optional[Tuple[int, int, int, int]] = None
+    labels: list[int] | None = None
+    bbox: tuple[int, int, int, int] | None = None
 
     @property
     def is_hate(self) -> bool:
@@ -44,15 +43,14 @@ class Annotation:
 class HatefulIllusionDataset(Dataset):
     """PyTorch Dataset for HatefulIllusion dataset from Hugging Face."""
 
-    def __init__(self, split: str = "train", transform=None, cache_dir: Optional[str] = None):
+    def __init__(self, split: str = "train", transform=None, cache_dir: str | None = None):
         self.split = split
         self.transform = transform
         self.cache_dir = cache_dir
-        self.annotations: Dict[str, Annotation] = {}
-        self.image_ids: List[str] = []
+        self.annotations: dict[str, Annotation] = {}
+        self.image_ids: list[str] = []
         self._hf_dataset = None
         self._load_dataset()
-
 
     def _load_dataset(self) -> None:
         from datasets import load_dataset
@@ -75,7 +73,7 @@ class HatefulIllusionDataset(Dataset):
     def __len__(self) -> int:
         return len(self.image_ids)
 
-    def __getitem__(self, idx: int) -> Dict:
+    def __getitem__(self, idx: int) -> dict:
         img_id = self.image_ids[idx]
         annotation = self.annotations[img_id]
 
@@ -116,9 +114,9 @@ class HatefulIllusionDataset(Dataset):
 class DatasetManager:
     """Manager for loading, validating, and preparing datasets."""
 
-    def __init__(self, cache_dir: Optional[str] = None):
+    def __init__(self, cache_dir: str | None = None):
         self.cache_dir = cache_dir
-        self._datasets: Dict[str, HatefulIllusionDataset] = {}
+        self._datasets: dict[str, HatefulIllusionDataset] = {}
 
     def load_dataset(self, split: str = "train", transform=None) -> HatefulIllusionDataset:
         cache_key = split
@@ -128,7 +126,7 @@ class DatasetManager:
             )
         return self._datasets[cache_key]
 
-    def get_dataset_stats(self, split: str = "train") -> Dict:
+    def get_dataset_stats(self, split: str = "train") -> dict:
         """Get statistics about the dataset."""
         dataset = self.load_dataset(split=split)
         annotations = list(dataset.annotations.values())
@@ -146,7 +144,7 @@ class DatasetManager:
             "symbolic_count": symbolic,
         }
 
-    def check_composition_completeness(self, split: str = "train") -> Dict[str, bool]:
+    def check_composition_completeness(self, split: str = "train") -> dict[str, bool]:
         dataset = self.load_dataset(split=split)
         combinations = {
             "high_visibility_textual": False,
@@ -168,7 +166,7 @@ class DatasetManager:
             return False
 
 
-def download_hateful_illusion_dataset(cache_dir: Optional[str] = None) -> str:
+def download_hateful_illusion_dataset(cache_dir: str | None = None) -> str:
     """Download the HatefulIllusion dataset from Hugging Face."""
     from datasets import load_dataset
 

@@ -5,7 +5,8 @@ Tests Property 2: Dataset composition completeness.
 
 import random
 
-from hypothesis import given, settings, strategies as st
+from hypothesis import given, settings
+from hypothesis import strategies as st
 
 from utils.augmentation import BalancedSampler
 
@@ -80,11 +81,11 @@ class TestDatasetComposition:
     def test_composition_completeness_with_missing_category(self):
         """Dataset missing a category should report incomplete."""
         # Create annotations missing low_visibility_symbolic
+        # Missing low_visibility_symbolic
         annotations = [
             {"visibility_level": "high", "message_type": "textual"},
             {"visibility_level": "high", "message_type": "symbolic"},
             {"visibility_level": "low", "message_type": "textual"},
-            # Missing: low_visibility_symbolic
         ]
 
         sampler = BalancedSampler(annotations)
@@ -147,10 +148,12 @@ class TestDatasetComposition:
         annotations: list[dict] = []
         for _ in range(total):
             vis, msg_type = categories[len(annotations) % 4]
-            annotations.append({
-                "visibility_level": vis,
-                "message_type": msg_type,
-            })
+            annotations.append(
+                {
+                    "visibility_level": vis,
+                    "message_type": msg_type,
+                }
+            )
 
         random.shuffle(annotations)
         return annotations

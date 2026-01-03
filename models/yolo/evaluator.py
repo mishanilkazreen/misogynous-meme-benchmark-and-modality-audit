@@ -6,16 +6,16 @@ Supports stratification by visibility level (high/low).
 """
 
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional
 
 import torch
 
-from models.yolo.detector import YOLOClassifier, ClassificationResult
+from models.yolo.detector import ClassificationResult, YOLOClassifier
 
 
 @dataclass
 class EvaluationMetrics:  # pylint: disable=too-many-instance-attributes
     """Container for evaluation metrics."""
+
     accuracy: float = 0.0
     precision: float = 0.0
     recall: float = 0.0
@@ -34,12 +34,9 @@ class EvaluationMetrics:  # pylint: disable=too-many-instance-attributes
 @dataclass
 class StratifiedCounts:
     """Counts for stratified evaluation."""
-    high_vis: Dict[str, int] = field(default_factory=lambda: {
-        "tp": 0, "fp": 0, "tn": 0, "fn": 0
-    })
-    low_vis: Dict[str, int] = field(default_factory=lambda: {
-        "tp": 0, "fp": 0, "tn": 0, "fn": 0
-    })
+
+    high_vis: dict[str, int] = field(default_factory=lambda: {"tp": 0, "fp": 0, "tn": 0, "fn": 0})
+    low_vis: dict[str, int] = field(default_factory=lambda: {"tp": 0, "fp": 0, "tn": 0, "fn": 0})
 
 
 class YOLOEvaluator:
@@ -60,9 +57,9 @@ class YOLOEvaluator:
 
     def evaluate(
         self,
-        images: List[torch.Tensor],
-        labels: List[bool],
-        visibility_levels: Optional[List[str]] = None,
+        images: list[torch.Tensor],
+        labels: list[bool],
+        visibility_levels: list[str] | None = None,
     ) -> EvaluationMetrics:
         """
         Evaluate model on a dataset.
@@ -81,7 +78,7 @@ class YOLOEvaluator:
         counts = StratifiedCounts()
         total_counts = {"tp": 0, "fp": 0, "tn": 0, "fn": 0}
 
-        for image, label, vis_level in zip(images, labels, visibility_levels):
+        for image, label, vis_level in zip(images, labels, visibility_levels, strict=False):
             result = self.model.predict(image)
             predicted = result.is_hateful
 
@@ -107,7 +104,7 @@ class YOLOEvaluator:
         self,
         images: torch.Tensor,
         labels: torch.Tensor,
-        visibility_levels: Optional[List[str]] = None,
+        visibility_levels: list[str] | None = None,
     ) -> EvaluationMetrics:
         """
         Evaluate model on a batch of images.
@@ -130,7 +127,7 @@ class YOLOEvaluator:
         counts = StratifiedCounts()
         total_counts = {"tp": 0, "fp": 0, "tn": 0, "fn": 0}
 
-        for result, label, vis_level in zip(results, labels_list, visibility_levels):
+        for result, label, vis_level in zip(results, labels_list, visibility_levels, strict=False):
             predicted = result.is_hateful
 
             if label and predicted:
@@ -152,7 +149,7 @@ class YOLOEvaluator:
 
     def _compute_metrics(  # pylint: disable=too-many-locals
         self,
-        total: Dict[str, int],
+        total: dict[str, int],
         stratified: StratifiedCounts,
     ) -> EvaluationMetrics:
         """Compute all metrics from counts."""
@@ -190,9 +187,9 @@ class YOLOEvaluator:
 
     def evaluate_from_results(
         self,
-        results: List[ClassificationResult],
-        labels: List[bool],
-        visibility_levels: Optional[List[str]] = None,
+        results: list[ClassificationResult],
+        labels: list[bool],
+        visibility_levels: list[str] | None = None,
     ) -> EvaluationMetrics:
         """
         Compute metrics from pre-computed results.
@@ -211,7 +208,7 @@ class YOLOEvaluator:
         counts = StratifiedCounts()
         total_counts = {"tp": 0, "fp": 0, "tn": 0, "fn": 0}
 
-        for result, label, vis_level in zip(results, labels, visibility_levels):
+        for result, label, vis_level in zip(results, labels, visibility_levels, strict=False):
             predicted = result.is_hateful
 
             if label and predicted:

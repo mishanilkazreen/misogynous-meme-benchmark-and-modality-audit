@@ -15,12 +15,10 @@ Transformations include:
 """
 # pylint: disable=no-member
 
-from typing import Union
-
 import cv2
 import numpy as np
-import torch
 from PIL import Image
+import torch
 
 
 class ImageTransformations:
@@ -120,10 +118,7 @@ class ImageTransformations:
             Gradient magnitude image (grayscale, 3-channel)
         """
         # Convert to grayscale if needed
-        if len(image.shape) == 3:
-            gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
-        else:
-            gray = image
+        gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY) if len(image.shape) == 3 else image
 
         # Calculate gradients
         grad_x = cv2.Sobel(gray, cv2.CV_64F, 1, 0, ksize=3)
@@ -154,10 +149,7 @@ class ImageTransformations:
             Edge image (3-channel)
         """
         # Convert to grayscale if needed
-        if len(image.shape) == 3:
-            gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
-        else:
-            gray = image
+        gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY) if len(image.shape) == 3 else image
 
         edges = cv2.Canny(gray, low_threshold, high_threshold)
         return cv2.cvtColor(edges, cv2.COLOR_GRAY2RGB)
@@ -216,10 +208,7 @@ class ImageTransformations:
         """
         # Build lookup table
         inv_gamma = 1.0 / gamma
-        table = np.array([
-            ((i / 255.0) ** inv_gamma) * 255
-            for i in range(256)
-        ]).astype(np.uint8)
+        table = np.array([((i / 255.0) ** inv_gamma) * 255 for i in range(256)]).astype(np.uint8)
 
         return cv2.LUT(image, table)
 
@@ -290,9 +279,7 @@ class PreprocessingPipeline:
 
         self._transforms = ImageTransformations()
 
-    def preprocess(
-        self, image: Union[np.ndarray, Image.Image, torch.Tensor]
-    ) -> np.ndarray:
+    def preprocess(self, image: np.ndarray | Image.Image | torch.Tensor) -> np.ndarray:
         """
         Apply default preprocessing (blur -> histogram equalization).
 
@@ -310,9 +297,7 @@ class PreprocessingPipeline:
 
         # Step 1: Gaussian blur (if enabled)
         if self.apply_blur:
-            img = self._transforms.gaussian_blur(
-                img, self.blur_kernel_size, self.blur_sigma
-            )
+            img = self._transforms.gaussian_blur(img, self.blur_kernel_size, self.blur_sigma)
 
         # Step 2: Histogram equalization (if enabled)
         if self.apply_equalization:
@@ -323,7 +308,7 @@ class PreprocessingPipeline:
 
     def apply_transformation(
         self,
-        image: Union[np.ndarray, Image.Image, torch.Tensor],
+        image: np.ndarray | Image.Image | torch.Tensor,
         transformation: str,
     ) -> np.ndarray:
         """
@@ -339,9 +324,7 @@ class PreprocessingPipeline:
         img = self._to_numpy(image)
 
         if transformation == "blur":
-            return self._transforms.gaussian_blur(
-                img, self.blur_kernel_size, self.blur_sigma
-            )
+            return self._transforms.gaussian_blur(img, self.blur_kernel_size, self.blur_sigma)
         elif transformation == "downscale":
             return self._transforms.downscale(img, self.downscale_factor)
         elif transformation == "grid":
@@ -358,30 +341,22 @@ class PreprocessingPipeline:
             return self._transforms.gamma_correction(img, self.gamma)
         elif transformation == "histogram_blur":
             img = self._transforms.histogram_equalization(img)
-            return self._transforms.gaussian_blur(
-                img, self.blur_kernel_size, self.blur_sigma
-            )
+            return self._transforms.gaussian_blur(img, self.blur_kernel_size, self.blur_sigma)
         elif transformation == "gamma_blur":
             img = self._transforms.gamma_correction(img, self.gamma)
-            return self._transforms.gaussian_blur(
-                img, self.blur_kernel_size, self.blur_sigma
-            )
+            return self._transforms.gaussian_blur(img, self.blur_kernel_size, self.blur_sigma)
         elif transformation == "blur_gradient":
-            img = self._transforms.gaussian_blur(
-                img, self.blur_kernel_size, self.blur_sigma
-            )
+            img = self._transforms.gaussian_blur(img, self.blur_kernel_size, self.blur_sigma)
             return self._transforms.gradient_magnitude(img)
         elif transformation == "blur_histogram":
-            img = self._transforms.gaussian_blur(
-                img, self.blur_kernel_size, self.blur_sigma
-            )
+            img = self._transforms.gaussian_blur(img, self.blur_kernel_size, self.blur_sigma)
             return self._transforms.histogram_equalization(img)
         else:
             raise ValueError(f"Unknown transformation: {transformation}")
 
     def apply_all_transformations(
         self,
-        image: Union[np.ndarray, Image.Image, torch.Tensor],
+        image: np.ndarray | Image.Image | torch.Tensor,
     ) -> dict:
         """
         Apply all available transformations and return results.
@@ -412,9 +387,7 @@ class PreprocessingPipeline:
         """
         return [self.preprocess(img) for img in images]
 
-    def _to_numpy(
-        self, image: Union[np.ndarray, Image.Image, torch.Tensor]
-    ) -> np.ndarray:
+    def _to_numpy(self, image: np.ndarray | Image.Image | torch.Tensor) -> np.ndarray:
         """Convert input to numpy array in (H, W, C) format."""
         if isinstance(image, np.ndarray):
             img = image.copy()

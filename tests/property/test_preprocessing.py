@@ -3,8 +3,9 @@ Property-based tests for PreprocessingPipeline.
 Tests Property 11: Pathway B preprocessing order.
 """
 
+from hypothesis import given, settings
+from hypothesis import strategies as st
 import numpy as np
-from hypothesis import given, settings, strategies as st
 
 from utils.preprocessing import PreprocessingPipeline
 

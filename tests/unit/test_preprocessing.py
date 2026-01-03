@@ -3,9 +3,9 @@ Unit tests for PreprocessingPipeline and ImageTransformations.
 """
 
 import numpy as np
+from PIL import Image
 import pytest
 import torch
-from PIL import Image
 
 from utils.preprocessing import ImageTransformations, PreprocessingPipeline
 
@@ -266,8 +266,17 @@ class TestPreprocessingPipeline:
     def test_transformations_list(self):
         """Test that TRANSFORMATIONS list is complete."""
         expected = [
-            "blur", "downscale", "grid", "gradient", "canny",
-            "grayscale", "histogram", "gamma",
-            "histogram_blur", "gamma_blur", "blur_gradient", "blur_histogram",
+            "blur",
+            "downscale",
+            "grid",
+            "gradient",
+            "canny",
+            "grayscale",
+            "histogram",
+            "gamma",
+            "histogram_blur",
+            "gamma_blur",
+            "blur_gradient",
+            "blur_histogram",
         ]
-        assert PreprocessingPipeline.TRANSFORMATIONS == expected
+        assert expected == PreprocessingPipeline.TRANSFORMATIONS

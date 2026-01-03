@@ -10,24 +10,23 @@ Usage:
 # pylint: disable=no-member,wrong-import-position
 
 import argparse
-import sys
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+import sys
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 import cv2
+from datasets import load_dataset
+from huggingface_hub import hf_hub_download
 import numpy as np
+from PIL import Image
 import torch
 from torch import nn
 from torch.utils.data import DataLoader, Dataset
 from torchvision import models  # type: ignore[import-untyped]
-from datasets import load_dataset
-from huggingface_hub import hf_hub_download
-from PIL import Image
 
 
-def extract_bbox_from_condition(condition_path: str, subset: str) -> Tuple[int, int, int, int]:
+def extract_bbox_from_condition(condition_path: str, subset: str) -> tuple[int, int, int, int]:
     """Extract bounding box from condition image using OpenCV."""
     local_path = hf_hub_download(
         repo_id="yiting/HatefulIllusion_Dataset",
@@ -92,7 +91,7 @@ class YOLODetector(nn.Module):
             nn.Sigmoid(),
         )
 
-    def forward(self, x: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
+    def forward(self, x: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
         """Forward pass returning class logits and bbox predictions."""
         features = self.backbone(x)
         class_logits = self.classifier(features)
@@ -106,15 +105,15 @@ class HatefulIllusionDetectionDataset(Dataset):  # pylint: disable=too-many-inst
     def __init__(  # pylint: disable=too-many-arguments,too-many-positional-arguments
         self,
         split: str = "train",
-        input_size: Tuple[int, int] = (224, 224),
-        indices: Optional[List[int]] = None,
+        input_size: tuple[int, int] = (224, 224),
+        indices: list[int] | None = None,
         augment: bool = False,
-        subsets: Optional[List[str]] = None,
-        label_to_idx: Optional[Dict[str, int]] = None,
+        subsets: list[str] | None = None,
+        label_to_idx: dict[str, int] | None = None,
     ):
         self.input_size = input_size
         self.augment = augment and split == "train"
-        self.samples: List[Dict] = []
+        self.samples: list[dict] = []
 
         # Load specified subsets (default: all subsets)
         if subsets is None:
@@ -127,7 +126,7 @@ class HatefulIllusionDetectionDataset(Dataset):  # pylint: disable=too-many-inst
 
         # Build label mapping from all unique messages
         if label_to_idx is None:
-            unique_labels = sorted(set(str(s["message"]) for s in self.samples))
+            unique_labels = sorted({str(s["message"]) for s in self.samples})
             self.label_to_idx = {label: idx for idx, label in enumerate(unique_labels)}
         else:
             self.label_to_idx = label_to_idx
@@ -148,7 +147,7 @@ class HatefulIllusionDetectionDataset(Dataset):  # pylint: disable=too-many-inst
     def __len__(self) -> int:
         return len(self.indices)
 
-    def __getitem__(self, idx: int) -> Dict:  # pylint: disable=too-many-locals
+    def __getitem__(self, idx: int) -> dict:  # pylint: disable=too-many-locals
         real_idx = self.indices[idx]
         item = self.samples[real_idx]
         subset = item["subset"]
@@ -167,12 +166,15 @@ class HatefulIllusionDetectionDataset(Dataset):  # pylint: disable=too-many-inst
         x, y, w, h = extract_bbox_from_condition(item["condition_image"], subset)
 
         # Normalize bbox to [0, 1]
-        bbox_norm = torch.tensor([
-            (x + w / 2) / orig_w,  # center_x
-            (y + h / 2) / orig_h,  # center_y
-            w / orig_w,            # width
-            h / orig_h,            # height
-        ], dtype=torch.float32)
+        bbox_norm = torch.tensor(
+            [
+                (x + w / 2) / orig_w,  # center_x
+                (y + h / 2) / orig_h,  # center_y
+                w / orig_w,  # width
+                h / orig_h,  # height
+            ],
+            dtype=torch.float32,
+        )
 
         # Resize image
         img_resized = pil_image.resize(self.input_size, Image.Resampling.BILINEAR)
@@ -237,7 +239,7 @@ def train_epoch(  # pylint: disable=too-many-locals
     dataloader: DataLoader,
     optimizer: torch.optim.Optimizer,
     device: torch.device,
-) -> Tuple[float, float, float]:
+) -> tuple[float, float, float]:
     """Train for one epoch, return losses."""
     model.train()
     total_cls_loss = 0.0
@@ -278,7 +280,7 @@ def validate(  # pylint: disable=too-many-locals
     model: YOLODetector,
     dataloader: DataLoader,
     device: torch.device,
-) -> Tuple[float, float, float, float]:
+) -> tuple[float, float, float, float]:
     """Validate and return metrics."""
     model.eval()
     correct = 0
@@ -361,8 +363,12 @@ def main() -> None:  # pylint: disable=too-many-locals,too-many-statements
     parser.add_argument("--batch-size", type=int, default=16, help="Batch size")
     parser.add_argument("--lr", type=float, default=0.0001, help="Learning rate")
     parser.add_argument("--patience", type=int, default=10, help="Early stopping patience")
-    parser.add_argument("--subsets", type=str, default="digits,hate_slangs,hate_symbols",
-                        help="Dataset subsets (comma-separated): digits,hate_slangs,hate_symbols")
+    parser.add_argument(
+        "--subsets",
+        type=str,
+        default="digits,hate_slangs,hate_symbols",
+        help="Dataset subsets (comma-separated): digits,hate_slangs,hate_symbols",
+    )
     args = parser.parse_args()
 
     # Parse subsets
@@ -389,9 +395,7 @@ def main() -> None:  # pylint: disable=too-many-locals,too-many-statements
     train_loader = DataLoader(
         train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=0
     )
-    val_loader = DataLoader(
-        val_dataset, batch_size=args.batch_size, shuffle=False, num_workers=0
-    )
+    val_loader = DataLoader(val_dataset, batch_size=args.batch_size, shuffle=False, num_workers=0)
 
     print("\nInitializing model with pretrained ResNet18 backbone...")
     model = YOLODetector(num_classes=num_classes, pretrained=True).to(device)
@@ -403,7 +407,7 @@ def main() -> None:  # pylint: disable=too-many-locals,too-many-statements
     optimizer = torch.optim.AdamW(
         filter(lambda p: p.requires_grad, model.parameters()),
         lr=args.lr * 10,  # Higher LR for heads only
-        weight_decay=0.01
+        weight_decay=0.01,
     )
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=args.epochs)
 
@@ -438,25 +442,30 @@ def main() -> None:  # pylint: disable=too-many-locals,too-many-statements
         val_cls, val_bbox, accuracy, iou = validate(model, val_loader, device)
         scheduler.step()
 
-        print(f"Epoch {epoch:3d} | "
-              f"Train: cls={cls_loss:.4f} bbox={bbox_loss:.4f} | "
-              f"Val: cls={val_cls:.4f} bbox={val_bbox:.4f} | "
-              f"Acc={accuracy:.4f} IoU={iou:.4f}")
+        print(
+            f"Epoch {epoch:3d} | "
+            f"Train: cls={cls_loss:.4f} bbox={bbox_loss:.4f} | "
+            f"Val: cls={val_cls:.4f} bbox={val_bbox:.4f} | "
+            f"Acc={accuracy:.4f} IoU={iou:.4f}"
+        )
 
         # Save best model based on accuracy
         if accuracy > best_accuracy:
             best_accuracy = accuracy
             best_iou = iou
             epochs_without_improvement = 0
-            torch.save({
-                "model_state_dict": model.state_dict(),
-                "accuracy": accuracy,
-                "iou": iou,
-                "epoch": epoch,
-                "num_classes": num_classes,
-                "label_to_idx": train_dataset.label_to_idx,
-                "idx_to_label": train_dataset.idx_to_label,
-            }, checkpoint_dir / "best_detector.pt")
+            torch.save(
+                {
+                    "model_state_dict": model.state_dict(),
+                    "accuracy": accuracy,
+                    "iou": iou,
+                    "epoch": epoch,
+                    "num_classes": num_classes,
+                    "label_to_idx": train_dataset.label_to_idx,
+                    "idx_to_label": train_dataset.idx_to_label,
+                },
+                checkpoint_dir / "best_detector.pt",
+            )
         else:
             epochs_without_improvement += 1
 

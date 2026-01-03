@@ -6,9 +6,9 @@ Uses cross-entropy loss for multi-class classification (digits 0-9).
 """
 # pylint: disable=too-many-instance-attributes
 
+from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple, Callable
 
 import torch
 from torch import nn, optim
@@ -21,6 +21,7 @@ from utils.preprocessing import PreprocessingPipeline
 @dataclass
 class YOLOTrainingConfig:
     """Configuration for YOLO training."""
+
     batch_size: int = 16
     epochs: int = 100
     learning_rate: float = 0.001
@@ -31,19 +32,20 @@ class YOLOTrainingConfig:
     checkpoint_dir: str = "checkpoints"
     save_best_only: bool = True
     device: str = "cuda" if torch.cuda.is_available() else "cpu"
-    input_size: Tuple[int, int] = (416, 416)
+    input_size: tuple[int, int] = (416, 416)
 
 
 @dataclass
 class TrainingMetrics:
     """Metrics collected during training."""
+
     epoch: int
     train_loss: float
-    val_loss: Optional[float] = None
-    accuracy: Optional[float] = None
-    precision: Optional[float] = None
-    recall: Optional[float] = None
-    f1: Optional[float] = None
+    val_loss: float | None = None
+    accuracy: float | None = None
+    precision: float | None = None
+    recall: float | None = None
+    f1: float | None = None
 
 
 class YOLOTrainer:
@@ -62,11 +64,9 @@ class YOLOTrainer:
         self.device = torch.device(config.device)
         self.model.to(self.device)
 
-        self.preprocessor: Optional[PreprocessingPipeline] = None
+        self.preprocessor: PreprocessingPipeline | None = None
         if config.preprocessing:
-            self.preprocessor = PreprocessingPipeline(
-                apply_blur=True, apply_equalization=True
-            )
+            self.preprocessor = PreprocessingPipeline(apply_blur=True, apply_equalization=True)
 
         self.criterion = nn.CrossEntropyLoss()
         self.optimizer = optim.SGD(
@@ -75,13 +75,11 @@ class YOLOTrainer:
             momentum=config.momentum,
             weight_decay=config.weight_decay,
         )
-        self.scheduler = optim.lr_scheduler.CosineAnnealingLR(
-            self.optimizer, T_max=config.epochs
-        )
+        self.scheduler = optim.lr_scheduler.CosineAnnealingLR(self.optimizer, T_max=config.epochs)
 
         self.best_accuracy = 0.0
         self.epochs_without_improvement = 0
-        self.training_history: List[TrainingMetrics] = []
+        self.training_history: list[TrainingMetrics] = []
 
         self.checkpoint_dir = Path(config.checkpoint_dir)
         self.checkpoint_dir.mkdir(parents=True, exist_ok=True)
@@ -127,7 +125,7 @@ class YOLOTrainer:
 
     def validate(  # pylint: disable=too-many-locals
         self, dataloader: DataLoader
-    ) -> Tuple[float, Dict[str, float]]:
+    ) -> tuple[float, dict[str, float]]:
         """Validate the model and compute metrics."""
         self.model.eval()
         total_loss = 0.0
@@ -175,9 +173,9 @@ class YOLOTrainer:
     def train(
         self,
         train_loader: DataLoader,
-        val_loader: Optional[DataLoader] = None,
-        callbacks: Optional[List[Callable]] = None,
-    ) -> List[TrainingMetrics]:
+        val_loader: DataLoader | None = None,
+        callbacks: list[Callable] | None = None,
+    ) -> list[TrainingMetrics]:
         """Full training loop with early stopping and checkpointing."""
         callbacks = callbacks or []
 
@@ -185,7 +183,7 @@ class YOLOTrainer:
             train_loss = self.train_epoch(train_loader)
 
             val_loss = None
-            metrics_dict: Dict[str, float] = {}
+            metrics_dict: dict[str, float] = {}
             if val_loader is not None:
                 val_loss, metrics_dict = self.validate(val_loader)
 
@@ -236,9 +234,7 @@ class YOLOTrainer:
 
     def load_checkpoint(self, filename: str) -> None:
         """Load model checkpoint."""
-        checkpoint = torch.load(
-            self.checkpoint_dir / filename, weights_only=False
-        )
+        checkpoint = torch.load(self.checkpoint_dir / filename, weights_only=False)
         self.model.load_state_dict(checkpoint["model_state_dict"])
         self.optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
         self.scheduler.load_state_dict(checkpoint["scheduler_state_dict"])

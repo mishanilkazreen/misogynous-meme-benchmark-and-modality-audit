@@ -7,16 +7,17 @@ visibility-stratified evaluation, and inference performance.
 
 import time
 
+from hypothesis import given, settings
+from hypothesis import strategies as st
 import torch
-from hypothesis import given, settings, strategies as st
 
 from models.yolo import (
+    ClassificationResult,
+    EvaluationMetrics,
     YOLOClassifier,
+    YOLOEvaluator,
     YOLOTrainer,
     YOLOTrainingConfig,
-    YOLOEvaluator,
-    EvaluationMetrics,
-    ClassificationResult,
 )
 
 
@@ -234,18 +235,20 @@ class TestYOLOVisibilityStratifiedEvaluation:
         visibility_levels = []
 
         for _ in range(num_high_vis):
-            results.append(ClassificationResult(
-                is_hateful=True, confidence=0.8,
-                predicted_class=5, visibility_level="high"
-            ))
+            results.append(
+                ClassificationResult(
+                    is_hateful=True, confidence=0.8, predicted_class=5, visibility_level="high"
+                )
+            )
             labels.append(True)
             visibility_levels.append("high")
 
         for _ in range(num_low_vis):
-            results.append(ClassificationResult(
-                is_hateful=True, confidence=0.6,
-                predicted_class=3, visibility_level="low"
-            ))
+            results.append(
+                ClassificationResult(
+                    is_hateful=True, confidence=0.6, predicted_class=3, visibility_level="low"
+                )
+            )
             labels.append(True)
             visibility_levels.append("low")
 

@@ -5,9 +5,11 @@ Property-based tests for OCR pipeline.
 **Validates: Requirements 1.6**
 """
 
-import numpy as np
-from hypothesis import given, settings, strategies as st
 from unittest.mock import patch
+
+from hypothesis import given, settings
+from hypothesis import strategies as st
+import numpy as np
 
 from utils.ocr import OCRPipeline
 
@@ -21,7 +23,13 @@ class TestOCRTextExtraction:
     **Validates: Requirements 1.6**
     """
 
-    @given(st.text(min_size=0, max_size=100, alphabet=st.characters(whitelist_categories=('L', 'N', 'P', 'Z'))))
+    @given(
+        st.text(
+            min_size=0,
+            max_size=100,
+            alphabet=st.characters(whitelist_categories=("L", "N", "P", "Z")),
+        )
+    )
     @settings(max_examples=100)
     def test_normalize_text_idempotent(self, text):
         """
@@ -36,7 +44,9 @@ class TestOCRTextExtraction:
 
         assert normalized_once == normalized_twice
 
-    @given(st.text(min_size=1, max_size=50, alphabet=st.characters(whitelist_categories=('L', 'N'))))
+    @given(
+        st.text(min_size=1, max_size=50, alphabet=st.characters(whitelist_categories=("L", "N")))
+    )
     @settings(max_examples=100)
     def test_normalize_text_lowercase(self, text):
         """
@@ -79,7 +89,7 @@ class TestOCRTextExtraction:
         img = np.zeros((height, width, 3), dtype=np.uint8)
 
         # Mock the reader to avoid actual OCR
-        with patch.object(pipeline, '_reader') as mock_reader:
+        with patch.object(pipeline, "_reader") as mock_reader:
             mock_reader.readtext.return_value = []
 
             # Should not raise
@@ -103,7 +113,7 @@ class TestOCRTextExtraction:
             ([[0, 0], [10, 0], [10, 10], [0, 10]], "text3", 0.9),
         ]
 
-        with patch.object(pipeline, '_reader') as mock_reader:
+        with patch.object(pipeline, "_reader") as mock_reader:
             mock_reader.readtext.return_value = mock_results
 
             img = np.zeros((100, 100, 3), dtype=np.uint8)
@@ -125,7 +135,13 @@ class TestOCRTextExtraction:
             else:
                 assert "text3" not in result
 
-    @given(st.lists(st.text(min_size=1, max_size=20, alphabet='abcdefghijklmnopqrstuvwxyz'), min_size=0, max_size=5))
+    @given(
+        st.lists(
+            st.text(min_size=1, max_size=20, alphabet="abcdefghijklmnopqrstuvwxyz"),
+            min_size=0,
+            max_size=5,
+        )
+    )
     @settings(max_examples=50)
     def test_extract_text_joins_multiple_detections(self, texts):
         """
@@ -136,12 +152,9 @@ class TestOCRTextExtraction:
         pipeline = OCRPipeline()
 
         # Create mock results
-        mock_results = [
-            ([[0, 0], [10, 0], [10, 10], [0, 10]], text, 0.9)
-            for text in texts
-        ]
+        mock_results = [([[0, 0], [10, 0], [10, 10], [0, 10]], text, 0.9) for text in texts]
 
-        with patch.object(pipeline, '_reader') as mock_reader:
+        with patch.object(pipeline, "_reader") as mock_reader:
             mock_reader.readtext.return_value = mock_results
 
             img = np.zeros((100, 100, 3), dtype=np.uint8)
@@ -163,7 +176,7 @@ class TestOCRTextExtraction:
             ([[10, 20], [50, 20], [50, 60], [10, 60]], "test", 0.9),
         ]
 
-        with patch.object(pipeline, '_reader') as mock_reader:
+        with patch.object(pipeline, "_reader") as mock_reader:
             mock_reader.readtext.return_value = mock_results
 
             img = np.zeros((100, 100, 3), dtype=np.uint8)

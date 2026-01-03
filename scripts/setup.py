@@ -4,16 +4,17 @@ Setup script for VLM Content Moderation project.
 Automates environment setup, dependency installation, and pre-commit hooks.
 """
 
+import os
+from pathlib import Path
 import subprocess
 import sys
-from pathlib import Path
 
 
 def run_command(cmd: list[str], description: str) -> bool:
     """Run a command and return success status."""
     print(f"🔄 {description}...")
     try:
-        result = subprocess.run(cmd, check=True, capture_output=True, text=True)
+        subprocess.run(cmd, check=True, capture_output=True, text=True)
         print(f"✅ {description} completed")
         return True
     except subprocess.CalledProcessError as e:
@@ -32,7 +33,7 @@ def check_uv_installed() -> bool:
 
 def main() -> None:
     """Main setup function."""
-    print("Setting up project")
+    print("🚀 Setting up VLM Content Moderation project")
     print("=" * 50)
 
     # Check if uv is installed
@@ -45,14 +46,22 @@ def main() -> None:
     print(f"📁 Project root: {project_root}")
 
     # Change to project directory
-    import os
     os.chdir(project_root)
 
     steps = [
-        (["uv", "venv", "--python", "3.10"], "Creating virtual environment"),
-        (["uv", "pip", "install", "-e", ".[dev]"], "Installing dependencies"),
-        (["uv", "pip", "install", "torch", "torchvision", "--index-url",
-          "https://download.pytorch.org/whl/cpu"], "Installing PyTorch (CPU)"),
+        (["uv", "venv", ".venv", "--python", "3.10"], "Creating virtual environment"),
+        (["uv", "sync", "--dev"], "Installing dependencies with sync"),
+        (
+            [
+                "uv",
+                "add",
+                "torch",
+                "torchvision",
+                "--index-url",
+                "https://download.pytorch.org/whl/cpu",
+            ],
+            "Installing PyTorch (CPU)",
+        ),
         (["uv", "run", "pre-commit", "install"], "Setting up pre-commit hooks"),
         (["uv", "run", "pytest", "--version"], "Verifying pytest installation"),
         (["uv", "run", "ruff", "--version"], "Verifying ruff installation"),
@@ -71,10 +80,11 @@ def main() -> None:
         print("\nPlease fix the errors and run setup again.")
     else:
         print("✅ Setup completed successfully!")
-        print("\nNext steps:")
+        print("\n📋 Next steps:")
         print("   1. Activate virtual environment: source .venv/bin/activate")
         print("   2. Run tests: uv run pytest")
         print("   3. Check code quality: uv run pre-commit run --all-files")
+        print("   4. Start developing! 🎉")
 
 
 if __name__ == "__main__":
