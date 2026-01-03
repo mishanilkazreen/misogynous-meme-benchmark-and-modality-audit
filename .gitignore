@@ -231,3 +231,6 @@ wandb/
 *.hdf5
 *.pkl
 *.pickle
+
+# macOS system files
+.DS_Store
