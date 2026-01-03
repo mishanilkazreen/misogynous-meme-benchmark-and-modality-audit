@@ -1,10 +1,12 @@
 # VLM Content Moderation System
 
-A PyTorch-based content moderation system for detecting embedded hateful content in images using YOLO and Vision Language Models (VLM).
+A PyTorch-based content moderation system for detecting embedded hateful content in images
+using YOLO and Vision Language Models (VLM).
 
 ## Overview
 
-This system detects hateful messages (textual slurs, derogatory terms, visual hate symbols) that are subtly embedded within seemingly harmless images. It supports two detection approaches:
+This system detects hateful messages (textual slurs, derogatory terms, visual hate symbols)
+that are subtly embedded within seemingly harmless images. It supports two detection approaches:
 
 1. **YOLO-based detection**: Fast, computationally efficient object detection with transfer learning
 2. **VLM dual-pathway**: Advanced detection using Vision Transformers with preprocessing
@@ -67,7 +69,9 @@ uv run pre-commit install
 
 ### Dataset Setup (HatefulIllusion)
 
-We use the [HatefulIllusion dataset](https://huggingface.co/datasets/yiting/HatefulIllusion_Dataset) from Hugging Face for training and evaluation.
+We use the [HatefulIllusion dataset][hf-dataset] from Hugging Face for training and evaluation.
+
+[hf-dataset]: https://huggingface.co/datasets/yiting/HatefulIllusion_Dataset
 
 ```python
 from datasets import load_dataset
@@ -254,6 +258,7 @@ uv run pre-commit run --all-files
 ### Troubleshooting
 
 **Python version issues:**
+
 ```bash
 # Force Python 3.10
 rm -rf venv .venv
@@ -261,6 +266,7 @@ uv venv --python 3.10 venv
 ```
 
 **PyTorch not working:**
+
 ```bash
 # Reinstall with CUDA support
 uv pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121

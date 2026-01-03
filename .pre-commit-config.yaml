@@ -20,6 +20,12 @@ repos:
         args: ["--fix", "--exit-non-zero-on-fix"]
       - id: ruff-format
 
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: "v0.42.0"
+    hooks:
+      - id: markdownlint-fix
+        args: ["--config", ".markdownlint.json"]
+
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: "v1.7.1"
     hooks:
