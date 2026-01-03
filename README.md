@@ -214,11 +214,59 @@ content-moderation/
 
 ## Development
 
-See `.kiro/specs/vlm-content-moderation/` for:
+### Python Version Requirements
 
-- `requirements.md` - Detailed requirements
-- `design.md` - Technical design and architecture
-- `tasks.md` - Implementation tasks and progress
+This project requires Python 3.10 or 3.11 for ML library compatibility. Python 3.12+ is not yet supported by PyTorch.
+
+```bash
+# Check available Python versions
+uv python list
+
+# Create environment with specific Python version
+uv venv --python 3.10 venv
+venv\Scripts\activate  # Windows
+source venv/bin/activate  # Linux/Mac
+
+# Install dependencies
+uv pip install -e ".[dev]"
+uv pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+```
+
+### CI/CD Pipeline
+
+- **GitHub Actions**: Automated testing on Python 3.10 and 3.11
+- **Pre-commit hooks**: Code formatting, linting, and type checking
+- **Coverage reporting**: Uploaded to Codecov
+
+### Local Development
+
+```bash
+# Run all quality checks
+uv run ruff check .           # Linting
+uv run ruff format .          # Formatting
+uv run mypy models/ utils/    # Type checking
+uv run pytest tests/          # Tests
+
+# Run pre-commit on all files
+uv run pre-commit run --all-files
+```
+
+### Troubleshooting
+
+**Python version issues:**
+```bash
+# Force Python 3.10
+rm -rf venv .venv
+uv venv --python 3.10 venv
+```
+
+**PyTorch not working:**
+```bash
+# Reinstall with CUDA support
+uv pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+```
+
+See `.kiro/specs/vlm-content-moderation/` for detailed requirements and design documentation.
 
 ## Future Improvements
 
