@@ -38,9 +38,14 @@ dev = [
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+[tool.hatch.build.targets.wheel]
+packages = ["models", "utils"]
+
 [tool.ruff]
 target-version = "py310"
 line-length = 100
+
+[tool.ruff.lint]
 select = [
     "E",   # pycodestyle errors
     "W",   # pycodestyle warnings
@@ -51,7 +56,6 @@ select = [
     "UP",  # pyupgrade
     "ARG", # flake8-unused-arguments
     "SIM", # flake8-simplify
-    "TCH", # flake8-type-checking
     "PTH", # flake8-use-pathlib
     "ERA", # eradicate
     "PL",  # pylint
@@ -64,22 +68,25 @@ ignore = [
     "PLR0915", # too many statements
     "PLR2004", # magic value used in comparison
     "ARG002",  # unused method argument
-    "TCH001",  # move import into type-checking block
-    "TCH002",  # move import into type-checking block
-    "TCH003",  # move import into type-checking block
+    "PLC0415", # import should be at top level (allow lazy imports)
+    "RUF001",  # ambiguous unicode (allow for test cases)
+    "PLR0911", # too many return statements
+    "RUF012",  # mutable class attributes (allow for constants)
 ]
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "tests/**/*.py" = [
     "S101",    # use of assert
     "PLR2004", # magic values in tests
     "ARG001",  # unused function arguments (fixtures)
+    "B011",    # assert False in tests
 ]
 "scripts/**/*.py" = [
     "T201",    # print statements allowed in scripts
+    "F841",    # unused variables in scripts
 ]
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 known-first-party = ["models", "utils", "tests"]
 force-sort-within-sections = true
 
@@ -139,4 +146,13 @@ exclude_lines = [
     "if __name__ == .__main__.:",
     "class .*\\bProtocol\\):",
     "@(abc\\.)?abstractmethod",
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.19.1",
+    "pre-commit>=4.5.1",
+    "ruff>=0.14.10",
+    "types-pyyaml>=6.0.12.20250915",
+    "types-tqdm>=4.67.0.20250809",
 ]
