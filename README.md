@@ -26,29 +26,43 @@ git clone <repository-url>
 cd content-moderation
 ```
 
-1. Create and activate virtual environment:
+2. Install uv (if not already installed):
+
+```bash
+# macOS/Linux
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Windows
+powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+3. Create and activate virtual environment:
 
 ```bash
 # Create venv with uv
-uv venv venv --python 3.10
+uv venv --python 3.10
 
 # Activate (Windows)
-.\venv\Scripts\activate
+.venv\Scripts\activate
 
 # Activate (Linux/macOS)
-source venv/bin/activate
+source .venv/bin/activate
 ```
 
-1. Install PyTorch with CUDA support:
+4. Install dependencies:
 
 ```bash
+# Install project with dev dependencies
+uv pip install -e ".[dev]"
+
+# Install PyTorch with CUDA support (optional)
 uv pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
 ```
 
-1. Install project dependencies:
+5. Set up pre-commit hooks:
 
 ```bash
-uv pip install -r requirements.txt
+uv run pre-commit install
 ```
 
 ### Dataset Setup (HatefulIllusion)
@@ -91,7 +105,29 @@ python scripts/train_yolo_detection.py --epochs 25 --batch-size 8
 ### Running Tests
 
 ```bash
-pytest
+# Run all tests
+uv run pytest
+
+# Run with coverage
+uv run pytest --cov=models --cov=utils
+
+# Run specific test types
+uv run pytest tests/unit/
+uv run pytest tests/property/
+```
+
+### Code Quality
+
+```bash
+# Run linting and formatting
+uv run ruff check .
+uv run ruff format .
+
+# Run type checking
+uv run mypy models/ utils/
+
+# Run all pre-commit hooks
+uv run pre-commit run --all-files
 ```
 
 ## Model Architecture
@@ -228,6 +264,14 @@ This project uses the following open source libraries:
 | pytest | MIT | Test framework |
 | pytest-cov | MIT | Coverage reporting |
 | hypothesis | MPL-2.0 | Property-based testing |
+
+### Development Dependencies (Permissive Licenses)
+
+| Package | License | Purpose |
+|---------|---------|---------|
+| ruff | MIT | Fast Python linter and formatter |
+| pre-commit | MIT | Git hooks framework |
+| mypy | MIT | Static type checking |
 
 ### License Summary
 
