@@ -5,8 +5,6 @@ on:
   push:
     branches: [ main ]
     tags: [ 'v*' ]
-  release:
-    types: [ published ]
 
 jobs:
   build:
@@ -23,7 +21,6 @@ jobs:
         sudo rm -rf /opt/ghc
         sudo rm -rf /usr/local/share/boost
         sudo apt-get clean
-        df -h
 
     - name: Install uv
       uses: astral-sh/setup-uv@v3
@@ -33,52 +30,15 @@ jobs:
     - name: Set up Python
       run: uv python install 3.10
 
-    - name: Install build tools
-      run: uv tool install build
-
     - name: Build package
       run: uvx --from build pyproject-build --installer uv
 
-    - name: Install twine and check
-      run: |
-        uv tool install twine
-        uvx twine check dist/*
+    - name: Check distribution
+      run: uvx twine check dist/*
 
-    - uses: actions/upload-artifact@v4
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
       with:
         name: python-package-distributions
         path: dist/
-
-  github-release:
-    name: Create GitHub Release
-    needs: [build]
-    runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/')
-    permissions:
-      contents: write
-
-    steps:
-    - uses: actions/checkout@v4
-
-    - name: Download distributions
-      uses: actions/download-artifact@v4
-      with:
-        name: python-package-distributions
-        path: dist/
-
-    - name: Create GitHub Release
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
-      run: >-
-        gh release create
-        '${{ github.ref_name }}'
-        --repo '${{ github.repository }}'
-        --generate-notes
-
-    - name: Upload artifacts to GitHub Release
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
-      run: >-
-        gh release upload
-        '${{ github.ref_name }}' dist/*
-        --repo '${{ github.repository }}'
+        retention-days: 30
