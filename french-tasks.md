@@ -43,10 +43,13 @@ handled responsibly.
 The project has already established a substantial technical foundation, including
 dataset integration, baseline models, preprocessing pipelines, and a complete
 evaluation and testing framework. The remaining work focuses on the core research
-components required to evaluate the proposed dual-pathway approach (an ensemble
-approach in which each pathway is capable of detecting harmful content in a
-different layer of the image – more information in the Planned Components section
-of this document and provided in the repository).
+components required to evaluate the proposed dual-pathway approach.
+
+The project uses the HatefulIllusion dataset from Hugging Face, containing 2,160
+images across three subsets: 300 images with hidden digits, 690 with hate slangs,
+and 1,170 with hate symbols. The dataset was introduced in the paper "HatefulIllusion:
+Evaluating and Mitigating Hateful Illusions in Vision Language Models" by Qu et al.
+(2025). Dataset: <https://huggingface.co/datasets/yiting/HatefulIllusion_Dataset>
 
 ### Partially Completed Components
 
@@ -70,86 +73,45 @@ content.
 The ensemble consists of two parallel vision language model pathways processing
 the same input image:
 
-1. **Raw Image Pathway**: Operates on the original, unmodified image to capture
-   dominant surface-level visual semantics and detect explicit harmful content
-   that is immediately visible.
+1. Raw Image Pathway: Operates on the original, unmodified image using a frozen
+   CLIP-ViT backbone to capture dominant surface-level visual semantics and
+   detect explicit harmful content that is immediately visible.
 
-2. **Preprocessed Image Pathway**: Operates on a transformed version of the image
-   (applying blur and histogram equalisation) to amplify low-visibility content
-   and detect harmful material that has been deliberately obscured or embedded.
+2. Preprocessed Image Pathway: Operates on a transformed version of the image
+   (applying Gaussian blur and histogram equalisation) using a trainable ViT to
+   amplify low-visibility content and detect harmful material that has been
+   deliberately obscured or embedded.
 
 Each pathway independently produces detection outputs, including confidence scores
-and class predictions. Developing this dual-pathway architecture, along with its
-training and evaluation pipeline, is the first step of development in this
-project.
+and class predictions. The implementation requires designing and implementing the
+two-branch architecture with clearly defined inputs and outputs for each pathway,
+ensuring both pathways are executable independently and expose representations
+suitable for downstream combination. A training pipeline must support full
+fine-tuning and prompt-learning strategies (FPTL methodology from Qu et al., 2025),
+along with reproducible training and inference scripts.
 
 To combine the outputs from both pathways into a unified moderation decision, a
 meta-learner (fusion engine) is required. The meta-learner addresses the challenge
 of integrating potentially conflicting signals: one pathway may detect harmful
 content while the other does not, or both may detect different types of threats.
 The fusion component must learn to weight and combine these signals appropriately
-based on their reliability and the characteristics of the input.
+based on their reliability and the characteristics of the input. Developers may
+implement the meta-learner using various approaches, ranging from simple to
+sophisticated. Rule-based fusion uses threshold-based logic or weighted averaging
+of pathway confidence scores. Linear methods such as logistic regression or linear
+stacking can learn optimal pathway weights. Tree-based models like Gradient Boosted
+Decision Trees (XGBoost, LightGBM) can capture non-linear interactions between
+pathways. Neural approaches such as attention-weighted Multi-Layer Perceptrons can
+dynamically weight pathway contributions based on input characteristics. The fusion
+stage will compute a normalised risk score in the range [0, 1] and must be
+configurable to support systematic comparison of different combination strategies.
 
-Developers may implement the meta-learner using various approaches, ranging from
-simple to sophisticated. Rule-based fusion uses threshold-based logic or weighted
-averaging of pathway confidence scores. Linear methods such as logistic regression
-or linear stacking can learn optimal pathway weights. Tree-based models like
-Gradient Boosted Decision Trees (XGBoost, LightGBM) can capture non-linear
-interactions between pathways. Neural approaches such as attention-weighted
-Multi-Layer Perceptrons can dynamically weight pathway contributions based on
-input characteristics.
-
-The fusion stage will explore multiple combination strategies and will be
-evaluated experimentally to understand how surface-level and embedded content
-signals interact. This work is central to assessing whether the proposed ensemble
-architecture offers measurable advantages over single-path baselines.
-
-## Technical Scope
-
-### Explainability and Visualisation
-
-This task involves extending the existing visualisation tooling to support
-explainability for the model predictions. The required work includes implementing a
-gradient-based saliency method (Grad-Cam and Integrated Gradients) to generate a
-heatmap-style explanation for the model's output, and adding attention
-visualisation for the model pathways to enable inspection of pathway-specific
-contributions.
-
-Additional work includes producing exportable visual outputs suitable for use in
-reports and experimental analysis, and developing lightweight validation measures
-to assess the consistency of explanation outputs across samples and visibility
-levels.
-
-### VLM Dual-Pathway Architecture
-
-The work required includes designing and implementing a two-branch model
-architecture (raw image & preprocessed version of the image) using a CLIP-based
-backbone, with clearly defined inputs and outputs for each pathway. Both pathways
-should be executable independently and expose representations suitable for
-downstream combination. A training pipeline must be implemented to support full
-fine-tuning and prompt-learning strategies, along with reproducible training and
-inference scripts.
-
-The task also includes defining and validating input and output schemas for both
-pathways, ensuring consistency across training and evaluation.
-
-### Dynamic Fusion Engine
-
-This task involves implementing the fusion component that combines outputs from
-the two VLM pathways into a single moderation decision. The fusion engine will
-compute a normalised risk score in the range [0, 1] by integrating surface-level
-and embedded-content signals produced by the two pathways.
-
-The work includes defining the inputs and outputs of the fusion stage and
-implementing multiple combination strategies: rule-based approaches, learned weight
-combinations, and threshold-based methods. These should operate on pathway-level
-outputs and be configurable to support systematic comparison under consistent
-experimental conditions.
-
-Additionally, the component should expose lightweight explainability hooks that
-allow fusion decisions to be inspected and analysed during experimentation,
-supporting review and debugging of combined model outputs.
-
-This component can be developed in parallel at the interface and evaluation level,
-but implementation and validation require the models to produce stable pathway
-outputs.
+Explainability and visualisation capabilities are essential for enabling human
+inspection of model decisions and validating that the system responds to embedded
+visual structures rather than surface-level artefacts. The implementation requires
+gradient-based saliency methods (Grad-CAM and Integrated Gradients) to generate
+heatmap-style explanations, attention visualisation for pathway-specific
+contributions, and exportable visual outputs suitable for reports and experimental
+analysis. The component should expose lightweight explainability hooks that allow
+fusion decisions to be inspected during experimentation, supporting review and
+debugging of combined model outputs.
