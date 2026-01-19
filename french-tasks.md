@@ -91,16 +91,13 @@ The fusion component must learn to weight and combine these signals appropriatel
 based on their reliability and the characteristics of the input.
 
 Developers may implement the meta-learner using various approaches, ranging from
-simple to sophisticated:
-
-- **Rule-Based Fusion**: Threshold-based logic or weighted averaging of pathway
-  confidence scores
-- **Linear Methods**: Logistic regression or linear stacking to learn optimal
-  pathway weights
-- **Tree-Based Models**: Gradient Boosted Decision Trees (XGBoost, LightGBM) to
-  capture non-linear interactions
-- **Neural Approaches**: Attention-weighted Multi-Layer Perceptron to dynamically
-  weight pathway contributions
+simple to sophisticated. Rule-based fusion uses threshold-based logic or weighted
+averaging of pathway confidence scores. Linear methods such as logistic regression
+or linear stacking can learn optimal pathway weights. Tree-based models like
+Gradient Boosted Decision Trees (XGBoost, LightGBM) can capture non-linear
+interactions between pathways. Neural approaches such as attention-weighted
+Multi-Layer Perceptrons can dynamically weight pathway contributions based on
+input characteristics.
 
 The fusion stage will explore multiple combination strategies and will be
 evaluated experimentally to understand how surface-level and embedded content
