@@ -56,28 +56,56 @@ predictions and confidence overlays. However, explainability mechanisms for the
 Vision Language Model (VLM) components remain outstanding. Specifically, there is
 currently no support for visualising attention, saliency, or pathway-specific
 contributions within the architecture. Completing this component is essential for
-enabling human inspection of mode decisions and for validating that the system is
+enabling human inspection of model decisions and for validating that the system is
 responding to embedded visual structures rather than surface-level artefacts.
 
 ### Planned Components
 
-The implementation of the vision language model dual pathway represents the core
-research contribution of the project. This component involves designing and
-implementing a model architecture in which the same input image is processed in
-parallel by two distinct pathways: one operating on the raw image to capture the
-surface-level semantics, and the other operating on a transformed version of the
-image to amplify low-visibility content. Developing this architecture, along with
-its training and evaluation pipeline, is the first step of development in this
+The core research contribution of this project is an ensemble approach that
+combines multiple detection pathways to identify harmful content at different
+levels of visual representation. This methodology addresses the limitation of
+single-pathway models that may miss either surface-level or embedded harmful
+content.
+
+The ensemble consists of two parallel vision language model pathways processing
+the same input image:
+
+1. **Raw Image Pathway**: Operates on the original, unmodified image to capture
+   dominant surface-level visual semantics and detect explicit harmful content
+   that is immediately visible.
+
+2. **Preprocessed Image Pathway**: Operates on a transformed version of the image
+   (applying blur and histogram equalisation) to amplify low-visibility content
+   and detect harmful material that has been deliberately obscured or embedded.
+
+Each pathway independently produces detection outputs, including confidence scores
+and class predictions. Developing this dual-pathway architecture, along with its
+training and evaluation pipeline, is the first step of development in this
 project.
 
-The dynamic fusion engine (potentially developed as a sophisticated model like a
-Gradient Boosted Decision Tree or Attention-Weighted Multi-Layer Perceptron or
-even a simple Logistic Regression/Linear Stacking or Rule-Based and Threshold
-Fusion) combines the outputs of the two vision language model pathways into a
-single moderation decision. The fusion stage will explore multiple combination
-strategies and will be evaluated experimentally to understand how surface-level
-and embedded content signals interact. This work is central to assessing whether
-the proposed architecture offers measurable advantages over single-path baselines.
+To combine the outputs from both pathways into a unified moderation decision, a
+meta-learner (fusion engine) is required. The meta-learner addresses the challenge
+of integrating potentially conflicting signals: one pathway may detect harmful
+content while the other does not, or both may detect different types of threats.
+The fusion component must learn to weight and combine these signals appropriately
+based on their reliability and the characteristics of the input.
+
+Developers may implement the meta-learner using various approaches, ranging from
+simple to sophisticated:
+
+- **Rule-Based Fusion**: Threshold-based logic or weighted averaging of pathway
+  confidence scores
+- **Linear Methods**: Logistic regression or linear stacking to learn optimal
+  pathway weights
+- **Tree-Based Models**: Gradient Boosted Decision Trees (XGBoost, LightGBM) to
+  capture non-linear interactions
+- **Neural Approaches**: Attention-weighted Multi-Layer Perceptron to dynamically
+  weight pathway contributions
+
+The fusion stage will explore multiple combination strategies and will be
+evaluated experimentally to understand how surface-level and embedded content
+signals interact. This work is central to assessing whether the proposed ensemble
+architecture offers measurable advantages over single-path baselines.
 
 ## Technical Scope
 
