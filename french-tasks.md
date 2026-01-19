@@ -1,299 +1,130 @@
 # Project Overview
 
-Title: Vision Language Model for Detecting Embedded and Obscure Harmful Visual Content
-
-As part of this project, we aim to develop a Vision-Language Model (VLM) for detecting embedded
-and obscure harmful visual content in digital media, specifically images. Our objective primarily
-is to detect (mainly textual or symbolic) hateful content that is subtly embedded within images,
-often requiring various transformations to become automatically detectable.
-
-As part of this project we have defined several key tasks that will guide the development and
-implementation of the VLM system. Each task is designed to address specific components of the
-overall system, from data preparation to model architecture and evaluation.
-
-## Task 1: Data Collection & Annotation
-
-Purpose: Collect and annotate a comprehensive dataset of images containing embedded harmful
-content. This dataset will serve as the foundation for training and evaluating the VLM.
-
-Deliverables:
-
-- A curated dataset of images with embedded harmful content, along with corresponding annotations
-- Annotation guidelines and documentation detailing the annotation process
-- A data preprocessing pipeline to prepare the dataset for model training
-
-Current Status:
-
-- Integrated HatefulIllusion dataset from HuggingFace (2,160 total samples across 3 subsets)
-- Dataset subsets: digits (300), hate_slangs (690), hate_symbols (1,170)
-- Each sample includes: image, message, visibility level (0-5), condition image, and prompt
-- Implemented `HatefulIllusionDetectionDataset` class with automatic bbox extraction from
-  condition images
-- Created `DatasetManager` utility for loading and managing dataset splits
-- Preprocessing pipeline implemented with blur and histogram equalization for low-visibility
-  content
-
-To do:
-
-- Expand dataset with additional sources and manual annotation where needed
-
-## Task 2: YOLO-Based Detection Model
-
-Purpose: Develop a YOLO-based model for detecting embedded harmful content in images. This model
-serves as a baseline that is capable of detecting embedded content with bounding box localization.
-
-Deliverables:
-
-- A YOLO-based detection model trained on the annotated dataset
-- Training and evaluation scripts for the YOLO model
-- Performance metrics including accuracy, precision, recall, F1-score, and IoU
-
-Current Status:
-
-Implementation Details:
-
-- **Model Architecture**: Implemented `YOLODetector` with pretrained ResNet18 backbone for
-  transfer learning
-- **Training Pipeline**: `train_yolo_detection.py` script with staged training (frozen backbone
-  for 5 epochs, then full fine-tuning)
-- **Data Augmentation**: Horizontal flip, brightness/contrast adjustment, color jitter, Gaussian
-  noise, rotation, and blur
-- **Regularization**: Dropout (0.5), weight decay (0.01), early stopping with patience
-- **Bounding Box Extraction**: Automatic extraction from condition images using OpenCV contour
-  detection
-- **Multi-task Learning**: Combined classification (digit/slang/symbol recognition) and bounding
-  box regression
-- **Evaluation Metrics**: Classification accuracy, IoU for bbox localization, stratified by
-  visibility level
-- **Training Scripts**: `scripts/train_yolo_detection.py` with configurable epochs, batch size,
-  learning rate
-- **Visualization**: `scripts/visualize_yolo_detection.py` for prediction visualization with bbox
-  overlays
-
-Training Results (on digits subset):
-
-- Classification Accuracy: 51.67%
-- Bounding Box IoU: 90.33%
-- Training samples: 240 (80% of 300 digits)
-- Validation samples: 60 (20% of 300 digits)
-
-To do:
-
-- The model obviously needs significant improvement in classification accuracy
-
-## Task 3: Model Evaluation & Testing
-
-Purpose: Implement comprehensive testing infrastructure to ensure model reliability, correctness,
-and performance across different scenarios.
-
-Deliverables:
-
-- Unit tests for individual components (dataset, preprocessing, augmentation, OCR)
-- Property-based tests using Hypothesis for robustness validation
-- Integration tests for end-to-end workflows
-- Evaluation utilities with stratified metrics
-
-Current Status: **COMPLETED**
-
-Implementation Details:
-
-- **Unit Tests**: Implemented for dataset loading, preprocessing pipeline, augmentation
-  transforms, and OCR functionality
-- **Property-Based Tests**: Using Hypothesis for testing dataset composition, preprocessing
-  invariants, OCR robustness, and YOLO detection properties
-- **Evaluation Module**: `models/yolo/evaluator.py` with `YOLOEvaluator` class computing accuracy,
-  precision, recall, F1, and visibility-stratified metrics
-- **Test Coverage**: Comprehensive coverage of models and utils packages
-- **CI/CD Integration**: GitHub Actions workflow for automated testing on Python 3.10 and 3.11
-
-Test Structure:
-
-- `tests/unit/`: Component-level tests
-- `tests/property/`: Property-based tests with Hypothesis
-- `tests/integration/`: End-to-end workflow tests (placeholder)
-
-## Task 4: Preprocessing & Data Augmentation
-
-Purpose: Develop robust preprocessing and augmentation pipelines to handle low-visibility content
-and increase effective dataset size.
-
-Deliverables:
-
-- Preprocessing pipeline for enhancing low-visibility content
-- Data augmentation strategies for training robustness
-- Visualization tools for transformation inspection
-
-Current Status: **COMPLETED**
-
-Implementation Details:
-
-- **Preprocessing Pipeline**: `utils/preprocessing.py` with blur and histogram equalization for
-  low-visibility enhancement
-- **Augmentation Module**: `utils/augmentation.py` with transforms including:
-  - Horizontal flip with bbox coordinate adjustment
-  - Random brightness/contrast (0.7-1.3 factor)
-  - Color jitter (HSV space manipulation)
-  - Gaussian noise injection
-  - Random rotation (-15 to +15 degrees)
-  - Random Gaussian blur
-- **Visualization Script**: `scripts/visualize_transformations.py` for inspecting augmentation
-  effects
-- **Integration**: Augmentation integrated into training pipeline with configurable enable/disable
-
-## Task 5: OCR Integration
-
-Purpose: Integrate OCR capabilities for extracting and validating text content from images,
-supporting both EasyOCR and Tesseract backends.
-
-Deliverables:
-
-- OCR wrapper supporting multiple backends
-- Text extraction and validation utilities
-- Performance comparison between OCR engines
-
-Current Status: **COMPLETED**
-
-Implementation Details:
-
-- **OCR Module**: `utils/ocr.py` with `OCREngine` class supporting EasyOCR and Tesseract
-- **Dual Backend Support**: Configurable backend selection with fallback mechanism
-- **Text Extraction**: Methods for extracting text with confidence scores and bounding boxes
-- **Testing**: Unit and property-based tests for OCR functionality and robustness
-
-## Task 6: VLM Dual-Pathway Architecture
-
-Purpose: Implement the core research contribution with parallel surface-level and embedded-content
-analysis using Vision Language Models.
-
-Deliverables:
-
-- Two-branch model architecture (Pathway A: raw image, Pathway B: preprocessed image)
-- Training loop supporting full fine-tuning and prompt learning
-- Input/output schema validation
-- Reproducible training and inference scripts
-
-Current Status: **NOT STARTED**
-
-Next Steps:
-
-- Design dual-pathway architecture using CLIP or similar VLM backbone
-- Implement Pathway A (surface-level analysis) and Pathway B (embedded content analysis)
-- Create fusion mechanism for combining pathway outputs
-- Develop training pipeline with both pathways
-- Implement prompt learning strategies for efficient fine-tuning
-
-## Task 7: Dynamic Fusion Engine
-
-Purpose: Combine outputs from both VLM pathways into a single, reliable moderation signal with
-confidence-weighted combination strategies.
-
-Deliverables:
-
-- Fusion logic with multiple strategies (rule-based, learned weights, thresholds)
-- Comparative evaluation of fusion approaches
-- Explainability hooks for fusion decisions
-
-Current Status: **NOT STARTED**
-
-Dependencies: Requires Task 6 (VLM Dual-Pathway Architecture) to be completed first.
-
-## Task 8: Explainability & Visualization
-
-Purpose: Enable human-interpretable inspection of model predictions for moderation review,
-debugging, and trust building.
-
-Deliverables:
-
-- Heatmap/saliency map generation for predictions
-- Bounding box visualization with confidence overlays
-- Attention visualization for VLM pathways
-- Exportable visual outputs for reports
-
-Current Status: **PARTIALLY COMPLETED**
-
-Implementation Details:
-
-- **Visualization Scripts**: `scripts/visualize_yolo_detection.py` for YOLO predictions with bbox
-  overlays
-- **Explainability Module**: `models/explainability/` package structure created (placeholder)
-
-Next Steps:
-
-- Implement gradient-based saliency maps (GradCAM, Integrated Gradients)
-- Add attention visualization for VLM pathways
-- Create interactive visualization tools
-- Develop explainability metrics for validation
-
-## Task 9: Model Persistence & Configuration Management
-
-Purpose: Ensure trained models are portable, reproducible, and configurable across environments
-with proper serialization and versioning.
-
-Deliverables:
-
-- Save/load utilities for trained models with metadata
-- Configuration system for thresholds, preprocessing, and inference behavior
-- Compatibility tests for serialized models
-- Clear versioning conventions
-
-Current Status: **COMPLETED**
-
-Implementation Details:
-
-- **Checkpoint System**: Implemented in `models/yolo/trainer.py` with automatic best model saving
-- **Configuration Classes**: `YOLOTrainingConfig` dataclass for training parameters
-- **Model Serialization**: PyTorch state dict saving with metadata (accuracy, IoU, epoch, label
-  mappings)
-- **Checkpoint Directory**: `checkpoints/` for storing trained models
-- **Load/Resume**: Support for loading checkpoints and resuming training
-
-## Task 10: Code Quality & Documentation
-
-Purpose: Maintain high code quality standards with linting, type checking, formatting, and
-comprehensive documentation.
-
-Deliverables:
-
-- Linting and formatting with Ruff
-- Type checking with mypy
-- Pre-commit hooks for automated quality checks
-- Comprehensive README and documentation
-
-Current Status: **COMPLETED**
-
-Implementation Details:
-
-- **Linting**: Ruff configured in `pyproject.toml` with strict rules
-- **Type Checking**: mypy configured for Python 3.10+ with type annotations throughout
-- **Pre-commit Hooks**: `.pre-commit-config.yaml` with automated checks on commit
-- **Documentation**: Comprehensive README.md with setup, usage, and architecture details
-- **Steering Files**: `.kiro/steering/` with guidelines for model training, linting standards,
-  and dependency licenses
-- **CI/CD**: GitHub Actions workflow for automated testing and quality checks
-
-## Summary
-
-### Completed Tasks (7/10)
-
-1. Data Collection & Annotation
-2. YOLO-Based Detection Model
-3. Model Evaluation & Testing
-4. Preprocessing & Data Augmentation
-5. OCR Integration
-9. Model Persistence & Configuration Management
-10. Code Quality & Documentation
-
-### Partially Completed Tasks (1/10)
-
-8. Explainability & Visualization (YOLO visualization done, VLM explainability pending)
-
-### Not Started Tasks (2/10)
-
-6. VLM Dual-Pathway Architecture
-7. Dynamic Fusion Engine
-
-### Next Priority
-
-Focus on Task 6 (VLM Dual-Pathway Architecture) as it is the core research contribution and
-blocks Task 7 (Dynamic Fusion Engine). The YOLO baseline provides a solid foundation for
-comparison and the infrastructure is in place for rapid VLM development.
+Title: Vision Language Model for Detecting Embedded and Obscure Harmful Visual
+Content
+
+User-generated content platforms are expected to increasingly encounter images in
+which harmful material is deliberately embedded within otherwise normal-looking
+scenes. In such content, harmful textual or symbolic content is typically embedded
+in a way to make it difficult for both humans and automated systems to detect
+using standard inspection methods.
+
+While this type of content is not yet widespread on a large scale, recent advances
+in image generation and manipulation techniques have made the creation of such
+content increasingly feasible. This trend raises concerns about the robustness of
+existing automated moderation systems, which are primarily designed to detect
+explicit content. The urgency of this problem is further underscored by the rise
+of AI image generators, which bad actors are using to create and disseminate
+content that is deliberately embedded or obscured to overwhelm and evade current
+detection models, as reported by the BBC in
+[AI image generators: The new battleground for explicit and harmful content](https://www.bbc.co.uk/news/articles/c2lp5pn9e1qo).
+This trend highlights the critical need for more robust, AI-powered moderation
+tools.
+
+Most current vision-language models, however, are optimised for capturing dominant,
+surface-level visual semantics. As a result, these models tend to under-represent
+secondary visual structures, which in turn may limit the ability of existing
+moderation pipelines to detect increasingly subtle forms of harmful content as
+generative capabilities continue to grow.
+
+This project investigates whether architectural changes to vision-language models,
+combined with targeted preprocessing and rigorous evaluation, can improve
+robustness to this emerging class of harmful visual content while preserving
+interpretability and reproducibility.
+
+The project is structured around key tasks that guide development from data
+preparation to model architecture and evaluation. As part of this work, the
+developers may be exposed to sensitive material related to harmful content.
+Appropriate guidance and support will be provided to ensure that this material is
+handled responsibly.
+
+## Current Status and Outstanding Work
+
+The project has already established a substantial technical foundation, including
+dataset integration, baseline models, preprocessing pipelines, and a complete
+evaluation and testing framework. The remaining work focuses on the core research
+components required to evaluate the proposed dual-pathway approach (an ensemble
+approach in which each pathway is capable of detecting harmful content in a
+different layer of the image – more information in the Planned Components section
+of this document and provided in the repository).
+
+### Partially Completed Components
+
+Explainability and visualisation have been partially implemented for the You Only
+Look Once (YOLO) baseline model, including visualisation of the bounding box
+predictions and confidence overlays. However, explainability mechanisms for the
+Vision Language Model (VLM) components remain outstanding. Specifically, there is
+currently no support for visualising attention, saliency, or pathway-specific
+contributions within the architecture. Completing this component is essential for
+enabling human inspection of mode decisions and for validating that the system is
+responding to embedded visual structures rather than surface-level artefacts.
+
+### Planned Components
+
+The implementation of the vision language model dual pathway represents the core
+research contribution of the project. This component involves designing and
+implementing a model architecture in which the same input image is processed in
+parallel by two distinct pathways: one operating on the raw image to capture the
+surface-level semantics, and the other operating on a transformed version of the
+image to amplify low-visibility content. Developing this architecture, along with
+its training and evaluation pipeline, is the first step of development in this
+project.
+
+The dynamic fusion engine (potentially developed as a sophisticated model like a
+Gradient Boosted Decision Tree or Attention-Weighted Multi-Layer Perceptron or
+even a simple Logistic Regression/Linear Stacking or Rule-Based and Threshold
+Fusion) combines the outputs of the two vision language model pathways into a
+single moderation decision. The fusion stage will explore multiple combination
+strategies and will be evaluated experimentally to understand how surface-level
+and embedded content signals interact. This work is central to assessing whether
+the proposed architecture offers measurable advantages over single-path baselines.
+
+## Technical Scope
+
+### Explainability and Visualisation
+
+This task involves extending the existing visualisation tooling to support
+explainability for the model predictions. The required work includes implementing a
+gradient-based saliency method (Grad-Cam and Integrated Gradients) to generate a
+heatmap-style explanation for the model's output, and adding attention
+visualisation for the model pathways to enable inspection of pathway-specific
+contributions.
+
+Additional work includes producing exportable visual outputs suitable for use in
+reports and experimental analysis, and developing lightweight validation measures
+to assess the consistency of explanation outputs across samples and visibility
+levels.
+
+### VLM Dual-Pathway Architecture
+
+The work required includes designing and implementing a two-branch model
+architecture (raw image & preprocessed version of the image) using a CLIP-based
+backbone, with clearly defined inputs and outputs for each pathway. Both pathways
+should be executable independently and expose representations suitable for
+downstream combination. A training pipeline must be implemented to support full
+fine-tuning and prompt-learning strategies, along with reproducible training and
+inference scripts.
+
+The task also includes defining and validating input and output schemas for both
+pathways, ensuring consistency across training and evaluation.
+
+### Dynamic Fusion Engine
+
+This task involves implementing the fusion component that combines outputs from
+the two VLM pathways into a single moderation decision. The fusion engine will
+compute a normalised risk score in the range [0, 1] by integrating surface-level
+and embedded-content signals produced by the two pathways.
+
+The work includes defining the inputs and outputs of the fusion stage and
+implementing multiple combination strategies: rule-based approaches, learned weight
+combinations, and threshold-based methods. These should operate on pathway-level
+outputs and be configurable to support systematic comparison under consistent
+experimental conditions.
+
+Additionally, the component should expose lightweight explainability hooks that
+allow fusion decisions to be inspected and analysed during experimentation,
+supporting review and debugging of combined model outputs.
+
+This component can be developed in parallel at the interface and evaluation level,
+but implementation and validation require the models to produce stable pathway
+outputs.
