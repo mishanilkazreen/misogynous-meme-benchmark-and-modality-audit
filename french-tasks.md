@@ -56,13 +56,11 @@ Evaluating and Mitigating Hateful Illusions in Vision Language Models" by Qu et 
 Explainability and visualisation have been partially implemented for the You Only
 Look Once (YOLO) baseline model, including visualisation of the bounding box
 predictions and confidence overlays. However, explainability mechanisms for the
-Vision Language Model (VLM) components remain outstanding. VLMs are neural networks
-that process both visual and textual information to understand image content.
-Specifically, there is currently no support for visualising attention, saliency,
-or pathway-specific contributions within the architecture. Completing this component
-is essential for enabling human inspection of model decisions and for validating
-that the system is responding to embedded visual structures rather than surface-level
-artefacts.
+Vision Language Model (VLM) components remain outstanding. Specifically, there is
+currently no support for visualising attention, saliency, or pathway-specific
+contributions within the architecture. Completing this component is essential for
+enabling human inspection of model decisions and for validating that the system is
+responding to embedded visual structures rather than surface-level artefacts.
 
 ### Planned Components
 
@@ -72,33 +70,27 @@ levels of visual representation. This methodology addresses the limitation of
 single-pathway models that may miss either surface-level or embedded harmful
 content.
 
-The ensemble consists of two parallel VLM pathways processing the same input image:
+The ensemble consists of two parallel vision language model pathways processing
+the same input image:
 
 1. Raw Image Pathway: Operates on the original, unmodified image using a frozen
-   CLIP-ViT backbone to capture dominant surface-level visual semantics and
-   detect explicit harmful content that is immediately visible. CLIP-ViT refers
-   to Contrastive Language-Image Pre-training with Vision Transformer, a model
-   architecture that learns visual representations by matching images with text
-   descriptions. A Vision Transformer (ViT) is a neural network architecture that
-   processes images by dividing them into patches and applying transformer
-   mechanisms originally designed for text processing.
+   Contrastive Language-Image Pre-training Vision Transformer (CLIP-ViT) backbone
+   to capture dominant surface-level visual semantics and detect explicit harmful
+   content that is immediately visible.
 
 2. Preprocessed Image Pathway: Operates on a transformed version of the image
-   (applying Gaussian blur and histogram equalisation) using a trainable ViT to
-   amplify low-visibility content and detect harmful material that has been
-   deliberately obscured or embedded. Gaussian blur is an image processing
-   technique that smooths images by averaging pixel values, while histogram
-   equalisation enhances image contrast by redistributing pixel intensity values.
+   (applying Gaussian blur and histogram equalisation) using a trainable Vision
+   Transformer (ViT) to amplify low-visibility content and detect harmful material
+   that has been deliberately obscured or embedded.
 
 Each pathway independently produces detection outputs, including confidence scores
 and class predictions. The implementation requires designing and implementing the
 two-branch architecture with clearly defined inputs and outputs for each pathway,
 ensuring both pathways are executable independently and expose representations
-suitable for downstream combination. A training pipeline must support Full
-Fine-Tuning and Prompt Learning (FPTL) methodology from Qu et al. (2025), along
-with reproducible training and inference scripts. FPTL is a training approach that
-combines complete model parameter updates with learnable prompt tokens to adapt
-pre-trained models to new tasks.
+suitable for downstream combination. A training pipeline must support full
+fine-tuning and prompt-learning strategies (Full Fine-Tuning and Prompt Learning
+(FPTL) methodology from Qu et al., 2025), along with reproducible training and
+inference scripts.
 
 To combine the outputs from both pathways into a unified moderation decision, a
 meta-learner (fusion engine) is required. The meta-learner addresses the challenge
@@ -111,25 +103,17 @@ sophisticated. Rule-based fusion uses threshold-based logic or weighted averagin
 of pathway confidence scores. Linear methods such as logistic regression or linear
 stacking can learn optimal pathway weights. Tree-based models like Gradient Boosted
 Decision Trees (XGBoost, LightGBM) can capture non-linear interactions between
-pathways. XGBoost and LightGBM are machine learning frameworks that build ensembles
-of decision trees through iterative optimisation. Neural approaches such as
-attention-weighted Multi-Layer Perceptrons (MLPs) can dynamically weight pathway
-contributions based on input characteristics. MLPs are neural networks consisting
-of multiple layers of interconnected nodes that learn complex patterns through
-training. The fusion stage will compute a normalised risk score in the range [0, 1]
-and must be configurable to support systematic comparison of different combination
-strategies.
+pathways. Neural approaches such as attention-weighted Multi-Layer Perceptrons can
+dynamically weight pathway contributions based on input characteristics. The fusion
+stage will compute a normalised risk score in the range [0, 1] and must be
+configurable to support systematic comparison of different combination strategies.
 
 Explainability and visualisation capabilities are essential for enabling human
 inspection of model decisions and validating that the system responds to embedded
 visual structures rather than surface-level artefacts. The implementation requires
-gradient-based saliency methods (Grad-CAM and Integrated Gradients) to generate
-heatmap-style explanations, attention visualisation for pathway-specific
-contributions, and exportable visual outputs suitable for reports and experimental
-analysis. Grad-CAM (Gradient-weighted Class Activation Mapping) is a technique that
-highlights image regions most influential to model predictions by computing
-gradients of the output with respect to feature maps. Integrated Gradients is
-another attribution method that identifies important input features by accumulating
-gradients along a path from a baseline to the actual input. The component should
-expose lightweight explainability hooks that allow fusion decisions to be inspected
-during experimentation, supporting review and debugging of combined model outputs.
+gradient-based saliency methods (Gradient-weighted Class Activation Mapping
+(Grad-CAM) and Integrated Gradients) to generate heatmap-style explanations,
+attention visualisation for pathway-specific contributions, and exportable visual
+outputs suitable for reports and experimental analysis. The component should expose
+lightweight explainability hooks that allow fusion decisions to be inspected during
+experimentation, supporting review and debugging of combined model outputs.
