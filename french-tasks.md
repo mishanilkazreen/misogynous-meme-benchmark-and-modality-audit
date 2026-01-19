@@ -32,6 +32,33 @@ combined with targeted preprocessing and rigorous evaluation, can improve
 robustness to this emerging class of harmful visual content while preserving
 interpretability and reproducibility.
 
+## Dual-Pathway Ensemble Approach
+
+The core research contribution is an ensemble approach that combines multiple
+detection pathways to identify harmful content at different levels of visual
+representation. This methodology addresses the limitation of single-pathway models
+that may miss either surface-level or embedded harmful content.
+
+The ensemble consists of two parallel Vision Language Model (VLM) pathways
+processing the same input image:
+
+1. Raw Image Pathway: Operates on the original, unmodified image using a frozen
+   Contrastive Language-Image Pre-training Vision Transformer (CLIP-ViT) backbone
+   to capture dominant surface-level visual semantics and detect explicit harmful
+   content that is immediately visible.
+
+2. Preprocessed Image Pathway: Operates on a transformed version of the image
+   (applying Gaussian blur and histogram equalisation) using a trainable Vision
+   Transformer (ViT) to amplify low-visibility content and detect harmful material
+   that has been deliberately obscured or embedded.
+
+Each pathway independently produces detection outputs, including confidence scores
+and class predictions. A meta-learner (fusion engine) combines the outputs from
+both pathways into a unified moderation decision, addressing the challenge of
+integrating potentially conflicting signals. The fusion component learns to weight
+and combine these signals appropriately based on their reliability and input
+characteristics.
+
 The project is structured around key tasks that guide development from data
 preparation to model architecture and evaluation. As part of this work, the
 developers may be exposed to sensitive material related to harmful content.
@@ -64,56 +91,33 @@ responding to embedded visual structures rather than surface-level artefacts.
 
 ### Planned Components
 
-The core research contribution of this project is an ensemble approach that
-combines multiple detection pathways to identify harmful content at different
-levels of visual representation. This methodology addresses the limitation of
-single-pathway models that may miss either surface-level or embedded harmful
-content.
+The remaining implementation work consists of three core components:
 
-The ensemble consists of two parallel vision language model pathways processing
-the same input image:
+1. VLM Dual-Pathway Architecture: Design and implement the two-branch model
+   architecture with CLIP-ViT for the raw image pathway and trainable ViT for the
+   preprocessed image pathway. Implement the Full Fine-Tuning and Prompt Learning
+   (FPTL) training methodology from Qu et al. (2025) to train Pathway B on the
+   HatefulIllusion dataset. Ensure both pathways are executable independently and
+   expose representations suitable for downstream combination. Define and validate
+   input and output schemas for both pathways to ensure consistency across training
+   and evaluation.
 
-1. Raw Image Pathway: Operates on the original, unmodified image using a frozen
-   Contrastive Language-Image Pre-training Vision Transformer (CLIP-ViT) backbone
-   to capture dominant surface-level visual semantics and detect explicit harmful
-   content that is immediately visible.
+2. Dynamic Fusion Engine: Implement the meta-learner component that combines
+   outputs from both VLM pathways into a unified moderation decision. The fusion
+   engine must compute a normalised risk score in the range [0, 1] by integrating
+   surface-level and embedded-content signals. Implement multiple combination
+   strategies including rule-based fusion (threshold-based logic or weighted
+   averaging), linear methods (logistic regression or linear stacking), tree-based
+   models (Gradient Boosted Decision Trees), and neural approaches
+   (attention-weighted Multi-Layer Perceptrons). The component must be configurable
+   to support systematic comparison of different combination strategies.
 
-2. Preprocessed Image Pathway: Operates on a transformed version of the image
-   (applying Gaussian blur and histogram equalisation) using a trainable Vision
-   Transformer (ViT) to amplify low-visibility content and detect harmful material
-   that has been deliberately obscured or embedded.
-
-Each pathway independently produces detection outputs, including confidence scores
-and class predictions. The implementation requires designing and implementing the
-two-branch architecture with clearly defined inputs and outputs for each pathway,
-ensuring both pathways are executable independently and expose representations
-suitable for downstream combination. A training pipeline must support full
-fine-tuning and prompt-learning strategies (Full Fine-Tuning and Prompt Learning
-(FPTL) methodology from Qu et al., 2025), along with reproducible training and
-inference scripts.
-
-To combine the outputs from both pathways into a unified moderation decision, a
-meta-learner (fusion engine) is required. The meta-learner addresses the challenge
-of integrating potentially conflicting signals: one pathway may detect harmful
-content while the other does not, or both may detect different types of threats.
-The fusion component must learn to weight and combine these signals appropriately
-based on their reliability and the characteristics of the input. Developers may
-implement the meta-learner using various approaches, ranging from simple to
-sophisticated. Rule-based fusion uses threshold-based logic or weighted averaging
-of pathway confidence scores. Linear methods such as logistic regression or linear
-stacking can learn optimal pathway weights. Tree-based models like Gradient Boosted
-Decision Trees (XGBoost, LightGBM) can capture non-linear interactions between
-pathways. Neural approaches such as attention-weighted Multi-Layer Perceptrons can
-dynamically weight pathway contributions based on input characteristics. The fusion
-stage will compute a normalised risk score in the range [0, 1] and must be
-configurable to support systematic comparison of different combination strategies.
-
-Explainability and visualisation capabilities are essential for enabling human
-inspection of model decisions and validating that the system responds to embedded
-visual structures rather than surface-level artefacts. The implementation requires
-gradient-based saliency methods (Gradient-weighted Class Activation Mapping
-(Grad-CAM) and Integrated Gradients) to generate heatmap-style explanations,
-attention visualisation for pathway-specific contributions, and exportable visual
-outputs suitable for reports and experimental analysis. The component should expose
-lightweight explainability hooks that allow fusion decisions to be inspected during
-experimentation, supporting review and debugging of combined model outputs.
+3. Explainability and Visualisation: Implement gradient-based saliency methods
+   including Gradient-weighted Class Activation Mapping (Grad-CAM) and Integrated
+   Gradients to generate heatmap-style explanations for model predictions. Add
+   attention visualisation for pathway-specific contributions to enable inspection
+   of how each pathway contributes to the final decision. Implement exportable
+   visual outputs suitable for reports and experimental analysis. The component
+   should expose lightweight explainability hooks that allow fusion decisions to be
+   inspected during experimentation, supporting review and debugging of combined
+   model outputs.
