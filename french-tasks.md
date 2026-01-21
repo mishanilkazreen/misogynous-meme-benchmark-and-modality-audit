@@ -34,10 +34,11 @@ addressing single-pathway models' limitations.
 
 The ensemble consists of two parallel Vision Language Model (VLM) pathways:
 
-1. Raw Image Pathway: Uses a frozen Contrastive Language-Image Pre-training Vision
-   Transformer (CLIP-ViT) backbone to capture surface-level visual semantics and
-   detect immediately visible harmful content. Integrates Optical Character
-   Recognition (OCR) using EasyOCR to extract and analyze embedded textual content.
+1. Raw Image Pathway: Uses a frozen contrastive language image Pre-training the
+   Vision Transformer (CLIP-ViT) backbone to capture surface-level visual
+   semantics and detect immediately visible harmful content. Integrates Optical
+   Character Recognition (OCR) using EasyOCR to extract and analyse embedded
+   textual content.
 
 2. Preprocessed Image Pathway: Applies Gaussian blur and histogram equalisation,
    then uses a trainable Vision Transformer (ViT) to amplify and detect
@@ -53,36 +54,38 @@ Appropriate guidance and support will be provided to ensure responsible handling
 
 ## Current Status and Outstanding Work
 
-The project has established a substantial technical foundation including dataset
-integration, baseline models, preprocessing pipelines, and evaluation framework.
-Remaining work focuses on core research components for the dual-pathway approach.
+The project has established a substantial technical foundation, including dataset
+integration, baseline models, preprocessing pipelines, and an evaluation framework.
+The remaining work focuses on core research components for the dual-pathway
+approach.
 
 ### Completed Components
 
-Uses HatefulIllusion dataset from Hugging Face (2,160 images: 300 hidden digits,
-690 hate slangs, 1,170 hate symbols). YOLO-based classifier baseline implemented
-with ResNet18 backbone achieves 51.67% classification accuracy and 90.33% bounding
-box IoU on digits subset. Partial explainability implemented for YOLO including
-bounding box predictions and confidence overlays. Dataset: Qu et al. (2025),
-"HatefulIllusion: Evaluating and Mitigating Hateful Illusions in Vision Language
-Models" <https://huggingface.co/datasets/yiting/HatefulIllusion_Dataset>
+Uses the HatefulIllusion dataset from Hugging Face (2,160 images: 300 hidden
+digits, 690 hate slangs, and 1,170 hate symbols). A YOLO-based classifier baseline
+implemented with a ResNet18 backbone achieves 51.67% classification accuracy and
+90.33% bounding box IoU on the digits' subset. Partial explainability is
+implemented for YOLO, including bounding box predictions and confidence overlays.
+Dataset: Qu et al. (2025), "HatefulIllusion: Evaluating and Mitigating Hateful
+Illusions in Vision Language Models"
+<https://huggingface.co/datasets/yiting/HatefulIllusion_Dataset>
 
 ### Outstanding Work
 
-YOLO model requires complete dataset training to approach 93.8% accuracy target
-achieved by Qu et al. (2025) using Full Fine-Tuning and Prompt Learning (FPTL) on
-CLIP. VLM explainability mechanisms remain outstanding: no support for visualising
-attention, saliency, or pathway-specific contributions. These components are
-essential for human inspection of model decisions and validating system response
-to embedded visual structures.
+The YOLO model requires a complete dataset training to approach the 93.8% accuracy
+target achieved by Qu et al. (2025) using Full Fine-Tuning and Prompt Learning
+(FPTL) on CLIP. VLM explainability mechanisms remain outstanding: no support for
+visualising attention, saliency, or pathway-specific contributions. These
+components are essential for human inspection of model decisions and validating the
+system's response to embedded visual structures.
 
 ### Planned Components
 
 Four core components remain:
 
-1. VLM Dual-Pathway Architecture: Design and implement two-branch model with
+1. VLM Dual-Pathway Architecture: Design and implement a two-branch model with
    CLIP-ViT for raw images and trainable ViT for preprocessed images. Implement
-   FPTL training methodology from Qu et al. (2025) for Pathway B. Ensure
+   the FPTL training methodology from Qu et al. (2025) for Pathway B. Ensure
    independent pathway execution and define input/output schemas for consistency.
 
 2. Existing Content Moderation Tools Integration: Investigate and integrate
@@ -91,19 +94,19 @@ Four core components remain:
    performance independently and within ensemble architecture. Explore fine-tuning
    and assess incorporation as additional ensemble members.
 
-3. Dynamic Fusion Engine: Implement meta-learner combining VLM pathway outputs
-   into unified moderation decision. Compute normalised risk score [0, 1]
+3. Dynamic Fusion Engine: Implement a meta-learner combining VLM pathway outputs
+   into a unified moderation decision. Compute normalised risk score [0, 1]
    integrating surface-level and embedded-content signals. Implement multiple
    strategies: rule-based fusion, linear methods (logistic regression, linear
-   stacking), tree-based models (Gradient Boosted Decision Trees), and neural
-   approaches (attention-weighted Multi-Layer Perceptrons). Enable systematic
+   stacking), tree-based models (gradient boosted decision trees), and neural
+   approaches (attention-weighted multi-layer perceptrons). Enable systematic
    comparison of strategies.
 
 4. Explainability, Transparency, and Trust: Implement comprehensive explainability
    for interpretable, trustworthy decisions. Use gradient-based saliency methods
    (Grad-CAM, Integrated Gradients) to generate visual heatmaps showing influential
    image regions. Add attention visualisation for pathway-specific contributions.
-   Generate heatmaps and bounding boxes with confidence scores and localization
+   Generate heatmaps and bounding boxes with confidence scores and localisation
    coordinates for moderators. Implement exportable outputs for reports and
    analysis. Expose explainability hooks for inspecting fusion decisions during
    experimentation. Ensure outputs meet regulatory compliance for auditable AI
