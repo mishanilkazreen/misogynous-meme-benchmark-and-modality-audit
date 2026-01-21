@@ -77,30 +77,29 @@ dataset integration, baseline models, preprocessing pipelines, and a complete
 evaluation and testing framework. The remaining work focuses on the core research
 components required to evaluate the proposed dual-pathway approach.
 
-The project currently uses the HatefulIllusion dataset from Hugging Face,
-containing 2,160 images across three subsets: 300 images with hidden digits, 690
-with hate slangs, and 1,170 with hate symbols. The dataset was introduced in the
-paper "HatefulIllusion: Evaluating and Mitigating Hateful Illusions in Vision
-Language Models" by Qu et al. (2025). Dataset:
+### Completed Components
+
+The project uses the HatefulIllusion dataset from Hugging Face (2,160 images
+across three subsets: 300 with hidden digits, 690 with hate slangs, and 1,170
+with hate symbols). A YOLO-based classifier baseline has been implemented using
+transfer learning with a ResNet18 backbone, achieving 51.67% classification
+accuracy and 90.33% bounding box IoU on the digits subset. Explainability and
+visualisation have been partially implemented for the YOLO baseline model,
+including bounding box predictions and confidence overlays. Dataset reference: Qu
+et al. (2025), "HatefulIllusion: Evaluating and Mitigating Hateful Illusions in
+Vision Language Models"
 <https://huggingface.co/datasets/yiting/HatefulIllusion_Dataset>
 
-A YOLO-based classifier baseline has been implemented using transfer learning with
-a ResNet18 backbone, achieving 51.67% classification accuracy and 90.33% bounding
-box IoU on the digits subset (240 training samples). The model requires training
-on the complete dataset and significant improvement to approach the research target
-of 93.8% accuracy achieved by Qu et al. (2025) using Full Fine-Tuning and Prompt
-Learning (FPTL) methodology on CLIP.
+### Outstanding Work
 
-### Partially Completed Components
-
-Explainability and visualisation have been partially implemented for the You Only
-Look Once (YOLO) baseline model, including visualisation of the bounding box
-predictions and confidence overlays. However, explainability mechanisms for the
-Vision Language Model (VLM) components remain outstanding. Specifically, there is
-currently no support for visualising attention, saliency, or pathway-specific
-contributions within the architecture. Completing this component is essential for
-enabling human inspection of model decisions and for validating that the system is
-responding to embedded visual structures rather than surface-level artefacts.
+The YOLO model requires training on the complete dataset to approach the research
+target of 93.8% accuracy achieved by Qu et al. (2025) using Full Fine-Tuning and
+Prompt Learning (FPTL) methodology on CLIP. Explainability mechanisms for the
+Vision Language Model (VLM) components remain outstanding, with no current support
+for visualising attention, saliency, or pathway-specific contributions within the
+architecture. Completing these components is essential for enabling human
+inspection of model decisions and validating that the system responds to embedded
+visual structures rather than surface-level artefacts.
 
 ### Planned Components
 
