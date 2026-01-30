@@ -24,7 +24,7 @@ that are subtly embedded within seemingly harmless images. It supports two detec
 1. Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/mishanilkazreen/content-moderation.git
 cd content-moderation
 ```
 
@@ -202,45 +202,50 @@ content-moderation/
 │   └── explainability/ # Heatmap and visualization
 ├── scripts/
 │   ├── train_yolo_detection.py  # Detection training with transfer learning
-│   └── visualize_yolo_detection.py  # Visualization
+│   ├── visualize_yolo_detection.py  # Visualization
+│   └── visualize_transformations.py # Data augmentation visualization
 ├── utils/
 │   ├── dataset.py      # DatasetManager, HatefulIllusionDataset
 │   ├── preprocessing.py # Image preprocessing pipeline
-│   └── augmentation.py  # Data augmentation
+│   ├── augmentation.py  # Data augmentation
+│   └── ocr.py          # OCR utilities
 ├── checkpoints/        # Saved model weights
 ├── tests/
 │   ├── unit/           # Unit tests
 │   ├── property/       # Property-based tests (Hypothesis)
 │   └── integration/    # Integration tests
-├── requirements.txt
-└── pytest.ini
+├── pyproject.toml      # Project configuration and dependencies
+└── uv.lock            # Locked dependency versions
 ```
 
 ## Development
 
 ### Python Version Requirements
 
-This project requires Python 3.10 or 3.11 for ML library compatibility. Python 3.12+ is not yet supported by PyTorch.
+This project requires Python 3.10 or 3.11 for ML library compatibility.
 
 ```bash
 # Check available Python versions
 uv python list
 
 # Create environment with specific Python version
-uv venv --python 3.10 venv
-venv\Scripts\activate  # Windows
-source venv/bin/activate  # Linux/Mac
+uv venv --python 3.10
+
+# Activate (Windows)
+.venv\Scripts\activate
+
+# Activate (Linux/macOS)
+source .venv/bin/activate
 
 # Install dependencies
-uv pip install -e ".[dev]"
-uv pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+uv sync --dev
 ```
 
 ### CI/CD Pipeline
 
-- **GitHub Actions**: Automated testing on Python 3.10 and 3.11
+- **GitHub Actions**: Automated testing and quality checks
 - **Pre-commit hooks**: Code formatting, linting, and type checking
-- **Coverage reporting**: Uploaded to Codecov
+- **Coverage reporting**: Test coverage tracking
 
 ### Local Development
 
