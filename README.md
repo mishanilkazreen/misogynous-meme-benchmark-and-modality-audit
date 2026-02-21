@@ -4,7 +4,7 @@ A content moderation system for detecting hateful content deliberately embedded
 within seemingly harmless images. Uses a tiered ensemble approach: lightweight
 screening first, then deeper analysis with YOLO-NAS, cloud APIs, or vision
 language models for flagged images, with an explainability head (Grad-CAM,
-Eigen-CAM, saliency maps) at the end.
+Eigen-CAM, saliency maps, LRP) at the end.
 
 See [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md) for research context and the
 planned tiered ensemble architecture.
@@ -176,7 +176,7 @@ See [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md) for training details.
 1. Stage 1: Lightweight screening (YOLO, OpenCV, or YOLO-NAS-S)
 2. Stage 2: Deep analysis (YOLO-NAS, cloud APIs, VLMs) for flagged images
 3. Dynamic fusion engine combining all detection outputs
-4. Explainability head (Grad-CAM, Eigen-CAM, saliency maps, Bayesian NN)
+4. Explainability head (Grad-CAM, Eigen-CAM, saliency maps, LRP)
 
 ## Development
 
@@ -240,3 +240,4 @@ Explainability methods:
 - Eigen-CAM: [arXiv](https://arxiv.org/abs/2008.00299)
 - pytorch-grad-cam:
   [GitHub](https://github.com/jacobgil/pytorch-grad-cam)
+- LRP (Layer-wise Relevance Propagation): For custom-trained models
