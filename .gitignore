@@ -234,3 +234,6 @@ wandb/
 
 # macOS system files
 .DS_Store
+
+# Local symlinks
+grant-application
