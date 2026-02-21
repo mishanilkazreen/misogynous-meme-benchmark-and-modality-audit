@@ -1,14 +1,19 @@
-# VLM Content Moderation System
+# Detection of Embedded Hateful Content in Images Using Vision Language Models
 
-A content moderation system for detecting hateful content deliberately embedded within seemingly harmless images using
-YOLO detection and Vision Language Models.
+A content moderation system for detecting hateful content deliberately embedded
+within seemingly harmless images. Uses a tiered ensemble approach: lightweight
+screening first, then deeper analysis with YOLO-NAS, cloud APIs, or vision
+language models for flagged images, with an explainability head (Grad-CAM,
+Eigen-CAM, saliency maps) at the end.
 
-See [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md) for research context and planned dual-pathway VLM architecture.
+See [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md) for research context and the
+planned tiered ensemble architecture.
 
 ## Prerequisites
 
 - **Python**: 3.10 or 3.11 (required for PyTorch compatibility)
-- **uv**: Package manager ([installation guide](https://docs.astral.sh/uv/getting-started/installation/))
+- **uv**: Package manager
+  ([installation guide](https://docs.astral.sh/uv/getting-started/installation/))
 - **GPU**: CUDA-capable GPU recommended (CPU fallback available)
 
 ## Quick Start
@@ -42,7 +47,8 @@ uv run pre-commit install
 
 ## Dataset
 
-Uses [HatefulIllusion dataset](https://huggingface.co/datasets/yiting/HatefulIllusion_Dataset) (2,160 images across 3 subsets):
+Uses [HatefulIllusion dataset](https://huggingface.co/datasets/yiting/HatefulIllusion_Dataset)
+(2,160 images across 3 subsets):
 
 | Subset       | Samples | Content                |
 |--------------|---------|------------------------|
@@ -50,8 +56,8 @@ Uses [HatefulIllusion dataset](https://huggingface.co/datasets/yiting/HatefulIll
 | hate_slangs  | 690     | Hidden hateful text    |
 | hate_symbols | 1,170   | Hidden hate symbols    |
 
-Dataset loads automatically during training. Each image includes visibility level (0-5) and condition image showing
-hidden content location.
+Dataset loads automatically during training. Each image includes visibility level
+(0-5) and condition image showing hidden content location.
 
 ## Training and Evaluation
 
@@ -74,7 +80,8 @@ python scripts/visualize_transformations.py
 - Classification Accuracy: 51.67%
 - Bounding Box IoU: 90.33%
 
-**Target**: 93.8% accuracy (Qu et al. 2025) using full dataset with CLIP fine-tuning.
+**Target**: 93.8% accuracy (Qu et al. 2025) using full dataset with CLIP
+fine-tuning.
 
 ## Testing
 
@@ -108,7 +115,9 @@ uv run mypy models/ utils/
 uv run pre-commit run --all-files
 ```
 
-**Standards**: See [.kiro/steering/linting-standards.md](.kiro/steering/linting-standards.md) for detailed requirements.
+**Standards**: See
+[.kiro/steering/linting-standards.md](.kiro/steering/linting-standards.md)
+for detailed requirements.
 
 ## CI/CD
 
@@ -134,7 +143,7 @@ content-moderation/
 ├── models/
 │   ├── yolo/              # YOLO detection (detector.py, trainer.py, evaluator.py)
 │   ├── vlm/               # VLM models (planned)
-│   └── explainability/    # Visualization tools (planned)
+│   └── explainability/    # Explainability head (Grad-CAM, Eigen-CAM, planned)
 ├── utils/
 │   ├── dataset.py         # HatefulIllusionDataset, DatasetManager
 │   ├── preprocessing.py   # Blur, histogram equalization
@@ -159,9 +168,15 @@ content-moderation/
 - **Augmentation**: Horizontal flip, brightness/contrast, Gaussian noise
 - **Bbox Extraction**: Automatic from condition images via OpenCV contours
 
-See [.kiro/steering/model-training-guidelines.md](.kiro/steering/model-training-guidelines.md) for training details.
+See [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md) for training details.
 
-**Planned**: Dual-pathway VLM ensemble (see [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md))
+**Planned**: Tiered ensemble detection with explainability head
+(see [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md)):
+
+1. Stage 1: Lightweight screening (YOLO, OpenCV, or YOLO-NAS-S)
+2. Stage 2: Deep analysis (YOLO-NAS, cloud APIs, VLMs) for flagged images
+3. Dynamic fusion engine combining all detection outputs
+4. Explainability head (Grad-CAM, Eigen-CAM, saliency maps, Bayesian NN)
 
 ## Development
 
@@ -172,7 +187,8 @@ uv add package_name           # Production dependency
 uv add --dev package_name     # Development dependency
 ```
 
-Update [.kiro/steering/dependency-licenses.md](.kiro/steering/dependency-licenses.md) when adding dependencies.
+Update [.kiro/steering/dependency-licenses.md](.kiro/steering/dependency-licenses.md)
+when adding dependencies.
 
 ### Troubleshooting
 
@@ -195,7 +211,8 @@ uv pip install torch torchvision --index-url https://download.pytorch.org/whl/cu
 
 ## License and Dependencies
 
-All dependencies use permissive licenses (MIT, BSD-3-Clause, Apache-2.0) or weak copyleft (MPL-2.0 for Hypothesis).
+All dependencies use permissive licenses (MIT, BSD-3-Clause, Apache-2.0) or weak
+copyleft (MPL-2.0 for Hypothesis).
 
 **Key Dependencies:**
 
@@ -204,11 +221,22 @@ All dependencies use permissive licenses (MIT, BSD-3-Clause, Apache-2.0) or weak
 - opencv-python (Apache-2.0)
 - pytest, ruff, mypy (MIT)
 
-See [.kiro/steering/dependency-licenses.md](.kiro/steering/dependency-licenses.md) for complete license information.
+See
+[.kiro/steering/dependency-licenses.md](.kiro/steering/dependency-licenses.md)
+for complete license information.
 
 ## References
 
-Qu et al. (2025). "HatefulIllusion: Evaluating and Mitigating Hateful Illusions in Vision Language Models"
+Qu et al. (2025). "HatefulIllusion: Evaluating and Mitigating Hateful Illusions
+in Vision Language Models"
 
-- Dataset: <https://huggingface.co/datasets/yiting/HatefulIllusion_Dataset>
-- Paper: <https://arxiv.org/pdf/2507.22617>
+- Dataset:
+  [HuggingFace](https://huggingface.co/datasets/yiting/HatefulIllusion_Dataset)
+- Paper: [arXiv](https://arxiv.org/pdf/2507.22617)
+
+Explainability methods:
+
+- Grad-CAM: [arXiv](https://arxiv.org/abs/1610.02391)
+- Eigen-CAM: [arXiv](https://arxiv.org/abs/2008.00299)
+- pytorch-grad-cam:
+  [GitHub](https://github.com/jacobgil/pytorch-grad-cam)

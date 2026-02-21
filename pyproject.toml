@@ -1,7 +1,7 @@
 [project]
 name = "vlm-content-moderation"
 version = "0.1.0"
-description = "VLM Content Moderation System for detecting embedded hateful content"
+description = "Detection of embedded hateful content in images using vision language models"
 authors = [
     {name = "Content Moderation Team"}
 ]

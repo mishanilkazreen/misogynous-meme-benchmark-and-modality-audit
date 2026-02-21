@@ -1,3 +1,3 @@
 """
-VLM dual-pathway models for hateful content detection.
+VLM models for hateful content detection (ensemble Stage 2 pathways).
 """
