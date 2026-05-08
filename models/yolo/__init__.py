@@ -1,34 +1,9 @@
 """
-YOLO classification models for hateful content detection.
+Ultralytics YOLO benchmarking package.
 
-Note: This is a classification model (not detection) since the HatefulIllusion
-dataset does not provide bounding box annotations.
+Holds wrappers around the official Ultralytics YOLO models
+(v8, v10, v11, v12, v26) used as closed-vocabulary detectors for the
+paper comparison. See docs: https://docs.ultralytics.com/
 """
 
-from models.yolo.detector import (
-    ClassificationResult,
-    YOLOBackbone,
-    YOLOClassifier,
-    YOLODetector,  # Backward compatibility alias
-)
-from models.yolo.evaluator import (
-    EvaluationMetrics,
-    YOLOEvaluator,
-)
-from models.yolo.trainer import (
-    TrainingMetrics,
-    YOLOTrainer,
-    YOLOTrainingConfig,
-)
-
-__all__ = [
-    "ClassificationResult",
-    "EvaluationMetrics",
-    "TrainingMetrics",
-    "YOLOBackbone",
-    "YOLOClassifier",
-    "YOLODetector",
-    "YOLOEvaluator",
-    "YOLOTrainer",
-    "YOLOTrainingConfig",
-]
+__all__: list[str] = []

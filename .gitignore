@@ -237,3 +237,6 @@ wandb/
 
 # Local symlinks
 grant-application
+
+# Reference PDFs are kept locally only (cited in papers/README.md)
+papers/*.pdf

@@ -1,243 +1,113 @@
-# Detection of Embedded Hateful Content in Images Using Vision Language Models
+# Detection of Embedded Hateful Content in Images
 
-A content moderation system for detecting hateful content deliberately embedded
-within seemingly harmless images. Uses a tiered ensemble approach: lightweight
-screening first, then deeper analysis with YOLO-NAS, cloud APIs, or vision
-language models for flagged images, with an explainability head (Grad-CAM,
-Eigen-CAM, saliency maps, LRP) at the end.
+Benchmarking closed-vocabulary and open-vocabulary object detectors for
+content moderation. The milestone goal is a paper comparing YOLO
+(v8/v10/v11/v12/v26) against vision-language detectors (YOLO-World,
+CLIP-YOLO, optionally YOLO-UniOW) on the HatefulIllusion dataset, then
+extending to a hate-symbol catalogue pipeline and VLM-generated
+explanations for moderators.
 
-See [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md) for research context and the
-planned tiered ensemble architecture.
+The full task plan is in
+[`.kiro/specs/vlm-content-moderation/tasks.md`](.kiro/specs/vlm-content-moderation/tasks.md).
+Reference papers are catalogued in [`papers/README.md`](papers/README.md).
 
 ## Prerequisites
 
-- **Python**: 3.10 or 3.11 (required for PyTorch compatibility)
-- **uv**: Package manager
-  ([installation guide](https://docs.astral.sh/uv/getting-started/installation/))
-- **GPU**: CUDA-capable GPU recommended (CPU fallback available)
+- Python 3.10 (pinned by `.python-version`)
+- [`uv`](https://docs.astral.sh/uv/getting-started/installation/) for
+  environments and packages
+- [`gh`](https://cli.github.com/) for branch/PR management
+- VS Code with extensions from `.vscode/extensions.json`
+  (ruff, mypy, markdownlint, TOML)
 
 ## Quick Start
 
 ```bash
-# Clone repository
 git clone https://github.com/mishanilkazreen/content-moderation.git
 cd content-moderation
-
-# Install uv (if needed)
-curl -LsSf https://astral.sh/uv/install.sh | sh  # macOS/Linux
-# or: powershell -c "irm https://astral.sh/uv/install.ps1 | iex"  # Windows
-
-# Create environment and install dependencies
 uv venv --python 3.10
-source .venv/bin/activate  # Linux/macOS
-# or: .venv\Scripts\activate  # Windows
+source .venv/bin/activate
 uv sync --dev
-
-# Install PyTorch (CPU version shown, see below for GPU)
 uv pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
-
-# Set up pre-commit hooks
 uv run pre-commit install
 ```
 
-**GPU Installation**: Replace CPU index URL with:
-
-- CUDA 11.8: `https://download.pytorch.org/whl/cu118`
-- CUDA 12.1: `https://download.pytorch.org/whl/cu121`
+GPU: swap the index URL for `cu118` or `cu121`.
 
 ## Dataset
 
-Uses [HatefulIllusion dataset](https://huggingface.co/datasets/yiting/HatefulIllusion_Dataset)
-(2,160 images across 3 subsets):
+[HatefulIllusion](https://huggingface.co/datasets/yiting/HatefulIllusion_Dataset)
+(2,160 images): 300 digits, 690 hate slangs, 1,170 hate symbols. Each
+image carries a visibility score (1-5). See
+[Qu et al. 2025](https://arxiv.org/pdf/2507.22617).
 
-| Subset       | Samples | Content                |
-|--------------|---------|------------------------|
-| digits       | 300     | Hidden digits (0-9)    |
-| hate_slangs  | 690     | Hidden hateful text    |
-| hate_symbols | 1,170   | Hidden hate symbols    |
-
-Dataset loads automatically during training. Each image includes visibility level
-(0-5) and condition image showing hidden content location.
-
-## Training and Evaluation
-
-```bash
-# Train YOLO detector (ResNet18 backbone with transfer learning)
-python scripts/train_yolo_detection.py --epochs 25 --batch-size 8
-# Saves model to: checkpoints/best_detector.pt
-
-# Visualize detection results (requires trained model)
-python scripts/visualize_yolo_detection.py --samples 10
-# Output: yolo_test_results.png
-
-# Visualize data augmentation pipeline (no training needed)
-python scripts/visualize_transformations.py
-# Output: transformation_visualization.png
+```python
+from datasets import load_dataset
+ds = load_dataset("yiting/HatefulIllusion_Dataset", "digits")
 ```
 
-**Current Results** (digits subset only, 240 training samples):
+## Working on a task
 
-- Classification Accuracy: 51.67%
-- Bounding Box IoU: 90.33%
-
-**Target**: 93.8% accuracy (Qu et al. 2025) using full dataset with CLIP
-fine-tuning.
-
-## Testing
+Every task in `tasks.md` has a pre-created branch. Work one task per
+branch.
 
 ```bash
-# Run all tests
+git fetch origin
+git checkout task-3-yolo-benchmark          # pick the task branch
+source .venv/bin/activate
+uv sync --dev
+# ... implement ...
+uv run ruff check --fix .
+uv run ruff format .
+uv run mypy models/ utils/ scripts/
 uv run pytest
-
-# Run with coverage report
-uv run pytest --cov=models --cov=utils --cov-report=html
-
-# Run specific test suites
-uv run pytest tests/unit/          # Unit tests
-uv run pytest tests/property/      # Property-based tests (Hypothesis)
-uv run pytest tests/integration/   # Integration tests
+uv run python scripts/check_tasks.py --task 3
+git push -u origin task-3-yolo-benchmark
+gh pr create --fill --assignee LouisFIP27 --reviewer Mishanil
 ```
 
-Coverage reports: `htmlcov/index.html`
+`scripts/check_tasks.py` runs the task-marker tests under
+`tests/tasks/`. A task is "done" when its marker test passes.
 
-## Code Quality
+## Code quality
 
 ```bash
-# Linting and formatting
-uv run ruff check .                # Check for issues
-uv run ruff check --fix .          # Auto-fix issues
-uv run ruff format .               # Format code
-
-# Type checking
-uv run mypy models/ utils/
-
-# Run all pre-commit hooks
+uv run ruff check .
+uv run ruff format .
+uv run mypy models/ utils/ scripts/
+uv run pytest
 uv run pre-commit run --all-files
 ```
 
-**Standards**: See
-[.kiro/steering/linting-standards.md](.kiro/steering/linting-standards.md)
-for detailed requirements.
+Standards: see
+[`.kiro/steering/linting-standards.md`](.kiro/steering/linting-standards.md).
 
-## CI/CD
-
-GitHub Actions runs on all PRs and pushes to `main`:
-
-**CI Checks** (`.github/workflows/ci.yml`):
-
-- Ruff linting and formatting
-- Mypy type checking
-- Pytest with coverage (Python 3.10 and 3.11)
-- Pre-commit hooks validation
-- Coverage upload to Codecov
-
-**CD Pipeline** (`.github/workflows/cd.yml`):
-
-- Package building and validation
-- Distribution artifact upload
-
-## Project Structure
+## Project layout
 
 ```text
 content-moderation/
+├── .kiro/specs/vlm-content-moderation/   # requirements, design, tasks
 ├── models/
-│   ├── yolo/              # YOLO detection (detector.py, trainer.py, evaluator.py)
-│   ├── vlm/               # VLM models (planned)
-│   └── explainability/    # Explainability head (Grad-CAM, Eigen-CAM, planned)
-├── utils/
-│   ├── dataset.py         # HatefulIllusionDataset, DatasetManager
-│   ├── preprocessing.py   # Blur, histogram equalization
-│   ├── augmentation.py    # Training augmentations
-│   └── ocr.py            # OCR utilities
+│   ├── yolo/          # Ultralytics YOLO wrappers (task 3)
+│   ├── vlm/           # YOLO-World, CLIP-YOLO, explainer (tasks 4, 6)
+│   └── explainability/
+├── utils/             # dataset, preprocessing, augmentation, OCR
 ├── scripts/
-│   ├── train_yolo_detection.py        # Training script
-│   ├── visualize_yolo_detection.py    # Results visualization
-│   └── visualize_transformations.py   # Augmentation preview
-├── tests/                 # Unit, property, and integration tests
-├── .github/workflows/     # CI/CD pipelines
-└── pyproject.toml        # Dependencies and configuration
+│   ├── benchmark_yolo.py                  # task 3
+│   ├── benchmark_vlm.py                   # task 4
+│   ├── benchmark_with_symbol_catalog.py   # task 5
+│   ├── explain_with_vlm.py                # task 6
+│   ├── check_tasks.py                     # task tracker
+│   └── visualize_transformations.py
+├── tests/
+│   ├── unit/          # utils tests
+│   ├── property/      # hypothesis tests for utils
+│   └── tasks/         # one file per top-level task in tasks.md
+├── papers/            # reference PDFs
+└── pyproject.toml
 ```
 
-## Architecture Details
+## Licences
 
-**Current Implementation**: YOLO detector with ResNet18 backbone
-
-- **Transfer Learning**: ImageNet pretrained weights
-- **Staged Training**: Frozen backbone (epochs 0-4), then fine-tuning (5+)
-- **Regularization**: Dropout (0.5), weight decay (0.01), early stopping
-- **Augmentation**: Horizontal flip, brightness/contrast, Gaussian noise
-- **Bbox Extraction**: Automatic from condition images via OpenCV contours
-
-See [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md) for training details.
-
-**Planned**: Tiered ensemble detection with explainability head
-(see [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md)):
-
-1. Stage 1: Lightweight screening (YOLO, OpenCV, or YOLO-NAS-S)
-2. Stage 2: Deep analysis (YOLO-NAS, cloud APIs, VLMs) for flagged images
-3. Dynamic fusion engine combining all detection outputs
-4. Explainability head (Grad-CAM, Eigen-CAM, saliency maps, LRP)
-
-## Development
-
-### Adding Dependencies
-
-```bash
-uv add package_name           # Production dependency
-uv add --dev package_name     # Development dependency
-```
-
-Update [.kiro/steering/dependency-licenses.md](.kiro/steering/dependency-licenses.md)
-when adding dependencies.
-
-### Troubleshooting
-
-**Python version issues:**
-
-```bash
-uv python list                # Check available versions
-uv venv --python 3.10         # Recreate with specific version
-```
-
-**PyTorch installation:**
-
-```bash
-# Verify installation
-python -c "import torch; print(torch.__version__)"
-
-# Reinstall if needed
-uv pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
-```
-
-## License and Dependencies
-
-All dependencies use permissive licenses (MIT, BSD-3-Clause, Apache-2.0) or weak
-copyleft (MPL-2.0 for Hypothesis).
-
-**Key Dependencies:**
-
-- PyTorch, torchvision (BSD-3-Clause)
-- transformers (Apache-2.0)
-- opencv-python (Apache-2.0)
-- pytest, ruff, mypy (MIT)
-
-See
-[.kiro/steering/dependency-licenses.md](.kiro/steering/dependency-licenses.md)
-for complete license information.
-
-## References
-
-Qu et al. (2025). "HatefulIllusion: Evaluating and Mitigating Hateful Illusions
-in Vision Language Models"
-
-- Dataset:
-  [HuggingFace](https://huggingface.co/datasets/yiting/HatefulIllusion_Dataset)
-- Paper: [arXiv](https://arxiv.org/pdf/2507.22617)
-
-Explainability methods:
-
-- Grad-CAM: [arXiv](https://arxiv.org/abs/1610.02391)
-- Eigen-CAM: [arXiv](https://arxiv.org/abs/2008.00299)
-- pytorch-grad-cam:
-  [GitHub](https://github.com/jacobgil/pytorch-grad-cam)
-- LRP (Layer-wise Relevance Propagation): For custom-trained models
+All current dependencies use permissive or weak-copyleft licences.
+See [`.kiro/steering/dependency-licenses.md`](.kiro/steering/dependency-licenses.md).
