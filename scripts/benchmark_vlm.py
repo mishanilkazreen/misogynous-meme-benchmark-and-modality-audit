@@ -1,5 +1,5 @@
 """
-Benchmark open-vocabulary VLM detectors on HatefulIllusion.
+Benchmark text-prompted VLM detectors on HatefulIllusion.
 
 Target models (per paper plan, task 4):
     - YOLO-World (ultralytics.YOLOWorld, yolov8s-worldv2.pt)

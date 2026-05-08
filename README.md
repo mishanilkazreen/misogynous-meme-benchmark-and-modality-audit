@@ -1,8 +1,9 @@
 # Detection of Embedded Hateful Content in Images
 
-Benchmarking closed-vocabulary and open-vocabulary object detectors for
-content moderation. The milestone goal is a paper comparing YOLO
-(v8/v10/v11/v12/v26) against vision-language detectors (YOLO-World,
+Benchmarking standard YOLO detectors against text-prompted
+vision-language detectors (VLMs) for content moderation. The milestone
+goal is a paper comparing YOLO (v8/v10/v11/v12/v26) against
+vision-language detectors (YOLO-World, CLIP-YOLO, optionally
 CLIP-YOLO, optionally YOLO-UniOW) on the HatefulIllusion dataset, then
 extending to a hate-symbol catalogue pipeline and VLM-generated
 explanations for moderators.
@@ -72,10 +73,11 @@ gh pr create --fill --assignee LouisFIP27 --reviewer Mishanil
 ## Code quality
 
 ```bash
-uv run ruff check .
+uv run ruff check --fix .
 uv run ruff format .
 uv run mypy models/ utils/ scripts/
 uv run pytest
+uv run python scripts/lint_markdown.py
 uv run pre-commit run --all-files
 ```
 
@@ -88,7 +90,7 @@ Standards: see
 content-moderation/
 ├── .kiro/specs/vlm-content-moderation/   # requirements, design, tasks
 ├── models/
-│   ├── yolo/          # Ultralytics YOLO wrappers (task 3)
+│   ├── yolo/          # Standard Ultralytics YOLO wrappers (task 3)
 │   ├── vlm/           # YOLO-World, CLIP-YOLO, explainer (tasks 4, 6)
 │   └── explainability/
 ├── utils/             # dataset, preprocessing, augmentation, OCR

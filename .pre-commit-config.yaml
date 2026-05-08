@@ -25,6 +25,9 @@ repos:
     hooks:
       - id: markdownlint-fix
         args: ["--config", ".markdownlint.json"]
+        # Lint every tracked markdown file, including .kiro/ which
+        # .markdownlintignore excludes by default.
+        exclude: '^(\.venv/|node_modules/)'
 
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: "v1.7.1"

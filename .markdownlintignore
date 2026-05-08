@@ -1,5 +1,4 @@
-.kiro/
-prompt.md
-venv/
 .venv/
+venv/
 node_modules/
+.issue_bodies/

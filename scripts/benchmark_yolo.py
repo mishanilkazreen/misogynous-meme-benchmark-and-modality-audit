@@ -1,5 +1,9 @@
 """
-Benchmark closed-vocabulary Ultralytics YOLO detectors on HatefulIllusion.
+Benchmark standard Ultralytics YOLO detectors on HatefulIllusion.
+
+"Standard" here means the YOLO is trained on a fixed class list
+(e.g. COCO) and fine-tuned on the target dataset, in contrast with
+the text-prompted VLM detectors in `benchmark_vlm.py`.
 
 Target models (per paper plan, task 3):
     yolov8n.pt, yolov10n.pt, yolo11n.pt, yolo12n.pt, yolo26n.pt
