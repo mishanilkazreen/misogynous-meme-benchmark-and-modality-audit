@@ -1,0 +1,196 @@
+{
+  "benchmark_date": "2026-05-11T12:33:30.913728Z",
+  "subset": "digits",
+  "models": {
+    "yolov8n.pt": {
+      "num_images": 300,
+      "average_inference_time_s": 0.20000364333333331,
+      "total_inference_time_s": 60.001093,
+      "val_metrics": {
+        "error": "/var/folders/d8/_2sgbvbn77d62_7w9944xy6r0000gn/T/yolo_benchmark_6ib35mw4/data.yaml 'train:' key missing \u274c.\n'train' and 'val' are required in all data YAMLs."
+      },
+      "computed_metrics": {
+        "mAP50": 0.01229982937161954,
+        "mAP50-95": 0.004376764261505867,
+        "precision": 0.0701468189233279,
+        "recall": 0.14333333333333334,
+        "f1": 0.0941949616648412
+      },
+      "visibility_metrics": {
+        "2": {
+          "mAP50": 0.006132906166637934,
+          "mAP50-95": 0.0016263122509102338,
+          "precision": 0.05475504322766571,
+          "recall": 0.10795454545454546,
+          "f1": 0.07265774378585087
+        },
+        "0": {
+          "mAP50": 0.11645482251428829,
+          "mAP50-95": 0.080078660276004,
+          "precision": 0.19117647058823528,
+          "recall": 0.325,
+          "f1": 0.24074074074074078
+        },
+        "1": {
+          "mAP50": 0.0069011526267382765,
+          "mAP50-95": 0.0011562628234216337,
+          "precision": 0.05555555555555555,
+          "recall": 0.13095238095238096,
+          "f1": 0.07801418439716311
+        }
+      }
+    },
+    "yolov10n.pt": {
+      "num_images": 300,
+      "average_inference_time_s": 0.10012925666666667,
+      "total_inference_time_s": 30.038777,
+      "val_metrics": {
+        "error": "/var/folders/d8/_2sgbvbn77d62_7w9944xy6r0000gn/T/yolo_benchmark_6ib35mw4/data.yaml 'train:' key missing \u274c.\n'train' and 'val' are required in all data YAMLs."
+      },
+      "computed_metrics": {
+        "mAP50": 0.013452222621783003,
+        "mAP50-95": 0.004187333107506517,
+        "precision": 0.07853403141361257,
+        "recall": 0.1,
+        "f1": 0.0879765395894428
+      },
+      "visibility_metrics": {
+        "2": {
+          "mAP50": 0.002818571601563862,
+          "mAP50-95": 0.0009324061769571505,
+          "precision": 0.046875,
+          "recall": 0.05113636363636364,
+          "f1": 0.048913043478260865
+        },
+        "0": {
+          "mAP50": 0.1507305194805195,
+          "mAP50-95": 0.08575013528138528,
+          "precision": 0.22916666666666666,
+          "recall": 0.275,
+          "f1": 0.25
+        },
+        "1": {
+          "mAP50": 0.014435087400337169,
+          "mAP50-95": 0.002008761002356684,
+          "precision": 0.07042253521126761,
+          "recall": 0.11904761904761904,
+          "f1": 0.08849557522123895
+        }
+      }
+    },
+    "yolo11n.pt": {
+      "num_images": 300,
+      "average_inference_time_s": 0.09710574666666666,
+      "total_inference_time_s": 29.131724,
+      "val_metrics": {
+        "error": "/var/folders/d8/_2sgbvbn77d62_7w9944xy6r0000gn/T/yolo_benchmark_6ib35mw4/data.yaml 'train:' key missing \u274c.\n'train' and 'val' are required in all data YAMLs."
+      },
+      "computed_metrics": {
+        "mAP50": 0.013671912860437735,
+        "mAP50-95": 0.00516139107772543,
+        "precision": 0.07243816254416961,
+        "recall": 0.13666666666666666,
+        "f1": 0.09468822170900693
+      },
+      "visibility_metrics": {
+        "2": {
+          "mAP50": 0.00640180180946688,
+          "mAP50-95": 0.00288811548572283,
+          "precision": 0.06020066889632107,
+          "recall": 0.10227272727272728,
+          "f1": 0.07578947368421053
+        },
+        "0": {
+          "mAP50": 0.09271605821688923,
+          "mAP50-95": 0.054725339336494816,
+          "precision": 0.15714285714285714,
+          "recall": 0.275,
+          "f1": 0.2
+        },
+        "1": {
+          "mAP50": 0.014749853793219159,
+          "mAP50-95": 0.0030015297209606195,
+          "precision": 0.06091370558375635,
+          "recall": 0.14285714285714285,
+          "f1": 0.08540925266903913
+        }
+      }
+    },
+    "yolo12n.pt": {
+      "num_images": 300,
+      "average_inference_time_s": 0.13142130999999999,
+      "total_inference_time_s": 39.426393,
+      "val_metrics": {
+        "error": "/var/folders/d8/_2sgbvbn77d62_7w9944xy6r0000gn/T/yolo_benchmark_6ib35mw4/data.yaml 'train:' key missing \u274c.\n'train' and 'val' are required in all data YAMLs."
+      },
+      "computed_metrics": {
+        "mAP50": 0.02438102313642246,
+        "mAP50-95": 0.007872062377126763,
+        "precision": 0.08704453441295547,
+        "recall": 0.14333333333333334,
+        "f1": 0.10831234256926953
+      },
+      "visibility_metrics": {
+        "2": {
+          "mAP50": 0.011076107683983111,
+          "mAP50-95": 0.0036561003773922067,
+          "precision": 0.07086614173228346,
+          "recall": 0.10227272727272728,
+          "f1": 0.08372093023255814
+        },
+        "0": {
+          "mAP50": 0.12643428565758286,
+          "mAP50-95": 0.0819728057417299,
+          "precision": 0.18181818181818182,
+          "recall": 0.3,
+          "f1": 0.22641509433962265
+        },
+        "1": {
+          "mAP50": 0.030431079493276395,
+          "mAP50-95": 0.004119947184537187,
+          "precision": 0.07471264367816093,
+          "recall": 0.15476190476190477,
+          "f1": 0.10077519379844961
+        }
+      }
+    },
+    "yolo26n.pt": {
+      "num_images": 300,
+      "average_inference_time_s": 0.09574980333333334,
+      "total_inference_time_s": 28.724941,
+      "val_metrics": {
+        "error": "/var/folders/d8/_2sgbvbn77d62_7w9944xy6r0000gn/T/yolo_benchmark_6ib35mw4/data.yaml 'train:' key missing \u274c.\n'train' and 'val' are required in all data YAMLs."
+      },
+      "computed_metrics": {
+        "mAP50": 0.019072826726488586,
+        "mAP50-95": 0.006491887174899321,
+        "precision": 0.08045977011494253,
+        "recall": 0.11666666666666667,
+        "f1": 0.09523809523809525
+      },
+      "visibility_metrics": {
+        "2": {
+          "mAP50": 0.0036803353638253647,
+          "mAP50-95": 0.0016223686210805562,
+          "precision": 0.0514018691588785,
+          "recall": 0.0625,
+          "f1": 0.056410256410256404
+        },
+        "0": {
+          "mAP50": 0.12031746031746028,
+          "mAP50-95": 0.08215625,
+          "precision": 0.17857142857142858,
+          "recall": 0.25,
+          "f1": 0.20833333333333331
+        },
+        "1": {
+          "mAP50": 0.031139886374844376,
+          "mAP50-95": 0.005760590659273033,
+          "precision": 0.08484848484848485,
+          "recall": 0.16666666666666666,
+          "f1": 0.11244979919678715
+        }
+      }
+    }
+  }
+}
