@@ -12,9 +12,12 @@ Metrics reported: mAP50, mAP50-95, precision, recall, F1, inference time,
 stratified by visibility level (1-5) and subset (digits / hate_slangs /
 hate_symbols).
 
-Usage:
-    uv run python scripts/benchmark_yolo.py --model yolov8n.pt --subset digits
-    uv run python scripts/benchmark_yolo.py --all
+Usage examples:
+    uv run python scripts/benchmark_yolo.py --mode pretrained --model yolov8n.pt --subset digits
+    uv run python scripts/benchmark_yolo.py --mode pretrained --all
+    uv run python scripts/benchmark_yolo.py --mode trained --model yolov8n.pt --weights-type best --subset digits
+    uv run python scripts/benchmark_yolo.py --mode trained --all --weights-type last
+    uv run python scripts/benchmark_yolo.py --weights runs/detect/results/trained_models/train_yolov8n/weights/best.pt --subset digits
 
 Docs: https://docs.ultralytics.com/modes/val/
 """
@@ -43,6 +46,10 @@ MODEL_CHECKPOINTS = [
     "yolo12n.pt",
     "yolo26n.pt",
 ]
+TRAINED_WEIGHTS_TYPES = ["best", "last"]
+DEFAULT_TRAINED_RESULTS_DIR = (
+    Path(__file__).resolve().parents[1] / "runs" / "detect" / "results" / "trained_models"
+)
 
 SUBSET_NAMES = ["digits", "hate_slangs", "hate_symbols"]
 RESULTS_PATH = Path(__file__).resolve().parents[1] / "results" / "yolo_benchmark.json"
@@ -175,6 +182,43 @@ def build_visibility_metrics(
     return metrics_by_visibility
 
 
+def get_trained_checkpoint_path(model_name: str, weights_type: str, trained_dir: Path) -> Path:
+    stem = Path(model_name).stem
+    if stem.startswith("train_"):
+        stem = stem.replace("train_", "")
+    trained_path = trained_dir / f"train_{stem}" / "weights" / f"{weights_type}.pt"
+    if not trained_path.exists():
+        raise FileNotFoundError(f"Trained weights not found for {model_name}: {trained_path}")
+    return trained_path
+
+
+def resolve_model_checkpoints(
+    model: str,
+    all_models: bool,
+    mode: str,
+    weights_type: str,
+    trained_dir: Path,
+    explicit_weights: str | None = None,
+) -> list[str]:
+    if explicit_weights is not None:
+        if all_models:
+            raise ValueError("--weights cannot be combined with --all")
+        return [str(Path(explicit_weights).resolve())]
+
+    if mode == "pretrained":
+        return MODEL_CHECKPOINTS if all_models else [model]
+
+    if mode == "trained":
+        if all_models:
+            return [
+                str(get_trained_checkpoint_path(checkpoint, weights_type, trained_dir))
+                for checkpoint in MODEL_CHECKPOINTS
+            ]
+        return [str(get_trained_checkpoint_path(model, weights_type, trained_dir))]
+
+    raise ValueError(f"Unsupported mode: {mode}")
+
+
 def run_benchmark(models: list[str], subset: str) -> dict[str, Any]:
     samples = collect_samples(subset)
     if not samples:
@@ -233,6 +277,28 @@ def main() -> None:
         help="Ultralytics checkpoint name, e.g. yolov8n.pt, yolo26n.pt",
     )
     parser.add_argument(
+        "--mode",
+        default="pretrained",
+        choices=["pretrained", "trained"],
+        help="Benchmark mode: pretrained hub checkpoint or trained local weights",
+    )
+    parser.add_argument(
+        "--weights-type",
+        default="best",
+        choices=TRAINED_WEIGHTS_TYPES,
+        help="When --mode trained, use either best or last trained weights",
+    )
+    parser.add_argument(
+        "--weights",
+        help="Explicit path to a single weights file (best.pt/last.pt or any .pt file)",
+    )
+    parser.add_argument(
+        "--trained-dir",
+        type=Path,
+        default=DEFAULT_TRAINED_RESULTS_DIR,
+        help="Base folder containing train_<model>/weights/<best|last>.pt",
+    )
+    parser.add_argument(
         "--subset",
         default="digits",
         choices=["digits", "hate_slangs", "hate_symbols", "all"],
@@ -241,7 +307,14 @@ def main() -> None:
     parser.add_argument("--all", action="store_true", help="Benchmark all five models")
     args = parser.parse_args()
 
-    models = MODEL_CHECKPOINTS if args.all else [args.model]
+    models = resolve_model_checkpoints(
+        model=args.model,
+        all_models=args.all,
+        mode=args.mode,
+        weights_type=args.weights_type,
+        trained_dir=args.trained_dir,
+        explicit_weights=args.weights,
+    )
     benchmark_results = run_benchmark(models=models, subset=args.subset)
 
     RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)

@@ -243,3 +243,15 @@ papers/*.pdf
 
 # Scratch folder for GitHub issue bodies
 .issue_bodies/
+.idea/content-moderation.iml
+.idea/misc.xml
+yolo_test_results.png
+.idea/modules.xml
+.idea/vcs.xml
+
+# Ignore generated training and benchmark outputs
+results/trained_models/
+runs/
+
+# macOS metadata
+.DS_Store
