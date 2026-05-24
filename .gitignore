@@ -253,7 +253,8 @@ yolo_test_results.png
 results/trained_models/
 results/*.json
 results/*.jsonl
-runs/
+!results/yolo_benchmark.json
+
 
 # macOS metadata
 .DS_Store
