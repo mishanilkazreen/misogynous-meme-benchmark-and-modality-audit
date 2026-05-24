@@ -35,7 +35,7 @@ class Annotation:
 
     @property
     def visibility_level(self) -> str:
-        if self.visibility <= 2:
+        if self.visibility == 0:
             return "low"
         return "high"
 
@@ -93,7 +93,7 @@ class HatefulIllusionDataset(Dataset):
         # Download image from HuggingFace Hub
         local_path = hf_hub_download(
             repo_id="yiting/HatefulIllusion_Dataset",
-            filename=f"digits/{image_path}",
+            filename=f"{self.subset}/{image_path}",
             repo_type="dataset",
             cache_dir=self.cache_dir,
         )

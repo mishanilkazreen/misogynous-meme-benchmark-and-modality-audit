@@ -9,8 +9,9 @@ Target models (per paper plan, task 3):
     yolov8n.pt, yolov10n.pt, yolo11n.pt, yolo12n.pt, yolo26n.pt
 
 Metrics reported: mAP50, mAP50-95, precision, recall, F1, inference time,
-stratified by visibility level (1-5) and subset (digits / hate_slangs /
-hate_symbols).
+stratified by visibility level and subset (digits / hate_slangs / hate_symbols).
+HatefulIllusion has no bounding-box annotations, so a full-image proxy box
+covering the entire image is used as the ground-truth for every sample.
 
 Usage examples:
     uv run python scripts/benchmark_yolo.py --mode pretrained --model yolov8n.pt --subset digits
@@ -25,19 +26,18 @@ Docs: https://docs.ultralytics.com/modes/val/
 from __future__ import annotations
 
 import argparse
-from datetime import datetime
+from datetime import datetime, timezone
 import json
 from pathlib import Path
-import tempfile
 from typing import Any
 
 import numpy as np
 import torch
-import yaml
 
 from models.yolo.metrics import DetectionPrediction, GroundTruthBox, compute_detection_metrics
 from models.yolo.wrapper import UltralyticsYOLO
 from utils.dataset import DatasetManager
+from utils.preprocessing import PreprocessingPipeline
 
 MODEL_CHECKPOINTS = [
     "yolov8n.pt",
@@ -69,50 +69,18 @@ def image_to_numpy(image: Any) -> np.ndarray:
     raise ValueError(f"Unsupported image type: {type(image)}")
 
 
-def collect_samples(subset: str) -> list[dict[str, Any]]:
+def collect_samples(subset: str, split: str = "train") -> list[dict[str, Any]]:
     subsets = SUBSET_NAMES if subset == "all" else [subset]
     manager = DatasetManager()
     samples: list[dict[str, Any]] = []
     for subset_name in subsets:
-        dataset = manager.load_dataset(split="train", subset=subset_name)
+        dataset = manager.load_dataset(split=split, subset=subset_name)
         for index in range(len(dataset)):
             sample = dataset[index]
             sample["subset"] = subset_name
             sample["image_id"] = f"{subset_name}_{sample['image_id']}"
             samples.append(sample)
     return samples
-
-
-def prepare_yolo_validation_dataset(samples: list[dict[str, Any]], output_dir: Path) -> Path:
-    images_dir = output_dir / "images"
-    labels_dir = output_dir / "labels"
-    images_dir.mkdir(parents=True, exist_ok=True)
-    labels_dir.mkdir(parents=True, exist_ok=True)
-
-    for sample in samples:
-        image_id = sample["image_id"]
-        image = image_to_numpy(sample["image"])
-        target_image = images_dir / f"{image_id}.png"
-        if not target_image.exists():
-            from PIL import Image
-
-            Image.fromarray(image).save(target_image)
-
-        label_path = labels_dir / f"{image_id}.txt"
-        label_path.write_text("0 0.5 0.5 1.0 1.0\n", encoding="utf-8")
-
-    data_yaml = output_dir / "data.yaml"
-    with data_yaml.open("w", encoding="utf-8") as handle:
-        yaml.safe_dump(
-            {
-                "names": ["embedded_hateful_content"],
-                "nc": 1,
-                "val": str(images_dir),
-            },
-            handle,
-            sort_keys=False,
-        )
-    return data_yaml
 
 
 def build_ground_truths(samples: list[dict[str, Any]]) -> list[GroundTruthBox]:
@@ -124,7 +92,8 @@ def build_ground_truths(samples: list[dict[str, Any]]) -> list[GroundTruthBox]:
         elif isinstance(image, np.ndarray):
             height, width = int(image.shape[0]), int(image.shape[1])
         else:
-            raise ValueError("Unsupported image type for ground truth build")
+            arr = image_to_numpy(image)
+            height, width = int(arr.shape[0]), int(arr.shape[1])
         gts.append(
             GroundTruthBox(
                 image_id=sample["image_id"],
@@ -137,21 +106,26 @@ def build_ground_truths(samples: list[dict[str, Any]]) -> list[GroundTruthBox]:
 def collect_predictions(
     model: UltralyticsYOLO,
     samples: list[dict[str, Any]],
+    preprocess: str | None = None,
 ) -> tuple[list[DetectionPrediction], float]:
-    images = [image_to_numpy(sample["image"]) for sample in samples]
-    start = datetime.now()
-    results = model.predict(source=images, imgsz=640, save=False, verbose=False)
-    elapsed = (datetime.now() - start).total_seconds()
+    pipeline = PreprocessingPipeline() if preprocess else None
+    images: list[np.ndarray] = []
+    for s in samples:
+        arr = image_to_numpy(s["image"])
+        if pipeline is not None and preprocess is not None:
+            arr = pipeline.apply_transformation(arr, preprocess)
+        images.append(arr)
+    results, elapsed = model.timed_predict(source=images, imgsz=640, save=False, verbose=False)
 
     predictions: list[DetectionPrediction] = []
-    for sample, result in zip(samples, results, strict=False):
+    for sample, result in zip(samples, results, strict=True):
         if result.boxes is None or len(result.boxes) == 0:
             continue
         xyxy = result.boxes.xyxy
         xyxy = xyxy.cpu().numpy() if hasattr(xyxy, "cpu") else np.asarray(xyxy)
         conf = result.boxes.conf
         conf = conf.cpu().numpy() if hasattr(conf, "cpu") else np.asarray(conf)
-        for bbox, confidence in zip(xyxy, conf, strict=False):
+        for bbox, confidence in zip(xyxy, conf, strict=True):
             predictions.append(
                 DetectionPrediction(
                     image_id=sample["image_id"],
@@ -164,8 +138,8 @@ def collect_predictions(
 
 def build_visibility_metrics(
     predictions: list[DetectionPrediction],
-    samples: list[dict[str, Any]],
     ground_truths: list[GroundTruthBox],
+    samples: list[dict[str, Any]],
 ) -> dict[str, dict[str, float]]:
     metrics_by_visibility: dict[str, dict[str, float]] = {}
     sample_ids_by_visibility: dict[int, list[str]] = {}
@@ -173,9 +147,11 @@ def build_visibility_metrics(
         visibility = int(sample["visibility_score"])
         sample_ids_by_visibility.setdefault(visibility, []).append(sample["image_id"])
 
+    gt_by_image = {gt.image_id: gt for gt in ground_truths}
     for visibility, image_ids in sample_ids_by_visibility.items():
-        visibility_gts = [gt for gt in ground_truths if gt.image_id in image_ids]
-        visibility_preds = [pred for pred in predictions if pred.image_id in image_ids]
+        id_set = set(image_ids)
+        visibility_preds = [pred for pred in predictions if pred.image_id in id_set]
+        visibility_gts = [gt_by_image[iid] for iid in image_ids if iid in gt_by_image]
         metrics_by_visibility[str(visibility)] = compute_detection_metrics(
             visibility_preds, visibility_gts
         )
@@ -219,51 +195,35 @@ def resolve_model_checkpoints(
     raise ValueError(f"Unsupported mode: {mode}")
 
 
-def run_benchmark(models: list[str], subset: str) -> dict[str, Any]:
+def run_benchmark(models: list[str], subset: str, preprocess: str | None = None) -> dict[str, Any]:
+    # HatefulIllusion has no bounding-box annotations; a full-image proxy box is used as GT.
     samples = collect_samples(subset)
     if not samples:
         raise ValueError(f"No samples found for subset '{subset}'")
 
+    ground_truths = build_ground_truths(samples)
     results: dict[str, Any] = {
-        "benchmark_date": datetime.utcnow().isoformat() + "Z",
+        "benchmark_date": datetime.now(timezone.utc).isoformat(),
         "subset": subset,
+        "preprocess": preprocess,
         "models": {},
     }
 
-    with tempfile.TemporaryDirectory(prefix="yolo_benchmark_") as temp_dir:
-        temp_path = Path(temp_dir)
-        validation_data = prepare_yolo_validation_dataset(samples, temp_path)
-        ground_truths = build_ground_truths(samples)
+    for checkpoint in models:
+        print(f"Evaluating {checkpoint} on subset {subset} ({len(samples)} images)")
+        model = UltralyticsYOLO(checkpoint=checkpoint, device="cpu", verbose=False)
+        predictions, inference_time = collect_predictions(model, samples, preprocess=preprocess)
+        average_time = inference_time / len(samples)
+        computed_metrics = compute_detection_metrics(predictions, ground_truths)
+        visibility_metrics = build_visibility_metrics(predictions, ground_truths, samples)
 
-        for checkpoint in models:
-            print(f"Evaluating {checkpoint} on subset {subset} ({len(samples)} images)")
-            model = UltralyticsYOLO(checkpoint=checkpoint, device="cpu", verbose=False)
-            val_metrics: dict[str, float | str] = {}
-            try:
-                val_out = model.val(data=validation_data, imgsz=640, batch=16)
-                val_metrics = {
-                    "mAP50": float(getattr(val_out.box, "map", 0.0)),
-                    "mAP50-95": float(getattr(val_out.box, "map50_95", 0.0)),
-                    "precision": float(getattr(val_out.box, "precision", 0.0)),
-                    "recall": float(getattr(val_out.box, "recall", 0.0)),
-                    "f1": float(getattr(val_out.box, "f1", 0.0)),
-                }
-            except Exception as exc:  # pragma: no cover
-                val_metrics = {"error": str(exc)}
-
-            predictions, inference_time = collect_predictions(model, samples)
-            average_time = inference_time / len(samples)
-            computed_metrics = compute_detection_metrics(predictions, ground_truths)
-            visibility_metrics = build_visibility_metrics(predictions, samples, ground_truths)
-
-            results["models"][checkpoint] = {
-                "num_images": len(samples),
-                "average_inference_time_s": average_time,
-                "total_inference_time_s": inference_time,
-                "val_metrics": val_metrics,
-                "computed_metrics": computed_metrics,
-                "visibility_metrics": visibility_metrics,
-            }
+        results["models"][checkpoint] = {
+            "num_images": len(samples),
+            "average_inference_time_s": average_time,
+            "total_inference_time_s": inference_time,
+            "computed_metrics": computed_metrics,
+            "visibility_metrics": visibility_metrics,
+        }
 
     return results
 
@@ -305,6 +265,12 @@ def main() -> None:
         help="HatefulIllusion subset to evaluate on",
     )
     parser.add_argument("--all", action="store_true", help="Benchmark all five models")
+    parser.add_argument(
+        "--preprocess",
+        default=None,
+        choices=PreprocessingPipeline.TRANSFORMATIONS,
+        help="Preprocessing filter to apply before inference (from PreprocessingPipeline)",
+    )
     args = parser.parse_args()
 
     models = resolve_model_checkpoints(
@@ -315,7 +281,7 @@ def main() -> None:
         trained_dir=args.trained_dir,
         explicit_weights=args.weights,
     )
-    benchmark_results = run_benchmark(models=models, subset=args.subset)
+    benchmark_results = run_benchmark(models=models, subset=args.subset, preprocess=args.preprocess)
 
     RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
     RESULTS_PATH.write_text(json.dumps(benchmark_results, indent=2), encoding="utf-8")

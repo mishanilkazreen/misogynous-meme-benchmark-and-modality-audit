@@ -3,6 +3,8 @@ from __future__ import annotations
 from collections.abc import Iterable
 from dataclasses import dataclass
 
+import numpy as np
+
 
 @dataclass(frozen=True)
 class DetectionPrediction:
@@ -77,29 +79,32 @@ def _average_precision(
     ground_truths: Iterable[GroundTruthBox],
     iou_threshold: float = 0.5,
 ) -> float:
-    ground_truths_by_image = {gt.image_id: gt for gt in ground_truths}
-    total_gts = len(ground_truths_by_image)
+    ground_truths_by_image: dict[str, list[GroundTruthBox]] = {}
+    for gt in ground_truths:
+        ground_truths_by_image.setdefault(gt.image_id, []).append(gt)
+    total_gts = sum(len(v) for v in ground_truths_by_image.values())
     if total_gts == 0:
         return 0.0
 
     sorted_predictions = sorted(predictions, key=lambda item: item.confidence, reverse=True)
-    matched_gt_ids: set[str] = set()
+    matched_gt_keys: set[tuple[str, int]] = set()
     tp = 0
     fp = 0
     precisions: list[float] = []
     recalls: list[float] = []
 
     for prediction in sorted_predictions:
-        gt = ground_truths_by_image.get(prediction.image_id)
+        image_gts = ground_truths_by_image.get(prediction.image_id, [])
         matched = False
-        if (
-            gt is not None
-            and prediction.image_id not in matched_gt_ids
-            and intersection_over_union(prediction.bbox, gt.bbox) >= iou_threshold
-        ):
-            matched = True
-            matched_gt_ids.add(prediction.image_id)
-            tp += 1
+        for idx, gt in enumerate(image_gts):
+            key = (prediction.image_id, idx)
+            if key in matched_gt_keys:
+                continue
+            if intersection_over_union(prediction.bbox, gt.bbox) >= iou_threshold:
+                matched = True
+                matched_gt_keys.add(key)
+                tp += 1
+                break
         if not matched:
             fp += 1
         precision = tp / (tp + fp) if tp + fp else 0.0
@@ -110,13 +115,14 @@ def _average_precision(
     if not precisions:
         return 0.0
 
-    # 101-point interpolation-style AP approximation.
-    ap = 0.0
-    previous_recall = 0.0
-    for precision, recall in zip(precisions, recalls, strict=False):
-        ap += precision * (recall - previous_recall)
-        previous_recall = recall
-    return ap
+    # COCO 101-point AP: precision envelope sampled at 101 recall thresholds.
+    recalls_arr = np.asarray(recalls)
+    precisions_arr = np.asarray(precisions)
+    p_env = np.maximum.accumulate(precisions_arr[::-1])[::-1]
+    r = np.linspace(0.0, 1.0, 101)
+    indices = np.searchsorted(recalls_arr, r, side="left")
+    p_interp = np.where(indices < len(p_env), p_env[np.clip(indices, 0, len(p_env) - 1)], 0.0)
+    return float(np.mean(p_interp))
 
 
 def compute_detection_metrics(

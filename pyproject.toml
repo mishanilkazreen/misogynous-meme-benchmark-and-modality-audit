@@ -24,6 +24,7 @@ dependencies = [
     "tqdm>=4.65.0",
     "pyyaml>=6.0",
     "datasets>=3.1.0",
+    "python-dotenv>=1.2.2",
 ]
 
 [project.optional-dependencies]
@@ -157,3 +158,12 @@ dev = [
     "types-pyyaml>=6.0.12.20250915",
     "types-tqdm>=4.67.0.20250809",
 ]
+
+[[tool.uv.index]]
+name = "pytorch-cu132"
+url = "https://download.pytorch.org/whl/cu132"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu132" }
+torchvision = { index = "pytorch-cu132" }

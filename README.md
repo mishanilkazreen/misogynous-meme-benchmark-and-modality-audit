@@ -39,12 +39,34 @@ GPU: swap the index URL for `cu118` or `cu121`.
 
 [HatefulIllusion](https://huggingface.co/datasets/yiting/HatefulIllusion_Dataset)
 (2,160 images): 300 digits, 690 hate slangs, 1,170 hate symbols. Each
-image carries a visibility score (1-5). See
+image carries a visibility score (0–2). See
 [Qu et al. 2025](https://arxiv.org/pdf/2507.22617).
 
-```python
-from datasets import load_dataset
-ds = load_dataset("yiting/HatefulIllusion_Dataset", "digits")
+A Hugging Face account and read token are required. Add it to `.env` in
+the project root (gitignored):
+
+```
+HF_TOKEN=hf_your_token_here
+```
+
+Get a token at **huggingface.co → Settings → Access Tokens** (read
+permission is sufficient). Optionally set `HF_HOME` in `.env` to redirect
+the cache to a larger drive (default: `~/.cache/huggingface`).
+
+**Download the dataset** (run once before benchmarking):
+
+```bash
+uv run python scripts/download_dataset.py                          # all three subsets
+uv run python scripts/download_dataset.py --subsets digits         # digits only
+uv run python scripts/download_dataset.py --cache-dir D:\hf_cache  # custom cache
+```
+
+**Verify the download:**
+
+```bash
+uv run python scripts/verify_dataset.py          # full check (metadata + images)
+uv run python scripts/verify_dataset.py --fast   # metadata only
+uv run python scripts/verify_dataset.py --subsets digits
 ```
 
 ## Working on a task
@@ -69,6 +91,33 @@ gh pr create --fill --assignee LouisFIP27 --reviewer Mishanil
 
 `scripts/check_tasks.py` runs the task-marker tests under
 `tests/tasks/`. A task is "done" when its marker test passes.
+
+## Benchmarking (task 3)
+
+**Pretrained YOLO** (no fine-tuning, fastest):
+
+```bash
+uv run python scripts/benchmark_yolo.py --mode pretrained --model yolov8n.pt --subset digits
+uv run python scripts/benchmark_yolo.py --mode pretrained --all   # all five models
+```
+
+**With a preprocessing filter** (task 3 step 4):
+
+```bash
+uv run python scripts/benchmark_yolo.py --mode pretrained --model yolov8n.pt --subset digits --preprocess blur
+```
+
+Available filters: `blur` `downscale` `grid` `gradient` `canny` `grayscale` `histogram` `gamma`
+`histogram_blur` `gamma_blur` `blur_gradient` `blur_histogram`
+
+**Fine-tune first, then benchmark:**
+
+```bash
+uv run python models/yolo/trainer.py --model yolov8n.pt --subset digits
+uv run python scripts/benchmark_yolo.py --mode trained --model yolov8n.pt --subset digits
+```
+
+Results are written to `results/yolo_benchmark.json` (gitignored).
 
 ## Code quality
 
@@ -95,7 +144,10 @@ content-moderation/
 │   └── explainability/
 ├── utils/             # dataset, preprocessing, augmentation, OCR
 ├── scripts/
-│   ├── benchmark_yolo.py                  # task 3
+│   ├── download_dataset.py                # download HatefulIllusion from HF Hub
+│   ├── verify_dataset.py                  # verify cached dataset integrity
+│   ├── benchmark_yolo.py                  # task 3 — YOLO benchmark
+│   ├── train_yolo.py                      # fine-tune YOLO on HatefulIllusion
 │   ├── benchmark_vlm.py                   # task 4
 │   ├── benchmark_with_symbol_catalog.py   # task 5
 │   ├── explain_with_vlm.py                # task 6
