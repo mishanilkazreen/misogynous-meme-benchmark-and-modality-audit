@@ -39,7 +39,7 @@ GPU: swap the index URL for `cu118` or `cu121`.
 
 [HatefulIllusion](https://huggingface.co/datasets/yiting/HatefulIllusion_Dataset)
 (2,160 images): 300 digits, 690 hate slangs, 1,170 hate symbols. Each
-image carries a visibility score (0–2). See
+image carries a visibility score (1–5). See
 [Qu et al. 2025](https://arxiv.org/pdf/2507.22617).
 
 A Hugging Face account and read token are required. Add it to `.env` in

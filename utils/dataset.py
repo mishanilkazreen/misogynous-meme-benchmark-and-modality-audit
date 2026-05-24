@@ -35,9 +35,7 @@ class Annotation:
 
     @property
     def visibility_level(self) -> str:
-        if self.visibility == 0:
-            return "low"
-        return "high"
+        return "low" if self.visibility <= 2 else "high"
 
 
 class HatefulIllusionDataset(Dataset):
