@@ -25,6 +25,7 @@ dependencies = [
     "pyyaml>=6.0",
     "datasets>=3.1.0",
     "python-dotenv>=1.2.2",
+    "open-clip-torch>=3.3.0",
 ]
 
 [project.optional-dependencies]
