@@ -12,6 +12,9 @@ from pathlib import Path
 import tempfile
 from typing import Any
 
+import numpy as np
+from PIL import Image
+import torch
 import yaml
 
 from models.yolo.wrapper import UltralyticsYOLO
@@ -24,6 +27,26 @@ MODEL_CHECKPOINTS = [
     "yolo12n.pt",
     "yolo26n.pt",
 ]
+
+
+def image_to_numpy(image: Any) -> np.ndarray:
+    if isinstance(image, torch.Tensor):
+        image = image.detach().cpu().numpy()
+
+    if isinstance(image, np.ndarray):
+        if image.ndim == 3 and image.shape[0] == 3:
+            image = image.transpose(1, 2, 0)
+        if np.issubdtype(image.dtype, np.floating):
+            image = np.clip(image * 255.0, 0, 255).astype(np.uint8)
+        elif image.dtype != np.uint8:
+            image = image.astype(np.uint8)
+        return image
+
+    raise ValueError(f"Unsupported image type: {type(image)}")
+
+
+def build_training_name(checkpoint: str, subset: str) -> str:
+    return f"train_{Path(checkpoint).stem}_{subset}"
 
 
 def prepare_yolo_training_data(samples: list[dict[str, Any]], output_dir: Path) -> str:
@@ -41,16 +64,15 @@ def prepare_yolo_training_data(samples: list[dict[str, Any]], output_dir: Path) 
     class_list = ["hateful"]
     class_to_id = {"hateful": 0}
 
-    # Write labels
+    # Write labels and images
     for sample in samples:
         image_id = sample["image_id"]
-        image_path = Path(sample["image_path"])
+        image = image_to_numpy(sample["image"])
         label_path = labels_dir / f"{image_id}.txt"
+        target_image = images_dir / f"{image_id}.png"
 
-        # Create symlink to image
-        target_image = images_dir / f"{image_id}{image_path.suffix}"
         if not target_image.exists():
-            target_image.symlink_to(image_path)
+            Image.fromarray(image).save(target_image)
 
         # Write YOLO annotation for the entire image
         # Class 0 (hateful), bbox normalized (0,0,1,1)
@@ -79,12 +101,14 @@ def train_yolo_model(
     batch_size: int = 16,
     device: str = "cpu",
     output_dir: Path | None = None,
+    subset: str = "default",
 ) -> str:
     """
     Fine-tune a YOLO model on the prepared dataset.
     """
     model = UltralyticsYOLO(checkpoint=checkpoint, device=device, verbose=True)
 
+    training_name = build_training_name(checkpoint, subset)
     project_path = str(output_dir.resolve()) if output_dir else None
 
     model.model.train(
@@ -93,16 +117,14 @@ def train_yolo_model(
         batch=batch_size,
         device=device,
         project=project_path,
-        name=f"train_{Path(checkpoint).stem}",
+        name=training_name,
         save=True,
     )
 
     # Return path to best weights
     if output_dir:
-        return str(output_dir / f"train_{Path(checkpoint).stem}" / "weights" / "best.pt")
-    else:
-        # Default Ultralytics save location
-        return f"runs/train/train_{Path(checkpoint).stem}/weights/best.pt"
+        return str(output_dir / training_name / "weights" / "best.pt")
+    return f"runs/train/{training_name}/weights/best.pt"
 
 
 def main():
@@ -134,7 +156,7 @@ def main():
     # Load dataset
     manager = DatasetManager()
     dataset = manager.load_dataset(split="train", subset=args.subset)
-    samples = list(dataset)
+    samples = [dataset[i] for i in range(len(dataset))]
 
     models_to_train = MODEL_CHECKPOINTS if args.all else [args.model]
 
@@ -152,6 +174,7 @@ def main():
                 batch_size=args.batch_size,
                 device=args.device,
                 output_dir=args.output_dir,
+                subset=args.subset,
             )
             print(f"Training completed for {checkpoint}. Best weights saved to: {best_weights}")
 

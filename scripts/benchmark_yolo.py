@@ -31,6 +31,8 @@ import json
 from pathlib import Path
 from typing import Any
 
+import yaml
+
 import numpy as np
 import torch
 
@@ -47,9 +49,7 @@ MODEL_CHECKPOINTS = [
     "yolo26n.pt",
 ]
 TRAINED_WEIGHTS_TYPES = ["best", "last"]
-DEFAULT_TRAINED_RESULTS_DIR = (
-    Path(__file__).resolve().parents[1] / "runs" / "detect" / "results" / "trained_models"
-)
+DEFAULT_TRAINED_RESULTS_DIR = Path(__file__).resolve().parents[1] / "results" / "trained_models"
 
 SUBSET_NAMES = ["digits", "hate_slangs", "hate_symbols"]
 RESULTS_PATH = Path(__file__).resolve().parents[1] / "results" / "yolo_benchmark.json"
@@ -81,6 +81,43 @@ def collect_samples(subset: str, split: str = "train") -> list[dict[str, Any]]:
             sample["image_id"] = f"{subset_name}_{sample['image_id']}"
             samples.append(sample)
     return samples
+
+
+def prepare_yolo_validation_dataset(samples: list[dict[str, Any]], output_dir: Path) -> Path:
+    images_dir = output_dir / "images"
+    labels_dir = output_dir / "labels"
+    images_dir.mkdir(parents=True, exist_ok=True)
+    labels_dir.mkdir(parents=True, exist_ok=True)
+
+    for sample in samples:
+        image_id = sample["image_id"]
+        image = image_to_numpy(sample["image"])
+        target_image = images_dir / f"{image_id}.png"
+        if not target_image.exists():
+            from PIL import Image
+
+            Image.fromarray(image).save(target_image)
+
+        label_path = labels_dir / f"{image_id}.txt"
+        # HatefulIllusion has no per-object bounding box annotations.
+        # Full-image proxy GT (cx=0.5, cy=0.5, w=1.0, h=1.0) is used as documented
+        # in the paper; mAP reflects detection presence, not localisation accuracy.
+        label_path.write_text("0 0.5 0.5 1.0 1.0\n", encoding="utf-8")
+
+    data_yaml = output_dir / "data.yaml"
+    with data_yaml.open("w", encoding="utf-8") as handle:
+        yaml.safe_dump(
+            {
+                "names": ["embedded_hateful_content"],
+                "nc": 1,
+                "train": str(images_dir),
+                "val": str(images_dir),
+            },
+            handle,
+            sort_keys=False,
+        )
+    return data_yaml
+
 
 
 def build_ground_truths(samples: list[dict[str, Any]]) -> list[GroundTruthBox]:
@@ -158,14 +195,16 @@ def build_visibility_metrics(
     return metrics_by_visibility
 
 
-def get_trained_checkpoint_path(model_name: str, weights_type: str, trained_dir: Path) -> Path:
-    stem = Path(model_name).stem
-    if stem.startswith("train_"):
-        stem = stem.replace("train_", "")
-    trained_path = trained_dir / f"train_{stem}" / "weights" / f"{weights_type}.pt"
-    if not trained_path.exists():
-        raise FileNotFoundError(f"Trained weights not found for {model_name}: {trained_path}")
-    return trained_path
+def infer_model_key_from_weights_path(
+    weights_path: Path, fallback_model: str | None = None, weights_type: str | None = None
+) -> str:
+    if weights_type and fallback_model is not None:
+        return f"{Path(fallback_model).stem}_{weights_type}"
+    if weights_path.name in {"best.pt", "last.pt"} and weights_path.parent.name == "weights":
+        train_folder = weights_path.parent.parent.name
+        if train_folder.startswith("train_"):
+            return f"{train_folder.replace('train_', '')}_{weights_path.stem}"
+    return weights_path.stem
 
 
 def resolve_model_checkpoints(
@@ -175,28 +214,53 @@ def resolve_model_checkpoints(
     weights_type: str,
     trained_dir: Path,
     explicit_weights: str | None = None,
-) -> list[str]:
+    subset: str = "digits",
+) -> list[tuple[str, str]]:
     if explicit_weights is not None:
         if all_models:
             raise ValueError("--weights cannot be combined with --all")
-        return [str(Path(explicit_weights).resolve())]
+        weights_path = Path(explicit_weights).resolve()
+        model_key = infer_model_key_from_weights_path(weights_path)
+        return [(model_key, str(weights_path))]
 
     if mode == "pretrained":
-        return MODEL_CHECKPOINTS if all_models else [model]
+        # Always use the five local yolovXn.pt files for pretrained
+        return (
+            [(Path(checkpoint).stem, checkpoint) for checkpoint in MODEL_CHECKPOINTS]
+            if all_models
+            else [(Path(model).stem, model)]
+        )
 
     if mode == "trained":
         if all_models:
             return [
-                str(get_trained_checkpoint_path(checkpoint, weights_type, trained_dir))
+                (
+                    f"{Path(checkpoint).stem}",
+                    str(
+                        trained_dir
+                        / f"train_{Path(checkpoint).stem}_{subset}"
+                        / "weights"
+                        / f"{weights_type}.pt"
+                    ),
+                )
                 for checkpoint in MODEL_CHECKPOINTS
             ]
-        return [str(get_trained_checkpoint_path(model, weights_type, trained_dir))]
+        return [
+            (
+                f"{Path(model).stem}",
+                str(
+                    trained_dir
+                    / f"train_{Path(model).stem}_{subset}"
+                    / "weights"
+                    / f"{weights_type}.pt"
+                ),
+            )
+        ]
 
     raise ValueError(f"Unsupported mode: {mode}")
 
 
-def run_benchmark(models: list[str], subset: str, preprocess: str | None = None) -> dict[str, Any]:
-    # HatefulIllusion has no bounding-box annotations; a full-image proxy box is used as GT.
+def run_benchmark(models: list[tuple[str, str]], subset: str) -> dict[str, Any]:
     samples = collect_samples(subset)
     if not samples:
         raise ValueError(f"No samples found for subset '{subset}'")
@@ -205,19 +269,19 @@ def run_benchmark(models: list[str], subset: str, preprocess: str | None = None)
     results: dict[str, Any] = {
         "benchmark_date": datetime.now(timezone.utc).isoformat(),
         "subset": subset,
-        "preprocess": preprocess,
         "models": {},
     }
 
-    for checkpoint in models:
-        print(f"Evaluating {checkpoint} on subset {subset} ({len(samples)} images)")
+    for model_key, checkpoint in models:
+        print(f"Evaluating {model_key} on subset {subset} ({len(samples)} images)")
         model = UltralyticsYOLO(checkpoint=checkpoint, device="cpu", verbose=False)
-        predictions, inference_time = collect_predictions(model, samples, preprocess=preprocess)
+        predictions, inference_time = collect_predictions(model, samples)
         average_time = inference_time / len(samples)
         computed_metrics = compute_detection_metrics(predictions, ground_truths)
         visibility_metrics = build_visibility_metrics(predictions, ground_truths, samples)
 
-        results["models"][checkpoint] = {
+        results["models"][model_key] = {
+            "model_key": model_key,
             "num_images": len(samples),
             "average_inference_time_s": average_time,
             "total_inference_time_s": inference_time,
@@ -233,14 +297,14 @@ def main() -> None:
     parser.add_argument(
         "--model",
         default="yolov8n.pt",
-        choices=MODEL_CHECKPOINTS,
-        help="Ultralytics checkpoint name, e.g. yolov8n.pt, yolo26n.pt",
+        choices=[*MODEL_CHECKPOINTS, "all"],
+        help="Ultralytics checkpoint name, e.g. yolov8n.pt, yolo26n.pt, or 'all' for all five models",
     )
     parser.add_argument(
         "--mode",
         default="pretrained",
-        choices=["pretrained", "trained"],
-        help="Benchmark mode: pretrained hub checkpoint or trained local weights",
+        choices=["pretrained", "trained", "all"],
+        help="Benchmark mode: pretrained hub checkpoint, trained local weights, or 'all' for both",
     )
     parser.add_argument(
         "--weights-type",
@@ -260,32 +324,285 @@ def main() -> None:
     )
     parser.add_argument(
         "--subset",
-        default="digits",
-        choices=["digits", "hate_slangs", "hate_symbols", "all"],
-        help="HatefulIllusion subset to evaluate on",
+        default=None,
+        choices=[None, "digits", "hate_slangs", "hate_symbols", "all"],
+        help="HatefulIllusion subset to evaluate on. If omitted with --all, runs all subsets.",
     )
     parser.add_argument("--all", action="store_true", help="Benchmark all five models")
     parser.add_argument(
-        "--preprocess",
-        default=None,
-        choices=PreprocessingPipeline.TRANSFORMATIONS,
-        help="Preprocessing filter to apply before inference (from PreprocessingPipeline)",
+        "--preprocessing", action="store_true", help="Enable preprocessing ablation (stub)"
     )
     args = parser.parse_args()
 
-    models = resolve_model_checkpoints(
-        model=args.model,
-        all_models=args.all,
-        mode=args.mode,
-        weights_type=args.weights_type,
-        trained_dir=args.trained_dir,
-        explicit_weights=args.weights,
-    )
-    benchmark_results = run_benchmark(models=models, subset=args.subset, preprocess=args.preprocess)
+    import gc
 
-    RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
-    RESULTS_PATH.write_text(json.dumps(benchmark_results, indent=2), encoding="utf-8")
-    print(f"Saved benchmark results to {RESULTS_PATH}")
+    all_models = args.all or args.model == "all"
+    all_modes = args.mode == "all"
+    all_subsets = args.subset is None or args.subset == "all"
+
+    if all_models and all_subsets and all_modes:
+        # Full matrix: all models x all subsets x all modes
+        RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
+        all_results = []
+        for subset in SUBSET_NAMES:
+            for mode, weights_type in [("pretrained", None), ("trained", "best")]:
+                try:
+                    models = resolve_model_checkpoints(
+                        model=args.model,
+                        all_models=True,
+                        mode=mode,
+                        weights_type=weights_type if weights_type else "best",
+                        trained_dir=args.trained_dir,
+                        explicit_weights=args.weights,
+                        subset=subset,
+                    )
+                    benchmark_results = run_benchmark(models=models, subset=subset)
+                    for model_key, model_result in benchmark_results["models"].items():
+                        entry = {
+                            "model": model_key,
+                            "subset": subset,
+                            "mode": mode,
+                            "weights_type": weights_type if weights_type else "pretrained",
+                            **{k: v for k, v in model_result.items() if k != "model_key"},
+                        }
+                        all_results.append(entry)
+                    # Write partial results after each mode/subset to avoid memory issues
+                    RESULTS_PATH.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
+                    gc.collect()
+                except FileNotFoundError as exc:
+                    if mode == "trained":
+                        print(f"[SKIP] trained/{subset}: {exc}")
+                        continue
+                    raise
+        print(f"Saved full-matrix benchmark results to {RESULTS_PATH}")
+        return
+    elif all_models and all_subsets:
+        # All models, all subsets, single mode
+        RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
+        all_results = []
+        for subset in SUBSET_NAMES:
+            try:
+                models = resolve_model_checkpoints(
+                    model=args.model,
+                    all_models=True,
+                    mode=args.mode,
+                    weights_type=args.weights_type,
+                    trained_dir=args.trained_dir,
+                    explicit_weights=args.weights,
+                    subset=subset,
+                )
+                benchmark_results = run_benchmark(models=models, subset=subset)
+                for model_key, model_result in benchmark_results["models"].items():
+                    entry = {
+                        "model": model_key,
+                        "subset": subset,
+                        "mode": args.mode,
+                        "weights_type": args.weights_type,
+                        **{k: v for k, v in model_result.items() if k != "model_key"},
+                    }
+                    all_results.append(entry)
+                RESULTS_PATH.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
+                gc.collect()
+            except FileNotFoundError as exc:
+                if args.mode == "trained":
+                    print(f"[SKIP] trained/{subset}: {exc}")
+                    continue
+                raise
+        print(f"Saved all-models/all-subsets benchmark results to {RESULTS_PATH}")
+        return
+
+    elif all_models and args.subset and all_modes:
+        # All models, single subset, all modes
+        RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
+        all_results = []
+        for mode, weights_type in [("pretrained", None), ("trained", "best")]:
+            try:
+                models = resolve_model_checkpoints(
+                    model=args.model,
+                    all_models=True,
+                    mode=mode,
+                    weights_type=weights_type if weights_type else "best",
+                    trained_dir=args.trained_dir,
+                    explicit_weights=args.weights,
+                    subset=args.subset,
+                )
+                benchmark_results = run_benchmark(models=models, subset=args.subset)
+                for model_key, model_result in benchmark_results["models"].items():
+                    entry = {
+                        "model": model_key,
+                        "subset": args.subset,
+                        "mode": mode,
+                        "weights_type": weights_type if weights_type else "pretrained",
+                        **{k: v for k, v in model_result.items() if k != "model_key"},
+                    }
+                    all_results.append(entry)
+                # Write partial results after each mode to avoid memory issues
+                RESULTS_PATH.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
+                gc.collect()
+            except FileNotFoundError as exc:
+                if mode == "trained":
+                    print(f"[SKIP] trained/{args.subset}: {exc}")
+                    continue
+                raise
+        print(f"Saved all-modes benchmark results to {RESULTS_PATH}")
+        return
+    elif all_models and args.subset:
+        # All models, single subset, single mode
+        models = resolve_model_checkpoints(
+            model=args.model,
+            all_models=True,
+            mode=args.mode,
+            weights_type=args.weights_type,
+            trained_dir=args.trained_dir,
+            explicit_weights=args.weights,
+            subset=args.subset,
+        )
+        benchmark_results = run_benchmark(models=models, subset=args.subset)
+        all_results = []
+        for model_key, model_result in benchmark_results["models"].items():
+            entry = {
+                "model": model_key,
+                "subset": args.subset,
+                "mode": args.mode,
+                "weights_type": args.weights_type,
+                **{k: v for k, v in model_result.items() if k != "model_key"},
+            }
+            all_results.append(entry)
+        RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
+        RESULTS_PATH.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
+        print(f"Saved subset benchmark results to {RESULTS_PATH}")
+        return
+    else:
+        # Single model cases
+        subsets_to_run = SUBSET_NAMES if all_subsets else [args.subset]
+
+        if all_modes and all_subsets:
+            # Single model, all subsets, all modes
+            RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
+            all_results = []
+            for subset in subsets_to_run:
+                for mode, weights_type in [("pretrained", None), ("trained", "best")]:
+                    try:
+                        models = resolve_model_checkpoints(
+                            model=args.model,
+                            all_models=False,
+                            mode=mode,
+                            weights_type=weights_type if weights_type else "best",
+                            trained_dir=args.trained_dir,
+                            explicit_weights=args.weights,
+                            subset=subset,
+                        )
+                        benchmark_results = run_benchmark(models=models, subset=subset)
+                        for model_key, model_result in benchmark_results["models"].items():
+                            entry = {
+                                "model": model_key,
+                                "subset": subset,
+                                "mode": mode,
+                                "weights_type": weights_type if weights_type else "pretrained",
+                                **{k: v for k, v in model_result.items() if k != "model_key"},
+                            }
+                            all_results.append(entry)
+                        RESULTS_PATH.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
+                        gc.collect()
+                    except FileNotFoundError as exc:
+                        if mode == "trained":
+                            print(f"[SKIP] trained/{subset}: {exc}")
+                            continue
+                        raise
+            print(f"Saved all-subsets/all-modes benchmark results to {RESULTS_PATH}")
+        elif all_modes:
+            # Single model, single subset, all modes
+            subset = args.subset
+            RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
+            all_results = []
+            for mode, weights_type in [("pretrained", None), ("trained", "best")]:
+                try:
+                    models = resolve_model_checkpoints(
+                        model=args.model,
+                        all_models=False,
+                        mode=mode,
+                        weights_type=weights_type if weights_type else "best",
+                        trained_dir=args.trained_dir,
+                        explicit_weights=args.weights,
+                        subset=subset,
+                    )
+                    benchmark_results = run_benchmark(models=models, subset=subset)
+                    for model_key, model_result in benchmark_results["models"].items():
+                        entry = {
+                            "model": model_key,
+                            "subset": subset,
+                            "mode": mode,
+                            "weights_type": weights_type if weights_type else "pretrained",
+                            **{k: v for k, v in model_result.items() if k != "model_key"},
+                        }
+                        all_results.append(entry)
+                    RESULTS_PATH.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
+                    gc.collect()
+                except FileNotFoundError as exc:
+                    if mode == "trained":
+                        print(f"[SKIP] trained/{subset}: {exc}")
+                        continue
+                    raise
+            print(f"Saved all-modes benchmark results to {RESULTS_PATH}")
+        elif all_subsets:
+            # Single model, all subsets, single mode
+            RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
+            all_results = []
+            for subset in subsets_to_run:
+                try:
+                    models = resolve_model_checkpoints(
+                        model=args.model,
+                        all_models=False,
+                        mode=args.mode,
+                        weights_type=args.weights_type,
+                        trained_dir=args.trained_dir,
+                        explicit_weights=args.weights,
+                        subset=subset,
+                    )
+                    benchmark_results = run_benchmark(models=models, subset=subset)
+                    for model_key, model_result in benchmark_results["models"].items():
+                        entry = {
+                            "model": model_key,
+                            "subset": subset,
+                            "mode": args.mode,
+                            "weights_type": args.weights_type,
+                            **{k: v for k, v in model_result.items() if k != "model_key"},
+                        }
+                        all_results.append(entry)
+                    RESULTS_PATH.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
+                    gc.collect()
+                except FileNotFoundError as exc:
+                    if args.mode == "trained":
+                        print(f"[SKIP] trained/{subset}: {exc}")
+                        continue
+                    raise
+            print(f"Saved all-subsets benchmark results to {RESULTS_PATH}")
+        else:
+            # Single model, single subset, single mode (default)
+            subset = args.subset
+            models = resolve_model_checkpoints(
+                model=args.model,
+                all_models=False,
+                mode=args.mode,
+                weights_type=args.weights_type,
+                trained_dir=args.trained_dir,
+                explicit_weights=args.weights,
+                subset=subset,
+            )
+            benchmark_results = run_benchmark(models=models, subset=subset)
+            all_results = []
+            for model_key, model_result in benchmark_results["models"].items():
+                entry = {
+                    "model": model_key,
+                    "subset": subset,
+                    "mode": args.mode,
+                    "weights_type": args.weights_type,
+                    **{k: v for k, v in model_result.items() if k != "model_key"},
+                }
+                all_results.append(entry)
+            RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
+            RESULTS_PATH.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
+            print(f"Saved benchmark results to {RESULTS_PATH}")
 
 
 if __name__ == "__main__":

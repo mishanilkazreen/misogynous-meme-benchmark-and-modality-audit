@@ -87,7 +87,7 @@ def _average_precision(
         return 0.0
 
     sorted_predictions = sorted(predictions, key=lambda item: item.confidence, reverse=True)
-    matched_gt_keys: set[tuple[str, int]] = set()
+    matched_gt_ids: set[tuple[str, int]] = set()
     tp = 0
     fp = 0
     precisions: list[float] = []
@@ -96,13 +96,13 @@ def _average_precision(
     for prediction in sorted_predictions:
         image_gts = ground_truths_by_image.get(prediction.image_id, [])
         matched = False
-        for idx, gt in enumerate(image_gts):
-            key = (prediction.image_id, idx)
-            if key in matched_gt_keys:
+        for index, gt in enumerate(image_gts):
+            key = (prediction.image_id, index)
+            if key in matched_gt_ids:
                 continue
             if intersection_over_union(prediction.bbox, gt.bbox) >= iou_threshold:
                 matched = True
-                matched_gt_keys.add(key)
+                matched_gt_ids.add(key)
                 tp += 1
                 break
         if not matched:

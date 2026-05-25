@@ -24,7 +24,7 @@ class UltralyticsYOLO:
 
     def timed_predict(self, source: Any, **kwargs: Any) -> tuple[list[Results], float]:
         start = time.perf_counter()
-        results = self.predict(source=source, **kwargs)
+        results = list(self.predict(source=source, **kwargs))
         elapsed = time.perf_counter() - start
         return results, elapsed
 

@@ -123,6 +123,44 @@ class TestHatefulIllusionDataset:
         assert len(sample["image"].shape) == 3
         assert sample["image"].shape[0] == 3  # RGB channels
 
+    @patch("utils.dataset.hf_hub_download")
+    @patch("datasets.load_dataset")
+    def test_getitem_uses_subset_specific_image_path(self, mock_load, mock_hf_download):
+        """Test __getitem__ downloads a subset-specific image path."""
+        import tempfile
+
+        from PIL import Image
+
+        mock_data = [
+            {
+                "message": "5",
+                "prompt": "Scene 0",
+                "visibility": 3,
+                "image": "images/0.png",
+            }
+        ]
+
+        mock_dataset = MagicMock()
+        mock_dataset.__iter__ = lambda _: iter(mock_data)
+        mock_dataset.__len__ = lambda _: len(mock_data)
+        mock_dataset.__getitem__ = lambda _, idx: mock_data[idx]
+        mock_load.return_value = {"train": mock_dataset}
+
+        with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as f:
+            img = Image.new("RGB", (128, 128), color=(128, 128, 128))
+            img.save(f.name)
+            mock_hf_download.return_value = f.name
+
+        dataset = HatefulIllusionDataset(split="train", subset="hate_slangs")
+        _ = dataset[0]
+
+        mock_hf_download.assert_called_once_with(
+            repo_id="yiting/HatefulIllusion_Dataset",
+            filename="hate_slangs/images/0.png",
+            repo_type="dataset",
+            cache_dir=None,
+        )
+
 
 class TestDatasetManager:
     """Tests for DatasetManager."""
