@@ -31,10 +31,9 @@ import json
 from pathlib import Path
 from typing import Any
 
-import yaml
-
 import numpy as np
 import torch
+import yaml
 
 from models.yolo.metrics import DetectionPrediction, GroundTruthBox, compute_detection_metrics
 from models.yolo.wrapper import UltralyticsYOLO
@@ -119,7 +118,6 @@ def prepare_yolo_validation_dataset(samples: list[dict[str, Any]], output_dir: P
     return data_yaml
 
 
-
 def build_ground_truths(samples: list[dict[str, Any]]) -> list[GroundTruthBox]:
     gts: list[GroundTruthBox] = []
     for sample in samples:
@@ -140,37 +138,49 @@ def build_ground_truths(samples: list[dict[str, Any]]) -> list[GroundTruthBox]:
     return gts
 
 
+BATCH_SIZE = 64
+
+
 def collect_predictions(
     model: UltralyticsYOLO,
     samples: list[dict[str, Any]],
     preprocess: str | None = None,
 ) -> tuple[list[DetectionPrediction], float]:
     pipeline = PreprocessingPipeline() if preprocess else None
-    images: list[np.ndarray] = []
-    for s in samples:
-        arr = image_to_numpy(s["image"])
-        if pipeline is not None and preprocess is not None:
-            arr = pipeline.apply_transformation(arr, preprocess)
-        images.append(arr)
-    results, elapsed = model.timed_predict(source=images, imgsz=640, save=False, verbose=False)
-
     predictions: list[DetectionPrediction] = []
-    for sample, result in zip(samples, results, strict=True):
-        if result.boxes is None or len(result.boxes) == 0:
-            continue
-        xyxy = result.boxes.xyxy
-        xyxy = xyxy.cpu().numpy() if hasattr(xyxy, "cpu") else np.asarray(xyxy)
-        conf = result.boxes.conf
-        conf = conf.cpu().numpy() if hasattr(conf, "cpu") else np.asarray(conf)
-        for bbox, confidence in zip(xyxy, conf, strict=True):
-            predictions.append(
-                DetectionPrediction(
-                    image_id=sample["image_id"],
-                    bbox=(float(bbox[0]), float(bbox[1]), float(bbox[2]), float(bbox[3])),
-                    confidence=float(confidence),
+    total_elapsed = 0.0
+
+    for batch_start in range(0, len(samples), BATCH_SIZE):
+        batch = samples[batch_start : batch_start + BATCH_SIZE]
+        images: list[np.ndarray] = []
+        for s in batch:
+            arr = image_to_numpy(s["image"])
+            if pipeline is not None and preprocess is not None:
+                arr = pipeline.apply_transformation(arr, preprocess)
+            images.append(arr)
+
+        results, elapsed = model.timed_predict(
+            source=images, stream=True, imgsz=640, save=False, verbose=False
+        )
+        total_elapsed += elapsed
+
+        for sample, result in zip(batch, results, strict=True):
+            if result.boxes is None or len(result.boxes) == 0:
+                continue
+            xyxy = result.boxes.xyxy
+            xyxy = xyxy.cpu().numpy() if hasattr(xyxy, "cpu") else np.asarray(xyxy)
+            conf = result.boxes.conf
+            conf = conf.cpu().numpy() if hasattr(conf, "cpu") else np.asarray(conf)
+            for bbox, confidence in zip(xyxy, conf, strict=True):
+                predictions.append(
+                    DetectionPrediction(
+                        image_id=sample["image_id"],
+                        bbox=(float(bbox[0]), float(bbox[1]), float(bbox[2]), float(bbox[3])),
+                        confidence=float(confidence),
+                    )
                 )
-            )
-    return predictions, elapsed
+
+    return predictions, total_elapsed
 
 
 def build_visibility_metrics(
@@ -232,35 +242,28 @@ def resolve_model_checkpoints(
         )
 
     if mode == "trained":
-        if all_models:
-            return [
-                (
-                    f"{Path(checkpoint).stem}",
-                    str(
-                        trained_dir
-                        / f"train_{Path(checkpoint).stem}_{subset}"
-                        / "weights"
-                        / f"{weights_type}.pt"
-                    ),
-                )
-                for checkpoint in MODEL_CHECKPOINTS
-            ]
-        return [
-            (
-                f"{Path(model).stem}",
-                str(
-                    trained_dir
-                    / f"train_{Path(model).stem}_{subset}"
-                    / "weights"
-                    / f"{weights_type}.pt"
-                ),
+        checkpoints = MODEL_CHECKPOINTS if all_models else [model]
+        result = []
+        for checkpoint in checkpoints:
+            model_stem = Path(checkpoint).stem
+            weights_path = (
+                trained_dir / f"train_{model_stem}_{subset}" / "weights" / f"{weights_type}.pt"
             )
-        ]
+            if not weights_path.exists():
+                raise FileNotFoundError(
+                    f"Trained weights not found: {weights_path}\n"
+                    f"  → Train the model first:  uv run python scripts/train_yolo.py --model {checkpoint} --subset {subset}\n"
+                    f"  → Or benchmark pretrained: uv run python scripts/benchmark_yolo.py --mode pretrained --model {checkpoint} --subset {subset}"
+                )
+            result.append((model_stem, str(weights_path)))
+        return result
 
     raise ValueError(f"Unsupported mode: {mode}")
 
 
-def run_benchmark(models: list[tuple[str, str]], subset: str) -> dict[str, Any]:
+def run_benchmark(
+    models: list[tuple[str, str]], subset: str, preprocess: str | None = None
+) -> dict[str, Any]:
     samples = collect_samples(subset)
     if not samples:
         raise ValueError(f"No samples found for subset '{subset}'")
@@ -275,7 +278,7 @@ def run_benchmark(models: list[tuple[str, str]], subset: str) -> dict[str, Any]:
     for model_key, checkpoint in models:
         print(f"Evaluating {model_key} on subset {subset} ({len(samples)} images)")
         model = UltralyticsYOLO(checkpoint=checkpoint, device="cpu", verbose=False)
-        predictions, inference_time = collect_predictions(model, samples)
+        predictions, inference_time = collect_predictions(model, samples, preprocess=preprocess)
         average_time = inference_time / len(samples)
         computed_metrics = compute_detection_metrics(predictions, ground_truths)
         visibility_metrics = build_visibility_metrics(predictions, ground_truths, samples)
@@ -302,9 +305,9 @@ def main() -> None:
     )
     parser.add_argument(
         "--mode",
-        default="pretrained",
+        default="all",
         choices=["pretrained", "trained", "all"],
-        help="Benchmark mode: pretrained hub checkpoint, trained local weights, or 'all' for both",
+        help="Benchmark mode: pretrained hub checkpoint, trained local weights, or 'all' for both (default: all)",
     )
     parser.add_argument(
         "--weights-type",
@@ -336,13 +339,20 @@ def main() -> None:
 
     import gc
 
-    all_models = args.all or args.model == "all"
+    preprocess = "blur_histogram" if args.preprocessing else None
+    output_path = (
+        RESULTS_PATH.with_name("yolo_benchmark_preprocessed.json")
+        if args.preprocessing
+        else RESULTS_PATH
+    )
+
+    all_models = args.all or args.model == "all" or args.preprocessing
     all_modes = args.mode == "all"
-    all_subsets = args.subset is None or args.subset == "all"
+    all_subsets = args.subset is None or args.subset == "all" or args.preprocessing
 
     if all_models and all_subsets and all_modes:
         # Full matrix: all models x all subsets x all modes
-        RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
         all_results = []
         for subset in SUBSET_NAMES:
             for mode, weights_type in [("pretrained", None), ("trained", "best")]:
@@ -356,7 +366,9 @@ def main() -> None:
                         explicit_weights=args.weights,
                         subset=subset,
                     )
-                    benchmark_results = run_benchmark(models=models, subset=subset)
+                    benchmark_results = run_benchmark(
+                        models=models, subset=subset, preprocess=preprocess
+                    )
                     for model_key, model_result in benchmark_results["models"].items():
                         entry = {
                             "model": model_key,
@@ -367,7 +379,7 @@ def main() -> None:
                         }
                         all_results.append(entry)
                     # Write partial results after each mode/subset to avoid memory issues
-                    RESULTS_PATH.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
+                    output_path.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
                     gc.collect()
                 except FileNotFoundError as exc:
                     if mode == "trained":
@@ -378,7 +390,7 @@ def main() -> None:
         return
     elif all_models and all_subsets:
         # All models, all subsets, single mode
-        RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
         all_results = []
         for subset in SUBSET_NAMES:
             try:
@@ -391,17 +403,21 @@ def main() -> None:
                     explicit_weights=args.weights,
                     subset=subset,
                 )
-                benchmark_results = run_benchmark(models=models, subset=subset)
+                benchmark_results = run_benchmark(
+                    models=models, subset=subset, preprocess=preprocess
+                )
                 for model_key, model_result in benchmark_results["models"].items():
                     entry = {
                         "model": model_key,
                         "subset": subset,
                         "mode": args.mode,
-                        "weights_type": args.weights_type,
+                        "weights_type": "pretrained"
+                        if args.mode == "pretrained"
+                        else args.weights_type,
                         **{k: v for k, v in model_result.items() if k != "model_key"},
                     }
                     all_results.append(entry)
-                RESULTS_PATH.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
+                output_path.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
                 gc.collect()
             except FileNotFoundError as exc:
                 if args.mode == "trained":
@@ -413,7 +429,7 @@ def main() -> None:
 
     elif all_models and args.subset and all_modes:
         # All models, single subset, all modes
-        RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
         all_results = []
         for mode, weights_type in [("pretrained", None), ("trained", "best")]:
             try:
@@ -426,7 +442,9 @@ def main() -> None:
                     explicit_weights=args.weights,
                     subset=args.subset,
                 )
-                benchmark_results = run_benchmark(models=models, subset=args.subset)
+                benchmark_results = run_benchmark(
+                    models=models, subset=args.subset, preprocess=preprocess
+                )
                 for model_key, model_result in benchmark_results["models"].items():
                     entry = {
                         "model": model_key,
@@ -437,7 +455,7 @@ def main() -> None:
                     }
                     all_results.append(entry)
                 # Write partial results after each mode to avoid memory issues
-                RESULTS_PATH.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
+                output_path.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
                 gc.collect()
             except FileNotFoundError as exc:
                 if mode == "trained":
@@ -457,19 +475,19 @@ def main() -> None:
             explicit_weights=args.weights,
             subset=args.subset,
         )
-        benchmark_results = run_benchmark(models=models, subset=args.subset)
+        benchmark_results = run_benchmark(models=models, subset=args.subset, preprocess=preprocess)
         all_results = []
         for model_key, model_result in benchmark_results["models"].items():
             entry = {
                 "model": model_key,
                 "subset": args.subset,
                 "mode": args.mode,
-                "weights_type": args.weights_type,
+                "weights_type": "pretrained" if args.mode == "pretrained" else args.weights_type,
                 **{k: v for k, v in model_result.items() if k != "model_key"},
             }
             all_results.append(entry)
-        RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
-        RESULTS_PATH.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
         print(f"Saved subset benchmark results to {RESULTS_PATH}")
         return
     else:
@@ -478,7 +496,7 @@ def main() -> None:
 
         if all_modes and all_subsets:
             # Single model, all subsets, all modes
-            RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
+            output_path.parent.mkdir(parents=True, exist_ok=True)
             all_results = []
             for subset in subsets_to_run:
                 for mode, weights_type in [("pretrained", None), ("trained", "best")]:
@@ -492,7 +510,9 @@ def main() -> None:
                             explicit_weights=args.weights,
                             subset=subset,
                         )
-                        benchmark_results = run_benchmark(models=models, subset=subset)
+                        benchmark_results = run_benchmark(
+                            models=models, subset=subset, preprocess=preprocess
+                        )
                         for model_key, model_result in benchmark_results["models"].items():
                             entry = {
                                 "model": model_key,
@@ -502,7 +522,7 @@ def main() -> None:
                                 **{k: v for k, v in model_result.items() if k != "model_key"},
                             }
                             all_results.append(entry)
-                        RESULTS_PATH.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
+                        output_path.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
                         gc.collect()
                     except FileNotFoundError as exc:
                         if mode == "trained":
@@ -513,7 +533,7 @@ def main() -> None:
         elif all_modes:
             # Single model, single subset, all modes
             subset = args.subset
-            RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
+            output_path.parent.mkdir(parents=True, exist_ok=True)
             all_results = []
             for mode, weights_type in [("pretrained", None), ("trained", "best")]:
                 try:
@@ -526,7 +546,9 @@ def main() -> None:
                         explicit_weights=args.weights,
                         subset=subset,
                     )
-                    benchmark_results = run_benchmark(models=models, subset=subset)
+                    benchmark_results = run_benchmark(
+                        models=models, subset=subset, preprocess=preprocess
+                    )
                     for model_key, model_result in benchmark_results["models"].items():
                         entry = {
                             "model": model_key,
@@ -536,7 +558,7 @@ def main() -> None:
                             **{k: v for k, v in model_result.items() if k != "model_key"},
                         }
                         all_results.append(entry)
-                    RESULTS_PATH.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
+                    output_path.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
                     gc.collect()
                 except FileNotFoundError as exc:
                     if mode == "trained":
@@ -546,7 +568,7 @@ def main() -> None:
             print(f"Saved all-modes benchmark results to {RESULTS_PATH}")
         elif all_subsets:
             # Single model, all subsets, single mode
-            RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
+            output_path.parent.mkdir(parents=True, exist_ok=True)
             all_results = []
             for subset in subsets_to_run:
                 try:
@@ -559,17 +581,21 @@ def main() -> None:
                         explicit_weights=args.weights,
                         subset=subset,
                     )
-                    benchmark_results = run_benchmark(models=models, subset=subset)
+                    benchmark_results = run_benchmark(
+                        models=models, subset=subset, preprocess=preprocess
+                    )
                     for model_key, model_result in benchmark_results["models"].items():
                         entry = {
                             "model": model_key,
                             "subset": subset,
                             "mode": args.mode,
-                            "weights_type": args.weights_type,
+                            "weights_type": "pretrained"
+                            if args.mode == "pretrained"
+                            else args.weights_type,
                             **{k: v for k, v in model_result.items() if k != "model_key"},
                         }
                         all_results.append(entry)
-                    RESULTS_PATH.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
+                    output_path.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
                     gc.collect()
                 except FileNotFoundError as exc:
                     if args.mode == "trained":
@@ -589,19 +615,21 @@ def main() -> None:
                 explicit_weights=args.weights,
                 subset=subset,
             )
-            benchmark_results = run_benchmark(models=models, subset=subset)
+            benchmark_results = run_benchmark(models=models, subset=subset, preprocess=preprocess)
             all_results = []
             for model_key, model_result in benchmark_results["models"].items():
                 entry = {
                     "model": model_key,
                     "subset": subset,
                     "mode": args.mode,
-                    "weights_type": args.weights_type,
+                    "weights_type": "pretrained"
+                    if args.mode == "pretrained"
+                    else args.weights_type,
                     **{k: v for k, v in model_result.items() if k != "model_key"},
                 }
                 all_results.append(entry)
-            RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
-            RESULTS_PATH.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            output_path.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
             print(f"Saved benchmark results to {RESULTS_PATH}")
 
 
