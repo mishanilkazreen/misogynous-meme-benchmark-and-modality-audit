@@ -268,3 +268,6 @@ ww2/*
 results/figures/yolo_detections_ww2_best.png
 results/figures/yolo_detections_ww2_yolo11n.png
 results/figures/yolo_detections_ww2_yolov8n.png
+
+# VLM documentation scratch folder
+vlm_docs/
