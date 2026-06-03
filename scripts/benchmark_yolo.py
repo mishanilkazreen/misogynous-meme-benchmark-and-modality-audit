@@ -68,6 +68,49 @@ def image_to_numpy(image: Any) -> np.ndarray:
     raise ValueError(f"Unsupported image type: {type(image)}")
 
 
+SUPPORTED_IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".bmp", ".webp", ".tiff", ".tif"}
+
+
+def collect_samples_from_folder(
+    folder: Path,
+    subset_name: str,
+    visibility_score: int = 3,
+) -> list[dict[str, Any]]:
+    """Load images from a local folder as benchmark samples.
+
+    Produces the same dict format as collect_samples() so the full pipeline
+    (collect_predictions, build_ground_truths, build_visibility_metrics) works
+    without modification.
+
+    Args:
+        folder: Directory containing image files.
+        subset_name: Name used as subset label and image_id prefix.
+        visibility_score: Default visibility level 1-5 assigned to all images.
+    """
+    from PIL import Image as PILImage
+
+    image_paths = sorted(
+        p for p in folder.iterdir() if p.suffix.lower() in SUPPORTED_IMAGE_EXTENSIONS
+    )
+    if not image_paths:
+        raise ValueError(f"No supported images found in {folder}")
+
+    samples: list[dict[str, Any]] = []
+    for i, img_path in enumerate(image_paths):
+        pil = PILImage.open(img_path).convert("RGB")
+        image = torch.from_numpy(np.array(pil).transpose(2, 0, 1)).float() / 255.0
+        samples.append(
+            {
+                "image": image,
+                "image_id": f"{subset_name}_{i}",
+                "visibility_score": visibility_score,
+                "subset": subset_name,
+                "source_path": str(img_path),
+            }
+        )
+    return samples
+
+
 def collect_samples(subset: str, split: str = "train") -> list[dict[str, Any]]:
     subsets = SUBSET_NAMES if subset == "all" else [subset]
     manager = DatasetManager()
@@ -262,9 +305,13 @@ def resolve_model_checkpoints(
 
 
 def run_benchmark(
-    models: list[tuple[str, str]], subset: str, preprocess: str | None = None
+    models: list[tuple[str, str]],
+    subset: str,
+    preprocess: str | None = None,
+    samples: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
-    samples = collect_samples(subset)
+    if samples is None:
+        samples = collect_samples(subset)
     if not samples:
         raise ValueError(f"No samples found for subset '{subset}'")
 
@@ -328,8 +375,10 @@ def main() -> None:
     parser.add_argument(
         "--subset",
         default=None,
-        choices=[None, "digits", "hate_slangs", "hate_symbols", "all"],
-        help="HatefulIllusion subset to evaluate on. If omitted with --all, runs all subsets.",
+        help=(
+            "HatefulIllusion subset (digits, hate_slangs, hate_symbols, all) "
+            "or a path to a local image folder for custom evaluation."
+        ),
     )
     parser.add_argument("--all", action="store_true", help="Benchmark all five models")
     parser.add_argument(
@@ -345,6 +394,60 @@ def main() -> None:
         if args.preprocessing
         else RESULTS_PATH
     )
+
+    # Custom dataset: --subset is a path to a local image folder
+    _subset_as_path = Path(args.subset) if args.subset else None
+    if _subset_as_path is not None and _subset_as_path.is_dir():
+        folder = _subset_as_path.resolve()
+        subset_name = folder.name
+        custom_samples = collect_samples_from_folder(folder=folder, subset_name=subset_name)
+        print(f"Loaded {len(custom_samples)} images from {folder} as subset '{subset_name}'")
+
+        modes_to_run: list[tuple[str, str | None]] = []
+        if args.mode in ("pretrained", "all"):
+            modes_to_run.append(("pretrained", None))
+        if args.mode in ("trained", "all"):
+            for ts in SUBSET_NAMES:
+                modes_to_run.append(("trained", ts))
+
+        all_results: list[dict[str, Any]] = []
+        custom_output = RESULTS_PATH.with_name(f"yolo_benchmark_{subset_name}.json")
+        custom_output.parent.mkdir(parents=True, exist_ok=True)
+
+        for mode, training_subset in modes_to_run:
+            try:
+                models_list = resolve_model_checkpoints(
+                    model=args.model,
+                    all_models=args.all or args.model == "all",
+                    mode=mode,
+                    weights_type=args.weights_type,
+                    trained_dir=args.trained_dir,
+                    explicit_weights=args.weights,
+                    subset=training_subset or SUBSET_NAMES[0],
+                )
+                benchmark_results = run_benchmark(
+                    models=models_list,
+                    subset=subset_name,
+                    preprocess=preprocess,
+                    samples=custom_samples,
+                )
+                for model_key, model_result in benchmark_results["models"].items():
+                    entry: dict[str, Any] = {
+                        "model": model_key,
+                        "subset": subset_name,
+                        "mode": mode,
+                        "weights_type": "pretrained" if mode == "pretrained" else args.weights_type,
+                        **{k: v for k, v in model_result.items() if k != "model_key"},
+                    }
+                    if training_subset is not None:
+                        entry["trained_on"] = training_subset
+                    all_results.append(entry)
+                custom_output.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
+            except FileNotFoundError as exc:
+                print(f"[SKIP] trained/{training_subset}: {exc}")
+
+        print(f"Saved custom dataset benchmark results to {custom_output}")
+        return
 
     all_models = args.all or args.model == "all" or args.preprocessing
     all_modes = args.mode == "all"

@@ -264,3 +264,7 @@ results/*.jsonl
 models/yolo/trainer.py
 tests/unit/test_train_yolo.py
 yolo_benchmark.json
+ww2/*
+results/figures/yolo_detections_ww2_best.png
+results/figures/yolo_detections_ww2_yolo11n.png
+results/figures/yolo_detections_ww2_yolov8n.png
