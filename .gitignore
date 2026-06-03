@@ -259,3 +259,6 @@ runs/
 .DS_Store
 
 .claude/
+
+# VLM documentation scratch folder
+vlm_docs/
