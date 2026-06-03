@@ -1,0 +1,135 @@
+{
+  "benchmark_date": "2026-05-24T17:16:17.898757+00:00",
+  "subset": "digits",
+  "preprocess": null,
+  "models": {
+    "clip": {
+      "clip_model": "ViT-L-14",
+      "pretrained": "openai",
+      "num_images": 300,
+      "num_classes": 10,
+      "average_inference_time_s": 0.022739285333324612,
+      "total_inference_time_s": 6.8217855999973835,
+      "computed_metrics": {
+        "exact_match_accuracy": 0.13,
+        "any_detection_recall": 1.0
+      },
+      "visibility_metrics": {
+        "2": {
+          "exact_match_accuracy": 0.13636363636363635,
+          "any_detection_recall": 1.0
+        },
+        "0": {
+          "exact_match_accuracy": 0.075,
+          "any_detection_recall": 1.0
+        },
+        "1": {
+          "exact_match_accuracy": 0.14285714285714285,
+          "any_detection_recall": 1.0
+        }
+      },
+      "sample_predictions": [
+        {
+          "image_id": "digits_0",
+          "subset": "digits",
+          "ground_truth": "0",
+          "predicted": "4",
+          "confidence": 0.1004,
+          "correct": false,
+          "visibility_score": 2,
+          "prompt": "Post-earthquake reconstruction technology for economic revitalization."
+        },
+        {
+          "image_id": "digits_1",
+          "subset": "digits",
+          "ground_truth": "8",
+          "predicted": "3",
+          "confidence": 0.1005,
+          "correct": false,
+          "visibility_score": 2,
+          "prompt": "A beautiful nature view"
+        },
+        {
+          "image_id": "digits_2",
+          "subset": "digits",
+          "ground_truth": "6",
+          "predicted": "7",
+          "confidence": 0.1006,
+          "correct": false,
+          "visibility_score": 2,
+          "prompt": "Carnival parade"
+        },
+        {
+          "image_id": "digits_3",
+          "subset": "digits",
+          "ground_truth": "6",
+          "predicted": "3",
+          "confidence": 0.1004,
+          "correct": false,
+          "visibility_score": 2,
+          "prompt": "A beautiful nature view"
+        },
+        {
+          "image_id": "digits_4",
+          "subset": "digits",
+          "ground_truth": "4",
+          "predicted": "9",
+          "confidence": 0.1007,
+          "correct": false,
+          "visibility_score": 2,
+          "prompt": "A photo of a busy shopping mall. The mall is filled with people who are shopping and enjoying the day. The background is a beautiful sky."
+        },
+        {
+          "image_id": "digits_5",
+          "subset": "digits",
+          "ground_truth": "1",
+          "predicted": "5",
+          "confidence": 0.1006,
+          "correct": false,
+          "visibility_score": 2,
+          "prompt": "urban communities in the suburbs full sustainability ultra real 4k high def"
+        },
+        {
+          "image_id": "digits_6",
+          "subset": "digits",
+          "ground_truth": "5",
+          "predicted": "5",
+          "confidence": 0.1005,
+          "correct": true,
+          "visibility_score": 2,
+          "prompt": "Photo of very top of the mountain in winter, the rest of mountain is covered by snow and hidden behind the fog, Minimalistic, Desaturated, 4k, Spotlight, Lumen Reflections"
+        },
+        {
+          "image_id": "digits_7",
+          "subset": "digits",
+          "ground_truth": "2",
+          "predicted": "6",
+          "confidence": 0.1004,
+          "correct": false,
+          "visibility_score": 2,
+          "prompt": "Chicago urban city neighborhood"
+        },
+        {
+          "image_id": "digits_8",
+          "subset": "digits",
+          "ground_truth": "4",
+          "predicted": "9",
+          "confidence": 0.1006,
+          "correct": false,
+          "visibility_score": 0,
+          "prompt": "Goddess aphrodite, volumetric cartoon oil paint, golden hair, 2D book illustration style, sharp focus, bright color, digital paint character design, trending on artstation, high details, simple lines, art by Viktoria Gavrilenko, Jos\u00e9 Luis \u00c1greda and Camilla d'Errico"
+        },
+        {
+          "image_id": "digits_9",
+          "subset": "digits",
+          "ground_truth": "0",
+          "predicted": "0",
+          "confidence": 0.1011,
+          "correct": true,
+          "visibility_score": 2,
+          "prompt": "urban communities in the suburbs full sustainability ultra real 4k high def"
+        }
+      ]
+    }
+  }
+}
