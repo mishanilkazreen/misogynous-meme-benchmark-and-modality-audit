@@ -33,7 +33,7 @@ CONFIDENCE_FLOOR = 1e-6
 
 def results_path(subset: str, preprocess: str | None) -> Path:
     suffix = f"_{preprocess}" if preprocess else ""
-    return RESULTS_DIR / f"vlm_benchmark_{subset}{suffix}.json"
+    return RESULTS_DIR / f"clip_benchmark_{subset}{suffix}.json"
 
 
 def image_to_numpy(image: Any) -> np.ndarray:
