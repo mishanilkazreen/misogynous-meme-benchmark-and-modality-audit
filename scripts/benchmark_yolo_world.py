@@ -20,7 +20,7 @@ import argparse
 from datetime import datetime, timezone
 import json
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 import numpy as np
 import torch
@@ -44,7 +44,7 @@ YOLO_WORLD_CLASSES = [
 DEFAULT_CHECKPOINT = "yolov8s-worldv2.pt"
 
 
-def results_path(subset: str, preprocess: Optional[str]) -> Path:
+def results_path(subset: str, preprocess: str | None) -> Path:
     suffix = f"_{preprocess}" if preprocess else ""
     return RESULTS_DIR / f"yolo_world_benchmark_{subset}{suffix}.json"
 
@@ -106,7 +106,7 @@ def run_benchmark(
     checkpoint: str = DEFAULT_CHECKPOINT,
     device: str = "cpu",
     conf: float = 0.25,
-    preprocess: Optional[str] = None,
+    preprocess: str | None = None,
 ) -> dict[str, Any]:
     samples = collect_samples(subset)
     if not samples:

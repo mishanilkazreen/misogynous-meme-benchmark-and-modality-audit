@@ -69,10 +69,15 @@ def compute_vlm_metrics(
     ground_truths: list[str],
     n_classes: int,
 ) -> dict[str, float]:
-    """Compute exact_match_accuracy and any_detection_recall."""
+    """Compute exact_match_accuracy and above_chance_rate.
+
+    above_chance_rate: fraction of images where CLIP confidence exceeded random chance
+    (1/n_classes). Measures model confidence, not correctness — use exact_match_accuracy
+    for accuracy comparisons. Comparable to Rekognition's any_detection_recall.
+    """
     assert len(predictions) == len(ground_truths)
     if not predictions:
-        return {"exact_match_accuracy": 0.0, "any_detection_recall": 0.0}
+        return {"exact_match_accuracy": 0.0, "above_chance_rate": 0.0}
 
     chance_threshold = 1.0 / max(n_classes, 1)
     exact_hits = sum(
@@ -80,11 +85,11 @@ def compute_vlm_metrics(
         for (pred_label, _), gt in zip(predictions, ground_truths, strict=True)
         if pred_label == gt
     )
-    detected = sum(1 for _, conf in predictions if conf > chance_threshold)
+    above_chance = sum(1 for _, conf in predictions if conf > chance_threshold)
 
     return {
         "exact_match_accuracy": exact_hits / len(predictions),
-        "any_detection_recall": detected / len(predictions),
+        "above_chance_rate": above_chance / len(predictions),
     }
 
 
@@ -157,7 +162,9 @@ def run_benchmark(
             "visibility_score": visibility_scores[i],
             "prompt": samples[i].get("prompt", ""),
         }
-        for i in range(min(10, len(samples)))
+        for i in range(
+            len(samples)
+        )  # all samples; downstream scripts must not assume a fixed count
     ]
 
     return {

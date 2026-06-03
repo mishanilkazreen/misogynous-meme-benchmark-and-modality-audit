@@ -251,7 +251,6 @@ yolo_test_results.png
 
 # Ignore generated training and benchmark outputs
 results/trained_models/
-results/*.json
 results/*.jsonl
 !results/yolo_benchmark*.json
 !results/figures/
