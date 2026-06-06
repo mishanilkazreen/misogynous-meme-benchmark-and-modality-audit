@@ -43,8 +43,15 @@ class Annotation:
 class HatefulIllusionDataset(Dataset):
     """PyTorch Dataset for HatefulIllusion dataset from Hugging Face."""
 
-    def __init__(self, split: str = "train", transform=None, cache_dir: str | None = None):
+    def __init__(
+        self,
+        split: str = "train",
+        subset: str = "digits",
+        transform=None,
+        cache_dir: str | None = None,
+    ):
         self.split = split
+        self.subset = subset
         self.transform = transform
         self.cache_dir = cache_dir
         self.annotations: dict[str, Annotation] = {}
@@ -56,7 +63,7 @@ class HatefulIllusionDataset(Dataset):
         from datasets import load_dataset
 
         self._hf_dataset = load_dataset(
-            "yiting/HatefulIllusion_Dataset", "digits", cache_dir=self.cache_dir
+            "yiting/HatefulIllusion_Dataset", self.subset, cache_dir=self.cache_dir
         )[self.split]
 
         for idx, item in enumerate(self._hf_dataset):  # type: ignore[arg-type, var-annotated]
@@ -84,7 +91,7 @@ class HatefulIllusionDataset(Dataset):
         # Download image from HuggingFace Hub
         local_path = hf_hub_download(
             repo_id="yiting/HatefulIllusion_Dataset",
-            filename=f"digits/{image_path}",
+            filename=f"{self.subset}/{image_path}",
             repo_type="dataset",
             cache_dir=self.cache_dir,
         )
@@ -118,11 +125,16 @@ class DatasetManager:
         self.cache_dir = cache_dir
         self._datasets: dict[str, HatefulIllusionDataset] = {}
 
-    def load_dataset(self, split: str = "train", transform=None) -> HatefulIllusionDataset:
-        cache_key = split
+    def load_dataset(
+        self,
+        split: str = "train",
+        subset: str = "digits",
+        transform=None,
+    ) -> HatefulIllusionDataset:
+        cache_key = f"{split}:{subset}"
         if cache_key not in self._datasets:
             self._datasets[cache_key] = HatefulIllusionDataset(
-                split=split, transform=transform, cache_dir=self.cache_dir
+                split=split, subset=subset, transform=transform, cache_dir=self.cache_dir
             )
         return self._datasets[cache_key]
 

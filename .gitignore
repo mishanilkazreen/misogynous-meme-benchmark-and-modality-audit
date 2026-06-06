@@ -237,9 +237,42 @@ wandb/
 
 # Local symlinks
 grant-application
+*.lnk
 
 # Reference PDFs are kept locally only (cited in papers/README.md)
 papers/*.pdf
 
 # Scratch folder for GitHub issue bodies
 .issue_bodies/
+.idea/content-moderation.iml
+.idea/misc.xml
+yolo_test_results.png
+.idea/modules.xml
+.idea/vcs.xml
+
+# Ignore generated training and benchmark outputs
+results/trained_models/
+results/*.jsonl
+results/*.json
+!results/yolo_benchmark*.json
+!results/figures/
+
+
+# macOS metadata
+.DS_Store
+
+.claude/
+
+# VLM documentation scratch folder
+vlm_docs/
+models/yolo/trainer.py
+tests/unit/test_train_yolo.py
+yolo_benchmark.json
+ww2/*
+results/figures/yolo_detections_ww2_best.png
+results/figures/yolo_detections_ww2_yolo11n.png
+results/figures/yolo_detections_ww2_yolov8n.png
+
+# VLM documentation scratch folder
+vlm_docs/
+task_4/

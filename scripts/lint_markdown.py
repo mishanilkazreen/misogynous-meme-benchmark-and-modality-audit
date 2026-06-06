@@ -27,10 +27,10 @@ def find_markdown_files() -> list[str]:
 
 def pick_cli() -> list[str]:
     """Return the command prefix for markdownlint-cli."""
-    if shutil.which("markdownlint"):
-        return ["markdownlint"]
-    if shutil.which("npx"):
-        return ["npx", "--yes", "markdownlint-cli@0.42.0"]
+    if markdownlint := shutil.which("markdownlint"):
+        return [markdownlint]
+    if npx := shutil.which("npx"):
+        return [npx, "--yes", "markdownlint-cli@0.42.0"]
     raise SystemExit(
         "markdownlint-cli not found. Install it with `brew install markdownlint-cli` "
         "or `npm install -g markdownlint-cli`."

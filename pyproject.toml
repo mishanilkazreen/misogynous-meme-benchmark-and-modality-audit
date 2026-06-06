@@ -23,9 +23,21 @@ dependencies = [
     "tqdm>=4.65.0",
     "pyyaml>=6.0",
     "datasets>=3.1.0",
+    "open-clip-torch>=2.24.0",
+    "boto3>=1.26.0",
+    "ultralytics>=8.4.60",
 ]
 
 [project.optional-dependencies]
+cloud = [
+    "google-generativeai>=0.8.0",
+    "openai>=1.0.0",
+    "google-cloud-vision>=3.4.0",
+]
+vlm-gpu = [
+    "accelerate>=0.20.0",
+    "optimum>=1.13.0",
+]
 dev = [
     "ruff>=0.5.5",
     "pre-commit>=3.5.0",
@@ -147,6 +159,15 @@ exclude_lines = [
     "class .*\\bProtocol\\):",
     "@(abc\\.)?abstractmethod",
 ]
+
+[[tool.uv.index]]
+name = "pytorch-cu132"
+url = "https://download.pytorch.org/whl/cu132"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu132" }
+torchvision = { index = "pytorch-cu132" }
 
 [dependency-groups]
 dev = [
