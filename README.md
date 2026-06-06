@@ -119,6 +119,68 @@ uv run python scripts/benchmark_yolo.py --mode trained --model yolov8n.pt --subs
 
 Results are written to `results/yolo_benchmark.json` (gitignored).
 
+## Task 4 — VLM Benchmark
+
+### Model overview
+
+| Model | Size | Download | VRAM (fp16) |
+|---|---|---|---|
+| CLIP (ViT-B/32) | ~600 MB | auto on first run | ~1 GB |
+| LLaVA 1.5 | 7B | auto on first run (~14 GB) | ~14 GB |
+| Qwen2-VL | 7B | auto on first run (~15 GB) | ~14 GB |
+
+### CLIP
+
+```bash
+# Verify (10 samples, no preprocessing)
+uv run python scripts/benchmark_clip.py --subset digits --limit 10 --device cuda --filters none
+
+# Full run — all three subsets
+uv run python scripts/benchmark_clip.py --subset digits --device cuda
+uv run python scripts/benchmark_clip.py --subset hate_slangs --device cuda
+uv run python scripts/benchmark_clip.py --subset hate_symbols --device cuda
+```
+
+Output: `results/clip_{subset}.json`
+
+### LLaVA
+
+```bash
+# Verify (10 samples, no preprocessing)
+uv run python scripts/benchmark_llava.py --subset digits --limit 10 --device cuda --filters none
+
+# Full run — all three subsets
+uv run python scripts/benchmark_llava.py --subset digits --device cuda
+uv run python scripts/benchmark_llava.py --subset hate_slangs --device cuda
+uv run python scripts/benchmark_llava.py --subset hate_symbols --device cuda
+```
+
+Output: `results/llava_{subset}.json`
+
+### Qwen2-VL
+
+```bash
+# Verify (10 samples, no preprocessing)
+uv run python scripts/benchmark_qwen2vl.py --subset digits --limit 10 --device cuda --filters none
+
+# Full run — all three subsets
+uv run python scripts/benchmark_qwen2vl.py --subset digits --device cuda
+uv run python scripts/benchmark_qwen2vl.py --subset hate_slangs --device cuda
+uv run python scripts/benchmark_qwen2vl.py --subset hate_symbols --device cuda
+```
+
+Output: `results/qwen2vl_{subset}.json`
+
+### Options common to all three scripts
+
+| Flag | Default | Description |
+|---|---|---|
+| `--subset` | `digits` | `digits`, `hate_slangs`, `hate_symbols`, or `all` |
+| `--filters` | all | Comma-separated preprocessing filters, e.g. `none,blur` |
+| `--limit` | none | Cap number of images (useful for quick checks) |
+| `--device` | `cpu` | `cuda` or `cpu` |
+| `--batch-size` | `4` | Images per forward pass (LLaVA/Qwen2-VL only) |
+
 ## Code quality
 
 ```bash
