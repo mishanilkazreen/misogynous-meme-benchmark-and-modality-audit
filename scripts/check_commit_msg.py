@@ -7,6 +7,7 @@ Valid types: feat, fix, docs, style, refactor, test, chore, ci, perf, build, rev
 First line must be 72 characters or fewer.
 """
 
+from pathlib import Path
 import re
 import sys
 
@@ -24,9 +25,7 @@ VALID_TYPES = [
     "revert",
 ]
 
-PATTERN = re.compile(
-    r"^(" + "|".join(VALID_TYPES) + r")(\(.+\))?!?:\s.{1,72}$"
-)
+PATTERN = re.compile(r"^(" + "|".join(VALID_TYPES) + r")(\(.+\))?!?:\s.{1,72}$")
 
 
 def main() -> int:
@@ -35,18 +34,16 @@ def main() -> int:
         print("Usage: check_commit_msg.py <commit-msg-file>")
         return 1
 
-    with open(sys.argv[1], encoding="utf-8") as f:
-        message = f.read().strip()
-
+    message = Path(sys.argv[1]).read_text(encoding="utf-8").strip()
     first_line = message.split("\n")[0]
 
     if PATTERN.match(first_line):
         return 0
 
     types_str = "|".join(VALID_TYPES)
-    print(f"Bad commit message format.")
+    print("Bad commit message format.")
     print(f"  Got:      {first_line}")
-    print(f"  Expected: type(scope): description (max 72 chars)")
+    print("  Expected: type(scope): description (max 72 chars)")
     print(f"  Types:    {types_str}")
     return 1
 
