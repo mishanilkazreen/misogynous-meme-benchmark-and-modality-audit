@@ -260,6 +260,9 @@ results/*.jsonl
 .DS_Store
 
 .claude/
+
+# VLM documentation scratch folder
+vlm_docs/
 models/yolo/trainer.py
 tests/unit/test_train_yolo.py
 yolo_benchmark.json
