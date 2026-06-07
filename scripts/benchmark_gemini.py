@@ -36,6 +36,13 @@ try:
 except ModuleNotFoundError:
     _GENAI_AVAILABLE = False
 
+_SAFETY_SETTINGS = [
+    {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_NONE"},
+    {"category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_NONE"},
+    {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_NONE"},
+    {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE"},
+]
+
 SUBSET_NAMES = ["digits", "hate_slangs", "hate_symbols"]
 RESULTS_DIR = Path(__file__).resolve().parents[1] / "results"
 MODEL_ID = "gemini-3.1-flash-lite"
@@ -93,6 +100,8 @@ def classify_with_gemini(
                     prediction=None, confidence=0.0, latency_s=elapsed, refusal=True
                 )
             matched = extract_label(text, labels)
+            if matched is None:
+                print(f"  [no match] raw response: {text!r}")
             return ClassificationResult(
                 prediction=matched,
                 confidence=1.0 if matched else 0.0,
@@ -125,7 +134,7 @@ def run_benchmark(
         raise RuntimeError("GEMINI_API_KEY environment variable not set")
 
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel(MODEL_ID)
+    model = genai.GenerativeModel(MODEL_ID, safety_settings=_SAFETY_SETTINGS)
 
     if samples is None:
         samples = collect_samples(subset, limit=limit)
@@ -190,7 +199,7 @@ def _aggregate(
     sample_rows: list[dict[str, Any]],
 ) -> dict[str, Any]:
     n_total = len(results)
-    refusal_rate = sum(1 for r in results if r.refusal) / n_total if n_total else 0.0
+    refusal_rate = sum(1 for r in results if r.prediction is None) / n_total if n_total else 0.0
     avg_latency = sum(r.latency_s for r in results) / n_total if n_total else 0.0
 
     # Accuracy over ALL images: refusals (prediction=None) count as wrong
