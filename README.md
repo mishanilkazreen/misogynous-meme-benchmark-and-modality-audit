@@ -119,6 +119,37 @@ uv run python scripts/benchmark_qwen2vl.py --subset hate_symbols --device cuda
 
 Output: `results/qwen2vl_{subset}.json`
 
+### Gemini
+
+Cloud API. Requires a Gemini API key.
+
+Add to `.env` (gitignored):
+
+```
+GEMINI_API_KEY=your_key_here
+```
+
+Then export it before running (PowerShell):
+
+```powershell
+$env:GEMINI_API_KEY = "your_key_here"
+```
+
+```bash
+# Sanity-check (text prompt only)
+uv run python scripts/test_gemini.py
+
+# Verify (5 samples, no preprocessing)
+uv run python scripts/benchmark_gemini.py --subset digits --limit 5 --filters none
+
+# Full run — all three subsets
+uv run python scripts/benchmark_gemini.py --subset digits
+uv run python scripts/benchmark_gemini.py --subset hate_slangs
+uv run python scripts/benchmark_gemini.py --subset hate_symbols
+```
+
+Output: `results/gemini_{subset}.json`
+
 ### Options common to all three scripts
 
 | Flag | Default | Description |
