@@ -35,9 +35,7 @@ class Annotation:
 
     @property
     def visibility_level(self) -> str:
-        if self.visibility <= 2:
-            return "low"
-        return "high"
+        return "low" if self.visibility <= 2 else "high"
 
 
 class HatefulIllusionDataset(Dataset):
@@ -63,7 +61,9 @@ class HatefulIllusionDataset(Dataset):
         from datasets import load_dataset
 
         self._hf_dataset = load_dataset(
-            "yiting/HatefulIllusion_Dataset", self.subset, cache_dir=self.cache_dir
+            "yiting/HatefulIllusion_Dataset",
+            self.subset,
+            cache_dir=self.cache_dir,
         )[self.split]
 
         for idx, item in enumerate(self._hf_dataset):  # type: ignore[arg-type, var-annotated]
@@ -134,7 +134,10 @@ class DatasetManager:
         cache_key = f"{split}:{subset}"
         if cache_key not in self._datasets:
             self._datasets[cache_key] = HatefulIllusionDataset(
-                split=split, subset=subset, transform=transform, cache_dir=self.cache_dir
+                split=split,
+                subset=subset,
+                transform=transform,
+                cache_dir=self.cache_dir,
             )
         return self._datasets[cache_key]
 

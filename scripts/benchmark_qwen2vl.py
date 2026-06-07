@@ -217,12 +217,10 @@ def run_benchmark(
     refusal_rate = sum(1 for r in results if r.refusal) / n_total if n_total else 0.0
     avg_latency = sum(r.latency_s for r in results) / n_total if n_total else 0.0
 
-    # Accuracy over ALL images: refusals (prediction=None) count as wrong
     predictions: list[str | None] = [r.prediction for r in results]
     correct_all = sum(1 for p, gt in zip(predictions, ground_truths, strict=True) if p == gt)
     accuracy = correct_all / n_total if n_total else 0.0
 
-    # Macro P/R/F1 over all images (refusals = None prediction → miss for every class)
     per_class_prec: list[float] = []
     per_class_rec: list[float] = []
     for label in all_labels:

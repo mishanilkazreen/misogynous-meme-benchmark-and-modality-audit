@@ -1,0 +1,198 @@
+[
+  {
+    "benchmark_date": "2026-06-06T18:18:53.143429+00:00",
+    "model": "qwen2vl",
+    "filter": "none",
+    "subset": "digits",
+    "exact_match_accuracy": 0.1,
+    "precision": 0.049107142857142856,
+    "recall": 0.0875,
+    "f1": 0.06290849673202614,
+    "avg_latency_s": 18.46496171000181,
+    "refusal_rate": 0.0,
+    "by_visibility": {
+      "1": {
+        "exact_match_accuracy": 0.0,
+        "num_images": 3
+      },
+      "2": {
+        "exact_match_accuracy": 0.125,
+        "num_images": 16
+      },
+      "3": {
+        "exact_match_accuracy": 0.0,
+        "num_images": 0
+      },
+      "4": {
+        "exact_match_accuracy": 0.0,
+        "num_images": 0
+      },
+      "5": {
+        "exact_match_accuracy": 0.0,
+        "num_images": 0
+      }
+    },
+    "sample_predictions": [
+      {
+        "image_id": "digits_0",
+        "ground_truth": "0",
+        "prediction": "5",
+        "correct": false,
+        "refusal": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_1",
+        "ground_truth": "8",
+        "prediction": "5",
+        "correct": false,
+        "refusal": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_2",
+        "ground_truth": "6",
+        "prediction": "5",
+        "correct": false,
+        "refusal": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_3",
+        "ground_truth": "6",
+        "prediction": "6",
+        "correct": true,
+        "refusal": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_4",
+        "ground_truth": "4",
+        "prediction": "6",
+        "correct": false,
+        "refusal": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_5",
+        "ground_truth": "1",
+        "prediction": "8",
+        "correct": false,
+        "refusal": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_6",
+        "ground_truth": "5",
+        "prediction": "0",
+        "correct": false,
+        "refusal": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_7",
+        "ground_truth": "2",
+        "prediction": "7",
+        "correct": false,
+        "refusal": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_8",
+        "ground_truth": "4",
+        "prediction": "5",
+        "correct": false,
+        "refusal": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_9",
+        "ground_truth": "0",
+        "prediction": "6",
+        "correct": false,
+        "refusal": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_10",
+        "ground_truth": "5",
+        "prediction": "0",
+        "correct": false,
+        "refusal": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_11",
+        "ground_truth": "8",
+        "prediction": "5",
+        "correct": false,
+        "refusal": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_12",
+        "ground_truth": "5",
+        "prediction": "6",
+        "correct": false,
+        "refusal": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_13",
+        "ground_truth": "1",
+        "prediction": "8",
+        "correct": false,
+        "refusal": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_14",
+        "ground_truth": "0",
+        "prediction": "8",
+        "correct": false,
+        "refusal": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_15",
+        "ground_truth": "7",
+        "prediction": "0",
+        "correct": false,
+        "refusal": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_16",
+        "ground_truth": "7",
+        "prediction": "0",
+        "correct": false,
+        "refusal": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_17",
+        "ground_truth": "2",
+        "prediction": "5",
+        "correct": false,
+        "refusal": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_18",
+        "ground_truth": "5",
+        "prediction": "7",
+        "correct": false,
+        "refusal": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_19",
+        "ground_truth": "5",
+        "prediction": "5",
+        "correct": true,
+        "refusal": false,
+        "visibility": 2
+      }
+    ]
+  }
+]

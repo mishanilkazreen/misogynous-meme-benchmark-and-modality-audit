@@ -1,0 +1,517 @@
+[
+  {
+    "model": "yolov8n",
+    "subset": "ww2",
+    "mode": "pretrained",
+    "weights_type": "pretrained",
+    "num_images": 26,
+    "average_inference_time_s": 0.08186763142629598,
+    "total_inference_time_s": 2.1285584170836955,
+    "computed_metrics": {
+      "mAP50": 0.8490531058470925,
+      "mAP50-95": 0.6401412952325034,
+      "precision": 0.5,
+      "recall": 1.0,
+      "f1": 0.6666666666666666
+    },
+    "visibility_metrics": {
+      "3": {
+        "mAP50": 0.8490531058470925,
+        "mAP50-95": 0.6401412952325034,
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.6666666666666666
+      }
+    }
+  },
+  {
+    "model": "yolov10n",
+    "subset": "ww2",
+    "mode": "pretrained",
+    "weights_type": "pretrained",
+    "num_images": 26,
+    "average_inference_time_s": 0.09281905449908943,
+    "total_inference_time_s": 2.413295416976325,
+    "computed_metrics": {
+      "mAP50": 0.8686049206927382,
+      "mAP50-95": 0.8527414815060104,
+      "precision": 0.8846153846153846,
+      "recall": 0.8846153846153846,
+      "f1": 0.8846153846153846
+    },
+    "visibility_metrics": {
+      "3": {
+        "mAP50": 0.8686049206927382,
+        "mAP50-95": 0.8527414815060104,
+        "precision": 0.8846153846153846,
+        "recall": 0.8846153846153846,
+        "f1": 0.8846153846153846
+      }
+    }
+  },
+  {
+    "model": "yolo11n",
+    "subset": "ww2",
+    "mode": "pretrained",
+    "weights_type": "pretrained",
+    "num_images": 26,
+    "average_inference_time_s": 0.08615521634839332,
+    "total_inference_time_s": 2.2400356250582263,
+    "computed_metrics": {
+      "mAP50": 0.8701677860093702,
+      "mAP50-95": 0.8255961750021156,
+      "precision": 0.8518518518518519,
+      "recall": 0.8846153846153846,
+      "f1": 0.8679245283018868
+    },
+    "visibility_metrics": {
+      "3": {
+        "mAP50": 0.8701677860093702,
+        "mAP50-95": 0.8255961750021156,
+        "precision": 0.8518518518518519,
+        "recall": 0.8846153846153846,
+        "f1": 0.8679245283018868
+      }
+    }
+  },
+  {
+    "model": "yolo12n",
+    "subset": "ww2",
+    "mode": "pretrained",
+    "weights_type": "pretrained",
+    "num_images": 26,
+    "average_inference_time_s": 0.10678475161638254,
+    "total_inference_time_s": 2.776403542025946,
+    "computed_metrics": {
+      "mAP50": 0.9440213252094442,
+      "mAP50-95": 0.8781197156152863,
+      "precision": 0.9259259259259259,
+      "recall": 0.9615384615384616,
+      "f1": 0.9433962264150944
+    },
+    "visibility_metrics": {
+      "3": {
+        "mAP50": 0.9440213252094442,
+        "mAP50-95": 0.8781197156152863,
+        "precision": 0.9259259259259259,
+        "recall": 0.9615384615384616,
+        "f1": 0.9433962264150944
+      }
+    }
+  },
+  {
+    "model": "yolo26n",
+    "subset": "ww2",
+    "mode": "pretrained",
+    "weights_type": "pretrained",
+    "num_images": 26,
+    "average_inference_time_s": 0.08748945031010617,
+    "total_inference_time_s": 2.2747257080627605,
+    "computed_metrics": {
+      "mAP50": 0.8865733120626641,
+      "mAP50-95": 0.8540469353475355,
+      "precision": 0.8571428571428571,
+      "recall": 0.9230769230769231,
+      "f1": 0.888888888888889
+    },
+    "visibility_metrics": {
+      "3": {
+        "mAP50": 0.8865733120626641,
+        "mAP50-95": 0.8540469353475355,
+        "precision": 0.8571428571428571,
+        "recall": 0.9230769230769231,
+        "f1": 0.888888888888889
+      }
+    }
+  },
+  {
+    "model": "yolov8n",
+    "subset": "ww2",
+    "mode": "trained",
+    "weights_type": "best",
+    "num_images": 26,
+    "average_inference_time_s": 0.08159813942172779,
+    "total_inference_time_s": 2.1215516249649227,
+    "computed_metrics": {
+      "mAP50": 0.9573495811119573,
+      "mAP50-95": 0.8983741183482898,
+      "precision": 0.9615384615384616,
+      "recall": 0.9615384615384616,
+      "f1": 0.9615384615384616
+    },
+    "visibility_metrics": {
+      "3": {
+        "mAP50": 0.9573495811119573,
+        "mAP50-95": 0.8983741183482898,
+        "precision": 0.9615384615384616,
+        "recall": 0.9615384615384616,
+        "f1": 0.9615384615384616
+      }
+    },
+    "trained_on": "digits"
+  },
+  {
+    "model": "yolov10n",
+    "subset": "ww2",
+    "mode": "trained",
+    "weights_type": "best",
+    "num_images": 26,
+    "average_inference_time_s": 0.09764477242536557,
+    "total_inference_time_s": 2.5387640830595046,
+    "computed_metrics": {
+      "mAP50": 0.9573495811119573,
+      "mAP50-95": 0.8620474583480677,
+      "precision": 0.9259259259259259,
+      "recall": 0.9615384615384616,
+      "f1": 0.9433962264150944
+    },
+    "visibility_metrics": {
+      "3": {
+        "mAP50": 0.9573495811119573,
+        "mAP50-95": 0.8620474583480677,
+        "precision": 0.9259259259259259,
+        "recall": 0.9615384615384616,
+        "f1": 0.9433962264150944
+      }
+    },
+    "trained_on": "digits"
+  },
+  {
+    "model": "yolo11n",
+    "subset": "ww2",
+    "mode": "trained",
+    "weights_type": "best",
+    "num_images": 26,
+    "average_inference_time_s": 0.08813991507766052,
+    "total_inference_time_s": 2.2916377920191735,
+    "computed_metrics": {
+      "mAP50": 0.9144554455445546,
+      "mAP50-95": 0.8786763735197051,
+      "precision": 0.9230769230769231,
+      "recall": 0.9230769230769231,
+      "f1": 0.9230769230769231
+    },
+    "visibility_metrics": {
+      "3": {
+        "mAP50": 0.9144554455445546,
+        "mAP50-95": 0.8786763735197051,
+        "precision": 0.9230769230769231,
+        "recall": 0.9230769230769231,
+        "f1": 0.9230769230769231
+      }
+    },
+    "trained_on": "digits"
+  },
+  {
+    "model": "yolo12n",
+    "subset": "ww2",
+    "mode": "trained",
+    "weights_type": "best",
+    "num_images": 26,
+    "average_inference_time_s": 0.10627333173313393,
+    "total_inference_time_s": 2.763106625061482,
+    "computed_metrics": {
+      "mAP50": 0.8981513535968982,
+      "mAP50-95": 0.8426090044901926,
+      "precision": 0.8571428571428571,
+      "recall": 0.9230769230769231,
+      "f1": 0.888888888888889
+    },
+    "visibility_metrics": {
+      "3": {
+        "mAP50": 0.8981513535968982,
+        "mAP50-95": 0.8426090044901926,
+        "precision": 0.8571428571428571,
+        "recall": 0.9230769230769231,
+        "f1": 0.888888888888889
+      }
+    },
+    "trained_on": "digits"
+  },
+  {
+    "model": "yolo26n",
+    "subset": "ww2",
+    "mode": "trained",
+    "weights_type": "best",
+    "num_images": 26,
+    "average_inference_time_s": 0.08498810096464765,
+    "total_inference_time_s": 2.209690625080839,
+    "computed_metrics": {
+      "mAP50": 0.8491502091385608,
+      "mAP50-95": 0.7253705073522554,
+      "precision": 0.6666666666666666,
+      "recall": 0.9230769230769231,
+      "f1": 0.7741935483870968
+    },
+    "visibility_metrics": {
+      "3": {
+        "mAP50": 0.8491502091385608,
+        "mAP50-95": 0.7253705073522554,
+        "precision": 0.6666666666666666,
+        "recall": 0.9230769230769231,
+        "f1": 0.7741935483870968
+      }
+    },
+    "trained_on": "digits"
+  },
+  {
+    "model": "yolov8n",
+    "subset": "ww2",
+    "mode": "trained",
+    "weights_type": "best",
+    "num_images": 26,
+    "average_inference_time_s": 0.08148271795989086,
+    "total_inference_time_s": 2.1185506669571623,
+    "computed_metrics": {
+      "mAP50": 0.9588728103579589,
+      "mAP50-95": 0.8819428096655821,
+      "precision": 0.9259259259259259,
+      "recall": 0.9615384615384616,
+      "f1": 0.9433962264150944
+    },
+    "visibility_metrics": {
+      "3": {
+        "mAP50": 0.9588728103579589,
+        "mAP50-95": 0.8819428096655821,
+        "precision": 0.9259259259259259,
+        "recall": 0.9615384615384616,
+        "f1": 0.9433962264150944
+      }
+    },
+    "trained_on": "hate_slangs"
+  },
+  {
+    "model": "yolov10n",
+    "subset": "ww2",
+    "mode": "trained",
+    "weights_type": "best",
+    "num_images": 26,
+    "average_inference_time_s": 0.09404758976933618,
+    "total_inference_time_s": 2.4452373340027407,
+    "computed_metrics": {
+      "mAP50": 0.9603960396039604,
+      "mAP50-95": 0.9132464825429911,
+      "precision": 1.0,
+      "recall": 0.9615384615384616,
+      "f1": 0.9803921568627451
+    },
+    "visibility_metrics": {
+      "3": {
+        "mAP50": 0.9603960396039604,
+        "mAP50-95": 0.9132464825429911,
+        "precision": 1.0,
+        "recall": 0.9615384615384616,
+        "f1": 0.9803921568627451
+      }
+    },
+    "trained_on": "hate_slangs"
+  },
+  {
+    "model": "yolo11n",
+    "subset": "ww2",
+    "mode": "trained",
+    "weights_type": "best",
+    "num_images": 26,
+    "average_inference_time_s": 0.08736676442024943,
+    "total_inference_time_s": 2.271535874926485,
+    "computed_metrics": {
+      "mAP50": 0.9574624129079574,
+      "mAP50-95": 0.8946356540415946,
+      "precision": 0.9259259259259259,
+      "recall": 0.9615384615384616,
+      "f1": 0.9433962264150944
+    },
+    "visibility_metrics": {
+      "3": {
+        "mAP50": 0.9574624129079574,
+        "mAP50-95": 0.8946356540415946,
+        "precision": 0.9259259259259259,
+        "recall": 0.9615384615384616,
+        "f1": 0.9433962264150944
+      }
+    },
+    "trained_on": "hate_slangs"
+  },
+  {
+    "model": "yolo12n",
+    "subset": "ww2",
+    "mode": "trained",
+    "weights_type": "best",
+    "num_images": 26,
+    "average_inference_time_s": 0.10687341027033444,
+    "total_inference_time_s": 2.7787086670286953,
+    "computed_metrics": {
+      "mAP50": 0.9590947666195194,
+      "mAP50-95": 0.7809309973167962,
+      "precision": 0.8125,
+      "recall": 1.0,
+      "f1": 0.896551724137931
+    },
+    "visibility_metrics": {
+      "3": {
+        "mAP50": 0.9590947666195194,
+        "mAP50-95": 0.7809309973167962,
+        "precision": 0.8125,
+        "recall": 1.0,
+        "f1": 0.896551724137931
+      }
+    },
+    "trained_on": "hate_slangs"
+  },
+  {
+    "model": "yolo26n",
+    "subset": "ww2",
+    "mode": "trained",
+    "weights_type": "best",
+    "num_images": 26,
+    "average_inference_time_s": 0.08560621957831945,
+    "total_inference_time_s": 2.2257617090363055,
+    "computed_metrics": {
+      "mAP50": 0.9926659332599927,
+      "mAP50-95": 0.8684747567488579,
+      "precision": 0.9629629629629629,
+      "recall": 1.0,
+      "f1": 0.9811320754716981
+    },
+    "visibility_metrics": {
+      "3": {
+        "mAP50": 0.9926659332599927,
+        "mAP50-95": 0.8684747567488579,
+        "precision": 0.9629629629629629,
+        "recall": 1.0,
+        "f1": 0.9811320754716981
+      }
+    },
+    "trained_on": "hate_slangs"
+  },
+  {
+    "model": "yolov8n",
+    "subset": "ww2",
+    "mode": "trained",
+    "weights_type": "best",
+    "num_images": 26,
+    "average_inference_time_s": 0.08164065707779418,
+    "total_inference_time_s": 2.1226570840226486,
+    "computed_metrics": {
+      "mAP50": 0.9574624129079574,
+      "mAP50-95": 0.8860652731939863,
+      "precision": 0.9259259259259259,
+      "recall": 0.9615384615384616,
+      "f1": 0.9433962264150944
+    },
+    "visibility_metrics": {
+      "3": {
+        "mAP50": 0.9574624129079574,
+        "mAP50-95": 0.8860652731939863,
+        "precision": 0.9259259259259259,
+        "recall": 0.9615384615384616,
+        "f1": 0.9433962264150944
+      }
+    },
+    "trained_on": "hate_symbols"
+  },
+  {
+    "model": "yolov10n",
+    "subset": "ww2",
+    "mode": "trained",
+    "weights_type": "best",
+    "num_images": 26,
+    "average_inference_time_s": 0.09264711057767272,
+    "total_inference_time_s": 2.4088248750194907,
+    "computed_metrics": {
+      "mAP50": 0.9603960396039604,
+      "mAP50-95": 0.8927442244224423,
+      "precision": 0.9615384615384616,
+      "recall": 0.9615384615384616,
+      "f1": 0.9615384615384616
+    },
+    "visibility_metrics": {
+      "3": {
+        "mAP50": 0.9603960396039604,
+        "mAP50-95": 0.8927442244224423,
+        "precision": 0.9615384615384616,
+        "recall": 0.9615384615384616,
+        "f1": 0.9615384615384616
+      }
+    },
+    "trained_on": "hate_symbols"
+  },
+  {
+    "model": "yolo11n",
+    "subset": "ww2",
+    "mode": "trained",
+    "weights_type": "best",
+    "num_images": 26,
+    "average_inference_time_s": 0.09117791826765125,
+    "total_inference_time_s": 2.3706258749589324,
+    "computed_metrics": {
+      "mAP50": 0.997066373303997,
+      "mAP50-95": 0.934439437533497,
+      "precision": 0.9629629629629629,
+      "recall": 1.0,
+      "f1": 0.9811320754716981
+    },
+    "visibility_metrics": {
+      "3": {
+        "mAP50": 0.997066373303997,
+        "mAP50-95": 0.934439437533497,
+        "precision": 0.9629629629629629,
+        "recall": 1.0,
+        "f1": 0.9811320754716981
+      }
+    },
+    "trained_on": "hate_symbols"
+  },
+  {
+    "model": "yolo12n",
+    "subset": "ww2",
+    "mode": "trained",
+    "weights_type": "best",
+    "num_images": 26,
+    "average_inference_time_s": 0.10899146153734854,
+    "total_inference_time_s": 2.833777999971062,
+    "computed_metrics": {
+      "mAP50": 0.9985331866519985,
+      "mAP50-95": 0.8826503983731706,
+      "precision": 0.9629629629629629,
+      "recall": 1.0,
+      "f1": 0.9811320754716981
+    },
+    "visibility_metrics": {
+      "3": {
+        "mAP50": 0.9985331866519985,
+        "mAP50-95": 0.8826503983731706,
+        "precision": 0.9629629629629629,
+        "recall": 1.0,
+        "f1": 0.9811320754716981
+      }
+    },
+    "trained_on": "hate_symbols"
+  },
+  {
+    "model": "yolo26n",
+    "subset": "ww2",
+    "mode": "trained",
+    "weights_type": "best",
+    "num_images": 26,
+    "average_inference_time_s": 0.08572288784825315,
+    "total_inference_time_s": 2.228795084054582,
+    "computed_metrics": {
+      "mAP50": 0.9451379920600756,
+      "mAP50-95": 0.8806633746747824,
+      "precision": 0.9259259259259259,
+      "recall": 0.9615384615384616,
+      "f1": 0.9433962264150944
+    },
+    "visibility_metrics": {
+      "3": {
+        "mAP50": 0.9451379920600756,
+        "mAP50-95": 0.8806633746747824,
+        "precision": 0.9259259259259259,
+        "recall": 0.9615384615384616,
+        "f1": 0.9433962264150944
+      }
+    },
+    "trained_on": "hate_symbols"
+  }
+]
