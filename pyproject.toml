@@ -29,6 +29,7 @@ dependencies = [
     "boto3>=1.43.14",
     "accelerate>=1.13.0",
     "qwen-vl-utils>=0.0.14",
+    "google-generativeai>=0.8.6",
 ]
 
 [project.optional-dependencies]
