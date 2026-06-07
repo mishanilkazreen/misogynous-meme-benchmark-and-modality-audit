@@ -72,7 +72,6 @@ class CLIPClassifier(BaseVLMClassifier):
             refusal=False,
         )
 
-
     def predict_batch(
         self, images: list[np.ndarray], chunk_size: int = 32
     ) -> list[tuple[str, float]]:

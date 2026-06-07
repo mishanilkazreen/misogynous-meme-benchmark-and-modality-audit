@@ -8,6 +8,7 @@ Usage:
     uv run python scripts/benchmark_llava.py --subset digits --limit 5 --device cuda
 """
 
+# ruff: noqa: I001  # datasets (via utils.dataset) must precede torch to avoid OpenMP segfault
 from __future__ import annotations
 
 import argparse
@@ -17,14 +18,14 @@ from pathlib import Path
 import time
 from typing import Any
 
+from models.vlm.classifier import ClassificationResult, build_prompt, extract_label
+from utils.dataset import DatasetManager
+from utils.preprocessing import PreprocessingPipeline
+
 import numpy as np
 from PIL import Image
 import torch
 from tqdm import tqdm
-
-from models.vlm.classifier import ClassificationResult, build_prompt, extract_label
-from utils.dataset import DatasetManager
-from utils.preprocessing import PreprocessingPipeline
 
 try:
     from transformers import (  # type: ignore[import-untyped]

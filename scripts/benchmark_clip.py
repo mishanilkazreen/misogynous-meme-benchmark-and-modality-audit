@@ -6,6 +6,7 @@ Usage:
     uv run python scripts/benchmark_clip.py --subset digits --device cuda
 """
 
+# ruff: noqa: I001  # datasets (via utils.dataset) must precede torch to avoid OpenMP segfault
 from __future__ import annotations
 
 import argparse
@@ -15,13 +16,15 @@ from pathlib import Path
 import time
 from typing import Any
 
+# utils.dataset (datasets) must be imported before models.vlm.clip_classifier (open_clip/torch)
+# to avoid an OpenMP double-initialisation segfault.
+from utils.dataset import DatasetManager
+from models.vlm.clip_classifier import CLIPClassifier
+from utils.preprocessing import PreprocessingPipeline
+
 import numpy as np
 import torch
 from tqdm import tqdm
-
-from models.vlm.clip_classifier import CLIPClassifier
-from utils.dataset import DatasetManager
-from utils.preprocessing import PreprocessingPipeline
 
 SUBSET_NAMES = ["digits", "hate_slangs", "hate_symbols"]
 RESULTS_DIR = Path(__file__).resolve().parents[1] / "results"

@@ -8,6 +8,7 @@ Usage:
     uv run python scripts/benchmark_gemini.py --subset digits --limit 5
 """
 
+# ruff: noqa: I001  # datasets (via utils.dataset) must precede torch to avoid OpenMP segfault
 from __future__ import annotations
 
 import argparse
@@ -19,13 +20,13 @@ from pathlib import Path
 import time
 from typing import Any
 
-import numpy as np
-from PIL import Image
-import torch
-
 from models.vlm.classifier import ClassificationResult, build_prompt, extract_label
 from utils.dataset import DatasetManager
 from utils.preprocessing import PreprocessingPipeline
+
+import numpy as np
+from PIL import Image
+import torch
 
 try:
     import google.generativeai as genai  # type: ignore[import-untyped,import-not-found]
