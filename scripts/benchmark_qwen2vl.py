@@ -12,26 +12,24 @@ Usage:
 from __future__ import annotations
 
 import argparse
-from datetime import datetime, timezone
 import json
-from pathlib import Path
 import time
+from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any
+
+import numpy as np
+import torch
+from PIL import Image
+from tqdm import tqdm
 
 from models.vlm.classifier import ClassificationResult, build_prompt, extract_label
 from utils.dataset import DatasetManager
 from utils.preprocessing import PreprocessingPipeline
 
-import numpy as np
-from PIL import Image
-import torch
-from tqdm import tqdm
-
 try:
-    from transformers import (  # type: ignore[import-untyped]
-        AutoProcessor,
-        Qwen2VLForConditionalGeneration,
-    )
+    from transformers import AutoProcessor  # type: ignore[import-untyped]
+    from transformers import BitsAndBytesConfig, Qwen2VLForConditionalGeneration
 
     _TRANSFORMERS_AVAILABLE = True
 except (ModuleNotFoundError, ImportError):
@@ -94,15 +92,39 @@ def is_refusal(text: str) -> bool:
 _model_cache: dict[str, tuple[Any, Any]] = {}
 
 
-def _load_model(model_id: str, device: str) -> tuple[Any, Any]:
-    key = f"{model_id}:{device}"
+def _load_model(model_id: str, device: str, quantize: str = "none") -> tuple[Any, Any]:
+    """Load processor + model; cached after first call.
+
+    Args:
+        model_id: HuggingFace model identifier.
+        device: Target device ('cuda', 'cpu').
+        quantize: Quantization mode - 'none' (fp16), '4bit', or '8bit'.
+            4-bit quantization reduces VRAM from ~14 GB to ~5 GB,
+            enabling inference on 12 GB consumer GPUs.
+    """
+    key = f"{model_id}:{device}:{quantize}"
     if key in _model_cache:
         return _model_cache[key]
-    print(f"Loading {model_id} (fp16) …")
+
+    quant_label = "4-bit NF4" if quantize == "4bit" else ("8-bit" if quantize == "8bit" else "fp16")
+    print(f"Loading {model_id} ({quant_label}) …")
     processor = AutoProcessor.from_pretrained(model_id, max_pixels=DEFAULT_MAX_PIXELS)
-    model = Qwen2VLForConditionalGeneration.from_pretrained(
-        model_id, device_map=device, dtype=torch.float16
-    )
+
+    load_kwargs: dict[str, Any] = {"device_map": device}
+
+    if quantize == "4bit":
+        load_kwargs["quantization_config"] = BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_compute_dtype=torch.float16,
+            bnb_4bit_quant_type="nf4",
+            bnb_4bit_use_double_quant=True,
+        )
+    elif quantize == "8bit":
+        load_kwargs["quantization_config"] = BitsAndBytesConfig(load_in_8bit=True)
+    else:
+        load_kwargs["dtype"] = torch.float16
+
+    model = Qwen2VLForConditionalGeneration.from_pretrained(model_id, **load_kwargs)
     model.eval()
     _model_cache[key] = (processor, model)
     return processor, model
@@ -116,6 +138,7 @@ def run_benchmark(
     limit: int | None = None,
     samples: list[dict[str, Any]] | None = None,
     batch_size: int = 4,
+    quantize: str = "none",
 ) -> dict[str, Any]:
     if not _TRANSFORMERS_AVAILABLE:
         raise RuntimeError(
@@ -124,7 +147,7 @@ def run_benchmark(
     if not torch.cuda.is_available():
         raise RuntimeError("CUDA required for Qwen2-VL. Use --device cpu only for testing.")
 
-    processor, model = _load_model(model_id, device)
+    processor, model = _load_model(model_id, device, quantize=quantize)
 
     if samples is None:
         samples = collect_samples(subset, limit=limit)
@@ -294,6 +317,12 @@ def main() -> None:
     )
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--batch-size", type=int, default=4, help="Images per forward pass")
+    parser.add_argument(
+        "--quantize",
+        default="4bit",
+        choices=["none", "4bit", "8bit"],
+        help="Quantization mode. 4bit recommended for 12 GB GPUs (default: 4bit)",
+    )
     args = parser.parse_args()
 
     filters_to_run = (
@@ -316,6 +345,7 @@ def main() -> None:
             preprocess=None if flt == "none" else flt,
             samples=samples,
             batch_size=args.batch_size,
+            quantize=args.quantize,
         )
         all_results.append(result)
         acc = result.get("exact_match_accuracy", 0.0)
