@@ -328,6 +328,15 @@ def main() -> None:
     )
 
     print(f"Subset: {args.subset} | Filters: {filters_to_run} | Limit: {args.limit}")
+
+    # Load model FIRST (before dataset) to avoid bitsandbytes crash.
+    # The 4-bit quantization CUDA kernels are sensitive to memory state;
+    # pre-loading large image datasets can trigger an access violation
+    # during weight conversion on Windows. Loading the model while RAM
+    # is clean avoids this.
+    print("Pre-loading model …")
+    _load_model(args.model_id, args.device, quantize=args.quantize)
+
     samples = collect_samples(args.subset, limit=args.limit)
     print(f"Loaded {len(samples)} samples")
 
