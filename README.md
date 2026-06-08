@@ -69,13 +69,27 @@ for final benchmark runs.
 
 ## VLM Benchmark
 
+### Hardware and quantization
+
+Local generative models (LLaVA, Qwen2-VL) run with **4-bit NF4
+quantization** by default (via `bitsandbytes`), reducing VRAM from
+~14 GB to ~5 GB so they fit on 12 GB consumer GPUs. Pass
+`--quantize none` for full fp16 (requires 24+ GB VRAM).
+
+> **CUDA note:** torch is pinned to the **CUDA 12.8** build
+> (`pytorch-cu128` index in `pyproject.toml`) because `bitsandbytes`
+> ships native binaries up to CUDA 13.0 only. Do not bump torch to a
+> CUDA 13.2 build — `bitsandbytes` 4-bit kernels will crash at
+> runtime against a 13.2 runtime. CUDA 12.8 works on all RTX 30/40
+> series and data-centre Ampere/Hopper GPUs.
+
 ### Model overview
 
-| Model | Size | Download | VRAM (fp16) |
-|---|---|---|---|
-| CLIP (ViT-B/32) | ~600 MB | auto on first run | ~1 GB |
-| LLaVA 1.5 | 7B | auto on first run (~14 GB) | ~14 GB |
-| Qwen2-VL | 7B | auto on first run (~15 GB) | ~14 GB |
+| Model | Size | Download | VRAM (4-bit) | VRAM (fp16) |
+|---|---|---|---|---|
+| CLIP (ViT-B/32) | ~600 MB | auto on first run | n/a | ~1 GB |
+| LLaVA 1.5 | 7B | auto on first run (~14 GB) | ~5 GB | ~14 GB |
+| Qwen2-VL | 7B | auto on first run (~15 GB) | ~5 GB | ~14 GB |
 
 ### CLIP
 
@@ -159,6 +173,7 @@ Output: `results/gemini_{subset}.json`
 | `--limit` | none | Cap number of images (useful for quick checks) |
 | `--device` | `cpu` | `cuda` or `cpu` |
 | `--batch-size` | `4` | Images per forward pass (LLaVA/Qwen2-VL only) |
+| `--quantize` | `4bit` | `4bit`, `8bit`, or `none` (LLaVA/Qwen2-VL only) |
 
 ## Benchmarking YOLO
 
