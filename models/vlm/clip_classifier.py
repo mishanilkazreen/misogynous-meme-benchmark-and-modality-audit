@@ -9,8 +9,10 @@ import open_clip  # type: ignore[import-untyped]
 from PIL import Image
 import torch
 
+from models.vlm.classifier import BaseVLMClassifier, ClassificationResult
 
-class CLIPClassifier:
+
+class CLIPClassifier(BaseVLMClassifier):
     """Zero-shot classifier using CLIP cosine similarity between image and text embeddings."""
 
     def __init__(
@@ -56,6 +58,20 @@ class CLIPClassifier:
         idx = int(probs.argmax().item())
         return self._labels[idx], float(probs[idx].item())
 
+    def classify(self, image: np.ndarray, labels: list[str]) -> ClassificationResult:
+        """Implement BaseVLMClassifier interface for a single image."""
+        if labels != self._labels:
+            self.set_classes(labels)
+        start = time.perf_counter()
+        label, confidence = self.predict(image)
+        elapsed = time.perf_counter() - start
+        return ClassificationResult(
+            prediction=label,
+            confidence=confidence,
+            latency_s=elapsed,
+            refusal=False,
+        )
+
     def predict_batch(
         self, images: list[np.ndarray], chunk_size: int = 32
     ) -> list[tuple[str, float]]:
@@ -81,7 +97,7 @@ class CLIPClassifier:
         self, images: list[np.ndarray], chunk_size: int = 32
     ) -> tuple[list[tuple[str, float]], float]:
         """Return predictions and total elapsed wall-clock seconds."""
-        start = time.perf_counter()
+        t0 = time.perf_counter()
         preds = self.predict_batch(images, chunk_size=chunk_size)
-        elapsed = time.perf_counter() - start
+        elapsed = time.perf_counter() - t0
         return preds, elapsed

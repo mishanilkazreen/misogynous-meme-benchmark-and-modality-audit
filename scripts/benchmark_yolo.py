@@ -23,6 +23,7 @@ Usage examples:
 Docs: https://docs.ultralytics.com/modes/val/
 """
 
+# ruff: noqa: I001  # datasets (via utils.dataset) must precede torch to avoid OpenMP segfault
 from __future__ import annotations
 
 import argparse
@@ -31,14 +32,14 @@ import json
 from pathlib import Path
 from typing import Any
 
-import numpy as np
-import torch
-import yaml
-
 from models.yolo.metrics import DetectionPrediction, GroundTruthBox, compute_detection_metrics
 from models.yolo.wrapper import UltralyticsYOLO
 from utils.dataset import DatasetManager
 from utils.preprocessing import PreprocessingPipeline
+
+import numpy as np
+import torch
+import yaml
 
 MODEL_CHECKPOINTS = [
     "yolov8n.pt",

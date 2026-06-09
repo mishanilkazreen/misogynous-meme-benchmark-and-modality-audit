@@ -63,7 +63,7 @@ def create_mock_hf_dataset(num_samples=10):
 class TestHatefulIllusionDataset:
     """Tests for HatefulIllusionDataset."""
 
-    @patch("datasets.load_dataset")
+    @patch("utils.dataset._hf_load_dataset")
     def test_load_dataset(self, mock_load):
         """Test loading dataset."""
         mock_load.return_value = create_mock_hf_dataset(5)
@@ -74,7 +74,7 @@ class TestHatefulIllusionDataset:
         assert len(dataset.annotations) == 5
 
     @patch("utils.dataset.hf_hub_download")
-    @patch("datasets.load_dataset")
+    @patch("utils.dataset._hf_load_dataset")
     def test_getitem_returns_dict(self, mock_load, mock_hf_download):
         """Test __getitem__ returns expected dictionary structure."""
         import tempfile
@@ -102,7 +102,7 @@ class TestHatefulIllusionDataset:
         assert "prompt" in sample
 
     @patch("utils.dataset.hf_hub_download")
-    @patch("datasets.load_dataset")
+    @patch("utils.dataset._hf_load_dataset")
     def test_image_tensor_shape(self, mock_load, mock_hf_download):
         """Test image is converted to proper tensor shape."""
         import tempfile
@@ -124,7 +124,7 @@ class TestHatefulIllusionDataset:
         assert sample["image"].shape[0] == 3  # RGB channels
 
     @patch("utils.dataset.hf_hub_download")
-    @patch("datasets.load_dataset")
+    @patch("utils.dataset._hf_load_dataset")
     def test_getitem_uses_subset_specific_image_path(self, mock_load, mock_hf_download):
         """Test __getitem__ downloads a subset-specific image path."""
         import tempfile
@@ -165,7 +165,7 @@ class TestHatefulIllusionDataset:
 class TestDatasetManager:
     """Tests for DatasetManager."""
 
-    @patch("datasets.load_dataset")
+    @patch("utils.dataset._hf_load_dataset")
     def test_load_dataset(self, mock_load):
         """Test loading dataset through manager."""
         mock_load.return_value = create_mock_hf_dataset(10)
@@ -175,7 +175,7 @@ class TestDatasetManager:
 
         assert len(dataset) == 10
 
-    @patch("datasets.load_dataset")
+    @patch("utils.dataset._hf_load_dataset")
     def test_dataset_caching(self, mock_load):
         """Test that datasets are cached."""
         mock_load.return_value = create_mock_hf_dataset(10)
@@ -186,7 +186,7 @@ class TestDatasetManager:
 
         assert dataset1 is dataset2
 
-    @patch("datasets.load_dataset")
+    @patch("utils.dataset._hf_load_dataset")
     def test_get_dataset_stats(self, mock_load):
         """Test get_dataset_stats returns expected structure."""
         mock_load.return_value = create_mock_hf_dataset(10)
@@ -200,7 +200,7 @@ class TestDatasetManager:
         assert "textual_count" in stats
         assert "symbolic_count" in stats
 
-    @patch("datasets.load_dataset")
+    @patch("utils.dataset._hf_load_dataset")
     def test_check_composition_completeness(self, mock_load):
         """Test composition completeness check."""
         mock_load.return_value = create_mock_hf_dataset(10)
@@ -213,7 +213,7 @@ class TestDatasetManager:
         assert "low_visibility_textual" in composition
         assert "low_visibility_symbolic" in composition
 
-    @patch("datasets.load_dataset")
+    @patch("utils.dataset._hf_load_dataset")
     def test_supports_minimum_size(self, mock_load):
         """Test minimum size check."""
         mock_load.return_value = create_mock_hf_dataset(10)

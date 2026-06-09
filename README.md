@@ -21,19 +21,14 @@ Reference papers are catalogued in [`papers/README.md`](papers/README.md).
 - VS Code with extensions from `.vscode/extensions.json`
   (ruff, mypy, markdownlint, TOML)
 
-## Quick Start
+## Setup
 
 ```bash
 git clone https://github.com/mishanilkazreen/content-moderation.git
 cd content-moderation
-uv venv --python 3.10
-source .venv/bin/activate
 uv sync --dev
-uv pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
 uv run pre-commit install
 ```
-
-GPU: swap the index URL for `cu118` or `cu121`.
 
 ## Dataset
 
@@ -69,30 +64,118 @@ uv run python scripts/verify_dataset.py --fast   # metadata only
 uv run python scripts/verify_dataset.py --subsets digits
 ```
 
-## Working on a task
+Use `digits` during development; switch to `hate_slangs`/`hate_symbols` only
+for final benchmark runs.
 
-Every task in `tasks.md` has a pre-created branch. Work one task per
-branch.
+## VLM Benchmark
+
+### Hardware and quantization
+
+Local generative models (LLaVA, Qwen2-VL) run with **4-bit NF4
+quantization** by default (via `bitsandbytes`), reducing VRAM from
+~14 GB to ~5 GB so they fit on 12 GB consumer GPUs. Pass
+`--quantize none` for full fp16 (requires 24+ GB VRAM).
+
+> **CUDA note:** torch is pinned to the **CUDA 12.8** build
+> (`pytorch-cu128` index in `pyproject.toml`) because `bitsandbytes`
+> ships native binaries up to CUDA 13.0 only. Do not bump torch to a
+> CUDA 13.2 build — `bitsandbytes` 4-bit kernels will crash at
+> runtime against a 13.2 runtime. CUDA 12.8 works on all RTX 30/40
+> series and data-centre Ampere/Hopper GPUs.
+
+### Model overview
+
+| Model | Size | Download | VRAM (4-bit) | VRAM (fp16) |
+|---|---|---|---|---|
+| CLIP (ViT-B/32) | ~600 MB | auto on first run | n/a | ~1 GB |
+| LLaVA 1.5 | 7B | auto on first run (~14 GB) | ~5 GB | ~14 GB |
+| Qwen2-VL | 7B | auto on first run (~15 GB) | ~5 GB | ~14 GB |
+
+### CLIP
 
 ```bash
-git fetch origin
-git checkout task-3-yolo-benchmark          # pick the task branch
-source .venv/bin/activate
-uv sync --dev
-# ... implement ...
-uv run ruff check --fix .
-uv run ruff format .
-uv run mypy models/ utils/ scripts/
-uv run pytest
-uv run python scripts/check_tasks.py --task 3
-git push -u origin task-3-yolo-benchmark
-gh pr create --fill --assignee LouisFIP27 --reviewer Mishanil
+# Verify (10 samples, no preprocessing)
+uv run python scripts/benchmark_clip.py --subset digits --limit 10 --device cuda --filters none
+
+# Full run — all three subsets
+uv run python scripts/benchmark_clip.py --subset digits --device cuda
+uv run python scripts/benchmark_clip.py --subset hate_slangs --device cuda
+uv run python scripts/benchmark_clip.py --subset hate_symbols --device cuda
 ```
 
-`scripts/check_tasks.py` runs the task-marker tests under
-`tests/tasks/`. A task is "done" when its marker test passes.
+Output: `results/clip_{subset}.json`
 
-## Benchmarking (task 3)
+### LLaVA
+
+```bash
+# Verify (10 samples, no preprocessing)
+uv run python scripts/benchmark_llava.py --subset digits --limit 10 --device cuda --filters none
+
+# Full run — all three subsets
+uv run python scripts/benchmark_llava.py --subset digits --device cuda
+uv run python scripts/benchmark_llava.py --subset hate_slangs --device cuda
+uv run python scripts/benchmark_llava.py --subset hate_symbols --device cuda
+```
+
+Output: `results/llava_{subset}.json`
+
+### Qwen2-VL
+
+```bash
+# Verify (10 samples, no preprocessing)
+uv run python scripts/benchmark_qwen2vl.py --subset digits --limit 10 --device cuda --filters none
+
+# Full run — all three subsets
+uv run python scripts/benchmark_qwen2vl.py --subset digits --device cuda
+uv run python scripts/benchmark_qwen2vl.py --subset hate_slangs --device cuda
+uv run python scripts/benchmark_qwen2vl.py --subset hate_symbols --device cuda
+```
+
+Output: `results/qwen2vl_{subset}.json`
+
+### Gemini
+
+Cloud API. Requires a Gemini API key.
+
+Add to `.env` (gitignored):
+
+```
+GEMINI_API_KEY=your_key_here
+```
+
+Then export it before running (PowerShell):
+
+```powershell
+$env:GEMINI_API_KEY = "your_key_here"
+```
+
+```bash
+# Sanity-check (text prompt only)
+uv run python scripts/test_gemini.py
+
+# Verify (5 samples, no preprocessing)
+uv run python scripts/benchmark_gemini.py --subset digits --limit 5 --filters none
+
+# Full run — all three subsets
+uv run python scripts/benchmark_gemini.py --subset digits
+uv run python scripts/benchmark_gemini.py --subset hate_slangs
+uv run python scripts/benchmark_gemini.py --subset hate_symbols
+```
+
+Output: `results/gemini_{subset}.json`
+
+### Options common to all three scripts
+
+| Flag | Default | Description |
+|---|---|---|
+| `--subset` | `digits` | `digits`, `hate_slangs`, `hate_symbols`, or `all` |
+| `--filters` | all | Comma-separated preprocessing filters, e.g. `none,blur` |
+| `--limit` | none | Cap number of images (useful for quick checks) |
+| `--device` | `cpu` | `cuda` or `cpu` |
+| `--batch-size` | `4` | Images per forward pass (LLaVA/Qwen2-VL only) |
+| `--quantize` | `4bit` | `4bit`, `8bit`, or `none` (LLaVA/Qwen2-VL only) |
+
+## Benchmarking YOLO
 
 **Pretrained YOLO** (no fine-tuning, fastest):
 
@@ -130,38 +213,24 @@ uv run python scripts/lint_markdown.py
 uv run pre-commit run --all-files
 ```
 
-Standards: see
-[`.kiro/steering/linting-standards.md`](.kiro/steering/linting-standards.md).
-
 ## Project layout
 
 ```text
 content-moderation/
-├── .kiro/specs/vlm-content-moderation/   # requirements, design, tasks
 ├── models/
-│   ├── yolo/          # Standard Ultralytics YOLO wrappers (task 3)
-│   ├── vlm/           # YOLO-World, CLIP-YOLO, explainer (tasks 4, 6)
-│   └── explainability/
-├── utils/             # dataset, preprocessing, augmentation, OCR
+│   ├── yolo/           # Ultralytics YOLO wrappers (task 3)
+│   └── vlm/            # CLIP, LLaVA, Qwen2-VL classifiers (task 4)
+├── utils/              # dataset, preprocessing, augmentation, OCR
 ├── scripts/
-│   ├── download_dataset.py                # download HatefulIllusion from HF Hub
-│   ├── verify_dataset.py                  # verify cached dataset integrity
-│   ├── benchmark_yolo.py                  # task 3 — YOLO benchmark
-│   ├── train_yolo.py                      # fine-tune YOLO on HatefulIllusion
-│   ├── benchmark_vlm.py                   # task 4
-│   ├── benchmark_with_symbol_catalog.py   # task 5
-│   ├── explain_with_vlm.py                # task 6
-│   ├── check_tasks.py                     # task tracker
-│   └── visualize_transformations.py
-├── tests/
-│   ├── unit/          # utils tests
-│   ├── property/      # hypothesis tests for utils
-│   └── tasks/         # one file per top-level task in tasks.md
-├── papers/            # reference PDFs
-└── pyproject.toml
+│   ├── benchmark_clip.py
+│   ├── benchmark_llava.py
+│   ├── benchmark_qwen2vl.py
+│   ├── benchmark_gpt4omini.py   # optional cloud upper-bound
+│   ├── benchmark_gemini.py      # optional cloud upper-bound
+│   └── benchmark_vlm_classification.py  # orchestrator (all models)
+├── results/            # JSON outputs (gitignored)
+├── task_4/             # plan, requirements, how_to_run
+└── tests/
+    ├── unit/
+    └── tasks/          # acceptance-gate tests (one per task)
 ```
-
-## Licences
-
-All current dependencies use permissive or weak-copyleft licences.
-See [`.kiro/steering/dependency-licenses.md`](.kiro/steering/dependency-licenses.md).

@@ -5,6 +5,7 @@ Supports the HatefulIllusion dataset format from Hugging Face.
 
 from dataclasses import dataclass
 
+from datasets import load_dataset as _hf_load_dataset  # must precede torch to avoid OpenMP segfault
 from huggingface_hub import hf_hub_download
 import numpy as np
 from PIL import Image
@@ -58,9 +59,7 @@ class HatefulIllusionDataset(Dataset):
         self._load_dataset()
 
     def _load_dataset(self) -> None:
-        from datasets import load_dataset
-
-        self._hf_dataset = load_dataset(
+        self._hf_dataset = _hf_load_dataset(
             "yiting/HatefulIllusion_Dataset",
             self.subset,
             cache_dir=self.cache_dir,

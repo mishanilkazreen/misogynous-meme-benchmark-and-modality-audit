@@ -1,0 +1,2138 @@
+[
+  {
+    "benchmark_date": "2026-06-07T12:57:33.001567+00:00",
+    "model": "gemini",
+    "filter": "none",
+    "subset": "digits",
+    "exact_match_accuracy": 0.2,
+    "precision": 0.21754279005594795,
+    "recall": 0.20000000000000004,
+    "f1": 0.20840287054344653,
+    "avg_latency_s": 1.4613863860016378,
+    "refusal_rate": 0.0,
+    "by_visibility": {
+      "1": {
+        "exact_match_accuracy": 0.11904761904761904,
+        "num_images": 84
+      },
+      "2": {
+        "exact_match_accuracy": 0.23295454545454544,
+        "num_images": 176
+      },
+      "3": {
+        "exact_match_accuracy": 0.0,
+        "num_images": 0
+      },
+      "4": {
+        "exact_match_accuracy": 0.0,
+        "num_images": 0
+      },
+      "5": {
+        "exact_match_accuracy": 0.0,
+        "num_images": 0
+      }
+    },
+    "sample_predictions": [
+      {
+        "image_id": "digits_0",
+        "ground_truth": "0",
+        "prediction": "4",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_1",
+        "ground_truth": "8",
+        "prediction": "3",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_2",
+        "ground_truth": "6",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_3",
+        "ground_truth": "6",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_4",
+        "ground_truth": "4",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_5",
+        "ground_truth": "1",
+        "prediction": "3",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_6",
+        "ground_truth": "5",
+        "prediction": "3",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_7",
+        "ground_truth": "2",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_8",
+        "ground_truth": "4",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_9",
+        "ground_truth": "0",
+        "prediction": "0",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_10",
+        "ground_truth": "5",
+        "prediction": "5",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_11",
+        "ground_truth": "8",
+        "prediction": "8",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_12",
+        "ground_truth": "5",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_13",
+        "ground_truth": "1",
+        "prediction": "4",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_14",
+        "ground_truth": "0",
+        "prediction": "6",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_15",
+        "ground_truth": "7",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_16",
+        "ground_truth": "7",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_17",
+        "ground_truth": "2",
+        "prediction": "4",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_18",
+        "ground_truth": "5",
+        "prediction": "5",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_19",
+        "ground_truth": "5",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_20",
+        "ground_truth": "2",
+        "prediction": "6",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_21",
+        "ground_truth": "6",
+        "prediction": "3",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_22",
+        "ground_truth": "3",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_23",
+        "ground_truth": "6",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_24",
+        "ground_truth": "9",
+        "prediction": "9",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_25",
+        "ground_truth": "8",
+        "prediction": "8",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_26",
+        "ground_truth": "1",
+        "prediction": "3",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_27",
+        "ground_truth": "7",
+        "prediction": "6",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_28",
+        "ground_truth": "0",
+        "prediction": "2",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_29",
+        "ground_truth": "9",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_30",
+        "ground_truth": "1",
+        "prediction": "3",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_31",
+        "ground_truth": "1",
+        "prediction": "3",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_32",
+        "ground_truth": "4",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_33",
+        "ground_truth": "7",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_34",
+        "ground_truth": "3",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_35",
+        "ground_truth": "3",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_36",
+        "ground_truth": "2",
+        "prediction": "2",
+        "correct": true,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_37",
+        "ground_truth": "9",
+        "prediction": "9",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_38",
+        "ground_truth": "6",
+        "prediction": "4",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_39",
+        "ground_truth": "8",
+        "prediction": "0",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_40",
+        "ground_truth": "8",
+        "prediction": "3",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_41",
+        "ground_truth": "6",
+        "prediction": "6",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_42",
+        "ground_truth": "3",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_43",
+        "ground_truth": "1",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_44",
+        "ground_truth": "7",
+        "prediction": "7",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_45",
+        "ground_truth": "7",
+        "prediction": "6",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_46",
+        "ground_truth": "0",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_47",
+        "ground_truth": "1",
+        "prediction": "4",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_48",
+        "ground_truth": "6",
+        "prediction": "0",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_49",
+        "ground_truth": "0",
+        "prediction": "0",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_50",
+        "ground_truth": "4",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_51",
+        "ground_truth": "9",
+        "prediction": "3",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_52",
+        "ground_truth": "2",
+        "prediction": "3",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_53",
+        "ground_truth": "3",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_54",
+        "ground_truth": "2",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_55",
+        "ground_truth": "0",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_56",
+        "ground_truth": "4",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_57",
+        "ground_truth": "6",
+        "prediction": "6",
+        "correct": true,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_58",
+        "ground_truth": "6",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_59",
+        "ground_truth": "6",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_60",
+        "ground_truth": "1",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_61",
+        "ground_truth": "1",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_62",
+        "ground_truth": "8",
+        "prediction": "8",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_63",
+        "ground_truth": "7",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_64",
+        "ground_truth": "6",
+        "prediction": "7",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_65",
+        "ground_truth": "3",
+        "prediction": "3",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_66",
+        "ground_truth": "4",
+        "prediction": "6",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_67",
+        "ground_truth": "1",
+        "prediction": "7",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_68",
+        "ground_truth": "4",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_69",
+        "ground_truth": "4",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_70",
+        "ground_truth": "5",
+        "prediction": "7",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_71",
+        "ground_truth": "2",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_72",
+        "ground_truth": "1",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_73",
+        "ground_truth": "2",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_74",
+        "ground_truth": "0",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_75",
+        "ground_truth": "0",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_76",
+        "ground_truth": "4",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_77",
+        "ground_truth": "2",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_78",
+        "ground_truth": "3",
+        "prediction": "3",
+        "correct": true,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_79",
+        "ground_truth": "0",
+        "prediction": "3",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_80",
+        "ground_truth": "2",
+        "prediction": "2",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_81",
+        "ground_truth": "9",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_82",
+        "ground_truth": "7",
+        "prediction": "4",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_83",
+        "ground_truth": "0",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_84",
+        "ground_truth": "7",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_85",
+        "ground_truth": "1",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_86",
+        "ground_truth": "3",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_87",
+        "ground_truth": "8",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_88",
+        "ground_truth": "6",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_89",
+        "ground_truth": "5",
+        "prediction": "5",
+        "correct": true,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_90",
+        "ground_truth": "2",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_91",
+        "ground_truth": "8",
+        "prediction": "8",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_92",
+        "ground_truth": "0",
+        "prediction": "2",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_93",
+        "ground_truth": "1",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_94",
+        "ground_truth": "4",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_95",
+        "ground_truth": "8",
+        "prediction": "8",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_96",
+        "ground_truth": "9",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_97",
+        "ground_truth": "0",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_98",
+        "ground_truth": "9",
+        "prediction": "9",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_99",
+        "ground_truth": "7",
+        "prediction": "3",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_100",
+        "ground_truth": "1",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_101",
+        "ground_truth": "7",
+        "prediction": "4",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_102",
+        "ground_truth": "1",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_103",
+        "ground_truth": "6",
+        "prediction": "4",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_104",
+        "ground_truth": "5",
+        "prediction": "6",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_105",
+        "ground_truth": "8",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_106",
+        "ground_truth": "9",
+        "prediction": "9",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_107",
+        "ground_truth": "6",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_108",
+        "ground_truth": "0",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_109",
+        "ground_truth": "4",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_110",
+        "ground_truth": "0",
+        "prediction": "3",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_111",
+        "ground_truth": "9",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_112",
+        "ground_truth": "6",
+        "prediction": "6",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_113",
+        "ground_truth": "5",
+        "prediction": "5",
+        "correct": true,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_114",
+        "ground_truth": "1",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_115",
+        "ground_truth": "5",
+        "prediction": "2",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_116",
+        "ground_truth": "2",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_117",
+        "ground_truth": "9",
+        "prediction": "9",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_118",
+        "ground_truth": "8",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_119",
+        "ground_truth": "7",
+        "prediction": "2",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_120",
+        "ground_truth": "0",
+        "prediction": "2",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_121",
+        "ground_truth": "2",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_122",
+        "ground_truth": "5",
+        "prediction": "0",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_123",
+        "ground_truth": "1",
+        "prediction": "4",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_124",
+        "ground_truth": "4",
+        "prediction": "4",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_125",
+        "ground_truth": "5",
+        "prediction": "6",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_126",
+        "ground_truth": "1",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_127",
+        "ground_truth": "4",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_128",
+        "ground_truth": "3",
+        "prediction": "3",
+        "correct": true,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_129",
+        "ground_truth": "4",
+        "prediction": "3",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_130",
+        "ground_truth": "9",
+        "prediction": "2",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_131",
+        "ground_truth": "9",
+        "prediction": "7",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_132",
+        "ground_truth": "7",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_133",
+        "ground_truth": "6",
+        "prediction": "3",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_134",
+        "ground_truth": "9",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_135",
+        "ground_truth": "8",
+        "prediction": "4",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_136",
+        "ground_truth": "5",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_137",
+        "ground_truth": "9",
+        "prediction": "7",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_138",
+        "ground_truth": "3",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_139",
+        "ground_truth": "3",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_140",
+        "ground_truth": "5",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_141",
+        "ground_truth": "3",
+        "prediction": "0",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_142",
+        "ground_truth": "7",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_143",
+        "ground_truth": "0",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_144",
+        "ground_truth": "0",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_145",
+        "ground_truth": "7",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_146",
+        "ground_truth": "3",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_147",
+        "ground_truth": "7",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_148",
+        "ground_truth": "0",
+        "prediction": "0",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_149",
+        "ground_truth": "7",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_150",
+        "ground_truth": "0",
+        "prediction": "6",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_151",
+        "ground_truth": "2",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_152",
+        "ground_truth": "3",
+        "prediction": "3",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_153",
+        "ground_truth": "0",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_154",
+        "ground_truth": "4",
+        "prediction": "3",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_155",
+        "ground_truth": "7",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_156",
+        "ground_truth": "3",
+        "prediction": "3",
+        "correct": true,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_157",
+        "ground_truth": "8",
+        "prediction": "8",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_158",
+        "ground_truth": "1",
+        "prediction": "7",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_159",
+        "ground_truth": "9",
+        "prediction": "6",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_160",
+        "ground_truth": "8",
+        "prediction": "8",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_161",
+        "ground_truth": "8",
+        "prediction": "8",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_162",
+        "ground_truth": "4",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_163",
+        "ground_truth": "4",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_164",
+        "ground_truth": "1",
+        "prediction": "2",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_165",
+        "ground_truth": "3",
+        "prediction": "3",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_166",
+        "ground_truth": "5",
+        "prediction": "7",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_167",
+        "ground_truth": "6",
+        "prediction": "7",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_168",
+        "ground_truth": "6",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_169",
+        "ground_truth": "5",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_170",
+        "ground_truth": "8",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_171",
+        "ground_truth": "2",
+        "prediction": "3",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_172",
+        "ground_truth": "9",
+        "prediction": "7",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_173",
+        "ground_truth": "4",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_174",
+        "ground_truth": "7",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_175",
+        "ground_truth": "2",
+        "prediction": "3",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_176",
+        "ground_truth": "2",
+        "prediction": "4",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_177",
+        "ground_truth": "7",
+        "prediction": "7",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_178",
+        "ground_truth": "7",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_179",
+        "ground_truth": "2",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_180",
+        "ground_truth": "6",
+        "prediction": "6",
+        "correct": true,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_181",
+        "ground_truth": "7",
+        "prediction": "0",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_182",
+        "ground_truth": "3",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_183",
+        "ground_truth": "0",
+        "prediction": "6",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_184",
+        "ground_truth": "5",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_185",
+        "ground_truth": "6",
+        "prediction": "2",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_186",
+        "ground_truth": "9",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_187",
+        "ground_truth": "8",
+        "prediction": "3",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_188",
+        "ground_truth": "8",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_189",
+        "ground_truth": "5",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_190",
+        "ground_truth": "8",
+        "prediction": "8",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_191",
+        "ground_truth": "3",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_192",
+        "ground_truth": "5",
+        "prediction": "5",
+        "correct": true,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_193",
+        "ground_truth": "2",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_194",
+        "ground_truth": "5",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_195",
+        "ground_truth": "5",
+        "prediction": "5",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_196",
+        "ground_truth": "5",
+        "prediction": "3",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_197",
+        "ground_truth": "0",
+        "prediction": "0",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_198",
+        "ground_truth": "5",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_199",
+        "ground_truth": "7",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_200",
+        "ground_truth": "4",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_201",
+        "ground_truth": "8",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_202",
+        "ground_truth": "1",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_203",
+        "ground_truth": "4",
+        "prediction": "7",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_204",
+        "ground_truth": "7",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_205",
+        "ground_truth": "4",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_206",
+        "ground_truth": "4",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_207",
+        "ground_truth": "0",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_208",
+        "ground_truth": "8",
+        "prediction": "8",
+        "correct": true,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_209",
+        "ground_truth": "7",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_210",
+        "ground_truth": "2",
+        "prediction": "7",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_211",
+        "ground_truth": "4",
+        "prediction": "3",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_212",
+        "ground_truth": "6",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_213",
+        "ground_truth": "3",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_214",
+        "ground_truth": "8",
+        "prediction": "8",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_215",
+        "ground_truth": "0",
+        "prediction": "0",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_216",
+        "ground_truth": "8",
+        "prediction": "8",
+        "correct": true,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_217",
+        "ground_truth": "2",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_218",
+        "ground_truth": "8",
+        "prediction": "4",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_219",
+        "ground_truth": "7",
+        "prediction": "4",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_220",
+        "ground_truth": "4",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_221",
+        "ground_truth": "5",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_222",
+        "ground_truth": "2",
+        "prediction": "2",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_223",
+        "ground_truth": "1",
+        "prediction": "4",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_224",
+        "ground_truth": "4",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_225",
+        "ground_truth": "0",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_226",
+        "ground_truth": "7",
+        "prediction": "7",
+        "correct": true,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_227",
+        "ground_truth": "0",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_228",
+        "ground_truth": "8",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_229",
+        "ground_truth": "9",
+        "prediction": "9",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_230",
+        "ground_truth": "6",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_231",
+        "ground_truth": "7",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_232",
+        "ground_truth": "0",
+        "prediction": "3",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_233",
+        "ground_truth": "7",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_234",
+        "ground_truth": "3",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_235",
+        "ground_truth": "5",
+        "prediction": "7",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_236",
+        "ground_truth": "9",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_237",
+        "ground_truth": "9",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_238",
+        "ground_truth": "6",
+        "prediction": "4",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_239",
+        "ground_truth": "7",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_240",
+        "ground_truth": "3",
+        "prediction": "3",
+        "correct": true,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_241",
+        "ground_truth": "1",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_242",
+        "ground_truth": "4",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_243",
+        "ground_truth": "9",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_244",
+        "ground_truth": "5",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_245",
+        "ground_truth": "3",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_246",
+        "ground_truth": "5",
+        "prediction": "3",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_247",
+        "ground_truth": "8",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_248",
+        "ground_truth": "9",
+        "prediction": "3",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_249",
+        "ground_truth": "1",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_250",
+        "ground_truth": "2",
+        "prediction": "2",
+        "correct": true,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_251",
+        "ground_truth": "5",
+        "prediction": "5",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_252",
+        "ground_truth": "4",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_253",
+        "ground_truth": "9",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_254",
+        "ground_truth": "3",
+        "prediction": "4",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_255",
+        "ground_truth": "5",
+        "prediction": "5",
+        "correct": true,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_256",
+        "ground_truth": "1",
+        "prediction": "6",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_257",
+        "ground_truth": "2",
+        "prediction": "3",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_258",
+        "ground_truth": "9",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_259",
+        "ground_truth": "8",
+        "prediction": "8",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_260",
+        "ground_truth": "2",
+        "prediction": "2",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_261",
+        "ground_truth": "6",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_262",
+        "ground_truth": "5",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_263",
+        "ground_truth": "8",
+        "prediction": "8",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_264",
+        "ground_truth": "3",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_265",
+        "ground_truth": "3",
+        "prediction": "6",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_266",
+        "ground_truth": "2",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_267",
+        "ground_truth": "6",
+        "prediction": "6",
+        "correct": true,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_268",
+        "ground_truth": "4",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_269",
+        "ground_truth": "9",
+        "prediction": "6",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_270",
+        "ground_truth": "0",
+        "prediction": "2",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_271",
+        "ground_truth": "9",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_272",
+        "ground_truth": "3",
+        "prediction": "3",
+        "correct": true,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_273",
+        "ground_truth": "6",
+        "prediction": "6",
+        "correct": true,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_274",
+        "ground_truth": "3",
+        "prediction": "6",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_275",
+        "ground_truth": "3",
+        "prediction": "3",
+        "correct": true,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_276",
+        "ground_truth": "2",
+        "prediction": "6",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_277",
+        "ground_truth": "4",
+        "prediction": "4",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_278",
+        "ground_truth": "6",
+        "prediction": "6",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_279",
+        "ground_truth": "6",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_280",
+        "ground_truth": "0",
+        "prediction": "6",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_281",
+        "ground_truth": "1",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_282",
+        "ground_truth": "1",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_283",
+        "ground_truth": "3",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_284",
+        "ground_truth": "8",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_285",
+        "ground_truth": "6",
+        "prediction": "7",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_286",
+        "ground_truth": "2",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_287",
+        "ground_truth": "9",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 0
+      },
+      {
+        "image_id": "digits_288",
+        "ground_truth": "9",
+        "prediction": "6",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_289",
+        "ground_truth": "2",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_290",
+        "ground_truth": "3",
+        "prediction": "3",
+        "correct": true,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_291",
+        "ground_truth": "1",
+        "prediction": "8",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_292",
+        "ground_truth": "9",
+        "prediction": "6",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_293",
+        "ground_truth": "9",
+        "prediction": "6",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_294",
+        "ground_truth": "6",
+        "prediction": "9",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_295",
+        "ground_truth": "1",
+        "prediction": "4",
+        "correct": false,
+        "visibility": 1
+      },
+      {
+        "image_id": "digits_296",
+        "ground_truth": "8",
+        "prediction": "6",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_297",
+        "ground_truth": "4",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_298",
+        "ground_truth": "2",
+        "prediction": "5",
+        "correct": false,
+        "visibility": 2
+      },
+      {
+        "image_id": "digits_299",
+        "ground_truth": "1",
+        "prediction": "3",
+        "correct": false,
+        "visibility": 0
+      }
+    ]
+  }
+]

@@ -5,6 +5,7 @@ This script fine-tunes pre-trained YOLO models on the HatefulIllusion
 dataset for content moderation tasks.
 """
 
+# ruff: noqa: I001  # datasets (via utils.dataset) must precede torch to avoid OpenMP segfault
 from __future__ import annotations
 
 import argparse
@@ -12,13 +13,13 @@ from pathlib import Path
 import tempfile
 from typing import Any
 
+from models.yolo.wrapper import UltralyticsYOLO
+from utils.dataset import DatasetManager
+
 import numpy as np
 from PIL import Image
 import torch
 import yaml
-
-from models.yolo.wrapper import UltralyticsYOLO
-from utils.dataset import DatasetManager
 
 MODEL_CHECKPOINTS = [
     "yolov8n.pt",

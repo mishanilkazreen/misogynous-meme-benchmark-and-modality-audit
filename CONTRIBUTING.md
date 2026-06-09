@@ -23,11 +23,12 @@ code --install-extension tamasfe.even-better-toml
 git clone https://github.com/mishanilkazreen/content-moderation.git
 cd content-moderation
 uv venv --python 3.10
-source .venv/bin/activate
 uv sync --dev
-uv pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
 uv run pre-commit install
 ```
+
+> **Note:** torch is managed by `pyproject.toml` (cu128 index).
+> `uv sync --dev` handles everything — no separate torch install needed.
 
 ## 3. Pick a task and switch to its branch
 

@@ -237,6 +237,7 @@ wandb/
 
 # Local symlinks
 grant-application
+*.lnk
 
 # Reference PDFs are kept locally only (cited in papers/README.md)
 papers/*.pdf
@@ -252,6 +253,7 @@ yolo_test_results.png
 # Ignore generated training and benchmark outputs
 results/trained_models/
 results/*.jsonl
+# results/*.json   # show vlm results
 !results/yolo_benchmark*.json
 !results/figures/
 
@@ -273,3 +275,4 @@ results/figures/yolo_detections_ww2_yolov8n.png
 
 # VLM documentation scratch folder
 vlm_docs/
+task_4/
