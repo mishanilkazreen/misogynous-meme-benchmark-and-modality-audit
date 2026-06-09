@@ -29,6 +29,11 @@ from utils.preprocessing import PreprocessingPipeline
 import numpy as np
 from PIL import Image
 import torch
+from tqdm import tqdm
+
+from dotenv import load_dotenv
+
+load_dotenv()
 
 try:
     import openai  # type: ignore[import-untyped,import-not-found]
@@ -159,7 +164,9 @@ def run_benchmark(
     results: list[ClassificationResult] = []
     ground_truths: list[str] = []
     visibility_scores: list[int] = []
+    sample_rows: list[dict[str, Any]] = []
 
+    pbar = tqdm(total=len(samples), desc=f"gpt4omini/{preprocess or 'none'}", unit="img")
     for s in samples:
         arr = image_to_numpy(s["image"])
         if pipeline is not None and preprocess is not None:
@@ -173,8 +180,21 @@ def run_benchmark(
         results.append(result)
         ground_truths.append(s["message"])
         visibility_scores.append(int(s["visibility_score"]))
+        sample_rows.append(
+            {
+                "image_id": s["image_id"],
+                "ground_truth": s["message"],
+                "prediction": result.prediction,
+                "correct": result.prediction == s["message"],
+                "visibility": int(s["visibility_score"]),
+            }
+        )
+        pbar.update(1)
+    pbar.close()
 
-    return _aggregate(results, ground_truths, visibility_scores, subset, preprocess, all_labels)
+    return _aggregate(
+        results, ground_truths, visibility_scores, subset, preprocess, all_labels, sample_rows
+    )
 
 
 def _aggregate(
@@ -184,6 +204,7 @@ def _aggregate(
     subset: str,
     preprocess: str | None,
     labels: list[str],
+    sample_rows: list[dict[str, Any]],
 ) -> dict[str, Any]:
     n_total = len(results)
     refusal_rate = sum(1 for r in results if r.refusal) / n_total if n_total else 0.0
@@ -247,6 +268,7 @@ def _aggregate(
         "avg_latency_s": avg_latency,
         "refusal_rate": refusal_rate,
         "by_visibility": by_visibility,
+        "sample_predictions": sample_rows,
     }
 
 

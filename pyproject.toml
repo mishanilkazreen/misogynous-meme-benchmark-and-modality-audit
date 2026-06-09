@@ -31,6 +31,7 @@ dependencies = [
     "qwen-vl-utils>=0.0.14",
     "google-generativeai>=0.8.6",
     "bitsandbytes>=0.49.2",
+    "openai>=2.41.0",
 ]
 
 [project.optional-dependencies]

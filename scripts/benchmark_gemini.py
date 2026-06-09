@@ -29,6 +29,10 @@ from PIL import Image
 import torch
 from tqdm import tqdm
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 try:
     import google.generativeai as genai  # type: ignore[import-untyped,import-not-found]
 
