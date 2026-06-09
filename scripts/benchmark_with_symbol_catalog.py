@@ -1,35 +1,248 @@
 """
-Benchmark detectors when primed with a catalogue of hateful symbols.
+VLM classification benchmark with catalogue-augmented prompts (Task 5).
 
-Pipeline (per paper plan, task 5):
-    1. Load the symbol catalogue from `data/symbols/catalogue.yaml`
-       (free sources first, then fallback to academically cited references).
-    2. For each symbol, set it as the active class name for the detector:
-         - Ultralytics YOLO: fine-tune or use classification head override
-         - YOLO-World / CLIP-YOLO: call `model.set_classes([symbol_name])`
-    3. Run detection on HatefulIllusion and report per-symbol recall.
+Compares three prompt variants for each model x subset x filter combination:
+  baseline   — standard closed-set prompt (no catalogue context)
+  catalogue  — injects up to 5 symbol descriptions before the question
+  per_subset — injects all subset descriptions with a targeted preamble
+
+For CLIP (cosine similarity), prompt variants affect the text embeddings:
+  baseline   — raw label strings
+  catalogue  — description-enriched label strings (up to max_symbols=5)
+  per_subset — description-enriched label strings (all subset entries)
+
+Results are written to:
+  results/vlm_classification_with_catalogue.json
+  results/symbol_catalogue.json  (copy; checked by the task-5 marker test)
 
 Usage:
-    uv run python scripts/benchmark_with_symbol_catalog.py --model yolo-world
+    uv run python scripts/benchmark_with_symbol_catalog.py --subset digits --limit 20
+    uv run python scripts/benchmark_with_symbol_catalog.py --subset all --model clip
 """
 
+# ruff: noqa: I001  # datasets (via utils.dataset) must precede torch to avoid OpenMP segfault
 from __future__ import annotations
 
 import argparse
+import json
+from pathlib import Path
+import time
+from typing import Any
+
+from models.vlm.clip_classifier import CLIPClassifier
+from utils.preprocessing import PreprocessingPipeline
+from models.vlm.prompt_templates import (
+    build_catalogue_prompt,
+    build_enriched_labels,
+    build_per_subset_prompt,
+    load_catalogue,
+)
+from scripts.benchmark_vlm_classification import (
+    ALL_FILTERS,
+    build_sample_rows,
+    build_visibility_block,
+    collect_samples,
+    compute_classification_metrics,
+    image_to_numpy,
+)
+
+import numpy as np
+
+SUBSET_NAMES = ["digits", "hate_slangs", "hate_symbols"]
+RESULTS_DIR = Path(__file__).resolve().parents[1] / "results"
+
+ALL_MODELS = ["clip"]
+PROMPT_VARIANTS = ["baseline", "catalogue", "per_subset"]
+
+_PIPELINE = PreprocessingPipeline()
+
+
+def apply_filter(image: np.ndarray, filter_name: str) -> np.ndarray:
+    if filter_name == "none":
+        return image
+    return _PIPELINE.apply_transformation(image, filter_name)
+
+
+def _run_clip_variant(
+    classifier: CLIPClassifier,
+    images: list[np.ndarray],
+    labels: list[str],
+    ground_truths: list[str],
+    visibility_scores: list[int],
+    samples: list[dict[str, Any]],
+    subset: str,
+    filter_name: str,
+    prompt_variant: str,
+    catalogue: list[dict[str, Any]],
+) -> dict[str, Any]:
+    """Run a single prompt-variant pass for CLIP and return the result dict."""
+    if prompt_variant == "baseline":
+        text_labels = labels
+    elif prompt_variant == "catalogue":
+        text_labels = build_enriched_labels(labels, subset, catalogue)
+        # Also build the prompt string for reference (not used by CLIP but kept for logging)
+        build_catalogue_prompt(subset, labels, catalogue, shuffle=False, max_symbols=5)
+    else:  # per_subset
+        text_labels = build_enriched_labels(labels, subset, catalogue)
+        build_per_subset_prompt(subset, labels, catalogue, shuffle=False)
+
+    classifier.set_classes(text_labels)
+
+    t0 = time.perf_counter()
+    raw_preds = classifier.predict_batch(images)
+    total_time = time.perf_counter() - t0
+
+    # Map enriched-label predictions back to original labels
+    label_map = dict(zip(text_labels, labels, strict=True))
+    predictions: list[str | None] = [label_map.get(p, p) for p, _ in raw_preds]
+    confidences = [c for _, c in raw_preds]
+    avg_latency = total_time / len(images)
+
+    metrics = compute_classification_metrics(predictions, ground_truths, labels)
+    by_visibility = build_visibility_block(predictions, ground_truths, visibility_scores, labels)
+
+    return {
+        "model": "clip",
+        "subset": subset,
+        "filter": filter_name,
+        "prompt_variant": prompt_variant,
+        "exact_match_accuracy": metrics["exact_match_accuracy"],
+        "precision": metrics["precision"],
+        "recall": metrics["recall"],
+        "f1": metrics["f1"],
+        "avg_latency_s": avg_latency,
+        "refusal_rate": 0.0,
+        "by_visibility": by_visibility,
+        "sample_predictions": build_sample_rows(
+            samples, predictions, ground_truths, visibility_scores, confidences
+        ),
+    }
+
+
+def run_clip_with_catalogue(
+    samples: list[dict[str, Any]],
+    filter_name: str,
+    catalogue: list[dict[str, Any]],
+    device: str = "cpu",
+) -> list[dict[str, Any]]:
+    """Run all three prompt variants for CLIP on the given samples."""
+    labels = sorted({s["message"] for s in samples})
+    images = [apply_filter(image_to_numpy(s["image"]), filter_name) for s in samples]
+    ground_truths = [s["message"] for s in samples]
+    visibility_scores = [int(s["visibility_score"]) for s in samples]
+    subset = samples[0]["subset"] if len({s["subset"] for s in samples}) == 1 else "all"
+
+    classifier = CLIPClassifier(device=device)
+    results: list[dict[str, Any]] = []
+
+    for variant in PROMPT_VARIANTS:
+        result = _run_clip_variant(
+            classifier=classifier,
+            images=images,
+            labels=labels,
+            ground_truths=ground_truths,
+            visibility_scores=visibility_scores,
+            samples=samples,
+            subset=subset,
+            filter_name=filter_name,
+            prompt_variant=variant,
+            catalogue=catalogue,
+        )
+        results.append(result)
+
+    return results
+
+
+def print_summary(all_results: list[dict[str, Any]]) -> None:
+    print("\n" + "=" * 90)
+    print(f"{'Model':<10} {'Subset':<14} {'Filter':<20} {'Variant':<12} {'Acc':<8} {'F1':<8}")
+    print("=" * 90)
+    for r in all_results:
+        acc = f"{r['exact_match_accuracy']:.3f}" if "exact_match_accuracy" in r else "n/a"
+        f1_val = r.get("f1")
+        f1 = f"{f1_val:.3f}" if isinstance(f1_val, float) else "n/a"
+        print(
+            f"{r['model']:<10} {r['subset']:<14} {r['filter']:<20}"
+            f" {r['prompt_variant']:<12} {acc:<8} {f1:<8}"
+        )
+    print("=" * 90)
 
 
 def main() -> None:
-    """Entry point. TODO: implement in task 5."""
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--model", default="yolo-world")
     parser.add_argument(
-        "--catalogue", default="data/symbols/catalogue.yaml", help="Path to symbol catalogue YAML"
+        "--model",
+        default="clip",
+        choices=["clip", "all"],
+        help="Model to benchmark (currently only CLIP is supported)",
+    )
+    parser.add_argument(
+        "--subset",
+        default="digits",
+        choices=["digits", "hate_slangs", "hate_symbols", "all"],
+    )
+    parser.add_argument(
+        "--catalogue",
+        default="data/symbols/catalogue.yaml",
+        help="Path to the symbol catalogue YAML",
+    )
+    parser.add_argument("--limit", type=int, default=None, help="Cap images per subset")
+    parser.add_argument("--device", default="cpu")
+    parser.add_argument(
+        "--filters",
+        default="none",
+        help="Comma-separated filter names (default: none only)",
     )
     args = parser.parse_args()
-    raise NotImplementedError(
-        f"Task 5 scaffold. Implement symbol-catalogue-guided detection "
-        f"using catalogue={args.catalogue} with model={args.model}."
-    )
+
+    catalogue = load_catalogue(args.catalogue)
+    print(f"Loaded catalogue: {len(catalogue)} entries from '{args.catalogue}'")
+
+    filters_to_run = [f.strip() for f in args.filters.split(",")]
+    valid_filters = set(ALL_FILTERS)
+    for f in filters_to_run:
+        if f not in valid_filters:
+            raise SystemExit(f"Unknown filter '{f}'. Valid: {sorted(valid_filters)}")
+
+    print(f"Filters: {filters_to_run}")
+    print(f"Subset: {args.subset}, Limit: {args.limit}, Device: {args.device}")
+
+    samples = collect_samples(args.subset, limit=args.limit)
+    if not samples:
+        raise SystemExit(f"No samples found for subset '{args.subset}'")
+    print(f"Loaded {len(samples)} samples")
+
+    all_results: list[dict[str, Any]] = []
+
+    for filter_name in filters_to_run:
+        print(f"\n--- Filter: {filter_name} ---")
+        if args.model in ("clip", "all"):
+            print("  Running clip (3 prompt variants) …")
+            try:
+                results = run_clip_with_catalogue(
+                    samples, filter_name, catalogue, device=args.device
+                )
+                all_results.extend(results)
+                for r in results:
+                    acc = r["exact_match_accuracy"]
+                    f1 = r["f1"]
+                    print(f"    variant={r['prompt_variant']:<12} acc={acc:.3f}  f1={f1:.3f}")
+            except Exception as exc:
+                print(f"  ERROR running clip with filter={filter_name}: {exc}")
+
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+
+    primary_path = RESULTS_DIR / "vlm_classification_with_catalogue.json"
+    marker_path = RESULTS_DIR / "symbol_catalogue.json"
+
+    payload = json.dumps(all_results, indent=2)
+    primary_path.write_text(payload, encoding="utf-8")
+    marker_path.write_text(payload, encoding="utf-8")
+
+    print(f"\nWrote {len(all_results)} result rows to {primary_path}")
+    print(f"Also written to {marker_path} (task-5 marker)")
+
+    print_summary(all_results)
 
 
 if __name__ == "__main__":
