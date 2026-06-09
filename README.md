@@ -160,11 +160,14 @@ uv run python scripts/benchmark_gemini.py --subset digits --limit 5 --filters no
 uv run python scripts/benchmark_gemini.py --subset digits
 uv run python scripts/benchmark_gemini.py --subset hate_slangs
 uv run python scripts/benchmark_gemini.py --subset hate_symbols
+
+# Increase parallelism (default 20 threads)
+uv run python scripts/benchmark_gemini.py --subset digits --workers 40
 ```
 
 Output: `results/gemini_{subset}.json`
 
-### Options common to all three scripts
+### Options common to all per-model scripts
 
 | Flag | Default | Description |
 |---|---|---|
@@ -174,6 +177,36 @@ Output: `results/gemini_{subset}.json`
 | `--device` | `cpu` | `cuda` or `cpu` |
 | `--batch-size` | `4` | Images per forward pass (LLaVA/Qwen2-VL only) |
 | `--quantize` | `4bit` | `4bit`, `8bit`, or `none` (LLaVA/Qwen2-VL only) |
+| `--workers` | `20` | Parallel API threads (Gemini only) |
+| `--binary` | off | Binary yes/no mode (see below) |
+
+### Binary classification mode
+
+Pass `--binary` to any per-model script or to the orchestrator to run **binary
+content moderation** instead of closed-set label identification.
+
+In binary mode the prompt becomes:
+
+> *"Does this image contain any hateful, offensive, or inappropriate content?
+> Answer yes or no."*
+
+Output files get a `_binary` suffix: `gemini_digits_binary.json`, etc.
+
+```bash
+# Quick binary sanity-check (5 images, no preprocessing)
+uv run python scripts/benchmark_gemini.py --subset digits --limit 5 --filters none --binary
+uv run python scripts/benchmark_gpt4omini.py --subset digits --limit 5 --filters none --binary
+
+# Full binary run via the orchestrator
+uv run python scripts/benchmark_vlm_classification.py --model gemini --subset digits --binary
+uv run python scripts/benchmark_vlm_classification.py --model all --subset digits --binary
+```
+
+Output: `results/vlm_classification_binary.json`
+
+> **Note:** CLIP does not take generative prompts. In binary mode it uses the
+> text labels `["hateful", "not hateful"]` with ground truth `"hateful"` instead
+> of the yes/no scheme used by generative models.
 
 ## Benchmarking YOLO
 

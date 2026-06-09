@@ -23,7 +23,14 @@ import torch
 from PIL import Image
 from tqdm import tqdm
 
-from models.vlm.classifier import ClassificationResult, build_prompt, extract_label
+from models.vlm.classifier import (
+    BINARY_GROUND_TRUTH,
+    BINARY_LABELS,
+    ClassificationResult,
+    build_binary_prompt,
+    build_prompt,
+    extract_label,
+)
 from utils.dataset import DatasetManager
 from utils.preprocessing import PreprocessingPipeline
 
@@ -139,6 +146,7 @@ def run_benchmark(
     samples: list[dict[str, Any]] | None = None,
     batch_size: int = 4,
     quantize: str = "none",
+    binary: bool = False,
 ) -> dict[str, Any]:
     if not _TRANSFORMERS_AVAILABLE:
         raise RuntimeError(
@@ -154,11 +162,15 @@ def run_benchmark(
     if not samples:
         raise ValueError(f"No samples for subset '{subset}'")
 
-    labels_by_subset_raw: dict[str, set[str]] = {}
-    for s in samples:
-        labels_by_subset_raw.setdefault(s["subset"], set()).add(s["message"])
-    labels_sorted = {k: sorted(v) for k, v in labels_by_subset_raw.items()}
-    all_labels = sorted({lbl for lbls in labels_sorted.values() for lbl in lbls})
+    if binary:
+        labels_sorted: dict[str, list[str]] = {s["subset"]: BINARY_LABELS for s in samples}
+        all_labels: list[str] = BINARY_LABELS
+    else:
+        labels_by_subset_raw: dict[str, set[str]] = {}
+        for s in samples:
+            labels_by_subset_raw.setdefault(s["subset"], set()).add(s["message"])
+        labels_sorted = {k: sorted(v) for k, v in labels_by_subset_raw.items()}
+        all_labels = sorted({lbl for lbls in labels_sorted.values() for lbl in lbls})
 
     pipeline = PreprocessingPipeline() if preprocess else None
     results: list[ClassificationResult] = []
@@ -178,8 +190,8 @@ def run_benchmark(
             if pipeline is not None and preprocess is not None:
                 arr = pipeline.apply_transformation(arr, preprocess)
             pil = Image.fromarray(arr)
-            labels = labels_sorted.get(s["subset"], [])
-            prompt_text = build_prompt(s["subset"], labels)
+            labels = BINARY_LABELS if binary else labels_sorted.get(s["subset"], [])
+            prompt_text = build_binary_prompt() if binary else build_prompt(s["subset"], labels)
             messages = [
                 {
                     "role": "user",
@@ -222,14 +234,15 @@ def run_benchmark(
                     refusal=refusal,
                 )
             )
-            ground_truths.append(s["message"])
+            gt = BINARY_GROUND_TRUTH if binary else s["message"]
+            ground_truths.append(gt)
             visibility_scores.append(int(s["visibility_score"]))
             sample_rows.append(
                 {
                     "image_id": s["image_id"],
-                    "ground_truth": s["message"],
+                    "ground_truth": gt,
                     "prediction": matched,
-                    "correct": matched == s["message"],
+                    "correct": matched == gt,
                     "refusal": refusal,
                     "visibility": int(s["visibility_score"]),
                 }
@@ -290,6 +303,7 @@ def run_benchmark(
         "model": "qwen2vl",
         "filter": preprocess or "none",
         "subset": subset,
+        "binary": binary,
         "exact_match_accuracy": accuracy,
         "precision": macro_prec,
         "recall": macro_rec,
@@ -323,6 +337,11 @@ def main() -> None:
         choices=["none", "4bit", "8bit"],
         help="Quantization mode. 4bit recommended for 12 GB GPUs (default: 4bit)",
     )
+    parser.add_argument(
+        "--binary",
+        action="store_true",
+        help="Binary yes/no classification: ask whether the image contains hateful content",
+    )
     args = parser.parse_args()
 
     filters_to_run = (
@@ -331,7 +350,9 @@ def main() -> None:
         else ["none", *PreprocessingPipeline.TRANSFORMATIONS]
     )
 
-    print(f"Subset: {args.subset} | Filters: {filters_to_run} | Limit: {args.limit}")
+    print(
+        f"Subset: {args.subset} | Filters: {filters_to_run} | Limit: {args.limit} | Binary: {args.binary}"
+    )
 
     # Load model FIRST (before dataset) to avoid bitsandbytes crash.
     # The 4-bit quantization CUDA kernels are sensitive to memory state;
@@ -354,13 +375,15 @@ def main() -> None:
             samples=samples,
             batch_size=args.batch_size,
             quantize=args.quantize,
+            binary=args.binary,
         )
         all_results.append(result)
         acc = result.get("exact_match_accuracy", 0.0)
         print(f"  acc={acc:.3f}  refusals={result.get('refusal_rate', 0.0):.2%}")
 
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-    out = RESULTS_DIR / f"qwen2vl_{args.subset}.json"
+    suffix = "_binary" if args.binary else ""
+    out = RESULTS_DIR / f"qwen2vl_{args.subset}{suffix}.json"
     out.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
     print(f"\nSaved {len(all_results)} filter rows to {out}")
 

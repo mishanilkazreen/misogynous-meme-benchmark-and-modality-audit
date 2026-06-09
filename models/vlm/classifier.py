@@ -49,6 +49,17 @@ class BaseVLMClassifier(abc.ABC):
         ...
 
 
+BINARY_PROMPT = (
+    "Does this image contain any hateful, offensive, or inappropriate content? Answer yes or no."
+)
+BINARY_LABELS: list[str] = ["yes", "no"]
+BINARY_GROUND_TRUTH = "yes"
+
+
+def build_binary_prompt() -> str:
+    return BINARY_PROMPT
+
+
 def build_prompt(subset: str, labels: list[str], shuffle: bool = True) -> str:
     """Build the closed-set classification prompt for a given subset.
 

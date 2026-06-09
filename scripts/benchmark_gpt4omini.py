@@ -22,7 +22,14 @@ from pathlib import Path
 import time
 from typing import Any
 
-from models.vlm.classifier import ClassificationResult, build_prompt, extract_label
+from models.vlm.classifier import (
+    BINARY_GROUND_TRUTH,
+    BINARY_LABELS,
+    ClassificationResult,
+    build_binary_prompt,
+    build_prompt,
+    extract_label,
+)
 from utils.dataset import DatasetManager
 from utils.preprocessing import PreprocessingPipeline
 
@@ -140,6 +147,7 @@ def run_benchmark(
     preprocess: str | None = None,
     limit: int | None = None,
     samples: list[dict[str, Any]] | None = None,
+    binary: bool = False,
 ) -> dict[str, Any]:
     if not _OPENAI_AVAILABLE:
         raise RuntimeError("openai not installed. Run: uv add openai")
@@ -154,11 +162,15 @@ def run_benchmark(
     if not samples:
         raise ValueError(f"No samples for subset '{subset}'")
 
-    labels_by_subset_raw: dict[str, set[str]] = {}
-    for s in samples:
-        labels_by_subset_raw.setdefault(s["subset"], set()).add(s["message"])
-    labels_sorted = {k: sorted(v) for k, v in labels_by_subset_raw.items()}
-    all_labels = sorted({lbl for lbls in labels_sorted.values() for lbl in lbls})
+    if binary:
+        labels_sorted: dict[str, list[str]] = {s["subset"]: BINARY_LABELS for s in samples}
+        all_labels: list[str] = BINARY_LABELS
+    else:
+        labels_by_subset_raw: dict[str, set[str]] = {}
+        for s in samples:
+            labels_by_subset_raw.setdefault(s["subset"], set()).add(s["message"])
+        labels_sorted = {k: sorted(v) for k, v in labels_by_subset_raw.items()}
+        all_labels = sorted({lbl for lbls in labels_sorted.values() for lbl in lbls})
 
     pipeline = PreprocessingPipeline() if preprocess else None
     results: list[ClassificationResult] = []
@@ -172,20 +184,21 @@ def run_benchmark(
         if pipeline is not None and preprocess is not None:
             arr = pipeline.apply_transformation(arr, preprocess)
         b64 = numpy_to_b64(arr)
-        labels = labels_sorted.get(s["subset"], [])
-        prompt = build_prompt(s["subset"], labels)
+        labels = BINARY_LABELS if binary else labels_sorted.get(s["subset"], [])
+        prompt = build_binary_prompt() if binary else build_prompt(s["subset"], labels)
 
         time.sleep(_CALL_INTERVAL_S)
         result = classify_with_gpt(client, b64, prompt, labels)
+        gt = BINARY_GROUND_TRUTH if binary else s["message"]
         results.append(result)
-        ground_truths.append(s["message"])
+        ground_truths.append(gt)
         visibility_scores.append(int(s["visibility_score"]))
         sample_rows.append(
             {
                 "image_id": s["image_id"],
-                "ground_truth": s["message"],
+                "ground_truth": gt,
                 "prediction": result.prediction,
-                "correct": result.prediction == s["message"],
+                "correct": result.prediction == gt,
                 "visibility": int(s["visibility_score"]),
             }
         )
@@ -193,7 +206,14 @@ def run_benchmark(
     pbar.close()
 
     return _aggregate(
-        results, ground_truths, visibility_scores, subset, preprocess, all_labels, sample_rows
+        results,
+        ground_truths,
+        visibility_scores,
+        subset,
+        preprocess,
+        all_labels,
+        sample_rows,
+        binary,
     )
 
 
@@ -205,6 +225,7 @@ def _aggregate(
     preprocess: str | None,
     labels: list[str],
     sample_rows: list[dict[str, Any]],
+    binary: bool = False,
 ) -> dict[str, Any]:
     n_total = len(results)
     refusal_rate = sum(1 for r in results if r.refusal) / n_total if n_total else 0.0
@@ -261,6 +282,7 @@ def _aggregate(
         "model": "gpt4omini",
         "filter": preprocess or "none",
         "subset": subset,
+        "binary": binary,
         "exact_match_accuracy": accuracy,
         "precision": macro_prec,
         "recall": macro_rec,
@@ -285,6 +307,11 @@ def main() -> None:
         help="Comma-separated filters (default: all). E.g. 'none,blur,grayscale'",
     )
     parser.add_argument("--limit", type=int, default=None)
+    parser.add_argument(
+        "--binary",
+        action="store_true",
+        help="Binary yes/no classification: ask whether the image contains hateful content",
+    )
     args = parser.parse_args()
 
     filters_to_run = (
@@ -293,7 +320,9 @@ def main() -> None:
         else ["none", *PreprocessingPipeline.TRANSFORMATIONS]
     )
 
-    print(f"Subset: {args.subset} | Filters: {filters_to_run} | Limit: {args.limit}")
+    print(
+        f"Subset: {args.subset} | Filters: {filters_to_run} | Limit: {args.limit} | Binary: {args.binary}"
+    )
     samples = collect_samples(args.subset, limit=args.limit)
     print(f"Loaded {len(samples)} samples")
 
@@ -304,13 +333,15 @@ def main() -> None:
             subset=args.subset,
             preprocess=None if flt == "none" else flt,
             samples=samples,
+            binary=args.binary,
         )
         all_results.append(result)
         acc = result.get("exact_match_accuracy", 0.0)
         print(f"  acc={acc:.3f}  refusals={result.get('refusal_rate', 0.0):.2%}")
 
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-    out = RESULTS_DIR / f"gpt4omini_{args.subset}.json"
+    suffix = "_binary" if args.binary else ""
+    out = RESULTS_DIR / f"gpt4omini_{args.subset}{suffix}.json"
     out.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
     print(f"\nSaved {len(all_results)} filter rows to {out}")
 
