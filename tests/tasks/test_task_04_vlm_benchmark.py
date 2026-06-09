@@ -67,9 +67,9 @@ def test_by_visibility_keys() -> None:
     data = json.loads(RESULTS.read_text(encoding="utf-8"))
     for entry in data:
         bv = entry.get("by_visibility")
-        assert (
-            bv is not None
-        ), f"Missing by_visibility in {entry.get('model')}/{entry.get('filter')}"
+        assert bv is not None, (
+            f"Missing by_visibility in {entry.get('model')}/{entry.get('filter')}"
+        )
         for v in ["1", "2", "3", "4", "5"]:
             assert v in bv, f"Missing visibility key '{v}' in {entry.get('model')}"
 
@@ -93,6 +93,6 @@ def test_refusal_rate_for_generative_models() -> None:
     data = json.loads(RESULTS.read_text(encoding="utf-8"))
     generative_entries = [e for e in data if e.get("model") in _GENERATIVE_MODELS]
     for entry in generative_entries:
-        assert (
-            "refusal_rate" in entry
-        ), f"Missing refusal_rate for generative model {entry['model']}"
+        assert "refusal_rate" in entry, (
+            f"Missing refusal_rate for generative model {entry['model']}"
+        )
