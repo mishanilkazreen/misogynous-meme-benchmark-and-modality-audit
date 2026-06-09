@@ -61,22 +61,32 @@ def collect_samples(
     return samples
 
 
+_CLIP_BINARY_LABELS = ["hateful", "not hateful"]
+_CLIP_BINARY_GROUND_TRUTH = "hateful"
+
+
 def run_benchmark(
     subset: str,
     preprocess: str | None = None,
     limit: int | None = None,
     device: str = "cpu",
     samples: list[dict[str, Any]] | None = None,
+    binary: bool = False,
 ) -> dict[str, Any]:
     if samples is None:
         samples = collect_samples(subset, limit=limit)
     if not samples:
         raise ValueError(f"No samples for subset '{subset}'")
 
-    labels_by_subset_raw: dict[str, set[str]] = {}
-    for s in samples:
-        labels_by_subset_raw.setdefault(s["subset"], set()).add(s["message"])
-    all_labels = sorted({lbl for lbls in labels_by_subset_raw.values() for lbl in lbls})
+    if binary:
+        all_labels: list[str] = _CLIP_BINARY_LABELS
+        ground_truths = [_CLIP_BINARY_GROUND_TRUTH] * len(samples)
+    else:
+        labels_by_subset_raw: dict[str, set[str]] = {}
+        for s in samples:
+            labels_by_subset_raw.setdefault(s["subset"], set()).add(s["message"])
+        all_labels = sorted({lbl for lbls in labels_by_subset_raw.values() for lbl in lbls})
+        ground_truths = [s["message"] for s in samples]
 
     pipeline = PreprocessingPipeline() if preprocess else None
     images = []
@@ -86,7 +96,6 @@ def run_benchmark(
             arr = pipeline.apply_transformation(arr, preprocess)
         images.append(arr)
 
-    ground_truths = [s["message"] for s in samples]
     visibility_scores = [int(s["visibility_score"]) for s in samples]
 
     classifier = CLIPClassifier(device=device)
@@ -161,6 +170,7 @@ def run_benchmark(
         "model": "clip",
         "filter": preprocess or "none",
         "subset": subset,
+        "binary": binary,
         "exact_match_accuracy": accuracy,
         "precision": macro_prec,
         "recall": macro_rec,
@@ -202,6 +212,11 @@ def main() -> None:
     )
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--device", default="cpu")
+    parser.add_argument(
+        "--binary",
+        action="store_true",
+        help="Binary classification mode using labels 'hateful' / 'not hateful'",
+    )
     args = parser.parse_args()
 
     filters_to_run = (
@@ -210,7 +225,9 @@ def main() -> None:
         else ["none", *PreprocessingPipeline.TRANSFORMATIONS]
     )
 
-    print(f"Subset: {args.subset} | Filters: {filters_to_run} | Limit: {args.limit}")
+    print(
+        f"Subset: {args.subset} | Filters: {filters_to_run} | Limit: {args.limit} | Binary: {args.binary}"
+    )
     samples = collect_samples(args.subset, limit=args.limit)
     print(f"Loaded {len(samples)} samples")
 
@@ -222,12 +239,14 @@ def main() -> None:
             preprocess=None if flt == "none" else flt,
             device=args.device,
             samples=samples,
+            binary=args.binary,
         )
         all_results.append(result)
         print_samples(result)
 
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-    out = RESULTS_DIR / f"clip_{args.subset}.json"
+    suffix = "_binary" if args.binary else ""
+    out = RESULTS_DIR / f"clip_{args.subset}{suffix}.json"
     out.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
     print(f"\nSaved {len(all_results)} filter rows to {out}")
 
