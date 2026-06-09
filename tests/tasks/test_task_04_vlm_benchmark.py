@@ -65,9 +65,9 @@ def test_by_visibility_keys() -> None:
     data = _load_all_results()
     for entry in data:
         bv = entry.get("by_visibility")
-        assert (
-            bv is not None
-        ), f"Missing by_visibility in {entry.get('model')}/{entry.get('filter')}"
+        assert bv is not None, (
+            f"Missing by_visibility in {entry.get('model')}/{entry.get('filter')}"
+        )
 
 
 def test_required_metric_keys() -> None:
