@@ -36,10 +36,11 @@ ALL_MODELS = [
     "clip",
     "qwen2vl",
     "llava",
+    "llavanext",
     "gpt4omini",
     "gemini",
 ]
-GENERATIVE_MODELS = {"qwen2vl", "llava", "gpt4omini", "gemini"}
+GENERATIVE_MODELS = {"qwen2vl", "llava", "llavanext", "gpt4omini", "gemini"}
 
 ALL_FILTERS = ["none", *PreprocessingPipeline.TRANSFORMATIONS]
 
@@ -272,6 +273,21 @@ def run_generative_model(
             )
         except Exception as exc:
             print(f"  Skipping llava: {exc}")
+            return None
+
+    if model_name == "llavanext":
+        try:
+            from scripts.benchmark_llavanext import run_benchmark  # type: ignore[import,assignment]
+
+            return run_benchmark(  # type: ignore[call-arg]
+                subset=subset,
+                preprocess=preprocess_arg,
+                samples=samples,
+                device=device,
+                binary=binary,
+            )
+        except Exception as exc:
+            print(f"  Skipping llavanext: {exc}")
             return None
 
     if model_name == "gemini":

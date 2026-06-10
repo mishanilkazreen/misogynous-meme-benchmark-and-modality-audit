@@ -1,0 +1,398 @@
+"""
+Benchmark LLaVA-Next on HatefulIllusion (closed-set classification, GPU required).
+
+Uses llava-hf/llava-v1.6-mistral-7b-hf with 4-bit quantization by default
+(~5 GB VRAM, fits 12 GB consumer GPUs).
+Refusals caught and logged as refusal_rate.
+
+Usage:
+    uv run python scripts/benchmark_llavanext.py --subset digits --limit 5 --device cuda
+    uv run python scripts/benchmark_llavanext.py --subset all --task binary --device cuda
+"""
+
+# ruff: noqa: I001  # datasets (via utils.dataset) must precede torch to avoid OpenMP segfault
+from __future__ import annotations
+
+import argparse
+import json
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+import numpy as np
+import torch
+from PIL import Image
+from tqdm import tqdm
+
+from models.vlm.classifier import (
+    BINARY_GROUND_TRUTH,
+    BINARY_LABELS,
+    ClassificationResult,
+    build_binary_prompt,
+    build_prompt,
+    extract_label,
+)
+from utils.dataset import DatasetManager
+from utils.preprocessing import PreprocessingPipeline
+
+try:
+    from transformers import BitsAndBytesConfig  # type: ignore[import-untyped]
+    from transformers import LlavaNextForConditionalGeneration, LlavaNextProcessor
+
+    _TRANSFORMERS_AVAILABLE = True
+except (ModuleNotFoundError, ImportError):
+    _TRANSFORMERS_AVAILABLE = False
+
+SUBSET_NAMES = ["digits", "hate_slangs", "hate_symbols"]
+RESULTS_DIR = Path(__file__).resolve().parents[1] / "results"
+DEFAULT_MODEL_ID = "llava-hf/llava-v1.6-mistral-7b-hf"
+MAX_NEW_TOKENS = 20
+
+_model_cache: dict[str, tuple[Any, Any]] = {}
+
+
+def _load_model(model_id: str, device: str, quantize: str = "4bit") -> tuple[Any, Any]:
+    """Load processor + model; cached after first call.
+
+    Args:
+        model_id: HuggingFace model identifier.
+        device: Target device ('cuda', 'cpu').
+        quantize: '4bit' (default, ~5 GB VRAM), '8bit', or 'none' (fp16, ~14 GB).
+    """
+    key = f"{model_id}:{device}:{quantize}"
+    if key in _model_cache:
+        return _model_cache[key]
+
+    quant_label = "4-bit NF4" if quantize == "4bit" else ("8-bit" if quantize == "8bit" else "fp16")
+    print(f"  Loading {model_id} ({quant_label}) …")
+    processor = LlavaNextProcessor.from_pretrained(model_id, use_fast=True)
+
+    load_kwargs: dict[str, Any] = {
+        "low_cpu_mem_usage": True,
+        "device_map": device,
+    }
+
+    if quantize == "4bit":
+        load_kwargs["quantization_config"] = BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_compute_dtype=torch.float16,
+            bnb_4bit_quant_type="nf4",
+            bnb_4bit_use_double_quant=True,
+        )
+    elif quantize == "8bit":
+        load_kwargs["quantization_config"] = BitsAndBytesConfig(load_in_8bit=True)
+    else:
+        load_kwargs["torch_dtype"] = torch.float16
+
+    model = LlavaNextForConditionalGeneration.from_pretrained(model_id, **load_kwargs)
+    model.eval()
+
+    _model_cache[key] = (processor, model)
+    return processor, model
+
+
+_REFUSAL_PHRASES = [
+    "i cannot",
+    "i'm unable",
+    "i am unable",
+    "i can't",
+    "as an ai",
+    "inappropriate",
+    "harmful",
+]
+
+
+def image_to_numpy(image: Any) -> np.ndarray:
+    if isinstance(image, torch.Tensor):
+        image = image.detach().cpu().numpy()
+    if isinstance(image, np.ndarray):
+        if image.ndim == 3 and image.shape[0] == 3:
+            image = image.transpose(1, 2, 0)
+        if np.issubdtype(image.dtype, np.floating):
+            image = np.clip(image * 255.0, 0, 255).astype(np.uint8)
+        elif image.dtype != np.uint8:
+            image = image.astype(np.uint8)
+        return image
+    raise ValueError(f"Unsupported image type: {type(image)}")
+
+
+def collect_samples(
+    subset: str, limit: int | None = None, split: str = "train"
+) -> list[dict[str, Any]]:
+    subsets = SUBSET_NAMES if subset == "all" else [subset]
+    manager = DatasetManager()
+    samples: list[dict[str, Any]] = []
+    for subset_name in subsets:
+        dataset = manager.load_dataset(split=split, subset=subset_name)
+        count = min(len(dataset), limit) if limit is not None else len(dataset)
+        for index in range(count):
+            sample = dataset[index]
+            sample["subset"] = subset_name
+            sample["image_id"] = f"{subset_name}_{sample['image_id']}"
+            samples.append(sample)
+    return samples
+
+
+def is_refusal(text: str) -> bool:
+    lower = text.lower()
+    return any(phrase in lower for phrase in _REFUSAL_PHRASES)
+
+
+def run_benchmark(
+    subset: str,
+    model_id: str = DEFAULT_MODEL_ID,
+    device: str = "cuda",
+    preprocess: str | None = None,
+    limit: int | None = None,
+    samples: list[dict[str, Any]] | None = None,
+    batch_size: int = 4,
+    quantize: str = "4bit",
+    binary: bool = False,
+) -> dict[str, Any]:
+    """Run LLaVA-Next benchmark and return a result dict.
+
+    Args:
+        subset: Dataset subset ('digits', 'hate_slangs', 'hate_symbols', 'all').
+        model_id: HuggingFace model ID.
+        device: Target device.
+        preprocess: Preprocessing filter name, or None for no filter.
+        limit: Cap on number of samples.
+        samples: Pre-loaded samples (skips dataset loading if provided).
+        batch_size: Images per forward pass.
+        quantize: Quantization mode ('4bit', '8bit', 'none').
+        binary: If True, use binary yes/no prompt matching Qu et al. Table 4.
+    """
+    if not _TRANSFORMERS_AVAILABLE:
+        raise RuntimeError("transformers not available. Install: uv sync --group vlm-gpu")
+    if not torch.cuda.is_available() and device.startswith("cuda"):
+        raise RuntimeError("CUDA not available. Pass --device cpu for testing only.")
+
+    processor, model = _load_model(model_id, device, quantize=quantize)
+
+    if samples is None:
+        samples = collect_samples(subset, limit=limit)
+    if not samples:
+        raise ValueError(f"No samples for subset '{subset}'")
+
+    if binary:
+        labels_sorted: dict[str, list[str]] = {s["subset"]: BINARY_LABELS for s in samples}
+        all_labels: list[str] = BINARY_LABELS
+    else:
+        labels_by_subset_raw: dict[str, set[str]] = {}
+        for s in samples:
+            labels_by_subset_raw.setdefault(s["subset"], set()).add(s["message"])
+        labels_sorted = {k: sorted(v) for k, v in labels_by_subset_raw.items()}
+        all_labels = sorted({lbl for lbls in labels_sorted.values() for lbl in lbls})
+
+    pipeline = PreprocessingPipeline() if preprocess else None
+    results: list[ClassificationResult] = []
+    ground_truths: list[str] = []
+    visibility_scores: list[int] = []
+    sample_rows: list[dict[str, Any]] = []
+
+    pbar = tqdm(total=len(samples), desc=f"llavanext/{preprocess or 'none'}", unit="img")
+    for batch_start in range(0, len(samples), batch_size):
+        batch = samples[batch_start : batch_start + batch_size]
+
+        prompts: list[str] = []
+        pils: list[Image.Image] = []
+        batch_labels: list[list[str]] = []
+        for s in batch:
+            arr = image_to_numpy(s["image"])
+            if pipeline is not None and preprocess is not None:
+                arr = pipeline.apply_transformation(arr, preprocess)
+            pil = Image.fromarray(arr)
+            labels = BINARY_LABELS if binary else labels_sorted.get(s["subset"], [])
+            prompt_text = build_binary_prompt() if binary else build_prompt(s["subset"], labels)
+            conversation = [
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "image"},
+                        {"type": "text", "text": prompt_text},
+                    ],
+                }
+            ]
+            prompts.append(processor.apply_chat_template(conversation, add_generation_prompt=True))
+            pils.append(pil)
+            batch_labels.append(labels)
+
+        inputs = processor(images=pils, text=prompts, return_tensors="pt", padding=True).to(
+            model.device
+        )
+
+        t0 = time.perf_counter()
+        with torch.no_grad():
+            output_ids = model.generate(**inputs, max_new_tokens=MAX_NEW_TOKENS, do_sample=False)
+        elapsed = (time.perf_counter() - t0) / len(batch)
+
+        input_len = inputs["input_ids"].shape[1]
+        response_texts = processor.batch_decode(output_ids[:, input_len:], skip_special_tokens=True)
+
+        for s, raw_text, labels in zip(batch, response_texts, batch_labels, strict=False):
+            response_text = raw_text.strip()
+            refusal = is_refusal(response_text)
+            matched = extract_label(response_text, labels) if not refusal else None
+            results.append(
+                ClassificationResult(
+                    prediction=matched,
+                    confidence=1.0 if matched else 0.0,
+                    latency_s=elapsed,
+                    refusal=refusal,
+                )
+            )
+            gt = BINARY_GROUND_TRUTH if binary else s["message"]
+            ground_truths.append(gt)
+            visibility_scores.append(int(s["visibility_score"]))
+            sample_rows.append(
+                {
+                    "image_id": s["image_id"],
+                    "ground_truth": gt,
+                    "prediction": matched,
+                    "correct": matched == gt,
+                    "refusal": refusal,
+                    "visibility": int(s["visibility_score"]),
+                }
+            )
+        pbar.update(len(batch))
+    pbar.close()
+
+    n_total = len(results)
+    refusal_rate = sum(1 for r in results if r.refusal) / n_total if n_total else 0.0
+    avg_latency = sum(r.latency_s for r in results) / n_total if n_total else 0.0
+
+    predictions: list[str | None] = [r.prediction for r in results]
+    correct_all = sum(1 for p, gt in zip(predictions, ground_truths, strict=True) if p == gt)
+    accuracy = correct_all / n_total if n_total else 0.0
+
+    per_class_prec: list[float] = []
+    per_class_rec: list[float] = []
+    for label in all_labels:
+        tp = sum(
+            1
+            for p, gt in zip(predictions, ground_truths, strict=True)
+            if p == label and gt == label
+        )
+        fp = sum(
+            1
+            for p, gt in zip(predictions, ground_truths, strict=True)
+            if p == label and gt != label
+        )
+        fn = sum(
+            1
+            for p, gt in zip(predictions, ground_truths, strict=True)
+            if p != label and gt == label
+        )
+        per_class_prec.append(tp / (tp + fp) if (tp + fp) > 0 else 0.0)
+        per_class_rec.append(tp / (tp + fn) if (tp + fn) > 0 else 0.0)
+    macro_prec = sum(per_class_prec) / len(per_class_prec) if per_class_prec else 0.0
+    macro_rec = sum(per_class_rec) / len(per_class_rec) if per_class_rec else 0.0
+    macro_f1 = (
+        2 * macro_prec * macro_rec / (macro_prec + macro_rec)
+        if (macro_prec + macro_rec) > 0
+        else 0.0
+    )
+
+    by_visibility: dict[str, dict[str, Any]] = {}
+    for v in range(1, 6):
+        indices = [i for i, vs in enumerate(visibility_scores) if vs == v]
+        v_preds = [predictions[i] for i in indices]
+        v_gts = [ground_truths[i] for i in indices]
+        v_n = len(v_preds)
+        v_correct = sum(1 for p, gt in zip(v_preds, v_gts, strict=True) if p == gt)
+        by_visibility[str(v)] = {
+            "exact_match_accuracy": v_correct / v_n if v_n else 0.0,
+            "num_images": v_n,
+        }
+
+    return {
+        "benchmark_date": datetime.now(timezone.utc).isoformat(),
+        "model": "llavanext",
+        "filter": preprocess or "none",
+        "subset": subset,
+        "binary": binary,
+        "exact_match_accuracy": accuracy,
+        "precision": macro_prec,
+        "recall": macro_rec,
+        "f1": macro_f1,
+        "avg_latency_s": avg_latency,
+        "refusal_rate": refusal_rate,
+        "by_visibility": by_visibility,
+        "sample_predictions": sample_rows,
+    }
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--subset",
+        default="digits",
+        choices=["digits", "hate_slangs", "hate_symbols", "all"],
+    )
+    parser.add_argument("--model-id", default=DEFAULT_MODEL_ID)
+    parser.add_argument("--device", default="cuda")
+    parser.add_argument(
+        "--filters",
+        default=None,
+        help="Comma-separated filters (default: all). E.g. 'none,blur,grayscale'",
+    )
+    parser.add_argument("--limit", type=int, default=None)
+    parser.add_argument("--batch-size", type=int, default=4)
+    parser.add_argument(
+        "--quantize",
+        default="4bit",
+        choices=["none", "4bit", "8bit"],
+        help="Quantization mode (default: 4bit, ~5 GB VRAM)",
+    )
+    parser.add_argument(
+        "--binary",
+        action="store_true",
+        help="Binary yes/no classification matching Qu et al. Table 4",
+    )
+    args = parser.parse_args()
+
+    filters_to_run = (
+        [f.strip() for f in args.filters.split(",")]
+        if args.filters
+        else ["none", *PreprocessingPipeline.TRANSFORMATIONS]
+    )
+
+    print(
+        f"Subset: {args.subset} | Filters: {filters_to_run} | "
+        f"Limit: {args.limit} | Binary: {args.binary}"
+    )
+
+    # Load model before dataset to avoid bitsandbytes crash on Windows.
+    print("Pre-loading model …")
+    _load_model(args.model_id, args.device, quantize=args.quantize)
+
+    samples = collect_samples(args.subset, limit=args.limit)
+    print(f"Loaded {len(samples)} samples")
+
+    all_results: list[dict[str, Any]] = []
+    for flt in filters_to_run:
+        print(f"\n--- Filter: {flt} ---")
+        result = run_benchmark(
+            subset=args.subset,
+            model_id=args.model_id,
+            device=args.device,
+            preprocess=None if flt == "none" else flt,
+            samples=samples,
+            batch_size=args.batch_size,
+            quantize=args.quantize,
+            binary=args.binary,
+        )
+        all_results.append(result)
+        acc = result.get("exact_match_accuracy", 0.0)
+        print(f"  acc={acc:.3f}  refusals={result.get('refusal_rate', 0.0):.2%}")
+
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    suffix = "_binary" if args.binary else ""
+    out = RESULTS_DIR / f"llavanext_{args.subset}{suffix}.json"
+    out.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
+    print(f"\nSaved {len(all_results)} filter rows to {out}")
+
+
+if __name__ == "__main__":
+    main()
