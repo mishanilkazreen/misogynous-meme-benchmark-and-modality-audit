@@ -212,14 +212,24 @@ def run_benchmark(
             pbar.update(1)
 
     results: list[ClassificationResult] = [r for r in ordered if r is not None]
-    ground_truths: list[str] = [BINARY_GROUND_TRUTH if binary else s["message"] for s in samples]
+    ground_truths: list[str] = [
+        ("no" if s["subset"] == "digits" else BINARY_GROUND_TRUTH) if binary else s["message"]
+        for s in samples
+    ]
     visibility_scores: list[int] = [int(s["visibility_score"]) for s in samples]
     sample_rows: list[dict[str, Any]] = [
         {
             "image_id": s["image_id"],
-            "ground_truth": BINARY_GROUND_TRUTH if binary else s["message"],
+            "ground_truth": ("no" if s["subset"] == "digits" else BINARY_GROUND_TRUTH)
+            if binary
+            else s["message"],
             "prediction": results[i].prediction,
-            "correct": results[i].prediction == (BINARY_GROUND_TRUTH if binary else s["message"]),
+            "correct": results[i].prediction
+            == (
+                ("no" if s["subset"] == "digits" else BINARY_GROUND_TRUTH)
+                if binary
+                else s["message"]
+            ),
             "visibility": int(s["visibility_score"]),
         }
         for i, s in enumerate(samples)

@@ -242,7 +242,11 @@ def run_benchmark(
                     refusal=refusal,
                 )
             )
-            gt = BINARY_GROUND_TRUTH if binary else s["message"]
+            gt = (
+                ("no" if s["subset"] == "digits" else BINARY_GROUND_TRUTH)
+                if binary
+                else s["message"]
+            )
             ground_truths.append(gt)
             visibility_scores.append(int(s["visibility_score"]))
             sample_rows.append(

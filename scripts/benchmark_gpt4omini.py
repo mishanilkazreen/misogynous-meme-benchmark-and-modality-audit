@@ -189,7 +189,7 @@ def run_benchmark(
 
         time.sleep(_CALL_INTERVAL_S)
         result = classify_with_gpt(client, b64, prompt, labels)
-        gt = BINARY_GROUND_TRUTH if binary else s["message"]
+        gt = ("no" if s["subset"] == "digits" else BINARY_GROUND_TRUTH) if binary else s["message"]
         results.append(result)
         ground_truths.append(gt)
         visibility_scores.append(int(s["visibility_score"]))

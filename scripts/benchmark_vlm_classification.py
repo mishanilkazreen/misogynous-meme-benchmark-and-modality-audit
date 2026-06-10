@@ -195,7 +195,9 @@ def run_clip(
 ) -> dict[str, Any]:
     if binary:
         labels: list[str] = _CLIP_BINARY_LABELS
-        ground_truths = [_CLIP_BINARY_GROUND_TRUTH] * len(samples)
+        ground_truths = [
+            "not hateful" if s["subset"] == "digits" else _CLIP_BINARY_GROUND_TRUTH for s in samples
+        ]
     else:
         labels = sorted({s["message"] for s in samples})
         ground_truths = [s["message"] for s in samples]
