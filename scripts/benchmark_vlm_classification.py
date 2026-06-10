@@ -17,17 +17,40 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import gc
 import json
-from pathlib import Path
+import logging
+import sys
 import time
+import traceback
+from pathlib import Path
 from typing import Any
+
+import numpy as np
+import torch
 
 from models.vlm.clip_classifier import CLIPClassifier
 from utils.dataset import DatasetManager
 from utils.preprocessing import PreprocessingPipeline
 
-import numpy as np
-import torch
+# --- Logging setup ---
+LOG_DIR = Path(__file__).resolve().parents[1] / "logs"
+LOG_DIR.mkdir(parents=True, exist_ok=True)
+LOG_FILE = LOG_DIR / "benchmark_vlm.log"
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.FileHandler(LOG_FILE, mode="a", encoding="utf-8"),
+        logging.StreamHandler(sys.stderr),
+    ],
+)
+# Silence noisy third-party HTTP/network debug logging.
+for noisy in ("httpx", "httpcore", "urllib3", "huggingface_hub", "filelock", "datasets"):
+    logging.getLogger(noisy).setLevel(logging.WARNING)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 SUBSET_NAMES = ["digits", "hate_slangs", "hate_symbols"]
 RESULTS_DIR = Path(__file__).resolve().parents[1] / "results"
@@ -236,6 +259,36 @@ def run_clip(
     }
 
 
+def free_model_vram(model_name: str) -> None:
+    """Evict a generative model from its script's cache and free GPU memory.
+
+    LLaVA and Qwen2-VL each keep a module-level ``_model_cache`` so the model
+    is loaded once and reused across filters. When switching to a different
+    7B model we must release the previous one or the second 4-bit load will
+    exhaust VRAM and crash bitsandbytes mid-conversion (a native access
+    violation that Python cannot catch).
+    """
+    try:
+        if model_name == "llava":
+            from scripts import benchmark_llava as mod
+        elif model_name == "qwen2vl":
+            from scripts import benchmark_qwen2vl as mod
+        else:
+            return
+        cache = getattr(mod, "_model_cache", None)
+        if cache:
+            cache.clear()
+            logger.info("Cleared %s model cache", model_name)
+    except Exception as exc:  # pragma: no cover - cleanup best-effort
+        logger.warning("Could not clear %s cache: %s", model_name, exc)
+
+    gc.collect()
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
+        torch.cuda.synchronize()
+    logger.info("Freed VRAM after %s", model_name)
+
+
 def run_generative_model(
     model_name: str,
     samples: list[dict[str, Any]],
@@ -251,14 +304,21 @@ def run_generative_model(
         try:
             from scripts.benchmark_qwen2vl import run_benchmark  # type: ignore[import,assignment]
 
-            return run_benchmark(  # type: ignore[call-arg]
+            logger.info("Starting qwen2vl (filter=%s, binary=%s)", filter_name, binary)
+            result = run_benchmark(  # type: ignore[call-arg]
                 subset=subset,
                 preprocess=preprocess_arg,
                 samples=samples,
                 device=device,
                 binary=binary,
+                quantize="4bit",
             )
+            logger.info("Completed qwen2vl (filter=%s)", filter_name)
+            return result
         except Exception as exc:
+            logger.error(
+                "qwen2vl failed (filter=%s): %s\n%s", filter_name, exc, traceback.format_exc()
+            )
             print(f"  Skipping qwen2vl: {exc}")
             return None
 
@@ -266,14 +326,21 @@ def run_generative_model(
         try:
             from scripts.benchmark_llava import run_benchmark  # type: ignore[import,assignment]
 
-            return run_benchmark(  # type: ignore[call-arg]
+            logger.info("Starting llava (filter=%s, binary=%s)", filter_name, binary)
+            result = run_benchmark(  # type: ignore[call-arg]
                 subset=subset,
                 preprocess=preprocess_arg,
                 samples=samples,
                 device=device,
                 binary=binary,
+                quantize="4bit",
             )
+            logger.info("Completed llava (filter=%s)", filter_name)
+            return result
         except Exception as exc:
+            logger.error(
+                "llava failed (filter=%s): %s\n%s", filter_name, exc, traceback.format_exc()
+            )
             print(f"  Skipping llava: {exc}")
             return None
 
@@ -296,10 +363,16 @@ def run_generative_model(
         try:
             from scripts.benchmark_gemini import run_benchmark  # type: ignore[import,assignment]
 
-            return run_benchmark(
+            logger.info("Starting gemini (filter=%s, binary=%s)", filter_name, binary)
+            result = run_benchmark(
                 subset=subset, preprocess=preprocess_arg, samples=samples, binary=binary
             )
+            logger.info("Completed gemini (filter=%s)", filter_name)
+            return result
         except Exception as exc:
+            logger.error(
+                "gemini failed (filter=%s): %s\n%s", filter_name, exc, traceback.format_exc()
+            )
             print(f"  Skipping gemini: {exc}")
             return None
 
@@ -307,10 +380,16 @@ def run_generative_model(
         try:
             from scripts.benchmark_gpt4omini import run_benchmark  # type: ignore[import,assignment]
 
-            return run_benchmark(
+            logger.info("Starting gpt4omini (filter=%s, binary=%s)", filter_name, binary)
+            result = run_benchmark(
                 subset=subset, preprocess=preprocess_arg, samples=samples, binary=binary
             )
+            logger.info("Completed gpt4omini (filter=%s)", filter_name)
+            return result
         except Exception as exc:
+            logger.error(
+                "gpt4omini failed (filter=%s): %s\n%s", filter_name, exc, traceback.format_exc()
+            )
             print(f"  Skipping gpt4omini: {exc}")
             return None
 
@@ -391,6 +470,14 @@ def main() -> None:
     )
     args = parser.parse_args()
 
+    logger.info(
+        "=== Benchmark started: models=%s subset=%s device=%s binary=%s ===",
+        args.model,
+        args.subset,
+        args.device,
+        args.binary,
+    )
+
     models_requested = (
         ALL_MODELS if args.model == "all" else [m.strip() for m in args.model.split(",")]
     )
@@ -404,13 +491,19 @@ def main() -> None:
     if not samples:
         raise SystemExit(f"No samples found for subset '{args.subset}'")
     print(f"Loaded {len(samples)} samples")
+    logger.info("Loaded %d samples for subset=%s", len(samples), args.subset)
 
     all_results: list[dict[str, Any]] = []
 
-    for filter_name in filters_to_run:
-        print(f"\n--- Filter: {filter_name} ---")
-        for model_name in models_requested:
-            print(f"  Running {model_name} …")
+    # Model-outer, filter-inner: load each model once, run all filters, then
+    # free its VRAM before moving to the next model. This keeps only one 7B
+    # model resident at a time (critical on 12 GB GPUs).
+    for model_name in models_requested:
+        print(f"\n===== Model: {model_name} =====")
+        logger.info("=== Model %s: running %d filters ===", model_name, len(filters_to_run))
+        for filter_name in filters_to_run:
+            print(f"\n--- {model_name} | Filter: {filter_name} ---")
+            logger.info("Running model=%s filter=%s", model_name, filter_name)
             try:
                 if model_name == "clip":
                     result: dict[str, Any] | None = run_clip(
@@ -423,17 +516,55 @@ def main() -> None:
                 if result is not None:
                     all_results.append(result)
                     print_sample_predictions(result)
+                    logger.info(
+                        "Result: model=%s filter=%s acc=%.4f",
+                        model_name,
+                        filter_name,
+                        result.get("exact_match_accuracy", 0.0),
+                    )
             except Exception as exc:
+                logger.error(
+                    "FATAL error model=%s filter=%s: %s\n%s",
+                    model_name,
+                    filter_name,
+                    exc,
+                    traceback.format_exc(),
+                )
                 print(f"  ERROR running {model_name} with filter={filter_name}: {exc}")
+
+        # Done with this model across all filters: release its VRAM.
+        if model_name in GENERATIVE_MODELS:
+            free_model_vram(model_name)
+
+        # Persist incrementally so a later crash doesn't lose completed models.
+        RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+        suffix = "_binary" if args.binary else ""
+        out_path = RESULTS_DIR / f"vlm_classification{suffix}.json"
+        out_path.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
+        logger.info("Checkpoint: wrote %d results after %s", len(all_results), model_name)
 
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     suffix = "_binary" if args.binary else ""
     out_path = RESULTS_DIR / f"vlm_classification{suffix}.json"
     out_path.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
     print(f"\nWrote {len(all_results)} result rows to {out_path}")
+    logger.info("Wrote %d results to %s", len(all_results), out_path)
 
     print_summary(all_results)
+    logger.info("=== Benchmark completed ===")
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        logger.warning("Interrupted by user (Ctrl+C)")
+        sys.exit(1)
+    except SystemExit:
+        raise
+    except BaseException as exc:
+        # Catch everything including CUDA OOM, segfaults that Python can still catch, etc.
+        logger.critical("Unhandled exception crashed the benchmark:\n%s", traceback.format_exc())
+        print(f"\nFATAL: {exc}", file=sys.stderr)
+        print(f"Full traceback written to: {LOG_FILE}", file=sys.stderr)
+        sys.exit(1)
