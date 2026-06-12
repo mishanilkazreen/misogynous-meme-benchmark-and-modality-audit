@@ -1190,6 +1190,57 @@ wheels = [
 ]
 
 [[package]]
+name = "kagglehub"
+version = "1.0.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "kagglesdk", version = "0.1.28", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
+    { name = "kagglesdk", version = "0.1.30", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
+    { name = "packaging" },
+    { name = "pyyaml" },
+    { name = "requests" },
+    { name = "tqdm" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/b5/b9/e1bdafdcdb98e8e5354b30959ed48f4a08ca2c2dc72c968c5b38c4baa1b5/kagglehub-1.0.2.tar.gz", hash = "sha256:08abae0c1e249904003ce6f23c189166e3032220478426a552c77c2edb08b93a", size = 117457, upload-time = "2026-06-09T17:14:05.313Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/61/1a/6b1293d0b091905e367f86771a7122e5f7f2729ab9f0f36a1617f7ad6c05/kagglehub-1.0.2-py3-none-any.whl", hash = "sha256:ffad2d79cfda9b06848e98cb0a4a48e286285cfba4aeadadc0b8dbd9bcadd372", size = 70645, upload-time = "2026-06-09T17:14:04.04Z" },
+]
+
+[[package]]
+name = "kagglesdk"
+version = "0.1.28"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version < '3.11' and sys_platform == 'win32'",
+    "python_full_version < '3.11' and sys_platform != 'win32'",
+]
+dependencies = [
+    { name = "protobuf", marker = "python_full_version < '3.11'" },
+    { name = "requests", marker = "python_full_version < '3.11'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/c9/4d/b8d5373ecc00daa1e2a75d34577fdb7fbad22212623f543ea3c958991bc5/kagglesdk-0.1.28.tar.gz", hash = "sha256:5bd4f9912d83583dbc3aa1be769d14887a0d59c35331b3bc68031ec4cd4549a0", size = 179870, upload-time = "2026-06-03T16:39:39.426Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/01/02/aa672c446bd0efac6937e4b8d6466102008fac5716f77e3ec1b8ff538ebc/kagglesdk-0.1.28-py3-none-any.whl", hash = "sha256:1b038ec43f1b508ceaeff506118c33f4cb5e8e28e229951aadef0e493a160f5f", size = 230021, upload-time = "2026-06-03T16:39:38.223Z" },
+]
+
+[[package]]
+name = "kagglesdk"
+version = "0.1.30"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version >= '3.11' and sys_platform == 'win32'",
+    "python_full_version >= '3.11' and sys_platform != 'win32'",
+]
+dependencies = [
+    { name = "protobuf", marker = "python_full_version >= '3.11'" },
+    { name = "requests", marker = "python_full_version >= '3.11'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/88/3a/522542dbf928ef18144caccb0dfea1da50bc3d1b5309511410d36b316ab9/kagglesdk-0.1.30.tar.gz", hash = "sha256:47c6643066d965b7898e960fddcde07e151bea1ae1c1c381e25a5a041edf881d", size = 181398, upload-time = "2026-06-11T22:51:46.351Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/60/85/eedcc1c5f3d198d64dcc6f68c30739abb28c180b889099d4e47bb11581ac/kagglesdk-0.1.30-py3-none-any.whl", hash = "sha256:dbd063e1805a5ef947a8c0a6e43b232eb01697f08baf3310bc3dde6dfe5a0193", size = 231016, upload-time = "2026-06-11T22:51:45.089Z" },
+]
+
+[[package]]
 name = "kiwisolver"
 version = "1.5.0"
 source = { registry = "https://pypi.org/simple" }
@@ -3151,6 +3202,7 @@ dependencies = [
     { name = "google-generativeai" },
     { name = "hf-xet" },
     { name = "hypothesis" },
+    { name = "kagglehub" },
     { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
     { name = "open-clip-torch" },
@@ -3211,6 +3263,7 @@ requires-dist = [
     { name = "google-generativeai", marker = "extra == 'cloud'", specifier = ">=0.8.0" },
     { name = "hf-xet", specifier = ">=1.0.0" },
     { name = "hypothesis", specifier = ">=6.82.0" },
+    { name = "kagglehub", specifier = ">=0.3.0" },
     { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.7.0" },
     { name = "numpy", specifier = ">=1.24.0" },
     { name = "open-clip-torch", specifier = ">=3.3.0" },

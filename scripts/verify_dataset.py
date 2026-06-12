@@ -1,34 +1,44 @@
-"""Verify the HatefulIllusion dataset is correctly cached and loadable.
+"""Verify the MAMI 2022 dataset is correctly downloaded and loadable.
 
 Checks:
-  1. Each subset loads without error
-  2. Expected record counts match (digits: 300, hate_slangs: 690, hate_symbols: 1170)
-  3. Required fields present on every record (image, message, prompt, visibility)
-  4. Visibility scores are integers in [0, 2]
-  5. Every image file is readable as RGB and non-zero
-  6. All three subsets are present when --subsets all is used
+  1. Each split (train, validation, test) loads without error.
+  2. Expected record counts match (train: 9000, validation: 1000, test: 1000).
+  3. Required fields are present on every record.
+  4. Labels are 0 or 1.
+  5. Every image file is readable as RGB and non-zero.
 
 Exits with code 0 on success, 1 on any failure.
 
 Usage:
     uv run python scripts/verify_dataset.py
-    uv run python scripts/verify_dataset.py --subsets digits
+    uv run python scripts/verify_dataset.py --splits train
     uv run python scripts/verify_dataset.py --fast        # skips per-image pixel check
 """
 
 from __future__ import annotations
 
 import argparse
+from pathlib import Path
 import sys
 
-from datasets import load_dataset
-from huggingface_hub import hf_hub_download
-from PIL import Image
+from dotenv import load_dotenv
 
-REPO_ID = "yiting/HatefulIllusion_Dataset"
-ALL_SUBSETS = ["digits", "hate_slangs", "hate_symbols"]
-EXPECTED_COUNTS = {"digits": 300, "hate_slangs": 690, "hate_symbols": 1170}
-REQUIRED_FIELDS = {"image", "message", "prompt", "visibility"}
+load_dotenv(Path(__file__).resolve().parents[1] / ".env")
+
+from utils.dataset import MamiDataset, _kaggle_download  # noqa: E402
+
+ALL_SPLITS = ["train", "validation", "test"]
+EXPECTED_COUNTS = {"train": 9000, "validation": 1000, "test": 1000}
+REQUIRED_FIELDS = {
+    "image",
+    "image_id",
+    "text",
+    "misogynous",
+    "shaming",
+    "stereotype",
+    "objectification",
+    "violence",
+}
 
 
 def check(condition: bool, msg: str, failures: list[str]) -> None:
@@ -39,20 +49,19 @@ def check(condition: bool, msg: str, failures: list[str]) -> None:
         print(f"  ok    {msg}")
 
 
-def verify_subset(subset: str, fast: bool, cache_dir: str | None) -> list[str]:
+def verify_split(split: str, dataset_path: str, fast: bool) -> list[str]:
     failures: list[str] = []
-    print(f"\n[{subset}]")
+    print(f"\n[{split}]")
 
     try:
-        ds = load_dataset(REPO_ID, subset, cache_dir=cache_dir)
-        split = ds["train"]
+        ds = MamiDataset(dataset_path=dataset_path, split=split)
     except Exception as exc:
-        failures.append(f"Failed to load '{subset}': {exc}")
+        failures.append(f"Failed to load '{split}': {exc}")
         print(f"  FAIL  load: {exc}")
         return failures
 
-    count = len(split)
-    expected = EXPECTED_COUNTS.get(subset)
+    count = len(ds)
+    expected = EXPECTED_COUNTS.get(split)
     check(
         expected is None or count == expected,
         f"record count: got {count}, expected {expected}",
@@ -60,34 +69,34 @@ def verify_subset(subset: str, fast: bool, cache_dir: str | None) -> list[str]:
     )
 
     bad_fields: list[int] = []
-    bad_visibility: list[int] = []
+    bad_labels: list[int] = []
     bad_images: list[int] = []
 
-    for idx, item in enumerate(split):
-        missing = REQUIRED_FIELDS - set(item.keys())
-        if missing:
-            bad_fields.append(idx)
-
-        vis = item.get("visibility")
-        if not isinstance(vis, int) or not (0 <= vis <= 2):
-            bad_visibility.append(idx)
-
-        if not fast:
+    for idx in range(count):
+        if fast:
+            # Only check metadata (no image load)
+            row = ds._records[idx]
+            missing = {"file_name", "label"} - set(row.keys())
+            if missing:
+                bad_fields.append(idx)
+            lbl = int(row.get("label", -1))
+            if lbl not in (0, 1):
+                bad_labels.append(idx)
+        else:
             try:
-                image_path = item["image"]
-                local = hf_hub_download(
-                    repo_id=REPO_ID,
-                    filename=f"{subset}/{image_path}",
-                    repo_type="dataset",
-                    cache_dir=cache_dir,
-                )
-                img = Image.open(local).convert("RGB")
-                if img.width == 0 or img.height == 0:
+                sample = ds[idx]
+                missing = REQUIRED_FIELDS - set(sample.keys())
+                if missing:
+                    bad_fields.append(idx)
+                if sample.get("misogynous") not in (0, 1):
+                    bad_labels.append(idx)
+                img = sample["image"]
+                if img.shape[0] != 3 or img.numel() == 0:
                     bad_images.append(idx)
             except Exception:
                 bad_images.append(idx)
 
-        if (idx + 1) % 100 == 0 or (idx + 1) == count:
+        if (idx + 1) % 500 == 0 or (idx + 1) == count:
             print(f"  checked {idx + 1}/{count}...", end="\r")
 
     print(f"  checked {count}/{count}        ")
@@ -97,11 +106,7 @@ def verify_subset(subset: str, fast: bool, cache_dir: str | None) -> list[str]:
         f"all records have required fields ({bad_fields[:5] or 'none missing'})",
         failures,
     )
-    check(
-        not bad_visibility,
-        f"all visibility scores in [1,5] ({bad_visibility[:5] or 'none bad'})",
-        failures,
-    )
+    check(not bad_labels, f"all labels in {{0, 1}} ({bad_labels[:5] or 'none bad'})", failures)
     if not fast:
         check(not bad_images, f"all images readable ({bad_images[:5] or 'none bad'})", failures)
 
@@ -111,38 +116,35 @@ def verify_subset(subset: str, fast: bool, cache_dir: str | None) -> list[str]:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "--subsets",
+        "--splits",
         nargs="+",
-        default=ALL_SUBSETS,
-        choices=ALL_SUBSETS,
-        metavar="SUBSET",
-        help="Subsets to verify (default: all three)",
+        default=ALL_SPLITS,
+        choices=ALL_SPLITS,
+        metavar="SPLIT",
+        help="Splits to verify (default: all three)",
     )
     parser.add_argument(
         "--fast",
         action="store_true",
         help="Skip per-image pixel read (only checks metadata)",
     )
-    parser.add_argument(
-        "--cache-dir",
-        default=None,
-        help="Hugging Face cache directory",
-    )
     args = parser.parse_args()
 
-    print(f"Verifying {REPO_ID}")
-    print(f"Subsets : {', '.join(args.subsets)}")
-    print(f"Mode    : {'fast (metadata only)' if args.fast else 'full (metadata + images)'}\n")
+    print("Downloading / locating MAMI 2022 dataset...")
+    dataset_path = _kaggle_download()
+    print(f"Dataset root: {dataset_path}")
+    print(f"Splits : {', '.join(args.splits)}")
+    print(f"Mode   : {'fast (metadata only)' if args.fast else 'full (metadata + images)'}\n")
 
     all_failures: list[str] = []
-    for subset in args.subsets:
-        all_failures.extend(verify_subset(subset, fast=args.fast, cache_dir=args.cache_dir))
+    for split in args.splits:
+        all_failures.extend(verify_split(split, dataset_path, fast=args.fast))
 
     print()
     if all_failures:
         print(f"FAILED — {len(all_failures)} issue(s):")
         for f in all_failures:
-            print(f"  • {f}")
+            print(f"  * {f}")
         sys.exit(1)
     else:
         print("All checks passed.")

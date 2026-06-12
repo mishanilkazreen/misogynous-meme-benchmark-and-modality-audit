@@ -1,0 +1,270 @@
+[
+  {
+    "model": "clip",
+    "filter": "none",
+    "split": "validation",
+    "task": "singleclass",
+    "clip_labels": [
+      "misogynistic meme",
+      "not misogynistic meme"
+    ],
+    "exact_match_accuracy": 0.6875,
+    "precision": 0.8214285714285714,
+    "recall": 0.6428571428571428,
+    "f1": 0.7212543554006968,
+    "avg_latency_s": 0.19242189374926966,
+    "refusal_rate": 0.0,
+    "label_prevalence": {
+      "misogynous": 9,
+      "non_misogynous": 7
+    },
+    "sample_predictions": [
+      {
+        "image_id": "1377",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.5009
+      },
+      {
+        "image_id": "5498",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.5007
+      },
+      {
+        "image_id": "5697",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.5003
+      },
+      {
+        "image_id": "5182",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.5027
+      },
+      {
+        "image_id": "6162",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.5022
+      },
+      {
+        "image_id": "6772",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "confidence": 0.5019
+      },
+      {
+        "image_id": "3932",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.501
+      },
+      {
+        "image_id": "5457",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "confidence": 0.5004
+      },
+      {
+        "image_id": "10007",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "confidence": 0.5017
+      },
+      {
+        "image_id": "7391",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "confidence": 0.5005
+      },
+      {
+        "image_id": "2991",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.5008
+      },
+      {
+        "image_id": "6324",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "confidence": 0.5004
+      },
+      {
+        "image_id": "1804",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.501
+      },
+      {
+        "image_id": "552",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.5002
+      },
+      {
+        "image_id": "13261",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.5002
+      },
+      {
+        "image_id": "10285",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.5016
+      }
+    ]
+  },
+  {
+    "model": "clip",
+    "filter": "grayscale",
+    "split": "validation",
+    "task": "singleclass",
+    "clip_labels": [
+      "misogynistic meme",
+      "not misogynistic meme"
+    ],
+    "exact_match_accuracy": 0.625,
+    "precision": 0.641025641025641,
+    "recall": 0.5873015873015872,
+    "f1": 0.6129887342611,
+    "avg_latency_s": 0.18639659375003248,
+    "refusal_rate": 0.0,
+    "label_prevalence": {
+      "misogynous": 9,
+      "non_misogynous": 7
+    },
+    "sample_predictions": [
+      {
+        "image_id": "1377",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.5011
+      },
+      {
+        "image_id": "5498",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.5013
+      },
+      {
+        "image_id": "5697",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.5007
+      },
+      {
+        "image_id": "5182",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.5029
+      },
+      {
+        "image_id": "6162",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.502
+      },
+      {
+        "image_id": "6772",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "confidence": 0.5016
+      },
+      {
+        "image_id": "3932",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.5014
+      },
+      {
+        "image_id": "5457",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "confidence": 0.5008
+      },
+      {
+        "image_id": "10007",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "confidence": 0.5017
+      },
+      {
+        "image_id": "7391",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "confidence": 0.5008
+      },
+      {
+        "image_id": "2991",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.5004
+      },
+      {
+        "image_id": "6324",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "confidence": 0.5013
+      },
+      {
+        "image_id": "1804",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.5006
+      },
+      {
+        "image_id": "552",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.5004
+      },
+      {
+        "image_id": "13261",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.5003
+      },
+      {
+        "image_id": "10285",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.5013
+      }
+    ]
+  }
+]

@@ -1,12 +1,10 @@
-# Detection of Embedded Hateful Content in Images
+# Multimodal Misogyny Detection with Vision-Language Models
 
-Benchmarking standard YOLO detectors against text-prompted
-vision-language detectors (VLMs) for content moderation. The milestone
-goal is a paper comparing YOLO (v8/v10/v11/v12/v26) against
-vision-language detectors (YOLO-World, CLIP-YOLO, optionally
-CLIP-YOLO, optionally YOLO-UniOW) on the HatefulIllusion dataset, then
-extending to a hate-symbol catalogue pipeline and VLM-generated
-explanations for moderators.
+Benchmarking vision-language models (CLIP, LLaVA, LLaVA-Next, Qwen2-VL,
+Gemini, GPT-4o-mini) on **binary misogyny classification** using the
+MAMI 2022 dataset, with a preprocessing-filter ablation. Each model
+answers a single yes/no question — *is this meme misogynistic?* — and is
+scored against the dataset's `misogynous` label.
 
 The full task plan is in
 [`.kiro/specs/vlm-content-moderation/tasks.md`](.kiro/specs/vlm-content-moderation/tasks.md).
@@ -30,49 +28,84 @@ uv sync --dev
 uv run pre-commit install
 ```
 
+Copy `.env.example` to `.env` and fill in your credentials (see below).
+
 ## Dataset
 
-[HatefulIllusion](https://huggingface.co/datasets/yiting/HatefulIllusion_Dataset)
-(2,160 images): 300 digits, 690 hate slangs, 1,170 hate symbols. Each
-image carries a visibility score (1–5). See
-[Qu et al. 2025](https://arxiv.org/pdf/2507.22617).
+[MAMI 2022](https://www.kaggle.com/datasets/chukwuebukaanulunko/multimodal-misogyny-detection-mami-2022)
+(Multimodal Misogynous Memes, SemEval-2022 Task 5) — 11,000 memes split
+into `train` (9,000), `validation` (1,000), and `test` (1,000). Each meme
+carries a binary `misogynous` label, four sub-task labels (`shaming`,
+`stereotype`, `objectification`, `violence`), and a text transcription.
 
-A Hugging Face account and read token are required. Add it to `.env` in
-the project root (gitignored):
+The benchmark predicts the binary `misogynous` label only.
+
+### Kaggle credentials
+
+The dataset is downloaded via `kagglehub`, which authenticates with a
+Kaggle API token. Add the token to `.env` in the project root
+(gitignored):
 
 ```
-HF_TOKEN=hf_your_token_here
+KAGGLE_USERNAME=your_kaggle_username
+KAGGLE_KEY=your_kaggle_key
 ```
-
-Get a token at **huggingface.co → Settings → Access Tokens** (read
-permission is sufficient). Optionally set `HF_HOME` in `.env` to redirect
-the cache to a larger drive (default: `~/.cache/huggingface`).
 
 **Download the dataset** (run once before benchmarking):
 
 ```bash
-uv run python scripts/download_dataset.py                          # all three subsets
-uv run python scripts/download_dataset.py --subsets digits         # digits only
-uv run python scripts/download_dataset.py --cache-dir D:\hf_cache  # custom cache
+uv run python scripts/download_dataset.py
 ```
 
 **Verify the download:**
 
 ```bash
-uv run python scripts/verify_dataset.py          # full check (metadata + images)
-uv run python scripts/verify_dataset.py --fast   # metadata only
-uv run python scripts/verify_dataset.py --subsets digits
+uv run python scripts/verify_dataset.py                      # full check (metadata + images)
+uv run python scripts/verify_dataset.py --fast               # metadata only
+uv run python scripts/verify_dataset.py --splits validation  # one split
 ```
 
-Use `digits` during development; switch to `hate_slangs`/`hate_symbols` only
-for final benchmark runs.
+Use `validation` (the smallest split) with `--limit` during development.
 
 ## VLM Benchmark
 
+### Challenges
+
+Two benchmark challenges are supported via `--task`:
+
+| Flag | Challenge | Labels | Output file |
+|---|---|---|---|
+| `--task singleclass` (default) | **Challenge 1** — binary misogyny | yes / no | `{model}_{split}.json` |
+| `--task multiclass` | **Challenge 2** — Sub-task B, multi-label sub-types | shaming, stereotype, objectification, violence | `{model}_{split}_multiclass.json` |
+
+**Challenge 1** example (binary misogyny, CLIP, CPU):
+
+```bash
+uv run python scripts/benchmark_vlm_classification.py \
+    --task singleclass --model clip --split train,validation --filters none,grayscale
+# Output: results/clip_train,validation.json  (~10,000 images: 9,000 train + 1,000 validation)
+```
+
+**Challenge 2** example (multi-label sub-types, CLIP, CPU):
+
+```bash
+uv run python scripts/benchmark_vlm_classification.py \
+    --task multiclass --model clip --split train,validation --filters none,grayscale
+# Output: results/clip_train,validation_multiclass.json  (~10,000 images)
+```
+
+For Challenge 1, generative models answer *"Is this meme misogynistic? … yes or no."*
+For Challenge 2, they receive a single multi-output prompt asking which of the four
+sub-type categories apply, replying with a comma-separated list or `none`.
+CLIP predicts each Challenge 2 category independently via separate binary comparisons.
+
+The binary `misogynous` label is predicted only in Challenge 1; sub-task labels
+are predicted only in Challenge 2.
+
 ### Hardware and quantization
 
-Local generative models (LLaVA, Qwen2-VL) run with **4-bit NF4
-quantization** by default (via `bitsandbytes`), reducing VRAM from
+Local generative models (LLaVA, LLaVA-Next, Qwen2-VL) run with **4-bit
+NF4 quantization** by default (via `bitsandbytes`), reducing VRAM from
 ~14 GB to ~5 GB so they fit on 12 GB consumer GPUs. Pass
 `--quantize none` for full fp16 (requires 24+ GB VRAM).
 
@@ -89,148 +122,73 @@ quantization** by default (via `bitsandbytes`), reducing VRAM from
 |---|---|---|---|---|
 | CLIP (ViT-B/32) | ~600 MB | auto on first run | n/a | ~1 GB |
 | LLaVA 1.5 | 7B | auto on first run (~14 GB) | ~5 GB | ~14 GB |
+| LLaVA-Next | 7B | auto on first run (~14 GB) | ~5 GB | ~14 GB |
 | Qwen2-VL | 7B | auto on first run (~15 GB) | ~5 GB | ~14 GB |
+| Gemini / GPT-4o-mini | cloud | API (key required) | n/a | n/a |
 
-### CLIP
+### Orchestrator (all models)
 
-```bash
-# Verify (10 samples, no preprocessing)
-uv run python scripts/benchmark_clip.py --subset digits --limit 10 --device cuda --filters none
-
-# Full run — all three subsets
-uv run python scripts/benchmark_clip.py --subset digits --device cuda
-uv run python scripts/benchmark_clip.py --subset hate_slangs --device cuda
-uv run python scripts/benchmark_clip.py --subset hate_symbols --device cuda
-```
-
-Output: `results/clip_{subset}.json`
-
-### LLaVA
+`benchmark_vlm_classification.py` runs one or more models across the
+preprocessing-filter ablation and writes a per-model result file.
 
 ```bash
-# Verify (10 samples, no preprocessing)
-uv run python scripts/benchmark_llava.py --subset digits --limit 10 --device cuda --filters none
+# Quick smoke test (16 images from train+validation, CPU, no API key)
+uv run python scripts/benchmark_vlm_classification.py --model clip --split train,validation --limit 16 --filters none,grayscale
 
-# Full run — all three subsets
-uv run python scripts/benchmark_llava.py --subset digits --device cuda
-uv run python scripts/benchmark_llava.py --subset hate_slangs --device cuda
-uv run python scripts/benchmark_llava.py --subset hate_symbols --device cuda
+# Every model, full labelled set (train + validation, ~10,000 images)
+uv run python scripts/benchmark_vlm_classification.py --model all --split train,validation
 ```
 
-Output: `results/llava_{subset}.json`
+Output: `results/{model}_{split}.json` (e.g. `clip_train,validation.json`).
 
-### Qwen2-VL
+### Per-model scripts
+
+Each model also has a standalone script. Output is
+`results/{model}_{split}.json`.
 
 ```bash
-# Verify (10 samples, no preprocessing)
-uv run python scripts/benchmark_qwen2vl.py --subset digits --limit 10 --device cuda --filters none
+# CLIP (CPU or GPU, no API key)
+uv run python scripts/benchmark_clip.py --split train,validation --filters none,grayscale
+uv run python scripts/benchmark_clip.py --task multiclass --split validation
 
-# Full run — all three subsets
-uv run python scripts/benchmark_qwen2vl.py --subset digits --device cuda
-uv run python scripts/benchmark_qwen2vl.py --subset hate_slangs --device cuda
-uv run python scripts/benchmark_qwen2vl.py --subset hate_symbols --device cuda
+# LLaVA / LLaVA-Next / Qwen2-VL (GPU)
+uv run python scripts/benchmark_llava.py     --split train,validation --device cuda --limit 16 --filters none
+uv run python scripts/benchmark_llavanext.py --split train,validation --device cuda
+uv run python scripts/benchmark_qwen2vl.py   --split train,validation --device cuda
+
+# Gemini (cloud, GEMINI_API_KEY required)
+uv run python scripts/benchmark_gemini.py --split train,validation --limit 5 --filters none
+uv run python scripts/benchmark_gemini.py --split train,validation --workers 40
+
+# GPT-4o-mini (cloud, OPENAI_API_KEY required)
+uv run python scripts/benchmark_gpt4omini.py --split train,validation --limit 5 --filters none
 ```
 
-Output: `results/qwen2vl_{subset}.json`
-
-### Gemini
-
-Cloud API. Requires a Gemini API key.
-
-Add to `.env` (gitignored):
-
-```
-GEMINI_API_KEY=your_key_here
-```
-
-Then export it before running (PowerShell):
-
-```powershell
-$env:GEMINI_API_KEY = "your_key_here"
-```
-
-```bash
-# Sanity-check (text prompt only)
-uv run python scripts/test_gemini.py
-
-# Verify (5 samples, no preprocessing)
-uv run python scripts/benchmark_gemini.py --subset digits --limit 5 --filters none
-
-# Full run — all three subsets
-uv run python scripts/benchmark_gemini.py --subset digits
-uv run python scripts/benchmark_gemini.py --subset hate_slangs
-uv run python scripts/benchmark_gemini.py --subset hate_symbols
-
-# Increase parallelism (default 20 threads)
-uv run python scripts/benchmark_gemini.py --subset digits --workers 40
-```
-
-Output: `results/gemini_{subset}.json`
-
-### Options common to all per-model scripts
+### Options common to per-model scripts
 
 | Flag | Default | Description |
 |---|---|---|
-| `--subset` | `digits` | `digits`, `hate_slangs`, `hate_symbols`, or `all` |
+| `--split` | `validation` | `train`, `validation`, `test`, or comma-separated e.g. `train,validation` |
 | `--filters` | all | Comma-separated preprocessing filters, e.g. `none,blur` |
 | `--limit` | none | Cap number of images (useful for quick checks) |
-| `--device` | `cpu` | `cuda` or `cpu` |
-| `--batch-size` | `4` | Images per forward pass (LLaVA/Qwen2-VL only) |
-| `--quantize` | `4bit` | `4bit`, `8bit`, or `none` (LLaVA/Qwen2-VL only) |
-| `--workers` | `20` | Parallel API threads (Gemini only) |
-| `--binary` | off | Binary yes/no mode (see below) |
+| `--device` | varies | `cuda` or `cpu` |
+| `--batch-size` | `4` | Images per forward pass (LLaVA/LLaVA-Next/Qwen2-VL only) |
+| `--quantize` | `4bit` | `4bit`, `8bit`, or `none` (local generative models only) |
+| `--workers` | `20` | Parallel API threads (Gemini/GPT-4o-mini only) |
+| `--model-id` | per model | Override the HF/model checkpoint |
 
-### Binary classification mode
+### Cloud API keys
 
-Pass `--binary` to any per-model script or to the orchestrator to run **binary
-content moderation** instead of closed-set label identification.
+Gemini and GPT-4o-mini read their keys from `.env` (gitignored):
 
-In binary mode the prompt becomes:
-
-> *"Does this image contain any hateful, offensive, or inappropriate content?
-> Answer yes or no."*
-
-Output files get a `_binary` suffix: `gemini_digits_binary.json`, etc.
-
-```bash
-# Quick binary sanity-check (5 images, no preprocessing)
-uv run python scripts/benchmark_gemini.py --subset digits --limit 5 --filters none --binary
-uv run python scripts/benchmark_gpt4omini.py --subset digits --limit 5 --filters none --binary
-
-# Full binary run via the orchestrator
-uv run python scripts/benchmark_vlm_classification.py --model gemini --subset digits --binary
-uv run python scripts/benchmark_vlm_classification.py --model all --subset digits --binary
 ```
-
-Output: `results/vlm_classification_binary.json`
-
-> **Note:** CLIP does not take generative prompts. In binary mode it uses the
-> text labels `["hateful", "not hateful"]` with ground truth `"hateful"` instead
-> of the yes/no scheme used by generative models.
-
-## Benchmarking YOLO
-
-**Pretrained YOLO** (no fine-tuning, fastest):
+GEMINI_API_KEY=your_key_here
+OPENAI_API_KEY=your_key_here
+```
 
 ```bash
 uv run python scripts/benchmark_yolo.py --mode pretrained --model yolov8n.pt --subset digits
-uv run python scripts/benchmark_yolo.py --mode pretrained --all   # all five models
-```
-
-**With a preprocessing filter** (task 3 step 4):
-
-```bash
-uv run python scripts/benchmark_yolo.py --mode pretrained --model yolov8n.pt --subset digits --preprocess blur
-```
-
-Available filters: `blur` `downscale` `grid` `gradient` `canny` `grayscale` `histogram` `gamma`
-`histogram_blur` `gamma_blur` `blur_gradient` `blur_histogram`
-
-**Fine-tune first, then benchmark:**
-
-```bash
 uv run python models/yolo/trainer.py --model yolov8n.pt --subset digits
-uv run python scripts/benchmark_yolo.py --mode trained --model yolov8n.pt --subset digits
 ```
 
 Results are written to `results/yolo_benchmark.json` (gitignored).
@@ -251,18 +209,19 @@ uv run pre-commit run --all-files
 ```text
 content-moderation/
 ├── models/
-│   ├── yolo/           # Ultralytics YOLO wrappers (task 3)
-│   └── vlm/            # CLIP, LLaVA, Qwen2-VL classifiers (task 4)
-├── utils/              # dataset, preprocessing, augmentation, OCR
+│   ├── yolo/           # Ultralytics YOLO wrappers (legacy, HatefulIllusion)
+│   └── vlm/            # CLIP, LLaVA, Qwen2-VL classifiers
+├── utils/              # dataset (MAMI), preprocessing, augmentation, OCR
 ├── scripts/
-│   ├── benchmark_clip.py
+│   ├── download_dataset.py             # fetch MAMI 2022 via kagglehub
+│   ├── verify_dataset.py               # validate the local dataset
 │   ├── benchmark_llava.py
+│   ├── benchmark_llavanext.py
 │   ├── benchmark_qwen2vl.py
-│   ├── benchmark_gpt4omini.py   # optional cloud upper-bound
-│   ├── benchmark_gemini.py      # optional cloud upper-bound
-│   └── benchmark_vlm_classification.py  # orchestrator (all models)
+│   ├── benchmark_gpt4omini.py          # cloud
+│   ├── benchmark_gemini.py             # cloud
+│   └── benchmark_vlm_classification.py # orchestrator (all models)
 ├── results/            # JSON outputs (gitignored)
-├── task_4/             # plan, requirements, how_to_run
 └── tests/
     ├── unit/
     └── tasks/          # acceptance-gate tests (one per task)

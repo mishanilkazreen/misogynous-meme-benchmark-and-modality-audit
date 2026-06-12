@@ -1,16 +1,26 @@
 """
-Orchestrator: benchmark all VLMs with preprocessing ablation on HatefulIllusion.
+Orchestrator: benchmark all VLMs on the MAMI 2022 misogyny detection task.
+
+Challenge 1 (--task singleclass, default): binary misogyny classification (yes/no prompt;
+ground truth = misogynous field).
+
+Challenge 2 (--task multiclass): multi-label sub-type classification over shaming,
+stereotype, objectification, violence. CLIP uses independent per-category binary
+comparisons; generative models use a single multi-output prompt.
 
 Outer loop: preprocessing filters from PreprocessingPipeline.TRANSFORMATIONS + "none".
-Inner loop: model x subset x sample.
+Inner loop: model x filter x sample.
 
-Writes results/vlm_classification.json with the full FR-3 schema from requirements.md.
-Prints a summary table (model x filter x subset) to stdout.
+Writes results/{model}_{split}.json (singleclass) or results/{model}_{split}_multiclass.json
+(multiclass) after each model completes, so a crash does not lose earlier models.
 
 Usage:
-    uv run python scripts/benchmark_vlm_classification.py --model clip --subset digits --limit 10
-    uv run python scripts/benchmark_vlm_classification.py --model clip,llava --subset all
-    uv run python scripts/benchmark_vlm_classification.py --model all --subset digits --limit 20
+    uv run python scripts/benchmark_vlm_classification.py --model clip --split validation --limit 16
+    uv run python scripts/benchmark_vlm_classification.py --model clip --split validation \\
+        --limit 16 --filters none,grayscale
+    uv run python scripts/benchmark_vlm_classification.py --task multiclass --model clip \\
+        --split validation --limit 16 --filters none,grayscale
+    uv run python scripts/benchmark_vlm_classification.py --model all --split validation
 """
 
 # ruff: noqa: I001  # datasets (via utils.dataset) must precede torch to avoid OpenMP segfault
@@ -29,7 +39,17 @@ from typing import Any
 import numpy as np
 import torch
 
+from models.vlm.classifier import (
+    CLIP_MISOGYNY_LABELS,
+    CLIP_SUBTYPE_LABELS,
+    MISOGYNY_LABELS,
+    SUBTYPE_LABELS,
+    build_misogyny_prompt,
+    build_subtype_prompt,
+    yesno_to_int,
+)
 from models.vlm.clip_classifier import CLIPClassifier
+from models.vlm.metrics_multilabel import compute_multilabel_metrics
 from utils.dataset import DatasetManager
 from utils.preprocessing import PreprocessingPipeline
 
@@ -52,7 +72,6 @@ for noisy in ("httpx", "httpcore", "urllib3", "huggingface_hub", "filelock", "da
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
-SUBSET_NAMES = ["digits", "hate_slangs", "hate_symbols"]
 RESULTS_DIR = Path(__file__).resolve().parents[1] / "results"
 
 ALL_MODELS = [
@@ -82,21 +101,31 @@ def image_to_numpy(image: Any) -> np.ndarray:
     raise ValueError(f"Unsupported image type: {type(image)}")
 
 
-def collect_samples(
-    subset: str, limit: int | None = None, split: str = "train"
-) -> list[dict[str, Any]]:
-    subsets = SUBSET_NAMES if subset == "all" else [subset]
+def collect_samples(split: str = "validation", limit: int | None = None) -> list[dict[str, Any]]:
+    """Load samples from the MAMI 2022 dataset for the given split(s).
+
+    Args:
+        split: One of 'train', 'validation', 'test', or comma-separated, e.g. 'train,validation'.
+        limit: Maximum number of samples to return across all splits combined (None = all).
+
+    Returns:
+        List of sample dicts with keys: image, image_id, text, misogynous,
+        shaming, stereotype, objectification, violence.
+    """
     manager = DatasetManager()
     samples: list[dict[str, Any]] = []
-    for subset_name in subsets:
-        dataset = manager.load_dataset(split=split, subset=subset_name)
-        count = min(len(dataset), limit) if limit is not None else len(dataset)
-        for index in range(count):
-            sample = dataset[index]
-            sample["subset"] = subset_name
-            sample["image_id"] = f"{subset_name}_{sample['image_id']}"
-            samples.append(sample)
+    for split_name in [s.strip() for s in split.split(",")]:
+        dataset = manager.load_dataset(split=split_name)
+        for index in range(len(dataset)):
+            samples.append(dataset[index])
+    if limit is not None:
+        samples = samples[:limit]
     return samples
+
+
+def _misogynous_to_label(misogynous: int) -> str:
+    """Convert the binary misogynous int field to a yes/no string label."""
+    return "yes" if misogynous == 1 else "no"
 
 
 _PIPELINE = PreprocessingPipeline()
@@ -158,47 +187,20 @@ def compute_classification_metrics(
     }
 
 
-def build_visibility_block(
-    predictions: list[str | None],
-    ground_truths: list[str],
-    visibility_scores: list[int],
-    labels: list[str],
-) -> dict[str, dict[str, Any]]:
-    block: dict[str, dict[str, Any]] = {}
-    for v in range(1, 6):
-        indices = [i for i, vs in enumerate(visibility_scores) if vs == v]
-        if not indices:
-            block[str(v)] = {
-                "exact_match_accuracy": 0.0,
-                "precision": 0.0,
-                "recall": 0.0,
-                "f1": 0.0,
-                "num_images": 0,
-            }
-            continue
-        v_preds = [predictions[i] for i in indices]
-        v_gts = [ground_truths[i] for i in indices]
-        metrics = compute_classification_metrics(v_preds, v_gts, labels)
-        metrics["num_images"] = len(indices)  # type: ignore[assignment]
-        block[str(v)] = metrics
-    return block
-
-
 def build_sample_rows(
     samples: list[dict[str, Any]],
     predictions: list[str | None],
     ground_truths: list[str],
-    visibility_scores: list[int],
     confidences: list[float] | None = None,
 ) -> list[dict[str, Any]]:
+    """Build per-sample result rows for the singleclass (binary misogyny) task."""
     rows = []
     for i in range(len(samples)):
         row: dict[str, Any] = {
             "image_id": samples[i]["image_id"],
-            "ground_truth": ground_truths[i],
-            "prediction": predictions[i],
+            "ground_truth": yesno_to_int(ground_truths[i]),
+            "prediction": yesno_to_int(predictions[i]),
             "correct": predictions[i] == ground_truths[i],
-            "visibility": visibility_scores[i],
         }
         if confidences is not None:
             row["confidence"] = round(float(confidences[i]), 4)
@@ -206,56 +208,175 @@ def build_sample_rows(
     return rows
 
 
-_CLIP_BINARY_LABELS = ["hateful", "not hateful"]
-_CLIP_BINARY_GROUND_TRUTH = "hateful"
+def build_multiclass_sample_rows(
+    samples: list[dict[str, Any]],
+    predictions: list[dict[str, int]],
+) -> list[dict[str, Any]]:
+    """Build per-sample result rows for multiclass (multi-label sub-types)."""
+    rows = []
+    for i, s in enumerate(samples):
+        gt_dict = {
+            "shaming": s.get("shaming", 0),
+            "stereotype": s.get("stereotype", 0),
+            "objectification": s.get("objectification", 0),
+            "violence": s.get("violence", 0),
+        }
+        pred_dict = predictions[i]
+        exact = all(pred_dict.get(lbl, 0) == gt_dict[lbl] for lbl in SUBTYPE_LABELS)
+        rows.append(
+            {
+                "image_id": s["image_id"],
+                "ground_truth": gt_dict,
+                "prediction": pred_dict,
+                "correct": exact,
+                "misogynous": s.get("misogynous", 0),
+            }
+        )
+    return rows
+
+
+def build_label_prevalence(
+    samples: list[dict[str, Any]], task: str = "singleclass"
+) -> dict[str, int]:
+    """Return counts of each label in the sample set.
+
+    For the singleclass task only misogynous/non_misogynous counts are returned.
+    For multiclass the four sub-type counts are returned.
+    """
+    if task == "multiclass":
+        return {
+            "shaming": sum(s.get("shaming", 0) for s in samples),
+            "stereotype": sum(s.get("stereotype", 0) for s in samples),
+            "objectification": sum(s.get("objectification", 0) for s in samples),
+            "violence": sum(s.get("violence", 0) for s in samples),
+        }
+    return {
+        "misogynous": sum(s.get("misogynous", 0) for s in samples),
+        "non_misogynous": sum(1 - s.get("misogynous", 0) for s in samples),
+    }
 
 
 def run_clip(
     samples: list[dict[str, Any]],
     filter_name: str,
+    split: str = "validation",
     device: str = "cpu",
-    binary: bool = False,
+    task: str = "singleclass",
 ) -> dict[str, Any]:
-    if binary:
-        labels: list[str] = _CLIP_BINARY_LABELS
-        ground_truths = [
-            "not hateful" if s["subset"] == "digits" else _CLIP_BINARY_GROUND_TRUTH for s in samples
-        ]
-    else:
-        labels = sorted({s["message"] for s in samples})
-        ground_truths = [s["message"] for s in samples]
+    """Run CLIP on the given samples with the given filter.
+
+    singleclass: binary misogyny classification using CLIP_MISOGYNY_LABELS.
+    multiclass: per-category binary classification using CLIP_SUBTYPE_LABELS.
+    """
+    if task == "multiclass":
+        return _run_clip_multiclass(samples, filter_name, split=split, device=device)
+
+    # singleclass: binary misogyny
+    clip_labels = CLIP_MISOGYNY_LABELS  # ["misogynistic meme", "not misogynistic meme"]
+    ground_truths_yesno = [_misogynous_to_label(s["misogynous"]) for s in samples]
     images = [apply_filter(image_to_numpy(s["image"]), filter_name) for s in samples]
-    visibility_scores = [int(s["visibility_score"]) for s in samples]
-    subset = samples[0]["subset"] if len({s["subset"] for s in samples}) == 1 else "all"
 
     classifier = CLIPClassifier(device=device)
-    classifier.set_classes(labels)
+    classifier.set_classes(clip_labels)
 
     t0 = time.perf_counter()
     raw_preds = classifier.predict_batch(images)
     total_time = time.perf_counter() - t0
 
-    predictions: list[str | None] = [p for p, _ in raw_preds]
+    clip_to_yesno = {
+        "misogynistic meme": "yes",
+        "not misogynistic meme": "no",
+    }
+    predictions: list[str | None] = [
+        clip_to_yesno.get(p) if p is not None else None for p, _ in raw_preds
+    ]
     confidences = [c for _, c in raw_preds]
     avg_latency = total_time / len(images)
-    metrics = compute_classification_metrics(predictions, ground_truths, labels)
-    by_visibility = build_visibility_block(predictions, ground_truths, visibility_scores, labels)
+
+    metrics = compute_classification_metrics(predictions, ground_truths_yesno, MISOGYNY_LABELS)
 
     return {
         "model": "clip",
         "filter": filter_name,
-        "subset": subset,
-        "binary": binary,
+        "split": split,
+        "task": "singleclass",
+        "clip_labels": clip_labels,
         "exact_match_accuracy": metrics["exact_match_accuracy"],
         "precision": metrics["precision"],
         "recall": metrics["recall"],
         "f1": metrics["f1"],
         "avg_latency_s": avg_latency,
         "refusal_rate": 0.0,
-        "by_visibility": by_visibility,
+        "label_prevalence": build_label_prevalence(samples, task="singleclass"),
         "sample_predictions": build_sample_rows(
-            samples, predictions, ground_truths, visibility_scores, confidences
+            samples, predictions, ground_truths_yesno, confidences
         ),
+    }
+
+
+def _run_clip_multiclass(
+    samples: list[dict[str, Any]],
+    filter_name: str,
+    split: str = "validation",
+    device: str = "cpu",
+) -> dict[str, Any]:
+    """Run CLIP multiclass: per-category binary prediction for all four sub-types."""
+    images = [apply_filter(image_to_numpy(s["image"]), filter_name) for s in samples]
+    classifier = CLIPClassifier(device=device)
+
+    # Per-category independent binary predictions
+    category_preds: dict[str, list[int]] = {lbl: [] for lbl in SUBTYPE_LABELS}
+    category_times: list[float] = []
+
+    for category in SUBTYPE_LABELS:
+        pos_phrase, neg_phrase = CLIP_SUBTYPE_LABELS[category]
+        cat_labels = [pos_phrase, neg_phrase]
+        classifier.set_classes(cat_labels)
+
+        t0 = time.perf_counter()
+        raw_preds = classifier.predict_batch(images)
+        category_times.append(time.perf_counter() - t0)
+
+        for pred_label, _ in raw_preds:
+            # Positive phrase wins → 1, negative phrase → 0
+            category_preds[category].append(1 if pred_label == pos_phrase else 0)
+
+    avg_latency = sum(category_times) / (len(images) * len(SUBTYPE_LABELS))
+
+    # Build per-image prediction dicts
+    pred_dicts: list[dict[str, int]] = [
+        {lbl: category_preds[lbl][i] for lbl in SUBTYPE_LABELS} for i in range(len(samples))
+    ]
+    gt_dicts: list[dict[str, int]] = [
+        {
+            "shaming": s.get("shaming", 0),
+            "stereotype": s.get("stereotype", 0),
+            "objectification": s.get("objectification", 0),
+            "violence": s.get("violence", 0),
+        }
+        for s in samples
+    ]
+
+    ml_metrics = compute_multilabel_metrics(pred_dicts, gt_dicts, SUBTYPE_LABELS)
+    sample_rows = build_multiclass_sample_rows(samples, pred_dicts)
+
+    return {
+        "model": "clip",
+        "filter": filter_name,
+        "split": split,
+        "task": "multiclass",
+        "exact_match_accuracy": ml_metrics["exact_match_accuracy"],
+        "f1": ml_metrics["macro_f1"],
+        "precision": ml_metrics["macro_precision"],
+        "recall": ml_metrics["macro_recall"],
+        "macro_f1": ml_metrics["macro_f1"],
+        "micro_f1": ml_metrics["micro_f1"],
+        "weighted_f1": ml_metrics["weighted_f1"],
+        "per_class": ml_metrics["per_class"],
+        "avg_latency_s": avg_latency,
+        "refusal_rate": 0.0,
+        "label_prevalence": build_label_prevalence(samples, task="multiclass"),
+        "sample_predictions": sample_rows,
     }
 
 
@@ -270,9 +391,9 @@ def free_model_vram(model_name: str) -> None:
     """
     try:
         if model_name == "llava":
-            from scripts import benchmark_llava as mod
+            from scripts import benchmark_llava as mod  # type: ignore[import]
         elif model_name == "qwen2vl":
-            from scripts import benchmark_qwen2vl as mod
+            from scripts import benchmark_qwen2vl as mod  # type: ignore[import]
         else:
             return
         cache = getattr(mod, "_model_cache", None)
@@ -293,25 +414,25 @@ def run_generative_model(
     model_name: str,
     samples: list[dict[str, Any]],
     filter_name: str,
+    split: str = "validation",
     device: str = "cpu",
-    binary: bool = False,
+    task: str = "singleclass",
 ) -> dict[str, Any] | None:
     """Dispatch to the appropriate generative model script."""
-    subset = samples[0]["subset"] if len({s["subset"] for s in samples}) == 1 else "all"
     preprocess_arg = None if filter_name == "none" else filter_name
 
     if model_name == "qwen2vl":
         try:
             from scripts.benchmark_qwen2vl import run_benchmark  # type: ignore[import,assignment]
 
-            logger.info("Starting qwen2vl (filter=%s, binary=%s)", filter_name, binary)
+            logger.info("Starting qwen2vl (filter=%s task=%s)", filter_name, task)
             result = run_benchmark(  # type: ignore[call-arg]
-                subset=subset,
+                split=split,
                 preprocess=preprocess_arg,
                 samples=samples,
                 device=device,
-                binary=binary,
                 quantize="4bit",
+                task=task,
             )
             logger.info("Completed qwen2vl (filter=%s)", filter_name)
             return result
@@ -326,14 +447,14 @@ def run_generative_model(
         try:
             from scripts.benchmark_llava import run_benchmark  # type: ignore[import,assignment]
 
-            logger.info("Starting llava (filter=%s, binary=%s)", filter_name, binary)
+            logger.info("Starting llava (filter=%s task=%s)", filter_name, task)
             result = run_benchmark(  # type: ignore[call-arg]
-                subset=subset,
+                split=split,
                 preprocess=preprocess_arg,
                 samples=samples,
                 device=device,
-                binary=binary,
                 quantize="4bit",
+                task=task,
             )
             logger.info("Completed llava (filter=%s)", filter_name)
             return result
@@ -349,11 +470,11 @@ def run_generative_model(
             from scripts.benchmark_llavanext import run_benchmark  # type: ignore[import,assignment]
 
             return run_benchmark(  # type: ignore[call-arg]
-                subset=subset,
+                split=split,
                 preprocess=preprocess_arg,
                 samples=samples,
                 device=device,
-                binary=binary,
+                task=task,
             )
         except Exception as exc:
             print(f"  Skipping llavanext: {exc}")
@@ -363,9 +484,9 @@ def run_generative_model(
         try:
             from scripts.benchmark_gemini import run_benchmark  # type: ignore[import,assignment]
 
-            logger.info("Starting gemini (filter=%s, binary=%s)", filter_name, binary)
-            result = run_benchmark(
-                subset=subset, preprocess=preprocess_arg, samples=samples, binary=binary
+            logger.info("Starting gemini (filter=%s task=%s)", filter_name, task)
+            result = run_benchmark(  # type: ignore[call-arg]
+                split=split, preprocess=preprocess_arg, samples=samples, task=task
             )
             logger.info("Completed gemini (filter=%s)", filter_name)
             return result
@@ -380,9 +501,9 @@ def run_generative_model(
         try:
             from scripts.benchmark_gpt4omini import run_benchmark  # type: ignore[import,assignment]
 
-            logger.info("Starting gpt4omini (filter=%s, binary=%s)", filter_name, binary)
-            result = run_benchmark(
-                subset=subset, preprocess=preprocess_arg, samples=samples, binary=binary
+            logger.info("Starting gpt4omini (filter=%s task=%s)", filter_name, task)
+            result = run_benchmark(  # type: ignore[call-arg]
+                split=split, preprocess=preprocess_arg, samples=samples, task=task
             )
             logger.info("Completed gpt4omini (filter=%s)", filter_name)
             return result
@@ -402,41 +523,52 @@ def print_sample_predictions(result: dict[str, Any], n: int = 10) -> None:
         return
     model = result["model"]
     flt = result["filter"]
-    print(f"\n  Sample predictions ({model} | filter={flt}):")
-    has_conf = "confidence" in rows[0]
-    if has_conf:
-        print(
-            f"  {'image_id':<30} {'ground_truth':<15} {'prediction':<15} {'conf':<7} {'ok':<5} {'vis'}"
-        )
-        print("  " + "-" * 80)
-        for r in rows:
+    task = result.get("task", "singleclass")
+    if task == "multiclass":
+        print(f"\n  Sample predictions ({model} | filter={flt} | task=multiclass):")
+        print(f"  {'image_id':<30} {'GT':<30} {'PRED':<30} {'ok':<5}")
+        print("  " + "-" * 95)
+        for r in rows[:n]:
             ok = "Y" if r["correct"] else "N"
-            pred = str(r["prediction"]) if r["prediction"] is not None else "(none)"
-            print(
-                f"  {r['image_id']:<30} {r['ground_truth']:<15} {pred:<15}"
-                f" {r['confidence']:<7} {ok:<5} {r['visibility']}"
-            )
+            gt_str = ",".join(k for k, v in r["ground_truth"].items() if v) or "none"
+            pred_str = ",".join(k for k, v in r["prediction"].items() if v) or "none"
+            print(f"  {r['image_id']:<30} {gt_str:<30} {pred_str:<30} {ok:<5}")
     else:
-        print(f"  {'image_id':<30} {'ground_truth':<15} {'prediction':<15} {'ok':<5} {'vis'}")
-        print("  " + "-" * 72)
-        for r in rows:
-            ok = "Y" if r["correct"] else "N"
-            pred = str(r["prediction"]) if r["prediction"] is not None else "(none)"
+        print(f"\n  Sample predictions ({model} | filter={flt}):")
+        has_conf = "confidence" in rows[0]
+        if has_conf:
             print(
-                f"  {r['image_id']:<30} {r['ground_truth']:<15} {pred:<15} {ok:<5} {r['visibility']}"
+                f"  {'image_id':<30} {'ground_truth':<15} {'prediction':<15} {'conf':<7} {'ok':<5}"
             )
+            print("  " + "-" * 72)
+            for r in rows:
+                ok = "Y" if r["correct"] else "N"
+                pred = str(r["prediction"]) if r["prediction"] is not None else "(none)"
+                print(
+                    f"  {r['image_id']:<30} {r['ground_truth']:<15} {pred:<15}"
+                    f" {r['confidence']:<7} {ok:<5}"
+                )
+        else:
+            print(f"  {'image_id':<30} {'ground_truth':<15} {'prediction':<15} {'ok':<5}")
+            print("  " + "-" * 65)
+            for r in rows:
+                ok = "Y" if r["correct"] else "N"
+                pred = str(r["prediction"]) if r["prediction"] is not None else "(none)"
+                print(f"  {r['image_id']:<30} {r['ground_truth']:<15} {pred:<15} {ok:<5}")
 
 
 def print_summary(all_results: list[dict[str, Any]]) -> None:
-    print("\n" + "=" * 80)
-    print(f"{'Model':<20} {'Filter':<20} {'Subset':<15} {'Acc':<8} {'F1':<8}")
-    print("=" * 80)
+    print("\n" + "=" * 90)
+    print(f"{'Model':<20} {'Filter':<20} {'Split':<12} {'Task':<6} {'Acc':<8} {'F1':<8}")
+    print("=" * 90)
     for r in all_results:
         acc = f"{r['exact_match_accuracy']:.3f}" if "exact_match_accuracy" in r else "n/a"
         f1_val = r.get("f1")
         f1 = f"{f1_val:.3f}" if isinstance(f1_val, float) else "n/a"
-        print(f"{r['model']:<20} {r['filter']:<20} {r['subset']:<15} {acc:<8} {f1:<8}")
-    print("=" * 80)
+        split = r.get("split", "n/a")
+        task = r.get("task", "singleclass")
+        print(f"{r['model']:<20} {r['filter']:<20} {split:<12} {task:<6} {acc:<8} {f1:<8}")
+    print("=" * 90)
 
 
 def main() -> None:
@@ -447,35 +579,35 @@ def main() -> None:
         help="Comma-separated model names or 'all'. Choices: " + ", ".join(ALL_MODELS),
     )
     parser.add_argument(
-        "--subset",
-        default="digits",
-        choices=["digits", "hate_slangs", "hate_symbols", "all"],
+        "--split",
+        default="validation",
+        help="Dataset split(s) to evaluate. Comma-separated for multiple: 'train,validation'"
+        " (default: validation)",
     )
-    parser.add_argument("--limit", type=int, default=None, help="Cap images per subset")
+    parser.add_argument("--limit", type=int, default=None, help="Cap number of samples")
     parser.add_argument("--device", default="cpu")
     parser.add_argument(
         "--filters",
         default=None,
-        help="Comma-separated filter names to run (default: all filters)",
+        help="Comma-separated filter names to run (default: all filters). E.g. 'none,grayscale'",
     )
     parser.add_argument(
-        "--binary",
-        action="store_true",
+        "--task",
+        default="singleclass",
+        choices=["singleclass", "multiclass"],
         help=(
-            "Binary yes/no classification mode. "
-            "Prompt: 'Does this image contain any hateful, offensive, or inappropriate content?' "
-            "Ground truth is 'yes' for all HatefulIllusion samples. "
-            "Matches Qu et al. Table 4 / Figure 10 for direct comparison."
+            "Challenge to run: 'singleclass' = binary misogyny (default); "
+            "'multiclass' = Sub-task B multi-label sub-types"
         ),
     )
     args = parser.parse_args()
 
     logger.info(
-        "=== Benchmark started: models=%s subset=%s device=%s binary=%s ===",
+        "=== Benchmark started: models=%s split=%s device=%s task=%s ===",
         args.model,
-        args.subset,
+        args.split,
         args.device,
-        args.binary,
+        args.task,
     )
 
     models_requested = (
@@ -485,41 +617,57 @@ def main() -> None:
 
     print(f"Models: {models_requested}")
     print(f"Filters: {filters_to_run}")
-    print(f"Subset: {args.subset}, Limit: {args.limit}, Binary: {args.binary}")
+    print(f"Split: {args.split}, Limit: {args.limit}, Task: {args.task}")
+    if args.task == "singleclass":
+        print(f"Prompt: {build_misogyny_prompt()!r}")
+    else:
+        print(f"Prompt: {build_subtype_prompt()!r}")  # multiclass
 
-    samples = collect_samples(args.subset, limit=args.limit)
+    samples = collect_samples(split=args.split, limit=args.limit)
     if not samples:
-        raise SystemExit(f"No samples found for subset '{args.subset}'")
+        raise SystemExit(f"No samples found for split '{args.split}'")
     print(f"Loaded {len(samples)} samples")
-    logger.info("Loaded %d samples for subset=%s", len(samples), args.subset)
+    logger.info("Loaded %d samples for split=%s", len(samples), args.split)
 
     all_results: list[dict[str, Any]] = []
 
     # Model-outer, filter-inner: load each model once, run all filters, then
-    # free its VRAM before moving to the next model. This keeps only one 7B
-    # model resident at a time (critical on 12 GB GPUs).
+    # free its VRAM before moving to the next model.
     for model_name in models_requested:
         print(f"\n===== Model: {model_name} =====")
         logger.info("=== Model %s: running %d filters ===", model_name, len(filters_to_run))
+        model_results: list[dict[str, Any]] = []
+
         for filter_name in filters_to_run:
-            print(f"\n--- {model_name} | Filter: {filter_name} ---")
-            logger.info("Running model=%s filter=%s", model_name, filter_name)
+            print(f"\n--- {model_name} | Filter: {filter_name} | Task: {args.task} ---")
+            logger.info("Running model=%s filter=%s task=%s", model_name, filter_name, args.task)
             try:
                 if model_name == "clip":
                     result: dict[str, Any] | None = run_clip(
-                        samples, filter_name, device=args.device, binary=args.binary
+                        samples,
+                        filter_name,
+                        split=args.split,
+                        device=args.device,
+                        task=args.task,
                     )
                 else:
                     result = run_generative_model(
-                        model_name, samples, filter_name, device=args.device, binary=args.binary
+                        model_name,
+                        samples,
+                        filter_name,
+                        split=args.split,
+                        device=args.device,
+                        task=args.task,
                     )
                 if result is not None:
                     all_results.append(result)
+                    model_results.append(result)
                     print_sample_predictions(result)
                     logger.info(
-                        "Result: model=%s filter=%s acc=%.4f",
+                        "Result: model=%s filter=%s task=%s acc=%.4f",
                         model_name,
                         filter_name,
+                        args.task,
                         result.get("exact_match_accuracy", 0.0),
                     )
             except Exception as exc:
@@ -536,19 +684,15 @@ def main() -> None:
         if model_name in GENERATIVE_MODELS:
             free_model_vram(model_name)
 
-        # Persist incrementally so a later crash doesn't lose completed models.
-        RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-        suffix = "_binary" if args.binary else ""
-        out_path = RESULTS_DIR / f"vlm_classification{suffix}.json"
-        out_path.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
-        logger.info("Checkpoint: wrote %d results after %s", len(all_results), model_name)
-
-    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-    suffix = "_binary" if args.binary else ""
-    out_path = RESULTS_DIR / f"vlm_classification{suffix}.json"
-    out_path.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
-    print(f"\nWrote {len(all_results)} result rows to {out_path}")
-    logger.info("Wrote %d results to %s", len(all_results), out_path)
+        # Persist per-model results to results/{model}_{split}[_multiclass].json
+        if model_results:
+            RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+            split_slug = args.split.replace(",", "_")
+            suffix = "_multiclass" if args.task == "multiclass" else ""
+            out_path = RESULTS_DIR / f"{model_name}_{split_slug}{suffix}.json"
+            out_path.write_text(json.dumps(model_results, indent=2), encoding="utf-8")
+            logger.info("Wrote %d results to %s after %s", len(model_results), out_path, model_name)
+            print(f"  Wrote {len(model_results)} rows to {out_path}")
 
     print_summary(all_results)
     logger.info("=== Benchmark completed ===")

@@ -1,11 +1,17 @@
 """
-Benchmark Qwen2-VL on HatefulIllusion (closed-set classification, GPU required).
+Benchmark Qwen2-VL on MAMI 2022 misogyny detection (GPU required).
+
+Challenge 1 (--task singleclass, default): binary misogyny classification (yes/no prompt).
+Challenge 2 (--task multiclass): multi-label sub-type classification (shaming, stereotype,
+objectification, violence) using a single multi-output prompt.
 
 Requires CUDA and the vlm-gpu optional dependency group.
 Safety refusals caught and logged as refusal_rate — not counted as incorrect.
 
 Usage:
-    uv run python scripts/benchmark_qwen2vl.py --subset digits --limit 3
+    uv run python scripts/benchmark_qwen2vl.py --split validation --limit 10
+    uv run python scripts/benchmark_qwen2vl.py --split validation --limit 50 --quantize 4bit
+    uv run python scripts/benchmark_qwen2vl.py --split validation --limit 10 --task multiclass
 """
 
 # ruff: noqa: I001  # datasets (via utils.dataset) must precede torch to avoid OpenMP segfault
@@ -13,6 +19,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -24,13 +31,16 @@ from PIL import Image
 from tqdm import tqdm
 
 from models.vlm.classifier import (
-    BINARY_GROUND_TRUTH,
-    BINARY_LABELS,
+    MISOGYNY_LABELS,
+    SUBTYPE_LABELS,
     ClassificationResult,
-    build_binary_prompt,
-    build_prompt,
+    build_misogyny_prompt,
+    build_subtype_prompt,
     extract_label,
+    extract_subtypes,
+    yesno_to_int,
 )
+from models.vlm.metrics_multilabel import compute_multilabel_metrics
 from utils.dataset import DatasetManager
 from utils.preprocessing import PreprocessingPipeline
 
@@ -42,7 +52,6 @@ try:
 except (ModuleNotFoundError, ImportError):
     _TRANSFORMERS_AVAILABLE = False
 
-SUBSET_NAMES = ["digits", "hate_slangs", "hate_symbols"]
 RESULTS_DIR = Path(__file__).resolve().parents[1] / "results"
 MODEL_ID = "Qwen/Qwen2-VL-7B-Instruct"
 DEFAULT_MAX_PIXELS = 512 * 28 * 28
@@ -74,21 +83,25 @@ def image_to_numpy(image: Any) -> np.ndarray:
     raise ValueError(f"Unsupported image type: {type(image)}")
 
 
-def collect_samples(
-    subset: str, limit: int | None = None, split: str = "train"
-) -> list[dict[str, Any]]:
-    subsets = SUBSET_NAMES if subset == "all" else [subset]
+def collect_samples(split: str = "validation", limit: int | None = None) -> list[dict[str, Any]]:
+    """Load samples from the MAMI 2022 dataset for the given split(s).
+
+    split may be a single name or comma-separated names, e.g. 'train,validation'.
+    limit caps the total number of samples across all splits combined.
+    """
     manager = DatasetManager()
     samples: list[dict[str, Any]] = []
-    for subset_name in subsets:
-        dataset = manager.load_dataset(split=split, subset=subset_name)
-        count = min(len(dataset), limit) if limit is not None else len(dataset)
-        for index in range(count):
-            sample = dataset[index]
-            sample["subset"] = subset_name
-            sample["image_id"] = f"{subset_name}_{sample['image_id']}"
-            samples.append(sample)
+    for split_name in [s.strip() for s in split.split(",")]:
+        dataset = manager.load_dataset(split=split_name)
+        for index in range(len(dataset)):
+            samples.append(dataset[index])
+    if limit is not None:
+        samples = samples[:limit]
     return samples
+
+
+def _misogynous_to_label(misogynous: int) -> str:
+    return "yes" if misogynous == 1 else "no"
 
 
 def is_refusal(text: str) -> bool:
@@ -138,7 +151,7 @@ def _load_model(model_id: str, device: str, quantize: str = "none") -> tuple[Any
 
 
 def run_benchmark(
-    subset: str,
+    split: str = "validation",
     model_id: str = MODEL_ID,
     device: str = "cuda",
     preprocess: str | None = None,
@@ -146,8 +159,21 @@ def run_benchmark(
     samples: list[dict[str, Any]] | None = None,
     batch_size: int = 4,
     quantize: str = "none",
-    binary: bool = False,
+    task: str = "singleclass",
 ) -> dict[str, Any]:
+    """Run Qwen2-VL on the MAMI 2022 misogyny classification task.
+
+    Args:
+        split: Dataset split ('train', 'validation', 'test').
+        model_id: HuggingFace model identifier.
+        device: Target device ('cuda' required for inference).
+        preprocess: Preprocessing filter name, or None for no filter.
+        limit: Cap on number of samples.
+        samples: Pre-loaded samples (skips dataset loading if provided).
+        batch_size: Images per forward pass.
+        quantize: Quantization mode ('none', '4bit', '8bit').
+        task: 'singleclass' for binary misogyny; 'multiclass' for multi-label sub-types.
+    """
     if not _TRANSFORMERS_AVAILABLE:
         raise RuntimeError(
             "transformers not available. Install optional group: uv sync --group vlm-gpu"
@@ -158,24 +184,19 @@ def run_benchmark(
     processor, model = _load_model(model_id, device, quantize=quantize)
 
     if samples is None:
-        samples = collect_samples(subset, limit=limit)
+        samples = collect_samples(split, limit=limit)
     if not samples:
-        raise ValueError(f"No samples for subset '{subset}'")
+        raise ValueError(f"No samples for split '{split}'")
 
-    if binary:
-        labels_sorted: dict[str, list[str]] = {s["subset"]: BINARY_LABELS for s in samples}
-        all_labels: list[str] = BINARY_LABELS
-    else:
-        labels_by_subset_raw: dict[str, set[str]] = {}
-        for s in samples:
-            labels_by_subset_raw.setdefault(s["subset"], set()).add(s["message"])
-        labels_sorted = {k: sorted(v) for k, v in labels_by_subset_raw.items()}
-        all_labels = sorted({lbl for lbls in labels_sorted.values() for lbl in lbls})
+    if task == "multiclass":
+        return _run_benchmark_multiclass(processor, model, samples, split, preprocess, batch_size)
+
+    labels = MISOGYNY_LABELS  # ["yes", "no"]
+    prompt_text = build_misogyny_prompt()
 
     pipeline = PreprocessingPipeline() if preprocess else None
     results: list[ClassificationResult] = []
     ground_truths: list[str] = []
-    visibility_scores: list[int] = []
     sample_rows: list[dict[str, Any]] = []
 
     pbar = tqdm(total=len(samples), desc=f"qwen2vl/{preprocess or 'none'}", unit="img")
@@ -184,14 +205,11 @@ def run_benchmark(
 
         texts: list[str] = []
         pils: list[Image.Image] = []
-        batch_labels: list[list[str]] = []
         for s in batch:
             arr = image_to_numpy(s["image"])
             if pipeline is not None and preprocess is not None:
                 arr = pipeline.apply_transformation(arr, preprocess)
             pil = Image.fromarray(arr)
-            labels = BINARY_LABELS if binary else labels_sorted.get(s["subset"], [])
-            prompt_text = build_binary_prompt() if binary else build_prompt(s["subset"], labels)
             messages = [
                 {
                     "role": "user",
@@ -205,7 +223,6 @@ def run_benchmark(
                 processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
             )
             pils.append(pil)
-            batch_labels.append(labels)
 
         inputs = processor(
             text=texts,
@@ -222,7 +239,7 @@ def run_benchmark(
         input_len = inputs["input_ids"].shape[1]
         response_texts = processor.batch_decode(output_ids[:, input_len:], skip_special_tokens=True)
 
-        for s, raw_text, labels in zip(batch, response_texts, batch_labels, strict=False):
+        for s, raw_text in zip(batch, response_texts, strict=False):
             response_text = raw_text.strip()
             refusal = is_refusal(response_text)
             matched = extract_label(response_text, labels) if not refusal else None
@@ -234,26 +251,154 @@ def run_benchmark(
                     refusal=refusal,
                 )
             )
-            gt = (
-                ("no" if s["subset"] == "digits" else BINARY_GROUND_TRUTH)
-                if binary
-                else s["message"]
-            )
+            gt = _misogynous_to_label(s["misogynous"])
             ground_truths.append(gt)
-            visibility_scores.append(int(s["visibility_score"]))
             sample_rows.append(
                 {
                     "image_id": s["image_id"],
-                    "ground_truth": gt,
-                    "prediction": matched,
+                    "ground_truth": yesno_to_int(gt),
+                    "prediction": yesno_to_int(matched),
                     "correct": matched == gt,
                     "refusal": refusal,
-                    "visibility": int(s["visibility_score"]),
                 }
             )
         pbar.update(len(batch))
     pbar.close()
 
+    return _aggregate(results, ground_truths, split, preprocess, labels, sample_rows)
+
+
+def _run_benchmark_multiclass(
+    processor: Any,
+    model: Any,
+    samples: list[dict[str, Any]],
+    split: str,
+    preprocess: str | None,
+    batch_size: int = 4,
+) -> dict[str, Any]:
+    """Run Qwen2-VL on multiclass: multi-label sub-type classification."""
+    prompt_text = build_subtype_prompt()
+    max_new_tokens_multiclass = 60
+    pipeline = PreprocessingPipeline() if preprocess else None
+
+    pred_dicts: list[dict[str, int]] = []
+    gt_dicts: list[dict[str, int]] = []
+    latencies: list[float] = []
+    refusals = 0
+    sample_rows: list[dict[str, Any]] = []
+
+    pbar = tqdm(total=len(samples), desc=f"qwen2vl-multiclass/{preprocess or 'none'}", unit="img")
+    for batch_start in range(0, len(samples), batch_size):
+        batch = samples[batch_start : batch_start + batch_size]
+
+        texts: list[str] = []
+        pils: list[Image.Image] = []
+        for s in batch:
+            arr = image_to_numpy(s["image"])
+            if pipeline is not None and preprocess is not None:
+                arr = pipeline.apply_transformation(arr, preprocess)
+            pil = Image.fromarray(arr)
+            messages = [
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "image", "image": pil},
+                        {"type": "text", "text": prompt_text},
+                    ],
+                }
+            ]
+            texts.append(
+                processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+            )
+            pils.append(pil)
+
+        inputs = processor(
+            text=texts,
+            images=pils,
+            padding=True,
+            return_tensors="pt",
+        ).to(model.device)
+
+        t0 = time.perf_counter()
+        with torch.no_grad():
+            output_ids = model.generate(**inputs, max_new_tokens=max_new_tokens_multiclass)
+        elapsed = (time.perf_counter() - t0) / len(batch)
+        latencies.extend([elapsed] * len(batch))
+
+        input_len = inputs["input_ids"].shape[1]
+        response_texts = processor.batch_decode(output_ids[:, input_len:], skip_special_tokens=True)
+
+        for s, raw_text in zip(batch, response_texts, strict=False):
+            response_text = raw_text.strip()
+            refusal = is_refusal(response_text)
+
+            if refusal or not response_text:
+                subtype_pred = dict.fromkeys(SUBTYPE_LABELS, 0)
+                refusals += 1
+            else:
+                subtype_pred = extract_subtypes(response_text, SUBTYPE_LABELS)
+                if (
+                    all(v == 0 for v in subtype_pred.values())
+                    and response_text
+                    and not re.search(r"\bnone\b", response_text.lower())
+                ):
+                    refusals += 1
+
+            gt_dict: dict[str, int] = {
+                "shaming": s.get("shaming", 0),
+                "stereotype": s.get("stereotype", 0),
+                "objectification": s.get("objectification", 0),
+                "violence": s.get("violence", 0),
+            }
+            pred_dicts.append(subtype_pred)
+            gt_dicts.append(gt_dict)
+            exact = all(subtype_pred.get(lbl, 0) == gt_dict[lbl] for lbl in SUBTYPE_LABELS)
+            sample_rows.append(
+                {
+                    "image_id": s["image_id"],
+                    "ground_truth": gt_dict,
+                    "prediction": subtype_pred,
+                    "correct": exact,
+                    "misogynous": s.get("misogynous", 0),
+                }
+            )
+        pbar.update(len(batch))
+    pbar.close()
+
+    n_total = len(samples)
+    avg_latency = sum(latencies) / n_total if n_total else 0.0
+    ml_metrics = compute_multilabel_metrics(pred_dicts, gt_dicts, SUBTYPE_LABELS)
+    label_prev = {lbl: sum(g[lbl] for g in gt_dicts) for lbl in SUBTYPE_LABELS}
+
+    return {
+        "benchmark_date": datetime.now(timezone.utc).isoformat(),
+        "model": "qwen2vl",
+        "filter": preprocess or "none",
+        "split": split,
+        "task": "multiclass",
+        "exact_match_accuracy": ml_metrics["exact_match_accuracy"],
+        "f1": ml_metrics["macro_f1"],
+        "precision": ml_metrics["macro_precision"],
+        "recall": ml_metrics["macro_recall"],
+        "macro_f1": ml_metrics["macro_f1"],
+        "micro_f1": ml_metrics["micro_f1"],
+        "weighted_f1": ml_metrics["weighted_f1"],
+        "per_class": ml_metrics["per_class"],
+        "avg_latency_s": avg_latency,
+        "refusal_rate": refusals / n_total if n_total else 0.0,
+        "label_prevalence": label_prev,
+        "sample_predictions": sample_rows,
+    }
+
+
+def _aggregate(
+    results: list[ClassificationResult],
+    ground_truths: list[str],
+    split: str,
+    preprocess: str | None,
+    labels: list[str],
+    sample_rows: list[dict[str, Any]],
+) -> dict[str, Any]:
     n_total = len(results)
     refusal_rate = sum(1 for r in results if r.refusal) / n_total if n_total else 0.0
     avg_latency = sum(r.latency_s for r in results) / n_total if n_total else 0.0
@@ -264,7 +409,7 @@ def run_benchmark(
 
     per_class_prec: list[float] = []
     per_class_rec: list[float] = []
-    for label in all_labels:
+    for label in labels:
         tp = sum(
             1
             for p, gt in zip(predictions, ground_truths, strict=True)
@@ -290,31 +435,18 @@ def run_benchmark(
         else 0.0
     )
 
-    by_visibility: dict[str, dict[str, Any]] = {}
-    for v in range(1, 6):
-        indices = [i for i, vs in enumerate(visibility_scores) if vs == v]
-        v_preds = [predictions[i] for i in indices]
-        v_gts = [ground_truths[i] for i in indices]
-        v_n = len(v_preds)
-        v_correct = sum(1 for p, gt in zip(v_preds, v_gts, strict=True) if p == gt)
-        by_visibility[str(v)] = {
-            "exact_match_accuracy": v_correct / v_n if v_n else 0.0,
-            "num_images": v_n,
-        }
-
     return {
         "benchmark_date": datetime.now(timezone.utc).isoformat(),
         "model": "qwen2vl",
         "filter": preprocess or "none",
-        "subset": subset,
-        "binary": binary,
+        "split": split,
+        "task": "singleclass",
         "exact_match_accuracy": accuracy,
         "precision": macro_prec,
         "recall": macro_rec,
         "f1": macro_f1,
         "avg_latency_s": avg_latency,
         "refusal_rate": refusal_rate,
-        "by_visibility": by_visibility,
         "sample_predictions": sample_rows,
     }
 
@@ -322,9 +454,10 @@ def run_benchmark(
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "--subset",
-        default="digits",
-        choices=["digits", "hate_slangs", "hate_symbols", "all"],
+        "--split",
+        default="validation",
+        help="Dataset split(s) to evaluate. Comma-separated for multiple: 'train,validation'"
+        " (default: validation)",
     )
     parser.add_argument("--model-id", default=MODEL_ID)
     parser.add_argument("--device", default="cuda")
@@ -342,9 +475,10 @@ def main() -> None:
         help="Quantization mode. 4bit recommended for 12 GB GPUs (default: 4bit)",
     )
     parser.add_argument(
-        "--binary",
-        action="store_true",
-        help="Binary yes/no classification: ask whether the image contains hateful content",
+        "--task",
+        default="singleclass",
+        choices=["singleclass", "multiclass"],
+        help="'singleclass' = binary misogyny (default); 'multiclass' = multi-label sub-types",
     )
     args = parser.parse_args()
 
@@ -354,9 +488,7 @@ def main() -> None:
         else ["none", *PreprocessingPipeline.TRANSFORMATIONS]
     )
 
-    print(
-        f"Subset: {args.subset} | Filters: {filters_to_run} | Limit: {args.limit} | Binary: {args.binary}"
-    )
+    print(f"Split: {args.split} | Filters: {filters_to_run} | Limit: {args.limit}")
 
     # Load model FIRST (before dataset) to avoid bitsandbytes crash.
     # The 4-bit quantization CUDA kernels are sensitive to memory state;
@@ -365,29 +497,30 @@ def main() -> None:
     print("Pre-loading model …")
     _load_model(args.model_id, args.device, quantize=args.quantize)
 
-    samples = collect_samples(args.subset, limit=args.limit)
+    samples = collect_samples(args.split, limit=args.limit)
     print(f"Loaded {len(samples)} samples")
 
     all_results: list[dict[str, Any]] = []
     for flt in filters_to_run:
         print(f"\n--- Filter: {flt} ---")
         result = run_benchmark(
-            subset=args.subset,
+            split=args.split,
             model_id=args.model_id,
             device=args.device,
             preprocess=None if flt == "none" else flt,
             samples=samples,
             batch_size=args.batch_size,
             quantize=args.quantize,
-            binary=args.binary,
+            task=args.task,
         )
         all_results.append(result)
         acc = result.get("exact_match_accuracy", 0.0)
         print(f"  acc={acc:.3f}  refusals={result.get('refusal_rate', 0.0):.2%}")
 
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-    suffix = "_binary" if args.binary else ""
-    out = RESULTS_DIR / f"qwen2vl_{args.subset}{suffix}.json"
+    split_slug = args.split.replace(",", "_")
+    suffix = "_multiclass" if args.task == "multiclass" else ""
+    out = RESULTS_DIR / f"qwen2vl_{split_slug}{suffix}.json"
     out.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
     print(f"\nSaved {len(all_results)} filter rows to {out}")
 
