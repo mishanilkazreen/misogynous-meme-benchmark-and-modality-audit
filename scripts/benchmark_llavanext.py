@@ -1,17 +1,16 @@
 """
-Benchmark Qwen2-VL on MAMI 2022 misogyny detection (GPU required).
+Benchmark LLaVA-Next on MAMI 2022 misogyny detection (GPU required).
 
 Challenge 1 (--task singleclass, default): binary misogyny classification (yes/no prompt).
 Challenge 2 (--task multiclass): multi-label sub-type classification (shaming, stereotype,
 objectification, violence) using a single multi-output prompt.
 
-Requires CUDA and the vlm-gpu optional dependency group.
-Safety refusals caught and logged as refusal_rate — not counted as incorrect.
+Uses llava-hf/llava-v1.6-mistral-7b-hf with 4-bit quantization by default
+(~5 GB VRAM, fits 12 GB consumer GPUs). Refusals caught and logged as refusal_rate.
 
 Usage:
-    uv run python scripts/benchmark_qwen2vl.py --split validation --limit 10
-    uv run python scripts/benchmark_qwen2vl.py --split validation --limit 50 --quantize 4bit
-    uv run python scripts/benchmark_qwen2vl.py --split validation --limit 10 --task multiclass
+    uv run python scripts/benchmark_llavanext.py --split validation --limit 5 --device cuda
+    uv run python scripts/benchmark_llavanext.py --split validation --limit 5 --device cuda --task multiclass
 """
 
 # ruff: noqa: I001  # datasets (via utils.dataset) must precede torch to avoid OpenMP segfault
@@ -45,27 +44,68 @@ from utils.dataset import DatasetManager
 from utils.preprocessing import PreprocessingPipeline
 
 try:
-    from transformers import AutoProcessor  # type: ignore[import-untyped]
-    from transformers import BitsAndBytesConfig, Qwen2VLForConditionalGeneration
+    from transformers import BitsAndBytesConfig  # type: ignore[import-untyped]
+    from transformers import LlavaNextForConditionalGeneration, LlavaNextProcessor
 
     _TRANSFORMERS_AVAILABLE = True
 except (ModuleNotFoundError, ImportError):
     _TRANSFORMERS_AVAILABLE = False
 
 RESULTS_DIR = Path(__file__).resolve().parents[1] / "results"
-MODEL_ID = "Qwen/Qwen2-VL-7B-Instruct"
-DEFAULT_MAX_PIXELS = 512 * 28 * 28
+DEFAULT_MODEL_ID = "llava-hf/llava-v1.6-mistral-7b-hf"
 MAX_NEW_TOKENS = 20
+
+_model_cache: dict[str, tuple[Any, Any]] = {}
+
+
+def _load_model(model_id: str, device: str, quantize: str = "4bit") -> tuple[Any, Any]:
+    """Load processor + model; cached after first call.
+
+    Args:
+        model_id: HuggingFace model identifier.
+        device: Target device ('cuda', 'cpu').
+        quantize: '4bit' (default, ~5 GB VRAM), '8bit', or 'none' (fp16, ~14 GB).
+    """
+    key = f"{model_id}:{device}:{quantize}"
+    if key in _model_cache:
+        return _model_cache[key]
+
+    quant_label = "4-bit NF4" if quantize == "4bit" else ("8-bit" if quantize == "8bit" else "fp16")
+    print(f"  Loading {model_id} ({quant_label}) …")
+    processor = LlavaNextProcessor.from_pretrained(model_id, use_fast=True)
+
+    load_kwargs: dict[str, Any] = {
+        "low_cpu_mem_usage": True,
+        "device_map": device,
+    }
+
+    if quantize == "4bit":
+        load_kwargs["quantization_config"] = BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_compute_dtype=torch.float16,
+            bnb_4bit_quant_type="nf4",
+            bnb_4bit_use_double_quant=True,
+        )
+    elif quantize == "8bit":
+        load_kwargs["quantization_config"] = BitsAndBytesConfig(load_in_8bit=True)
+    else:
+        load_kwargs["torch_dtype"] = torch.float16
+
+    model = LlavaNextForConditionalGeneration.from_pretrained(model_id, **load_kwargs)
+    model.eval()
+
+    _model_cache[key] = (processor, model)
+    return processor, model
+
 
 _REFUSAL_PHRASES = [
     "i cannot",
     "i'm unable",
     "i am unable",
-    "i'm not able",
-    "inappropriate",
-    "harmful",
     "i can't",
     "as an ai",
+    "inappropriate",
+    "harmful",
 ]
 
 
@@ -109,77 +149,34 @@ def is_refusal(text: str) -> bool:
     return any(phrase in lower for phrase in _REFUSAL_PHRASES)
 
 
-_model_cache: dict[str, tuple[Any, Any]] = {}
-
-
-def _load_model(model_id: str, device: str, quantize: str = "none") -> tuple[Any, Any]:
-    """Load processor + model; cached after first call.
-
-    Args:
-        model_id: HuggingFace model identifier.
-        device: Target device ('cuda', 'cpu').
-        quantize: Quantization mode - 'none' (fp16), '4bit', or '8bit'.
-            4-bit quantization reduces VRAM from ~14 GB to ~5 GB,
-            enabling inference on 12 GB consumer GPUs.
-    """
-    key = f"{model_id}:{device}:{quantize}"
-    if key in _model_cache:
-        return _model_cache[key]
-
-    quant_label = "4-bit NF4" if quantize == "4bit" else ("8-bit" if quantize == "8bit" else "fp16")
-    print(f"Loading {model_id} ({quant_label}) …")
-    processor = AutoProcessor.from_pretrained(model_id, max_pixels=DEFAULT_MAX_PIXELS)
-
-    load_kwargs: dict[str, Any] = {"device_map": device}
-
-    if quantize == "4bit":
-        load_kwargs["quantization_config"] = BitsAndBytesConfig(
-            load_in_4bit=True,
-            bnb_4bit_compute_dtype=torch.float16,
-            bnb_4bit_quant_type="nf4",
-            bnb_4bit_use_double_quant=True,
-        )
-    elif quantize == "8bit":
-        load_kwargs["quantization_config"] = BitsAndBytesConfig(load_in_8bit=True)
-    else:
-        load_kwargs["dtype"] = torch.float16
-
-    model = Qwen2VLForConditionalGeneration.from_pretrained(model_id, **load_kwargs)
-    model.eval()
-    _model_cache[key] = (processor, model)
-    return processor, model
-
-
 def run_benchmark(
     split: str = "validation",
-    model_id: str = MODEL_ID,
+    model_id: str = DEFAULT_MODEL_ID,
     device: str = "cuda",
     preprocess: str | None = None,
     limit: int | None = None,
     samples: list[dict[str, Any]] | None = None,
     batch_size: int = 4,
-    quantize: str = "none",
+    quantize: str = "4bit",
     task: str = "singleclass",
 ) -> dict[str, Any]:
-    """Run Qwen2-VL on the MAMI 2022 misogyny classification task.
+    """Run LLaVA-Next on the MAMI 2022 misogyny classification task.
 
     Args:
         split: Dataset split ('train', 'validation', 'test').
-        model_id: HuggingFace model identifier.
-        device: Target device ('cuda' required for inference).
+        model_id: HuggingFace model ID.
+        device: Target device.
         preprocess: Preprocessing filter name, or None for no filter.
         limit: Cap on number of samples.
         samples: Pre-loaded samples (skips dataset loading if provided).
         batch_size: Images per forward pass.
-        quantize: Quantization mode ('none', '4bit', '8bit').
+        quantize: Quantization mode ('4bit', '8bit', 'none').
         task: 'singleclass' for binary misogyny; 'multiclass' for multi-label sub-types.
     """
     if not _TRANSFORMERS_AVAILABLE:
-        raise RuntimeError(
-            "transformers not available. Install optional group: uv sync --group vlm-gpu"
-        )
-    if not torch.cuda.is_available():
-        raise RuntimeError("CUDA required for Qwen2-VL. Use --device cpu only for testing.")
+        raise RuntimeError("transformers not available. Install: uv sync --group vlm-gpu")
+    if not torch.cuda.is_available() and device.startswith("cuda"):
+        raise RuntimeError("CUDA not available. Pass --device cpu for testing only.")
 
     processor, model = _load_model(model_id, device, quantize=quantize)
 
@@ -199,41 +196,36 @@ def run_benchmark(
     ground_truths: list[str] = []
     sample_rows: list[dict[str, Any]] = []
 
-    pbar = tqdm(total=len(samples), desc=f"qwen2vl/{preprocess or 'none'}", unit="img")
+    pbar = tqdm(total=len(samples), desc=f"llavanext/{preprocess or 'none'}", unit="img")
     for batch_start in range(0, len(samples), batch_size):
         batch = samples[batch_start : batch_start + batch_size]
 
-        texts: list[str] = []
+        prompts: list[str] = []
         pils: list[Image.Image] = []
         for s in batch:
             arr = image_to_numpy(s["image"])
             if pipeline is not None and preprocess is not None:
                 arr = pipeline.apply_transformation(arr, preprocess)
             pil = Image.fromarray(arr)
-            messages = [
+            conversation = [
                 {
                     "role": "user",
                     "content": [
-                        {"type": "image", "image": pil},
+                        {"type": "image"},
                         {"type": "text", "text": prompt_text},
                     ],
                 }
             ]
-            texts.append(
-                processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
-            )
+            prompts.append(processor.apply_chat_template(conversation, add_generation_prompt=True))
             pils.append(pil)
 
-        inputs = processor(
-            text=texts,
-            images=pils,
-            padding=True,
-            return_tensors="pt",
-        ).to(model.device)
+        inputs = processor(images=pils, text=prompts, return_tensors="pt", padding=True).to(
+            model.device
+        )
 
         t0 = time.perf_counter()
         with torch.no_grad():
-            output_ids = model.generate(**inputs, max_new_tokens=MAX_NEW_TOKENS)
+            output_ids = model.generate(**inputs, max_new_tokens=MAX_NEW_TOKENS, do_sample=False)
         elapsed = (time.perf_counter() - t0) / len(batch)
 
         input_len = inputs["input_ids"].shape[1]
@@ -276,7 +268,7 @@ def _run_benchmark_multiclass(
     preprocess: str | None,
     batch_size: int = 4,
 ) -> dict[str, Any]:
-    """Run Qwen2-VL on multiclass: multi-label sub-type classification."""
+    """Run LLaVA-Next on multiclass: multi-label sub-type classification."""
     prompt_text = build_subtype_prompt()
     max_new_tokens_multiclass = 60
     pipeline = PreprocessingPipeline() if preprocess else None
@@ -287,41 +279,38 @@ def _run_benchmark_multiclass(
     refusals = 0
     sample_rows: list[dict[str, Any]] = []
 
-    pbar = tqdm(total=len(samples), desc=f"qwen2vl-multiclass/{preprocess or 'none'}", unit="img")
+    pbar = tqdm(total=len(samples), desc=f"llavanext-multiclass/{preprocess or 'none'}", unit="img")
     for batch_start in range(0, len(samples), batch_size):
         batch = samples[batch_start : batch_start + batch_size]
 
-        texts: list[str] = []
+        prompts: list[str] = []
         pils: list[Image.Image] = []
         for s in batch:
             arr = image_to_numpy(s["image"])
             if pipeline is not None and preprocess is not None:
                 arr = pipeline.apply_transformation(arr, preprocess)
             pil = Image.fromarray(arr)
-            messages = [
+            conversation = [
                 {
                     "role": "user",
                     "content": [
-                        {"type": "image", "image": pil},
+                        {"type": "image"},
                         {"type": "text", "text": prompt_text},
                     ],
                 }
             ]
-            texts.append(
-                processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
-            )
+            prompts.append(processor.apply_chat_template(conversation, add_generation_prompt=True))
             pils.append(pil)
 
-        inputs = processor(
-            text=texts,
-            images=pils,
-            padding=True,
-            return_tensors="pt",
-        ).to(model.device)
+        inputs = processor(images=pils, text=prompts, return_tensors="pt", padding=True).to(
+            model.device
+        )
 
         t0 = time.perf_counter()
         with torch.no_grad():
-            output_ids = model.generate(**inputs, max_new_tokens=max_new_tokens_multiclass)
+            output_ids = model.generate(
+                **inputs, max_new_tokens=max_new_tokens_multiclass, do_sample=False
+            )
         elapsed = (time.perf_counter() - t0) / len(batch)
         latencies.extend([elapsed] * len(batch))
 
@@ -372,7 +361,7 @@ def _run_benchmark_multiclass(
 
     return {
         "benchmark_date": datetime.now(timezone.utc).isoformat(),
-        "model": "qwen2vl",
+        "model": "llavanext",
         "filter": preprocess or "none",
         "split": split,
         "task": "multiclass",
@@ -437,7 +426,7 @@ def _aggregate(
 
     return {
         "benchmark_date": datetime.now(timezone.utc).isoformat(),
-        "model": "qwen2vl",
+        "model": "llavanext",
         "filter": preprocess or "none",
         "split": split,
         "task": "singleclass",
@@ -459,7 +448,7 @@ def main() -> None:
         help="Dataset split(s) to evaluate. Comma-separated for multiple: 'train,validation'"
         " (default: validation)",
     )
-    parser.add_argument("--model-id", default=MODEL_ID)
+    parser.add_argument("--model-id", default=DEFAULT_MODEL_ID)
     parser.add_argument("--device", default="cuda")
     parser.add_argument(
         "--filters",
@@ -467,12 +456,12 @@ def main() -> None:
         help="Comma-separated filters (default: all). E.g. 'none,blur,grayscale'",
     )
     parser.add_argument("--limit", type=int, default=None)
-    parser.add_argument("--batch-size", type=int, default=4, help="Images per forward pass")
+    parser.add_argument("--batch-size", type=int, default=4)
     parser.add_argument(
         "--quantize",
         default="4bit",
         choices=["none", "4bit", "8bit"],
-        help="Quantization mode. 4bit recommended for 12 GB GPUs (default: 4bit)",
+        help="Quantization mode (default: 4bit, ~5 GB VRAM)",
     )
     parser.add_argument(
         "--task",
@@ -490,10 +479,7 @@ def main() -> None:
 
     print(f"Split: {args.split} | Filters: {filters_to_run} | Limit: {args.limit}")
 
-    # Load model FIRST (before dataset) to avoid bitsandbytes crash.
-    # The 4-bit quantization CUDA kernels are sensitive to memory state;
-    # pre-loading large image datasets can trigger an access violation
-    # during weight conversion on Windows.
+    # Load model before dataset to avoid bitsandbytes crash on Windows.
     print("Pre-loading model …")
     _load_model(args.model_id, args.device, quantize=args.quantize)
 
@@ -520,7 +506,7 @@ def main() -> None:
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     split_slug = args.split.replace(",", "_")
     suffix = "_multiclass" if args.task == "multiclass" else ""
-    out = RESULTS_DIR / f"qwen2vl_{split_slug}{suffix}.json"
+    out = RESULTS_DIR / f"llavanext_{split_slug}{suffix}.json"
     out.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
     print(f"\nSaved {len(all_results)} filter rows to {out}")
 

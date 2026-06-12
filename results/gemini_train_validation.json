@@ -1,0 +1,1218 @@
+[
+  {
+    "benchmark_date": "2026-06-12T15:42:34.611428+00:00",
+    "model": "gemini",
+    "filter": "none",
+    "split": "train,validation",
+    "task": "singleclass",
+    "exact_match_accuracy": 0.9,
+    "precision": 0.9039408866995073,
+    "recall": 0.8961352657004831,
+    "f1": 0.9000211525495433,
+    "avg_latency_s": 1.3789625854988117,
+    "refusal_rate": 0.0,
+    "safety_block_rate": 0.0,
+    "sample_predictions": [
+      {
+        "image_id": "8716",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "3066",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "6038",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "10861",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "11198",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "1365",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "6046",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "5581",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "4533",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "10768",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "4616",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false
+      },
+      {
+        "image_id": "1053",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "2436",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "5784",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "13429",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "1255",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "591",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "2606",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false
+      },
+      {
+        "image_id": "5906",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "10060",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "3210",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "3190",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false
+      },
+      {
+        "image_id": "11114",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "1013",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "2321",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "1758",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "8335",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "3869",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "13141",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "6835",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "9282",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "9806",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "8568",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "1322",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "4376",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "4175",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "10934",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "5170",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "4712",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "1752",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "934",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false
+      },
+      {
+        "image_id": "644",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "5326",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false
+      },
+      {
+        "image_id": "7032",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "10029",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "6603",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "474",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "11256",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "8597",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "5209",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "1781",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "5609",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "7988",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "8886",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "6224",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "11379",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "1864",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false
+      },
+      {
+        "image_id": "9488",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "2218",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "4116",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "7783",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "8054",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "8098",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "8615",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "9000",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false
+      },
+      {
+        "image_id": "7015",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "8275",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "715",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "3765",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "5551",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "2048",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "4066",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "9101",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "5663",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "7362",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "10313",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "6942",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "11142",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "8500",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false
+      },
+      {
+        "image_id": "4681",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "4603",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "1161",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "6881",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "1980",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false
+      },
+      {
+        "image_id": "7805",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "11663",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "9660",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false
+      },
+      {
+        "image_id": "2874",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "1404",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "5589",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "8879",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "3237",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "763",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "597",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "1617",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "5827",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "4660",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "10343",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "11276",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "2423",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "3775",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "240",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "9842",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false
+      },
+      {
+        "image_id": "7067",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "11523",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "4381",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "7113",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "5822",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "3142",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "4315",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "5763",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "11514",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "7693",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "8406",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "785",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "11204",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "8746",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false
+      },
+      {
+        "image_id": "9544",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "3984",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "11667",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "1889",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "11356",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "8080",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "2351",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "3569",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "2567",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "4326",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "4169",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "9578",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "4948",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "9379",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "7227",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "11431",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "6976",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "8785",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false
+      },
+      {
+        "image_id": "8653",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "4881",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "10655",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "11280",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "11531",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "3091",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "1923",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "5310",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false
+      },
+      {
+        "image_id": "8025",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "8630",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "8164",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false
+      },
+      {
+        "image_id": "3875",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false
+      },
+      {
+        "image_id": "3038",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "8995",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "8391",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "6252",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "5429",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "6525",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "649",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "2498",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "6551",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "4500",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "1239",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "3489",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "7011",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "10136",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "7659",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "6637",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "1683",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "10350",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "2616",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "5385",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "10463",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "8386",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "9780",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false
+      },
+      {
+        "image_id": "567",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "10104",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "7501",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "5084",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "8650",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "3367",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "4124",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "5547",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "10436",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "1210",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "3960",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "11719",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false
+      },
+      {
+        "image_id": "7116",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "9691",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "9563",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "5162",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "13396",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "13336",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "5718",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "4619",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "10337",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "9764",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "7548",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "7437",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false
+      },
+      {
+        "image_id": "9870",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "7692",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true
+      },
+      {
+        "image_id": "6822",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false
+      },
+      {
+        "image_id": "9565",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "7100",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      },
+      {
+        "image_id": "3540",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true
+      }
+    ]
+  }
+]

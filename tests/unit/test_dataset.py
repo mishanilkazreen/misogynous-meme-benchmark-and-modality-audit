@@ -1,224 +1,275 @@
-"""Unit tests for DatasetManager and HatefulIllusionDataset."""
+"""Unit tests for DatasetManager and MamiDataset (MAMI 2022)."""
 
-from unittest.mock import MagicMock, patch
+from __future__ import annotations
 
-from utils.dataset import Annotation, DatasetManager, HatefulIllusionDataset
+import csv
+from pathlib import Path
+from unittest.mock import patch
 
+from PIL import Image
+import pytest
 
-class TestAnnotation:
-    """Tests for the Annotation dataclass."""
+from utils.dataset import DatasetManager, MamiDataset
 
-    def test_is_hate_always_true(self):
-        """Test is_hate returns True for all annotations."""
-        ann = Annotation(image_id="0", message="5", prompt="test", visibility=3)
-        assert ann.is_hate is True
-
-    def test_message_type_textual_for_digits(self):
-        """Test message_type returns textual for digit messages."""
-        ann = Annotation(image_id="0", message="5", prompt="test", visibility=3)
-        assert ann.message_type == "textual"
-
-    def test_message_type_symbolic_for_non_digits(self):
-        """Test message_type returns symbolic for non-digit messages."""
-        ann = Annotation(image_id="0", message="symbol", prompt="test", visibility=3)
-        assert ann.message_type == "symbolic"
-
-    def test_visibility_level_low(self):
-        """Test visibility_level returns low for scores 1-2."""
-        ann1 = Annotation(image_id="0", message="5", prompt="test", visibility=1)
-        ann2 = Annotation(image_id="1", message="5", prompt="test", visibility=2)
-        assert ann1.visibility_level == "low"
-        assert ann2.visibility_level == "low"
-
-    def test_visibility_level_high(self):
-        """Test visibility_level returns high for scores 3+."""
-        ann3 = Annotation(image_id="0", message="5", prompt="test", visibility=3)
-        ann4 = Annotation(image_id="1", message="5", prompt="test", visibility=4)
-        ann5 = Annotation(image_id="2", message="5", prompt="test", visibility=5)
-        assert ann3.visibility_level == "high"
-        assert ann4.visibility_level == "high"
-        assert ann5.visibility_level == "high"
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
 
 
-def create_mock_hf_dataset(num_samples=10):
-    """Create a mock HuggingFace dataset."""
-    mock_data = [
-        {
-            "message": str(i % 10),
-            "prompt": f"Scene {i}",
-            "visibility": (i % 5) + 1,
-            "image": f"img{i}.png",
-        }
-        for i in range(num_samples)
-    ]
+def _make_fake_dataset_root(
+    tmp_path: Path,
+    split: str = "train",
+    num_samples: int = 5,
+    include_images: bool = True,
+) -> str:
+    """Create a minimal MAMI-like directory structure for offline testing."""
+    tsv_name = f"{split}.tsv"
+    img_subdir = "training_images" if split in ("train", "validation") else "test_images"
 
-    mock_dataset = MagicMock()
-    mock_dataset.__iter__ = lambda _: iter(mock_data)
-    mock_dataset.__len__ = lambda _: len(mock_data)
-    mock_dataset.__getitem__ = lambda _, idx: mock_data[idx]
+    images_dir = tmp_path / "MAMI_2022_images" / img_subdir
+    images_dir.mkdir(parents=True, exist_ok=True)
 
-    return {"train": mock_dataset}
+    rows = []
+    for i in range(num_samples):
+        file_name = f"{1000 + i}.jpg"
+        rows.append(
+            {
+                "file_name": file_name,
+                "label": str(i % 2),
+                "shaming": str(i % 2),
+                "stereotype": str((i + 1) % 2),
+                "objectification": "0",
+                "violence": "0",
+                "text": f"Sample meme text {i}",
+            }
+        )
+        if include_images:
+            img = Image.new("RGB", (64, 64), color=(i * 20, 100, 150))
+            img.save(images_dir / file_name)
+
+    tsv_path = tmp_path / tsv_name
+    with tsv_path.open("w", newline="", encoding="utf-8") as fh:
+        writer = csv.DictWriter(fh, fieldnames=list(rows[0].keys()), delimiter="\t")
+        writer.writeheader()
+        writer.writerows(rows)
+
+    return str(tmp_path)
 
 
-class TestHatefulIllusionDataset:
-    """Tests for HatefulIllusionDataset."""
+# ---------------------------------------------------------------------------
+# MamiDataset
+# ---------------------------------------------------------------------------
 
-    @patch("utils.dataset._hf_load_dataset")
-    def test_load_dataset(self, mock_load):
-        """Test loading dataset."""
-        mock_load.return_value = create_mock_hf_dataset(5)
 
-        dataset = HatefulIllusionDataset(split="train")
+class TestMamiDataset:
+    """Tests for MamiDataset."""
 
-        assert len(dataset) == 5
-        assert len(dataset.annotations) == 5
+    def test_len(self, tmp_path: Path) -> None:
+        """Dataset length matches the number of TSV rows."""
+        root = _make_fake_dataset_root(tmp_path, num_samples=7)
+        ds = MamiDataset(dataset_path=root, split="train")
+        assert len(ds) == 7
 
-    @patch("utils.dataset.hf_hub_download")
-    @patch("utils.dataset._hf_load_dataset")
-    def test_getitem_returns_dict(self, mock_load, mock_hf_download):
-        """Test __getitem__ returns expected dictionary structure."""
-        import tempfile
-
-        from PIL import Image
-
-        mock_load.return_value = create_mock_hf_dataset(5)
-
-        # Create a temporary test image
-        with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as f:
-            img = Image.new("RGB", (256, 256), color=(128, 128, 128))
-            img.save(f.name)
-            mock_hf_download.return_value = f.name
-
-        dataset = HatefulIllusionDataset(split="train")
-        sample = dataset[0]
-
+    def test_getitem_keys(self, tmp_path: Path) -> None:
+        """__getitem__ returns the required keys."""
+        root = _make_fake_dataset_root(tmp_path, num_samples=3)
+        ds = MamiDataset(dataset_path=root, split="train")
+        sample = ds[0]
         assert "image" in sample
         assert "image_id" in sample
-        assert "message" in sample
-        assert "is_hate" in sample
-        assert "message_type" in sample
-        assert "visibility_level" in sample
-        assert "visibility_score" in sample
-        assert "prompt" in sample
+        assert "text" in sample
+        assert "misogynous" in sample
+        assert "shaming" in sample
+        assert "stereotype" in sample
+        assert "objectification" in sample
+        assert "violence" in sample
 
-    @patch("utils.dataset.hf_hub_download")
-    @patch("utils.dataset._hf_load_dataset")
-    def test_image_tensor_shape(self, mock_load, mock_hf_download):
-        """Test image is converted to proper tensor shape."""
-        import tempfile
+    def test_image_tensor_shape(self, tmp_path: Path) -> None:
+        """Image is returned as a (3, H, W) float tensor."""
+        root = _make_fake_dataset_root(tmp_path, num_samples=3)
+        ds = MamiDataset(dataset_path=root, split="train")
+        sample = ds[0]
+        img = sample["image"]
+        assert len(img.shape) == 3
+        assert img.shape[0] == 3  # RGB
 
-        from PIL import Image
+    def test_image_values_normalized(self, tmp_path: Path) -> None:
+        """Pixel values are in [0, 1]."""
+        root = _make_fake_dataset_root(tmp_path, num_samples=3)
+        ds = MamiDataset(dataset_path=root, split="train")
+        sample = ds[0]
+        assert float(sample["image"].min()) >= 0.0
+        assert float(sample["image"].max()) <= 1.0
 
-        mock_load.return_value = create_mock_hf_dataset(5)
+    def test_label_types(self, tmp_path: Path) -> None:
+        """All label fields are Python ints."""
+        root = _make_fake_dataset_root(tmp_path, num_samples=4)
+        ds = MamiDataset(dataset_path=root, split="train")
+        sample = ds[0]
+        for key in ("misogynous", "shaming", "stereotype", "objectification", "violence"):
+            assert isinstance(sample[key], int), f"{key} should be int"
 
-        # Create a temporary test image
-        with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as f:
-            img = Image.new("RGB", (256, 256), color=(128, 128, 128))
-            img.save(f.name)
-            mock_hf_download.return_value = f.name
+    def test_text_is_string(self, tmp_path: Path) -> None:
+        """Text field is a string."""
+        root = _make_fake_dataset_root(tmp_path, num_samples=3)
+        ds = MamiDataset(dataset_path=root, split="train")
+        assert isinstance(ds[0]["text"], str)
 
-        dataset = HatefulIllusionDataset(split="train")
-        sample = dataset[0]
+    def test_image_id_is_stem(self, tmp_path: Path) -> None:
+        """image_id is the filename stem (no extension)."""
+        root = _make_fake_dataset_root(tmp_path, num_samples=3)
+        ds = MamiDataset(dataset_path=root, split="train")
+        sample = ds[0]
+        assert "." not in sample["image_id"], "image_id should not contain file extension"
 
-        assert len(sample["image"].shape) == 3
-        assert sample["image"].shape[0] == 3  # RGB channels
+    def test_transform_applied(self, tmp_path: Path) -> None:
+        """Custom transform is called with a PIL image."""
+        import torch
 
-    @patch("utils.dataset.hf_hub_download")
-    @patch("utils.dataset._hf_load_dataset")
-    def test_getitem_uses_subset_specific_image_path(self, mock_load, mock_hf_download):
-        """Test __getitem__ downloads a subset-specific image path."""
-        import tempfile
+        root = _make_fake_dataset_root(tmp_path, num_samples=3)
 
-        from PIL import Image
+        def to_ones(pil: Image.Image) -> torch.Tensor:
+            return torch.ones(3, 8, 8)
 
-        mock_data = [
-            {
-                "message": "5",
-                "prompt": "Scene 0",
-                "visibility": 3,
-                "image": "images/0.png",
-            }
-        ]
+        ds = MamiDataset(dataset_path=root, split="train", transform=to_ones)
+        sample = ds[0]
+        assert sample["image"].shape == (3, 8, 8)
+        assert float(sample["image"].sum()) == 3 * 8 * 8
 
-        mock_dataset = MagicMock()
-        mock_dataset.__iter__ = lambda _: iter(mock_data)
-        mock_dataset.__len__ = lambda _: len(mock_data)
-        mock_dataset.__getitem__ = lambda _, idx: mock_data[idx]
-        mock_load.return_value = {"train": mock_dataset}
+    def test_invalid_split_raises(self, tmp_path: Path) -> None:
+        """Passing an unknown split raises ValueError."""
+        with pytest.raises(ValueError, match="Invalid split"):
+            MamiDataset(dataset_path=str(tmp_path), split="bogus")
 
-        with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as f:
-            img = Image.new("RGB", (128, 128), color=(128, 128, 128))
-            img.save(f.name)
-            mock_hf_download.return_value = f.name
+    def test_missing_tsv_raises(self, tmp_path: Path) -> None:
+        """FileNotFoundError raised when TSV is absent."""
+        with pytest.raises(FileNotFoundError):
+            MamiDataset(dataset_path=str(tmp_path), split="train")
 
-        dataset = HatefulIllusionDataset(split="train", subset="hate_slangs")
-        _ = dataset[0]
+    def test_validation_split(self, tmp_path: Path) -> None:
+        """Validation split loads correctly (uses training_images dir)."""
+        root = _make_fake_dataset_root(tmp_path, split="validation", num_samples=4)
+        ds = MamiDataset(dataset_path=root, split="validation")
+        assert len(ds) == 4
 
-        mock_hf_download.assert_called_once_with(
-            repo_id="yiting/HatefulIllusion_Dataset",
-            filename="hate_slangs/images/0.png",
-            repo_type="dataset",
-            cache_dir=None,
-        )
+    def test_test_split(self, tmp_path: Path) -> None:
+        """Test split loads correctly (uses test_images dir)."""
+        root = _make_fake_dataset_root(tmp_path, split="test", num_samples=3)
+        ds = MamiDataset(dataset_path=root, split="test")
+        assert len(ds) == 3
+
+
+# ---------------------------------------------------------------------------
+# DatasetManager
+# ---------------------------------------------------------------------------
 
 
 class TestDatasetManager:
     """Tests for DatasetManager."""
 
-    @patch("utils.dataset._hf_load_dataset")
-    def test_load_dataset(self, mock_load):
-        """Test loading dataset through manager."""
-        mock_load.return_value = create_mock_hf_dataset(10)
+    def test_load_dataset(self, tmp_path: Path) -> None:
+        """load_dataset returns a MamiDataset of correct length."""
+        root = _make_fake_dataset_root(tmp_path, num_samples=6)
+        manager = DatasetManager(dataset_path=root)
+        ds = manager.load_dataset(split="train")
+        assert isinstance(ds, MamiDataset)
+        assert len(ds) == 6
 
-        manager = DatasetManager()
-        dataset = manager.load_dataset(split="train")
+    def test_dataset_caching(self, tmp_path: Path) -> None:
+        """Successive calls with the same split return the same object."""
+        root = _make_fake_dataset_root(tmp_path, num_samples=4)
+        manager = DatasetManager(dataset_path=root)
+        ds1 = manager.load_dataset(split="train")
+        ds2 = manager.load_dataset(split="train")
+        assert ds1 is ds2
 
-        assert len(dataset) == 10
+    def test_subset_kwarg_ignored(self, tmp_path: Path) -> None:
+        """Passing subset= does not raise (backward compat)."""
+        root = _make_fake_dataset_root(tmp_path, num_samples=4)
+        manager = DatasetManager(dataset_path=root)
+        # Should not raise even though subset is ignored
+        ds = manager.load_dataset(split="train", subset="hate_symbols")
+        assert len(ds) == 4
 
-    @patch("utils.dataset._hf_load_dataset")
-    def test_dataset_caching(self, mock_load):
-        """Test that datasets are cached."""
-        mock_load.return_value = create_mock_hf_dataset(10)
-
-        manager = DatasetManager()
-        dataset1 = manager.load_dataset(split="train")
-        dataset2 = manager.load_dataset(split="train")
-
-        assert dataset1 is dataset2
-
-    @patch("utils.dataset._hf_load_dataset")
-    def test_get_dataset_stats(self, mock_load):
-        """Test get_dataset_stats returns expected structure."""
-        mock_load.return_value = create_mock_hf_dataset(10)
-
-        manager = DatasetManager()
+    def test_get_dataset_stats_structure(self, tmp_path: Path) -> None:
+        """get_dataset_stats returns the expected keys."""
+        root = _make_fake_dataset_root(tmp_path, num_samples=10)
+        manager = DatasetManager(dataset_path=root)
         stats = manager.get_dataset_stats(split="train")
+        expected_keys = {
+            "total_images",
+            "misogynous_count",
+            "non_misogynous_count",
+            "shaming_count",
+            "stereotype_count",
+            "objectification_count",
+            "violence_count",
+        }
+        assert expected_keys.issubset(stats.keys())
 
-        assert "total_images" in stats
-        assert "high_visibility" in stats
-        assert "low_visibility" in stats
-        assert "textual_count" in stats
-        assert "symbolic_count" in stats
+    def test_get_dataset_stats_counts(self, tmp_path: Path) -> None:
+        """misogynous_count + non_misogynous_count == total_images."""
+        root = _make_fake_dataset_root(tmp_path, num_samples=8)
+        manager = DatasetManager(dataset_path=root)
+        stats = manager.get_dataset_stats(split="train")
+        assert stats["misogynous_count"] + stats["non_misogynous_count"] == stats["total_images"]
 
-    @patch("utils.dataset._hf_load_dataset")
-    def test_check_composition_completeness(self, mock_load):
-        """Test composition completeness check."""
-        mock_load.return_value = create_mock_hf_dataset(10)
+    def test_check_composition_completeness(self, tmp_path: Path) -> None:
+        """Composition check returns bool dict with both classes present."""
+        root = _make_fake_dataset_root(tmp_path, num_samples=10)
+        manager = DatasetManager(dataset_path=root)
+        result = manager.check_composition_completeness(split="train")
+        assert "has_misogynous" in result
+        assert "has_non_misogynous" in result
+        # Our fake dataset alternates 0/1 so both classes appear for >=2 samples
+        assert result["has_misogynous"] is True
+        assert result["has_non_misogynous"] is True
 
-        manager = DatasetManager()
-        composition = manager.check_composition_completeness(split="train")
+    def test_supports_minimum_size_true(self, tmp_path: Path) -> None:
+        """Returns True when dataset has enough samples."""
+        root = _make_fake_dataset_root(tmp_path, num_samples=10)
+        manager = DatasetManager(dataset_path=root)
+        assert manager.supports_minimum_size(min_size=5) is True
 
-        assert "high_visibility_textual" in composition
-        assert "high_visibility_symbolic" in composition
-        assert "low_visibility_textual" in composition
-        assert "low_visibility_symbolic" in composition
-
-    @patch("utils.dataset._hf_load_dataset")
-    def test_supports_minimum_size(self, mock_load):
-        """Test minimum size check."""
-        mock_load.return_value = create_mock_hf_dataset(10)
-
-        manager = DatasetManager()
-
-        assert manager.supports_minimum_size(min_size=10) is True
+    def test_supports_minimum_size_false(self, tmp_path: Path) -> None:
+        """Returns False when dataset is smaller than the minimum."""
+        root = _make_fake_dataset_root(tmp_path, num_samples=3)
+        manager = DatasetManager(dataset_path=root)
         assert manager.supports_minimum_size(min_size=100) is False
+
+    def test_supports_minimum_size_missing_dataset(self, tmp_path: Path) -> None:
+        """Returns False gracefully when the dataset path is missing."""
+        manager = DatasetManager(dataset_path=str(tmp_path / "nonexistent"))
+        assert manager.supports_minimum_size(min_size=5) is False
+
+    def test_resolves_path_via_kaggle(self, tmp_path: Path) -> None:
+        """When dataset_path is None, _resolve_path calls _kaggle_download."""
+        root = _make_fake_dataset_root(tmp_path, num_samples=4)
+        manager = DatasetManager()  # no dataset_path
+
+        with patch("utils.dataset._kaggle_download", return_value=root) as mock_dl:
+            ds = manager.load_dataset(split="train")
+
+        mock_dl.assert_called_once()
+        assert len(ds) == 4
+
+
+# ---------------------------------------------------------------------------
+# Backward-compat aliases
+# ---------------------------------------------------------------------------
+
+
+class TestBackwardCompatAliases:
+    """Ensure old import names still resolve."""
+
+    def test_hateful_illusion_alias(self) -> None:
+        """HatefulIllusionDataset is importable and is MamiDataset."""
+        from utils.dataset import HatefulIllusionDataset, MamiDataset
+
+        assert HatefulIllusionDataset is MamiDataset
+
+    def test_download_alias(self) -> None:
+        """download_hateful_illusion_dataset is importable."""
+        from utils.dataset import download_hateful_illusion_dataset, download_mami_dataset
+
+        assert download_hateful_illusion_dataset is download_mami_dataset

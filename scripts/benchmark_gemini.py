@@ -1,26 +1,46 @@
 """
-Benchmark Gemini 2.0 Flash on HatefulIllusion (closed-set classification).
+Benchmark Gemini 2.0 Flash on MAMI 2022 misogyny detection.
+
+Challenge 1 (--task singleclass, default): binary misogyny classification (yes/no prompt).
+Challenge 2 (--task multiclass): multi-label sub-type classification (shaming, stereotype,
+objectification, violence) using a single multi-output prompt.
 
 Requires GEMINI_API_KEY environment variable. Retries with exponential backoff
 on quota errors. PIL images passed directly to the Gemini SDK.
 
 Usage:
-    uv run python scripts/benchmark_gemini.py --subset digits --limit 5
+    uv run python scripts/benchmark_gemini.py --split validation --limit 5
+    uv run python scripts/benchmark_gemini.py --split validation --limit 5 --task multiclass
 """
 
 # ruff: noqa: I001  # datasets (via utils.dataset) must precede torch to avoid OpenMP segfault
 from __future__ import annotations
 
 import argparse
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 import io
 import json
 import os
 from pathlib import Path
+import re
 import time
 from typing import Any
 
-from models.vlm.classifier import ClassificationResult, build_prompt, extract_label
+from models.vlm.classifier import (
+    MISOGYNY_LABELS,
+    SUBTYPE_LABELS,
+    ClassificationResult,
+    build_misogyny_prompt,
+    build_subtype_prompt,
+    extract_label,
+    extract_subtypes,
+    yesno_to_int,
+)
+
+# Backward-compat aliases still available as BINARY_GROUND_TRUTH / BINARY_LABELS
+from models.vlm.classifier import BINARY_GROUND_TRUTH, BINARY_LABELS  # noqa: F401
+from models.vlm.metrics_multilabel import compute_multilabel_metrics
 from utils.dataset import DatasetManager
 from utils.preprocessing import PreprocessingPipeline
 
@@ -34,20 +54,34 @@ from dotenv import load_dotenv
 load_dotenv()
 
 try:
-    import google.generativeai as genai  # type: ignore[import-untyped,import-not-found]
+    from google import genai  # type: ignore[import-untyped,import-not-found]
+    from google.genai import types as genai_types  # type: ignore[import-untyped,import-not-found]
 
     _GENAI_AVAILABLE = True
 except ModuleNotFoundError:
     _GENAI_AVAILABLE = False
 
-_SAFETY_SETTINGS = [
-    {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_NONE"},
-    {"category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_NONE"},
-    {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_NONE"},
-    {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE"},
-]
+_SAFETY_SETTINGS = (
+    [
+        genai_types.SafetySetting(category="HARM_CATEGORY_HARASSMENT", threshold="BLOCK_NONE"),
+        genai_types.SafetySetting(category="HARM_CATEGORY_HATE_SPEECH", threshold="BLOCK_NONE"),
+        genai_types.SafetySetting(
+            category="HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold="BLOCK_NONE"
+        ),
+        genai_types.SafetySetting(
+            category="HARM_CATEGORY_DANGEROUS_CONTENT", threshold="BLOCK_NONE"
+        ),
+    ]
+    if _GENAI_AVAILABLE
+    else []
+)
 
-SUBSET_NAMES = ["digits", "hate_slangs", "hate_symbols"]
+_SYSTEM_INSTRUCTION = (
+    "You are a content moderation research assistant analysing internet memes for an academic "
+    "misogyny detection study. Your role is purely classificatory: answer with exactly one word "
+    "— 'yes' or 'no'. Do not add explanations, warnings, or refusals."
+)
+
 RESULTS_DIR = Path(__file__).resolve().parents[1] / "results"
 MODEL_ID = "gemini-3.1-flash-lite"
 _MAX_RETRIES = 5
@@ -72,31 +106,42 @@ def numpy_to_pil(arr: np.ndarray) -> Image.Image:
     return Image.fromarray(arr)
 
 
-def collect_samples(
-    subset: str, limit: int | None = None, split: str = "train"
-) -> list[dict[str, Any]]:
-    subsets = SUBSET_NAMES if subset == "all" else [subset]
+def collect_samples(split: str = "validation", limit: int | None = None) -> list[dict[str, Any]]:
+    """Load samples from the MAMI 2022 dataset for the given split(s).
+
+    split may be a single name or comma-separated names, e.g. 'train,validation'.
+    limit caps the total number of samples across all splits combined.
+    """
     manager = DatasetManager()
     samples: list[dict[str, Any]] = []
-    for subset_name in subsets:
-        dataset = manager.load_dataset(split=split, subset=subset_name)
-        count = min(len(dataset), limit) if limit is not None else len(dataset)
-        for index in range(count):
-            sample = dataset[index]
-            sample["subset"] = subset_name
-            sample["image_id"] = f"{subset_name}_{sample['image_id']}"
-            samples.append(sample)
+    for split_name in [s.strip() for s in split.split(",")]:
+        dataset = manager.load_dataset(split=split_name)
+        for index in range(len(dataset)):
+            samples.append(dataset[index])
+    if limit is not None:
+        samples = samples[:limit]
     return samples
 
 
+def _misogynous_to_label(misogynous: int) -> str:
+    return "yes" if misogynous == 1 else "no"
+
+
 def classify_with_gemini(
-    model: Any, pil_image: Image.Image, prompt: str, labels: list[str]
+    client: Any, image_bytes: bytes, prompt: str, labels: list[str]
 ) -> ClassificationResult:
     """Call Gemini with retry on quota errors. Maps response to closest label."""
+    image_part = genai_types.Part.from_bytes(data=image_bytes, mime_type="image/png")
+    config = genai_types.GenerateContentConfig(
+        system_instruction=_SYSTEM_INSTRUCTION,
+        safety_settings=_SAFETY_SETTINGS,
+    )
     for attempt in range(_MAX_RETRIES):
         try:
             start = time.perf_counter()
-            response = model.generate_content([prompt, pil_image])
+            response = client.models.generate_content(
+                model=MODEL_ID, contents=[prompt, image_part], config=config
+            )
             elapsed = time.perf_counter() - start
             text = (response.text or "").strip()
             if not text:
@@ -125,10 +170,12 @@ def classify_with_gemini(
 
 
 def run_benchmark(
-    subset: str,
+    split: str = "validation",
     preprocess: str | None = None,
     limit: int | None = None,
     samples: list[dict[str, Any]] | None = None,
+    workers: int = 20,
+    task: str = "singleclass",
 ) -> dict[str, Any]:
     if not _GENAI_AVAILABLE:
         raise RuntimeError("google-generativeai not installed. Run: uv add google-generativeai")
@@ -137,81 +184,181 @@ def run_benchmark(
     if not api_key:
         raise RuntimeError("GEMINI_API_KEY environment variable not set")
 
-    genai.configure(api_key=api_key)
-    model = genai.GenerativeModel(MODEL_ID, safety_settings=_SAFETY_SETTINGS)
+    client = genai.Client(api_key=api_key)
 
     if samples is None:
-        samples = collect_samples(subset, limit=limit)
+        samples = collect_samples(split, limit=limit)
     if not samples:
-        raise ValueError(f"No samples for subset '{subset}'")
+        raise ValueError(f"No samples for split '{split}'")
 
-    labels_by_subset_raw: dict[str, set[str]] = {}
-    for s in samples:
-        labels_by_subset_raw.setdefault(s["subset"], set()).add(s["message"])
-    labels_by_subset: dict[str, list[str]] = {k: sorted(v) for k, v in labels_by_subset_raw.items()}
-    all_labels = sorted({lbl for lbls in labels_by_subset.values() for lbl in lbls})
+    if task == "multiclass":
+        return _run_benchmark_multiclass(client, samples, split, preprocess, workers)
+
+    labels = MISOGYNY_LABELS  # ["yes", "no"]
+    prompt = build_misogyny_prompt()
 
     pipeline = PreprocessingPipeline() if preprocess else None
-    results: list[ClassificationResult] = []
-    ground_truths: list[str] = []
-    visibility_scores: list[int] = []
-    sample_rows: list[dict[str, Any]] = []
 
-    pbar = tqdm(total=len(samples), desc=f"gemini/{preprocess or 'none'}", unit="img")
-    for s in samples:
+    def _prepare_and_classify(idx: int, s: dict[str, Any]) -> tuple[int, ClassificationResult]:
         arr = image_to_numpy(s["image"])
         if pipeline is not None and preprocess is not None:
             arr = pipeline.apply_transformation(arr, preprocess)
         pil = numpy_to_pil(arr)
-        labels = labels_by_subset.get(s["subset"], [])
-        prompt = build_prompt(s["subset"], labels)
-
-        # Gemini needs PNG bytes for reliable colour handling
         buf = io.BytesIO()
         pil.save(buf, format="PNG")
-        buf.seek(0)
-        pil_for_api = Image.open(buf)
+        return idx, classify_with_gemini(client, buf.getvalue(), prompt, labels)
 
-        result = classify_with_gemini(model, pil_for_api, prompt, labels)
-        results.append(result)
-        ground_truths.append(s["message"])
-        visibility_scores.append(int(s["visibility_score"]))
+    ordered: list[ClassificationResult | None] = [None] * len(samples)
+    with (
+        tqdm(total=len(samples), desc=f"gemini/{preprocess or 'none'}", unit="img") as pbar,
+        ThreadPoolExecutor(max_workers=workers) as pool,
+    ):
+        futures = {pool.submit(_prepare_and_classify, i, s): i for i, s in enumerate(samples)}
+        for fut in as_completed(futures):
+            idx, result = fut.result()
+            ordered[idx] = result
+            pbar.update(1)
+
+    results: list[ClassificationResult] = [r for r in ordered if r is not None]
+    ground_truths = [_misogynous_to_label(s["misogynous"]) for s in samples]
+
+    sample_rows: list[dict[str, Any]] = [
+        {
+            "image_id": s["image_id"],
+            "ground_truth": yesno_to_int(ground_truths[i]),
+            "prediction": yesno_to_int(results[i].prediction),
+            "correct": results[i].prediction == ground_truths[i],
+        }
+        for i, s in enumerate(samples)
+    ]
+
+    return _aggregate(results, ground_truths, split, preprocess, labels, sample_rows)
+
+
+def _run_benchmark_multiclass(
+    client: Any,
+    samples: list[dict[str, Any]],
+    split: str,
+    preprocess: str | None,
+    workers: int = 20,
+) -> dict[str, Any]:
+    """Run Gemini on multiclass: multi-label sub-type classification."""
+    prompt = build_subtype_prompt()
+    pipeline = PreprocessingPipeline() if preprocess else None
+
+    def _classify_multiclass(idx: int, s: dict[str, Any]) -> tuple[int, ClassificationResult]:
+        arr = image_to_numpy(s["image"])
+        if pipeline is not None and preprocess is not None:
+            arr = pipeline.apply_transformation(arr, preprocess)
+        pil = numpy_to_pil(arr)
+        buf = io.BytesIO()
+        pil.save(buf, format="PNG")
+        # Reuse classify_with_gemini but pass SUBTYPE_LABELS as dummy (we parse manually)
+        return idx, classify_with_gemini(client, buf.getvalue(), prompt, SUBTYPE_LABELS)
+
+    ordered: list[ClassificationResult | None] = [None] * len(samples)
+    with (
+        tqdm(
+            total=len(samples), desc=f"gemini-multiclass/{preprocess or 'none'}", unit="img"
+        ) as pbar,
+        ThreadPoolExecutor(max_workers=workers) as pool,
+    ):
+        futures = {pool.submit(_classify_multiclass, i, s): i for i, s in enumerate(samples)}
+        for fut in as_completed(futures):
+            idx, result = fut.result()
+            ordered[idx] = result
+            pbar.update(1)
+
+    results: list[ClassificationResult] = [r for r in ordered if r is not None]
+
+    n_total = len(results)
+    avg_latency = sum(r.latency_s for r in results) / n_total if n_total else 0.0
+
+    pred_dicts: list[dict[str, int]] = []
+    gt_dicts: list[dict[str, int]] = []
+    refusals = 0
+    sample_rows: list[dict[str, Any]] = []
+
+    for i, s in enumerate(samples):
+        r = results[i]
+        raw_text = r.prediction or ""
+        # If the result object has no prediction (refusal), treat as all zeros
+        if r.refusal or not raw_text:
+            subtype_pred = dict.fromkeys(SUBTYPE_LABELS, 0)
+            refusals += 1
+        else:
+            subtype_pred = extract_subtypes(raw_text, SUBTYPE_LABELS)
+            # If extract_subtypes returns all zeros for a non-empty response it may be
+            # unparseable - count as refusal
+            if (
+                all(v == 0 for v in subtype_pred.values())
+                and raw_text.strip()
+                and not re.search(r"\bnone\b", raw_text.lower())
+            ):
+                refusals += 1
+
+        gt_dict: dict[str, int] = {
+            "shaming": s.get("shaming", 0),
+            "stereotype": s.get("stereotype", 0),
+            "objectification": s.get("objectification", 0),
+            "violence": s.get("violence", 0),
+        }
+        pred_dicts.append(subtype_pred)
+        gt_dicts.append(gt_dict)
+        exact = all(subtype_pred.get(lbl, 0) == gt_dict[lbl] for lbl in SUBTYPE_LABELS)
         sample_rows.append(
             {
                 "image_id": s["image_id"],
-                "ground_truth": s["message"],
-                "prediction": result.prediction,
-                "correct": result.prediction == s["message"],
-                "visibility": int(s["visibility_score"]),
+                "ground_truth": gt_dict,
+                "prediction": subtype_pred,
+                "correct": exact,
+                "misogynous": s.get("misogynous", 0),
             }
         )
-        pbar.update(1)
-    pbar.close()
 
-    return _aggregate(
-        results, ground_truths, visibility_scores, subset, preprocess, all_labels, sample_rows
-    )
+    ml_metrics = compute_multilabel_metrics(pred_dicts, gt_dicts, SUBTYPE_LABELS)
+    refusal_rate = refusals / n_total if n_total else 0.0
+
+    label_prev = {lbl: sum(g[lbl] for g in gt_dicts) for lbl in SUBTYPE_LABELS}
+
+    return {
+        "benchmark_date": datetime.now(timezone.utc).isoformat(),
+        "model": "gemini",
+        "filter": preprocess or "none",
+        "split": split,
+        "task": "multiclass",
+        "exact_match_accuracy": ml_metrics["exact_match_accuracy"],
+        "f1": ml_metrics["macro_f1"],
+        "precision": ml_metrics["macro_precision"],
+        "recall": ml_metrics["macro_recall"],
+        "macro_f1": ml_metrics["macro_f1"],
+        "micro_f1": ml_metrics["micro_f1"],
+        "weighted_f1": ml_metrics["weighted_f1"],
+        "per_class": ml_metrics["per_class"],
+        "avg_latency_s": avg_latency,
+        "refusal_rate": refusal_rate,
+        "label_prevalence": label_prev,
+        "sample_predictions": sample_rows,
+    }
 
 
 def _aggregate(
     results: list[ClassificationResult],
     ground_truths: list[str],
-    visibility_scores: list[int],
-    subset: str,
+    split: str,
     preprocess: str | None,
     labels: list[str],
     sample_rows: list[dict[str, Any]],
 ) -> dict[str, Any]:
     n_total = len(results)
+    safety_block_rate = sum(1 for r in results if r.refusal) / n_total if n_total else 0.0
     refusal_rate = sum(1 for r in results if r.prediction is None) / n_total if n_total else 0.0
     avg_latency = sum(r.latency_s for r in results) / n_total if n_total else 0.0
 
-    # Accuracy over ALL images: refusals (prediction=None) count as wrong
     predictions: list[str | None] = [r.prediction for r in results]
     correct_all = sum(1 for p, gt in zip(predictions, ground_truths, strict=True) if p == gt)
     accuracy = correct_all / n_total if n_total else 0.0
 
-    # Macro P/R/F1 over all images (refusals = None prediction → miss for every class)
     per_class_prec: list[float] = []
     per_class_rec: list[float] = []
     for label in labels:
@@ -240,30 +387,19 @@ def _aggregate(
         else 0.0
     )
 
-    by_visibility: dict[str, dict[str, Any]] = {}
-    for v in range(1, 6):
-        indices = [i for i, vs in enumerate(visibility_scores) if vs == v]
-        v_preds = [predictions[i] for i in indices]
-        v_gts = [ground_truths[i] for i in indices]
-        v_n = len(v_preds)
-        v_correct = sum(1 for p, gt in zip(v_preds, v_gts, strict=True) if p == gt)
-        by_visibility[str(v)] = {
-            "exact_match_accuracy": v_correct / v_n if v_n else 0.0,
-            "num_images": v_n,
-        }
-
     return {
         "benchmark_date": datetime.now(timezone.utc).isoformat(),
         "model": "gemini",
         "filter": preprocess or "none",
-        "subset": subset,
+        "split": split,
+        "task": "singleclass",
         "exact_match_accuracy": accuracy,
         "precision": macro_prec,
         "recall": macro_rec,
         "f1": macro_f1,
         "avg_latency_s": avg_latency,
         "refusal_rate": refusal_rate,
-        "by_visibility": by_visibility,
+        "safety_block_rate": safety_block_rate,
         "sample_predictions": sample_rows,
     }
 
@@ -271,9 +407,10 @@ def _aggregate(
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "--subset",
-        default="digits",
-        choices=["digits", "hate_slangs", "hate_symbols", "all"],
+        "--split",
+        default="validation",
+        help="Dataset split(s) to evaluate. Comma-separated for multiple: 'train,validation'"
+        " (default: validation)",
     )
     parser.add_argument(
         "--filters",
@@ -281,6 +418,13 @@ def main() -> None:
         help="Comma-separated filters (default: all). E.g. 'none,blur,grayscale'",
     )
     parser.add_argument("--limit", type=int, default=None)
+    parser.add_argument("--workers", type=int, default=20, help="Parallel API request threads")
+    parser.add_argument(
+        "--task",
+        default="singleclass",
+        choices=["singleclass", "multiclass"],
+        help="'singleclass' = binary misogyny (default); 'multiclass' = multi-label sub-types",
+    )
     args = parser.parse_args()
 
     filters_to_run = (
@@ -289,24 +433,30 @@ def main() -> None:
         else ["none", *PreprocessingPipeline.TRANSFORMATIONS]
     )
 
-    print(f"Subset: {args.subset} | Filters: {filters_to_run} | Limit: {args.limit}")
-    samples = collect_samples(args.subset, limit=args.limit)
+    print(
+        f"Split: {args.split} | Filters: {filters_to_run} | Limit: {args.limit} | Task: {args.task}"
+    )
+    samples = collect_samples(args.split, limit=args.limit)
     print(f"Loaded {len(samples)} samples")
 
     all_results: list[dict[str, Any]] = []
     for flt in filters_to_run:
         print(f"\n--- Filter: {flt} ---")
         result = run_benchmark(
-            subset=args.subset,
+            split=args.split,
             preprocess=None if flt == "none" else flt,
             samples=samples,
+            workers=args.workers,
+            task=args.task,
         )
         all_results.append(result)
         acc = result.get("exact_match_accuracy", 0.0)
         print(f"  acc={acc:.3f}  refusals={result.get('refusal_rate', 0.0):.2%}")
 
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-    out = RESULTS_DIR / f"gemini_{args.subset}.json"
+    split_slug = args.split.replace(",", "_")
+    suffix = "_multiclass" if args.task == "multiclass" else ""
+    out = RESULTS_DIR / f"gemini_{split_slug}{suffix}.json"
     out.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
     print(f"\nSaved {len(all_results)} filter rows to {out}")
 
