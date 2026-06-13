@@ -19,15 +19,23 @@ from __future__ import annotations
 
 import argparse
 import base64
-from datetime import datetime, timezone
 import io
-import re
 import json
 import os
-from pathlib import Path
+import re
 import time
+from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any
 
+import numpy as np
+import torch
+from dotenv import load_dotenv
+from PIL import Image
+from tqdm import tqdm
+
+# Backward-compat aliases kept so old imports still resolve
+from models.vlm.classifier import BINARY_GROUND_TRUTH  # noqa: F401
 from models.vlm.classifier import (
     MISOGYNY_LABELS,
     SUBTYPE_LABELS,
@@ -38,19 +46,9 @@ from models.vlm.classifier import (
     extract_subtypes,
     yesno_to_int,
 )
-
-# Backward-compat aliases kept so old imports still resolve
-from models.vlm.classifier import BINARY_GROUND_TRUTH, BINARY_LABELS  # noqa: F401
 from models.vlm.metrics_multilabel import compute_multilabel_metrics
 from utils.dataset import DatasetManager
 from utils.preprocessing import PreprocessingPipeline
-
-import numpy as np
-from PIL import Image
-import torch
-from tqdm import tqdm
-
-from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -415,7 +413,7 @@ def main() -> None:
     parser.add_argument(
         "--filters",
         default=None,
-        help="Comma-separated filters (default: all). E.g. 'none,blur,grayscale'",
+        help="Comma-separated filters (default: none — MAMI has no hidden visual content). E.g. 'none,blur'",
     )
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument(
@@ -426,11 +424,9 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    filters_to_run = (
-        [f.strip() for f in args.filters.split(",")]
-        if args.filters
-        else ["none", *PreprocessingPipeline.TRANSFORMATIONS]
-    )
+    # MAMI has no hidden visual content, so preprocessing filters do not help.
+    # Default to "none"; pass --filters explicitly only for a deliberate ablation.
+    filters_to_run = [f.strip() for f in args.filters.split(",")] if args.filters else ["none"]
 
     print(
         f"Split: {args.split} | Filters: {filters_to_run} | Limit: {args.limit} | Task: {args.task}"

@@ -23,7 +23,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from scripts.benchmark_vlm_classification import ALL_FILTERS, collect_samples, run_clip
+from scripts.benchmark_vlm_classification import collect_samples, run_clip
 
 RESULTS_DIR = Path(__file__).resolve().parents[1] / "results"
 
@@ -44,13 +44,15 @@ def main() -> None:
     parser.add_argument(
         "--filters",
         default=None,
-        help="Comma-separated filters to run (default: all). E.g. 'none,blur,grayscale'",
+        help="Comma-separated filters to run (default: none — MAMI has no hidden visual content). E.g. 'none,blur'",
     )
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--device", default="cpu")
     args = parser.parse_args()
 
-    filters_to_run = [f.strip() for f in args.filters.split(",")] if args.filters else ALL_FILTERS
+    # MAMI has no hidden visual content, so preprocessing filters do not help.
+    # Default to "none"; pass --filters explicitly only for a deliberate ablation.
+    filters_to_run = [f.strip() for f in args.filters.split(",")] if args.filters else ["none"]
 
     print(
         f"Task: {args.task} | Split: {args.split} | Filters: {filters_to_run} | "

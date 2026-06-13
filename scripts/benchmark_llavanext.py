@@ -453,7 +453,7 @@ def main() -> None:
     parser.add_argument(
         "--filters",
         default=None,
-        help="Comma-separated filters (default: all). E.g. 'none,blur,grayscale'",
+        help="Comma-separated filters (default: none — MAMI has no hidden visual content). E.g. 'none,blur'",
     )
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--batch-size", type=int, default=4)
@@ -471,11 +471,9 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    filters_to_run = (
-        [f.strip() for f in args.filters.split(",")]
-        if args.filters
-        else ["none", *PreprocessingPipeline.TRANSFORMATIONS]
-    )
+    # MAMI has no hidden visual content, so preprocessing filters do not help.
+    # Default to "none"; pass --filters explicitly only for a deliberate ablation.
+    filters_to_run = [f.strip() for f in args.filters.split(",")] if args.filters else ["none"]
 
     print(f"Split: {args.split} | Filters: {filters_to_run} | Limit: {args.limit}")
 

@@ -138,12 +138,13 @@ NF4 quantization** by default (via `bitsandbytes`), reducing VRAM from
 
 ### Orchestrator (all models)
 
-`benchmark_vlm_classification.py` runs one or more models across the
-preprocessing-filter ablation and writes a per-model result file.
+`benchmark_vlm_classification.py` runs one or more models on the
+unfiltered images (`--filters none`, the default for MAMI) and writes a
+per-model result file.
 
 ```bash
 # Quick smoke test (16 images from train+validation, CPU, no API key)
-uv run python scripts/benchmark_vlm_classification.py --model clip --split train,validation --limit 16 --filters none,grayscale
+uv run python scripts/benchmark_vlm_classification.py --model clip --split train,validation --limit 16
 
 # Every model, full labelled set (train + validation, ~10,000 images)
 uv run python scripts/benchmark_vlm_classification.py --model all --split train,validation
@@ -158,20 +159,20 @@ Each model also has a standalone script. Output is
 
 ```bash
 # CLIP (CPU or GPU, no API key)
-uv run python scripts/benchmark_clip.py --split train,validation --filters none,grayscale
+uv run python scripts/benchmark_clip.py --split train,validation
 uv run python scripts/benchmark_clip.py --task multiclass --split validation
 
 # LLaVA / LLaVA-Next / Qwen2-VL (GPU)
-uv run python scripts/benchmark_llava.py     --split train,validation --device cuda --limit 16 --filters none
+uv run python scripts/benchmark_llava.py     --split train,validation --device cuda --limit 16
 uv run python scripts/benchmark_llavanext.py --split train,validation --device cuda
 uv run python scripts/benchmark_qwen2vl.py   --split train,validation --device cuda
 
 # Gemini (cloud, GEMINI_API_KEY required)
-uv run python scripts/benchmark_gemini.py --split train,validation --limit 5 --filters none
+uv run python scripts/benchmark_gemini.py --split train,validation --limit 5
 uv run python scripts/benchmark_gemini.py --split train,validation --workers 40
 
 # GPT-4o-mini (cloud, OPENAI_API_KEY required)
-uv run python scripts/benchmark_gpt4omini.py --split train,validation --limit 5 --filters none
+uv run python scripts/benchmark_gpt4omini.py --split train,validation --limit 5
 ```
 
 ### Options common to per-model scripts
@@ -179,7 +180,7 @@ uv run python scripts/benchmark_gpt4omini.py --split train,validation --limit 5 
 | Flag | Default | Description |
 |---|---|---|
 | `--split` | `validation` | `train`, `validation`, `test`, or comma-separated e.g. `train,validation` |
-| `--filters` | all | Comma-separated preprocessing filters, e.g. `none,blur` |
+| `--filters` | `none` | Comma-separated preprocessing filters. Default `none` for MAMI (no hidden visual content); pass extras only for a deliberate ablation |
 | `--limit` | none | Cap number of images (useful for quick checks) |
 | `--device` | varies | `cuda` or `cpu` |
 | `--batch-size` | `4` | Images per forward pass (LLaVA/LLaVA-Next/Qwen2-VL only) |
