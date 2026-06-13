@@ -2,9 +2,17 @@
 
 Benchmarking vision-language models (CLIP, LLaVA, LLaVA-Next, Qwen2-VL,
 Gemini, GPT-4o-mini) on **binary misogyny classification** using the
-MAMI 2022 dataset, with a preprocessing-filter ablation. Each model
-answers a single yes/no question — *is this meme misogynistic?* — and is
-scored against the dataset's `misogynous` label.
+MAMI 2022 dataset. Each model answers a single yes/no question — *is
+this meme misogynistic?* — and is scored against the dataset's
+`misogynous` label.
+
+> **Preprocessing note:** MAMI memes contain no hidden visual content
+> (unlike the earlier HatefulIllusion data), so the preprocessing
+> filters do not help here — empirically they match or hurt the
+> unfiltered (`none`) baseline for every model. The benchmark therefore
+> runs `--filters none` by default. Do not run the full filter ablation
+> on MAMI; pass `--filters` explicitly only if you have a specific
+> reason.
 
 The full task plan is in
 [`.kiro/specs/vlm-content-moderation/tasks.md`](.kiro/specs/vlm-content-moderation/tasks.md).
@@ -42,13 +50,14 @@ The benchmark predicts the binary `misogynous` label only.
 
 ### Kaggle credentials
 
-The dataset is downloaded via `kagglehub`, which authenticates with a
-Kaggle API token. Add the token to `.env` in the project root
-(gitignored):
+The dataset is downloaded via `kagglehub`, which authenticates with
+Kaggle credentials. Add them to `.env` in the project root (gitignored).
+Use **either** the username + key pair **or** a single API token:
 
 ```
 KAGGLE_USERNAME=your_kaggle_username
 KAGGLE_KEY=your_kaggle_key
+KAGGLE_API_TOKEN=your_kaggle_api_token
 ```
 
 **Download the dataset** (run once before benchmarking):
@@ -82,15 +91,16 @@ Two benchmark challenges are supported via `--task`:
 
 ```bash
 uv run python scripts/benchmark_vlm_classification.py \
-    --task singleclass --model clip --split train,validation --filters none,grayscale
+    --task singleclass --model clip --split train,validation
 # Output: results/clip_train,validation.json  (~10,000 images: 9,000 train + 1,000 validation)
+# --filters defaults to "none" (no preprocessing) for MAMI.
 ```
 
 **Challenge 2** example (multi-label sub-types, CLIP, CPU):
 
 ```bash
 uv run python scripts/benchmark_vlm_classification.py \
-    --task multiclass --model clip --split train,validation --filters none,grayscale
+    --task multiclass --model clip --split train,validation
 # Output: results/clip_train,validation_multiclass.json  (~10,000 images)
 ```
 

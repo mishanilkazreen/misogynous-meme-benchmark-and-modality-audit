@@ -8,7 +8,9 @@ Challenge 2 (--task multiclass): multi-label sub-type classification over shamin
 stereotype, objectification, violence. CLIP uses independent per-category binary
 comparisons; generative models use a single multi-output prompt.
 
-Outer loop: preprocessing filters from PreprocessingPipeline.TRANSFORMATIONS + "none".
+Outer loop: preprocessing filters. For MAMI the default is "none" only — the memes
+contain no hidden visual content, so preprocessing filters do not help (confirmed
+empirically) and are off unless an explicit --filters ablation is requested.
 Inner loop: model x filter x sample.
 
 Writes results/{model}_{split}.json (singleclass) or results/{model}_{split}_multiclass.json
@@ -589,7 +591,12 @@ def main() -> None:
     parser.add_argument(
         "--filters",
         default=None,
-        help="Comma-separated filter names to run (default: all filters). E.g. 'none,grayscale'",
+        help=(
+            "Comma-separated preprocessing filter names to run (default: 'none'). "
+            "MAMI memes contain no hidden visual content, so preprocessing filters do "
+            "not help and are off by default. Pass e.g. 'none,grayscale' only for an "
+            "explicit ablation."
+        ),
     )
     parser.add_argument(
         "--task",
@@ -613,7 +620,12 @@ def main() -> None:
     models_requested = (
         ALL_MODELS if args.model == "all" else [m.strip() for m in args.model.split(",")]
     )
-    filters_to_run = [f.strip() for f in args.filters.split(",")] if args.filters else ALL_FILTERS
+    # MAMI has no hidden visual content, so preprocessing filters do not help and
+    # are NOT run by default. Default to "none" only; pass --filters for an ablation.
+    filters_to_run = [f.strip() for f in args.filters.split(",")] if args.filters else ["none"]
+    invalid_filters = [f for f in filters_to_run if f not in ALL_FILTERS]
+    if invalid_filters:
+        raise SystemExit(f"Unknown filter(s): {invalid_filters}. Valid options: {ALL_FILTERS}")
 
     print(f"Models: {models_requested}")
     print(f"Filters: {filters_to_run}")
