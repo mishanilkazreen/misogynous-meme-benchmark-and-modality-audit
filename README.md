@@ -131,6 +131,7 @@ NF4 quantization** by default (via `bitsandbytes`), reducing VRAM from
 | Model | Size | Download | VRAM (4-bit) | VRAM (fp16) |
 |---|---|---|---|---|
 | CLIP (ViT-B/32) | ~600 MB | auto on first run | n/a | ~1 GB |
+| VisualBERT (vqa-coco-pre) |  ~138M (112M + 25.6M ResNet-50) | auto on first run (~550 MB) | n/a | n/a |
 | LLaVA 1.5 | 7B | auto on first run (~14 GB) | ~5 GB | ~14 GB |
 | LLaVA-Next | 7B | auto on first run (~14 GB) | ~5 GB | ~14 GB |
 | Qwen2-VL | 7B | auto on first run (~15 GB) | ~5 GB | ~14 GB |
@@ -160,7 +161,11 @@ Each model also has a standalone script. Output is
 ```bash
 # CLIP (CPU or GPU, no API key)
 uv run python scripts/benchmark_clip.py --split train,validation
-uv run python scripts/benchmark_clip.py --task multiclass --split validation
+uv run python scripts/benchmark_clip.py --task multiclass --split train,validation
+
+# VisualBERT (CPU or GPU, no API key)
+uv run python scripts/benchmark_visualbert.py --split train,validation
+uv run python scripts/benchmark_visualbert.py --task multiclass --split train,validation
 
 # LLaVA / LLaVA-Next / Qwen2-VL (GPU)
 uv run python scripts/benchmark_llava.py     --split train,validation --device cuda --limit 16
@@ -221,11 +226,12 @@ uv run pre-commit run --all-files
 content-moderation/
 ├── models/
 │   ├── yolo/           # Ultralytics YOLO wrappers (legacy, HatefulIllusion)
-│   └── vlm/            # CLIP, LLaVA, Qwen2-VL classifiers
+│   └── vlm/            # CLIP, VisualBERT, LLaVA, Qwen2-VL classifiers
 ├── utils/              # dataset (MAMI), preprocessing, augmentation, OCR
 ├── scripts/
 │   ├── download_dataset.py             # fetch MAMI 2022 via kagglehub
 │   ├── verify_dataset.py               # validate the local dataset
+│   ├── benchmark_visualbert.py          # one-shot untrained baseline (CPU)
 │   ├── benchmark_llava.py
 │   ├── benchmark_llavanext.py
 │   ├── benchmark_qwen2vl.py
