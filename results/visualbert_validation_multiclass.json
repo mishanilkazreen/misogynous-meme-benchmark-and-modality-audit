@@ -1,0 +1,1752 @@
+[
+  {
+    "benchmark_date": "2026-06-14T11:13:05.090421+00:00",
+    "model": "visualbert",
+    "filter": "none",
+    "split": "validation",
+    "task": "multiclass",
+    "exact_match_accuracy": 0.01,
+    "f1": 0.287429,
+    "precision": 0.175,
+    "recall": 1.0,
+    "macro_f1": 0.287429,
+    "micro_f1": 0.297872,
+    "weighted_f1": 0.357547,
+    "per_class": {
+      "shaming": {
+        "precision": 0.17,
+        "recall": 1.0,
+        "f1": 0.290598,
+        "support": 17
+      },
+      "stereotype": {
+        "precision": 0.31,
+        "recall": 1.0,
+        "f1": 0.473282,
+        "support": 31
+      },
+      "objectification": {
+        "precision": 0.17,
+        "recall": 1.0,
+        "f1": 0.290598,
+        "support": 17
+      },
+      "violence": {
+        "precision": 0.05,
+        "recall": 1.0,
+        "f1": 0.095238,
+        "support": 5
+      }
+    },
+    "avg_latency_s": 0.08523178500057839,
+    "refusal_rate": 0.0,
+    "label_prevalence": {
+      "shaming": 17,
+      "stereotype": 31,
+      "objectification": 17,
+      "violence": 5
+    },
+    "sample_predictions": [
+      {
+        "image_id": "1377",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "5498",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "5697",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "5182",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "6162",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "6772",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "3932",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "5457",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "10007",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "7391",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "2991",
+        "ground_truth": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "6324",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "1804",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 1
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "552",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "13261",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 1,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "10285",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "6225",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "7602",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "5988",
+        "ground_truth": {
+          "shaming": 1,
+          "stereotype": 0,
+          "objectification": 1,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "991",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "10270",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "2588",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "132",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "10293",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "6391",
+        "ground_truth": {
+          "shaming": 1,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "7197",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "7184",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "1118",
+        "ground_truth": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "3289",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "3029",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "865",
+        "ground_truth": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "10033",
+        "ground_truth": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "4599",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "4937",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "9799",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "4010",
+        "ground_truth": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "2460",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "220",
+        "ground_truth": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": true,
+        "misogynous": 1
+      },
+      {
+        "image_id": "8245",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 1,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "4824",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "9923",
+        "ground_truth": {
+          "shaming": 1,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "1317",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "6504",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "2732",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "5201",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "11512",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "5025",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "6119",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "3990",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 1,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "3238",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "22",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "8806",
+        "ground_truth": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "4576",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 1,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "3739",
+        "ground_truth": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "4296",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "6483",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "5967",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 1,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "8308",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "10574",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "1892",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "1381",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "1590",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "8909",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "3462",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "3552",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "8068",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "732",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "11600",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "8180",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "6190",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "464",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "9711",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "7635",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "8982",
+        "ground_truth": {
+          "shaming": 1,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "83",
+        "ground_truth": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "8730",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "3235",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "5488",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 1,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "7713",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "3791",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "7674",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "6131",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "7491",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "2814",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 1
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "1023",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "9007",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 1,
+          "violence": 1
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "11694",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "8039",
+        "ground_truth": {
+          "shaming": 1,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "8380",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "10174",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "1599",
+        "ground_truth": {
+          "shaming": 1,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "13360",
+        "ground_truth": {
+          "shaming": 1,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "4421",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "7865",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 1,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "1614",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "9340",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "7487",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 1,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "2645",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "5302",
+        "ground_truth": {
+          "shaming": 1,
+          "stereotype": 0,
+          "objectification": 1,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      },
+      {
+        "image_id": "10040",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 1
+        },
+        "prediction": {
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 1
+      }
+    ]
+  }
+]

@@ -83,8 +83,9 @@ ALL_MODELS = [
     "llavanext",
     "gpt4omini",
     "gemini",
+    "visualbert",
 ]
-GENERATIVE_MODELS = {"qwen2vl", "llava", "llavanext", "gpt4omini", "gemini"}
+GENERATIVE_MODELS = {"qwen2vl", "llava", "llavanext", "gpt4omini", "gemini", "visualbert"}
 
 ALL_FILTERS = ["none", *PreprocessingPipeline.TRANSFORMATIONS]
 
@@ -514,6 +515,23 @@ def run_generative_model(
                 "gpt4omini failed (filter=%s): %s\n%s", filter_name, exc, traceback.format_exc()
             )
             print(f"  Skipping gpt4omini: {exc}")
+            return None
+
+    if model_name == "visualbert":
+        try:
+            from scripts.benchmark_visualbert import run_benchmark  # type: ignore[import,assignment]
+
+            logger.info("Starting visualbert (filter=%s task=%s)", filter_name, task)
+            result = run_benchmark(  # type: ignore[call-arg]
+                split=split, preprocess=preprocess_arg, samples=samples, device=device, task=task
+            )
+            logger.info("Completed visualbert (filter=%s)", filter_name)
+            return result
+        except Exception as exc:
+            logger.error(
+                "visualbert failed (filter=%s): %s\n%s", filter_name, exc, traceback.format_exc()
+            )
+            print(f"  Skipping visualbert: {exc}")
             return None
 
     return None

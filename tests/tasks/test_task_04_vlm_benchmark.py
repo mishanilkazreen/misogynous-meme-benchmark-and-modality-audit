@@ -29,7 +29,7 @@ RESULTS_DIR = Path(__file__).resolve().parents[2] / "results"
 SPLITS = ["train", "validation", "test"]
 
 # Models that the orchestrator can produce results for
-MODELS = ["clip", "llava", "qwen2vl", "llavanext", "gpt4omini", "gemini"]
+MODELS = ["clip", "llava", "qwen2vl", "llavanext", "gpt4omini", "gemini", "visualbert"]
 
 # Sub-type labels for Task B
 SUBTYPE_LABELS = ["shaming", "stereotype", "objectification", "violence"]
