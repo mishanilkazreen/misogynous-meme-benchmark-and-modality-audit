@@ -183,7 +183,7 @@ def _run_benchmark_multiclass(
             arr = pipeline.apply_transformation(arr, preprocess)
 
         t0 = time.perf_counter()
-        subtype_pred = classifier.classify_subtypes(arr)
+        subtype_pred = classifier.classify_subtypes(arr, text=s.get("text"))
         latencies.append(time.perf_counter() - t0)
 
         gt_dict: dict[str, int] = {
@@ -282,7 +282,7 @@ def run_benchmark(
         if pipeline is not None and preprocess is not None:
             arr = pipeline.apply_transformation(arr, preprocess)
 
-        result = classifier.classify(arr, labels)
+        result = classifier.classify(arr, labels, text=s.get("text"))
         results.append(result)
 
         gt = _misogynous_to_label(s["misogynous"])

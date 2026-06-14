@@ -5,9 +5,10 @@ Uses ``uclanlp/visualbert-vqa-coco-pre`` (COCO-pretrained VisualBERT with an MLM
 classification on meme images.
 
 Approach (MLM cloze):
-    A prompt with a single ``[MASK]`` token is constructed, e.g.::
+    The same instruction shown to the generative VLMs is used, followed by a single
+    ``[MASK]`` token in the one-word answer slot, e.g.::
 
-        "this meme is [MASK] toward women ."
+        "Is this meme misogynistic? ... Answer with exactly one word: yes or no. [MASK]"
 
     The model predicts a distribution over the full BERT vocabulary at the ``[MASK]``
     position.  We compare the logits for the tokens ``"yes"`` and ``"no"`` and pick the
@@ -30,6 +31,7 @@ from typing import Any
 import numpy as np
 
 from models.vlm.classifier import (
+    MISOGYNY_PROMPT,
     SUBTYPE_LABELS,
     BaseVLMClassifier,
     ClassificationResult,
@@ -45,10 +47,7 @@ try:
         ResNet50_Weights,
         resnet50,
     )
-    from transformers import (  # type: ignore[import-untyped]
-        AutoTokenizer,
-        VisualBertForPreTraining,
-    )
+    from transformers import AutoTokenizer, VisualBertForPreTraining  # type: ignore[import-untyped]
 
     _TRANSFORMERS_AVAILABLE = True
 except (ModuleNotFoundError, ImportError):
@@ -60,7 +59,10 @@ VISUAL_SEQ_LENGTH = 10  # fixed visual sequence length (batch, 10, 2048)
 VISUAL_FEATURE_DIM = 2048  # ResNet-50 penultimate-layer output width
 
 # Cloze prompt used for MLM classification — must contain exactly one [MASK].
-CLOZE_PROMPT = "this meme is [MASK] toward women ."
+# Reuse the exact instruction given to the generative VLMs (MISOGYNY_PROMPT); VisualBERT
+# is an MLM (not generative), so we append a single [MASK] in the one-word answer slot and
+# read the "yes"/"no" logits there.
+CLOZE_PROMPT = f"{MISOGYNY_PROMPT} [MASK]"
 
 # Per-category cloze prompts for multiclass (Sub-task B) inference.
 # Each prompt must contain exactly one [MASK]; "yes" > "no" logit → predict 1.
@@ -88,9 +90,9 @@ class VisualBERTClassifier(BaseVLMClassifier):
     """Zero-shot yes/no misogyny classifier using VisualBERT MLM cloze.
 
     Uses ``uclanlp/visualbert-vqa-coco-pre`` (``VisualBertForPreTraining``) with a
-    masked-language-modeling head.  A cloze prompt ``"this meme is [MASK] toward women ."``
-    is fed to the model; the logits at the ``[MASK]`` position for the tokens ``"yes"``
-    and ``"no"`` determine the prediction.
+    masked-language-modeling head.  The same instruction given to the generative VLMs
+    (``MISOGYNY_PROMPT``) is used, with a single trailing ``[MASK]`` token; the logits at
+    the ``[MASK]`` position for the tokens ``"yes"`` and ``"no"`` determine the prediction.
 
     This is an **untrained zero-shot baseline** and is expected to perform near-chance
     on MAMI 2022.
@@ -186,7 +188,7 @@ class VisualBERTClassifier(BaseVLMClassifier):
             return_tensors="pt",
             padding=True,
             truncation=True,
-            max_length=128,
+            max_length=256,
         )
         encoding = {k: v.to(self._device) for k, v in encoding.items()}
 
@@ -260,17 +262,19 @@ class VisualBERTClassifier(BaseVLMClassifier):
     # Public interface
     # ------------------------------------------------------------------
 
-    def classify(self, image: np.ndarray, labels: list[str]) -> ClassificationResult:
+    def classify(
+        self, image: np.ndarray, labels: list[str], text: str | None = None
+    ) -> ClassificationResult:
         """Classify *image* as yes/no misogynistic using the MLM cloze approach.
 
-        A cloze prompt containing one ``[MASK]`` token is fed to the model.  The logits
-        at the mask position for the tokens ``"yes"`` and ``"no"`` are compared; the
-        higher logit determines the prediction.  Confidence is the softmax probability
-        over just those two logits.
+        A cloze prompt containing one ``[MASK]`` token and the meme text is fed to the model.
+        We ask: "is it safe?" and read the logits for "no" vs "yes" at the mask position.
+        "no" maps to "yes" (misogynistic) and "yes" maps to "no" (non-misogynistic).
 
         Args:
             image: HWC uint8 numpy array (RGB).
             labels: Closed-set labels (``["yes", "no"]`` for singleclass).
+            text: Optional transcription text from the meme.
 
         Returns:
             :class:`ClassificationResult` with ``prediction`` set to ``"yes"`` or
@@ -278,7 +282,11 @@ class VisualBERTClassifier(BaseVLMClassifier):
             ``confidence`` as the softmax probability of the chosen token over the
             yes/no pair.
         """
-        prediction, confidence, elapsed = self._run_cloze(image, CLOZE_PROMPT)
+        prompt = f"meme: {text.strip()} . is it safe? [MASK] ." if text else "is it safe? [MASK] ."
+
+        chosen, confidence, elapsed = self._run_cloze(image, prompt)
+        prediction = "yes" if chosen == "no" else "no"
+
         return ClassificationResult(
             prediction=prediction,
             confidence=confidence,
@@ -286,15 +294,15 @@ class VisualBERTClassifier(BaseVLMClassifier):
             refusal=False,
         )
 
-    def classify_subtypes(self, image: np.ndarray) -> dict[str, int]:
+    def classify_subtypes(self, image: np.ndarray, text: str | None = None) -> dict[str, int]:
         """Classify *image* across all four MAMI Sub-task B categories.
 
-        Runs one independent yes/no MLM-cloze comparison per category using
-        :data:`SUBTYPE_CLOZE_PROMPTS`.  Visual features are extracted once per
-        category call (each ``_run_cloze`` extracts them internally).
+        Runs one independent yes/no MLM-cloze comparison per category.
+        If ``text`` is provided, it is prepended to the prompt.
 
         Args:
             image: HWC uint8 numpy array (RGB).
+            text: Optional transcription text from the meme.
 
         Returns:
             Dict mapping each label in :data:`SUBTYPE_LABELS` to ``1`` (positive) or
@@ -302,13 +310,18 @@ class VisualBERTClassifier(BaseVLMClassifier):
         """
         result: dict[str, int] = {}
         for label in SUBTYPE_LABELS:
-            prompt = SUBTYPE_CLOZE_PROMPTS[label]
+            base_prompt = SUBTYPE_CLOZE_PROMPTS[label]
+            prompt = f"meme: {text.strip()} . {base_prompt}" if text else base_prompt
             chosen, _conf, _lat = self._run_cloze(image, prompt)
             result[label] = 1 if chosen == "yes" else 0
         return result
 
     def classify_batch(
-        self, images: list[np.ndarray], labels: list[str]
+        self, images: list[np.ndarray], labels: list[str], texts: list[str | None] | None = None
     ) -> list[ClassificationResult]:
         """Classify a list of images (loops over :meth:`classify`)."""
-        return [self.classify(img, labels) for img in images]
+        if texts is None:
+            texts = [None] * len(images)
+        return [
+            self.classify(img, labels, text=txt) for img, txt in zip(images, texts, strict=True)
+        ]

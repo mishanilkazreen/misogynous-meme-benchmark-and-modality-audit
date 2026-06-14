@@ -48,7 +48,9 @@ class LLaVAClassifier(BaseVLMClassifier):
         )
         self._model.eval()
 
-    def classify(self, image: np.ndarray, labels: list[str]) -> ClassificationResult:
+    def classify(
+        self, image: np.ndarray, labels: list[str], text: str | None = None
+    ) -> ClassificationResult:
         import torch
 
         from models.vlm.classifier import build_prompt

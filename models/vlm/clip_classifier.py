@@ -58,7 +58,9 @@ class CLIPClassifier(BaseVLMClassifier):
         idx = int(probs.argmax().item())
         return self._labels[idx], float(probs[idx].item())
 
-    def classify(self, image: np.ndarray, labels: list[str]) -> ClassificationResult:
+    def classify(
+        self, image: np.ndarray, labels: list[str], text: str | None = None
+    ) -> ClassificationResult:
         """Implement BaseVLMClassifier interface for a single image."""
         if labels != self._labels:
             self.set_classes(labels)

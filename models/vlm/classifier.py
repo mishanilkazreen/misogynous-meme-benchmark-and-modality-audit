@@ -132,7 +132,9 @@ class BaseVLMClassifier(abc.ABC):
     """Abstract base class for all VLM classifiers in this benchmark."""
 
     @abc.abstractmethod
-    def classify(self, image: np.ndarray, labels: list[str]) -> ClassificationResult:
+    def classify(
+        self, image: np.ndarray, labels: list[str], text: str | None = None
+    ) -> ClassificationResult:
         """Classify a single image against the given closed-set label list."""
         ...
 
