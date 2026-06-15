@@ -124,12 +124,12 @@ class VisualBERTClassifier(BaseVLMClassifier):
 
         print(f"Loading VisualBERT model ({checkpoint}) …")
         self._model: Any = VisualBertForPreTraining.from_pretrained(checkpoint)
-        self._model.to(device)
+        self._model.to(device)  # type: ignore[arg-type]
         self._model.eval()
 
         # Resolve the token ids for "yes" and "no" in the BERT vocabulary.
-        self._yes_token_id: int = self._tokenizer.convert_tokens_to_ids("yes")
-        self._no_token_id: int = self._tokenizer.convert_tokens_to_ids("no")
+        self._yes_token_id: int = self._tokenizer.convert_tokens_to_ids("yes")  # type: ignore[assignment]
+        self._no_token_id: int = self._tokenizer.convert_tokens_to_ids("no")  # type: ignore[assignment]
 
         unk_id = self._tokenizer.unk_token_id
         if self._yes_token_id == unk_id:

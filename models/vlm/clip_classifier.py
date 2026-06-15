@@ -52,6 +52,8 @@ class CLIPClassifier(BaseVLMClassifier):
             logger.info("Loading fine-tuned CLIP weights from %s", model_path)
             state_dict = torch.load(model_path, map_location=self.device)
             if "classifier.weight" in state_dict:
+                from typing import Any
+
                 from torch import nn
 
                 embed_dim = (
@@ -62,9 +64,7 @@ class CLIPClassifier(BaseVLMClassifier):
                 num_classes = state_dict["classifier.bias"].shape[0]
 
                 class CLIPClassifierHead(nn.Module):
-                    def __init__(
-                        self, clip_model: nn.Module, embed_dim: int, num_classes: int
-                    ) -> None:
+                    def __init__(self, clip_model: Any, embed_dim: int, num_classes: int) -> None:
                         super().__init__()
                         self.clip = clip_model
                         self.classifier = nn.Linear(embed_dim * 2, num_classes)

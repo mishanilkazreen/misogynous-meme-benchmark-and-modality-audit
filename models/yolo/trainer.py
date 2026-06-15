@@ -9,7 +9,7 @@ from typing import Any
 
 import numpy as np
 from PIL import Image as PilImage
-import yaml
+import yaml  # type: ignore[import-untyped]
 
 from models.yolo.wrapper import UltralyticsYOLO
 from utils.dataset import DatasetManager
