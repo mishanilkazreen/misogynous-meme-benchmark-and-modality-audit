@@ -202,12 +202,49 @@ GEMINI_API_KEY=your_key_here
 OPENAI_API_KEY=your_key_here
 ```
 
+## OCR-Augmented Baselines & Fine-Tuning
+
+For pipelines that do not rely purely on zero-shot inference, we support extracting text transcripts via
+PaddleOCR, generating CLIP embeddings, training XGBoost classifiers, and fine-tuning both CLIP and VLMs.
+
+See [RUN_EXPERIMENTS.md](RUN_EXPERIMENTS.md) for detailed execution instructions, expected VRAM usage, and completion
+times.
+
+### 1. Extract OCR Transcripts & Embeddings
+
 ```bash
-uv run python scripts/benchmark_yolo.py --mode pretrained --model yolov8n.pt --subset digits
-uv run python models/yolo/trainer.py --model yolov8n.pt --subset digits
+# Extract ViT-L-14 / ViT-B-32 embeddings + PaddleOCR transcripts
+uv run python scripts/extract_embeddings.py --split train,validation,test --model ViT-L-14-quickgelu --use-ocr --ocr-engine paddleocr
 ```
 
-Results are written to `results/yolo_benchmark.json` (gitignored).
+### 2. Train XGBoost Fusion Classifier
+
+```bash
+uv run python scripts/train_classifier.py --model ViT-L-14-quickgelu --task singleclass --classifier xgboost --use-ocr --ocr-engine paddleocr
+```
+
+### 3. Fine-Tune CLIP Classification Head
+
+```bash
+uv run python scripts/train_clip.py --model ViT-L-14-quickgelu --epochs 5 --task singleclass --device cuda --use-ocr --ocr-engine paddleocr
+```
+
+### 4. Fine-Tune VLMs via QLoRA
+
+```bash
+uv run python scripts/train_vlm.py --model-id Qwen/Qwen2-VL-2B-Instruct --epochs 3 --quantize 4bit --device cuda --task singleclass --use-ocr --ocr-engine paddleocr
+```
+
+### 5. Running the Pipeline
+
+You can trigger the entire pipeline sequentially (setup, extraction, training, and benchmarking) using the
+automation script:
+
+```powershell
+.\scripts\run_all_experiments.ps1
+```
+
+Results and checkpoints are written to the `results/` folder (gitignored).
 
 ## Code quality
 

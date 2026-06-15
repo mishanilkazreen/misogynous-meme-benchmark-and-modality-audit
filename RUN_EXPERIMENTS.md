@@ -1,8 +1,12 @@
 # Guide to Running Content Moderation & OCR-augmented VLM Experiments
 
-This guide outlines the steps required to replicate and run all experiments on a machine with a powerful GPU (e.g. 12GB+ VRAM). All experiments are ordered **fastest first** to allow quick verification of pipeline components before committing to hours-long VLM training runs.
+This guide outlines the steps required to replicate and run all experiments on a machine with a powerful GPU
+(e.g. 12GB+ VRAM). All experiments are ordered **fastest first** to allow quick verification of pipeline
+components before committing to hours-long VLM training runs.
 
-An automation script is provided under `scripts/run_all_experiments.ps1`. You can trigger it directly in PowerShell:
+An automation script is provided under `scripts/run_all_experiments.ps1`. You can trigger it directly in
+PowerShell:
+
 ```powershell
 # Run the entire pipeline sequentially (estimated time: ~15 hours)
 .\scripts\run_all_experiments.ps1
@@ -67,7 +71,9 @@ uv run python scripts/download_dataset.py
 
 ## 3. Extract OCR Transcripts & Embeddings (Estimated Time: ~15–18 minutes)
 
-Because the `.npz` embedding and OCR files are too large to be saved in the Git repository, you must first extract the text transcripts using the OCR engines. This script also extracts the CLIP image and text tower embeddings:
+Because the `.npz` embedding and OCR files are too large to be saved in the Git repository, you must first
+extract the text transcripts using the OCR engines. This script also extracts the CLIP image and text tower
+embeddings:
 
 ```bash
 # Extract ViT-L-14 embeddings + PaddleOCR transcripts (train, validation, test)
@@ -84,13 +90,15 @@ uv run python scripts/extract_embeddings.py \
     --use-ocr \
     --ocr-engine paddleocr
 ```
-*Outputs will be saved in `results/embeddings/` (e.g. `train_vit_l_14_quickgelu_ocr_paddleocr.npz`).*
+
+Outputs will be saved in `results/embeddings/` (e.g. `train_vit_l_14_quickgelu_ocr_paddleocr.npz`).
 
 ---
 
 ## 4. Train the XGBoost Fusion Classifiers (Estimated Time: ~30 seconds)
 
-Once embeddings and OCR transcripts are extracted, train the Supervised Embedding Fusion Classifier (XGBoost head on top of CLIP + OCR representations):
+Once embeddings and OCR transcripts are extracted, train the Supervised Embedding Fusion Classifier
+(XGBoost head on top of CLIP + OCR representations):
 
 ```bash
 # Challenge 1: Train binary misogyny detector
@@ -109,7 +117,8 @@ uv run python scripts/train_classifier.py \
     --use-ocr \
     --ocr-engine paddleocr
 ```
-*Outputs will be saved as `.pkl` files in `results/models/`.*
+
+Outputs will be saved as `.pkl` files in `results/models/`.
 
 ---
 
@@ -159,13 +168,15 @@ uv run python scripts/train_clip.py \
     --use-ocr \
     --ocr-engine paddleocr
 ```
-*Outputs will be saved as `.pth` files in `results/models/` (e.g. `finetuned_clip_classification_singleclass_vit_l_14_quickgelu.pth`).*
+
+Outputs will be saved as `.pth` files in `results/models/` (e.g. `finetuned_clip_classification_singleclass_vit_l_14_quickgelu.pth`).
 
 ---
 
 ## 6. Generative VLM QLoRA Fine-Tuning (Estimated Time: ~12 hours)
 
-Fine-tune the local generative Vision-Language Models (VLMs) using **QLoRA** (4-bit quantization + LoRA adapters) with PaddleOCR transcripts injected dynamically into the prompt prefix:
+Fine-tune the local generative Vision-Language Models (VLMs) using **QLoRA** (4-bit quantization + LoRA
+adapters) with PaddleOCR transcripts injected dynamically into the prompt prefix:
 
 ```bash
 # ===========================================================================
@@ -246,7 +257,8 @@ uv run python scripts/train_vlm.py \
     --use-ocr \
     --ocr-engine paddleocr
 ```
-*Outputs will be saved as LoRA adapters under `results/models/lora_<model_name_clean>_<task>/`.*
+
+Outputs will be saved as LoRA adapters under `results/models/lora_<model_name_clean>_<task>/`.
 
 ---
 

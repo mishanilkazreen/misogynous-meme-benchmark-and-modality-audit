@@ -261,26 +261,23 @@ def build_label_prevalence(
 
 def load_ocr_transcripts(split: str, ocr_engine: str, embeddings_dir: Path) -> dict[str, str]:
     """Load OCR-extracted texts from any pre-existing NPZ file for the split and engine."""
-    import glob
-    pattern = str(embeddings_dir / f"{split}_*_{ocr_engine}.npz")
-    files = glob.glob(pattern)
+    files = list(embeddings_dir.glob(f"{split}_*_{ocr_engine}.npz"))
     if not files:
-        pattern = str(embeddings_dir / f"{split}_*_ocr_{ocr_engine}.npz")
-        files = glob.glob(pattern)
-        
+        files = list(embeddings_dir.glob(f"{split}_*_ocr_{ocr_engine}.npz"))
+
     if not files:
         logger.warning(
             f"No pre-extracted OCR NPZ file found for split '{split}' and engine '{ocr_engine}' in {embeddings_dir}. "
             "Please run scripts/extract_embeddings.py with --use-ocr --ocr-engine {ocr_engine} first."
         )
         return {}
-        
-    file_path = Path(files[0])
+
+    file_path = files[0]
     logger.info("Loading OCR transcripts from %s...", file_path)
     data = np.load(file_path, allow_pickle=True)
     image_ids = data["image_ids"]
     raw_texts = data["raw_texts"]
-    return {str(img_id): str(txt) for img_id, txt in zip(image_ids, raw_texts)}
+    return {str(img_id): str(txt) for img_id, txt in zip(image_ids, raw_texts, strict=True)}
 
 
 def run_clip(
@@ -370,6 +367,9 @@ def _run_clip_multiclass(
     ocr_engine: str = "easyocr",
 ) -> dict[str, Any]:
     """Run CLIP multiclass: per-category binary prediction for all four sub-types."""
+    images = [apply_filter(image_to_numpy(s["image"]), filter_name) for s in samples]
+    classifier = CLIPClassifier(device=device, model_path=model_path)
+
     ocr_map = None
     if use_ocr:
         ocr_map = load_ocr_transcripts(split, ocr_engine, RESULTS_DIR / "embeddings")

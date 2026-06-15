@@ -47,21 +47,31 @@ class CLIPClassifier(BaseVLMClassifier):
 
         if model_path:
             import logging
+
             logger = logging.getLogger(__name__)
             logger.info("Loading fine-tuned CLIP weights from %s", model_path)
             state_dict = torch.load(model_path, map_location=self.device)
             if "classifier.weight" in state_dict:
                 from torch import nn
-                embed_dim = self.model.text_projection.shape[1] if hasattr(self.model, "text_projection") else 512
+
+                embed_dim = (
+                    self.model.text_projection.shape[1]
+                    if hasattr(self.model, "text_projection")
+                    else 512
+                )
                 num_classes = state_dict["classifier.bias"].shape[0]
-                
+
                 class CLIPClassifierHead(nn.Module):
-                    def __init__(self, clip_model: nn.Module, embed_dim: int, num_classes: int) -> None:
+                    def __init__(
+                        self, clip_model: nn.Module, embed_dim: int, num_classes: int
+                    ) -> None:
                         super().__init__()
                         self.clip = clip_model
                         self.classifier = nn.Linear(embed_dim * 2, num_classes)
 
-                    def forward(self, images: torch.Tensor, text_tokens: torch.Tensor) -> torch.Tensor:
+                    def forward(
+                        self, images: torch.Tensor, text_tokens: torch.Tensor
+                    ) -> torch.Tensor:
                         image_features = self.clip.encode_image(images)
                         text_features = self.clip.encode_text(text_tokens)
 
@@ -70,8 +80,10 @@ class CLIPClassifier(BaseVLMClassifier):
 
                         fused = torch.cat([image_features, text_features], dim=-1)
                         return self.classifier(fused)
-                
-                self.classification_head = CLIPClassifierHead(self.model, embed_dim, num_classes).to(self.device)
+
+                self.classification_head = CLIPClassifierHead(
+                    self.model, embed_dim, num_classes
+                ).to(self.device)
                 self.classification_head.load_state_dict(state_dict)
                 self.is_classification = True
                 logger.info("Loaded CLIP classification head checkpoint (%d classes)", num_classes)
@@ -136,7 +148,7 @@ class CLIPClassifier(BaseVLMClassifier):
             chunk = images[start : start + chunk_size]
             pil_tensors = [self.preprocess(Image.fromarray(img)) for img in chunk]  # type: ignore[operator]
             batch = torch.stack(pil_tensors).to(self.device)
-            
+
             if self.is_classification:
                 chunk_texts = texts[start : start + chunk_size] if texts else [""] * len(chunk)
                 clean_texts = []
@@ -145,10 +157,11 @@ class CLIPClassifier(BaseVLMClassifier):
                     clean_text = " ".join(words[:60]) if len(words) > 60 else t.strip()
                     clean_texts.append(clean_text or "empty text")
                 tokens = self.tokenizer(clean_texts).to(self.device)
-                
+
                 with torch.no_grad():
+                    assert self.classification_head is not None
                     logits = self.classification_head(batch, tokens)
-                
+
                 if logits.shape[1] == 2:
                     probs = logits.softmax(dim=-1)
                     for row in probs:
@@ -162,6 +175,7 @@ class CLIPClassifier(BaseVLMClassifier):
                 else:
                     probs = logits.sigmoid()
                     from models.vlm.classifier import CLIP_SUBTYPE_LABELS, SUBTYPE_LABELS
+
                     category_idx = 0
                     for c_idx, cat in enumerate(SUBTYPE_LABELS):
                         pos, _ = CLIP_SUBTYPE_LABELS[cat]
@@ -175,6 +189,7 @@ class CLIPClassifier(BaseVLMClassifier):
                         else:
                             results.append((self._labels[1], 1.0 - prob_pos))
             else:
+                assert self._text_embeddings is not None
                 with torch.no_grad():
                     image_features = self.model.encode_image(batch)
                     image_features = image_features / image_features.norm(dim=-1, keepdim=True)

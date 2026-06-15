@@ -240,7 +240,7 @@ grant-application
 *.lnk
 
 # Reference PDFs are kept locally only (cited in papers/README.md)
-papers/*.pdf
+papers/**/*.pdf
 
 # Scratch folder for GitHub issue bodies
 .issue_bodies/

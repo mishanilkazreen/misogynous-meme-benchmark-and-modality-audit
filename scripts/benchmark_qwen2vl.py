@@ -106,25 +106,22 @@ def _misogynous_to_label(misogynous: int) -> str:
 
 def load_ocr_transcripts(split: str, ocr_engine: str, embeddings_dir: Path) -> dict[str, str]:
     """Load OCR-extracted texts from any pre-existing NPZ file for the split and engine."""
-    import glob
-    pattern = str(embeddings_dir / f"{split}_*_{ocr_engine}.npz")
-    files = glob.glob(pattern)
+    files = list(embeddings_dir.glob(f"{split}_*_{ocr_engine}.npz"))
     if not files:
-        pattern = str(embeddings_dir / f"{split}_*_ocr_{ocr_engine}.npz")
-        files = glob.glob(pattern)
-        
+        files = list(embeddings_dir.glob(f"{split}_*_ocr_{ocr_engine}.npz"))
+
     if not files:
         print(
             f"WARNING: No pre-extracted OCR NPZ file found for split '{split}' and engine '{ocr_engine}' in {embeddings_dir}. "
         )
         return {}
-        
-    file_path = Path(files[0])
+
+    file_path = files[0]
     print(f"Loading OCR transcripts from {file_path}...")
     data = np.load(file_path, allow_pickle=True)
     image_ids = data["image_ids"]
     raw_texts = data["raw_texts"]
-    return {str(img_id): str(txt) for img_id, txt in zip(image_ids, raw_texts)}
+    return {str(img_id): str(txt) for img_id, txt in zip(image_ids, raw_texts, strict=True)}
 
 
 def is_refusal(text: str) -> bool:
@@ -135,7 +132,9 @@ def is_refusal(text: str) -> bool:
 _model_cache: dict[str, tuple[Any, Any]] = {}
 
 
-def _load_model(model_id: str, device: str, quantize: str = "none", lora_path: str | None = None) -> tuple[Any, Any]:
+def _load_model(
+    model_id: str, device: str, quantize: str = "none", lora_path: str | None = None
+) -> tuple[Any, Any]:
     """Load processor + model; cached after first call.
 
     Args:
@@ -172,6 +171,7 @@ def _load_model(model_id: str, device: str, quantize: str = "none", lora_path: s
 
     if lora_path:
         from peft import PeftModel
+
         print(f"Loading LoRA adapters from {lora_path} …")
         model = PeftModel.from_pretrained(model, lora_path)
         try:
@@ -229,7 +229,14 @@ def run_benchmark(
 
     if task == "multiclass":
         return _run_benchmark_multiclass(
-            processor, model, samples, split, preprocess, batch_size, use_ocr=use_ocr, ocr_engine=ocr_engine
+            processor,
+            model,
+            samples,
+            split,
+            preprocess,
+            batch_size,
+            use_ocr=use_ocr,
+            ocr_engine=ocr_engine,
         )
 
     labels = MISOGYNY_LABELS  # ["yes", "no"]
@@ -259,7 +266,7 @@ def run_benchmark(
             image_id = str(s["image_id"])
             if ocr_map and image_id in ocr_map:
                 ocr_text = ocr_map[image_id].strip()
-                prompt_text = f"This meme contains the text: \"{ocr_text}\". {base_prompt_text}"
+                prompt_text = f'This meme contains the text: "{ocr_text}". {base_prompt_text}'
             else:
                 prompt_text = base_prompt_text
 
@@ -361,7 +368,7 @@ def _run_benchmark_multiclass(
             image_id = str(s["image_id"])
             if ocr_map and image_id in ocr_map:
                 ocr_text = ocr_map[image_id].strip()
-                prompt_text = f"This meme contains the text: \"{ocr_text}\". {base_prompt_text}"
+                prompt_text = f'This meme contains the text: "{ocr_text}". {base_prompt_text}'
             else:
                 prompt_text = base_prompt_text
 
@@ -569,7 +576,9 @@ def main() -> None:
     # Default to "none"; pass --filters explicitly only for a deliberate ablation.
     filters_to_run = [f.strip() for f in args.filters.split(",")] if args.filters else ["none"]
 
-    print(f"Split: {args.split} | Filters: {filters_to_run} | Limit: {args.limit} | LoRA Path: {args.lora_path}")
+    print(
+        f"Split: {args.split} | Filters: {filters_to_run} | Limit: {args.limit} | LoRA Path: {args.lora_path}"
+    )
 
     # Load model FIRST (before dataset) to avoid bitsandbytes crash.
     # The 4-bit quantization CUDA kernels are sensitive to memory state;

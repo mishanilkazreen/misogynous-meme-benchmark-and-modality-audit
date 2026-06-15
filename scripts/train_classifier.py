@@ -8,10 +8,10 @@ from __future__ import annotations
 import argparse
 import json
 import logging
-import os
 from pathlib import Path
 import pickle
 import sys
+from typing import Any
 
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
@@ -179,9 +179,15 @@ def main() -> None:
         sys.exit(1)
 
     # 1. Load train/val embeddings
-    train_data = load_embeddings("train", embeddings_dir, args.model_name, args.use_ocr, args.ocr_engine)
-    val_data = load_embeddings("validation", embeddings_dir, args.model_name, args.use_ocr, args.ocr_engine)
-    test_data = load_embeddings("test", embeddings_dir, args.model_name, args.use_ocr, args.ocr_engine)
+    train_data = load_embeddings(
+        "train", embeddings_dir, args.model_name, args.use_ocr, args.ocr_engine
+    )
+    val_data = load_embeddings(
+        "validation", embeddings_dir, args.model_name, args.use_ocr, args.ocr_engine
+    )
+    test_data = load_embeddings(
+        "test", embeddings_dir, args.model_name, args.use_ocr, args.ocr_engine
+    )
 
     if train_data is None:
         logger.critical("Train embeddings not found. Please extract them first.")
@@ -239,7 +245,9 @@ def main() -> None:
         print(f"Macro F1 : {f1_macro:.4f}")
         print(f"Binary F1: {f1_bin:.4f}")
         print("\nClassification Report:")
-        print(classification_report(val_y, val_preds, target_names=["not misogynous", "misogynous"]))
+        print(
+            classification_report(val_y, val_preds, target_names=["not misogynous", "misogynous"])
+        )
     else:
         # Format predicted matrix to list of dicts for compute_multilabel_metrics
         pred_dicts = []
@@ -272,6 +280,7 @@ def main() -> None:
         logger.info("--- Evaluation Results (Test Split) ---")
         if args.task == "singleclass":
             from sklearn.metrics import accuracy_score, f1_score
+
             acc = accuracy_score(test_y, test_preds)
             f1_macro = f1_score(test_y, test_preds, average="macro")
             print(f"Accuracy : {acc:.4f}")
@@ -280,7 +289,9 @@ def main() -> None:
             pred_dicts = []
             gt_dicts = []
             for i in range(len(test_preds)):
-                pred_dicts.append({lbl: int(test_preds[i][j]) for j, lbl in enumerate(SUBTYPE_LABELS)})
+                pred_dicts.append(
+                    {lbl: int(test_preds[i][j]) for j, lbl in enumerate(SUBTYPE_LABELS)}
+                )
                 gt_dicts.append({lbl: int(test_y[i][j]) for j, lbl in enumerate(SUBTYPE_LABELS)})
             metrics = compute_multilabel_metrics(pred_dicts, gt_dicts, SUBTYPE_LABELS)
             print(f"Exact Match Accuracy: {metrics['exact_match_accuracy']:.4f}")

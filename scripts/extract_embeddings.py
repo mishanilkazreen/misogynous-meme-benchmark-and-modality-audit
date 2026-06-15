@@ -7,7 +7,6 @@ from __future__ import annotations
 
 import argparse
 import logging
-import os
 from pathlib import Path
 import time
 
@@ -103,7 +102,7 @@ def main() -> None:
     ocr_pipe = None
     if args.use_ocr:
         logger.info("Initializing OCR Pipeline (%s)...", args.ocr_engine)
-        gpu_bool = (device == "cuda")
+        gpu_bool = device == "cuda"
         ocr_pipe = OCRPipeline(gpu=gpu_bool, engine=args.ocr_engine)
 
     # Initialize dataset manager
@@ -129,7 +128,7 @@ def main() -> None:
         labels: list[int] = []
         subtask_labels: list[list[int]] = []  # shaming, stereotype, objectification, violence
         raw_texts: list[str] = []
-        
+
         # We will extract image/text features in batches
         img_features_list: list[torch.Tensor] = []
         txt_features_list: list[torch.Tensor] = []
@@ -141,15 +140,17 @@ def main() -> None:
 
         for idx in tqdm(range(num_samples), desc=f"Extracting {split}"):
             sample = dataset[idx]
-            
+
             image_ids.append(sample["image_id"])
             labels.append(sample["misogynous"])
-            subtask_labels.append([
-                sample["shaming"],
-                sample["stereotype"],
-                sample["objectification"],
-                sample["violence"]
-            ])
+            subtask_labels.append(
+                [
+                    sample["shaming"],
+                    sample["stereotype"],
+                    sample["objectification"],
+                    sample["violence"],
+                ]
+            )
 
             # Get image and convert torch tensor [3, H, W] to PIL Image
             img_tensor = sample["image"]
@@ -171,7 +172,9 @@ def main() -> None:
             if len(words) > 60:
                 text_cleaned = " ".join(words[:60])
             if not text_cleaned:
-                text_cleaned = "empty text"  # fallback placeholder to avoid empty tokenization errors
+                text_cleaned = (
+                    "empty text"  # fallback placeholder to avoid empty tokenization errors
+                )
 
             # Add to batch buffers
             batch_imgs.append(preprocess(pil_img))

@@ -40,7 +40,9 @@ class OCRPipeline:
         self.confidence_threshold = confidence_threshold
         self.engine = engine.lower()
         if self.engine not in ["easyocr", "paddleocr"]:
-            raise ValueError(f"Unknown OCR engine '{engine}'. Choices are 'easyocr' or 'paddleocr'.")
+            raise ValueError(
+                f"Unknown OCR engine '{engine}'. Choices are 'easyocr' or 'paddleocr'."
+            )
         self._reader = None
         self._paddle_reader = None
 
@@ -58,8 +60,8 @@ class OCRPipeline:
         """Lazy initialization of PaddleOCR reader."""
         if self._paddle_reader is None:
             import os
-            import sys
             from pathlib import Path
+            import sys
 
             if sys.platform == "win32":
                 # Ensure all NVIDIA library directories (like CUDA and cuDNN) in the virtual environment
@@ -71,7 +73,11 @@ class OCRPipeline:
                         for d in nvidia_bins:
                             os.add_dll_directory(str(d.resolve()))
                         # Also prepend to PATH just in case
-                        os.environ["PATH"] = ";".join([str(d.resolve()) for d in nvidia_bins]) + ";" + os.environ.get("PATH", "")
+                        os.environ["PATH"] = (
+                            ";".join([str(d.resolve()) for d in nvidia_bins])
+                            + ";"
+                            + os.environ.get("PATH", "")
+                        )
                 except Exception:
                     pass
 

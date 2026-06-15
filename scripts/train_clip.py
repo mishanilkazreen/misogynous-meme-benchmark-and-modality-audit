@@ -7,17 +7,16 @@ from __future__ import annotations
 
 import argparse
 import logging
-import os
 from pathlib import Path
 import time
+from typing import Any
 
 import numpy as np
 import open_clip  # type: ignore[import-untyped]
 import torch
-import torch.nn as nn
+from torch import nn
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
-from tqdm import tqdm
 
 from utils.dataset import DatasetManager
 
@@ -29,6 +28,7 @@ MODELS_DIR = Path(__file__).resolve().parents[1] / "results" / "models"
 
 class CLIPClassifierHead(nn.Module):
     """CLIP model combined with a classification projection head."""
+
     def __init__(self, clip_model: nn.Module, embed_dim: int, num_classes: int) -> None:
         super().__init__()
         self.clip = clip_model
@@ -92,7 +92,9 @@ def train_contrastive(
         logits_per_text = logits_per_image.t()
 
         labels = torch.arange(len(images), device=device)
-        loss = (F.cross_entropy(logits_per_image, labels) + F.cross_entropy(logits_per_text, labels)) / 2
+        loss = (
+            F.cross_entropy(logits_per_image, labels) + F.cross_entropy(logits_per_text, labels)
+        ) / 2
 
         loss.backward()
         optimizer.step()
@@ -126,12 +128,19 @@ def train_classification(
             targets = batch["misogynous"].to(device)
         else:
             # shaming, stereotype, objectification, violence
-            targets = torch.stack([
-                batch["shaming"],
-                batch["stereotype"],
-                batch["objectification"],
-                batch["violence"]
-            ], dim=1).float().to(device)
+            targets = (
+                torch.stack(
+                    [
+                        batch["shaming"],
+                        batch["stereotype"],
+                        batch["objectification"],
+                        batch["violence"],
+                    ],
+                    dim=1,
+                )
+                .float()
+                .to(device)
+            )
 
         clean_texts = []
         for t in texts:
@@ -159,26 +168,25 @@ def train_classification(
 
 def load_ocr_transcripts(split: str, ocr_engine: str, embeddings_dir: Path) -> dict[str, str]:
     """Load OCR-extracted texts from any pre-existing NPZ file for the split and engine."""
-    import glob
-    pattern = str(embeddings_dir / f"{split}_*_{ocr_engine}.npz")
-    files = glob.glob(pattern)
+    pattern = f"{split}_*_{ocr_engine}.npz"
+    files = list(embeddings_dir.glob(pattern))
     if not files:
-        pattern = str(embeddings_dir / f"{split}_*_ocr_{ocr_engine}.npz")
-        files = glob.glob(pattern)
-        
+        pattern = f"{split}_*_ocr_{ocr_engine}.npz"
+        files = list(embeddings_dir.glob(pattern))
+
     if not files:
         logger.warning(
             f"No pre-extracted OCR NPZ file found for split '{split}' and engine '{ocr_engine}' in {embeddings_dir}. "
             "Please run scripts/extract_embeddings.py with --use-ocr --ocr-engine {ocr_engine} first."
         )
         return {}
-        
+
     file_path = Path(files[0])
     logger.info("Loading OCR transcripts from %s...", file_path)
     data = np.load(file_path, allow_pickle=True)
     image_ids = data["image_ids"]
     raw_texts = data["raw_texts"]
-    return {str(img_id): str(txt) for img_id, txt in zip(image_ids, raw_texts)}
+    return {str(img_id): str(txt) for img_id, txt in zip(image_ids, raw_texts, strict=True)}
 
 
 def main() -> None:
@@ -203,7 +211,9 @@ def main() -> None:
     parser.add_argument("--freeze-image", action="store_true", help="Freeze CLIP image encoder")
     parser.add_argument("--freeze-text", action="store_true", help="Freeze CLIP text encoder")
     parser.add_argument("--device", default="cuda", help="Target device")
-    parser.add_argument("--limit", type=int, default=None, help="Cap split samples for smoke testing")
+    parser.add_argument(
+        "--limit", type=int, default=None, help="Cap split samples for smoke testing"
+    )
     parser.add_argument(
         "--use-ocr",
         action="store_true",
@@ -217,7 +227,9 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    device = torch.device(args.device if torch.cuda.is_available() and args.device == "cuda" else "cpu")
+    device = torch.device(
+        args.device if torch.cuda.is_available() and args.device == "cuda" else "cpu"
+    )
     logger.info("Using device: %s", device)
 
     # 1. Create model and preprocessing transforms
@@ -229,13 +241,13 @@ def main() -> None:
 
     # Freeze encoders based on flags
     for name, param in clip_model.named_parameters():
-        if "visual" in name and args.freeze_image:
-            param.requires_grad = False
-        elif "visual" not in name and args.freeze_text:
+        if ("visual" in name and args.freeze_image) or ("visual" not in name and args.freeze_text):
             param.requires_grad = False
 
     # Retrieve embedding dimension
-    embed_dim = clip_model.text_projection.shape[1] if hasattr(clip_model, "text_projection") else 512
+    embed_dim = (
+        clip_model.text_projection.shape[1] if hasattr(clip_model, "text_projection") else 512
+    )
 
     # Instantiate overall model wrapper
     if args.loss_mode == "classification":
@@ -248,9 +260,9 @@ def main() -> None:
     logger.info("Loading dataset splits...")
     manager = DatasetManager()
     train_dataset = manager.load_dataset(split="train", transform=preprocess)
-    
+
     if args.limit:
-        train_dataset._records = train_dataset._records[:args.limit]
+        train_dataset._records = train_dataset._records[: args.limit]
         logger.info("Capped training samples to %d", args.limit)
 
     train_loader = DataLoader(
@@ -275,10 +287,14 @@ def main() -> None:
     for epoch in range(1, args.epochs + 1):
         t0 = time.perf_counter()
         if args.loss_mode == "contrastive":
-            avg_loss = train_contrastive(model, train_loader, optimizer, tokenizer, device, ocr_map=ocr_map)
+            avg_loss = train_contrastive(
+                model, train_loader, optimizer, tokenizer, device, ocr_map=ocr_map
+            )
         else:
-            avg_loss = train_classification(model, train_loader, optimizer, tokenizer, device, args.task, ocr_map=ocr_map)
-        
+            avg_loss = train_classification(
+                model, train_loader, optimizer, tokenizer, device, args.task, ocr_map=ocr_map
+            )
+
         elapsed = time.perf_counter() - t0
         logger.info(
             "Epoch %d/%d completed | Avg Loss: %.4f | Time: %.2f seconds",
