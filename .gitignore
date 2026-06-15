@@ -240,7 +240,7 @@ grant-application
 *.lnk
 
 # Reference PDFs are kept locally only (cited in papers/README.md)
-papers/*.pdf
+papers/**/*.pdf
 
 # Scratch folder for GitHub issue bodies
 .issue_bodies/
@@ -276,3 +276,11 @@ results/figures/yolo_detections_ww2_yolov8n.png
 # VLM documentation scratch folder
 vlm_docs/
 task_4/
+
+# Ignore large pre-extracted embeddings
+results/embeddings/
+*.npz
+
+# Ignore large model checkpoints and adapters
+results/models/
+*.safetensors

@@ -259,12 +259,36 @@ def build_label_prevalence(
     }
 
 
+def load_ocr_transcripts(split: str, ocr_engine: str, embeddings_dir: Path) -> dict[str, str]:
+    """Load OCR-extracted texts from any pre-existing NPZ file for the split and engine."""
+    files = list(embeddings_dir.glob(f"{split}_*_{ocr_engine}.npz"))
+    if not files:
+        files = list(embeddings_dir.glob(f"{split}_*_ocr_{ocr_engine}.npz"))
+
+    if not files:
+        logger.warning(
+            f"No pre-extracted OCR NPZ file found for split '{split}' and engine '{ocr_engine}' in {embeddings_dir}. "
+            "Please run scripts/extract_embeddings.py with --use-ocr --ocr-engine {ocr_engine} first."
+        )
+        return {}
+
+    file_path = files[0]
+    logger.info("Loading OCR transcripts from %s...", file_path)
+    data = np.load(file_path, allow_pickle=True)
+    image_ids = data["image_ids"]
+    raw_texts = data["raw_texts"]
+    return {str(img_id): str(txt) for img_id, txt in zip(image_ids, raw_texts, strict=True)}
+
+
 def run_clip(
     samples: list[dict[str, Any]],
     filter_name: str,
     split: str = "validation",
     device: str = "cpu",
     task: str = "singleclass",
+    model_path: str | None = None,
+    use_ocr: bool = False,
+    ocr_engine: str = "easyocr",
 ) -> dict[str, Any]:
     """Run CLIP on the given samples with the given filter.
 
@@ -272,18 +296,34 @@ def run_clip(
     multiclass: per-category binary classification using CLIP_SUBTYPE_LABELS.
     """
     if task == "multiclass":
-        return _run_clip_multiclass(samples, filter_name, split=split, device=device)
+        return _run_clip_multiclass(
+            samples,
+            filter_name,
+            split=split,
+            device=device,
+            model_path=model_path,
+            use_ocr=use_ocr,
+            ocr_engine=ocr_engine,
+        )
 
     # singleclass: binary misogyny
     clip_labels = CLIP_MISOGYNY_LABELS  # ["misogynistic meme", "not misogynistic meme"]
     ground_truths_yesno = [_misogynous_to_label(s["misogynous"]) for s in samples]
     images = [apply_filter(image_to_numpy(s["image"]), filter_name) for s in samples]
 
-    classifier = CLIPClassifier(device=device)
+    classifier = CLIPClassifier(device=device, model_path=model_path)
     classifier.set_classes(clip_labels)
 
+    ocr_map = None
+    if use_ocr:
+        ocr_map = load_ocr_transcripts(split, ocr_engine, RESULTS_DIR / "embeddings")
+
     t0 = time.perf_counter()
-    raw_preds = classifier.predict_batch(images)
+    if ocr_map:
+        texts = [ocr_map.get(str(s["image_id"]), "") for s in samples]
+    else:
+        texts = [s.get("text", "") for s in samples]
+    raw_preds = classifier.predict_batch(images, texts=texts)
     total_time = time.perf_counter() - t0
 
     clip_to_yesno = {
@@ -322,10 +362,17 @@ def _run_clip_multiclass(
     filter_name: str,
     split: str = "validation",
     device: str = "cpu",
+    model_path: str | None = None,
+    use_ocr: bool = False,
+    ocr_engine: str = "easyocr",
 ) -> dict[str, Any]:
     """Run CLIP multiclass: per-category binary prediction for all four sub-types."""
     images = [apply_filter(image_to_numpy(s["image"]), filter_name) for s in samples]
-    classifier = CLIPClassifier(device=device)
+    classifier = CLIPClassifier(device=device, model_path=model_path)
+
+    ocr_map = None
+    if use_ocr:
+        ocr_map = load_ocr_transcripts(split, ocr_engine, RESULTS_DIR / "embeddings")
 
     # Per-category independent binary predictions
     category_preds: dict[str, list[int]] = {lbl: [] for lbl in SUBTYPE_LABELS}
@@ -337,7 +384,11 @@ def _run_clip_multiclass(
         classifier.set_classes(cat_labels)
 
         t0 = time.perf_counter()
-        raw_preds = classifier.predict_batch(images)
+        if ocr_map:
+            texts = [ocr_map.get(str(s["image_id"]), "") for s in samples]
+        else:
+            texts = [s.get("text", "") for s in samples]
+        raw_preds = classifier.predict_batch(images, texts=texts)
         category_times.append(time.perf_counter() - t0)
 
         for pred_label, _ in raw_preds:
@@ -420,6 +471,8 @@ def run_generative_model(
     split: str = "validation",
     device: str = "cpu",
     task: str = "singleclass",
+    use_ocr: bool = False,
+    ocr_engine: str = "easyocr",
 ) -> dict[str, Any] | None:
     """Dispatch to the appropriate generative model script."""
     preprocess_arg = None if filter_name == "none" else filter_name
@@ -436,6 +489,8 @@ def run_generative_model(
                 device=device,
                 quantize="4bit",
                 task=task,
+                use_ocr=use_ocr,
+                ocr_engine=ocr_engine,
             )
             logger.info("Completed qwen2vl (filter=%s)", filter_name)
             return result
@@ -458,6 +513,8 @@ def run_generative_model(
                 device=device,
                 quantize="4bit",
                 task=task,
+                use_ocr=use_ocr,
+                ocr_engine=ocr_engine,
             )
             logger.info("Completed llava (filter=%s)", filter_name)
             return result
@@ -607,6 +664,11 @@ def main() -> None:
     parser.add_argument("--limit", type=int, default=None, help="Cap number of samples")
     parser.add_argument("--device", default="cpu")
     parser.add_argument(
+        "--model-path",
+        default=None,
+        help="Path to fine-tuned model checkpoint file (for CLIP or other compatible models)",
+    )
+    parser.add_argument(
         "--filters",
         default=None,
         help=(
@@ -624,6 +686,17 @@ def main() -> None:
             "Challenge to run: 'singleclass' = binary misogyny (default); "
             "'multiclass' = Sub-task B multi-label sub-types"
         ),
+    )
+    parser.add_argument(
+        "--use-ocr",
+        action="store_true",
+        help="Use OCR-extracted text instead of dataset transcripts",
+    )
+    parser.add_argument(
+        "--ocr-engine",
+        default="easyocr",
+        choices=["easyocr", "paddleocr"],
+        help="OCR engine to load transcripts for",
     )
     args = parser.parse_args()
 
@@ -679,6 +752,9 @@ def main() -> None:
                         split=args.split,
                         device=args.device,
                         task=args.task,
+                        model_path=args.model_path,
+                        use_ocr=args.use_ocr,
+                        ocr_engine=args.ocr_engine,
                     )
                 else:
                     result = run_generative_model(
@@ -688,6 +764,8 @@ def main() -> None:
                         split=args.split,
                         device=args.device,
                         task=args.task,
+                        use_ocr=args.use_ocr,
+                        ocr_engine=args.ocr_engine,
                     )
                 if result is not None:
                     all_results.append(result)

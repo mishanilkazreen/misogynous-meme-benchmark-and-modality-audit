@@ -34,6 +34,14 @@ dependencies = [
     "openai>=2.41.0",
     "google-genai>=2.8.0",
     "kagglehub>=0.3.0",
+    "xgboost>=3.2.0",
+    "scikit-learn>=1.7.2",
+    "paddlepaddle-gpu==2.6.2.post120; sys_platform == 'win32'",
+    "paddlepaddle==2.6.2; sys_platform != 'win32'",
+    "nvidia-cudnn-cu12==8.9.7.29; sys_platform == 'win32'",
+    "paddleocr>=2.10.0",
+    "peft>=0.10.0",
+    "trl>=0.8.0",
 ]
 
 [project.optional-dependencies]
@@ -174,9 +182,15 @@ name = "pytorch-cu128"
 url = "https://download.pytorch.org/whl/cu128"
 explicit = true
 
+[[tool.uv.index]]
+name = "paddle-cu120"
+url = "https://www.paddlepaddle.org.cn/packages/stable/cu120/"
+explicit = true
+
 [tool.uv.sources]
 torch = { index = "pytorch-cu128" }
 torchvision = { index = "pytorch-cu128" }
+paddlepaddle-gpu = { index = "paddle-cu120" }
 
 [dependency-groups]
 dev = [

@@ -48,6 +48,22 @@ def main() -> None:
     )
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--device", default="cpu")
+    parser.add_argument(
+        "--model-path",
+        default=None,
+        help="Path to fine-tuned CLIP checkpoint weights file",
+    )
+    parser.add_argument(
+        "--use-ocr",
+        action="store_true",
+        help="Use OCR-extracted text instead of dataset transcripts",
+    )
+    parser.add_argument(
+        "--ocr-engine",
+        default="easyocr",
+        choices=["easyocr", "paddleocr"],
+        help="OCR engine to load transcripts for",
+    )
     args = parser.parse_args()
 
     # MAMI has no hidden visual content, so preprocessing filters do not help.
@@ -56,7 +72,7 @@ def main() -> None:
 
     print(
         f"Task: {args.task} | Split: {args.split} | Filters: {filters_to_run} | "
-        f"Limit: {args.limit} | Device: {args.device}"
+        f"Limit: {args.limit} | Device: {args.device} | Model Path: {args.model_path}"
     )
     samples = collect_samples(args.split, limit=args.limit)
     if not samples:
@@ -66,7 +82,16 @@ def main() -> None:
     all_results: list[dict[str, Any]] = []
     for flt in filters_to_run:
         print(f"\n--- Filter: {flt} ---")
-        result = run_clip(samples, flt, split=args.split, device=args.device, task=args.task)
+        result = run_clip(
+            samples,
+            flt,
+            split=args.split,
+            device=args.device,
+            task=args.task,
+            model_path=args.model_path,
+            use_ocr=args.use_ocr,
+            ocr_engine=args.ocr_engine,
+        )
         print(
             f"  acc={result.get('exact_match_accuracy', 0.0):.3f}  f1={result.get('f1', 0.0):.3f}"
         )
@@ -74,7 +99,9 @@ def main() -> None:
 
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     suffix = "_multiclass" if args.task == "multiclass" else ""
-    out = RESULTS_DIR / f"clip_{args.split}{suffix}.json"
+    # Add model suffix to output name if custom weights loaded
+    path_suffix = "_finetuned" if args.model_path else ""
+    out = RESULTS_DIR / f"clip_{args.split}{suffix}{path_suffix}.json"
     out.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
     print(f"\nSaved {len(all_results)} filter rows to {out}")
 

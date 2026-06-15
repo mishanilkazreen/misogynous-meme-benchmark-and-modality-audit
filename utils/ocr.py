@@ -24,6 +24,7 @@ class OCRPipeline:
         languages: list[str] | None = None,
         gpu: bool = False,
         confidence_threshold: float = 0.3,
+        engine: str = "easyocr",
     ):
         """
         Initialize the OCR pipeline.
@@ -32,11 +33,18 @@ class OCRPipeline:
             languages: List of language codes (default: ['en'])
             gpu: Whether to use GPU acceleration
             confidence_threshold: Minimum confidence for text detection
+            engine: The OCR engine to use ('easyocr' or 'paddleocr')
         """
         self.languages = languages or ["en"]
         self.gpu = gpu
         self.confidence_threshold = confidence_threshold
+        self.engine = engine.lower()
+        if self.engine not in ["easyocr", "paddleocr"]:
+            raise ValueError(
+                f"Unknown OCR engine '{engine}'. Choices are 'easyocr' or 'paddleocr'."
+            )
         self._reader = None
+        self._paddle_reader = None
 
     @property
     def reader(self):
@@ -46,6 +54,44 @@ class OCRPipeline:
 
             self._reader = easyocr.Reader(self.languages, gpu=self.gpu)
         return self._reader
+
+    @property
+    def paddle_reader(self):
+        """Lazy initialization of PaddleOCR reader."""
+        if self._paddle_reader is None:
+            import os
+            from pathlib import Path
+            import sys
+
+            if sys.platform == "win32":
+                # Ensure all NVIDIA library directories (like CUDA and cuDNN) in the virtual environment
+                # are added to the DLL search path so Windows can locate cudnn64_8.dll and cublas.
+                try:
+                    venv_site = Path(sys.prefix) / "Lib" / "site-packages"
+                    if venv_site.exists():
+                        nvidia_bins = list(venv_site.glob("nvidia/*/bin"))
+                        for d in nvidia_bins:
+                            os.add_dll_directory(str(d.resolve()))
+                        # Also prepend to PATH just in case
+                        os.environ["PATH"] = (
+                            ";".join([str(d.resolve()) for d in nvidia_bins])
+                            + ";"
+                            + os.environ.get("PATH", "")
+                        )
+                except Exception:
+                    pass
+
+            from paddleocr import PaddleOCR
+
+            # Map languages list to a single language string for PaddleOCR (e.g. 'en')
+            lang = self.languages[0] if self.languages else "en"
+            self._paddle_reader = PaddleOCR(
+                use_angle_cls=True,
+                lang=lang,
+                use_gpu=self.gpu,
+                show_log=False,
+            )
+        return self._paddle_reader
 
     def extract_text(self, image: np.ndarray | Image.Image | torch.Tensor) -> str:
         """
@@ -59,16 +105,28 @@ class OCRPipeline:
         """
         img = self._to_numpy(image)
 
-        # Run OCR
-        results = self.reader.readtext(img)
+        if self.engine == "paddleocr":
+            # Run PaddleOCR
+            results = self.paddle_reader.ocr(img, cls=True)
+            texts = []
+            if results and results[0]:
+                for line in results[0]:
+                    text = line[1][0]
+                    confidence = line[1][1]
+                    if confidence >= self.confidence_threshold:
+                        texts.append(text)
+            return " ".join(texts)
+        else:
+            # Run EasyOCR
+            results = self.reader.readtext(img)
 
-        # Filter by confidence and extract text
-        texts = []
-        for _, text, confidence in results:
-            if confidence >= self.confidence_threshold:
-                texts.append(text)
+            # Filter by confidence and extract text
+            texts = []
+            for _, text, confidence in results:
+                if confidence >= self.confidence_threshold:
+                    texts.append(text)
 
-        return " ".join(texts)
+            return " ".join(texts)
 
     def extract_text_with_boxes(self, image: np.ndarray | Image.Image | torch.Tensor) -> list[dict]:
         """
@@ -82,26 +140,51 @@ class OCRPipeline:
         """
         img = self._to_numpy(image)
 
-        results = self.reader.readtext(img)
+        if self.engine == "paddleocr":
+            # Run PaddleOCR
+            results = self.paddle_reader.ocr(img, cls=True)
+            detections = []
+            if results and results[0]:
+                for line in results[0]:
+                    box = line[0]
+                    text = line[1][0]
+                    confidence = line[1][1]
+                    if confidence >= self.confidence_threshold:
+                        # Convert box points [[x1, y1], [x2, y2], ...] to (x, y, w, h)
+                        x_coords = [p[0] for p in box]
+                        y_coords = [p[1] for p in box]
+                        x, y = min(x_coords), min(y_coords)
+                        w, h = max(x_coords) - x, max(y_coords) - y
+                        detections.append(
+                            {
+                                "text": text,
+                                "bbox": (int(x), int(y), int(w), int(h)),
+                                "confidence": confidence,
+                            }
+                        )
+            return detections
+        else:
+            # Run EasyOCR
+            results = self.reader.readtext(img)
 
-        detections = []
-        for box, text, confidence in results:
-            if confidence >= self.confidence_threshold:
-                # Convert bbox to (x, y, w, h) format
-                x_coords = [p[0] for p in box]
-                y_coords = [p[1] for p in box]
-                x, y = min(x_coords), min(y_coords)
-                w, h = max(x_coords) - x, max(y_coords) - y
+            detections = []
+            for box, text, confidence in results:
+                if confidence >= self.confidence_threshold:
+                    # Convert bbox to (x, y, w, h) format
+                    x_coords = [p[0] for p in box]
+                    y_coords = [p[1] for p in box]
+                    x, y = min(x_coords), min(y_coords)
+                    w, h = max(x_coords) - x, max(y_coords) - y
 
-                detections.append(
-                    {
-                        "text": text,
-                        "bbox": (int(x), int(y), int(w), int(h)),
-                        "confidence": confidence,
-                    }
-                )
+                    detections.append(
+                        {
+                            "text": text,
+                            "bbox": (int(x), int(y), int(w), int(h)),
+                            "confidence": confidence,
+                        }
+                    )
 
-        return detections
+            return detections
 
     def normalize_text(self, text: str) -> str:
         """

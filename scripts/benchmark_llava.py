@@ -59,7 +59,9 @@ MAX_NEW_TOKENS = 20
 _model_cache: dict[str, tuple[Any, Any]] = {}
 
 
-def _load_model(model_id: str, device: str, quantize: str = "none") -> tuple[Any, Any]:
+def _load_model(
+    model_id: str, device: str, quantize: str = "none", lora_path: str | None = None
+) -> tuple[Any, Any]:
     """Load processor + model; cached after first call.
 
     Args:
@@ -68,8 +70,9 @@ def _load_model(model_id: str, device: str, quantize: str = "none") -> tuple[Any
         quantize: Quantization mode - 'none' (fp16), '4bit', or '8bit'.
             4-bit quantization reduces VRAM from ~14 GB to ~5 GB,
             enabling inference on 12 GB consumer GPUs.
+        lora_path: Path to fine-tuned LoRA adapter checkpoint directory.
     """
-    key = f"{model_id}:{device}:{quantize}"
+    key = f"{model_id}:{device}:{quantize}:{lora_path}"
     if key in _model_cache:
         return _model_cache[key]
 
@@ -95,10 +98,42 @@ def _load_model(model_id: str, device: str, quantize: str = "none") -> tuple[Any
         load_kwargs["dtype"] = torch.float16
 
     model = LlavaForConditionalGeneration.from_pretrained(model_id, **load_kwargs)
+
+    if lora_path:
+        from peft import PeftModel
+
+        print(f"  Loading LoRA adapters from {lora_path} …")
+        model = PeftModel.from_pretrained(model, lora_path)
+        try:
+            model = model.merge_and_unload()
+            print("  Merged LoRA weights successfully.")
+        except Exception as e:
+            print(f"  Running with active adapters (unmerged): {e}")
+
     model.eval()
 
     _model_cache[key] = (processor, model)
     return processor, model
+
+
+def load_ocr_transcripts(split: str, ocr_engine: str, embeddings_dir: Path) -> dict[str, str]:
+    """Load OCR-extracted texts from any pre-existing NPZ file for the split and engine."""
+    files = list(embeddings_dir.glob(f"{split}_*_{ocr_engine}.npz"))
+    if not files:
+        files = list(embeddings_dir.glob(f"{split}_*_ocr_{ocr_engine}.npz"))
+
+    if not files:
+        print(
+            f"WARNING: No pre-extracted OCR NPZ file found for split '{split}' and engine '{ocr_engine}' in {embeddings_dir}. "
+        )
+        return {}
+
+    file_path = files[0]
+    print(f"Loading OCR transcripts from {file_path}...")
+    data = np.load(file_path, allow_pickle=True)
+    image_ids = data["image_ids"]
+    raw_texts = data["raw_texts"]
+    return {str(img_id): str(txt) for img_id, txt in zip(image_ids, raw_texts, strict=True)}
 
 
 _REFUSAL_PHRASES = [
@@ -162,6 +197,9 @@ def run_benchmark(
     batch_size: int = 4,
     quantize: str = "none",
     task: str = "singleclass",
+    lora_path: str | None = None,
+    use_ocr: bool = False,
+    ocr_engine: str = "easyocr",
 ) -> dict[str, Any]:
     """Run LLaVA on the MAMI 2022 misogyny classification task.
 
@@ -175,13 +213,14 @@ def run_benchmark(
         batch_size: Images per forward pass.
         quantize: Quantization mode ('none', '4bit', '8bit').
         task: 'singleclass' for binary misogyny; 'multiclass' for multi-label sub-types.
+        lora_path: Path to fine-tuned LoRA adapters.
     """
     if not _TRANSFORMERS_AVAILABLE:
         raise RuntimeError("transformers not available. Install: uv sync --group vlm-gpu")
     if not torch.cuda.is_available() and device.startswith("cuda"):
         raise RuntimeError("CUDA not available. Pass --device cpu for testing only.")
 
-    processor, model = _load_model(model_id, device, quantize=quantize)
+    processor, model = _load_model(model_id, device, quantize=quantize, lora_path=lora_path)
 
     if samples is None:
         samples = collect_samples(split, limit=limit)
@@ -189,10 +228,23 @@ def run_benchmark(
         raise ValueError(f"No samples for split '{split}'")
 
     if task == "multiclass":
-        return _run_benchmark_multiclass(processor, model, samples, split, preprocess, batch_size)
+        return _run_benchmark_multiclass(
+            processor,
+            model,
+            samples,
+            split,
+            preprocess,
+            batch_size,
+            use_ocr=use_ocr,
+            ocr_engine=ocr_engine,
+        )
 
     labels = MISOGYNY_LABELS  # ["yes", "no"]
-    prompt_text = build_misogyny_prompt()
+    base_prompt_text = build_misogyny_prompt()
+
+    ocr_map = None
+    if use_ocr:
+        ocr_map = load_ocr_transcripts(split, ocr_engine, RESULTS_DIR / "embeddings")
 
     pipeline = PreprocessingPipeline() if preprocess else None
     results: list[ClassificationResult] = []
@@ -210,6 +262,14 @@ def run_benchmark(
             if pipeline is not None and preprocess is not None:
                 arr = pipeline.apply_transformation(arr, preprocess)
             pil = Image.fromarray(arr)
+            # Construct dynamic prompt incorporating OCR text if present
+            image_id = str(s["image_id"])
+            if ocr_map and image_id in ocr_map:
+                ocr_text = ocr_map[image_id].strip()
+                prompt_text = f'This meme contains the text: "{ocr_text}". {base_prompt_text}'
+            else:
+                prompt_text = base_prompt_text
+
             conversation = [
                 {
                     "role": "user",
@@ -270,9 +330,15 @@ def _run_benchmark_multiclass(
     split: str,
     preprocess: str | None,
     batch_size: int = 4,
+    use_ocr: bool = False,
+    ocr_engine: str = "easyocr",
 ) -> dict[str, Any]:
     """Run LLaVA on multiclass: multi-label sub-type classification."""
-    prompt_text = build_subtype_prompt()
+    base_prompt_text = build_subtype_prompt()
+
+    ocr_map = None
+    if use_ocr:
+        ocr_map = load_ocr_transcripts(split, ocr_engine, RESULTS_DIR / "embeddings")
     # multiclass needs more tokens for the comma-separated list response
     max_new_tokens_multiclass = 60
     pipeline = PreprocessingPipeline() if preprocess else None
@@ -294,6 +360,14 @@ def _run_benchmark_multiclass(
             if pipeline is not None and preprocess is not None:
                 arr = pipeline.apply_transformation(arr, preprocess)
             pil = Image.fromarray(arr)
+            # Construct dynamic prompt incorporating OCR text if present
+            image_id = str(s["image_id"])
+            if ocr_map and image_id in ocr_map:
+                ocr_text = ocr_map[image_id].strip()
+                prompt_text = f'This meme contains the text: "{ocr_text}". {base_prompt_text}'
+            else:
+                prompt_text = base_prompt_text
+
             conversation = [
                 {
                     "role": "user",
@@ -473,13 +547,31 @@ def main() -> None:
         choices=["singleclass", "multiclass"],
         help="'singleclass' = binary misogyny (default); 'multiclass' = multi-label sub-types",
     )
+    parser.add_argument(
+        "--lora-path",
+        default=None,
+        help="Path to fine-tuned LoRA adapters directory",
+    )
+    parser.add_argument(
+        "--use-ocr",
+        action="store_true",
+        help="Use OCR-extracted text instead of dataset transcripts",
+    )
+    parser.add_argument(
+        "--ocr-engine",
+        default="easyocr",
+        choices=["easyocr", "paddleocr"],
+        help="OCR engine to load transcripts for",
+    )
     args = parser.parse_args()
 
     # MAMI has no hidden visual content, so preprocessing filters do not help.
     # Default to "none"; pass --filters explicitly only for a deliberate ablation.
     filters_to_run = [f.strip() for f in args.filters.split(",")] if args.filters else ["none"]
 
-    print(f"Split: {args.split} | Filters: {filters_to_run} | Limit: {args.limit}")
+    print(
+        f"Split: {args.split} | Filters: {filters_to_run} | Limit: {args.limit} | LoRA Path: {args.lora_path}"
+    )
 
     # Load model FIRST (before dataset) to avoid bitsandbytes crash.
     # The 4-bit quantization CUDA kernels are sensitive to memory state;
@@ -487,7 +579,7 @@ def main() -> None:
     # during weight conversion on Windows. Loading the model while RAM
     # is clean avoids this.
     print("Pre-loading model …")
-    _load_model(args.model_id, args.device, quantize=args.quantize)
+    _load_model(args.model_id, args.device, quantize=args.quantize, lora_path=args.lora_path)
 
     samples = collect_samples(args.split, limit=args.limit)
     print(f"Loaded {len(samples)} samples")
@@ -504,6 +596,9 @@ def main() -> None:
             batch_size=args.batch_size,
             quantize=args.quantize,
             task=args.task,
+            lora_path=args.lora_path,
+            use_ocr=args.use_ocr,
+            ocr_engine=args.ocr_engine,
         )
         all_results.append(result)
         acc = result.get("exact_match_accuracy", 0.0)
@@ -512,7 +607,8 @@ def main() -> None:
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     split_slug = args.split.replace(",", "_")
     suffix = "_multiclass" if args.task == "multiclass" else ""
-    out = RESULTS_DIR / f"llava_{split_slug}{suffix}.json"
+    path_suffix = "_finetuned" if args.lora_path else ""
+    out = RESULTS_DIR / f"llava_{split_slug}{suffix}{path_suffix}.json"
     out.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
     print(f"\nSaved {len(all_results)} filter rows to {out}")
 
