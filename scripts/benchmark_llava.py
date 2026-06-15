@@ -608,7 +608,9 @@ def main() -> None:
     split_slug = args.split.replace(",", "_")
     suffix = "_multiclass" if args.task == "multiclass" else ""
     path_suffix = "_finetuned" if args.lora_path else ""
-    out = RESULTS_DIR / f"llava_{split_slug}{suffix}{path_suffix}.json"
+    # Include the model id so different models never overwrite each other.
+    model_slug = args.model_id.split("/")[-1].lower().replace("-", "_").replace(".", "_")
+    out = RESULTS_DIR / f"llava_{split_slug}_{model_slug}{suffix}{path_suffix}.json"
     out.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
     print(f"\nSaved {len(all_results)} filter rows to {out}")
 

@@ -98,10 +98,18 @@ def main() -> None:
         all_results.append(result)
 
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    split_slug = args.split.replace(",", "_")
     suffix = "_multiclass" if args.task == "multiclass" else ""
-    # Add model suffix to output name if custom weights loaded
-    path_suffix = "_finetuned" if args.model_path else ""
-    out = RESULTS_DIR / f"clip_{args.split}{suffix}{path_suffix}.json"
+    if args.model_path:
+        # Include the checkpoint name so different models/tasks never overwrite each other,
+        # e.g. clip_validation_finetuned_singleclass_vit_b_32_quickgelu.json
+        model_slug = Path(args.model_path).stem
+        prefix = "finetuned_clip_classification_"
+        if model_slug.startswith(prefix):
+            model_slug = model_slug[len(prefix) :]
+        out = RESULTS_DIR / f"clip_{split_slug}_finetuned_{model_slug}.json"
+    else:
+        out = RESULTS_DIR / f"clip_{split_slug}{suffix}.json"
     out.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
     print(f"\nSaved {len(all_results)} filter rows to {out}")
 

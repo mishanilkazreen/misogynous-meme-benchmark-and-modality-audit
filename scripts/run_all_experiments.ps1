@@ -2,8 +2,14 @@
 # PowerShell script to run all content moderation & OCR-augmented VLM experiments sequentially, fastest first.
 
 $ErrorActionPreference = "Stop"
+# Abort on the first failing native command (uv/python). Without this, a non-zero
+# exit code from uv/python does NOT stop the script, so failures cascade silently.
+$PSNativeCommandUseErrorActionPreference = $true
 
-# Set offline mode environment variables to speed up HF model loading from local cache
+# Set offline mode environment variables to speed up HF model loading from local cache.
+# NOTE: every model used below must already be in the local HF cache, otherwise the
+# run fails with OfflineModeIsEnabled. Pre-download missing models first (see
+# scripts/predownload_models.ps1) before enabling offline mode.
 $env:HF_HUB_OFFLINE = 1
 $env:HF_OFFLINE = 1
 
@@ -11,7 +17,7 @@ Write-Host "=== Starting all content moderation experiments ===" -ForegroundColo
 
 # 1. Setup & Download
 Write-Host "[1/7] Syncing dependencies and downloading dataset..." -ForegroundColor Yellow
-uv sync --group vlm-gpu
+uv sync --extra vlm-gpu
 uv run python scripts/download_dataset.py
 
 # 2. Extract OCR & Embeddings
@@ -29,11 +35,11 @@ Write-Host "[4/7] Training and evaluating CLIP classification heads..." -Foregro
 # Binary ViT-B-32
 uv run python scripts/train_clip.py --model ViT-B-32-quickgelu --epochs 5 --batch-size 16 --loss-mode classification --task singleclass --device cuda --use-ocr --ocr-engine paddleocr
 uv run python scripts/benchmark_clip.py --split validation --device cuda --model-path results/models/finetuned_clip_classification_singleclass_vit_b_32_quickgelu.pth --use-ocr --ocr-engine paddleocr
-# Binary ViT-L-14
-uv run python scripts/train_clip.py --model ViT-L-14-quickgelu --epochs 5 --batch-size 16 --loss-mode classification --task singleclass --device cuda --use-ocr --ocr-engine paddleocr
+# Binary ViT-L-14 (batch 4: full fine-tune of ViT-L-14 in fp32 exceeds 12 GB VRAM at batch 16)
+uv run python scripts/train_clip.py --model ViT-L-14-quickgelu --epochs 5 --batch-size 4 --loss-mode classification --task singleclass --device cuda --use-ocr --ocr-engine paddleocr
 uv run python scripts/benchmark_clip.py --split validation --device cuda --model-path results/models/finetuned_clip_classification_singleclass_vit_l_14_quickgelu.pth --use-ocr --ocr-engine paddleocr
-# Multiclass ViT-L-14
-uv run python scripts/train_clip.py --model ViT-L-14-quickgelu --epochs 5 --batch-size 16 --loss-mode classification --task multiclass --device cuda --use-ocr --ocr-engine paddleocr
+# Multiclass ViT-L-14 (batch 4 for the same VRAM reason)
+uv run python scripts/train_clip.py --model ViT-L-14-quickgelu --epochs 5 --batch-size 4 --loss-mode classification --task multiclass --device cuda --use-ocr --ocr-engine paddleocr
 uv run python scripts/benchmark_clip.py --split validation --device cuda --model-path results/models/finetuned_clip_classification_multiclass_vit_l_14_quickgelu.pth --use-ocr --ocr-engine paddleocr --task multiclass
 
 # 5. Train & Evaluate Qwen2-VL-2B (~2.5 hours)
