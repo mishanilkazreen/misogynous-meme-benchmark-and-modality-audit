@@ -280,3 +280,7 @@ task_4/
 # Ignore large pre-extracted embeddings
 results/embeddings/
 *.npz
+
+# Ignore large model checkpoints and adapters
+results/models/
+*.safetensors
