@@ -276,3 +276,7 @@ results/figures/yolo_detections_ww2_yolov8n.png
 # VLM documentation scratch folder
 vlm_docs/
 task_4/
+
+# Ignore large pre-extracted embeddings
+results/embeddings/
+*.npz
