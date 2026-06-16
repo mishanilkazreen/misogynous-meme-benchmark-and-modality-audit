@@ -6,11 +6,11 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64G
 #SBATCH --time=24:00:00
-#SBATCH --output=runs/slurm_experiments_%j.out
-#SBATCH --error=runs/slurm_experiments_%j.err
+#SBATCH --output=runs/slurm_logs/experiments_%j.log
+#SBATCH --error=runs/slurm_logs/experiments_%j.err
 
-# Ensure the runs directory exists for logging
-mkdir -p runs
+# Ensure the logs directory exists for logging
+mkdir -p runs/slurm_logs
 
 echo "=== SLURM Job Started ==="
 echo "Node: $(hostname)"
