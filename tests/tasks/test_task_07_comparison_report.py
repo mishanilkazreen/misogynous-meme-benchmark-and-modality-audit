@@ -26,4 +26,4 @@ def test_comparison_report_references_benchmarks() -> None:
     """Report should cite both benchmark JSON files."""
     text = REPORT.read_text()
     assert "yolo_benchmark.json" in text
-    assert "vlm_benchmark.json" in text
+    assert "clip_validation.json" in text
