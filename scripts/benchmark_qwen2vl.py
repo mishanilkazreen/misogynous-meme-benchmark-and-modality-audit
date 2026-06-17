@@ -610,13 +610,14 @@ def main() -> None:
         acc = result.get("exact_match_accuracy", 0.0)
         print(f"  acc={acc:.3f}  refusals={result.get('refusal_rate', 0.0):.2%}")
 
-    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    split_dir = RESULTS_DIR / ("test" if "test" in args.split else "validation")
+    split_dir.mkdir(parents=True, exist_ok=True)
     split_slug = args.split.replace(",", "_")
     suffix = "_multiclass" if args.task == "multiclass" else ""
     path_suffix = "_finetuned" if args.lora_path else ""
     # Include the model id so different model sizes (e.g. 2B vs 7B) never overwrite each other.
     model_slug = args.model_id.split("/")[-1].lower().replace("-", "_").replace(".", "_")
-    out = RESULTS_DIR / f"qwen2vl_{split_slug}_{model_slug}{suffix}{path_suffix}.json"
+    out = split_dir / f"qwen2vl_{split_slug}_{model_slug}{suffix}{path_suffix}.json"
     out.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
     print(f"\nSaved {len(all_results)} filter rows to {out}")
 

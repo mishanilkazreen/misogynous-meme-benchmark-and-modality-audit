@@ -97,7 +97,8 @@ def main() -> None:
         )
         all_results.append(result)
 
-    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    split_dir = RESULTS_DIR / ("test" if "test" in args.split else "validation")
+    split_dir.mkdir(parents=True, exist_ok=True)
     split_slug = args.split.replace(",", "_")
     suffix = "_multiclass" if args.task == "multiclass" else ""
     if args.model_path:
@@ -107,9 +108,9 @@ def main() -> None:
         prefix = "finetuned_clip_classification_"
         if model_slug.startswith(prefix):
             model_slug = model_slug[len(prefix) :]
-        out = RESULTS_DIR / f"clip_{split_slug}_finetuned_{model_slug}.json"
+        out = split_dir / f"clip_{split_slug}_finetuned_{model_slug}.json"
     else:
-        out = RESULTS_DIR / f"clip_{split_slug}{suffix}.json"
+        out = split_dir / f"clip_{split_slug}{suffix}.json"
     out.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
     print(f"\nSaved {len(all_results)} filter rows to {out}")
 

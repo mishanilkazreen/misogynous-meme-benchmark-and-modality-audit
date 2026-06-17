@@ -353,12 +353,13 @@ def main() -> None:
         acc = result.get("exact_match_accuracy", 0.0)
         print(f"  acc={acc:.3f}  refusals={result.get('refusal_rate', 0.0):.2%}")
 
-    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    split_dir = RESULTS_DIR / ("test" if "test" in args.split else "validation")
+    split_dir.mkdir(parents=True, exist_ok=True)
     split_slug = args.split.replace(",", "_")
     if args.task == "multiclass":
-        out = RESULTS_DIR / f"visualbert_{split_slug}_multiclass.json"
+        out = split_dir / f"visualbert_{split_slug}_multiclass.json"
     else:
-        out = RESULTS_DIR / f"visualbert_{split_slug}.json"
+        out = split_dir / f"visualbert_{split_slug}.json"
     out.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
     print(f"\nSaved {len(all_results)} filter rows to {out}")
 

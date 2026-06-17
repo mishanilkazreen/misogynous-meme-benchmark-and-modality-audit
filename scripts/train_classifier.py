@@ -28,6 +28,8 @@ from models.vlm.metrics_multilabel import compute_multilabel_metrics
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger(__name__)
 
+RESULTS_DIR = Path(__file__).resolve().parents[1] / "results"
+
 SUBTYPE_LABELS = ["shaming", "stereotype", "objectification", "violence"]
 
 
@@ -292,9 +294,9 @@ def main() -> None:
             }
         )
 
-    val_json_path = (
-        output_dir.parent / f"{args.classifier}_validation_{args.classifier}_{args.task}.json"
-    )
+    val_dir = RESULTS_DIR / "validation"
+    val_dir.mkdir(parents=True, exist_ok=True)
+    val_json_path = val_dir / f"{args.classifier}_validation_{args.classifier}_{args.task}.json"
     val_json_path.write_text(json.dumps(val_results, indent=2), encoding="utf-8")
     logger.info("Saved validation metrics JSON to %s", val_json_path)
 
@@ -349,9 +351,9 @@ def main() -> None:
                 }
             )
 
-        test_json_path = (
-            output_dir.parent / f"{args.classifier}_test_{args.classifier}_{args.task}.json"
-        )
+        test_dir = RESULTS_DIR / "test"
+        test_dir.mkdir(parents=True, exist_ok=True)
+        test_json_path = test_dir / f"{args.classifier}_test_{args.classifier}_{args.task}.json"
         test_json_path.write_text(json.dumps(test_results, indent=2), encoding="utf-8")
         logger.info("Saved test metrics JSON to %s", test_json_path)
 
