@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=vlm-test-evaluation
 #SBATCH --partition=gpu.q
+#SBATCH --nodelist=gpu10,gpu11,gpu12
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:1
