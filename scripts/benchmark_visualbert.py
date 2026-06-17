@@ -360,7 +360,7 @@ def main() -> None:
         out = split_dir / f"visualbert_{split_slug}_multiclass.json"
     else:
         out = split_dir / f"visualbert_{split_slug}.json"
-    out.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
+    out.write_text(json.dumps(all_results, indent=2) + "\n", encoding="utf-8")
     print(f"\nSaved {len(all_results)} filter rows to {out}")
 
 

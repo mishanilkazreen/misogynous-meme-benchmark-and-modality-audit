@@ -618,7 +618,7 @@ def main() -> None:
     # Include the model id so different model sizes (e.g. 2B vs 7B) never overwrite each other.
     model_slug = args.model_id.split("/")[-1].lower().replace("-", "_").replace(".", "_")
     out = split_dir / f"qwen2vl_{split_slug}_{model_slug}{suffix}{path_suffix}.json"
-    out.write_text(json.dumps(all_results, indent=2), encoding="utf-8")
+    out.write_text(json.dumps(all_results, indent=2) + "\n", encoding="utf-8")
     print(f"\nSaved {len(all_results)} filter rows to {out}")
 
 
