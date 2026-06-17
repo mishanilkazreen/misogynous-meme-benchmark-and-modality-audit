@@ -12,6 +12,14 @@ PowerShell:
 .\scripts\run_all_experiments.ps1
 ```
 
+> **Compute environment note:** The majority of experiments (steps 3–7) were
+> executed on the [SCIAMA HPC cluster](https://sciama.icg.port.ac.uk/sciama-wp/)
+> at the University of Portsmouth, using NVIDIA L40 GPUs (48 GB VRAM) via SLURM
+> batch jobs (`scripts/submit_experiments.slurm`). Because SCIAMA compute nodes
+> run offline (no internet access), the Gemini API evaluation
+> (`scripts/benchmark_gemini.py`) was run separately on an internet-enabled
+> local machine. See `README.md § Compute Environment` for full hardware specs.
+
 ---
 
 ## Expected Execution Times per Model and Task (12GB+ VRAM GPU)

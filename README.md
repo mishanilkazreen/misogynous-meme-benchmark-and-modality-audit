@@ -126,6 +126,38 @@ NF4 quantization** by default (via `bitsandbytes`), reducing VRAM from
 > runtime against a 13.2 runtime. CUDA 12.8 works on all RTX 30/40
 > series and data-centre Ampere/Hopper GPUs.
 
+### Compute Environment
+
+Experiments were run across two compute environments:
+
+| Environment | Used For | Hardware |
+|---|---|---|
+| **SCIAMA HPC Cluster** (University of Portsmouth) | All GPU-intensive training (VLM QLoRA fine-tuning, CLIP head training, XGBoost) and local-model evaluation (CLIP, VisualBERT, LLaVA, Qwen2-VL) | NVIDIA L40 GPUs (48 GB VRAM each), via SLURM `gpu.q` partition on `gpu10`/`gpu11`/`gpu12` nodes |
+| **Local machine** (internet-enabled) | Gemini API zero-shot evaluation (requires internet for Google API calls) | CPU-only (API-based inference, no local GPU required) |
+
+**SCIAMA Supercomputer Specifications:**
+The [Dennis Sciama High Performance Compute Cluster](https://sciama.icg.port.ac.uk/sciama-wp/)
+(SCIAMA) is operated by the Institute of Cosmology and Gravitation (ICG) at the
+University of Portsmouth, UK. It was built in 2011 and is currently in its fourth
+iteration. The cluster is named after Dennis Sciama, a leading figure in the
+development of astrophysics and cosmology, and is also an acronym for *SEPnet
+Computing Infrastructure for Astrophysical Modelling and Analysis*. Key specs:
+
+- **3,648 CPU cores** across 63 compute nodes
+- **14× NVIDIA A100 GPUs** (40 GB VRAM each) on `gpu01`/`gpu02` nodes (128 cores per node)
+- **6× NVIDIA L40 GPUs** (48 GB VRAM each) on `gpu10`/`gpu11`/`gpu12` nodes
+- **1.8 PB Lustre** high-performance parallel filesystem
+- **QDR InfiniBand** networking with 100 Gb/s throughput (4× EDR)
+- **4 login nodes**, 1 JupyterHub application node
+- **1 DELL ML3 Tape Library** (80 tapes, 1 PB archival capacity)
+- **Job scheduler:** SLURM
+
+> **Why two environments?** The SCIAMA compute nodes run offline (no internet
+> access), so cloud API evaluations (Gemini, GPT-4o-mini) must be run on an
+> internet-enabled machine. All other experiments — including the full training
+> pipeline and local-model benchmarking — were executed on SCIAMA's L40 GPU nodes
+> via SLURM batch jobs (see `scripts/submit_experiments.slurm`).
+
 ### Model overview
 
 | Model | Size | Download | VRAM (4-bit) | VRAM (fp16) |
