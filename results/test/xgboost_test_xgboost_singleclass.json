@@ -1,0 +1,11 @@
+[
+  {
+    "model": "xgboost",
+    "filter": "none",
+    "split": "test",
+    "task": "singleclass",
+    "exact_match_accuracy": 0.73,
+    "f1": 0.7194408768407796,
+    "macro_f1": 0.7194408768407796
+  }
+]

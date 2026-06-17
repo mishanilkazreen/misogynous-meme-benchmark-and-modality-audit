@@ -253,8 +253,14 @@ yolo_test_results.png
 # Ignore generated training and benchmark outputs
 results/trained_models/
 results/*.jsonl
-# results/*.json   # show vlm results
-!results/yolo_benchmark*.json
+
+# Track benchmark result JSONs explicitly by split subfolder
+# - results/validation/  → validation-split metrics (committed)
+# - results/test/        → final test-split metrics (committed)
+# - results/*.json       → misc root-level JSONs (committed, e.g. catalogues, label stats)
+# Anything else (e.g. scratch/intermediate files) should live outside results/
+!results/validation/
+!results/test/
 !results/figures/
 
 
@@ -267,7 +273,6 @@ results/*.jsonl
 vlm_docs/
 models/yolo/trainer.py
 tests/unit/test_train_yolo.py
-yolo_benchmark.json
 ww2/*
 results/figures/yolo_detections_ww2_best.png
 results/figures/yolo_detections_ww2_yolo11n.png
