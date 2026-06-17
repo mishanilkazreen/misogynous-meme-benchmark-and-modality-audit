@@ -249,15 +249,17 @@ def main() -> None:
         print(
             classification_report(val_y, val_preds, target_names=["not misogynous", "misogynous"])
         )
-        val_results.append({
-            "model": args.classifier,
-            "filter": "none",
-            "split": "validation",
-            "task": args.task,
-            "exact_match_accuracy": float(acc),
-            "f1": float(f1_macro),
-            "macro_f1": float(f1_macro)
-        })
+        val_results.append(
+            {
+                "model": args.classifier,
+                "filter": "none",
+                "split": "validation",
+                "task": args.task,
+                "exact_match_accuracy": float(acc),
+                "f1": float(f1_macro),
+                "macro_f1": float(f1_macro),
+            }
+        )
     else:
         # Format predicted matrix to list of dicts for compute_multilabel_metrics
         pred_dicts = []
@@ -278,17 +280,21 @@ def main() -> None:
                 f"Recall={scores['recall']:.4f}, F1={scores['f1']:.4f} "
                 f"(Support={scores['support']})"
             )
-        val_results.append({
-            "model": args.classifier,
-            "filter": "none",
-            "split": "validation",
-            "task": args.task,
-            "exact_match_accuracy": float(metrics["exact_match_accuracy"]),
-            "f1": float(metrics["macro_f1"]),
-            "macro_f1": float(metrics["macro_f1"])
-        })
+        val_results.append(
+            {
+                "model": args.classifier,
+                "filter": "none",
+                "split": "validation",
+                "task": args.task,
+                "exact_match_accuracy": float(metrics["exact_match_accuracy"]),
+                "f1": float(metrics["macro_f1"]),
+                "macro_f1": float(metrics["macro_f1"]),
+            }
+        )
 
-    val_json_path = output_dir.parent / f"{args.classifier}_validation_{args.classifier}_{args.task}.json"
+    val_json_path = (
+        output_dir.parent / f"{args.classifier}_validation_{args.classifier}_{args.task}.json"
+    )
     val_json_path.write_text(json.dumps(val_results, indent=2), encoding="utf-8")
     logger.info("Saved validation metrics JSON to %s", val_json_path)
 
@@ -309,15 +315,17 @@ def main() -> None:
             f1_macro = f1_score(test_y, test_preds, average="macro")
             print(f"Accuracy : {acc:.4f}")
             print(f"Macro F1 : {f1_macro:.4f}")
-            test_results.append({
-                "model": args.classifier,
-                "filter": "none",
-                "split": "test",
-                "task": args.task,
-                "exact_match_accuracy": float(acc),
-                "f1": float(f1_macro),
-                "macro_f1": float(f1_macro)
-            })
+            test_results.append(
+                {
+                    "model": args.classifier,
+                    "filter": "none",
+                    "split": "test",
+                    "task": args.task,
+                    "exact_match_accuracy": float(acc),
+                    "f1": float(f1_macro),
+                    "macro_f1": float(f1_macro),
+                }
+            )
         else:
             pred_dicts = []
             gt_dicts = []
@@ -329,17 +337,21 @@ def main() -> None:
             metrics = compute_multilabel_metrics(pred_dicts, gt_dicts, SUBTYPE_LABELS)
             print(f"Exact Match Accuracy: {metrics['exact_match_accuracy']:.4f}")
             print(f"Macro F1             : {metrics['macro_f1']:.4f}")
-            test_results.append({
-                "model": args.classifier,
-                "filter": "none",
-                "split": "test",
-                "task": args.task,
-                "exact_match_accuracy": float(metrics["exact_match_accuracy"]),
-                "f1": float(metrics["macro_f1"]),
-                "macro_f1": float(metrics["macro_f1"])
-            })
+            test_results.append(
+                {
+                    "model": args.classifier,
+                    "filter": "none",
+                    "split": "test",
+                    "task": args.task,
+                    "exact_match_accuracy": float(metrics["exact_match_accuracy"]),
+                    "f1": float(metrics["macro_f1"]),
+                    "macro_f1": float(metrics["macro_f1"]),
+                }
+            )
 
-        test_json_path = output_dir.parent / f"{args.classifier}_test_{args.classifier}_{args.task}.json"
+        test_json_path = (
+            output_dir.parent / f"{args.classifier}_test_{args.classifier}_{args.task}.json"
+        )
         test_json_path.write_text(json.dumps(test_results, indent=2), encoding="utf-8")
         logger.info("Saved test metrics JSON to %s", test_json_path)
 

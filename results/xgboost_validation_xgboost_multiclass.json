@@ -1,0 +1,11 @@
+[
+  {
+    "model": "xgboost",
+    "filter": "none",
+    "split": "validation",
+    "task": "multiclass",
+    "exact_match_accuracy": 0.633,
+    "f1": 0.447457,
+    "macro_f1": 0.447457
+  }
+]

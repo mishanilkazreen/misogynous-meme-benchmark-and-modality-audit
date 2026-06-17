@@ -94,8 +94,9 @@ models_info = [
         "val_b": "visualbert_validation_multiclass.json",
         "test_a": "visualbert_test.json",
         "test_b": "visualbert_test_multiclass.json",
-    }
+    },
 ]
+
 
 def load_metrics(filename: str | None) -> tuple[float | None, float | None]:
     if not filename:
@@ -104,7 +105,9 @@ def load_metrics(filename: str | None) -> tuple[float | None, float | None]:
 
     # Fallback to check if a combined test_validation file is used
     if not filepath.exists() and "test" in filename:
-        combined_filename = filename.replace("_test.json", "_test_validation.json").replace("_test_multiclass.json", "_test_validation_multiclass.json")
+        combined_filename = filename.replace("_test.json", "_test_validation.json").replace(
+            "_test_multiclass.json", "_test_validation_multiclass.json"
+        )
         filepath = RESULTS_DIR / combined_filename
 
     if not filepath.exists():
@@ -130,13 +133,20 @@ def load_metrics(filename: str | None) -> tuple[float | None, float | None]:
     except Exception:
         return None, None
 
+
 def main() -> None:
     print("# MAMI 2022 Misogyny Classification - Consolidated Validation & Test Results\n")
 
     headers = [
         "Model Name",
-        "Val A Acc", "Val A F1", "Test A Acc", "Test A F1",
-        "Val B EM", "Val B F1", "Test B EM", "Test B F1"
+        "Val A Acc",
+        "Val A F1",
+        "Test A Acc",
+        "Test A F1",
+        "Val B EM",
+        "Val B F1",
+        "Test B EM",
+        "Test B F1",
     ]
 
     col_widths = [38, 10, 10, 10, 10, 10, 10, 10, 10]
@@ -154,23 +164,22 @@ def main() -> None:
         test_b_em, test_b_f1 = load_metrics(m["test_b"])
 
         # Format strings
-        v_a_acc = f"{val_a_acc*100:.1f}%" if val_a_acc is not None else "N/A"
+        v_a_acc = f"{val_a_acc * 100:.1f}%" if val_a_acc is not None else "N/A"
         v_a_f1 = f"{val_a_f1:.4f}" if val_a_f1 is not None else "N/A"
-        t_a_acc = f"{test_a_acc*100:.1f}%" if test_a_acc is not None else "N/A"
+        t_a_acc = f"{test_a_acc * 100:.1f}%" if test_a_acc is not None else "N/A"
         t_a_f1 = f"{test_a_f1:.4f}" if test_a_f1 is not None else "N/A"
 
-        v_b_em = f"{val_b_em*100:.1f}%" if val_b_em is not None else "N/A"
+        v_b_em = f"{val_b_em * 100:.1f}%" if val_b_em is not None else "N/A"
         v_b_f1 = f"{val_b_f1:.4f}" if val_b_f1 is not None else "N/A"
-        t_b_em = f"{test_b_em*100:.1f}%" if test_b_em is not None else "N/A"
+        t_b_em = f"{test_b_em * 100:.1f}%" if test_b_em is not None else "N/A"
         t_b_f1 = f"{test_b_f1:.4f}" if test_b_f1 is not None else "N/A"
 
-        row_values = [
-            m["name"],
-            v_a_acc, v_a_f1, t_a_acc, t_a_f1,
-            v_b_em, v_b_f1, t_b_em, t_b_f1
-        ]
-        row_str = " | ".join(f"{val!s:<{w}}" for val, w in zip(row_values, col_widths, strict=False))
+        row_values = [m["name"], v_a_acc, v_a_f1, t_a_acc, t_a_f1, v_b_em, v_b_f1, t_b_em, t_b_f1]
+        row_str = " | ".join(
+            f"{val!s:<{w}}" for val, w in zip(row_values, col_widths, strict=False)
+        )
         print(f"| {row_str} |")
+
 
 if __name__ == "__main__":
     main()
