@@ -257,6 +257,12 @@ uv run python scripts/lint_markdown.py
 uv run pre-commit run --all-files
 ```
 
+## Benchmark Results & SOTA Comparison
+
+The performance of our zero-shot and fine-tuned models on MAMI 2022 is tracked and compared against SOTA literature benchmarks in the following resources:
+- **GitHub Gist (Results & SOTA Comparison):** [Gist Link]([redacted-gist-link])
+- **Detailed Literature Review:** [literature_review.md](file://[redacted-path]/papers/literature_review.md)
+
 ## Project layout
 
 ```text
