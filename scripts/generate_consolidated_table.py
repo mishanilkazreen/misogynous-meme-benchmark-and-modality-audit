@@ -73,8 +73,8 @@ models_info = [
         "name": "Qwen2-VL-2B (Zero-Shot)",
         "val_a": VAL_DIR / "qwen2vl_validation.json",
         "val_b": VAL_DIR / "qwen2vl_validation_multiclass.json",
-        "test_a": TEST_DIR / "qwen2vl_test.json",
-        "test_b": TEST_DIR / "qwen2vl_test_multiclass.json",
+        "test_a": TEST_DIR / "qwen2vl_test_qwen2_vl_2b_instruct.json",
+        "test_b": TEST_DIR / "qwen2vl_test_qwen2_vl_2b_instruct_multiclass.json",
     },
     {
         "name": "LLaVA-1.5-7B (QLoRA Fine-Tuned)",
