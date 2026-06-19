@@ -1,0 +1,8 @@
+system:
+  os: "windows"
+  base_dir: "C:/Github/auto_benchmark"
+
+paths:
+  data_dir: "data_files"
+  results_dir: "results"
+  models_dir: "models"

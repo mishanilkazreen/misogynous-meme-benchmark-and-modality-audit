@@ -1,0 +1,21 @@
+# Configuration for text model explainers
+
+model_config_name: "text_model_tfidf"
+model_to_explain: "best"
+
+explainers: "all"  # will run shap, lime, permutation importance, surrogate
+
+shap_settings:
+  max_display: 20
+  n_background: 50
+
+lime_settings:
+  n_instances: 3
+  n_features: 10
+
+permutation_settings:
+  n_repeats: 3
+  top_n: 15
+
+surrogate_settings:
+  test_size: 0.2

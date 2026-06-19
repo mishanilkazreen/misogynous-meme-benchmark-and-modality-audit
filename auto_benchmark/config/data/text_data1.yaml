@@ -1,0 +1,21 @@
+dataset:
+  filepath: "data_files/gtd.csv"
+  data_type: "text"                 # options: tabular, text
+  target_column: "success"
+  text_column: "summary"
+  classification_type: "binary"     # options: binary, multiclass
+  row_limit: 1000                   # limit to 1000 rows as requested
+  
+preprocessing:
+  text_features: "both"             # options: tfidf, embeddings, both
+  tfidf_max_features: 1000          # limit vocabulary size for TF-IDF
+  embeddings_model: "all-MiniLM-L6-v2"  # SentenceTransformer/HuggingFace model name (e.g., distilbert-base-nli-mean-tokens, all-mpnet-base-v2, distilbert-base-uncased)
+  use_smote: false                  # class imbalance (usually false for high-dim text)
+  test_size: 0.2
+  random_state: 4711
+
+data_analysis:
+  word_cloud:
+    enabled: true
+    text_column: "summary"
+    target_column: "success"

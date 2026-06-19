@@ -289,3 +289,13 @@ results/embeddings/
 # Ignore large model checkpoints and adapters
 results/models/
 *.safetensors
+
+# Ignore nested auto_benchmark local files/folders
+auto_benchmark/.venv/
+auto_benchmark/results/
+auto_benchmark/models/
+auto_benchmark/data_files/
+auto_benchmark/*.joblib
+auto_benchmark/*.npz
+auto_benchmark/*.csv
+auto_benchmark/*.xlsx

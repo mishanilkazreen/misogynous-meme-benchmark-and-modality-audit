@@ -1,0 +1,19 @@
+# VLM (Vision-Language Model) Model Benchmarking Configuration
+
+data_config_name: "vlm_data1"   # references config/data/vlm_data1.yaml
+config_name: "vlm_benchmark1"   # output prefix for files
+
+# List of VLM models to benchmark
+models_to_run:
+  - name: "Florence-2-Base"
+    model_id: "microsoft/Florence-2-base"
+    type: "florence"
+    quantization: null          # quantization options: '4bit', '8bit', or null
+    
+  - name: "Qwen2-VL-2B"
+    model_id: "Qwen/Qwen2-VL-2B-Instruct"
+    type: "qwen2_vl"
+    quantization: null          # quantization options: '4bit', '8bit', or null
+
+# Metric used to rank models (options: Accuracy, F1, Precision, Recall)
+optimize_metric: "Accuracy"

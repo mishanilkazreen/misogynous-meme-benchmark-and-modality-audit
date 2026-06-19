@@ -1,0 +1,20 @@
+dataset:
+  filepath: "data_files/gtd.csv"
+  data_type: "text"
+  target_column: "success"
+  text_column: "summary"
+  classification_type: "binary"
+  row_limit: 1000
+  
+preprocessing:
+  text_features: "tfidf"             # Only TF-IDF
+  tfidf_max_features: 1000
+  use_smote: false
+  test_size: 0.2
+  random_state: 4711
+
+data_analysis:
+  word_cloud:
+    enabled: true
+    text_column: "summary"
+    target_column: "success"

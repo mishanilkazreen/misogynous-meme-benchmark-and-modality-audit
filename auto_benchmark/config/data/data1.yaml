@@ -1,0 +1,23 @@
+dataset:
+  filepath: "data_files/PIRUS_V4.csv"
+  data_type: "tabular"              # options: tabular (future: text, image)
+  target_column: "Violent"
+  classification_type: "binary"     # options: binary, multiclass
+  
+  # Specify features as "all" to use all columns (except target and excluded columns),
+  # or list specific columns to include.
+  features: "all"
+  
+  # Columns to explicitly exclude (useful when features = "all")
+  exclude_columns:
+    - "Subject_ID"
+    - "Year_Exposure"
+    - "Radicalization_Far_Right"     # We can exclude other target/unused columns
+
+preprocessing:
+  missing_value_handling: "mean"    # options: mean (median/mode), zero, ignore
+  scaling: "standard"               # options: standard, minmax, robust, none
+  categorical_encoding: "onehot"    # options: onehot, ordinal, none
+  use_smote: true                   # handle class imbalance (binary only)
+  test_size: 0.2
+  random_state: 4711

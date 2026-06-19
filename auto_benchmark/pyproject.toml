@@ -1,0 +1,37 @@
+[project]
+name = "autobenchmark"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "sunnyannanas", email = "annaroesner16@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "imbalanced-learn>=0.14.2",
+    "joblib>=1.5.3",
+    "lightgbm>=4.6.0",
+    "lime>=0.2.0.1",
+    "matplotlib>=3.10.9",
+    "nltk>=3.9.4",
+    "numpy>=2.4.6",
+    "openpyxl>=3.1.5",
+    "pandas>=3.0.3",
+    "pyyaml>=6.0.3",
+    "scikit-learn>=1.9.0",
+    "sentence-transformers>=5.5.1",
+    "shap>=0.52.0",
+    "ultralytics>=8.3.0",
+    "torchvision",
+    "einops",
+    "timm",
+    "wordcloud>=1.9.6",
+    "xgboost>=3.2.0",
+]
+
+[project.scripts]
+autobench = "autobenchmark.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.10.4,<0.11.0"]
+build-backend = "uv_build"

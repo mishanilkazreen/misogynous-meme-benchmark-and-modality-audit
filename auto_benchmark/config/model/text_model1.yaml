@@ -1,0 +1,13 @@
+data_config_name: "text_data1"       # references config/data/text_data1.yaml (excluding extension)
+
+# List of models to run, or "all" to run all supported models
+# Supported models include standard estimators + MultinomialNB, ComplementNB
+models_to_run: "all"
+
+cv_settings:
+  run_cv: true
+  folds: 5                          # 5-fold cross-validation
+
+optimize_metric: "f1"               # options: accuracy, f1, precision, recall, roc_auc
+hp_optimization: "none"             # options: none, grid, random
+save_models: true
