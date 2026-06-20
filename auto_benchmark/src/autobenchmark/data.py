@@ -3,6 +3,9 @@ Data loading and preprocessing module for the autobenchmark package.
 Supports CSV/Excel loading, train-test split, imputation, scaling,
 categorical encoding, and class imbalance handling (SMOTE).
 """
+# pylint: disable=invalid-name, import-outside-toplevel, too-many-locals, too-many-branches, too-many-statements
+# pylint: disable=redefined-outer-name, reimported, too-many-nested-blocks, broad-exception-caught, line-too-long
+# pylint: disable=import-error
 
 import os
 import re
@@ -499,10 +502,12 @@ def prepare_data(df, data_config, init_config=None):
                 for img_name in tqdm(images, desc="Extracting image features"):
                     img_path = os.path.join(image_dir, img_name)
                     if not os.path.exists(img_path):
-                        # Fallback for subfolders e.g. image_dir/images/img_name
-                        fallback = os.path.join(image_dir, "images", img_name)
-                        if os.path.exists(fallback):
-                            img_path = fallback
+                        # Fallback for training_images, test_images, or images subfolders
+                        for sub in ["training_images", "test_images", "images"]:
+                            fallback = os.path.join(image_dir, sub, img_name)
+                            if os.path.exists(fallback):
+                                img_path = fallback
+                                break
 
                     try:
                         with Image.open(img_path) as img:

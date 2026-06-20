@@ -12,4 +12,5 @@ preprocessing:
   embeddings_model: "all-MiniLM-L6-v2"
   image_backbone: "resnet50"
   image_size: 224
+  test_size: 0.1
   random_state: 4711

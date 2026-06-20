@@ -10,7 +10,6 @@ Usage:
 """
 
 import argparse
-import contextlib
 from pathlib import Path
 import sys
 
@@ -39,6 +38,8 @@ def download_coco8(output_dir: str) -> str:
     # The simplest way: just load a tiny model and val on coco8.yaml.
     # Ultralytics auto-downloads the dataset on first reference.
     model = YOLO("yolov8n.pt")
+
+    import contextlib
 
     # Run a single-image validation to trigger the download
     with contextlib.suppress(Exception):

@@ -89,7 +89,7 @@ def main():
     data = np.load(data_path, allow_pickle=True)
     X_train = data["X_train"]
     X_test = data["X_test"]
-    data["y_train"]
+    y_train = data["y_train"]
     y_test = data["y_test"]
     feat_labels = data["feat_labels"].tolist() if "feat_labels" in data else None
 
@@ -150,8 +150,9 @@ def main():
             print(f"Warning: Model file not found at {model_file}. Skipping.")
             continue
 
-        print(f"\n--- Explaining Model: {model_name} ---")
         model = joblib.load(model_file)
+
+        print(f"\n--- Explaining Model: {model_name} ---")
 
         # If it is a text dataset, run textual explainers (highlighting LIME and SHAP)
         if is_text:

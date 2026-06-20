@@ -107,7 +107,7 @@ def main():
 
     overall_unc_records = []
 
-    for _idx, row in df_results.iterrows():
+    for _, row in df_results.iterrows():
         model_name = row["Model"]
         safe_name = re.sub(r"[^a-zA-Z0-9_-]", "_", model_name)
         model_file = os.path.join(models_subfolder, f"{model_config_name}_{safe_name}.joblib")
