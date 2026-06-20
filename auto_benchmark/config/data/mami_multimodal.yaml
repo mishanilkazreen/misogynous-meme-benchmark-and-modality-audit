@@ -1,10 +1,10 @@
 dataset:
-  filepath: "data_files/mami_train_val.csv"
+  filepath: "data_files/mami_full.csv"
   data_type: "multimodal"
   target_column: "label"
   text_column: "text"
   image_column: "file_name"
-  image_directory: "/mnt/lustre2/mres/ghahrem/.cache/kagglehub/datasets/chukwuebukaanulunko/multimodal-misogyny-detection-mami-2022/versions/1/MAMI_2022_images/training_images"
+  image_directory: "/mnt/lustre2/mres/ghahrem/.cache/kagglehub/datasets/chukwuebukaanulunko/multimodal-misogyny-detection-mami-2022/versions/1/MAMI_2022_images"
   classification_type: "binary"
 
 preprocessing:
@@ -12,5 +12,4 @@ preprocessing:
   embeddings_model: "all-MiniLM-L6-v2"
   image_backbone: "resnet50"
   image_size: 224
-  test_size: 0.1
   random_state: 4711

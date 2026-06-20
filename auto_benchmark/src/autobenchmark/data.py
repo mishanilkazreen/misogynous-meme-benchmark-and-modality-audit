@@ -159,9 +159,14 @@ def prepare_data(df, data_config, init_config=None):
         random_state = prep_cfg.get('random_state', 4711)
         stratify_y = y if classification_type in ['binary', 'multiclass'] else None
         
-        idx_train, idx_test = train_test_split(
-            np.arange(len(y)), test_size=test_size, random_state=random_state, stratify=stratify_y
-        )
+        if 'split' in df.columns:
+            idx_train = np.where(df['split'] != 'test')[0]
+            idx_test = np.where(df['split'] == 'test')[0]
+            print(f"Using pre-defined split column: {len(idx_train)} train, {len(idx_test)} test")
+        else:
+            idx_train, idx_test = train_test_split(
+                np.arange(len(y)), test_size=test_size, random_state=random_state, stratify=stratify_y
+            )
         
         y_train, y_test = y[idx_train], y[idx_test]
         
