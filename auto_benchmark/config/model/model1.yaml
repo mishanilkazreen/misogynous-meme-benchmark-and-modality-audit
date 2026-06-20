@@ -1,11 +1,11 @@
 data_config_name: "data1"           # references config/data/data1.yaml (excluding extension)
 
 # List of models to run, or "all" to run all supported models
-# Supported models: ['KNN', 'Logistic Regression', 'SGD Classifier', 'Ridge Classifier', 
-# 'Perceptron', 'PassiveAggressiveClassifier', 'Linear Discriminant Analysis', 
-# 'Quadratic Discriminant Analysis', 'Support Vector Machine - LinearSVC', 
-# 'Bernoulli Naive Bayes', 'Gaussian Naive Bayes', 'Decision Tree', 'Random Forest', 
-# 'Hist Gradient Boosting Classifier', 'Gradient Boosting Classifier', 'XGBoost', 
+# Supported models: ['KNN', 'Logistic Regression', 'SGD Classifier', 'Ridge Classifier',
+# 'Perceptron', 'PassiveAggressiveClassifier', 'Linear Discriminant Analysis',
+# 'Quadratic Discriminant Analysis', 'Support Vector Machine - LinearSVC',
+# 'Bernoulli Naive Bayes', 'Gaussian Naive Bayes', 'Decision Tree', 'Random Forest',
+# 'Hist Gradient Boosting Classifier', 'Gradient Boosting Classifier', 'XGBoost',
 # 'LightGBM', 'Extra Trees Classifier', 'AdaBoost Classifier', 'Bagging Classifier']
 models_to_run: "all"
 

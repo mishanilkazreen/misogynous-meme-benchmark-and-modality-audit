@@ -9,7 +9,7 @@ models_to_run:
     model_id: "microsoft/Florence-2-base"
     type: "florence"
     quantization: null          # quantization options: '4bit', '8bit', or null
-    
+
   - name: "Qwen2-VL-2B"
     model_id: "Qwen/Qwen2-VL-2B-Instruct"
     type: "qwen2_vl"

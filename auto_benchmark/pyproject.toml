@@ -3,10 +3,8 @@ name = "autobenchmark"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-authors = [
-    { name = "sunnyannanas", email = "annaroesner16@gmail.com" }
-]
-requires-python = ">=3.14"
+authors = [{ name = "sunnyannanas", email = "annaroesner16@gmail.com" }]
+requires-python = ">=3.12"
 dependencies = [
     "imbalanced-learn>=0.14.2",
     "joblib>=1.5.3",
@@ -22,6 +20,7 @@ dependencies = [
     "sentence-transformers>=5.5.1",
     "shap>=0.52.0",
     "ultralytics>=8.3.0",
+    "torch",
     "torchvision",
     "einops",
     "timm",
@@ -35,3 +34,113 @@ autobench = "autobenchmark.cli:main"
 [build-system]
 requires = ["uv_build>=0.10.4,<0.11.0"]
 build-backend = "uv_build"
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cu128", marker = "sys_platform != 'darwin'" },
+]
+torchvision = [
+    { index = "pytorch-cu128", marker = "sys_platform != 'darwin'" },
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.19.1",
+    "pre-commit>=4.5.1",
+    "ruff>=0.14.10",
+    "types-pyyaml>=6.0.12.20250915",
+    "types-tqdm>=4.67.0.20250809",
+    "pytest>=8.0.0",
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+extend-exclude = ["*.ps1"]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+    "ARG", # flake8-unused-arguments
+    "SIM", # flake8-simplify
+    "PTH", # flake8-use-pathlib
+    "ERA", # eradicate
+    "PL",  # pylint
+    "RUF", # ruff-specific rules
+]
+ignore = [
+    "E501",    # line too long (handled by formatter)
+    "PLR0913", # too many arguments
+    "PLR0912", # too many branches
+    "PLR0915", # too many statements
+    "PLR2004", # magic value used in comparison
+    "ARG002",  # unused method argument
+    "PLC0415", # import should be at top level (allow lazy imports)
+    "RUF001",  # ambiguous unicode (allow for test cases)
+    "PLR0911", # too many return statements
+    "RUF012",  # mutable class attributes (allow for constants)
+    "PTH",     # ignore pathlib rewrite recommendations
+    "PLW2901", # ignore overwritten loop variables in torch train loops
+    "PLW0603", # ignore global statement usage for cached variables
+    "ARG001",  # ignore unused function arguments
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = [
+    "S101",    # use of assert
+    "PLR2004", # magic values in tests
+    "ARG001",  # unused function arguments (fixtures)
+    "B011",    # assert False in tests
+]
+"scripts/**/*.py" = [
+    "T201",    # print statements allowed in scripts
+    "F841",    # unused variables in scripts
+  ]
+
+[tool.ruff.lint.isort]
+known-first-party = ["autobenchmark", "tests"]
+force-sort-within-sections = true
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+check_untyped_defs = true
+disallow_untyped_decorators = false
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[[tool.mypy.overrides]]
+module = [
+    "autobenchmark.vlm_bench",
+    "autobenchmark.image_classification",
+    "autobenchmark.yolo_models",
+    "autobenchmark.explain",
+    "autobenchmark.data",
+    "autobenchmark.models",
+]
+ignore_errors = true

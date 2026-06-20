@@ -5,7 +5,7 @@ dataset:
   text_column: "summary"
   classification_type: "binary"
   row_limit: 1000
-  
+
 preprocessing:
   text_features: "tfidf"             # Only TF-IDF
   tfidf_max_features: 1000

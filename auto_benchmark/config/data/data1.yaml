@@ -3,11 +3,11 @@ dataset:
   data_type: "tabular"              # options: tabular (future: text, image)
   target_column: "Violent"
   classification_type: "binary"     # options: binary, multiclass
-  
+
   # Specify features as "all" to use all columns (except target and excluded columns),
   # or list specific columns to include.
   features: "all"
-  
+
   # Columns to explicitly exclude (useful when features = "all")
   exclude_columns:
     - "Subject_ID"
