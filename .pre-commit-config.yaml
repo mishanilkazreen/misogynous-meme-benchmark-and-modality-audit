@@ -52,7 +52,7 @@ repos:
         language: system
         types: [python]
         files: ^(models/|utils/|scripts/)
-        args: ["--errors-only", "-j", "4"]
+        args: ["--errors-only", "-j", "1"]
 
       - id: pylint-autobenchmark
         name: pylint-autobenchmark
@@ -60,7 +60,7 @@ repos:
         language: system
         types: [python]
         files: ^auto_benchmark/src/autobenchmark/
-        args: ["--errors-only", "-j", "4"]
+        args: ["--errors-only", "-j", "1"]
 
       - id: commit-msg-check
         name: commit message format

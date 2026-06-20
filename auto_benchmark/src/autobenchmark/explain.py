@@ -1,22 +1,29 @@
 """
 Explainability and surrogate modeling module for the autobenchmark package.
+
 Supports SHAP (Tree, Linear, Kernel), LIME, Permutation Importance,
 Native Feature Importance, and interpretable Global Surrogates.
 """
+
+# pylint: disable=too-many-arguments,too-many-positional-arguments
+# pylint: disable=too-many-locals,too-many-statements,too-many-branches
+# pylint: disable=import-outside-toplevel,broad-exception-caught
+# pylint: disable=invalid-name
 
 import os
 import re
 
 import matplotlib
 import numpy as np
-
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 from sklearn.inspection import permutation_importance as sk_permutation_importance
 from sklearn.tree import DecisionTreeClassifier, export_text
 
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
 
-def _safe_filename(name):
+
+def _safe_filename(name: str) -> str:
+    """Sanitize a string for use as a filename."""
     return re.sub(r"[^a-zA-Z0-9_-]", "_", name)
 
 
@@ -29,11 +36,134 @@ def _extract_binary_shap_values(shap_values):
     return shap_values
 
 
+def _get_predict_fn(model):
+    """Return predict_proba if available, else predict."""
+    if hasattr(model, "predict_proba"):
+        return model.predict_proba
+    return model.predict
+
+
+def _should_skip_kernel_shap(n_features: int, model_name: str) -> bool:
+    """Check if Kernel SHAP should be skipped due to high dimensionality."""
+    if n_features > 100:
+        print(
+            f"  Skipping SHAP: Model '{model_name}' is not tree/linear "
+            f"and dataset has {n_features} features."
+        )
+        print("    Kernel SHAP is computationally intractable for high-dimensional feature spaces.")
+        return True
+    return False
+
+
+def _plot_shap_multiclass(shap_values, x_test_sub, feat_labels, max_display, model_name, model_dir):
+    """Generate SHAP plots for multiclass models."""
+    import shap
+
+    plt.figure()
+    shap.summary_plot(
+        shap_values,
+        x_test_sub,
+        feature_names=feat_labels,
+        plot_type="bar",
+        max_display=max_display,
+        show=False,
+    )
+    plt.title(f"SHAP Feature Importance (Multiclass) - {model_name}")
+    plt.tight_layout()
+    plt.savefig(os.path.join(model_dir, "shap_bar.png"), dpi=150, bbox_inches="tight")
+    plt.close()
+
+    # Beeswarm plot needs a 2D array, so we explain Class 0
+    plt.figure()
+    sv_class0 = shap_values[0] if isinstance(shap_values, list) else shap_values[:, :, 0]
+    shap.summary_plot(
+        sv_class0,
+        x_test_sub,
+        feature_names=feat_labels,
+        max_display=max_display,
+        show=False,
+    )
+    plt.title(f"SHAP Beeswarm (Class 0) - {model_name}")
+    plt.tight_layout()
+    plt.savefig(os.path.join(model_dir, "shap_beeswarm.png"), dpi=150, bbox_inches="tight")
+    plt.close()
+
+
+def _plot_shap_binary(shap_values, x_test_sub, feat_labels, max_display, model_name, model_dir):
+    """Generate SHAP plots for binary classification models."""
+    import shap
+
+    sv = _extract_binary_shap_values(shap_values)
+
+    plt.figure()
+    shap.summary_plot(
+        sv,
+        x_test_sub,
+        feature_names=feat_labels,
+        plot_type="bar",
+        max_display=max_display,
+        show=False,
+    )
+    plt.title(f"SHAP Feature Importance - {model_name}")
+    plt.tight_layout()
+    plt.savefig(os.path.join(model_dir, "shap_bar.png"), dpi=150, bbox_inches="tight")
+    plt.close()
+
+    plt.figure()
+    shap.summary_plot(
+        sv,
+        x_test_sub,
+        feature_names=feat_labels,
+        max_display=max_display,
+        show=False,
+    )
+    plt.title(f"SHAP Beeswarm - {model_name}")
+    plt.tight_layout()
+    plt.savefig(os.path.join(model_dir, "shap_beeswarm.png"), dpi=150, bbox_inches="tight")
+    plt.close()
+
+
+def _compute_shap_values_tree(model, x_test_sub, bg_samples):
+    """Compute SHAP values for tree-based models with fallbacks."""
+    import shap
+
+    try:
+        explainer = shap.TreeExplainer(model)
+        return explainer.shap_values(x_test_sub)
+    except Exception:
+        pass
+
+    # Fallback: generic Explainer with predict function
+    try:
+        predict_fn = _get_predict_fn(model)
+        explainer = shap.Explainer(predict_fn, bg_samples)
+        explanation = explainer(x_test_sub)
+        return explanation.values  # pylint: disable=no-member
+    except Exception:
+        pass
+
+    # Last resort: KernelExplainer (only if low dimensional)
+    if x_test_sub.shape[1] > 100:
+        raise ValueError(
+            "Tree SHAP failed and features > 100 (Kernel SHAP skipped for performance)."
+        )
+    predict_fn = _get_predict_fn(model)
+    explainer = shap.KernelExplainer(predict_fn, bg_samples)
+    return explainer.shap_values(x_test_sub)
+
+
+def _is_multiclass_shap(shap_values) -> bool:
+    """Check whether SHAP values represent a multiclass problem."""
+    if isinstance(shap_values, list) and len(shap_values) > 2:
+        return True
+    return (
+        isinstance(shap_values, np.ndarray) and shap_values.ndim == 3 and shap_values.shape[2] > 2
+    )
+
+
 # 1. SHAP Explanations
-def run_shap_explanations(model, model_name, X_train, X_test, feat_labels, output_dir, shap_cfg):
-    """
-    Generate global SHAP summary and bar plots.
-    """
+def run_shap_explanations(model, model_name, x_train, x_test, feat_labels, output_dir, shap_cfg):
+    """Generate global SHAP summary and bar plots."""
     import shap
 
     print(f"  Running SHAP for: {model_name}")
@@ -43,138 +173,57 @@ def run_shap_explanations(model, model_name, X_train, X_test, feat_labels, outpu
     max_display = shap_cfg.get("max_display", 20)
     n_background = shap_cfg.get("n_background", 100)
 
-    # Subsample background data to speed up execution
-    bg_samples = shap.sample(X_train, min(n_background, len(X_train)))
+    bg_samples = shap.sample(x_train, min(n_background, len(x_train)))
 
-    # Subsample test set for SHAP to avoid running on too many samples
-    # Kernel SHAP is especially slow, so we limit it to 30; tree/linear can handle 50.
     is_tree = hasattr(model, "feature_importances_")
     is_linear = hasattr(model, "coef_")
 
-    # Check if features are too high for non-tree/non-linear SHAP explainers
-    if not is_tree and not is_linear and X_test.shape[1] > 100:
-        print(
-            f"  Skipping SHAP: Model '{model_name}' is not tree/linear and dataset has {X_test.shape[1]} features."
-        )
-        print("    Kernel SHAP is computationally intractable for high-dimensional feature spaces.")
+    if not is_tree and not is_linear and _should_skip_kernel_shap(x_test.shape[1], model_name):
         return
 
-    if is_tree or is_linear:
-        X_test_sub = X_test[: min(50, len(X_test))]
-    else:
-        X_test_sub = X_test[: min(30, len(X_test))]
+    max_samples = 50 if (is_tree or is_linear) else 30
+    x_test_sub = x_test[: min(max_samples, len(x_test))]
 
     try:
         if is_tree:
-            try:
-                explainer = shap.TreeExplainer(model)
-                shap_values = explainer.shap_values(X_test_sub)
-            except Exception:
-                try:
-                    # Try using Explainer with callable predict function
-                    predict_fn = (
-                        model.predict_proba if hasattr(model, "predict_proba") else model.predict
-                    )
-                    explainer = shap.Explainer(predict_fn, bg_samples)
-                    shap_values = explainer(X_test_sub).values  # pylint: disable=no-member
-                except Exception:
-                    # Fallback to KernelExplainer only if low dimensional
-                    if X_test.shape[1] > 100:
-                        raise ValueError(
-                            "Tree SHAP failed and features > 100 (Kernel SHAP skipped for performance)."
-                        ) from None
-                    predict_fn = (
-                        model.predict_proba if hasattr(model, "predict_proba") else model.predict
-                    )
-                    explainer = shap.KernelExplainer(predict_fn, bg_samples)
-                    shap_values = explainer.shap_values(X_test_sub)
+            shap_values = _compute_shap_values_tree(model, x_test_sub, bg_samples)
         elif is_linear:
             explainer = shap.LinearExplainer(model, bg_samples)
-            shap_values = explainer.shap_values(X_test_sub)
+            shap_values = explainer.shap_values(x_test_sub)
         else:
-            predict_fn = model.predict_proba if hasattr(model, "predict_proba") else model.predict
+            predict_fn = _get_predict_fn(model)
             explainer = shap.KernelExplainer(predict_fn, bg_samples)
-            shap_values = explainer.shap_values(X_test_sub)
+            shap_values = explainer.shap_values(x_test_sub)
 
-        # Check if shap_values is a list (multiclass) or 3D array
-        is_multiclass = False
-        if (isinstance(shap_values, list) and len(shap_values) > 2) or (
-            isinstance(shap_values, np.ndarray)
-            and shap_values.ndim == 3
-            and shap_values.shape[2] > 2
-        ):
-            is_multiclass = True
-
-        if is_multiclass:
-            # Bar plot natively supports multiclass inputs
-            plt.figure()
-            shap.summary_plot(
+        if _is_multiclass_shap(shap_values):
+            _plot_shap_multiclass(
                 shap_values,
-                X_test_sub,
-                feature_names=feat_labels,
-                plot_type="bar",
-                max_display=max_display,
-                show=False,
+                x_test_sub,
+                feat_labels,
+                max_display,
+                model_name,
+                model_dir,
             )
-            plt.title(f"SHAP Feature Importance (Multiclass) - {model_name}")
-            plt.tight_layout()
-            plt.savefig(os.path.join(model_dir, "shap_bar.png"), dpi=150, bbox_inches="tight")
-            plt.close()
-
-            # Beeswarm plot needs a 2D array, so we explain Class 0
-            plt.figure()
-            sv_class0 = shap_values[0] if isinstance(shap_values, list) else shap_values[:, :, 0]
-            shap.summary_plot(
-                sv_class0,
-                X_test_sub,
-                feature_names=feat_labels,
-                max_display=max_display,
-                show=False,
-            )
-            plt.title(f"SHAP Beeswarm (Class 0) - {model_name}")
-            plt.tight_layout()
-            plt.savefig(os.path.join(model_dir, "shap_beeswarm.png"), dpi=150, bbox_inches="tight")
-            plt.close()
         else:
-            sv = _extract_binary_shap_values(shap_values)
-
-            # Plot Bar Summary
-            plt.figure()
-            shap.summary_plot(
-                sv,
-                X_test_sub,
-                feature_names=feat_labels,
-                plot_type="bar",
-                max_display=max_display,
-                show=False,
+            _plot_shap_binary(
+                shap_values,
+                x_test_sub,
+                feat_labels,
+                max_display,
+                model_name,
+                model_dir,
             )
-            plt.title(f"SHAP Feature Importance - {model_name}")
-            plt.tight_layout()
-            plt.savefig(os.path.join(model_dir, "shap_bar.png"), dpi=150, bbox_inches="tight")
-            plt.close()
-
-            # Plot Beeswarm Summary
-            plt.figure()
-            shap.summary_plot(
-                sv, X_test_sub, feature_names=feat_labels, max_display=max_display, show=False
-            )
-            plt.title(f"SHAP Beeswarm - {model_name}")
-            plt.tight_layout()
-            plt.savefig(os.path.join(model_dir, "shap_beeswarm.png"), dpi=150, bbox_inches="tight")
-            plt.close()
 
         print(f"    Saved SHAP plots to: {model_dir}")
-    except Exception as e:
-        print(f"    SHAP analysis failed for {model_name}: {e}")
+    except Exception as exc:
+        print(f"    SHAP analysis failed for {model_name}: {exc}")
 
 
 # 2. LIME Local Explanations
 def run_lime_explanations(
-    model, model_name, X_train, X_test, y_test, feat_labels, output_dir, lime_cfg
+    model, model_name, x_train, x_test, y_test, feat_labels, output_dir, lime_cfg
 ):
-    """
-    Generate local instance explanations using LIME.
-    """
+    """Generate local instance explanations using LIME."""
     from lime import lime_tabular
 
     print(f"  Running LIME for: {model_name}")
@@ -200,7 +249,7 @@ def run_lime_explanations(
             return one_hot
 
     explainer = lime_tabular.LimeTabularExplainer(
-        X_train,
+        x_train,
         feature_names=feat_labels,
         class_names=class_names,
         mode="classification",
@@ -209,45 +258,45 @@ def run_lime_explanations(
 
     # Pick balanced instances from test set
     indices = []
-
     for c in np.unique(y_test_arr):
         cls_indices = np.where(y_test_arr == c)[0]
-        indices.extend(cls_indices[: max(1, n_instances // len(np.unique(y_test_arr)))].tolist())
+        n_per_class = max(1, n_instances // len(np.unique(y_test_arr)))
+        indices.extend(cls_indices[:n_per_class].tolist())
     indices = indices[:n_instances]
 
     num_samples = lime_cfg.get("num_samples", 500)
     for i, idx in enumerate(indices):
         try:
-            pred_probs = predict_fn(X_test[idx].reshape(1, -1))[0]
+            pred_probs = predict_fn(x_test[idx].reshape(1, -1))[0]
             pred_class_idx = np.argmax(pred_probs)
 
             exp = explainer.explain_instance(
-                X_test[idx],
+                x_test[idx],
                 predict_fn,
                 num_features=n_features,
                 labels=(pred_class_idx,),
                 num_samples=num_samples,
             )
             fig = exp.as_pyplot_figure(label=pred_class_idx)
+            true_label = y_test_arr[idx]
+            pred_label = classes[pred_class_idx]
             fig.suptitle(
-                f"LIME - {model_name} - Instance {i} (True={y_test_arr[idx]}, Pred={classes[pred_class_idx]})",
+                f"LIME - {model_name} - Instance {i} (True={true_label}, Pred={pred_label})",
                 fontsize=10,
             )
             fig.tight_layout()
             fig_path = os.path.join(model_dir, f"lime_instance_{i}.png")
             fig.savefig(fig_path, dpi=150)
             plt.close(fig)
-        except Exception as e:
-            print(f"    LIME failed for instance {i}: {e}")
+        except Exception as exc:
+            print(f"    LIME failed for instance {i}: {exc}")
 
     print(f"    Saved LIME plots to: {model_dir}")
 
 
 # 3. Native Feature Importance
 def run_native_importance(model, model_name, feat_labels, output_dir):
-    """
-    Plot native feature importances for tree-based models.
-    """
+    """Plot native feature importances for tree-based models."""
     if not hasattr(model, "feature_importances_"):
         return
 
@@ -270,11 +319,9 @@ def run_native_importance(model, model_name, feat_labels, output_dir):
 
 # 4. Permutation Feature Importance
 def run_permutation_importance(
-    model, model_name, X_test, y_test, feat_labels, output_dir, perm_cfg
+    model, model_name, x_test, y_test, feat_labels, output_dir, perm_cfg
 ):
-    """
-    Generate model-agnostic permutation feature importances.
-    """
+    """Generate model-agnostic permutation feature importances."""
     print(f"  Running Permutation Importance for: {model_name}")
     model_dir = os.path.join(output_dir, _safe_filename(model_name))
     os.makedirs(model_dir, exist_ok=True)
@@ -282,18 +329,18 @@ def run_permutation_importance(
     n_repeats = perm_cfg.get("n_repeats", 10)
     top_n = perm_cfg.get("top_n", 25)
 
-    # Check if features are too high for permutation importance
-    if X_test.shape[1] > 100:
-        print(f"  Skipping Permutation Importance: Dataset has {X_test.shape[1]} features.")
+    if x_test.shape[1] > 100:
+        print(f"  Skipping Permutation Importance: Dataset has {x_test.shape[1]} features.")
         print(
-            "    Permutation importance scales O(N_features) and is too slow for high-dimensional spaces."
+            "    Permutation importance scales O(N_features) "
+            "and is too slow for high-dimensional spaces."
         )
         return
 
     try:
         result = sk_permutation_importance(
             model,
-            X_test,
+            x_test,
             y_test,
             n_repeats=n_repeats,
             random_state=42,
@@ -303,68 +350,183 @@ def run_permutation_importance(
 
         mean_imp = result.importances_mean
         std_imp = result.importances_std
-
         idx = np.argsort(mean_imp)[-top_n:]
 
         plt.figure(figsize=(10, 6))
-        plt.barh([feat_labels[i] for i in idx], mean_imp[idx], xerr=std_imp[idx], color="coral")
+        plt.barh(
+            [feat_labels[i] for i in idx],
+            mean_imp[idx],
+            xerr=std_imp[idx],
+            color="coral",
+        )
         plt.xlabel("Mean Accuracy Decrease")
         plt.title(f"Permutation Feature Importance - {model_name}")
         plt.tight_layout()
         plt.savefig(os.path.join(model_dir, "permutation_importance.png"), dpi=150)
         plt.close()
         print(f"    Saved permutation importance plot to: {model_dir}")
-    except Exception as e:
-        print(f"    Permutation importance failed for {model_name}: {e}")
+    except Exception as exc:
+        print(f"    Permutation importance failed for {model_name}: {exc}")
 
 
 # 5. Global Surrogate Model
 def run_surrogate_model(
-    blackbox_model, model_name, X_train, X_test, feat_labels, output_dir, surrogate_cfg
+    blackbox_model,
+    model_name,
+    x_train,
+    x_test,
+    feat_labels,
+    output_dir,
+    _surrogate_cfg=None,
 ):
-    """
-    Train an interpretable decision tree surrogate model to approximate the blackbox behavior.
-    """
+    """Train an interpretable decision tree surrogate to approximate the blackbox."""
     print(f"  Running Surrogate Decision Tree for: {model_name}")
     model_dir = os.path.join(output_dir, _safe_filename(model_name))
     os.makedirs(model_dir, exist_ok=True)
 
-    # Label targets using blackbox model predictions
-    y_train_surr = blackbox_model.predict(X_train)
-    y_test_surr = blackbox_model.predict(X_test)
+    y_train_surr = blackbox_model.predict(x_train)
+    y_test_surr = blackbox_model.predict(x_test)
 
-    # Fit Decision Tree surrogate
     surrogate = DecisionTreeClassifier(max_depth=4, min_samples_split=10, random_state=42)
-    surrogate.fit(X_train, y_train_surr)
+    surrogate.fit(x_train, y_train_surr)
 
-    # Calculate fidelity (surrogate alignment with blackbox predictions)
-    fidelity_train = surrogate.score(X_train, y_train_surr)
-    fidelity_test = surrogate.score(X_test, y_test_surr)
+    fidelity_train = surrogate.score(x_train, y_train_surr)
+    fidelity_test = surrogate.score(x_test, y_test_surr)
 
-    # Extract rules
     tree_rules = export_text(surrogate, feature_names=feat_labels)
 
-    # Save results
     surr_report_path = os.path.join(model_dir, "surrogate_rules.txt")
-    with open(surr_report_path, "w", encoding="utf-8") as f:
-        f.write("=" * 80 + "\n")
-        f.write(f"GLOBAL DECISION TREE SURROGATE MODEL FOR: {model_name}\n")
-        f.write("=" * 80 + "\n\n")
-        f.write(f"Training Fidelity (align with blackbox): {fidelity_train:.4f}\n")
-        f.write(f"Testing Fidelity (align with blackbox):  {fidelity_test:.4f}\n\n")
-        f.write("Decision Rules:\n")
-        f.write("-" * 40 + "\n")
-        f.write(tree_rules)
-        f.write("=" * 80 + "\n")
+    with open(surr_report_path, "w", encoding="utf-8") as fh:
+        fh.write("=" * 80 + "\n")
+        fh.write(f"GLOBAL DECISION TREE SURROGATE MODEL FOR: {model_name}\n")
+        fh.write("=" * 80 + "\n\n")
+        fh.write(f"Training Fidelity (align with blackbox): {fidelity_train:.4f}\n")
+        fh.write(f"Testing Fidelity (align with blackbox):  {fidelity_test:.4f}\n\n")
+        fh.write("Decision Rules:\n")
+        fh.write("-" * 40 + "\n")
+        fh.write(tree_rules)
+        fh.write("=" * 80 + "\n")
 
     print(f"    Saved surrogate rules to: {surr_report_path}")
     return fidelity_test
 
 
+# 6. Textual Explainers (LIME text + SHAP text)
+def _build_text_predict_fn(model, preprocessor, classes, data_cfg):
+    """Build a prediction function that handles tfidf/embeddings for text."""
+    text_features_mode = "tfidf"
+    if data_cfg:
+        text_features_mode = data_cfg.get("preprocessing", {}).get("text_features", "both")
+
+    sbert_model_cache = [None]
+
+    def _get_sbert_model():
+        if sbert_model_cache[0] is not None:
+            return sbert_model_cache[0]
+
+        from sentence_transformers import SentenceTransformer
+        import torch
+
+        device = "cuda" if torch.cuda.is_available() else "cpu"
+        emb_model_name = "all-MiniLM-L6-v2"
+        if data_cfg:
+            emb_model_name = data_cfg.get("preprocessing", {}).get(
+                "embeddings_model", "all-MiniLM-L6-v2"
+            )
+        print(f"Loading SentenceTransformer: {emb_model_name} for text explanations...")
+        try:
+            sbert_model_cache[0] = SentenceTransformer(emb_model_name, device=device)
+        except Exception as exc:
+            print(f"Failed loading {emb_model_name} online: {exc}. Trying local_files_only=True...")
+            sbert_model_cache[0] = SentenceTransformer(
+                emb_model_name, device=device, local_files_only=True
+            )
+        return sbert_model_cache[0]
+
+    def predict_fn(texts_list):
+        if isinstance(texts_list, np.ndarray):
+            texts_list = texts_list.tolist()
+
+        features_tfidf = None
+        features_emb = None
+
+        if text_features_mode in ("tfidf", "both") and preprocessor is not None:
+            features_tfidf = preprocessor.transform(texts_list).toarray()
+
+        if text_features_mode in ("embeddings", "both"):
+            sbert = _get_sbert_model()
+            light_texts = [re.sub(r"\S*https?:\S*", "", t) for t in texts_list]
+            features_emb = sbert.encode(light_texts, show_progress_bar=False)
+
+        if features_tfidf is not None and features_emb is not None:
+            features = np.hstack([features_tfidf, features_emb])
+        elif features_tfidf is not None:
+            features = features_tfidf
+        else:
+            features = features_emb
+
+        if hasattr(model, "predict_proba"):
+            return model.predict_proba(features)
+
+        preds = model.predict(features)
+        one_hot = np.zeros((len(texts_list), len(classes)))
+        for idx_class, val in enumerate(classes):
+            one_hot[preds == val, idx_class] = 1.0
+        return one_hot
+
+    return predict_fn
+
+
+def _run_textual_lime(predict_fn, texts_test, y_test, class_names, explainer_cfg, model_dir):
+    """Run textual LIME explanations."""
+    from lime.lime_text import LimeTextExplainer
+
+    print("    Running Textual LIME...")
+    lime_explainer = LimeTextExplainer(class_names=class_names)
+
+    y_test_arr = np.array(y_test)
+    indices = []
+    for c in np.unique(y_test_arr):
+        cls_indices = np.where(y_test_arr == c)[0]
+        if len(cls_indices) > 0:
+            indices.append(cls_indices[0])
+    indices = indices[:3]
+
+    num_samples = explainer_cfg.get("lime_settings", {}).get("num_samples", 500)
+    for i, idx in enumerate(indices):
+        raw_text = texts_test[idx]
+        if len(raw_text) > 1000:
+            raw_text = raw_text[:1000] + "..."
+        exp = lime_explainer.explain_instance(
+            raw_text, predict_fn, num_features=10, num_samples=num_samples
+        )
+        lime_html_path = os.path.join(model_dir, f"lime_text_highlight_instance_{i}.html")
+        exp.save_to_file(lime_html_path)
+        print(f"      Saved LIME textual highlight -> {lime_html_path}")
+
+
+def _run_textual_shap(predict_fn, texts_test, model_dir):
+    """Run textual SHAP explanations."""
+    import shap
+
+    print("    Running Textual SHAP...")
+    texts_sub = [texts_test[i] for i in range(min(3, len(texts_test)))]
+
+    masker = shap.maskers.Text(tokenizer=r"\s+")
+    explainer = shap.Explainer(predict_fn, masker)
+    shap_values = explainer(texts_sub)
+
+    shap_html_path = os.path.join(model_dir, "shap_text_highlight.html")
+    html_string = shap.plots.text(shap_values, display=False)
+    with open(shap_html_path, "w", encoding="utf-8") as fh:
+        fh.write(html_string)
+    print(f"      Saved SHAP textual highlight -> {shap_html_path}")
+
+
 def run_text_explainers(
     model,
     model_name,
-    texts_train,
+    _texts_train,
     texts_test,
     y_test,
     preprocessor,
@@ -372,128 +534,24 @@ def run_text_explainers(
     explainer_cfg,
     data_cfg=None,
 ):
-    """
-    Generate textual local explanations (word-highlighting LIME and SHAP).
-    """
-    import os
-    import re
-
-    import numpy as np
-
+    """Generate textual local explanations (word-highlighting LIME and SHAP)."""
     print(f"  Running Textual Explainers for: {model_name}")
     model_dir = os.path.join(output_dir, _safe_filename(model_name))
     os.makedirs(model_dir, exist_ok=True)
 
-    # Define class labels
     classes = getattr(model, "classes_", np.unique(y_test))
     class_names = [f"Class {c}" for c in classes]
 
-    # 1. Define predict function
-    text_features_mode = "tfidf"
-    if data_cfg:
-        text_features_mode = data_cfg.get("preprocessing", {}).get("text_features", "both")
+    predict_fn = _build_text_predict_fn(model, preprocessor, classes, data_cfg)
 
-    sbert_model = None
-
-    def predict_fn(texts_list):
-        if isinstance(texts_list, np.ndarray):
-            texts_list = texts_list.tolist()
-
-        X_tfidf = None
-        X_emb = None
-
-        if text_features_mode in ["tfidf", "both"] and preprocessor is not None:
-            X_tfidf = preprocessor.transform(texts_list).toarray()
-
-        if text_features_mode in ["embeddings", "both"]:
-            nonlocal sbert_model
-            if sbert_model is None:
-                from sentence_transformers import SentenceTransformer
-                import torch
-
-                device = "cuda" if torch.cuda.is_available() else "cpu"
-                emb_model_name = "all-MiniLM-L6-v2"
-                if data_cfg:
-                    emb_model_name = data_cfg.get("preprocessing", {}).get(
-                        "embeddings_model", "all-MiniLM-L6-v2"
-                    )
-                print(f"Loading SentenceTransformer: {emb_model_name} for text explanations...")
-                try:
-                    sbert_model = SentenceTransformer(emb_model_name, device=device)
-                except Exception as e:
-                    print(
-                        f"Failed loading {emb_model_name} online: {e}. Trying local_files_only=True..."
-                    )
-                    sbert_model = SentenceTransformer(
-                        emb_model_name, device=device, local_files_only=True
-                    )
-            light_texts = [re.sub(r"\S*https?:\S*", "", t) for t in texts_list]
-            X_emb = sbert_model.encode(light_texts, show_progress_bar=False)
-
-        if X_tfidf is not None and X_emb is not None:
-            X = np.hstack([X_tfidf, X_emb])
-        elif X_tfidf is not None:
-            X = X_tfidf
-        else:
-            X = X_emb
-
-        if hasattr(model, "predict_proba"):
-            return model.predict_proba(X)
-        else:
-            preds = model.predict(X)
-            one_hot = np.zeros((len(texts_list), len(classes)))
-            for idx_class, val in enumerate(classes):
-                one_hot[preds == val, idx_class] = 1.0
-            return one_hot
-
-    # 2. Textual LIME
+    # Textual LIME
     try:
-        from lime.lime_text import LimeTextExplainer
+        _run_textual_lime(predict_fn, texts_test, y_test, class_names, explainer_cfg, model_dir)
+    except Exception as exc:
+        print(f"    Textual LIME failed: {exc}")
 
-        print("    Running Textual LIME...")
-        lime_text_explainer = LimeTextExplainer(class_names=class_names)
-
-        # Pick 3 test instances balanced by class
-        y_test_arr = np.array(y_test)
-        indices = []
-        for c in np.unique(y_test_arr):
-            cls_indices = np.where(y_test_arr == c)[0]
-            if len(cls_indices) > 0:
-                indices.append(cls_indices[0])  # 1 per class
-        indices = indices[:3]
-
-        num_samples = explainer_cfg.get("lime_settings", {}).get("num_samples", 500)
-        for i, idx in enumerate(indices):
-            raw_text = texts_test[idx]
-            # Limit text length to 1000 characters for readability
-            if len(raw_text) > 1000:
-                raw_text = raw_text[:1000] + "..."
-            exp = lime_text_explainer.explain_instance(
-                raw_text, predict_fn, num_features=10, num_samples=num_samples
-            )
-            lime_html_path = os.path.join(model_dir, f"lime_text_highlight_instance_{i}.html")
-            exp.save_to_file(lime_html_path)
-            print(f"      Saved LIME textual highlight -> {lime_html_path}")
-    except Exception as e:
-        print(f"    Textual LIME failed: {e}")
-
-    # 3. Textual SHAP
+    # Textual SHAP
     try:
-        import shap
-
-        print("    Running Textual SHAP...")
-        # Subsample test set for SHAP to avoid running on too many samples
-        texts_sub = [texts_test[i] for i in range(min(3, len(texts_test)))]
-
-        masker = shap.maskers.Text(tokenizer=r"\s+")
-        explainer = shap.Explainer(predict_fn, masker)
-        shap_values = explainer(texts_sub)
-
-        # Save interactive HTML
-        shap_html_path = os.path.join(model_dir, "shap_text_highlight.html")
-        html_string = shap.plots.text(shap_values, display=False)
-        with open(shap_html_path, "w", encoding="utf-8") as f:
-            f.write(html_string)
-        print(f"      Saved SHAP textual highlight -> {shap_html_path}")
-    except Exception as e:
-        print(f"    Textual SHAP failed: {e}")
+        _run_textual_shap(predict_fn, texts_test, model_dir)
+    except Exception as exc:
+        print(f"    Textual SHAP failed: {exc}")
