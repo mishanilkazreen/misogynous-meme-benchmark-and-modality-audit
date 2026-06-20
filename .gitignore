@@ -299,3 +299,9 @@ auto_benchmark/*.joblib
 auto_benchmark/*.npz
 auto_benchmark/*.csv
 auto_benchmark/*.xlsx
+
+# Ignore large binary model weights in results folders
+results/validation/*/models/
+results/test/*/models/
+results/validation/*/*.joblib
+results/test/*/*.joblib
