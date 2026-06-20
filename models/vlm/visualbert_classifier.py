@@ -22,6 +22,8 @@ The text is tokenized via ``google-bert/bert-base-uncased``.
 Both singleclass (binary yes/no) and multiclass (4-category sub-type) inference are
 supported via the same MLM cloze mechanism.
 """
+# pylint: disable=import-outside-toplevel, redefined-outer-name
+# pylint: disable=too-many-locals
 
 from __future__ import annotations
 
@@ -35,19 +37,17 @@ from models.vlm.classifier import (
     SUBTYPE_LABELS,
     BaseVLMClassifier,
     ClassificationResult,
-    build_misogyny_prompt,  # noqa: F401 — re-exported for convenience
-    extract_label,  # noqa: F401 — re-exported for convenience
-    yesno_to_int,  # noqa: F401 — re-exported for convenience
+    build_misogyny_prompt,  # noqa: F401  # pylint: disable=unused-import
+    extract_label,  # noqa: F401  # pylint: disable=unused-import
+    yesno_to_int,  # noqa: F401  # pylint: disable=unused-import
 )
 
 try:
-    import torch  # noqa: F401
-    from torch import nn  # noqa: F401
-    from torchvision.models import (  # type: ignore[import-untyped]  # noqa: F401
-        ResNet50_Weights,
-        resnet50,
+    import torch  # noqa: F401  # availability check
+    from transformers import (  # type: ignore[import-untyped]
+        AutoTokenizer,
+        VisualBertForPreTraining,
     )
-    from transformers import AutoTokenizer, VisualBertForPreTraining  # type: ignore[import-untyped]
 
     _TRANSFORMERS_AVAILABLE = True
 except (ModuleNotFoundError, ImportError):
@@ -128,8 +128,12 @@ class VisualBERTClassifier(BaseVLMClassifier):
         self._model.eval()
 
         # Resolve the token ids for "yes" and "no" in the BERT vocabulary.
-        self._yes_token_id: int = self._tokenizer.convert_tokens_to_ids("yes")  # type: ignore[assignment]
-        self._no_token_id: int = self._tokenizer.convert_tokens_to_ids("no")  # type: ignore[assignment]
+        self._yes_token_id: int = self._tokenizer.convert_tokens_to_ids(  # type: ignore[assignment]
+            "yes"
+        )
+        self._no_token_id: int = self._tokenizer.convert_tokens_to_ids(  # type: ignore[assignment]
+            "no"
+        )
 
         unk_id = self._tokenizer.unk_token_id
         if self._yes_token_id == unk_id:
@@ -179,7 +183,7 @@ class VisualBERTClassifier(BaseVLMClassifier):
         return feat
 
     def _build_inputs(self, image: np.ndarray, text: str) -> dict[str, Any]:
-        """Tokenize *text* (which must contain ``[MASK]``) and attach *visual_embeds* (1, 10, 2048)."""
+        """Tokenize *text* (must contain ``[MASK]``) and attach *visual_embeds*."""
         import torch
 
         # Text encoding — keep [MASK] as a real mask token, not a UNK

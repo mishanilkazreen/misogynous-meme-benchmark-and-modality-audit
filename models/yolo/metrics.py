@@ -1,3 +1,6 @@
+"""Object-detection evaluation metrics (IoU, AP, mAP)."""
+# pylint: disable=too-many-locals
+
 from __future__ import annotations
 
 from collections.abc import Iterable
@@ -8,6 +11,8 @@ import numpy as np
 
 @dataclass(frozen=True)
 class DetectionPrediction:
+    """A single predicted bounding box with image id and confidence."""
+
     image_id: str
     bbox: tuple[float, float, float, float]
     confidence: float
@@ -15,6 +20,8 @@ class DetectionPrediction:
 
 @dataclass(frozen=True)
 class GroundTruthBox:
+    """A single ground-truth bounding box with image id."""
+
     image_id: str
     bbox: tuple[float, float, float, float]
 
@@ -22,6 +29,7 @@ class GroundTruthBox:
 def intersection_over_union(
     box_a: tuple[float, float, float, float], box_b: tuple[float, float, float, float]
 ) -> float:
+    """Compute IoU between two (x1, y1, x2, y2) boxes."""
     x1 = max(box_a[0], box_b[0])
     y1 = max(box_a[1], box_b[1])
     x2 = min(box_a[2], box_b[2])
@@ -130,6 +138,7 @@ def compute_detection_metrics(
     ground_truths: Iterable[GroundTruthBox],
     iou_threshold: float = 0.5,
 ) -> dict[str, float]:
+    """Compute detection metrics: mAP50, mAP50-95, precision, recall, F1."""
     tp, fp, fn = _match_predictions_to_ground_truths(predictions, ground_truths, iou_threshold)
     precision = tp / (tp + fp) if tp + fp else 0.0
     recall = tp / (tp + fn) if tp + fn else 0.0

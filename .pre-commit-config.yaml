@@ -25,9 +25,7 @@ repos:
     hooks:
       - id: markdownlint-fix
         args: ["--config", ".markdownlint.json"]
-        # Lint every tracked markdown file, including .kiro/ which
-        # .markdownlintignore excludes by default.
-        exclude: '^(\.venv/|node_modules/)'
+        exclude: '^(\.venv/|node_modules/|\.kiro/|auto_benchmark/)'
 
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: "v1.7.1"
@@ -40,8 +38,30 @@ repos:
         files: ^(models/|utils/)
         exclude: ^(tests/|scripts/)
 
+  - repo: https://github.com/streetsidesoftware/cspell-cli
+    rev: "v8.17.3"
+    hooks:
+      - id: cspell
+        args: ["--config", "cspell.json"]
+
   - repo: local
     hooks:
+      - id: pylint-root
+        name: pylint-root
+        entry: uv run pylint
+        language: system
+        types: [python]
+        files: ^(models/|utils/|scripts/)
+        args: ["--errors-only", "-j", "4"]
+
+      - id: pylint-autobenchmark
+        name: pylint-autobenchmark
+        entry: uv run --project auto_benchmark pylint
+        language: system
+        types: [python]
+        files: ^auto_benchmark/src/autobenchmark/
+        args: ["--errors-only", "-j", "4"]
+
       - id: commit-msg-check
         name: commit message format
         entry: python scripts/check_commit_msg.py

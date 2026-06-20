@@ -13,7 +13,10 @@ Transformations include:
 - Gamma Correction: Adjusts brightness/contrast
 - Combined transformations: Histogram+Blur, Gamma+Blur, Blur+Gradient, Blur+Histogram
 """
-# pylint: disable=no-member
+# pylint: disable=no-member, too-many-arguments, too-many-positional-arguments
+# pylint: disable=too-many-instance-attributes, duplicate-code
+
+from collections.abc import Callable
 
 import cv2
 import numpy as np
@@ -185,7 +188,8 @@ class ImageTransformations:
         """
         if len(image.shape) == 2:
             return cv2.equalizeHist(image)
-        elif image.shape[2] == 3:
+
+        if image.shape[2] == 3:
             yuv = cv2.cvtColor(image, cv2.COLOR_RGB2YUV)
             yuv[:, :, 0] = cv2.equalizeHist(yuv[:, :, 0])
             return cv2.cvtColor(yuv, cv2.COLOR_YUV2RGB)
@@ -306,6 +310,32 @@ class PreprocessingPipeline:
         assert img.shape == original_shape, "Preprocessing changed image dimensions"
         return img
 
+    def _build_dispatch(self) -> dict[str, Callable[[np.ndarray], np.ndarray]]:
+        """Build transformation name -> callable dispatch table."""
+        t = self._transforms
+        return {
+            "blur": lambda img: t.gaussian_blur(img, self.blur_kernel_size, self.blur_sigma),
+            "downscale": lambda img: t.downscale(img, self.downscale_factor),
+            "grid": lambda img: t.grid_repetition(img, self.grid_size),
+            "gradient": t.gradient_magnitude,
+            "canny": lambda img: t.canny_edges(img, self.canny_low, self.canny_high),
+            "grayscale": t.grayscale,
+            "histogram": t.histogram_equalization,
+            "gamma": lambda img: t.gamma_correction(img, self.gamma),
+            "histogram_blur": lambda img: t.gaussian_blur(
+                t.histogram_equalization(img), self.blur_kernel_size, self.blur_sigma
+            ),
+            "gamma_blur": lambda img: t.gaussian_blur(
+                t.gamma_correction(img, self.gamma), self.blur_kernel_size, self.blur_sigma
+            ),
+            "blur_gradient": lambda img: t.gradient_magnitude(
+                t.gaussian_blur(img, self.blur_kernel_size, self.blur_sigma)
+            ),
+            "blur_histogram": lambda img: t.histogram_equalization(
+                t.gaussian_blur(img, self.blur_kernel_size, self.blur_sigma)
+            ),
+        }
+
     def apply_transformation(
         self,
         image: np.ndarray | Image.Image | torch.Tensor,
@@ -322,37 +352,10 @@ class PreprocessingPipeline:
             Transformed image
         """
         img = self._to_numpy(image)
-
-        if transformation == "blur":
-            return self._transforms.gaussian_blur(img, self.blur_kernel_size, self.blur_sigma)
-        elif transformation == "downscale":
-            return self._transforms.downscale(img, self.downscale_factor)
-        elif transformation == "grid":
-            return self._transforms.grid_repetition(img, self.grid_size)
-        elif transformation == "gradient":
-            return self._transforms.gradient_magnitude(img)
-        elif transformation == "canny":
-            return self._transforms.canny_edges(img, self.canny_low, self.canny_high)
-        elif transformation == "grayscale":
-            return self._transforms.grayscale(img)
-        elif transformation == "histogram":
-            return self._transforms.histogram_equalization(img)
-        elif transformation == "gamma":
-            return self._transforms.gamma_correction(img, self.gamma)
-        elif transformation == "histogram_blur":
-            img = self._transforms.histogram_equalization(img)
-            return self._transforms.gaussian_blur(img, self.blur_kernel_size, self.blur_sigma)
-        elif transformation == "gamma_blur":
-            img = self._transforms.gamma_correction(img, self.gamma)
-            return self._transforms.gaussian_blur(img, self.blur_kernel_size, self.blur_sigma)
-        elif transformation == "blur_gradient":
-            img = self._transforms.gaussian_blur(img, self.blur_kernel_size, self.blur_sigma)
-            return self._transforms.gradient_magnitude(img)
-        elif transformation == "blur_histogram":
-            img = self._transforms.gaussian_blur(img, self.blur_kernel_size, self.blur_sigma)
-            return self._transforms.histogram_equalization(img)
-        else:
+        dispatch = self._build_dispatch()
+        if transformation not in dispatch:
             raise ValueError(f"Unknown transformation: {transformation}")
+        return dispatch[transformation](img)
 
     def apply_all_transformations(
         self,

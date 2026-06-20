@@ -434,7 +434,7 @@ def _generate_comparison_chart(df_results, metric_name, output_dir, config_name)
 
     _fig, ax = plt.subplots(figsize=(10, max(4, len(successful) * 0.6)))
 
-    colors = plt.cm.viridis(np.linspace(0.2, 0.8, len(successful)))
+    colors = plt.get_cmap("viridis")(np.linspace(0.2, 0.8, len(successful)))
     bars = ax.barh(successful["Model"], successful[metric_col], color=colors)
 
     # Add value labels

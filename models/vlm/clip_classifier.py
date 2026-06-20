@@ -1,4 +1,6 @@
 """CLIP zero-shot image classifier wrapping open_clip."""
+# pylint: disable=too-many-instance-attributes, too-many-locals, too-many-branches
+# pylint: disable=import-outside-toplevel
 
 from __future__ import annotations
 
@@ -8,6 +10,7 @@ import numpy as np
 import open_clip  # type: ignore[import-untyped]
 from PIL import Image
 import torch
+from torch import nn
 
 from models.vlm.classifier import BaseVLMClassifier, ClassificationResult
 
@@ -54,8 +57,6 @@ class CLIPClassifier(BaseVLMClassifier):
             if "classifier.weight" in state_dict:
                 from typing import Any
 
-                from torch import nn
-
                 embed_dim = (
                     self.model.text_projection.shape[1]
                     if hasattr(self.model, "text_projection")
@@ -64,6 +65,8 @@ class CLIPClassifier(BaseVLMClassifier):
                 num_classes = state_dict["classifier.bias"].shape[0]
 
                 class CLIPClassifierHead(nn.Module):
+                    """Linear classification head on top of frozen CLIP."""
+
                     def __init__(self, clip_model: Any, embed_dim: int, num_classes: int) -> None:
                         super().__init__()
                         self.clip = clip_model
@@ -72,6 +75,7 @@ class CLIPClassifier(BaseVLMClassifier):
                     def forward(
                         self, images: torch.Tensor, text_tokens: torch.Tensor
                     ) -> torch.Tensor:
+                        """Fuse image+text embeddings and classify."""
                         image_features = self.clip.encode_image(images)
                         text_features = self.clip.encode_text(text_tokens)
 
@@ -146,7 +150,10 @@ class CLIPClassifier(BaseVLMClassifier):
         results: list[tuple[str, float]] = []
         for start in range(0, len(images), chunk_size):
             chunk = images[start : start + chunk_size]
-            pil_tensors = [self.preprocess(Image.fromarray(img)) for img in chunk]  # type: ignore[operator]
+            pil_tensors = [
+                self.preprocess(Image.fromarray(img))  # type: ignore[operator]
+                for img in chunk
+            ]
             batch = torch.stack(pil_tensors).to(self.device)
 
             if self.is_classification:

@@ -2,6 +2,7 @@
 OCR Pipeline for text extraction from images.
 Integrates EasyOCR for text extraction and provides normalization utilities.
 """
+# pylint: disable=import-outside-toplevel, duplicate-code
 
 import re
 import unicodedata
@@ -64,8 +65,9 @@ class OCRPipeline:
             import sys
 
             if sys.platform == "win32":
-                # Ensure all NVIDIA library directories (like CUDA and cuDNN) in the virtual environment
-                # are added to the DLL search path so Windows can locate cudnn64_8.dll and cublas.
+                # Ensure all NVIDIA library directories (like CUDA and cuDNN) in the
+                # virtual environment are added to the DLL search path so Windows can locate
+                # cudnn64_8.dll and cublas.
                 try:
                     venv_site = Path(sys.prefix) / "Lib" / "site-packages"
                     if venv_site.exists():
@@ -78,7 +80,7 @@ class OCRPipeline:
                             + ";"
                             + os.environ.get("PATH", "")
                         )
-                except Exception:
+                except Exception:  # pylint: disable=broad-exception-caught
                     pass
 
             from paddleocr import PaddleOCR
@@ -116,17 +118,17 @@ class OCRPipeline:
                     if confidence >= self.confidence_threshold:
                         texts.append(text)
             return " ".join(texts)
-        else:
-            # Run EasyOCR
-            results = self.reader.readtext(img)
 
-            # Filter by confidence and extract text
-            texts = []
-            for _, text, confidence in results:
-                if confidence >= self.confidence_threshold:
-                    texts.append(text)
+        # Run EasyOCR
+        results = self.reader.readtext(img)
 
-            return " ".join(texts)
+        # Filter by confidence and extract text
+        texts = []
+        for _, text, confidence in results:
+            if confidence >= self.confidence_threshold:
+                texts.append(text)
+
+        return " ".join(texts)
 
     def extract_text_with_boxes(self, image: np.ndarray | Image.Image | torch.Tensor) -> list[dict]:
         """
@@ -163,28 +165,28 @@ class OCRPipeline:
                             }
                         )
             return detections
-        else:
-            # Run EasyOCR
-            results = self.reader.readtext(img)
 
-            detections = []
-            for box, text, confidence in results:
-                if confidence >= self.confidence_threshold:
-                    # Convert bbox to (x, y, w, h) format
-                    x_coords = [p[0] for p in box]
-                    y_coords = [p[1] for p in box]
-                    x, y = min(x_coords), min(y_coords)
-                    w, h = max(x_coords) - x, max(y_coords) - y
+        # Run EasyOCR
+        results = self.reader.readtext(img)
 
-                    detections.append(
-                        {
-                            "text": text,
-                            "bbox": (int(x), int(y), int(w), int(h)),
-                            "confidence": confidence,
-                        }
-                    )
+        detections = []
+        for box, text, confidence in results:
+            if confidence >= self.confidence_threshold:
+                # Convert bbox to (x, y, w, h) format
+                x_coords = [p[0] for p in box]
+                y_coords = [p[1] for p in box]
+                x, y = min(x_coords), min(y_coords)
+                w, h = max(x_coords) - x, max(y_coords) - y
 
-            return detections
+                detections.append(
+                    {
+                        "text": text,
+                        "bbox": (int(x), int(y), int(w), int(h)),
+                        "confidence": confidence,
+                    }
+                )
+
+        return detections
 
     def normalize_text(self, text: str) -> str:
         """

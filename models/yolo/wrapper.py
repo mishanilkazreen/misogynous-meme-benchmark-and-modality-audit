@@ -1,3 +1,5 @@
+"""Thin wrapper around Ultralytics YOLO for consistent predict/val calls."""
+
 from __future__ import annotations
 
 from pathlib import Path

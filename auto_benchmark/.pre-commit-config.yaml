@@ -29,3 +29,18 @@ repos:
         args: [--ignore-missing-imports]
         files: ^auto_benchmark/(src/autobenchmark/|scripts/)
         exclude: ^auto_benchmark/(tests/)
+
+  - repo: https://github.com/streetsidesoftware/cspell-cli
+    rev: "v8.17.3"
+    hooks:
+      - id: cspell
+
+  - repo: local
+    hooks:
+      - id: pylint
+        name: pylint
+        entry: uv run pylint
+        language: system
+        types: [python]
+        files: ^auto_benchmark/src/autobenchmark/
+        args: ["--errors-only", "-j", "4"]

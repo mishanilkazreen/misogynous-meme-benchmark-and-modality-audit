@@ -56,6 +56,7 @@ dev = [
     "types-pyyaml>=6.0.12.20250915",
     "types-tqdm>=4.67.0.20250809",
     "pytest>=8.0.0",
+    "pylint>=3.0.0",
 ]
 
 [tool.ruff]

@@ -20,7 +20,7 @@ Usage:
     uv run python scripts/benchmark_with_symbol_catalog.py --subset all --model clip
 """
 
-# ruff: noqa: I001  # datasets (via utils.dataset) must precede torch to avoid OpenMP segfault
+# ruff: noqa: I001,ARG001  # datasets (via utils.dataset) must precede torch to avoid OpenMP segfault; ignore ARG001 stubs
 from __future__ import annotations
 
 import argparse
@@ -39,14 +39,54 @@ from models.vlm.prompt_templates import (
 )
 from scripts.benchmark_vlm_classification import (
     ALL_FILTERS,
-    build_sample_rows,
-    build_visibility_block,
-    collect_samples,
     compute_classification_metrics,
     image_to_numpy,
 )
 
 import numpy as np
+
+
+def build_visibility_block(
+    predictions: list,
+    ground_truths: list,
+    visibility_scores: list,
+    labels: list,
+) -> dict:
+    """Stub: HatefulIllusion visibility breakdown — not applicable to MAMI."""
+    return {}
+
+
+def build_sample_rows(
+    samples: list,
+    predictions: list,
+    ground_truths: list,
+    visibility_scores: list | None = None,
+    confidences: list | None = None,
+) -> list:
+    """Local wrapper: HatefulIllusion-style 5-arg form of build_sample_rows."""
+    rows = []
+    for i in range(len(samples)):
+        row: dict = {
+            "image_id": samples[i].get("image_id", ""),
+            "ground_truth": ground_truths[i],
+            "prediction": predictions[i],
+            "correct": predictions[i] == ground_truths[i],
+        }
+        if visibility_scores is not None:
+            row["visibility"] = visibility_scores[i]
+        if confidences is not None:
+            row["confidence"] = round(float(confidences[i]), 4)
+        rows.append(row)
+    return rows
+
+
+def collect_samples(subset: str, limit: int | None = None) -> list[dict]:  # type: ignore[misc]
+    """Stub: HatefulIllusion subset loader — not applicable to MAMI."""
+    raise RuntimeError(
+        "collect_samples in benchmark_with_symbol_catalog is HatefulIllusion-specific "
+        "and cannot be used with the MAMI dataset."
+    )
+
 
 SUBSET_NAMES = ["digits", "hate_slangs", "hate_symbols"]
 RESULTS_DIR = Path(__file__).resolve().parents[1] / "results"

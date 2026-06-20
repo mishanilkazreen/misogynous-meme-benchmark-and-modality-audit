@@ -2,7 +2,7 @@
 Data augmentation utilities for content moderation training.
 Supports rotation, scaling, brightness adjustments.
 """
-# pylint: disable=no-member
+# pylint: disable=no-member, too-many-arguments, too-many-positional-arguments, too-few-public-methods
 
 import random
 
@@ -103,13 +103,13 @@ class DataAugmentation:
             start_y = (new_h - h) // 2
             start_x = (new_w - w) // 2
             return resized[start_y : start_y + h, start_x : start_x + w]
-        else:
-            # Pad with reflection
-            pad_y = (h - new_h) // 2
-            pad_x = (w - new_w) // 2
-            return cv2.copyMakeBorder(
-                resized, pad_y, h - new_h - pad_y, pad_x, w - new_w - pad_x, cv2.BORDER_REFLECT
-            )
+
+        # Pad with reflection
+        pad_y = (h - new_h) // 2
+        pad_x = (w - new_w) // 2
+        return cv2.copyMakeBorder(
+            resized, pad_y, h - new_h - pad_y, pad_x, w - new_w - pad_x, cv2.BORDER_REFLECT
+        )
 
     def _adjust_brightness(self, image: np.ndarray, factor: float) -> np.ndarray:
         """Adjust image brightness."""

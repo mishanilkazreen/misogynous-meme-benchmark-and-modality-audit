@@ -36,12 +36,12 @@ class CLIPClassifierHead(nn.Module):
         self.classifier = nn.Linear(embed_dim * 2, num_classes)
 
     def forward(self, images: torch.Tensor, text_tokens: torch.Tensor) -> torch.Tensor:
-        image_features = self.clip.encode_image(images)
-        text_features = self.clip.encode_text(text_tokens)
+        image_features = self.clip.encode_image(images)  # type: ignore[operator]
+        text_features = self.clip.encode_text(text_tokens)  # type: ignore[operator]
 
         # Normalize features
-        image_features = image_features / image_features.norm(dim=-1, keepdim=True)
-        text_features = text_features / text_features.norm(dim=-1, keepdim=True)
+        image_features = image_features / image_features.norm(dim=-1, keepdim=True)  # type: ignore[operator]
+        text_features = text_features / text_features.norm(dim=-1, keepdim=True)  # type: ignore[operator]
 
         # Concat
         fused = torch.cat([image_features, text_features], dim=-1)
@@ -78,17 +78,17 @@ def train_contrastive(
         optimizer.zero_grad()
 
         # Extract features
-        image_features = model.encode_image(images)
-        text_features = model.encode_text(tokens)
+        image_features = model.encode_image(images)  # type: ignore[operator]
+        text_features = model.encode_text(tokens)  # type: ignore[operator]
 
         # Normalize features
-        image_features = image_features / image_features.norm(dim=-1, keepdim=True)
-        text_features = text_features / text_features.norm(dim=-1, keepdim=True)
+        image_features = image_features / image_features.norm(dim=-1, keepdim=True)  # type: ignore[operator]
+        text_features = text_features / text_features.norm(dim=-1, keepdim=True)  # type: ignore[operator]
 
         # Compute symmetric InfoNCE loss
         # Use logit scale if available, otherwise default to a reasonable scale (e.g. 100)
-        logit_scale = model.logit_scale.exp() if hasattr(model, "logit_scale") else 100.0
-        logits_per_image = logit_scale * image_features @ text_features.t()
+        logit_scale = model.logit_scale.exp() if hasattr(model, "logit_scale") else 100.0  # type: ignore[operator]
+        logits_per_image = logit_scale * image_features @ text_features.t()  # type: ignore[operator]
         logits_per_text = logits_per_image.t()
 
         labels = torch.arange(len(images), device=device)
@@ -105,7 +105,7 @@ def train_contrastive(
 
 
 def train_classification(
-    model: CLIPClassifierHead,
+    model: nn.Module,
     dataloader: DataLoader,
     optimizer: torch.optim.Optimizer,
     tokenizer: Any,

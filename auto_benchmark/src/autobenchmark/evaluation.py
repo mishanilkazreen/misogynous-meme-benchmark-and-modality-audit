@@ -72,7 +72,7 @@ def load_and_evaluate_results(eval_csv_path, metric_to_sort="F1"):
 
     # Ensure correct capitalization
     standard_columns = {c.lower(): c for c in df.columns}
-    col_name = standard_columns.get(metric_to_sort.lower(), None)
+    col_name = standard_columns.get(metric_to_sort.lower())
 
     if col_name is None or col_name not in df.columns:
         print(f"Warning: Metric '{metric_to_sort}' not found. Defaulting to first numeric column.")

@@ -7,12 +7,13 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+from typing import Any
 
 RESULTS_DIR = Path(__file__).resolve().parents[1] / "results"
 VAL_DIR = RESULTS_DIR / "validation"
 TEST_DIR = RESULTS_DIR / "test"
 
-models_info = [
+models_info: list[dict[str, Any]] = [
     {
         "name": "Gemini 1.5 Pro (Zero-Shot)",
         "val_a": VAL_DIR / "gemini_validation.json",
@@ -152,10 +153,10 @@ def main() -> None:
     print(f"| {sep_str} |")
 
     for m in models_info:
-        val_a_acc, val_a_f1 = load_metrics(m["val_a"])
-        test_a_acc, test_a_f1 = load_metrics(m["test_a"])
-        val_b_em, val_b_f1 = load_metrics(m["val_b"])
-        test_b_em, test_b_f1 = load_metrics(m["test_b"])
+        val_a_acc, val_a_f1 = load_metrics(m.get("val_a"))
+        test_a_acc, test_a_f1 = load_metrics(m.get("test_a"))
+        val_b_em, val_b_f1 = load_metrics(m.get("val_b"))
+        test_b_em, test_b_f1 = load_metrics(m.get("test_b"))
 
         # Format strings
         v_a_acc = f"{val_a_acc * 100:.1f}%" if val_a_acc is not None else "N/A"

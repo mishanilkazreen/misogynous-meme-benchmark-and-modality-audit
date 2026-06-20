@@ -76,7 +76,7 @@ def run_shap_explanations(model, model_name, X_train, X_test, feat_labels, outpu
                         model.predict_proba if hasattr(model, "predict_proba") else model.predict
                     )
                     explainer = shap.Explainer(predict_fn, bg_samples)
-                    shap_values = explainer(X_test_sub).values
+                    shap_values = explainer(X_test_sub).values  # pylint: disable=no-member
                 except Exception:
                     # Fallback to KernelExplainer only if low dimensional
                     if X_test.shape[1] > 100:

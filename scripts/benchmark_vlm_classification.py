@@ -444,10 +444,11 @@ def free_model_vram(model_name: str) -> None:
     violation that Python cannot catch).
     """
     try:
+        mod: Any = None
         if model_name == "llava":
-            from scripts import benchmark_llava as mod  # type: ignore[import]
+            from scripts import benchmark_llava as mod  # type: ignore[import,no-redef]
         elif model_name == "qwen2vl":
-            from scripts import benchmark_qwen2vl as mod  # type: ignore[import]
+            from scripts import benchmark_qwen2vl as mod  # type: ignore[import,no-redef]
         else:
             return
         cache = getattr(mod, "_model_cache", None)

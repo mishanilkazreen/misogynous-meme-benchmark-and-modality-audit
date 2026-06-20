@@ -15,6 +15,7 @@ Secondary task (MAMI 2022 Sub-task B): multi-label sub-type classification.
   or "none". Each category is also predictable by CLIP via independent binary
   comparisons using CLIP_SUBTYPE_LABELS.
 """
+# pylint: disable=too-few-public-methods, import-outside-toplevel
 
 from __future__ import annotations
 
@@ -136,7 +137,6 @@ class BaseVLMClassifier(abc.ABC):
         self, image: np.ndarray, labels: list[str], text: str | None = None
     ) -> ClassificationResult:
         """Classify a single image against the given closed-set label list."""
-        ...
 
 
 def build_misogyny_prompt() -> str:

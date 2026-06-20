@@ -330,7 +330,7 @@ def main() -> None:
     output_dir = MODELS_DIR / f"lora_{model_name_clean}_{args.task}"
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    model.save_pretrained(output_dir)
+    model.save_pretrained(str(output_dir))
     logger.info("Successfully saved fine-tuned LoRA adapters to %s", output_dir)
 
 

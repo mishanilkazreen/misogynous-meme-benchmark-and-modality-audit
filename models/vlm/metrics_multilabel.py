@@ -12,6 +12,7 @@ labels (shaming, stereotype, objectification, violence), computes:
 
 All returned floats are in [0, 1].
 """
+# pylint: disable=too-many-locals
 
 from __future__ import annotations
 

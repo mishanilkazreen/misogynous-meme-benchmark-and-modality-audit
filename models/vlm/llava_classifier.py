@@ -1,4 +1,5 @@
 """LLaVA classifier wrapper for closed-set image classification."""
+# pylint: disable=import-outside-toplevel, too-many-locals
 
 from __future__ import annotations
 
@@ -91,6 +92,10 @@ class LLaVAClassifier(BaseVLMClassifier):
         )
 
     def classify_batch(
-        self, images: list[np.ndarray], labels: list[str], subset: str = "digits"
+        self,
+        images: list[np.ndarray],
+        labels: list[str],
+        subset: str = "digits",  # pylint: disable=unused-argument
     ) -> list[ClassificationResult]:
+        """Classify a batch of images by looping over :meth:`classify`."""
         return [self.classify(img, labels) for img in images]

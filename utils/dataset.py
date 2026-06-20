@@ -7,6 +7,7 @@ Splits : train (9,000), validation (1,000), test (1,000)
 Labels : misogynous (binary), plus sub-tasks shaming / stereotype /
          objectification / violence (all binary).
 """
+# pylint: disable=import-outside-toplevel, duplicate-code
 
 from __future__ import annotations
 
@@ -186,7 +187,7 @@ class DatasetManager:
         split: str = "train",
         transform: Callable | None = None,
         # kept for backward-compat with callers that pass subset=; ignored
-        subset: str | None = None,
+        subset: str | None = None,  # pylint: disable=unused-argument
     ) -> MamiDataset:
         """Load (and cache) a dataset split.
 
@@ -218,7 +219,7 @@ class DatasetManager:
             ``objectification_count``, ``violence_count``.
         """
         dataset = self.load_dataset(split=split)
-        records = dataset._records
+        records = dataset._records  # pylint: disable=protected-access
 
         misogynous = sum(int(r.get("label", 0)) for r in records)
         shaming = sum(int(r.get("shaming", 0)) for r in records)
@@ -239,7 +240,7 @@ class DatasetManager:
     def check_composition_completeness(self, split: str = "train") -> dict[str, bool]:
         """Check that both binary classes are present in a split."""
         dataset = self.load_dataset(split=split)
-        records = dataset._records
+        records = dataset._records  # pylint: disable=protected-access
         labels = {int(r.get("label", 0)) for r in records}
         return {
             "has_misogynous": 1 in labels,

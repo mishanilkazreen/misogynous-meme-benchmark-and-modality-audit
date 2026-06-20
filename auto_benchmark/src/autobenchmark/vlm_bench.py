@@ -125,14 +125,18 @@ def load_vlm(model_id, model_type, device, quantization=None):
                 if cls is not None:
                     # Properties throw AttributeError during init when self.language_model isn't built yet
                     cls._supports_sdpa = property(
-                        lambda self: self.language_model._supports_sdpa
-                        if hasattr(self, "language_model")
-                        else False
+                        lambda self: (
+                            self.language_model._supports_sdpa
+                            if hasattr(self, "language_model")
+                            else False
+                        )
                     )
                     cls._supports_flash_attn_2 = property(
-                        lambda self: self.language_model._supports_flash_attn_2
-                        if hasattr(self, "language_model")
-                        else False
+                        lambda self: (
+                            self.language_model._supports_flash_attn_2
+                            if hasattr(self, "language_model")
+                            else False
+                        )
                     )
         except Exception as patch_err:
             print(f"  Warning: Failed to apply dynamic model patch: {patch_err}")
@@ -192,7 +196,7 @@ def load_vlm(model_id, model_type, device, quantization=None):
             model = model.to(device)
     else:
         # Generic fallback
-        from transformers import AutoModelForVision2Seq
+        from transformers import AutoModelForVision2Seq  # pylint: disable=no-name-in-module
 
         model = AutoModelForVision2Seq.from_pretrained(model_id, **load_kwargs)
         processor = AutoProcessor.from_pretrained(model_id)
@@ -518,7 +522,7 @@ def _generate_vlm_bar_chart(df_eval, metric_name, output_dir, config_name):
     successful = successful.sort_values(by=metric_name, ascending=True)
 
     _fig, ax = plt.subplots(figsize=(10, max(4, len(successful) * 0.6)))
-    colors = plt.cm.viridis(np.linspace(0.2, 0.8, len(successful)))
+    colors = plt.get_cmap("viridis")(np.linspace(0.2, 0.8, len(successful)))
 
     bars = ax.barh(successful["Model"], successful[metric_name], color=colors)
 

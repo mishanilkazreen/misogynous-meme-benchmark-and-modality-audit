@@ -61,13 +61,15 @@ except ModuleNotFoundError:
 
 _SAFETY_SETTINGS = (
     [
-        genai_types.SafetySetting(category="HARM_CATEGORY_HARASSMENT", threshold="BLOCK_NONE"),
-        genai_types.SafetySetting(category="HARM_CATEGORY_HATE_SPEECH", threshold="BLOCK_NONE"),
-        genai_types.SafetySetting(
-            category="HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold="BLOCK_NONE"
+        genai_types.SafetySetting(category="HARM_CATEGORY_HARASSMENT", threshold="BLOCK_NONE"),  # type: ignore[arg-type]
+        genai_types.SafetySetting(category="HARM_CATEGORY_HATE_SPEECH", threshold="BLOCK_NONE"),  # type: ignore[arg-type]
+        genai_types.SafetySetting(  # type: ignore[arg-type]
+            category="HARM_CATEGORY_SEXUALLY_EXPLICIT",  # type: ignore[arg-type]
+            threshold="BLOCK_NONE",  # type: ignore[arg-type]
         ),
-        genai_types.SafetySetting(
-            category="HARM_CATEGORY_DANGEROUS_CONTENT", threshold="BLOCK_NONE"
+        genai_types.SafetySetting(  # type: ignore[arg-type]
+            category="HARM_CATEGORY_DANGEROUS_CONTENT",  # type: ignore[arg-type]
+            threshold="BLOCK_NONE",  # type: ignore[arg-type]
         ),
     ]
     if _GENAI_AVAILABLE
