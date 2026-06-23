@@ -333,6 +333,45 @@ def prepare_data(df, data_config, init_config=None):
 
     data_type = dataset_cfg.get("data_type", "tabular")
 
+    if data_type == "pre_extracted_npz":
+        train_path = dataset_cfg.get("train_embeddings")
+        val_path = dataset_cfg.get("val_embeddings")
+
+        if not train_path or not val_path:
+            raise ValueError(
+                "train_embeddings and val_embeddings must be specified for pre_extracted_npz data type."
+            )
+
+        train_path = resolve_path(train_path, init_config)
+        val_path = resolve_path(val_path, init_config)
+
+        print(f"Loading pre-extracted train embeddings from: {train_path}")
+        train_data = np.load(train_path, allow_pickle=True)
+        print(f"Loading pre-extracted val/test embeddings from: {val_path}")
+        val_data = np.load(val_path, allow_pickle=True)
+
+        train_img = train_data["image_embeddings"]
+        train_txt = train_data["text_embeddings"]
+        val_img = val_data["image_embeddings"]
+        val_txt = val_data["text_embeddings"]
+
+        # Concatenate image and text embeddings (concat fusion mode)
+        X_train_prep = np.concatenate([train_img, train_txt], axis=1)
+        X_test_prep = np.concatenate([val_img, val_txt], axis=1)
+
+        if classification_type == "multiclass":
+            y_train = train_data["subtask_labels"]
+            y_test = val_data["subtask_labels"]
+        else:
+            y_train = train_data["labels"]
+            y_test = val_data["labels"]
+
+        feat_labels = [f"img_emb_{i}" for i in range(train_img.shape[1])] + [
+            f"txt_emb_{i}" for i in range(train_txt.shape[1])
+        ]
+        preprocessor = None
+        return X_train_prep, X_test_prep, y_train, y_test, feat_labels, preprocessor
+
     if data_type in ["text", "image", "multimodal"]:
         y = df[target_col].values
 

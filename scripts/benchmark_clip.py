@@ -64,6 +64,11 @@ def main() -> None:
         choices=["easyocr", "paddleocr"],
         help="OCR engine to load transcripts for",
     )
+    parser.add_argument(
+        "--model-name",
+        default="ViT-L-14",
+        help="CLIP model name to use (default: ViT-L-14)",
+    )
     args = parser.parse_args()
 
     # MAMI has no hidden visual content, so preprocessing filters do not help.
@@ -72,7 +77,8 @@ def main() -> None:
 
     print(
         f"Task: {args.task} | Split: {args.split} | Filters: {filters_to_run} | "
-        f"Limit: {args.limit} | Device: {args.device} | Model Path: {args.model_path}"
+        f"Limit: {args.limit} | Device: {args.device} | Model Path: {args.model_path} | "
+        f"Model Name: {args.model_name}"
     )
     samples = collect_samples(args.split, limit=args.limit)
     if not samples:
@@ -91,6 +97,7 @@ def main() -> None:
             model_path=args.model_path,
             use_ocr=args.use_ocr,
             ocr_engine=args.ocr_engine,
+            model_name=args.model_name,
         )
         print(
             f"  acc={result.get('exact_match_accuracy', 0.0):.3f}  f1={result.get('f1', 0.0):.3f}"
@@ -109,8 +116,11 @@ def main() -> None:
         if model_slug.startswith(prefix):
             model_slug = model_slug[len(prefix) :]
         out = split_dir / f"clip_{split_slug}_finetuned_{model_slug}.json"
-    else:
+    elif args.model_name == "ViT-L-14":
         out = split_dir / f"clip_{split_slug}{suffix}.json"
+    else:
+        model_slug = args.model_name.lower().replace("-", "_")
+        out = split_dir / f"clip_{split_slug}{suffix}_{model_slug}.json"
     out.write_text(json.dumps(all_results, indent=2) + "\n", encoding="utf-8")
     print(f"\nSaved {len(all_results)} filter rows to {out}")
 

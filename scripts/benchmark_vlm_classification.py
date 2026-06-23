@@ -289,6 +289,7 @@ def run_clip(
     model_path: str | None = None,
     use_ocr: bool = False,
     ocr_engine: str = "easyocr",
+    model_name: str = "ViT-L-14",
 ) -> dict[str, Any]:
     """Run CLIP on the given samples with the given filter.
 
@@ -304,6 +305,7 @@ def run_clip(
             model_path=model_path,
             use_ocr=use_ocr,
             ocr_engine=ocr_engine,
+            model_name=model_name,
         )
 
     # singleclass: binary misogyny
@@ -311,7 +313,7 @@ def run_clip(
     ground_truths_yesno = [_misogynous_to_label(s["misogynous"]) for s in samples]
     images = [apply_filter(image_to_numpy(s["image"]), filter_name) for s in samples]
 
-    classifier = CLIPClassifier(device=device, model_path=model_path)
+    classifier = CLIPClassifier(model_name=model_name, device=device, model_path=model_path)
     classifier.set_classes(clip_labels)
 
     ocr_map = None
@@ -365,10 +367,11 @@ def _run_clip_multiclass(
     model_path: str | None = None,
     use_ocr: bool = False,
     ocr_engine: str = "easyocr",
+    model_name: str = "ViT-L-14",
 ) -> dict[str, Any]:
     """Run CLIP multiclass: per-category binary prediction for all four sub-types."""
     images = [apply_filter(image_to_numpy(s["image"]), filter_name) for s in samples]
-    classifier = CLIPClassifier(device=device, model_path=model_path)
+    classifier = CLIPClassifier(model_name=model_name, device=device, model_path=model_path)
 
     ocr_map = None
     if use_ocr:

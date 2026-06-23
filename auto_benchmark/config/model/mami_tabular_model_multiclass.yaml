@@ -1,4 +1,4 @@
-data_config_name: "mami_pre_extracted"
+data_config_name: "mami_pre_extracted_multiclass"
 
 models_to_run: "all"
 

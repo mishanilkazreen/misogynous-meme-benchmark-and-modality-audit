@@ -258,8 +258,13 @@ def train_single_model(
         rec = recall_score(y_test, preds, average="macro", zero_division=0)
         try:
             if hasattr(best_model, "predict_proba"):
-                probs = best_model.predict_proba(X_test)
-                roc = roc_auc_score(y_test, probs, multi_class="ovr")
+                probs_list = best_model.predict_proba(X_test)
+                if isinstance(probs_list, list):
+                    # MultiOutputClassifier predict_proba returns a list of arrays of shape (n_samples, 2)
+                    probs = np.column_stack([p[:, 1] for p in probs_list])
+                    roc = roc_auc_score(y_test, probs, average="macro")
+                else:
+                    roc = roc_auc_score(y_test, probs_list, multi_class="ovr")
             elif hasattr(best_model, "decision_function"):
                 dec = best_model.decision_function(X_test)
                 roc = roc_auc_score(y_test, dec, multi_class="ovr")
@@ -268,8 +273,8 @@ def train_single_model(
         except Exception:
             roc = np.nan
 
-        # Confusion matrix for multiclass
-        cm = confusion_matrix(y_test, preds)
+        # Confusion matrix for multiclass (skipped for multilabel)
+        cm = confusion_matrix(y_test, preds) if y_test.ndim == 1 else None
         tp, fn, fp, tn = np.nan, np.nan, np.nan, np.nan
         fp_rate, fn_rate = np.nan, np.nan
     else:
@@ -364,20 +369,52 @@ def train_benchmark_models(
     # Target Label Encoding
     from sklearn.preprocessing import LabelEncoder
 
-    le = LabelEncoder()
-    y_train_encoded = le.fit_transform(np.array(y_train))
-    y_test_encoded = le.transform(np.array(y_test))
+    y_train_arr = np.array(y_train)
+    y_test_arr = np.array(y_test)
+    is_multilabel = y_train_arr.ndim > 1 and y_train_arr.shape[1] > 1
+
+    if is_multilabel:
+
+        class PassThroughEncoder:
+            def fit_transform(self, y):
+                return y
+
+            def transform(self, y):
+                return y
+
+            def inverse_transform(self, y):
+                return y
+
+        le = PassThroughEncoder()
+        y_train_encoded = y_train_arr
+        y_test_encoded = y_test_arr
+        num_classes = y_train_encoded.shape[1]
+        is_multiclass = True
+    else:
+        le = LabelEncoder()
+        y_train_encoded = le.fit_transform(y_train_arr)
+        y_test_encoded = le.transform(y_test_arr)
+        unique_classes = np.unique(y_train_encoded)
+        num_classes = len(unique_classes)
+        is_multiclass = num_classes > 2
 
     # Save label encoder for future decoding
     le_path = os.path.join(output_dir, f"{model_cfg['config_name']}_label_encoder.joblib")
     joblib.dump(le, le_path)
     print(f"  Saved label encoder -> {le_path}")
 
-    unique_classes = np.unique(y_train_encoded)
-    num_classes = len(unique_classes)
-    is_multiclass = num_classes > 2
+    # For multilabel, base models dictionary is initialized as binary classifiers
+    # and then wrapped in MultiOutputClassifier
+    base_models_dict = get_models_dict(num_classes=2 if is_multilabel else num_classes)
 
-    models_dict = get_models_dict(num_classes)
+    models_dict = {}
+    for name, model_obj in base_models_dict.items():
+        if is_multilabel:
+            from sklearn.multioutput import MultiOutputClassifier
+
+            models_dict[name] = MultiOutputClassifier(model_obj)
+        else:
+            models_dict[name] = model_obj
 
     models_to_run = model_cfg.get("models_to_run", "all")
     if isinstance(models_to_run, list):
@@ -387,7 +424,10 @@ def train_benchmark_models(
 
     results_list = []
     predictions_df = pd.DataFrame()
-    predictions_df["Actual"] = np.array(y_test)
+    if is_multilabel:
+        predictions_df["Actual"] = [",".join(map(str, row)) for row in y_test_encoded]
+    else:
+        predictions_df["Actual"] = np.array(y_test)
 
     # Run model training in parallel using n_jobs=-1
     print(f"  Training {len(selected_models)} models in parallel...")
@@ -415,7 +455,10 @@ def train_benchmark_models(
             results_list.append(res)
 
             # Decode predictions
-            preds_decoded = le.inverse_transform(preds)
+            if is_multilabel:
+                preds_decoded = [",".join(map(str, row)) for row in preds]
+            else:
+                preds_decoded = le.inverse_transform(preds)
             predictions_df[model_name] = preds_decoded
 
             # Save serialized model if required

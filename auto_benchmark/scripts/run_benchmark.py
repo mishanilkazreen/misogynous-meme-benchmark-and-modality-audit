@@ -73,16 +73,25 @@ def main():
         data_cfg = yaml.safe_load(f)
 
     # Ingest and preprocess data
-    filepath = data_cfg.get("dataset", {}).get("filepath")
-    if not filepath:
-        print("Error: filepath not specified in data configuration.")
-        return
+    dataset_cfg = data_cfg.get("dataset", {})
+    data_type = dataset_cfg.get("data_type", "tabular")
 
-    row_limit = data_cfg.get("dataset", {}).get("row_limit")
-    df = load_data(filepath, init_cfg, nrows=row_limit)
-    X_train, X_test, y_train, y_test, feat_labels, preprocessor = prepare_data(
-        df, data_cfg, init_cfg
-    )
+    if data_type == "pre_extracted_npz":
+        df = pd.DataFrame()
+        X_train, X_test, y_train, y_test, feat_labels, preprocessor = prepare_data(
+            df, data_cfg, init_cfg
+        )
+    else:
+        filepath = dataset_cfg.get("filepath")
+        if not filepath:
+            print("Error: filepath not specified in data configuration.")
+            return
+
+        row_limit = dataset_cfg.get("row_limit")
+        df = load_data(filepath, init_cfg, nrows=row_limit)
+        X_train, X_test, y_train, y_test, feat_labels, preprocessor = prepare_data(
+            df, data_cfg, init_cfg
+        )
     print(f"Data prepared: X_train shape: {X_train.shape}, X_test shape: {X_test.shape}")
 
     # Resolve output directory
