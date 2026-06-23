@@ -344,6 +344,24 @@ def _train_task(model_name, model_obj, X_train, y_train, X_test, y_test, model_c
         return model_name, None, None, str(e)
 
 
+class PassThroughEncoder:
+    """Identity label encoder for multilabel targets.
+
+    Defined at module level (not inside a function) so that joblib/pickle can
+    serialise it when saving the fitted label encoder. Multilabel indicator
+    matrices need no encoding, so every method returns its input unchanged.
+    """
+
+    def fit_transform(self, y):
+        return y
+
+    def transform(self, y):
+        return y
+
+    def inverse_transform(self, y):
+        return y
+
+
 def train_benchmark_models(
     X_train, y_train, X_test, y_test, model_cfg, output_dir, feat_labels=None
 ):
@@ -374,17 +392,6 @@ def train_benchmark_models(
     is_multilabel = y_train_arr.ndim > 1 and y_train_arr.shape[1] > 1
 
     if is_multilabel:
-
-        class PassThroughEncoder:
-            def fit_transform(self, y):
-                return y
-
-            def transform(self, y):
-                return y
-
-            def inverse_transform(self, y):
-                return y
-
         le = PassThroughEncoder()
         y_train_encoded = y_train_arr
         y_test_encoded = y_test_arr
