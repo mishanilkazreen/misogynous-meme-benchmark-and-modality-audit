@@ -295,7 +295,29 @@ The performance of our zero-shot and fine-tuned models on MAMI 2022 is tracked
 and compared against SOTA literature benchmarks in the following resources:
 
 - **GitHub Gist (Results & SOTA Comparison):** [Gist Link]([redacted-gist-link])
-- **Detailed Literature Review:** [literature_review.md](file://[redacted-path]/papers/literature_review.md)
+- **Detailed Literature Review:** [`papers/literature_review.md`](papers/literature_review.md)
+
+## Project Task Tracker
+
+All tasks originate from the
+[codebase review]([redacted-gist-link])
+and are tracked via GitHub issues with verification commands and closing criteria.
+
+| ID | Task | Issue | Assignee | Status |
+| :---: | :--- | :---: | :--- | :--- |
+| 1-3 | Fix trad ML pipeline (ViT-L-14 + PaddleOCR), add multiclass, rerun | [#84](https://github.com/mishanilkazreen/content-moderation/issues/84) | Mani | Code ready, needs SCIAMA GPU run |
+| 4 | Qwen2-VL-2B zero-shot Task B (multiclass) | [#93](https://github.com/mishanilkazreen/content-moderation/issues/93) | Mani | Needs SCIAMA GPU run |
+| 5 | CLIP ViT-B-32 fine-tuned Task B (multiclass) | [#94](https://github.com/mishanilkazreen/content-moderation/issues/94) | Mani | Needs SCIAMA GPU run |
+| 6-8 | Advanced metrics (AUC, per-class F1) and consolidated table | [#65](https://github.com/mishanilkazreen/content-moderation/issues/65) | Mani | Blocked on 1-5 completing |
+| 9 | CLIP ViT-B-32 zero-shot baselines (Task A and B) | [#95](https://github.com/mishanilkazreen/content-moderation/issues/95) | Mani | Code ready, needs SCIAMA GPU run |
+| 10 | SOTA literature table with timings | [#88](https://github.com/mishanilkazreen/content-moderation/issues/88) + [#68](https://github.com/mishanilkazreen/content-moderation/issues/68) | Mishanil + Louis | Timings pending |
+| 11 | SOTA explainability survey | [#88](https://github.com/mishanilkazreen/content-moderation/issues/88) | Mishanil + Louis | Done (`papers/xai_literature_review.md`) |
+| 12 | Modality-Level SHAP Attribution | [#89](https://github.com/mishanilkazreen/content-moderation/issues/89) | Mani | Blocked on #84 |
+| 13 | CLIP Concept Activation Vectors | [#89](https://github.com/mishanilkazreen/content-moderation/issues/89) | Mani | Blocked on #84 |
+| -- | OCR transcript impact chart | [#86](https://github.com/mishanilkazreen/content-moderation/issues/86) | Louis | Done (PR [#92](https://github.com/mishanilkazreen/content-moderation/pull/92)) |
+| -- | VLM XAI research (prompt POC) | [#87](https://github.com/mishanilkazreen/content-moderation/issues/87) | Louis | Done (PR [#96](https://github.com/mishanilkazreen/content-moderation/pull/96)) |
+| -- | VLM explanations (full pilot) | [#64](https://github.com/mishanilkazreen/content-moderation/issues/64) | Mani | Blocked on #87 merge |
+| -- | Hardware documentation | [#68](https://github.com/mishanilkazreen/content-moderation/issues/68) | Mishanil | Writing task |
 
 ## Project layout
 
