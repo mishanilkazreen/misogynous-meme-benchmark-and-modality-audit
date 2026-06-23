@@ -1,6 +1,8 @@
 dataset:
-  train_embeddings: "results/embeddings/train_vit_l_14_quickgelu_ocr_paddleocr.npz"
-  val_embeddings: "results/embeddings/validation_vit_l_14_quickgelu_ocr_paddleocr.npz"
+  # Paths are relative to the auto_benchmark working directory; the pre-extracted
+  # embeddings live in the parent content-moderation repo's results/embeddings/.
+  train_embeddings: "../results/embeddings/train_vit_l_14_quickgelu_ocr_paddleocr.npz"
+  val_embeddings: "../results/embeddings/validation_vit_l_14_quickgelu_ocr_paddleocr.npz"
   data_type: "pre_extracted_npz"
   target_column: "label"
   classification_type: "multiclass"

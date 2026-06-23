@@ -326,12 +326,14 @@ def prepare_data(df, data_config, init_config=None):
     target_col = dataset_cfg.get("target_column")
     classification_type = dataset_cfg.get("classification_type", "binary")
 
-    if target_col not in df.columns:
+    data_type = dataset_cfg.get("data_type", "tabular")
+
+    # Pre-extracted NPZ embeddings carry labels inside the .npz arrays, not in a
+    # DataFrame column, so the DataFrame-column check does not apply to them.
+    if data_type != "pre_extracted_npz" and target_col not in df.columns:
         raise ValueError(
             f"Target column '{target_col}' not found in dataset columns: {df.columns.tolist()}"
         )
-
-    data_type = dataset_cfg.get("data_type", "tabular")
 
     if data_type == "pre_extracted_npz":
         train_path = dataset_cfg.get("train_embeddings")

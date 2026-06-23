@@ -615,9 +615,12 @@ def main() -> None:
     split_slug = args.split.replace(",", "_")
     suffix = "_multiclass" if args.task == "multiclass" else ""
     path_suffix = "_finetuned" if args.lora_path else ""
+    # Encode the OCR setting so OCR-augmented and image-only runs never overwrite
+    # each other (e.g. ..._ocr_paddleocr_multiclass.json vs ..._multiclass.json).
+    ocr_suffix = f"_ocr_{args.ocr_engine}" if args.use_ocr else ""
     # Include the model id so different model sizes (e.g. 2B vs 7B) never overwrite each other.
     model_slug = args.model_id.split("/")[-1].lower().replace("-", "_").replace(".", "_")
-    out = split_dir / f"qwen2vl_{split_slug}_{model_slug}{suffix}{path_suffix}.json"
+    out = split_dir / f"qwen2vl_{split_slug}_{model_slug}{ocr_suffix}{suffix}{path_suffix}.json"
     out.write_text(json.dumps(all_results, indent=2) + "\n", encoding="utf-8")
     print(f"\nSaved {len(all_results)} filter rows to {out}")
 

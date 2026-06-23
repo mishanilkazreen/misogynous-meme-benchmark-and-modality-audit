@@ -1,6 +1,9 @@
 system:
-  os: "windows"
-  base_dir: "C:/Github/auto_benchmark"
+  os: "linux"
+  # Empty base_dir => paths resolve relative to the current working directory
+  # (the auto_benchmark package root). This keeps outputs portable across
+  # machines (local macOS, SCIAMA Linux) instead of a hardcoded Windows path.
+  base_dir: ""
 
 paths:
   data_dir: "data_files"

@@ -307,7 +307,12 @@ def main() -> None:
     # 5. Save model checkpoint
     model_name_clean = args.model.lower().replace("-", "_")
     task_suffix = f"_{args.task}" if args.loss_mode == "classification" else ""
-    checkpoint_name = f"finetuned_clip_{args.loss_mode}{task_suffix}_{model_name_clean}.pth"
+    # Encode the OCR setting so OCR-augmented and non-OCR checkpoints never
+    # overwrite each other (e.g. ..._vit_b_32_quickgelu_ocr_paddleocr.pth).
+    ocr_suffix = f"_ocr_{args.ocr_engine}" if args.use_ocr else ""
+    checkpoint_name = (
+        f"finetuned_clip_{args.loss_mode}{task_suffix}_{model_name_clean}{ocr_suffix}.pth"
+    )
     save_path = MODELS_DIR / checkpoint_name
 
     torch.save(model.state_dict(), save_path)
