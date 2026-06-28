@@ -1,3 +1,11 @@
+# Lint/format hooks run at the pre-commit stage only. This prevents them from
+# re-running (and failing on zero files, e.g. cspell) when the commit-msg and
+# pre-push hook types are installed. commit-msg-check and pytest-check below
+# opt in to their own stages explicitly. CI runs `pre-commit run --all-files`,
+# which uses the pre-commit stage, so this keeps local and CI identical.
+default_stages: [pre-commit]
+default_install_hook_types: [pre-commit, commit-msg, pre-push]
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: "v4.6.0"
