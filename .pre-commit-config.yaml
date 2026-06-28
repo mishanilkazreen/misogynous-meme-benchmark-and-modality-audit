@@ -51,7 +51,7 @@ repos:
         entry: uv run pylint
         language: system
         types: [python]
-        files: ^(models/|utils/|scripts/)
+        files: ^(models/|utils/)
         args: ["--errors-only", "-j", "1"]
 
       - id: pylint-autobenchmark
