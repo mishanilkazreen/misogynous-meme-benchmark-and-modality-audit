@@ -109,7 +109,11 @@ def main() -> None:
 
         # Load image
         img = sample["image"]
-        if not isinstance(img, Image.Image):
+        import torch
+        if isinstance(img, torch.Tensor):
+            img_np = (img.detach().cpu().numpy().transpose(1, 2, 0) * 255.0).astype(np.uint8)
+            img = Image.fromarray(img_np)
+        elif not isinstance(img, Image.Image):
             # If it's a filepath or array, load/convert
             if isinstance(img, (str, Path)):
                 img = Image.open(img)

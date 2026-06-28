@@ -119,7 +119,11 @@ class VLMExplainer:
             'raw_response' (str), and 'latency_s' (float).
         """
         # Convert image to PIL
-        if isinstance(image, np.ndarray):
+        import torch
+        if isinstance(image, torch.Tensor):
+            img_np = (image.detach().cpu().numpy().transpose(1, 2, 0) * 255.0).astype(np.uint8)
+            pil_img = Image.fromarray(img_np)
+        elif isinstance(image, np.ndarray):
             pil_img = Image.fromarray(image).convert("RGB")
         else:
             pil_img = image.convert("RGB")
