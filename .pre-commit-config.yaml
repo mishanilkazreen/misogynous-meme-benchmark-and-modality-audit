@@ -50,7 +50,10 @@ repos:
     rev: "v8.17.3"
     hooks:
       - id: cspell
-        args: ["--config", "cspell.json"]
+        # --no-must-find-files: cspell-cli otherwise exits 1 when a commit
+        # touches only ignored files (0 files to check), which would wrongly
+        # block the commit. CI runs --all-files so this never hides real issues.
+        args: ["--config", "cspell.json", "--no-must-find-files"]
 
   - repo: local
     hooks:
@@ -77,13 +80,12 @@ repos:
         stages: [commit-msg]
         always_run: true
 
-      - id: pytest-check
-        name: pytest-check
-        entry: pytest
+      - id: ci-preflight
+        name: CI preflight (pre-commit --all-files + pytest)
+        entry: bash scripts/preflight.sh
         language: system
         pass_filenames: false
         always_run: true
-        args: ["-x", "--tb=short", "-q"]
         stages: [pre-push]
 
 ci:
