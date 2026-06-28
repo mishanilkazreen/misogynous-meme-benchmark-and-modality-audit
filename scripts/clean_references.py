@@ -464,7 +464,7 @@ def main():
             v_clean = v.strip()
 
             # Remove empty or placeholders
-            if not v_clean or v_clean == "{}" or v_clean == '""':
+            if not v_clean or v_clean in {"{}", '""'}:
                 continue
 
             # Strip unwanted fields (abstracts, notes, file paths, etc.)

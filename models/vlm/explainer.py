@@ -24,6 +24,7 @@ try:
         LlavaForConditionalGeneration,
         Qwen2VLForConditionalGeneration,
     )
+
     _TRANSFORMERS_AVAILABLE = True
 except (ModuleNotFoundError, ImportError):
     _TRANSFORMERS_AVAILABLE = False
@@ -95,7 +96,9 @@ class VLMExplainer:
             self.model = LlavaForConditionalGeneration.from_pretrained(self.model_id, **load_kwargs)
         else:
             self.processor = AutoProcessor.from_pretrained(self.model_id, max_pixels=512 * 28 * 28)
-            self.model = Qwen2VLForConditionalGeneration.from_pretrained(self.model_id, **load_kwargs)
+            self.model = Qwen2VLForConditionalGeneration.from_pretrained(
+                self.model_id, **load_kwargs
+            )
 
         if self.device != "cuda" and not hasattr(self.model, "hf_device_map"):
             # For non-cuda devices (e.g. cpu/mps), map model to device manually if not using device_map
@@ -120,6 +123,7 @@ class VLMExplainer:
         """
         # Convert image to PIL
         import torch
+
         if isinstance(image, torch.Tensor):
             img_np = (image.detach().cpu().numpy().transpose(1, 2, 0) * 255.0).astype(np.uint8)
             pil_img = Image.fromarray(img_np)
@@ -142,7 +146,9 @@ class VLMExplainer:
                 }
             ]
             prompt = self.processor.apply_chat_template(conversation, add_generation_prompt=True)
-            inputs = self.processor(images=pil_img, text=prompt, return_tensors="pt").to(self.model.device)
+            inputs = self.processor(images=pil_img, text=prompt, return_tensors="pt").to(
+                self.model.device
+            )
         else:  # qwen
             messages = [
                 {
@@ -153,8 +159,12 @@ class VLMExplainer:
                     ],
                 }
             ]
-            prompt = self.processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
-            inputs = self.processor(text=[prompt], images=[pil_img], padding=True, return_tensors="pt").to(self.model.device)
+            prompt = self.processor.apply_chat_template(
+                messages, tokenize=False, add_generation_prompt=True
+            )
+            inputs = self.processor(
+                text=[prompt], images=[pil_img], padding=True, return_tensors="pt"
+            ).to(self.model.device)
 
         # Generate response
         t0 = time.perf_counter()
@@ -167,7 +177,9 @@ class VLMExplainer:
         latency = time.perf_counter() - t0
 
         input_len = inputs["input_ids"].shape[1]
-        raw_response = self.processor.decode(output_ids[0, input_len:], skip_special_tokens=True).strip()
+        raw_response = self.processor.decode(
+            output_ids[0, input_len:], skip_special_tokens=True
+        ).strip()
 
         # Parse the structured JSON output
         parsed = self._parse_json_response(raw_response)

@@ -169,4 +169,3 @@ def build_explainability_prompt(ocr_text: str | None = None) -> str:
         "Do not include any explanation outside the JSON object. Return ONLY the JSON."
     )
     return f"{preamble}{text_context}\n\n{instructions}"
-
