@@ -1,0 +1,11 @@
+data_config_name: "mami_pre_extracted_combined_test"
+
+models_to_run: "all"
+
+cv_settings:
+  run_cv: false
+  folds: 5
+
+optimize_metric: "f1"
+hp_optimization: "none"
+save_models: true

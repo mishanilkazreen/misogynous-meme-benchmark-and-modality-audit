@@ -505,7 +505,7 @@ def main() -> None:
 
     # 6. Save Adapter Checkpoint
     model_name_clean = args.model_id.lower().split("/")[-1].replace("-", "_")
-    output_dir = MODELS_DIR / f"lora_{model_name_clean}_{args.task}"
+    output_dir = MODELS_DIR / f"lora_{model_name_clean}_{args.task}_seed{args.seed}"
     output_dir.mkdir(parents=True, exist_ok=True)
 
     model.save_pretrained(str(output_dir))

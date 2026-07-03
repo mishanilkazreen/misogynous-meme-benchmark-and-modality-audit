@@ -1,0 +1,10 @@
+dataset:
+  train_embeddings: "../results/embeddings/train_vit_l_14_quickgelu.npz"
+  val_embeddings: "../results/embeddings/validation_vit_l_14_quickgelu.npz"
+  data_type: "pre_extracted_npz"
+  target_column: "label"
+  classification_type: "binary"
+
+preprocessing:
+  test_size: 0.1
+  random_state: 4711

@@ -1,0 +1,10 @@
+dataset:
+  train_embeddings: "../results/embeddings/train_vit_l_14_quickgelu_combined_paddleocr.npz"
+  val_embeddings: "../results/embeddings/validation_vit_l_14_quickgelu_combined_paddleocr.npz"
+  data_type: "pre_extracted_npz"
+  target_column: "label"
+  classification_type: "multiclass"
+
+preprocessing:
+  test_size: 0.1
+  random_state: 4711

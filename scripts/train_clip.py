@@ -808,7 +808,7 @@ def main() -> None:
 
     ocr_suffix = filename_suffix_for_source(text_source, args.ocr_engine)
     checkpoint_name = (
-        f"finetuned_clip_{args.loss_mode}{task_suffix}_{model_name_clean}{ocr_suffix}.pth"
+        f"finetuned_clip_{args.loss_mode}{task_suffix}_{model_name_clean}{ocr_suffix}_seed{args.seed}.pth"
     )
     save_path = MODELS_DIR / checkpoint_name
 
