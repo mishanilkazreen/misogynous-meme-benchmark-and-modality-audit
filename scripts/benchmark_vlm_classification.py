@@ -43,7 +43,9 @@ import torch
 
 from models.vlm.classifier import (
     CLIP_MISOGYNY_LABELS,
+    CLIP_MISOGYNY_PROMPT_ENSEMBLE,
     CLIP_SUBTYPE_LABELS,
+    CLIP_SUBTYPE_PROMPT_ENSEMBLE,
     MISOGYNY_LABELS,
     SUBTYPE_LABELS,
     build_misogyny_prompt,
@@ -276,6 +278,8 @@ def run_clip(
     ocr_engine: str = "easyocr",
     model_name: str = "ViT-L-14",
     text_source: str | None = None,
+    prompt_ensemble: bool = True,
+    tta: bool = False,
 ) -> dict[str, Any]:
     """Run CLIP on the given samples with the given filter.
 
@@ -295,6 +299,8 @@ def run_clip(
             ocr_engine=ocr_engine,
             model_name=model_name,
             text_source=resolved_source,
+            prompt_ensemble=prompt_ensemble,
+            tta=tta,
         )
 
     # singleclass: binary misogyny
@@ -303,7 +309,15 @@ def run_clip(
     images = [apply_filter(image_to_numpy(s["image"]), filter_name) for s in samples]
 
     classifier = CLIPClassifier(model_name=model_name, device=device, model_path=model_path)
-    classifier.set_classes(clip_labels)
+    # Prompt ensembling only helps the zero-shot text path. For fine-tuned
+    # runs (``classifier.is_classification == True``) the text embeddings are
+    # bypassed by the MLP head, so ``set_classes*`` still needs to be called
+    # to satisfy the internal label list but the embeddings themselves are
+    # unused. Keep the ensemble call regardless; it's cheap.
+    if prompt_ensemble and not classifier.is_classification:
+        classifier.set_classes_ensemble(CLIP_MISOGYNY_PROMPT_ENSEMBLE)
+    else:
+        classifier.set_classes(clip_labels)
 
     ocr_map: dict[str, str] | None = None
     if resolved_source != "provided":
@@ -316,7 +330,9 @@ def run_clip(
         texts = [ocr_map.get(str(s["image_id"]), "") for s in samples]
     else:
         texts = [s.get("text", "") for s in samples]
-    raw_preds = classifier.predict_batch(images, texts=texts)
+    # TTA only applies to the zero-shot path (fine-tuned head bypasses it
+    # internally). Passing it unconditionally keeps the call site simple.
+    raw_preds = classifier.predict_batch(images, texts=texts, tta=tta)
     total_time = time.perf_counter() - t0
 
     clip_to_yesno = {
@@ -360,6 +376,8 @@ def _run_clip_multiclass(
     ocr_engine: str = "easyocr",
     model_name: str = "ViT-L-14",
     text_source: str | None = None,
+    prompt_ensemble: bool = True,
+    tta: bool = False,
 ) -> dict[str, Any]:
     """Run CLIP multiclass: per-category binary prediction for all four sub-types."""
     images = [apply_filter(image_to_numpy(s["image"]), filter_name) for s in samples]
@@ -379,14 +397,20 @@ def _run_clip_multiclass(
     for category in SUBTYPE_LABELS:
         pos_phrase, neg_phrase = CLIP_SUBTYPE_LABELS[category]
         cat_labels = [pos_phrase, neg_phrase]
-        classifier.set_classes(cat_labels)
+        if prompt_ensemble and not classifier.is_classification:
+            pos_prompts, neg_prompts = CLIP_SUBTYPE_PROMPT_ENSEMBLE[category]
+            classifier.set_classes_ensemble(
+                {pos_phrase: pos_prompts, neg_phrase: neg_prompts}
+            )
+        else:
+            classifier.set_classes(cat_labels)
 
         t0 = time.perf_counter()
         if ocr_map:
             texts = [ocr_map.get(str(s["image_id"]), "") for s in samples]
         else:
             texts = [s.get("text", "") for s in samples]
-        raw_preds = classifier.predict_batch(images, texts=texts)
+        raw_preds = classifier.predict_batch(images, texts=texts, tta=tta)
         category_times.append(time.perf_counter() - t0)
 
         for pred_label, _ in raw_preds:
@@ -713,6 +737,28 @@ def main() -> None:
         choices=["easyocr", "paddleocr"],
         help="OCR engine that produced the pre-extracted transcripts",
     )
+    parser.add_argument(
+        "--prompt-ensemble",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help=(
+            "Use prompt ensembling for zero-shot CLIP (default on). Averages "
+            "5-8 prompt embeddings per class for a more robust text-side "
+            "representation. See docs/CODE_REVIEW_ISSUES.md §7.1. Fine-tuned "
+            "CLIP runs ignore this because they bypass the text tower at "
+            "inference."
+        ),
+    )
+    parser.add_argument(
+        "--tta",
+        action="store_true",
+        help=(
+            "Enable horizontal-flip test-time augmentation for zero-shot CLIP "
+            "(each image is encoded twice, softmax outputs are averaged). "
+            "Doubles zero-shot inference cost but typically gains 0.5-1 F1. "
+            "See docs/CODE_REVIEW_ISSUES.md §7.2."
+        ),
+    )
     args = parser.parse_args()
 
     logger.info(
@@ -771,6 +817,8 @@ def main() -> None:
                         use_ocr=args.use_ocr,
                         ocr_engine=args.ocr_engine,
                         text_source=args.text_source,
+                        prompt_ensemble=args.prompt_ensemble,
+                        tta=args.tta,
                     )
                 else:
                     result = run_generative_model(

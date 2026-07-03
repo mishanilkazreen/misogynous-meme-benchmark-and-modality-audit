@@ -40,6 +40,29 @@ MISOGYNY_LABELS: list[str] = ["yes", "no"]
 # CLIP text labels — phrase-form works better than bare words for cosine similarity
 CLIP_MISOGYNY_LABELS: list[str] = ["misogynistic meme", "not misogynistic meme"]
 
+# Prompt ensemble for zero-shot CLIP (docs/CODE_REVIEW_ISSUES.md §7.1). Averaging
+# multiple prompt embeddings per class gives a more robust text-side
+# representation and typically buys 2-4 F1 points on the CLIP zero-shot rows
+# without any training. Keys map to CLIP_MISOGYNY_LABELS entries; values are
+# the full prompt bank averaged into a single text embedding per class.
+CLIP_MISOGYNY_PROMPT_ENSEMBLE: dict[str, list[str]] = {
+    "misogynistic meme": [
+        "a misogynistic meme",
+        "a meme that demeans women",
+        "a meme expressing hostility toward women",
+        "a meme objectifying women",
+        "a meme stereotyping women",
+        "a sexist meme",
+    ],
+    "not misogynistic meme": [
+        "a meme that does not target women",
+        "a non-misogynistic meme",
+        "a neutral meme",
+        "a wholesome meme",
+        "a meme with no gender content",
+    ],
+}
+
 # Ground-truth label when misogynous == 1
 MISOGYNY_GROUND_TRUTH = "yes"
 
@@ -68,6 +91,61 @@ CLIP_SUBTYPE_LABELS: dict[str, tuple[str, str]] = {
     "violence": (
         "a meme depicting or threatening violence against women",
         "a meme not depicting violence against women",
+    ),
+}
+
+# Per-sub-type prompt ensemble for zero-shot CLIP. Each entry maps to
+# (positive_phrase_list, negative_phrase_list); each list is averaged into
+# a single text embedding before the pair is fed to
+# ``CLIPClassifier.set_classes_ensemble`` (docs/CODE_REVIEW_ISSUES.md §7.1).
+CLIP_SUBTYPE_PROMPT_ENSEMBLE: dict[str, tuple[list[str], list[str]]] = {
+    "shaming": (
+        [
+            "a meme shaming or insulting a woman",
+            "a meme body-shaming a woman",
+            "a meme mocking a woman's appearance",
+            "a meme slut-shaming a woman",
+        ],
+        [
+            "a meme not shaming a woman",
+            "a meme that does not insult a woman",
+        ],
+    ),
+    "stereotype": (
+        [
+            "a meme reinforcing gender stereotypes about women",
+            "a meme portraying women through traditional gender roles",
+            "a meme depicting women as housewives",
+            "a meme depicting women as bad drivers",
+        ],
+        [
+            "a meme not reinforcing gender stereotypes",
+            "a meme that does not stereotype women",
+        ],
+    ),
+    "objectification": (
+        [
+            "a meme objectifying or sexualising a woman",
+            "a meme reducing a woman to a sexual object",
+            "a meme focusing on a woman's body for sexual purposes",
+            "a meme sexualising a woman's appearance",
+        ],
+        [
+            "a meme not objectifying women",
+            "a meme that does not sexualise women",
+        ],
+    ),
+    "violence": (
+        [
+            "a meme depicting or threatening violence against women",
+            "a meme depicting physical aggression against a woman",
+            "a meme depicting sexual violence against a woman",
+            "a meme encouraging harm to a woman",
+        ],
+        [
+            "a meme not depicting violence against women",
+            "a meme that does not threaten women",
+        ],
     ),
 }
 

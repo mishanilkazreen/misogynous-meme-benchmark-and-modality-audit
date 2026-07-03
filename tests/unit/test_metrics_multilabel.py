@@ -13,7 +13,6 @@ import pytest
 from models.vlm.classifier import SUBTYPE_LABELS
 from models.vlm.metrics_multilabel import compute_mami_score_b, compute_multilabel_metrics
 
-
 # ---------------------------------------------------------------------------
 # Fixture: a hand-worked example whose MAMI Task B score is verifiable
 # ---------------------------------------------------------------------------

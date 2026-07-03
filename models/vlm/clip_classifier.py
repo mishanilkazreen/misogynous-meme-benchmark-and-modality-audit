@@ -15,6 +15,26 @@ from torch import nn
 from models.vlm.classifier import BaseVLMClassifier, ClassificationResult
 
 
+def _infer_mlp_hidden_dim(state_dict: dict) -> int:
+    """Infer the hidden dim of an MLP classification head from its state dict.
+
+    The training-time MLP head (see ``scripts.train_clip.CLIPClassifierHead``
+    with ``hidden_dim > 0``) has the structure ``LayerNorm -> Linear(in,
+    hidden) -> GELU -> Dropout -> Linear(hidden, out)``. When serialised,
+    the two linear layers become ``classifier.1.weight`` (shape
+    ``[hidden, in]``) and ``classifier.4.weight`` (shape
+    ``[out, hidden]``). We read ``classifier.1.weight``'s first dimension
+    to recover ``hidden_dim``.
+
+    Returns ``-1`` if the state dict does not contain an MLP head at all
+    (the caller must fall back to another loading strategy).
+    """
+    key = "classifier.1.weight"
+    if key not in state_dict:
+        return -1
+    return int(state_dict[key].shape[0])
+
+
 class CLIPClassifier(BaseVLMClassifier):
     """Zero-shot classifier using CLIP cosine similarity between image and text embeddings."""
 
@@ -51,46 +71,49 @@ class CLIPClassifier(BaseVLMClassifier):
         if model_path:
             import logging
 
+            from scripts.train_clip import CLIPClassifierHead as TrainCLIPClassifierHead
+
             logger = logging.getLogger(__name__)
             logger.info("Loading fine-tuned CLIP weights from %s", model_path)
             state_dict = torch.load(model_path, map_location=self.device)
-            if "classifier.weight" in state_dict:
-                from typing import Any
+            # Detect head architecture from state_dict keys. The old linear
+            # head serialises as ``classifier.weight`` and ``classifier.bias``;
+            # the new MLP head from docs/CODE_REVIEW_ISSUES.md §2.1
+            # serialises as ``classifier.0.weight``, ``classifier.1.weight``,
+            # etc. We inspect the keys and reconstruct the matching head so
+            # both old and new checkpoints load cleanly.
+            has_linear_head = "classifier.weight" in state_dict
+            mlp_hidden_dim = _infer_mlp_hidden_dim(state_dict) if not has_linear_head else 0
 
+            if has_linear_head or mlp_hidden_dim >= 0:
                 embed_dim = (
                     self.model.text_projection.shape[1]
                     if hasattr(self.model, "text_projection")
                     else 512
                 )
-                num_classes = state_dict["classifier.bias"].shape[0]
+                if has_linear_head:
+                    num_classes = state_dict["classifier.bias"].shape[0]
+                    hidden_dim = 0
+                else:
+                    # For the MLP head, the last Linear is at classifier.4.
+                    num_classes = state_dict["classifier.4.bias"].shape[0]
+                    hidden_dim = mlp_hidden_dim
 
-                class CLIPClassifierHead(nn.Module):
-                    """Linear classification head on top of frozen CLIP."""
-
-                    def __init__(self, clip_model: Any, embed_dim: int, num_classes: int) -> None:
-                        super().__init__()
-                        self.clip = clip_model
-                        self.classifier = nn.Linear(embed_dim * 2, num_classes)
-
-                    def forward(
-                        self, images: torch.Tensor, text_tokens: torch.Tensor
-                    ) -> torch.Tensor:
-                        """Fuse image+text embeddings and classify."""
-                        image_features = self.clip.encode_image(images)
-                        text_features = self.clip.encode_text(text_tokens)
-
-                        image_features = image_features / image_features.norm(dim=-1, keepdim=True)
-                        text_features = text_features / text_features.norm(dim=-1, keepdim=True)
-
-                        fused = torch.cat([image_features, text_features], dim=-1)
-                        return self.classifier(fused)
-
-                self.classification_head = CLIPClassifierHead(
-                    self.model, embed_dim, num_classes
+                self.classification_head = TrainCLIPClassifierHead(
+                    self.model,
+                    embed_dim,
+                    num_classes,
+                    hidden_dim=hidden_dim,
                 ).to(self.device)
                 self.classification_head.load_state_dict(state_dict)
                 self.is_classification = True
-                logger.info("Loaded CLIP classification head checkpoint (%d classes)", num_classes)
+                logger.info(
+                    "Loaded CLIP classification head checkpoint (num_classes=%d, "
+                    "head=%s hidden_dim=%d)",
+                    num_classes,
+                    "linear" if hidden_dim == 0 else "MLP",
+                    hidden_dim,
+                )
             else:
                 self.model.load_state_dict(state_dict)
                 logger.info("Loaded CLIP contrastive weights checkpoint")
@@ -103,6 +126,34 @@ class CLIPClassifier(BaseVLMClassifier):
             text_features = self.model.encode_text(tokens)
             text_features = text_features / text_features.norm(dim=-1, keepdim=True)
         self._text_embeddings = text_features
+
+    def set_classes_ensemble(self, prompts_per_class: dict[str, list[str]]) -> None:
+        """Precompute per-class text embeddings by averaging multiple prompts.
+
+        Zero-shot CLIP is sensitive to the exact wording of the class prompts;
+        averaging L2-normalised embeddings across a bank of phrase variants
+        (5-8 per class) gives a more robust text representation and typically
+        buys 2-4 F1 points on the CLIP zero-shot rows without any training.
+        See docs/CODE_REVIEW_ISSUES.md §7.1.
+
+        Args:
+            prompts_per_class: Mapping from class label (as it will appear in
+                :attr:`_labels`) to the list of prompts to average for that
+                class. Keys become the returned labels; order is preserved.
+        """
+        self._labels = list(prompts_per_class.keys())
+        class_embeddings: list[torch.Tensor] = []
+        with torch.no_grad():
+            for prompts in prompts_per_class.values():
+                if not prompts:
+                    raise ValueError("Every class needs at least one prompt for the ensemble.")
+                tokens = self.tokenizer(prompts).to(self.device)
+                feats = self.model.encode_text(tokens)
+                feats = feats / feats.norm(dim=-1, keepdim=True)
+                mean_feat = feats.mean(dim=0)
+                mean_feat = mean_feat / mean_feat.norm()
+                class_embeddings.append(mean_feat)
+        self._text_embeddings = torch.stack(class_embeddings)
 
     def _embed_image(self, image: np.ndarray) -> torch.Tensor:
         pil = Image.fromarray(image)
@@ -142,9 +193,25 @@ class CLIPClassifier(BaseVLMClassifier):
         )
 
     def predict_batch(
-        self, images: list[np.ndarray], chunk_size: int = 32, texts: list[str] | None = None
+        self,
+        images: list[np.ndarray],
+        chunk_size: int = 32,
+        texts: list[str] | None = None,
+        tta: bool = False,
     ) -> list[tuple[str, float]]:
-        """Return (predicted_label, confidence) for each image, processed in chunks."""
+        """Return (predicted_label, confidence) for each image, processed in chunks.
+
+        Args:
+            images: Batch of images as HxWxC uint8 arrays.
+            chunk_size: Forward-pass batch size for the CLIP tower.
+            texts: Optional per-image texts used only by the fine-tuned head.
+            tta: Enable test-time augmentation by also running each image
+                horizontally flipped and averaging softmax outputs. Applies
+                to the zero-shot path only; the fine-tuned classification
+                head ignores this flag (its predictions are not softmax-
+                aggregable in a meaningful way). See
+                docs/CODE_REVIEW_ISSUES.md §7.2.
+        """
         if not self.is_classification and (self._text_embeddings is None or not self._labels):
             raise RuntimeError("Call set_classes() before predict_batch().")
         results: list[tuple[str, float]] = []
@@ -197,18 +264,33 @@ class CLIPClassifier(BaseVLMClassifier):
                 with torch.no_grad():
                     image_features = self.model.encode_image(batch)
                     image_features = image_features / image_features.norm(dim=-1, keepdim=True)
-                logits = image_features @ self._text_embeddings.T
-                probs = logits.softmax(dim=-1)
+                    if tta:
+                        # Horizontal flip along the last spatial dim.
+                        flipped = torch.flip(batch, dims=[-1])
+                        image_features_flip = self.model.encode_image(flipped)
+                        image_features_flip = image_features_flip / image_features_flip.norm(
+                            dim=-1, keepdim=True
+                        )
+                probs_original = (image_features @ self._text_embeddings.T).softmax(dim=-1)
+                if tta:
+                    probs_flip = (image_features_flip @ self._text_embeddings.T).softmax(dim=-1)
+                    probs = 0.5 * (probs_original + probs_flip)
+                else:
+                    probs = probs_original
                 for row in probs:
                     idx = int(row.argmax().item())
                     results.append((self._labels[idx], float(row[idx].item())))
         return results
 
     def timed_predict_batch(
-        self, images: list[np.ndarray], chunk_size: int = 32, texts: list[str] | None = None
+        self,
+        images: list[np.ndarray],
+        chunk_size: int = 32,
+        texts: list[str] | None = None,
+        tta: bool = False,
     ) -> tuple[list[tuple[str, float]], float]:
         """Return predictions and total elapsed wall-clock seconds."""
         t0 = time.perf_counter()
-        preds = self.predict_batch(images, chunk_size=chunk_size, texts=texts)
+        preds = self.predict_batch(images, chunk_size=chunk_size, texts=texts, tta=tta)
         elapsed = time.perf_counter() - t0
         return preds, elapsed

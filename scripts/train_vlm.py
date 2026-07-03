@@ -17,6 +17,7 @@ from torch.utils.data import DataLoader
 
 from models.vlm.classifier import build_misogyny_prompt, build_subtype_prompt
 from utils.dataset import DatasetManager
+from utils.seed import set_seed
 from utils.text_source import load_text_source_transcripts, resolve_text_source
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
@@ -261,7 +262,20 @@ def main() -> None:
         choices=["easyocr", "paddleocr"],
         help="OCR engine that produced the pre-extracted transcripts",
     )
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default=42,
+        help=(
+            "RNG seed for reproducible QLoRA training. Applied to Python's "
+            "random module, NumPy, and PyTorch (CPU + CUDA). See "
+            "docs/CODE_REVIEW_ISSUES.md §3.1."
+        ),
+    )
     args = parser.parse_args()
+
+    # Seed every RNG before touching the dataset or the model.
+    set_seed(args.seed)
 
     # Pre-checks
     if not torch.cuda.is_available() and args.device == "cuda":

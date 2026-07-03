@@ -82,6 +82,23 @@ def main() -> None:
         default="ViT-L-14",
         help="CLIP model name to use (default: ViT-L-14)",
     )
+    parser.add_argument(
+        "--prompt-ensemble",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help=(
+            "Use prompt ensembling for zero-shot CLIP (default on). See "
+            "docs/CODE_REVIEW_ISSUES.md §7.1."
+        ),
+    )
+    parser.add_argument(
+        "--tta",
+        action="store_true",
+        help=(
+            "Enable horizontal-flip test-time augmentation for zero-shot CLIP. "
+            "See docs/CODE_REVIEW_ISSUES.md §7.2."
+        ),
+    )
     args = parser.parse_args()
 
     # MAMI has no hidden visual content, so preprocessing filters do not help.
@@ -112,6 +129,8 @@ def main() -> None:
             ocr_engine=args.ocr_engine,
             model_name=args.model_name,
             text_source=args.text_source,
+            prompt_ensemble=args.prompt_ensemble,
+            tta=args.tta,
         )
         print(
             f"  acc={result.get('exact_match_accuracy', 0.0):.3f}  f1={result.get('f1', 0.0):.3f}"

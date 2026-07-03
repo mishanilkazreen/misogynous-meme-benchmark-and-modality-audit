@@ -45,9 +45,7 @@ def test_load_task_b_extracts_new_mami_score(tmp_path: Path) -> None:
         "precision": 0.4,
         "recall": 0.5,
         "mami_score_b": 0.62,
-        "per_class": {
-            "shaming": {"precision": 0.3, "recall": 0.4, "f1": 0.34, "support": 20}
-        },
+        "per_class": {"shaming": {"precision": 0.3, "recall": 0.4, "f1": 0.34, "support": 20}},
         "per_label_binary_macro_f1": {
             "shaming": 0.55,
             "stereotype": 0.7,

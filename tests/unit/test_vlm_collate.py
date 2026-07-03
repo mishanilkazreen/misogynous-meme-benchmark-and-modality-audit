@@ -33,18 +33,14 @@ def _make_mock_processor(padding_side: str = "left") -> MagicMock:
 def test_collate_forces_right_padding_when_processor_defaults_left() -> None:
     """A left-padding tokenizer (Qwen2 default) must be flipped to right."""
     processor = _make_mock_processor(padding_side="left")
-    _ = VLMCollate(
-        processor=processor, model_type="qwen2vl", task="singleclass", ocr_map=None
-    )
+    _ = VLMCollate(processor=processor, model_type="qwen2vl", task="singleclass", ocr_map=None)
     assert processor.tokenizer.padding_side == "right"
 
 
 def test_collate_keeps_right_padding_when_processor_already_right() -> None:
     """A processor already configured with right-padding stays right."""
     processor = _make_mock_processor(padding_side="right")
-    _ = VLMCollate(
-        processor=processor, model_type="llava", task="multiclass", ocr_map=None
-    )
+    _ = VLMCollate(processor=processor, model_type="llava", task="multiclass", ocr_map=None)
     assert processor.tokenizer.padding_side == "right"
 
 
@@ -70,9 +66,7 @@ def test_collate_uses_singleclass_prompt_for_task_singleclass() -> None:
 def test_collate_uses_subtype_prompt_for_task_multiclass() -> None:
     """The multiclass task branch selects the sub-type prompt."""
     processor = _make_mock_processor(padding_side="left")
-    collate = VLMCollate(
-        processor=processor, model_type="qwen2vl", task="multiclass", ocr_map=None
-    )
+    collate = VLMCollate(processor=processor, model_type="qwen2vl", task="multiclass", ocr_map=None)
     # Prompt must mention the four MAMI sub-types
     lower = collate.base_prompt_text.lower()
     for category in ("shaming", "stereotype", "objectification", "violence"):

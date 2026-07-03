@@ -14,9 +14,7 @@ import numpy as np
 from utils.text_source import load_text_source_transcripts
 
 
-def _write_fake_npz(
-    path: Path, image_ids: list[str], raw_texts: list[str]
-) -> None:
+def _write_fake_npz(path: Path, image_ids: list[str], raw_texts: list[str]) -> None:
     """Write a minimal NPZ that mimics an extract_embeddings output."""
     path.parent.mkdir(parents=True, exist_ok=True)
     # image_embeddings / text_embeddings are unused by the loader; write
@@ -35,9 +33,7 @@ def _write_fake_npz(
 
 def test_loader_provided_returns_empty(tmp_path: Path) -> None:
     """``provided`` needs no NPZ; the loader returns an empty dict."""
-    result = load_text_source_transcripts(
-        "validation", "provided", "paddleocr", tmp_path
-    )
+    result = load_text_source_transcripts("validation", "provided", "paddleocr", tmp_path)
     assert result == {}
 
 
@@ -48,9 +44,7 @@ def test_loader_ocr_reads_the_matching_npz(tmp_path: Path) -> None:
         image_ids=["1", "2"],
         raw_texts=["overlay one", "overlay two"],
     )
-    result = load_text_source_transcripts(
-        "validation", "ocr", "paddleocr", tmp_path
-    )
+    result = load_text_source_transcripts("validation", "ocr", "paddleocr", tmp_path)
     assert result == {"1": "overlay one", "2": "overlay two"}
 
 
@@ -61,9 +55,7 @@ def test_loader_combined_reads_the_matching_npz(tmp_path: Path) -> None:
         image_ids=["10", "20"],
         raw_texts=["merged one", "merged two"],
     )
-    result = load_text_source_transcripts(
-        "test", "combined", "paddleocr", tmp_path
-    )
+    result = load_text_source_transcripts("test", "combined", "paddleocr", tmp_path)
     assert result == {"10": "merged one", "20": "merged two"}
 
 
@@ -73,9 +65,7 @@ def test_loader_missing_file_returns_empty(tmp_path: Path) -> None:
     Callers are expected to fall back to ``sample["text"]`` in that case,
     so training does not crash on a missing OCR extract.
     """
-    result = load_text_source_transcripts(
-        "validation", "combined", "paddleocr", tmp_path
-    )
+    result = load_text_source_transcripts("validation", "combined", "paddleocr", tmp_path)
     assert result == {}
 
 
@@ -95,9 +85,7 @@ def test_loader_prefers_the_new_ocr_suffix_over_legacy(tmp_path: Path) -> None:
         image_ids=["1"],
         raw_texts=["new"],
     )
-    result = load_text_source_transcripts(
-        "validation", "ocr", "paddleocr", tmp_path
-    )
+    result = load_text_source_transcripts("validation", "ocr", "paddleocr", tmp_path)
     assert result["1"] == "new"
 
 

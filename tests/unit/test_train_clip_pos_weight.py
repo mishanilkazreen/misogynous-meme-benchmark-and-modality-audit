@@ -57,8 +57,7 @@ def test_pos_weight_rare_class_gets_high_weight() -> None:
 def test_pos_weight_zero_positives_falls_back_to_one() -> None:
     """A label with no positives falls back to 1.0 (no rebalancing)."""
     records = [
-        {"shaming": 0, "stereotype": 0, "objectification": 0, "violence": 0}
-        for _ in range(3)
+        {"shaming": 0, "stereotype": 0, "objectification": 0, "violence": 0} for _ in range(3)
     ]
     weights = compute_multilabel_pos_weight(records)
     for lbl_idx in range(len(MULTILABEL_ORDER)):
@@ -93,6 +92,7 @@ def test_pos_weight_matches_mami_train_ballpark() -> None:
     stereotype ~31.3 %, objectification ~28.8 %, violence ~12.7 %.
     Reproducing them approximately here confirms the formula.
     """
+
     # 100 samples with the eval-set positive rates rounded to whole counts
     def _mk(pos_shaming: int, pos_ster: int, pos_obj: int, pos_viol: int) -> list[dict[str, int]]:
         out: list[dict[str, int]] = []
@@ -113,5 +113,7 @@ def test_pos_weight_matches_mami_train_ballpark() -> None:
     # objectification (71/29) ~ 2.45, violence (87/13) ~ 6.69
     assert weights[MULTILABEL_ORDER.index("shaming")].item() == pytest.approx(86 / 14, abs=1e-6)
     assert weights[MULTILABEL_ORDER.index("stereotype")].item() == pytest.approx(69 / 31, abs=1e-6)
-    assert weights[MULTILABEL_ORDER.index("objectification")].item() == pytest.approx(71 / 29, abs=1e-6)
+    assert weights[MULTILABEL_ORDER.index("objectification")].item() == pytest.approx(
+        71 / 29, abs=1e-6
+    )
     assert weights[MULTILABEL_ORDER.index("violence")].item() == pytest.approx(87 / 13, abs=1e-6)

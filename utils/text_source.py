@@ -55,9 +55,7 @@ def resolve_text_source(text_source_arg: str | None, use_ocr_flag: bool) -> Text
                 f"Unknown text_source: {text_source_arg!r}. Choices: {list(_VALID_SOURCES)}"
             )
         if use_ocr_flag and text_source_arg == "provided":
-            logger.warning(
-                "--use-ocr is ignored because --text-source=provided is set explicitly."
-            )
+            logger.warning("--use-ocr is ignored because --text-source=provided is set explicitly.")
         return text_source_arg
     return "ocr" if use_ocr_flag else "provided"
 
