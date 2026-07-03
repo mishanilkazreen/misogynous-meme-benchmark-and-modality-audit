@@ -20,7 +20,7 @@ Usage in argparse:
         help=...,
     )
 
-The ``type=canonical_task`` callable normalises the input BEFORE
+The ``type=canonical_task`` callable normalizes the input BEFORE
 argparse validates it against ``choices``, so passing either
 ``--task binary`` or ``--task singleclass`` lands in ``args.task ==
 "singleclass"`` and every downstream branch (``if args.task ==
@@ -63,8 +63,5 @@ def canonical_task(name: str) -> str:
     """
     key = name.strip().lower()
     if key not in _ALIASES:
-        raise ValueError(
-            f"Unknown task {name!r}. Choose one of: "
-            f"{sorted(set(_ALIASES.keys()))}"
-        )
+        raise ValueError(f"Unknown task {name!r}. Choose one of: {sorted(set(_ALIASES.keys()))}")
     return _ALIASES[key]

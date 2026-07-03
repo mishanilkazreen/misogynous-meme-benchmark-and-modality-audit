@@ -75,7 +75,7 @@ repos:
 
       - id: commit-msg-check
         name: commit message format
-        entry: python scripts/check_commit_msg.py
+        entry: python3 scripts/check_commit_msg.py
         language: system
         stages: [commit-msg]
         always_run: true

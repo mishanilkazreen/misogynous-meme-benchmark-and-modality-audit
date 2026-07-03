@@ -91,9 +91,9 @@ def test_scaler_skipped_for_tree_models() -> None:
         "LightGBM",
         "Gradient Boosting Classifier",
     ]:
-        assert not isinstance(
-            models[name], Pipeline
-        ), f"{name} is scale-invariant and should not be scaled"
+        assert not isinstance(models[name], Pipeline), (
+            f"{name} is scale-invariant and should not be scaled"
+        )
 
 
 def test_scale_features_can_be_disabled() -> None:

@@ -68,5 +68,10 @@ def test_unknown_name_raises() -> None:
 
 def test_task_choices_covers_all_canonicals() -> None:
     """``TASK_CHOICES`` includes every canonical value at least once."""
-    for canonical in (CANONICAL_BINARY, CANONICAL_MULTILABEL, CANONICAL_JOINT, CANONICAL_PER_CATEGORY):
+    for canonical in (
+        CANONICAL_BINARY,
+        CANONICAL_MULTILABEL,
+        CANONICAL_JOINT,
+        CANONICAL_PER_CATEGORY,
+    ):
         assert canonical in TASK_CHOICES

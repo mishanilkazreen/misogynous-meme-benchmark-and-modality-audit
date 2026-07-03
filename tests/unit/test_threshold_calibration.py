@@ -26,7 +26,7 @@ class _FakeBinaryClassifier:
     def __init__(self, pos_probs: np.ndarray) -> None:
         self._pos = np.asarray(pos_probs, dtype=float)
 
-    def predict_proba(self, X: np.ndarray) -> np.ndarray:  # noqa: ARG002
+    def predict_proba(self, X: np.ndarray) -> np.ndarray:
         pos = self._pos
         return np.column_stack([1.0 - pos, pos])
 
