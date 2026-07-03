@@ -197,7 +197,14 @@ def load_task_a(filepath: Path | None) -> dict[str, float | None]:
 
 
 def load_task_b(filepath: Path | None) -> dict[str, Any] | None:
-    """Load multi-label (Task B) metrics from a result JSON file."""
+    """Load multi-label (Task B) metrics from a result JSON file.
+
+    ``mami_score_b`` is the MAMI 2022 official Sub-task B metric
+    (positive-support weighted average of per-sub-type binary-macro F1).
+    Older JSON files written before that metric was added return
+    ``None`` for this field; those rows show N/A in the report and
+    should be regenerated.
+    """
     if not filepath or not filepath.exists():
         return None
     try:
@@ -206,11 +213,14 @@ def load_task_b(filepath: Path | None) -> dict[str, Any] | None:
             return None
         return {
             "em": _as_float(row.get("exact_match_accuracy")),
+            "mami_score_b": _as_float(row.get("mami_score_b")),
             "macro_f1": _as_float(row.get("macro_f1", row.get("f1"))),
             "micro_f1": _as_float(row.get("micro_f1")),
+            "weighted_f1": _as_float(row.get("weighted_f1")),
             "macro_precision": _as_float(row.get("precision")),
             "macro_recall": _as_float(row.get("recall")),
             "per_class": row.get("per_class"),
+            "per_label_binary_macro_f1": row.get("per_label_binary_macro_f1"),
         }
     except Exception:
         return None
@@ -313,20 +323,30 @@ def render_task_a_table(rows: list[dict[str, Any]]) -> str:
 
 
 def render_task_b_aggregate_table(rows: list[dict[str, Any]]) -> str:
-    """Markdown table of aggregate Task B metrics on the test split."""
-    header = "| Model | Exact Match | Macro F1 | Micro F1 | Macro Prec | Macro Rec |"
-    sep = "| " + " | ".join(["---"] * 6) + " |"
+    """Markdown table of aggregate Task B metrics on the test split.
+
+    The MAMI F1 column is the MAMI 2022 official Sub-task B metric,
+    positioned as the headline column. Macro F1, Micro F1, Weighted F1,
+    Macro Precision, and Macro Recall are kept as diagnostics.
+    """
+    header = (
+        "| Model | MAMI F1 | Exact Match | Macro F1 | Micro F1 | Weighted F1 "
+        "| Macro Prec | Macro Rec |"
+    )
+    sep = "| " + " | ".join(["---"] * 8) + " |"
     lines = [header, sep]
     for r in rows:
         b = r["test_b"] or r["val_b"]
         if not b:
             continue
         lines.append(
-            "| {name} | {em} | {mf1} | {micf1} | {mp} | {mr} |".format(
+            "| {name} | {mami} | {em} | {mf1} | {micf1} | {wf1} | {mp} | {mr} |".format(
                 name=r["name"],
+                mami=_f4(b.get("mami_score_b")),
                 em=_pct(b["em"]),
                 mf1=_f4(b["macro_f1"]),
                 micf1=_f4(b["micro_f1"]),
+                wf1=_f4(b.get("weighted_f1")),
                 mp=_f4(b["macro_precision"]),
                 mr=_f4(b["macro_recall"]),
             )
@@ -426,8 +446,14 @@ def write_report(rows: list[dict[str, Any]]) -> None:
         "",
         "## Task B - Multi-label Sub-type Classification (Aggregate)",
         "",
-        "Metrics: Exact-Match Accuracy, Macro F1, Micro F1, Macro Precision,",
-        "Macro Recall (test split where available, else validation).",
+        "Headline metric: **MAMI F1**, the MAMI 2022 official Sub-task B",
+        "score defined in ``Evaluation/evaluation.py::compute_scoreB`` of the",
+        "MIND-Lab MAMI shared-task repository (positive-support weighted",
+        "average of per-sub-type binary-macro F1). Diagnostics: Exact-Match",
+        "Accuracy, Macro F1, Micro F1, Weighted F1, Macro Precision, Macro",
+        "Recall (test split where available, else validation). MAMI F1 is",
+        "shown as ``N/A`` for older result JSONs that predate the metric;",
+        "those rows should be regenerated.",
         "",
         render_task_b_aggregate_table(rows),
         "",

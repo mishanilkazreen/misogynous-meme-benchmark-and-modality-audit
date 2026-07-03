@@ -54,6 +54,7 @@ from models.vlm.clip_classifier import CLIPClassifier
 from models.vlm.metrics_multilabel import compute_multilabel_metrics
 from utils.dataset import DatasetManager
 from utils.preprocessing import PreprocessingPipeline
+from utils.text_source import load_text_source_transcripts, resolve_text_source
 
 # --- Logging setup ---
 LOG_DIR = Path(__file__).resolve().parents[1] / "logs"
@@ -260,24 +261,8 @@ def build_label_prevalence(
 
 
 def load_ocr_transcripts(split: str, ocr_engine: str, embeddings_dir: Path) -> dict[str, str]:
-    """Load OCR-extracted texts from any pre-existing NPZ file for the split and engine."""
-    files = list(embeddings_dir.glob(f"{split}_*_{ocr_engine}.npz"))
-    if not files:
-        files = list(embeddings_dir.glob(f"{split}_*_ocr_{ocr_engine}.npz"))
-
-    if not files:
-        logger.warning(
-            f"No pre-extracted OCR NPZ file found for split '{split}' and engine '{ocr_engine}' in {embeddings_dir}. "
-            "Please run scripts/extract_embeddings.py with --use-ocr --ocr-engine {ocr_engine} first."
-        )
-        return {}
-
-    file_path = files[0]
-    logger.info("Loading OCR transcripts from %s...", file_path)
-    data = np.load(file_path, allow_pickle=True)
-    image_ids = data["image_ids"]
-    raw_texts = data["raw_texts"]
-    return {str(img_id): str(txt) for img_id, txt in zip(image_ids, raw_texts, strict=True)}
+    """Deprecated shim delegating to :func:`utils.text_source.load_text_source_transcripts`."""
+    return load_text_source_transcripts(split, "ocr", ocr_engine, embeddings_dir)
 
 
 def run_clip(
@@ -290,12 +275,15 @@ def run_clip(
     use_ocr: bool = False,
     ocr_engine: str = "easyocr",
     model_name: str = "ViT-L-14",
+    text_source: str | None = None,
 ) -> dict[str, Any]:
     """Run CLIP on the given samples with the given filter.
 
     singleclass: binary misogyny classification using CLIP_MISOGYNY_LABELS.
     multiclass: per-category binary classification using CLIP_SUBTYPE_LABELS.
     """
+    resolved_source = resolve_text_source(text_source, use_ocr)
+
     if task == "multiclass":
         return _run_clip_multiclass(
             samples,
@@ -306,6 +294,7 @@ def run_clip(
             use_ocr=use_ocr,
             ocr_engine=ocr_engine,
             model_name=model_name,
+            text_source=resolved_source,
         )
 
     # singleclass: binary misogyny
@@ -316,9 +305,11 @@ def run_clip(
     classifier = CLIPClassifier(model_name=model_name, device=device, model_path=model_path)
     classifier.set_classes(clip_labels)
 
-    ocr_map = None
-    if use_ocr:
-        ocr_map = load_ocr_transcripts(split, ocr_engine, RESULTS_DIR / "embeddings")
+    ocr_map: dict[str, str] | None = None
+    if resolved_source != "provided":
+        ocr_map = load_text_source_transcripts(
+            split, resolved_source, ocr_engine, RESULTS_DIR / "embeddings"
+        ) or None
 
     t0 = time.perf_counter()
     if ocr_map:
@@ -368,14 +359,18 @@ def _run_clip_multiclass(
     use_ocr: bool = False,
     ocr_engine: str = "easyocr",
     model_name: str = "ViT-L-14",
+    text_source: str | None = None,
 ) -> dict[str, Any]:
     """Run CLIP multiclass: per-category binary prediction for all four sub-types."""
     images = [apply_filter(image_to_numpy(s["image"]), filter_name) for s in samples]
     classifier = CLIPClassifier(model_name=model_name, device=device, model_path=model_path)
 
-    ocr_map = None
-    if use_ocr:
-        ocr_map = load_ocr_transcripts(split, ocr_engine, RESULTS_DIR / "embeddings")
+    resolved_source = resolve_text_source(text_source, use_ocr)
+    ocr_map: dict[str, str] | None = None
+    if resolved_source != "provided":
+        ocr_map = load_text_source_transcripts(
+            split, resolved_source, ocr_engine, RESULTS_DIR / "embeddings"
+        ) or None
 
     # Per-category independent binary predictions
     category_preds: dict[str, list[int]] = {lbl: [] for lbl in SUBTYPE_LABELS}
@@ -477,6 +472,7 @@ def run_generative_model(
     task: str = "singleclass",
     use_ocr: bool = False,
     ocr_engine: str = "easyocr",
+    text_source: str | None = None,
 ) -> dict[str, Any] | None:
     """Dispatch to the appropriate generative model script."""
     preprocess_arg = None if filter_name == "none" else filter_name
@@ -495,6 +491,7 @@ def run_generative_model(
                 task=task,
                 use_ocr=use_ocr,
                 ocr_engine=ocr_engine,
+                text_source=text_source,
             )
             logger.info("Completed qwen2vl (filter=%s)", filter_name)
             return result
@@ -519,6 +516,7 @@ def run_generative_model(
                 task=task,
                 use_ocr=use_ocr,
                 ocr_engine=ocr_engine,
+                text_source=text_source,
             )
             logger.info("Completed llava (filter=%s)", filter_name)
             return result
@@ -692,15 +690,28 @@ def main() -> None:
         ),
     )
     parser.add_argument(
+        "--text-source",
+        default=None,
+        choices=["provided", "ocr", "combined"],
+        help=(
+            "Where the text modality comes from. Default 'provided' uses "
+            "MAMI's text-transcription column. 'ocr' or 'combined' loads a "
+            "pre-extracted NPZ."
+        ),
+    )
+    parser.add_argument(
         "--use-ocr",
         action="store_true",
-        help="Use OCR-extracted text instead of dataset transcripts",
+        help=(
+            "Deprecated alias: equivalent to --text-source ocr. Kept for "
+            "backward compatibility."
+        ),
     )
     parser.add_argument(
         "--ocr-engine",
         default="easyocr",
         choices=["easyocr", "paddleocr"],
-        help="OCR engine to load transcripts for",
+        help="OCR engine that produced the pre-extracted transcripts",
     )
     args = parser.parse_args()
 
@@ -759,6 +770,7 @@ def main() -> None:
                         model_path=args.model_path,
                         use_ocr=args.use_ocr,
                         ocr_engine=args.ocr_engine,
+                        text_source=args.text_source,
                     )
                 else:
                     result = run_generative_model(
@@ -770,6 +782,7 @@ def main() -> None:
                         task=args.task,
                         use_ocr=args.use_ocr,
                         ocr_engine=args.ocr_engine,
+                        text_source=args.text_source,
                     )
                 if result is not None:
                     all_results.append(result)

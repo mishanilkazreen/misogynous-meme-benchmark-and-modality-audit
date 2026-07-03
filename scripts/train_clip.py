@@ -19,6 +19,7 @@ import torch.nn.functional as F
 from torch.utils.data import DataLoader
 
 from utils.dataset import DatasetManager
+from utils.text_source import load_text_source_transcripts, resolve_text_source
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger(__name__)
@@ -66,12 +67,9 @@ def train_contrastive(
         else:
             texts = batch["text"]
 
-        # Tokenize text (max length in CLIP is 77)
-        clean_texts = []
-        for t in texts:
-            words = t.strip().split()
-            clean_text = " ".join(words[:60]) if len(words) > 60 else t.strip()
-            clean_texts.append(clean_text or "empty text")
+        # Tokenize text. open_clip's tokenizer truncates to 77 tokens natively;
+        # we only enforce the non-empty invariant.
+        clean_texts = [t.strip() or "empty text" for t in texts]
 
         tokens = tokenizer(clean_texts).to(device)
 
@@ -104,6 +102,42 @@ def train_contrastive(
     return total_loss / len(dataloader)
 
 
+MULTILABEL_ORDER: list[str] = ["shaming", "stereotype", "objectification", "violence"]
+
+
+def compute_multilabel_pos_weight(
+    records: list[dict[str, Any]],
+    labels: list[str] = MULTILABEL_ORDER,
+) -> torch.Tensor:
+    """Return per-label ``pos_weight = N_neg / N_pos`` for BCE-with-logits.
+
+    Used to rebalance the Task B loss on MAMI's imbalanced sub-type
+    positives (shaming ~14 %, stereotype ~31 %, objectification ~29 %,
+    violence ~13 %). Without this rebalancing the loss-minimising
+    solution for the two rare classes is "always predict 0", which is
+    exactly what the pre-fix runs showed (see docs/CODE_REVIEW_ISSUES.md
+    §1.2).
+
+    Args:
+        records: The list of raw label dicts from the training split
+            (``MamiDataset._records``). Each record must contain integer
+            fields matching ``labels``.
+        labels: Ordered list of sub-type label names.
+
+    Returns:
+        1-D float tensor of shape ``(len(labels),)`` with per-label
+        ``N_neg / N_pos``. Falls back to 1.0 for any label with no
+        positives (no rebalancing rather than a divide-by-zero).
+    """
+    n = len(records)
+    weights: list[float] = []
+    for lbl in labels:
+        n_pos = sum(int(r.get(lbl, 0)) for r in records)
+        n_neg = n - n_pos
+        weights.append(n_neg / n_pos if n_pos > 0 else 1.0)
+    return torch.tensor(weights, dtype=torch.float32)
+
+
 def train_classification(
     model: nn.Module,
     dataloader: DataLoader,
@@ -112,9 +146,29 @@ def train_classification(
     device: torch.device,
     task: str,
     ocr_map: dict[str, str] | None = None,
+    pos_weight: torch.Tensor | None = None,
 ) -> float:
+    """Run one epoch of classification training.
+
+    Args:
+        model, dataloader, optimizer, tokenizer, device: standard training
+            components.
+        task: ``"singleclass"`` (Task A, binary) or ``"multiclass"``
+            (Task B, 4-way multi-label).
+        ocr_map: optional mapping of image_id -> OCR transcript.
+        pos_weight: only used when ``task == "multiclass"``. Per-label
+            ``N_neg / N_pos`` tensor of shape ``(4,)``. Passed to
+            ``binary_cross_entropy_with_logits`` as its ``pos_weight``
+            argument to rebalance rare sub-types (shaming, violence).
+            If ``None`` in the multi-label branch the loss is plain BCE,
+            which reproduces the (broken) pre-fix behaviour and is kept
+            for backward compatibility.
+    """
     model.train()
     total_loss = 0.0
+
+    if pos_weight is not None:
+        pos_weight = pos_weight.to(device)
 
     for batch in dataloader:
         images = batch["image"].to(device)
@@ -127,7 +181,8 @@ def train_classification(
         if task == "singleclass":
             targets = batch["misogynous"].to(device)
         else:
-            # shaming, stereotype, objectification, violence
+            # shaming, stereotype, objectification, violence — MUST match
+            # the order that `pos_weight` was computed in.
             targets = (
                 torch.stack(
                     [
@@ -142,11 +197,8 @@ def train_classification(
                 .to(device)
             )
 
-        clean_texts = []
-        for t in texts:
-            words = t.strip().split()
-            clean_text = " ".join(words[:60]) if len(words) > 60 else t.strip()
-            clean_texts.append(clean_text or "empty text")
+        # open_clip's tokenizer truncates to 77 tokens; we only enforce non-empty.
+        clean_texts = [t.strip() or "empty text" for t in texts]
 
         tokens = tokenizer(clean_texts).to(device)
 
@@ -156,7 +208,9 @@ def train_classification(
         if task == "singleclass":
             loss = F.cross_entropy(logits, targets)
         else:
-            loss = F.binary_cross_entropy_with_logits(logits, targets)
+            loss = F.binary_cross_entropy_with_logits(
+                logits, targets, pos_weight=pos_weight
+            )
 
         loss.backward()
         optimizer.step()
@@ -167,26 +221,12 @@ def train_classification(
 
 
 def load_ocr_transcripts(split: str, ocr_engine: str, embeddings_dir: Path) -> dict[str, str]:
-    """Load OCR-extracted texts from any pre-existing NPZ file for the split and engine."""
-    pattern = f"{split}_*_{ocr_engine}.npz"
-    files = list(embeddings_dir.glob(pattern))
-    if not files:
-        pattern = f"{split}_*_ocr_{ocr_engine}.npz"
-        files = list(embeddings_dir.glob(pattern))
+    """Deprecated shim. Kept so external callers (e.g. old notebooks) still import.
 
-    if not files:
-        logger.warning(
-            f"No pre-extracted OCR NPZ file found for split '{split}' and engine '{ocr_engine}' in {embeddings_dir}. "
-            "Please run scripts/extract_embeddings.py with --use-ocr --ocr-engine {ocr_engine} first."
-        )
-        return {}
-
-    file_path = Path(files[0])
-    logger.info("Loading OCR transcripts from %s...", file_path)
-    data = np.load(file_path, allow_pickle=True)
-    image_ids = data["image_ids"]
-    raw_texts = data["raw_texts"]
-    return {str(img_id): str(txt) for img_id, txt in zip(image_ids, raw_texts, strict=True)}
+    Prefer :func:`utils.text_source.load_text_source_transcripts`; this
+    wrapper is equivalent to calling it with ``text_source="ocr"``.
+    """
+    return load_text_source_transcripts(split, "ocr", ocr_engine, embeddings_dir)
 
 
 def main() -> None:
@@ -215,15 +255,28 @@ def main() -> None:
         "--limit", type=int, default=None, help="Cap split samples for smoke testing"
     )
     parser.add_argument(
+        "--text-source",
+        default=None,
+        choices=["provided", "ocr", "combined"],
+        help=(
+            "Where the text modality comes from. 'provided' uses MAMI's "
+            "text-transcription column (default). 'ocr' or 'combined' loads a "
+            "pre-extracted NPZ produced by scripts/extract_embeddings.py."
+        ),
+    )
+    parser.add_argument(
         "--use-ocr",
         action="store_true",
-        help="Use OCR-extracted text instead of dataset transcripts",
+        help=(
+            "Deprecated alias: equivalent to --text-source ocr. Kept for "
+            "backward compatibility."
+        ),
     )
     parser.add_argument(
         "--ocr-engine",
         default="easyocr",
         choices=["easyocr", "paddleocr"],
-        help="OCR engine to load transcripts for",
+        help="OCR engine that produced the pre-extracted transcripts",
     )
     args = parser.parse_args()
 
@@ -280,9 +333,30 @@ def main() -> None:
     logger.info("Starting fine-tuning loop in %s mode...", args.loss_mode)
     MODELS_DIR.mkdir(parents=True, exist_ok=True)
 
-    ocr_map = None
-    if args.use_ocr:
-        ocr_map = load_ocr_transcripts("train", args.ocr_engine, Path("results/embeddings"))
+    text_source = resolve_text_source(args.text_source, args.use_ocr)
+    logger.info("Text source for training: %s", text_source)
+    ocr_map: dict[str, str] | None = None
+    if text_source != "provided":
+        ocr_map = load_text_source_transcripts(
+            "train", text_source, args.ocr_engine, Path("results/embeddings")
+        )
+        if not ocr_map:
+            logger.warning(
+                "Text-source NPZ not found; falling back to dataset transcripts."
+            )
+            ocr_map = None
+
+    # Compute per-label pos_weight ONCE from the training set for Task B BCE.
+    # Cheap: it's a single pass over the label dicts, not over the images.
+    pos_weight: torch.Tensor | None = None
+    if args.loss_mode == "classification" and args.task == "multiclass":
+        pos_weight = compute_multilabel_pos_weight(
+            train_dataset._records, labels=MULTILABEL_ORDER  # pylint: disable=protected-access
+        )
+        logger.info(
+            "Task B pos_weight (shaming, stereotype, objectification, violence): %s",
+            pos_weight.tolist(),
+        )
 
     for epoch in range(1, args.epochs + 1):
         t0 = time.perf_counter()
@@ -292,7 +366,14 @@ def main() -> None:
             )
         else:
             avg_loss = train_classification(
-                model, train_loader, optimizer, tokenizer, device, args.task, ocr_map=ocr_map
+                model,
+                train_loader,
+                optimizer,
+                tokenizer,
+                device,
+                args.task,
+                ocr_map=ocr_map,
+                pos_weight=pos_weight,
             )
 
         elapsed = time.perf_counter() - t0
@@ -307,9 +388,11 @@ def main() -> None:
     # 5. Save model checkpoint
     model_name_clean = args.model.lower().replace("-", "_")
     task_suffix = f"_{args.task}" if args.loss_mode == "classification" else ""
-    # Encode the OCR setting so OCR-augmented and non-OCR checkpoints never
-    # overwrite each other (e.g. ..._vit_b_32_quickgelu_ocr_paddleocr.pth).
-    ocr_suffix = f"_ocr_{args.ocr_engine}" if args.use_ocr else ""
+    # Encode the resolved text source in the checkpoint filename so
+    # provided-text, PaddleOCR, and combined runs never overwrite each other.
+    from utils.text_source import filename_suffix_for_source
+
+    ocr_suffix = filename_suffix_for_source(text_source, args.ocr_engine)
     checkpoint_name = (
         f"finetuned_clip_{args.loss_mode}{task_suffix}_{model_name_clean}{ocr_suffix}.pth"
     )

@@ -43,6 +43,7 @@ from models.vlm.classifier import (
 from models.vlm.metrics_multilabel import compute_multilabel_metrics
 from utils.dataset import DatasetManager
 from utils.preprocessing import PreprocessingPipeline
+from utils.text_source import load_text_source_transcripts, resolve_text_source
 
 try:
     from transformers import AutoProcessor  # type: ignore[import-untyped]
@@ -105,23 +106,13 @@ def _misogynous_to_label(misogynous: int) -> str:
 
 
 def load_ocr_transcripts(split: str, ocr_engine: str, embeddings_dir: Path) -> dict[str, str]:
-    """Load OCR-extracted texts from any pre-existing NPZ file for the split and engine."""
-    files = list(embeddings_dir.glob(f"{split}_*_{ocr_engine}.npz"))
-    if not files:
-        files = list(embeddings_dir.glob(f"{split}_*_ocr_{ocr_engine}.npz"))
+    """Deprecated shim delegating to :func:`utils.text_source.load_text_source_transcripts`.
 
-    if not files:
-        print(
-            f"WARNING: No pre-extracted OCR NPZ file found for split '{split}' and engine '{ocr_engine}' in {embeddings_dir}. "
-        )
-        return {}
-
-    file_path = files[0]
-    print(f"Loading OCR transcripts from {file_path}...")
-    data = np.load(file_path, allow_pickle=True)
-    image_ids = data["image_ids"]
-    raw_texts = data["raw_texts"]
-    return {str(img_id): str(txt) for img_id, txt in zip(image_ids, raw_texts, strict=True)}
+    Kept so external callers (notebooks, other scripts) do not break during
+    the transition. New code should call ``load_text_source_transcripts``
+    directly with an explicit ``text_source`` argument.
+    """
+    return load_text_source_transcripts(split, "ocr", ocr_engine, embeddings_dir)
 
 
 def is_refusal(text: str) -> bool:
@@ -198,6 +189,7 @@ def run_benchmark(
     lora_path: str | None = None,
     use_ocr: bool = False,
     ocr_engine: str = "easyocr",
+    text_source: str | None = None,
 ) -> dict[str, Any]:
     """Run Qwen2-VL on the MAMI 2022 misogyny classification task.
 
@@ -227,6 +219,11 @@ def run_benchmark(
     if not samples:
         raise ValueError(f"No samples for split '{split}'")
 
+    # Resolve text source once here; propagate to the multiclass path and to
+    # the ocr_map lookup below. ``use_ocr=True`` alone maps to text_source
+    # "ocr" for backward compatibility with callers that only pass the bool.
+    resolved_source = resolve_text_source(text_source, use_ocr)
+
     if task == "multiclass":
         return _run_benchmark_multiclass(
             processor,
@@ -237,14 +234,17 @@ def run_benchmark(
             batch_size,
             use_ocr=use_ocr,
             ocr_engine=ocr_engine,
+            text_source=resolved_source,
         )
 
     labels = MISOGYNY_LABELS  # ["yes", "no"]
     base_prompt_text = build_misogyny_prompt()
 
-    ocr_map = None
-    if use_ocr:
-        ocr_map = load_ocr_transcripts(split, ocr_engine, RESULTS_DIR / "embeddings")
+    ocr_map: dict[str, str] | None = None
+    if resolved_source != "provided":
+        ocr_map = load_text_source_transcripts(
+            split, resolved_source, ocr_engine, RESULTS_DIR / "embeddings"
+        ) or None
 
     pipeline = PreprocessingPipeline() if preprocess else None
     results: list[ClassificationResult] = []
@@ -293,7 +293,13 @@ def run_benchmark(
 
         t0 = time.perf_counter()
         with torch.no_grad():
-            output_ids = model.generate(**inputs, max_new_tokens=MAX_NEW_TOKENS)
+            # do_sample=False forces greedy decoding. Qwen2-VL ships a
+            # generation_config with do_sample=True and temperature=0.7 by
+            # default, so without this every eval run is stochastic even at
+            # the same seed. See docs/CODE_REVIEW_ISSUES.md §6.6.
+            output_ids = model.generate(
+                **inputs, max_new_tokens=MAX_NEW_TOKENS, do_sample=False
+            )
         elapsed = (time.perf_counter() - t0) / len(batch)
 
         input_len = inputs["input_ids"].shape[1]
@@ -337,13 +343,17 @@ def _run_benchmark_multiclass(
     batch_size: int = 4,
     use_ocr: bool = False,
     ocr_engine: str = "easyocr",
+    text_source: str | None = None,
 ) -> dict[str, Any]:
     """Run Qwen2-VL on multiclass: multi-label sub-type classification."""
     base_prompt_text = build_subtype_prompt()
 
-    ocr_map = None
-    if use_ocr:
-        ocr_map = load_ocr_transcripts(split, ocr_engine, RESULTS_DIR / "embeddings")
+    resolved_source = resolve_text_source(text_source, use_ocr)
+    ocr_map: dict[str, str] | None = None
+    if resolved_source != "provided":
+        ocr_map = load_text_source_transcripts(
+            split, resolved_source, ocr_engine, RESULTS_DIR / "embeddings"
+        ) or None
     max_new_tokens_multiclass = 60
     pipeline = PreprocessingPipeline() if preprocess else None
 
@@ -395,7 +405,10 @@ def _run_benchmark_multiclass(
 
         t0 = time.perf_counter()
         with torch.no_grad():
-            output_ids = model.generate(**inputs, max_new_tokens=max_new_tokens_multiclass)
+            # See docs/CODE_REVIEW_ISSUES.md §6.6 - deterministic decoding.
+            output_ids = model.generate(
+                **inputs, max_new_tokens=max_new_tokens_multiclass, do_sample=False
+            )
         elapsed = (time.perf_counter() - t0) / len(batch)
         latencies.extend([elapsed] * len(batch))
 
@@ -560,15 +573,28 @@ def main() -> None:
         help="Path to fine-tuned LoRA adapters directory",
     )
     parser.add_argument(
+        "--text-source",
+        default=None,
+        choices=["provided", "ocr", "combined"],
+        help=(
+            "Where the text modality comes from. Default 'provided' uses "
+            "MAMI's text-transcription column. 'ocr' or 'combined' loads a "
+            "pre-extracted NPZ produced by scripts/extract_embeddings.py."
+        ),
+    )
+    parser.add_argument(
         "--use-ocr",
         action="store_true",
-        help="Use OCR-extracted text instead of dataset transcripts",
+        help=(
+            "Deprecated alias: equivalent to --text-source ocr. Kept for "
+            "backward compatibility."
+        ),
     )
     parser.add_argument(
         "--ocr-engine",
         default="easyocr",
         choices=["easyocr", "paddleocr"],
-        help="OCR engine to load transcripts for",
+        help="OCR engine that produced the pre-extracted transcripts",
     )
     args = parser.parse_args()
 
@@ -605,6 +631,7 @@ def main() -> None:
             lora_path=args.lora_path,
             use_ocr=args.use_ocr,
             ocr_engine=args.ocr_engine,
+            text_source=args.text_source,
         )
         all_results.append(result)
         acc = result.get("exact_match_accuracy", 0.0)
@@ -615,9 +642,12 @@ def main() -> None:
     split_slug = args.split.replace(",", "_")
     suffix = "_multiclass" if args.task == "multiclass" else ""
     path_suffix = "_finetuned" if args.lora_path else ""
-    # Encode the OCR setting so OCR-augmented and image-only runs never overwrite
-    # each other (e.g. ..._ocr_paddleocr_multiclass.json vs ..._multiclass.json).
-    ocr_suffix = f"_ocr_{args.ocr_engine}" if args.use_ocr else ""
+    # Encode the resolved text source in the output filename so runs with
+    # different text sources never overwrite each other.
+    from utils.text_source import filename_suffix_for_source
+
+    resolved_source = resolve_text_source(args.text_source, args.use_ocr)
+    ocr_suffix = filename_suffix_for_source(resolved_source, args.ocr_engine)
     # Include the model id so different model sizes (e.g. 2B vs 7B) never overwrite each other.
     model_slug = args.model_id.split("/")[-1].lower().replace("-", "_").replace(".", "_")
     out = split_dir / f"qwen2vl_{split_slug}_{model_slug}{ocr_suffix}{suffix}{path_suffix}.json"

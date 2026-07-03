@@ -18,6 +18,11 @@ from tqdm import tqdm
 
 from utils.dataset import DatasetManager
 from utils.ocr import OCRPipeline
+from utils.text_source import (
+    combine_texts,
+    filename_suffix_for_source,
+    resolve_text_source,
+)
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger(__name__)
@@ -55,15 +60,32 @@ def main() -> None:
         help="Device to run inference on (cuda or cpu)",
     )
     parser.add_argument(
+        "--text-source",
+        default=None,
+        choices=["provided", "ocr", "combined"],
+        help=(
+            "Where the text modality comes from. 'provided' uses MAMI's "
+            "text-transcription column (manually verified OCR, the default that "
+            "matches the SemEval 2022 leaderboard convention). 'ocr' re-extracts "
+            "text with the engine given by --ocr-engine. 'combined' uses the "
+            "provided text as the base and appends any OCR-detected tokens the "
+            "human transcription missed. Default: 'provided' unless --use-ocr "
+            "is passed (then 'ocr' for backward compatibility)."
+        ),
+    )
+    parser.add_argument(
         "--use-ocr",
         action="store_true",
-        help="Use OCR pipeline to extract text from images instead of dataset transcripts",
+        help=(
+            "Deprecated alias: equivalent to --text-source ocr. Kept for "
+            "backward compatibility with existing SLURM scripts."
+        ),
     )
     parser.add_argument(
         "--ocr-engine",
         default="easyocr",
         choices=["easyocr", "paddleocr"],
-        help="OCR engine to use if --use-ocr is enabled",
+        help="OCR engine to use when --text-source is 'ocr' or 'combined'",
     )
     parser.add_argument(
         "--batch-size",
@@ -77,6 +99,14 @@ def main() -> None:
         help="Directory to save extracted embeddings",
     )
     args = parser.parse_args()
+
+    # Resolve --text-source, honouring the deprecated --use-ocr alias.
+    text_source = resolve_text_source(args.text_source, args.use_ocr)
+    logger.info(
+        "Text source: %s%s",
+        text_source,
+        f" (engine={args.ocr_engine})" if text_source != "provided" else "",
+    )
 
     # Determine device
     if args.device is None:
@@ -98,9 +128,9 @@ def main() -> None:
     model.eval()
     tokenizer = open_clip.get_tokenizer(args.model)
 
-    # Initialize OCR Pipeline if requested
+    # Initialize OCR Pipeline if the chosen source requires it.
     ocr_pipe = None
-    if args.use_ocr:
+    if text_source in ("ocr", "combined"):
         logger.info("Initializing OCR Pipeline (%s)...", args.ocr_engine)
         gpu_bool = device == "cuda"
         ocr_pipe = OCRPipeline(gpu=gpu_bool, engine=args.ocr_engine)
@@ -158,23 +188,23 @@ def main() -> None:
             img_np = (img_np * 255.0).astype(np.uint8)
             pil_img = Image.fromarray(img_np)
 
-            # Get text (either from OCR or dataset transcription)
-            if args.use_ocr and ocr_pipe is not None:
+            # Get text from the resolved source.
+            provided = str(sample.get("text", ""))
+            if text_source == "provided":
+                text = provided
+            elif text_source == "ocr":
+                assert ocr_pipe is not None
                 text = ocr_pipe.extract_and_normalize(img_np)
-            else:
-                text = sample["text"]
+            else:  # combined
+                assert ocr_pipe is not None
+                ocr_only = ocr_pipe.extract_and_normalize(img_np)
+                text = combine_texts(provided, ocr_only)
 
             raw_texts.append(text)
 
-            # Keep track of words to avoid context length overflow in CLIP tokenizer (max 77 tokens)
-            text_cleaned = text.strip()
-            words = text_cleaned.split()
-            if len(words) > 60:
-                text_cleaned = " ".join(words[:60])
-            if not text_cleaned:
-                text_cleaned = (
-                    "empty text"  # fallback placeholder to avoid empty tokenization errors
-                )
+            # open_clip's tokenizer truncates to 77 tokens natively; we only
+            # enforce the non-empty invariant to avoid degenerate embeddings.
+            text_cleaned = text.strip() or "empty text"
 
             # Add to batch buffers
             batch_imgs.append(preprocess(pil_img))
@@ -213,11 +243,11 @@ def main() -> None:
             elapsed / num_samples,
         )
 
-        # Build paths
-        ocr_suffix = ""
-        if args.use_ocr:
-            ocr_suffix = f"_ocr_{args.ocr_engine}"
-        out_filename = f"{split}_{args.model.lower().replace('-', '_')}{ocr_suffix}.npz"
+        # Build paths. Filename suffix reflects the text source so a repo can
+        # hold multiple embedding files (provided / ocr / combined) side by
+        # side for direct comparison.
+        suffix = filename_suffix_for_source(text_source, args.ocr_engine)
+        out_filename = f"{split}_{args.model.lower().replace('-', '_')}{suffix}.npz"
         out_path = output_dir / out_filename
 
         # Save to disk

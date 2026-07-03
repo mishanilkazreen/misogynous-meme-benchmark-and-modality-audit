@@ -50,17 +50,46 @@ class TestOCRPipeline:
         assert pipeline.normalize_text(None) == ""
 
     def test_normalize_text_special_chars(self):
-        """Test normalization removes special characters."""
+        """Punctuation survives normalisation; NFKC compatibility folds still apply."""
         pipeline = OCRPipeline()
 
-        # Keep basic punctuation
+        # Basic punctuation survives.
         assert "hello" in pipeline.normalize_text("hello!")
         assert "world" in pipeline.normalize_text("hello, world")
 
-        # Remove special unicode
+        # NFKC folds ``™`` into ``TM`` (then lowercased to ``tm``).
+        # ``®`` has no compatibility fold and now survives as-is.
         result = pipeline.normalize_text("hello™ world®")
-        assert "™" not in result
-        assert "®" not in result
+        assert "™" not in result  # NFKC-decomposed away
+        assert "tm" in result  # decomposed to TM then lowercased
+        assert "®" in result  # preserved by design (docs §2.9)
+
+    def test_normalize_text_preserves_emoji(self):
+        """Emojis (including gender glyphs) survive normalisation.
+
+        Meme authors use ♀ / ♂ and the "female sign" pictograph as
+        misogyny signals; stripping them silently removed feature signal
+        (see docs/CODE_REVIEW_ISSUES.md §2.9).
+        """
+        pipeline = OCRPipeline()
+        result = pipeline.normalize_text("women be like ♀🙄")
+        assert "♀" in result
+        assert "🙄" in result
+
+    def test_normalize_text_preserves_hashtag_and_at(self):
+        """Hashtags and at-signs survive normalisation."""
+        pipeline = OCRPipeline()
+        result = pipeline.normalize_text("#feminism is @dumb")
+        assert "#" in result
+        assert "@" in result
+        assert "feminism" in result
+
+    def test_normalize_text_preserves_currency_symbols(self):
+        """Currency and math symbols survive normalisation."""
+        pipeline = OCRPipeline()
+        result = pipeline.normalize_text("give me $10 or €5")
+        assert "$" in result
+        assert "€" in result
 
     def test_normalize_text_unicode(self):
         """Test Unicode normalization."""

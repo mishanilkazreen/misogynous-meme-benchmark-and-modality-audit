@@ -54,15 +54,28 @@ def main() -> None:
         help="Path to fine-tuned CLIP checkpoint weights file",
     )
     parser.add_argument(
+        "--text-source",
+        default=None,
+        choices=["provided", "ocr", "combined"],
+        help=(
+            "Where the text modality comes from. Default 'provided' uses "
+            "MAMI's text-transcription column. 'ocr' or 'combined' loads a "
+            "pre-extracted NPZ."
+        ),
+    )
+    parser.add_argument(
         "--use-ocr",
         action="store_true",
-        help="Use OCR-extracted text instead of dataset transcripts",
+        help=(
+            "Deprecated alias: equivalent to --text-source ocr. Kept for "
+            "backward compatibility."
+        ),
     )
     parser.add_argument(
         "--ocr-engine",
         default="easyocr",
         choices=["easyocr", "paddleocr"],
-        help="OCR engine to load transcripts for",
+        help="OCR engine that produced the pre-extracted transcripts",
     )
     parser.add_argument(
         "--model-name",
@@ -98,6 +111,7 @@ def main() -> None:
             use_ocr=args.use_ocr,
             ocr_engine=args.ocr_engine,
             model_name=args.model_name,
+            text_source=args.text_source,
         )
         print(
             f"  acc={result.get('exact_match_accuracy', 0.0):.3f}  f1={result.get('f1', 0.0):.3f}"

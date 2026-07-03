@@ -5,10 +5,16 @@ Given per-image predicted dicts and ground-truth dicts over the four MAMI sub-ty
 labels (shaming, stereotype, objectification, violence), computes:
 
 - Per-class precision, recall, f1, support for each of the four labels.
-- macro_f1  = unweighted mean of per-class F1.
+- macro_f1  = unweighted mean of per-class positive-F1.
 - micro_f1  = F1 computed over pooled TP/FP/FN across all classes.
-- weighted_f1 = support-weighted mean of per-class F1.
+- weighted_f1 = support-weighted mean of per-class positive-F1.
 - exact_match_accuracy = fraction of images where ALL four predicted labels match GT.
+- mami_score_b = official MAMI 2022 Sub-task B metric (see compute_mami_score_b).
+
+``compute_multilabel_metrics`` returns all of the above (including ``mami_score_b``)
+in a single dict, so downstream benchmark scripts do not need to call the two
+functions separately. ``compute_mami_score_b`` remains a public entry point for
+callers who only want the MAMI metric.
 
 All returned floats are in [0, 1].
 """
@@ -34,12 +40,14 @@ def compute_multilabel_metrics(
     Returns:
         Dict containing:
             per_class        - dict[label, {precision, recall, f1, support}]
-            macro_f1         - unweighted mean of per-class F1
+            macro_f1         - unweighted mean of per-class F1 (positive-class)
             micro_f1         - F1 over pooled TP/FP/FN
-            weighted_f1      - support-weighted mean of per-class F1
+            weighted_f1      - support-weighted mean of per-class positive-F1
             macro_precision  - unweighted mean of per-class precision
             macro_recall     - unweighted mean of per-class recall
             exact_match_accuracy - fraction of exact matches across all labels
+            mami_score_b     - MAMI 2022 official Sub-task B metric
+            per_label_binary_macro_f1 - per-sub-type binary-macro F1 used by MAMI
     """
     n = len(predictions)
     if n == 0:
@@ -54,6 +62,8 @@ def compute_multilabel_metrics(
             "macro_precision": 0.0,
             "macro_recall": 0.0,
             "exact_match_accuracy": 0.0,
+            "mami_score_b": 0.0,
+            "per_label_binary_macro_f1": dict.fromkeys(labels, 0.0),
         }
 
     # Per-class stats
@@ -137,6 +147,10 @@ def compute_multilabel_metrics(
     )
     exact_match_accuracy = exact_matches / n
 
+    # MAMI 2022 official Sub-task B metric (uses binary-macro F1 per sub-type,
+    # weighted by positive support). Reuses the same per-sub-type TP/FP/FN/TN.
+    mami = compute_mami_score_b(predictions, ground_truths, labels)
+
     return {
         "per_class": per_class,
         "macro_f1": round(macro_f1, 6),
@@ -145,4 +159,107 @@ def compute_multilabel_metrics(
         "macro_precision": round(macro_prec, 6),
         "macro_recall": round(macro_rec, 6),
         "exact_match_accuracy": round(exact_match_accuracy, 6),
+        "mami_score_b": mami["mami_score_b"],
+        "per_label_binary_macro_f1": mami["per_label_binary_macro_f1"],
+    }
+
+
+def compute_mami_score_b(
+    predictions: list[dict[str, int]],
+    ground_truths: list[dict[str, int]],
+    labels: list[str],
+) -> dict[str, Any]:
+    """Compute the MAMI 2022 official Sub-task B metric.
+
+    Reproduces ``compute_scoreB`` from the MAMI shared-task evaluation script
+    (``MIND-Lab/SemEval2022-Task-5.../Evaluation/evaluation.py``):
+
+    * For each sub-type, compute the binary-macro F1 for that column, defined
+      as ``(positive_F1 + negative_F1) / 2`` where each F1 treats the sub-type
+      column as an independent binary problem.
+    * Weight each sub-type's binary-macro F1 by its number of gold positives.
+    * Return the positive-support weighted average.
+
+    This differs from :func:`compute_multilabel_metrics`'s ``weighted_f1``:
+
+    * The MAMI-official per-sub-type F1 is the average of the positive-class
+      and negative-class F1, whereas ``weighted_f1`` uses only the positive
+      class F1.
+    * Both aggregate by positive support, but they aggregate different
+      per-sub-type quantities.
+
+    Args:
+        predictions: Per-image predicted label dicts, mapping label to 0/1.
+        ground_truths: Per-image ground-truth label dicts, same format.
+        labels: Ordered list of sub-type label names (e.g. ``SUBTYPE_LABELS``).
+
+    Returns:
+        Dict with keys:
+            ``mami_score_b`` (float in [0, 1]): the official Sub-task B score.
+            ``per_label_binary_macro_f1`` (dict[str, float]): per-sub-type
+                binary-macro F1 in [0, 1].
+            ``per_label_support`` (dict[str, int]): per-sub-type count of gold
+                positives.
+    """
+    empty_per_label = dict.fromkeys(labels, 0.0)
+    empty_support = dict.fromkeys(labels, 0)
+
+    # A length mismatch is a caller bug even if one side is empty; check first.
+    if len(predictions) != len(ground_truths):
+        raise ValueError(
+            f"predictions and ground_truths length mismatch: "
+            f"{len(predictions)} vs {len(ground_truths)}"
+        )
+    # Only after we know the lengths agree, a shared-empty case returns zeros.
+    if not predictions:
+        return {
+            "mami_score_b": 0.0,
+            "per_label_binary_macro_f1": empty_per_label,
+            "per_label_support": empty_support,
+        }
+
+    per_label_f1: dict[str, float] = {}
+    per_label_support: dict[str, int] = {}
+    weighted_sum = 0.0
+    total_weight = 0
+
+    for lbl in labels:
+        tp = fp = fn = tn = 0
+        for pred, gt in zip(predictions, ground_truths, strict=True):
+            p = pred.get(lbl, 0)
+            g = gt.get(lbl, 0)
+            if p == 1 and g == 1:
+                tp += 1
+            elif p == 1 and g == 0:
+                fp += 1
+            elif p == 0 and g == 1:
+                fn += 1
+            else:
+                tn += 1
+
+        # Positive-class F1
+        pos_prec = tp / (tp + fp) if (tp + fp) > 0 else 0.0
+        pos_rec = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+        pos_f1 = 2 * pos_prec * pos_rec / (pos_prec + pos_rec) if (pos_prec + pos_rec) > 0 else 0.0
+
+        # Negative-class F1 (treat negative as the target class)
+        neg_prec = tn / (tn + fn) if (tn + fn) > 0 else 0.0
+        neg_rec = tn / (tn + fp) if (tn + fp) > 0 else 0.0
+        neg_f1 = 2 * neg_prec * neg_rec / (neg_prec + neg_rec) if (neg_prec + neg_rec) > 0 else 0.0
+
+        binary_macro_f1 = (pos_f1 + neg_f1) / 2
+        support = tp + fn  # gold positives for this sub-type
+
+        per_label_f1[lbl] = round(binary_macro_f1, 6)
+        per_label_support[lbl] = support
+
+        weighted_sum += binary_macro_f1 * support
+        total_weight += support
+
+    mami_score_b = weighted_sum / total_weight if total_weight > 0 else 0.0
+
+    return {
+        "mami_score_b": round(mami_score_b, 6),
+        "per_label_binary_macro_f1": per_label_f1,
+        "per_label_support": per_label_support,
     }

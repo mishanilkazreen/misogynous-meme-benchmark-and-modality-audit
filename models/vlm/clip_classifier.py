@@ -158,11 +158,8 @@ class CLIPClassifier(BaseVLMClassifier):
 
             if self.is_classification:
                 chunk_texts = texts[start : start + chunk_size] if texts else [""] * len(chunk)
-                clean_texts = []
-                for t in chunk_texts:
-                    words = t.strip().split()
-                    clean_text = " ".join(words[:60]) if len(words) > 60 else t.strip()
-                    clean_texts.append(clean_text or "empty text")
+                # open_clip's tokenizer truncates to 77 tokens; enforce non-empty only.
+                clean_texts = [t.strip() or "empty text" for t in chunk_texts]
                 tokens = self.tokenizer(clean_texts).to(self.device)
 
                 with torch.no_grad():

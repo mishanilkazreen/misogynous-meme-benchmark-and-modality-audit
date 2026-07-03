@@ -24,6 +24,7 @@ import xgboost as xgb
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 from models.vlm.metrics_multilabel import compute_multilabel_metrics
+from utils.text_source import filename_suffix_for_source, resolve_text_source
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger(__name__)
@@ -39,12 +40,16 @@ def load_embeddings(
     model_name: str,
     use_ocr: bool = False,
     ocr_engine: str = "easyocr",
+    text_source: str | None = None,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray] | None:
-    """Load pre-extracted embeddings and labels for a split from disk."""
-    ocr_suffix = ""
-    if use_ocr:
-        ocr_suffix = f"_ocr_{ocr_engine}"
-    filename = f"{split}_{model_name.lower().replace('-', '_')}{ocr_suffix}.npz"
+    """Load pre-extracted embeddings and labels for a split from disk.
+
+    ``text_source`` supersedes ``use_ocr`` when set explicitly; the two are
+    resolved together by :func:`utils.text_source.resolve_text_source`.
+    """
+    resolved_source = resolve_text_source(text_source, use_ocr)
+    suffix = filename_suffix_for_source(resolved_source, ocr_engine)
+    filename = f"{split}_{model_name.lower().replace('-', '_')}{suffix}.npz"
     file_path = embeddings_dir / filename
 
     if not file_path.exists():
@@ -129,9 +134,22 @@ def main() -> None:
         help="CLIP model name used during extraction",
     )
     parser.add_argument(
+        "--text-source",
+        default=None,
+        choices=["provided", "ocr", "combined"],
+        help=(
+            "Which pre-extracted NPZ variant to load. 'provided' expects an "
+            "embedding file without OCR suffix; 'ocr' or 'combined' look for "
+            "the corresponding variant."
+        ),
+    )
+    parser.add_argument(
         "--use-ocr",
         action="store_true",
-        help="Whether to load OCR-extracted embeddings instead of default transcripts",
+        help=(
+            "Deprecated alias: equivalent to --text-source ocr. Kept for "
+            "backward compatibility."
+        ),
     )
     parser.add_argument(
         "--ocr-engine",
@@ -182,13 +200,28 @@ def main() -> None:
 
     # 1. Load train/val embeddings
     train_data = load_embeddings(
-        "train", embeddings_dir, args.model_name, args.use_ocr, args.ocr_engine
+        "train",
+        embeddings_dir,
+        args.model_name,
+        args.use_ocr,
+        args.ocr_engine,
+        text_source=args.text_source,
     )
     val_data = load_embeddings(
-        "validation", embeddings_dir, args.model_name, args.use_ocr, args.ocr_engine
+        "validation",
+        embeddings_dir,
+        args.model_name,
+        args.use_ocr,
+        args.ocr_engine,
+        text_source=args.text_source,
     )
     test_data = load_embeddings(
-        "test", embeddings_dir, args.model_name, args.use_ocr, args.ocr_engine
+        "test",
+        embeddings_dir,
+        args.model_name,
+        args.use_ocr,
+        args.ocr_engine,
+        text_source=args.text_source,
     )
 
     if train_data is None:
@@ -358,10 +391,12 @@ def main() -> None:
         logger.info("Saved test metrics JSON to %s", test_json_path)
 
     # 7. Save model
-    ocr_suffix = ""
-    if args.use_ocr:
-        ocr_suffix = f"_ocr_{args.ocr_engine}"
-    model_filename = f"{args.classifier}_{args.task}_{args.fusion}_{args.model_name.lower().replace('-', '_')}{ocr_suffix}.pkl"
+    resolved_source = resolve_text_source(args.text_source, args.use_ocr)
+    ocr_suffix = filename_suffix_for_source(resolved_source, args.ocr_engine)
+    model_filename = (
+        f"{args.classifier}_{args.task}_{args.fusion}_"
+        f"{args.model_name.lower().replace('-', '_')}{ocr_suffix}.pkl"
+    )
     save_path = output_dir / model_filename
     with save_path.open("wb") as f:
         pickle.dump(model, f)

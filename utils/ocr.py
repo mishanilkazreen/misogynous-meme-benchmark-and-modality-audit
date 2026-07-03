@@ -190,33 +190,38 @@ class OCRPipeline:
 
     def normalize_text(self, text: str) -> str:
         """
-        Clean and normalize extracted text.
+        Clean and normalize extracted text without dropping signal-bearing symbols.
 
         Normalization steps:
-        1. Unicode normalization (NFKC)
-        2. Lowercase conversion
-        3. Remove extra whitespace
-        4. Remove special characters (keep alphanumeric and basic punctuation)
+        1. Unicode normalization (NFKC), which folds compatibility characters
+           (e.g. full-width ASCII to ASCII, ``™`` to ``TM``) but preserves
+           emoji, gender glyphs (``♀`` / ``♂``), and other pictographs that
+           carry misogyny signal on memes.
+        2. Lowercase conversion.
+        3. Whitespace collapse.
+
+        The previous implementation stripped every non-``\\w\\s.,!?'-``
+        character, which removed emojis, hashtags (``#``), at-signs (``@``),
+        currency symbols, and other symbols that meme authors use to signal
+        misogyny (e.g. gender glyphs, the weeping-woman emoji sequence).
+        Fixed by docs/CODE_REVIEW_ISSUES.md §2.9.
 
         Args:
-            text: Raw extracted text
+            text: Raw extracted text.
 
         Returns:
-            Normalized text
+            Normalized text with emojis and non-ASCII punctuation preserved.
         """
         if not text:
             return ""
 
-        # Unicode normalization
+        # Unicode normalization (folds compatibility variants).
         text = unicodedata.normalize("NFKC", text)
 
-        # Lowercase
+        # Lowercase.
         text = text.lower()
 
-        # Remove special characters, keep alphanumeric, spaces, and basic punctuation
-        text = re.sub(r"[^\w\s.,!?'-]", "", text)
-
-        # Normalize whitespace
+        # Whitespace collapse (single spaces, trimmed edges).
         text = re.sub(r"\s+", " ", text).strip()
 
         return text

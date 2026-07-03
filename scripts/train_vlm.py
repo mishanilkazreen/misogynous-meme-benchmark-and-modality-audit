@@ -17,6 +17,7 @@ from torch.utils.data import DataLoader
 
 from models.vlm.classifier import build_misogyny_prompt, build_subtype_prompt
 from utils.dataset import DatasetManager
+from utils.text_source import load_text_source_transcripts, resolve_text_source
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger(__name__)
@@ -39,15 +40,35 @@ def image_to_numpy(image: Any) -> np.ndarray:
 
 
 class VLMCollate:
-    """Collation helper that formats multimodal conversations and tokenizes them with masking."""
+    """Collation helper that formats multimodal conversations and tokenizes them with masking.
+
+    Forces the tokenizer's ``padding_side`` to ``"right"`` at construction
+    time. Our label-masking assumes right-padding: we mask the first
+    ``prompt_len`` positions as prompt tokens and let the tail (the response)
+    remain as training targets. Left-padding (the Qwen2 tokenizer's inference
+    default) would silently break this: the first ``prompt_len`` positions
+    would be a mix of PAD and start-of-prompt tokens, and the rest of the
+    prompt would leak through to the loss as a training target. Once during
+    ``__call__`` we decode the surviving labels of the first batch to verify
+    the masking is correct.
+    """
 
     def __init__(
         self, processor: Any, model_type: str, task: str, ocr_map: dict[str, str] | None = None
     ) -> None:
         self.processor = processor
+        # Force right-padding for training. Qwen2's tokenizer defaults to
+        # left-padding for inference-time generation; that convention is
+        # incompatible with our labels[i, :prompt_len] = -100 masking.
+        # This overrides whatever the processor's tokenizer was doing.
+        self.processor.tokenizer.padding_side = "right"
+
         self.model_type = model_type
         self.task = task
         self.ocr_map = ocr_map
+        # One-shot sanity check on the first batch we collate, so that any
+        # future refactor that resets padding_side fails loud in training.
+        self._first_batch_verified = False
 
         if task == "singleclass":
             self.base_prompt_text = build_misogyny_prompt()
@@ -143,30 +164,53 @@ class VLMCollate:
         labels[labels == self.processor.tokenizer.pad_token_id] = -100
         inputs["labels"] = labels
 
+        # One-shot sanity check: decode the first batch's surviving labels and
+        # verify they match the intended target response. Fails loud if a
+        # future refactor flips padding_side back to "left".
+        if not self._first_batch_verified:
+            self._verify_label_masking(inputs["labels"], responses)
+            self._first_batch_verified = True
+
         return inputs
+
+    def _verify_label_masking(self, labels: Any, responses: list[str]) -> None:
+        """Decode the surviving labels of every row and confirm they contain the response.
+
+        We only require that each row's decoded target contain the expected
+        response substring. This tolerates chat-template EOS tokens or other
+        model-specific trailing tokens without brittle exact-match checks.
+        Raises ``RuntimeError`` if a mismatch is detected, which surfaces the
+        padding-side bug immediately at training start rather than after
+        hours of wasted compute.
+        """
+        # Assert right-padding hasn't been reset since construction.
+        assert self.processor.tokenizer.padding_side == "right", (
+            "VLMCollate expects processor.tokenizer.padding_side='right'; "
+            f"found {self.processor.tokenizer.padding_side!r}. Label masking "
+            "will train the model on prompt tokens instead of responses. "
+            "See docs/CODE_REVIEW_ISSUES.md §1.1."
+        )
+        for i, expected_response in enumerate(responses):
+            row = labels[i]
+            kept = row[row != -100]
+            decoded = self.processor.tokenizer.decode(kept, skip_special_tokens=True).strip()
+            # For non-empty responses, the decoded target must include the
+            # response. Empty responses (e.g. task-B "none") produce a short
+            # decoded string ("none" or similar); skip the substring check
+            # only when the expected string is empty.
+            if expected_response and expected_response.lower() not in decoded.lower():
+                raise RuntimeError(
+                    "VLMCollate label masking is producing wrong training "
+                    "targets. Row %d expected response %r inside decoded "
+                    "target %r. This usually means padding_side is 'left' "
+                    "somewhere in the tokenizer stack. See "
+                    "docs/CODE_REVIEW_ISSUES.md §1.1." % (i, expected_response, decoded)
+                )
 
 
 def load_ocr_transcripts(split: str, ocr_engine: str, embeddings_dir: Path) -> dict[str, str]:
-    """Load OCR-extracted texts from any pre-existing NPZ file for the split and engine."""
-    pattern = f"{split}_*_{ocr_engine}.npz"
-    files = list(embeddings_dir.glob(pattern))
-    if not files:
-        pattern = f"{split}_*_ocr_{ocr_engine}.npz"
-        files = list(embeddings_dir.glob(pattern))
-
-    if not files:
-        logger.warning(
-            f"No pre-extracted OCR NPZ file found for split '{split}' and engine '{ocr_engine}' in {embeddings_dir}. "
-            "Please run scripts/extract_embeddings.py with --use-ocr --ocr-engine {ocr_engine} first."
-        )
-        return {}
-
-    file_path = Path(files[0])
-    logger.info("Loading OCR transcripts from %s...", file_path)
-    data = np.load(file_path, allow_pickle=True)
-    image_ids = data["image_ids"]
-    raw_texts = data["raw_texts"]
-    return {str(img_id): str(txt) for img_id, txt in zip(image_ids, raw_texts, strict=True)}
+    """Deprecated shim delegating to :func:`utils.text_source.load_text_source_transcripts`."""
+    return load_text_source_transcripts(split, "ocr", ocr_engine, embeddings_dir)
 
 
 def main() -> None:
@@ -194,15 +238,28 @@ def main() -> None:
         "--limit", type=int, default=None, help="Limit sample count for smoke testing"
     )
     parser.add_argument(
+        "--text-source",
+        default=None,
+        choices=["provided", "ocr", "combined"],
+        help=(
+            "Where the text modality comes from. Default is 'provided' "
+            "(MAMI's text-transcription column). Set 'ocr' or 'combined' to "
+            "load pre-extracted NPZ transcripts from results/embeddings/."
+        ),
+    )
+    parser.add_argument(
         "--use-ocr",
         action="store_true",
-        help="Use OCR-extracted text instead of dataset transcripts",
+        help=(
+            "Deprecated alias: equivalent to --text-source ocr. Kept for "
+            "backward compatibility."
+        ),
     )
     parser.add_argument(
         "--ocr-engine",
         default="easyocr",
         choices=["easyocr", "paddleocr"],
-        help="OCR engine to load transcripts for",
+        help="OCR engine that produced the pre-extracted transcripts",
     )
     args = parser.parse_args()
 
@@ -275,9 +332,18 @@ def main() -> None:
         train_dataset._records = train_dataset._records[: args.limit]
         logger.info("Capped training samples to %d", args.limit)
 
-    ocr_map = None
-    if args.use_ocr:
-        ocr_map = load_ocr_transcripts("train", args.ocr_engine, MODELS_DIR.parent / "embeddings")
+    text_source = resolve_text_source(args.text_source, args.use_ocr)
+    logger.info("Text source for training: %s", text_source)
+    ocr_map: dict[str, str] | None = None
+    if text_source != "provided":
+        ocr_map = load_text_source_transcripts(
+            "train", text_source, args.ocr_engine, MODELS_DIR.parent / "embeddings"
+        )
+        if not ocr_map:
+            logger.warning(
+                "Text-source NPZ not found; falling back to dataset transcripts."
+            )
+            ocr_map = None
 
     collate_fn = VLMCollate(processor, args.model_id.lower(), args.task, ocr_map=ocr_map)
 
