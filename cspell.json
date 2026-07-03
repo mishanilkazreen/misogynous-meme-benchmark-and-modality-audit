@@ -420,7 +420,9 @@
     "EasyOCR",
     "PaddleOCR",
     "autobench",
-    "autobenchmark"
+    "autobenchmark",
+    "elif",
+    "centralises"
   ],
   "ignorePaths": [
     "**/node_modules/**",
