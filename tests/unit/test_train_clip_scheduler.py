@@ -65,7 +65,7 @@ def test_scheduler_cosine_midpoint() -> None:
 def test_scheduler_zero_warmup_still_works() -> None:
     """``warmup_steps=0`` disables warmup; LR starts at base and decays."""
     opt = _dummy_optimizer(base_lr=1e-3)
-    scheduler = build_warmup_cosine_scheduler(opt, total_steps=10, warmup_steps=0)
+    _ = build_warmup_cosine_scheduler(opt, total_steps=10, warmup_steps=0)
     # At step 0, cosine(0) = 1 → LR = base_lr
     assert opt.param_groups[0]["lr"] == pytest.approx(1e-3, abs=1e-9)
 
