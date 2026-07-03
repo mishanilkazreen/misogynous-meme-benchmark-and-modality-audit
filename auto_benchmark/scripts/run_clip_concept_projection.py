@@ -1,33 +1,46 @@
 #!/usr/bin/env python3
-"""CLIP Concept Activation Vectors (CAV) for the XGBoost Fusion classifier.
+"""CLIP Concept-Embedding Projection for the XGBoost Fusion classifier.
 
-Implements Gist task ID 13 / GitHub issue #89, Part 2.
+Translates the abstract image-embedding dimensions that the XGBoost Fusion
+model relies on into human-understandable concepts by projecting them
+onto CLIP-encoded concept vectors.
 
-Goal: translate the abstract image-embedding dimensions that the XGBoost Fusion
-model relies on into human-understandable concepts, using CLIP's shared
-image/text latent space.
+**Not TCAV**. This script does not implement the Concept Activation
+Vector method (Kim et al. 2018), which requires labelled positive and
+negative concept example sets, a linear probe trained to separate
+concept-positive from concept-negative activations, and a directional
+derivative of the model output. None of those three steps are in this
+script. What this script computes is a weaker, correlational signal
+that exploits CLIP's joint image-text embedding space and needs no
+concept labels. See docs/CODE_REVIEW_ISSUES.md §5.1 for the rationale
+behind the rename from ``run_clip_cav.py``; cite Kim et al. 2018
+explicitly by contrast in the paper (this is not TCAV).
 
 Method
 ------
 1. Load the trained binary XGBoost model and read its native
    ``feature_importances_``. The fused feature vector is
    ``np.concatenate([img_emb, txt_emb], axis=1)`` (see
-   ``scripts/train_classifier.py``), so columns ``0..767`` are the CLIP visual
-   features. We take the top-K most important *image* dimensions.
-2. Define a list of semantic concept text strings and encode them with the SAME
-   CLIP model that produced the image embeddings (``ViT-L-14-quickgelu`` /
-   ``openai``). The text and image towers share a normalised 768-dim space, so
-   cosine similarity between them is meaningful.
-3. For each important image dimension ``d`` the cosine similarity between the
-   unit basis vector ``e_d`` and a normalised concept vector ``v_c`` reduces to
-   ``v_c[d]``. That value says how strongly concept ``c`` loads onto the
-   dimension the model cares about (e.g. "dim 112 aligns 0.31 with 'violence'").
-4. We additionally report the dataset-level concept presence: the mean cosine
-   similarity between every test image embedding and each concept vector.
+   ``scripts/train_classifier.py``), so columns ``0..767`` are the CLIP
+   visual features. We take the top-K most important *image* dimensions.
+2. Define a list of semantic concept text strings and encode them with
+   the SAME CLIP model that produced the image embeddings
+   (``ViT-L-14-quickgelu`` / ``openai``). The text and image towers
+   share a normalised 768-dim space, so cosine similarity between them
+   is meaningful.
+3. For each important image dimension ``d`` the cosine similarity
+   between the unit basis vector ``e_d`` and a normalised concept vector
+   ``v_c`` reduces to ``v_c[d]``. That value says how strongly concept
+   ``c`` loads onto the dimension the model cares about (e.g. "dim 112
+   aligns 0.31 with 'violence'"). This is a projection, not an
+   activation vector.
+4. We additionally report the dataset-level concept presence: the mean
+   cosine similarity between every test image embedding and each
+   concept vector.
 
 Outputs (paths relative to the parent content-moderation repo):
-    results/cav_concept_similarity.csv        (dimension x concept matrix)
-    results/cav_global_concept_presence.csv   (mean image-vs-concept similarity)
+    results/concept_projection_similarity.csv       (dimension x concept matrix)
+    results/concept_projection_global_presence.csv  (mean image-vs-concept similarity)
 """
 
 from __future__ import annotations
@@ -169,7 +182,7 @@ def main() -> None:
 
     # 1) Dimension x concept matrix. cosine(e_d, v_c) = v_c[d] for unit basis e_d
     #    and L2-normalised concept vector v_c.
-    matrix_path = results_dir / "cav_concept_similarity.csv"
+    matrix_path = results_dir / "concept_projection_similarity.csv"
     with matrix_path.open("w", encoding="utf-8", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(["image_dimension", "xgb_importance", *DEFAULT_CONCEPTS])
@@ -182,7 +195,7 @@ def main() -> None:
     #    L2-normalised image embedding and each concept vector.
     img_norm = img_emb / np.linalg.norm(img_emb, axis=1, keepdims=True)
     mean_sims = (img_norm @ concept_vecs.T).mean(axis=0)
-    presence_path = results_dir / "cav_global_concept_presence.csv"
+    presence_path = results_dir / "concept_projection_global_presence.csv"
     order = np.argsort(mean_sims)[::-1]
     with presence_path.open("w", encoding="utf-8", newline="") as f:
         writer = csv.writer(f)

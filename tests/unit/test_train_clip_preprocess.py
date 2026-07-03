@@ -8,9 +8,9 @@ are inferred from the eval preprocess rather than hardcoded, and
 
 from __future__ import annotations
 
+from PIL import Image
 import pytest
 import torch
-from PIL import Image
 from torchvision import transforms as T
 
 from scripts.train_clip import build_train_preprocess
@@ -85,8 +85,6 @@ def test_train_preprocess_raises_without_normalize() -> None:
     This protects against a future refactor that swaps the preprocess for
     a non-CLIP one without updating this helper.
     """
-    eval_pp = T.Compose(
-        [T.Resize(224), T.CenterCrop(224), T.ToTensor()]
-    )  # no Normalize
+    eval_pp = T.Compose([T.Resize(224), T.CenterCrop(224), T.ToTensor()])  # no Normalize
     with pytest.raises(ValueError):
         build_train_preprocess(eval_pp)

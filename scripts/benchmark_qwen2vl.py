@@ -32,6 +32,7 @@ from tqdm import tqdm
 
 from models.vlm.classifier import (
     MISOGYNY_LABELS,
+    PER_CATEGORY_PROMPTS,
     SUBTYPE_LABELS,
     ClassificationResult,
     build_misogyny_prompt,
@@ -236,6 +237,18 @@ def run_benchmark(
             ocr_engine=ocr_engine,
             text_source=resolved_source,
         )
+    if task == "per_category":
+        return _run_benchmark_per_category(
+            processor,
+            model,
+            samples,
+            split,
+            preprocess,
+            batch_size,
+            use_ocr=use_ocr,
+            ocr_engine=ocr_engine,
+            text_source=resolved_source,
+        )
 
     labels = MISOGYNY_LABELS  # ["yes", "no"]
     base_prompt_text = build_misogyny_prompt()
@@ -354,7 +367,9 @@ def _run_benchmark_multiclass(
         ocr_map = load_text_source_transcripts(
             split, resolved_source, ocr_engine, RESULTS_DIR / "embeddings"
         ) or None
-    max_new_tokens_multiclass = 60
+    # Bumped from 60 to 100 to fit the JSON-schema Task B response
+    # (docs/CODE_REVIEW_ISSUES.md §6.1).
+    max_new_tokens_multiclass = 100
     pipeline = PreprocessingPipeline() if preprocess else None
 
     pred_dicts: list[dict[str, int]] = []
@@ -478,6 +493,163 @@ def _run_benchmark_multiclass(
     }
 
 
+def _run_benchmark_per_category(
+    processor: Any,
+    model: Any,
+    samples: list[dict[str, Any]],
+    split: str,
+    preprocess: str | None,
+    batch_size: int = 4,
+    use_ocr: bool = False,
+    ocr_engine: str = "easyocr",
+    text_source: str | None = None,
+) -> dict[str, Any]:
+    """Run Qwen2-VL per-category: ask four yes/no questions per image.
+
+    This mirrors CLIP's ``_run_clip_multiclass`` pattern for generative
+    VLMs. See docs/CODE_REVIEW_ISSUES.md §6.5.
+
+    Advantages over the single JSON-schema prompt:
+
+    * Each sub-type decision is independent, so token order cannot bias
+      one label towards another.
+    * Each answer is a single token ("yes"/"no") so parsing cannot fail
+      due to format drift.
+    * ~4x the inference cost per image, but still cheap: ~50 minutes for
+      Qwen2-VL-7B on 1,000 memes.
+    """
+    resolved_source = resolve_text_source(text_source, use_ocr)
+    ocr_map: dict[str, str] | None = None
+    if resolved_source != "provided":
+        ocr_map = load_text_source_transcripts(
+            split, resolved_source, ocr_engine, RESULTS_DIR / "embeddings"
+        ) or None
+
+    pipeline = PreprocessingPipeline() if preprocess else None
+
+    # For each meme we accumulate a per-sub-type prediction (0/1) across the
+    # four categories. Ordering of categories does not matter because each
+    # question is independent.
+    per_image_preds: list[dict[str, int]] = [
+        dict.fromkeys(SUBTYPE_LABELS, 0) for _ in samples
+    ]
+    latencies: list[float] = []
+    refusals = 0
+
+    for category in SUBTYPE_LABELS:
+        prompt_text = PER_CATEGORY_PROMPTS[category]
+        pbar = tqdm(
+            total=len(samples),
+            desc=f"qwen2vl-per-category/{category}/{preprocess or 'none'}",
+            unit="img",
+        )
+        for batch_start in range(0, len(samples), batch_size):
+            batch = samples[batch_start : batch_start + batch_size]
+
+            texts: list[str] = []
+            pils: list[Image.Image] = []
+            for s in batch:
+                arr = image_to_numpy(s["image"])
+                if pipeline is not None and preprocess is not None:
+                    arr = pipeline.apply_transformation(arr, preprocess)
+                pil = Image.fromarray(arr)
+                image_id = str(s["image_id"])
+                if ocr_map and image_id in ocr_map:
+                    ocr_text = ocr_map[image_id].strip()
+                    per_prompt = f'This meme contains the text: "{ocr_text}". {prompt_text}'
+                else:
+                    per_prompt = prompt_text
+
+                messages = [
+                    {
+                        "role": "user",
+                        "content": [
+                            {"type": "image", "image": pil},
+                            {"type": "text", "text": per_prompt},
+                        ],
+                    }
+                ]
+                texts.append(
+                    processor.apply_chat_template(
+                        messages, tokenize=False, add_generation_prompt=True
+                    )
+                )
+                pils.append(pil)
+
+            inputs = processor(
+                text=texts,
+                images=pils,
+                padding=True,
+                return_tensors="pt",
+            ).to(model.device)
+
+            t0 = time.perf_counter()
+            with torch.no_grad():
+                output_ids = model.generate(
+                    **inputs, max_new_tokens=MAX_NEW_TOKENS, do_sample=False
+                )
+            elapsed = (time.perf_counter() - t0) / len(batch)
+            latencies.extend([elapsed] * len(batch))
+
+            input_len = inputs["input_ids"].shape[1]
+            response_texts = processor.batch_decode(
+                output_ids[:, input_len:], skip_special_tokens=True
+            )
+
+            for offset, raw_text in enumerate(response_texts):
+                response_text = raw_text.strip()
+                refusal = is_refusal(response_text)
+                if refusal:
+                    refusals += 1
+                    continue  # leave the default 0 in per_image_preds
+                matched = extract_label(response_text, MISOGYNY_LABELS)
+                if matched == "yes":
+                    per_image_preds[batch_start + offset][category] = 1
+            pbar.update(len(batch))
+        pbar.close()
+
+    # Build ground-truth dicts and aggregate metrics.
+    gt_dicts: list[dict[str, int]] = [
+        {lbl: int(s.get(lbl, 0)) for lbl in SUBTYPE_LABELS} for s in samples
+    ]
+    ml_metrics = compute_multilabel_metrics(per_image_preds, gt_dicts, SUBTYPE_LABELS)
+    label_prev = {lbl: sum(g[lbl] for g in gt_dicts) for lbl in SUBTYPE_LABELS}
+
+    sample_rows = [
+        {
+            "image_id": s["image_id"],
+            "ground_truth": gt_dicts[i],
+            "prediction": per_image_preds[i],
+            "correct": all(per_image_preds[i][lbl] == gt_dicts[i][lbl] for lbl in SUBTYPE_LABELS),
+            "misogynous": s.get("misogynous", 0),
+        }
+        for i, s in enumerate(samples)
+    ]
+
+    n_total = len(samples)
+    return {
+        "benchmark_date": datetime.now(timezone.utc).isoformat(),
+        "model": "qwen2vl",
+        "filter": preprocess or "none",
+        "split": split,
+        "task": "per_category",
+        "exact_match_accuracy": ml_metrics["exact_match_accuracy"],
+        "f1": ml_metrics["macro_f1"],
+        "precision": ml_metrics["macro_precision"],
+        "recall": ml_metrics["macro_recall"],
+        "macro_f1": ml_metrics["macro_f1"],
+        "micro_f1": ml_metrics["micro_f1"],
+        "weighted_f1": ml_metrics["weighted_f1"],
+        "per_class": ml_metrics["per_class"],
+        "mami_score_b": ml_metrics.get("mami_score_b"),
+        "per_label_binary_macro_f1": ml_metrics.get("per_label_binary_macro_f1"),
+        "avg_latency_s": sum(latencies) / len(latencies) if latencies else 0.0,
+        "refusal_rate": refusals / (n_total * len(SUBTYPE_LABELS)) if n_total else 0.0,
+        "label_prevalence": label_prev,
+        "sample_predictions": sample_rows,
+    }
+
+
 def _aggregate(
     results: list[ClassificationResult],
     ground_truths: list[str],
@@ -564,8 +736,12 @@ def main() -> None:
     parser.add_argument(
         "--task",
         default="singleclass",
-        choices=["singleclass", "multiclass"],
-        help="'singleclass' = binary misogyny (default); 'multiclass' = multi-label sub-types",
+        choices=["singleclass", "multiclass", "per_category"],
+        help=(
+            "'singleclass' = binary misogyny (default); 'multiclass' = "
+            "multi-label sub-types via one JSON prompt; 'per_category' = "
+            "four independent yes/no prompts (docs/CODE_REVIEW_ISSUES.md §6.5)."
+        ),
     )
     parser.add_argument(
         "--lora-path",

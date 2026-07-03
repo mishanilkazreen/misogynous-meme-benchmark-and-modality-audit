@@ -211,10 +211,17 @@ def test_build_subtype_prompt_mentions_all_categories() -> None:
         assert category in prompt.lower(), f"Category '{category}' missing from subtype prompt"
 
 
-def test_build_subtype_prompt_mentions_none_option() -> None:
-    """The sub-type prompt must allow the model to respond with 'none'."""
+def test_build_subtype_prompt_allows_no_categories() -> None:
+    """The sub-type prompt must give the model a way to say "no categories apply".
+
+    In the pre-fix free-text format this was the literal word ``none``. The
+    post-fix JSON schema (docs/CODE_REVIEW_ISSUES.md §6.1) instead lets the
+    model set every field to ``false``. Either format is acceptable; the
+    parser handles both via ``extract_subtypes``.
+    """
     prompt = build_subtype_prompt()
-    assert "none" in prompt.lower()
+    lower = prompt.lower()
+    assert ("none" in lower) or ("false" in lower)
 
 
 def test_build_subtype_prompt_is_nonempty_string() -> None:

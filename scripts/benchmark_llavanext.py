@@ -270,7 +270,9 @@ def _run_benchmark_multiclass(
 ) -> dict[str, Any]:
     """Run LLaVA-Next on multiclass: multi-label sub-type classification."""
     prompt_text = build_subtype_prompt()
-    max_new_tokens_multiclass = 60
+    # Bumped from 60 to 100 to fit the JSON-schema Task B response
+    # (docs/CODE_REVIEW_ISSUES.md §6.1).
+    max_new_tokens_multiclass = 100
     pipeline = PreprocessingPipeline() if preprocess else None
 
     pred_dicts: list[dict[str, int]] = []

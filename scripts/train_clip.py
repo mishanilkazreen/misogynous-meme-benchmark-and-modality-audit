@@ -25,6 +25,7 @@ from torchvision import transforms as T  # type: ignore[import-untyped]
 from models.vlm.metrics_multilabel import compute_mami_score_b
 from utils.dataset import DatasetManager
 from utils.seed import set_seed
+from utils.task_names import TASK_CHOICES, canonical_task
 from utils.text_source import load_text_source_transcripts, resolve_text_source
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
@@ -454,8 +455,14 @@ def main() -> None:
     parser.add_argument(
         "--task",
         default="singleclass",
-        choices=["singleclass", "multiclass"],
-        help="Task when --loss-mode is classification",
+        type=canonical_task,
+        choices=TASK_CHOICES,
+        help=(
+            "Task when --loss-mode is classification. Accepts 'binary' or "
+            "'singleclass' for Task A (Task A binary misogyny), 'multilabel' "
+            "or 'multiclass' for Task B (multi-label sub-types). Legacy "
+            "names kept for backward compatibility (docs/CODE_REVIEW_ISSUES.md §4.1)."
+        ),
     )
     parser.add_argument(
         "--freeze-image",

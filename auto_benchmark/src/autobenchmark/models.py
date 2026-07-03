@@ -37,14 +37,86 @@ from sklearn.model_selection import (
 from sklearn.naive_bayes import BernoulliNB, ComplementNB, GaussianNB, MultinomialNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neural_network import MLPClassifier
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeClassifier, ExtraTreeClassifier
 from xgboost import XGBClassifier
 
+# Models that support ``class_weight="balanced"`` (docs/CODE_REVIEW_ISSUES.md §7.3).
+# Tree ensembles use ``balanced_subsample`` which balances per-bootstrap-sample.
+_BALANCED_KWARG: dict[str, dict[str, str]] = {
+    "Logistic Regression": {"class_weight": "balanced"},
+    "SGD Classifier": {"class_weight": "balanced"},
+    "Ridge Classifier": {"class_weight": "balanced"},
+    "Perceptron": {"class_weight": "balanced"},
+    "PassiveAggressiveClassifier": {"class_weight": "balanced"},
+    "Support Vector Machine - LinearSVC": {"class_weight": "balanced"},
+    "Support Vector Machine - RBF SVC": {"class_weight": "balanced"},
+    "Decision Tree": {"class_weight": "balanced"},
+    "Random Forest": {"class_weight": "balanced_subsample"},
+    "Extra Trees Classifier": {"class_weight": "balanced_subsample"},
+    # LDA has no class_weight kwarg; leave defaults.
+    # Naive Bayes variants have no class_weight kwarg either.
+    # Tree boosters (GB, HistGB, XGB, LightGBM) are handled via ``scale_pos_weight``
+    # or ``is_unbalance`` at the caller level; keeping their defaults here.
+    # KNN has no class_weight kwarg; leave defaults.
+    # MLP has no class_weight kwarg.
+    # AdaBoost and Bagging inherit class_weight from their base_estimator; leave defaults.
+}
 
-def get_models_dict(num_classes=2):
+# Non-tree models benefit from feature standardisation. Tree-based models are
+# scale-invariant and are excluded (docs/CODE_REVIEW_ISSUES.md §7.4).
+_NEEDS_SCALING: set[str] = {
+    "Logistic Regression",
+    "SGD Classifier",
+    "Ridge Classifier",
+    "Perceptron",
+    "PassiveAggressiveClassifier",
+    "Linear Discriminant Analysis",
+    "Quadratic Discriminant Analysis",
+    "Support Vector Machine - LinearSVC",
+    "Support Vector Machine - RBF SVC",
+    "Neural Network - MLPClassifier",
+    "KNN",
+}
+
+
+def _apply_class_weight(name: str, kwargs: dict[str, str]) -> dict[str, str]:
+    """Return the given kwargs augmented with ``class_weight`` when applicable."""
+    return {**kwargs, **_BALANCED_KWARG.get(name, {})}
+
+
+def _wrap_with_scaler(name: str, model: object) -> object:
+    """Wrap non-tree models in a Pipeline(StandardScaler, model).
+
+    Tree-based models are scale-invariant, so they are returned unwrapped.
+    Non-tree models (SVM, LR, MLP, KNN, LDA, ...) benefit from
+    standardisation before fitting.
     """
-    Return a dictionary of model name -> model instance.
-    Adjust parameters slightly if multiclass vs binary.
+    if name in _NEEDS_SCALING:
+        return Pipeline([("scaler", StandardScaler()), ("estimator", model)])
+    return model
+
+
+def get_models_dict(
+    num_classes=2,
+    *,
+    class_weight_balanced: bool = True,
+    scale_features: bool = True,
+):
+    """Return a dictionary of model name -> model instance.
+
+    Args:
+        num_classes: Number of target classes (used to configure XGBoost's
+            multiclass objective).
+        class_weight_balanced: If True (default), pass
+            ``class_weight='balanced'`` (or ``balanced_subsample`` for tree
+            ensembles) to every model that supports it. Addresses MAMI's
+            imbalanced Task B sub-types (docs/CODE_REVIEW_ISSUES.md §7.3).
+        scale_features: If True (default), wrap non-tree models in a
+            ``Pipeline(StandardScaler, model)`` so they see standardised
+            features. Tree models are scale-invariant and left unwrapped
+            (docs/CODE_REVIEW_ISSUES.md §7.4).
     """
     xgb_kwargs = {}
     try:
@@ -60,33 +132,51 @@ def get_models_dict(num_classes=2):
         xgb_kwargs["objective"] = "multi:softprob"
         xgb_kwargs["num_class"] = num_classes
 
+    def _kw(name: str, **base) -> dict:
+        return _apply_class_weight(name, base) if class_weight_balanced else base
+
     models = {
         "KNN": KNeighborsClassifier(),
-        "Logistic Regression": linear_model.LogisticRegression(max_iter=1000, random_state=42),
-        "SGD Classifier": linear_model.SGDClassifier(random_state=42),
-        "Ridge Classifier": linear_model.RidgeClassifier(random_state=42),
-        "Perceptron": linear_model.Perceptron(random_state=42),
-        "PassiveAggressiveClassifier": linear_model.PassiveAggressiveClassifier(random_state=42),
+        "Logistic Regression": linear_model.LogisticRegression(
+            **_kw("Logistic Regression", max_iter=1000, random_state=42)
+        ),
+        "SGD Classifier": linear_model.SGDClassifier(**_kw("SGD Classifier", random_state=42)),
+        "Ridge Classifier": linear_model.RidgeClassifier(
+            **_kw("Ridge Classifier", random_state=42)
+        ),
+        "Perceptron": linear_model.Perceptron(**_kw("Perceptron", random_state=42)),
+        "PassiveAggressiveClassifier": linear_model.PassiveAggressiveClassifier(
+            **_kw("PassiveAggressiveClassifier", random_state=42)
+        ),
         "Linear Discriminant Analysis": discriminant_analysis.LinearDiscriminantAnalysis(),
         "Quadratic Discriminant Analysis": discriminant_analysis.QuadraticDiscriminantAnalysis(),
-        "Support Vector Machine - LinearSVC": svm.LinearSVC(random_state=42),
-        "Support Vector Machine - RBF SVC": svm.SVC(probability=True, random_state=42),
+        "Support Vector Machine - LinearSVC": svm.LinearSVC(
+            **_kw("Support Vector Machine - LinearSVC", random_state=42)
+        ),
+        "Support Vector Machine - RBF SVC": svm.SVC(
+            **_kw("Support Vector Machine - RBF SVC", probability=True, random_state=42)
+        ),
         "Neural Network - MLPClassifier": MLPClassifier(max_iter=500, random_state=42),
         "Extra Tree Classifier": ExtraTreeClassifier(random_state=42),
         "Bernoulli Naive Bayes": BernoulliNB(),
         "Gaussian Naive Bayes": GaussianNB(),
         "Multinomial Naive Bayes": MultinomialNB(),
         "Complement Naive Bayes": ComplementNB(),
-        "Decision Tree": DecisionTreeClassifier(random_state=42),
-        "Random Forest": RandomForestClassifier(random_state=42),
+        "Decision Tree": DecisionTreeClassifier(**_kw("Decision Tree", random_state=42)),
+        "Random Forest": RandomForestClassifier(**_kw("Random Forest", random_state=42)),
         "Hist Gradient Boosting Classifier": HistGradientBoostingClassifier(random_state=42),
         "Gradient Boosting Classifier": GradientBoostingClassifier(random_state=42),
         "XGBoost": XGBClassifier(verbosity=0, random_state=42, **xgb_kwargs),
         "LightGBM": lgb.LGBMClassifier(force_col_wise=True, n_jobs=1, verbose=-1, random_state=42),
-        "Extra Trees Classifier": ExtraTreesClassifier(random_state=42),
+        "Extra Trees Classifier": ExtraTreesClassifier(
+            **_kw("Extra Trees Classifier", random_state=42)
+        ),
         "AdaBoost Classifier": AdaBoostClassifier(random_state=42),
         "Bagging Classifier": BaggingClassifier(random_state=42),
     }
+
+    if scale_features:
+        models = {name: _wrap_with_scaler(name, m) for name, m in models.items()}
     return models
 
 

@@ -13,11 +13,18 @@ from typing import Any
 import numpy as np
 from PIL import Image
 import torch
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, WeightedRandomSampler
 
-from models.vlm.classifier import build_misogyny_prompt, build_subtype_prompt
+from models.vlm.classifier import (
+    build_joint_prompt,
+    build_joint_response,
+    build_misogyny_prompt,
+    build_subtype_prompt,
+    build_subtype_response,
+)
 from utils.dataset import DatasetManager
 from utils.seed import set_seed
+from utils.task_names import TASK_CHOICES, canonical_task
 from utils.text_source import load_text_source_transcripts, resolve_text_source
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
@@ -73,6 +80,8 @@ class VLMCollate:
 
         if task == "singleclass":
             self.base_prompt_text = build_misogyny_prompt()
+        elif task == "joint":
+            self.base_prompt_text = build_joint_prompt()
         else:
             self.base_prompt_text = build_subtype_prompt()
 
@@ -87,15 +96,16 @@ class VLMCollate:
             pil = Image.fromarray(arr)
             pils.append(pil)
 
-            # Target response
+            # Target response. Task A stays yes/no. Task B and the new
+            # joint task both emit JSON so the fine-tuned model learns the
+            # exact schema that ``models.vlm.classifier.extract_subtypes``
+            # parses at inference (docs/CODE_REVIEW_ISSUES.md §6.1, §6.3).
             if self.task == "singleclass":
                 resp = "yes" if sample["misogynous"] == 1 else "no"
+            elif self.task == "joint":
+                resp = build_joint_response(sample)
             else:
-                active = []
-                for label in ["shaming", "stereotype", "objectification", "violence"]:
-                    if sample[label] == 1:
-                        active.append(label)
-                resp = ", ".join(active) if active else "none"
+                resp = build_subtype_response(sample)
 
             responses.append(resp)
 
@@ -214,6 +224,30 @@ def load_ocr_transcripts(split: str, ocr_engine: str, embeddings_dir: Path) -> d
     return load_text_source_transcripts(split, "ocr", ocr_engine, embeddings_dir)
 
 
+def compute_vlm_sample_weights(records: list[dict[str, Any]]) -> list[float]:
+    """Return per-sample weights for a ``WeightedRandomSampler`` on MAMI train.
+
+    Task B sub-types are imbalanced (shaming ~14 %, stereotype ~31 %,
+    objectification ~29 %, violence ~13 %). Uniform sampling means the
+    QLoRA loss sees mostly negative-of-rare-class targets, and the trained
+    model biases toward always-negative on the rare classes. Reweighting
+    samples so those with rare-class positives are more likely to be
+    drawn evens out the training signal (docs/CODE_REVIEW_ISSUES.md §6.4).
+
+    Weight scheme: base 1.0 per sample plus 3.0 for each rare-class
+    positive (shaming, violence) and 1.0 for each common-class positive
+    (stereotype, objectification). Empirically this triples the training
+    frequency of shaming/violence-positive memes without starving the
+    model of easy negatives.
+    """
+    weights: list[float] = []
+    for row in records:
+        rare = int(row.get("shaming", 0)) + int(row.get("violence", 0))
+        common = int(row.get("stereotype", 0)) + int(row.get("objectification", 0))
+        weights.append(1.0 + 3.0 * rare + 1.0 * common)
+    return weights
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Fine-tune local VLMs on MAMI dataset")
     parser.add_argument(
@@ -225,8 +259,15 @@ def main() -> None:
     parser.add_argument(
         "--task",
         default="singleclass",
-        choices=["singleclass", "multiclass"],
-        help="Target classification task",
+        type=canonical_task,
+        choices=TASK_CHOICES,
+        help=(
+            "Target classification task: 'binary'/'singleclass' = Task A binary "
+            "misogyny (yes/no target), 'multilabel'/'multiclass' = Task B "
+            "multi-label sub-types (4-key JSON target), 'joint' = both tasks "
+            "in a single adapter (5-key JSON target). See "
+            "docs/CODE_REVIEW_ISSUES.md §4.1, §6.3."
+        ),
     )
     parser.add_argument(
         "--quantize",
@@ -270,6 +311,29 @@ def main() -> None:
             "RNG seed for reproducible QLoRA training. Applied to Python's "
             "random module, NumPy, and PyTorch (CPU + CUDA). See "
             "docs/CODE_REVIEW_ISSUES.md §3.1."
+        ),
+    )
+    parser.add_argument(
+        "--gradient-accumulation-steps",
+        type=int,
+        default=8,
+        help=(
+            "Number of micro-batches per optimizer step. Effective batch size "
+            "is ``batch-size * gradient-accumulation-steps``. Default 8 lifts "
+            "the effective batch from 2 to 16 without extra VRAM. See "
+            "docs/CODE_REVIEW_ISSUES.md §2.5."
+        ),
+    )
+    parser.add_argument(
+        "--sampler",
+        default="uniform",
+        choices=["uniform", "balanced"],
+        help=(
+            "Training sampler. 'uniform' shuffles the training set uniformly "
+            "(default). 'balanced' uses a WeightedRandomSampler that "
+            "up-weights samples with rare-class positives (shaming, violence). "
+            "Recommended for multi-label and joint training. See "
+            "docs/CODE_REVIEW_ISSUES.md §6.4."
         ),
     )
     args = parser.parse_args()
@@ -320,17 +384,22 @@ def main() -> None:
     # Prepare model for quantized training
     base_model = prepare_model_for_kbit_training(base_model)
 
-    # Identify target modules dynamically or fall back to standard attention layers
-    target_modules = ["q_proj", "v_proj", "k_proj", "o_proj"]
-
-    # PEFT LoraConfig
+    # LoRA target modules: ``all-linear`` covers self-attention *and* the MLP
+    # projections (gate_proj, up_proj, down_proj), which contain the majority
+    # of Qwen2-VL and LLaVA-1.5 parameters. The pre-fix config only touched
+    # attention (q_proj, k_proj, v_proj, o_proj), halving effective LoRA
+    # capacity. See docs/CODE_REVIEW_ISSUES.md §2.6.
+    #
+    # ``task_type=None`` lets PEFT infer the task from the model class instead
+    # of forcing ``CAUSAL_LM``, which is technically wrong for Vision2Seq
+    # models and can trigger subtle mis-attachment on newer PEFT versions.
     peft_config = LoraConfig(
         r=16,
         lora_alpha=32,
-        target_modules=target_modules,
+        target_modules="all-linear",
         lora_dropout=0.05,
         bias="none",
-        task_type="CAUSAL_LM",
+        task_type=None,
     )
 
     logger.info("Injecting LoRA adapters...")
@@ -361,13 +430,26 @@ def main() -> None:
 
     collate_fn = VLMCollate(processor, args.model_id.lower(), args.task, ocr_map=ocr_map)
 
-    train_loader = DataLoader(
-        train_dataset,
-        batch_size=args.batch_size,
-        shuffle=True,
-        collate_fn=collate_fn,
-        drop_last=True,
-    )
+    loader_kwargs: dict[str, Any] = {
+        "batch_size": args.batch_size,
+        "collate_fn": collate_fn,
+        "drop_last": True,
+    }
+    if args.sampler == "balanced":
+        sample_weights = compute_vlm_sample_weights(train_dataset._records)  # pylint: disable=protected-access
+        loader_kwargs["sampler"] = WeightedRandomSampler(
+            weights=sample_weights,
+            num_samples=len(train_dataset),
+            replacement=True,
+        )
+        logger.info(
+            "Using class-balanced WeightedRandomSampler over %d training samples.",
+            len(train_dataset),
+        )
+    else:
+        loader_kwargs["shuffle"] = True
+
+    train_loader = DataLoader(train_dataset, **loader_kwargs)
 
     # 4. Setup Optimizer
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=0.01)
@@ -380,20 +462,36 @@ def main() -> None:
         total_loss = 0.0
         t0 = time.perf_counter()
 
-        for batch in train_loader:
-            # Move inputs to device (except images, which are processed)
+        # Gradient accumulation gives an effective batch size of
+        # ``args.batch_size * args.gradient_accumulation_steps`` without the
+        # VRAM cost of a larger per-step batch. QLoRA with batch size 2 has
+        # extremely noisy gradients (docs/CODE_REVIEW_ISSUES.md §2.5); an
+        # accumulation of 8 raises the effective batch to 16 and stabilises
+        # convergence.
+        optimizer.zero_grad()
+        n_accum = max(1, int(args.gradient_accumulation_steps))
+        for step, batch in enumerate(train_loader):
+            # Move inputs to device (except non-tensor entries).
             model_inputs = {
                 k: v.to(args.device) if isinstance(v, torch.Tensor) else v for k, v in batch.items()
             }
 
-            optimizer.zero_grad()
             outputs = model(**model_inputs)
-            loss = outputs.loss
-
+            loss = outputs.loss / n_accum
             loss.backward()
-            optimizer.step()
 
-            total_loss += loss.item()
+            # Step every ``n_accum`` micro-batches (or at the end of the loop
+            # to avoid dropping the final residual).
+            if ((step + 1) % n_accum == 0) or (step + 1 == len(train_loader)):
+                torch.nn.utils.clip_grad_norm_(
+                    (p for p in model.parameters() if p.requires_grad), 1.0
+                )
+                optimizer.step()
+                optimizer.zero_grad()
+
+            # Track the un-scaled loss so the logged epoch loss is comparable
+            # across different accumulation settings.
+            total_loss += loss.item() * n_accum
 
         avg_loss = total_loss / len(train_loader) if train_loader else 0.0
         elapsed = time.perf_counter() - t0

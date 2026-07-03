@@ -42,9 +42,10 @@ def _fake_tokenizer(labels: list[str]) -> torch.Tensor:
 def classifier():
     from models.vlm.clip_classifier import CLIPClassifier
 
-    with patch("open_clip.create_model_and_transforms") as mock_create, patch(
-        "open_clip.get_tokenizer"
-    ) as mock_tok:
+    with (
+        patch("open_clip.create_model_and_transforms") as mock_create,
+        patch("open_clip.get_tokenizer") as mock_tok,
+    ):
         mock_create.return_value = (_FakeCLIPModel(), None, MagicMock())
         mock_tok.return_value = _fake_tokenizer
         return CLIPClassifier(model_name="fake", device="cpu")
@@ -64,17 +65,13 @@ def test_set_classes_ensemble_stores_one_embedding_per_class(classifier) -> None
 
 def test_set_classes_ensemble_preserves_label_order(classifier) -> None:
     """``_labels`` matches the insertion order of the prompt dict."""
-    classifier.set_classes_ensemble(
-        {"first": ["prompt one"], "second": ["prompt two"]}
-    )
+    classifier.set_classes_ensemble({"first": ["prompt one"], "second": ["prompt two"]})
     assert classifier._labels == ["first", "second"]
 
 
 def test_set_classes_ensemble_normalises_embeddings(classifier) -> None:
     """Each averaged class embedding is L2-normalised to unit length."""
-    classifier.set_classes_ensemble(
-        {"positive": ["a", "b", "c"], "negative": ["x"]}
-    )
+    classifier.set_classes_ensemble({"positive": ["a", "b", "c"], "negative": ["x"]})
     assert classifier._text_embeddings is not None
     norms = classifier._text_embeddings.norm(dim=-1)
     for n in norms.tolist():

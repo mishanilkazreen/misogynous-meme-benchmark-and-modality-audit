@@ -50,9 +50,7 @@ def test_linear_head_shape(num_classes: int) -> None:
 def test_mlp_head_shape(num_classes: int, hidden_dim: int) -> None:
     """The MLP head is Sequential(LayerNorm, Linear, GELU, Dropout, Linear)."""
     clip = _FakeCLIP(embed_dim=64)
-    head = CLIPClassifierHead(
-        clip, embed_dim=64, num_classes=num_classes, hidden_dim=hidden_dim
-    )
+    head = CLIPClassifierHead(clip, embed_dim=64, num_classes=num_classes, hidden_dim=hidden_dim)
     assert isinstance(head.classifier, nn.Sequential)
     # Five layers: LayerNorm, Linear, GELU, Dropout, Linear
     assert len(head.classifier) == 5

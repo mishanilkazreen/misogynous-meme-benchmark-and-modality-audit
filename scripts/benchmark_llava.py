@@ -334,8 +334,11 @@ def _run_benchmark_multiclass(
         ocr_map = load_text_source_transcripts(
             split, resolved_source, ocr_engine, RESULTS_DIR / "embeddings"
         ) or None
-    # multiclass needs more tokens for the comma-separated list response
-    max_new_tokens_multiclass = 60
+    # Bumped from 60 to 100 to fit the JSON-schema Task B response
+    # (docs/CODE_REVIEW_ISSUES.md §6.1). Extra tokens for a smaller
+    # payload are cheap; being one token short truncates the JSON and
+    # makes the response unparseable.
+    max_new_tokens_multiclass = 100
     pipeline = PreprocessingPipeline() if preprocess else None
 
     pred_dicts: list[dict[str, int]] = []

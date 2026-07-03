@@ -26,6 +26,51 @@ sys.path.append(str(Path(__file__).resolve().parents[1]))
 from models.vlm.metrics_multilabel import compute_multilabel_metrics
 from utils.text_source import filename_suffix_for_source, resolve_text_source
 
+
+def calibrate_binary_threshold(
+    model: Any,
+    val_X: np.ndarray,
+    val_y: np.ndarray,
+    metric: str = "macro_f1",
+) -> tuple[float, float]:
+    """Scan decision thresholds on validation and return the argmax metric one.
+
+    Fixes the "0.5 is always the threshold" default that costs the tabular
+    XGBoost 1-3 F1 points at report time (docs/CODE_REVIEW_ISSUES.md §2.7).
+    The choice is made on the validation set only; the test set never sees
+    it, which is the standard split-hygiene contract.
+
+    Args:
+        model: A fitted binary classifier with ``predict_proba``.
+        val_X: Validation features (n_samples, n_features).
+        val_y: Validation labels (n_samples,) with 0/1 entries.
+        metric: Which metric to maximise. ``macro_f1`` (default) matches
+            MAMI's Task A official metric.
+
+    Returns:
+        ``(best_threshold, best_score)``. If ``predict_proba`` is unavailable
+        (e.g. the estimator only exposes ``decision_function``), returns
+        ``(0.5, 0.0)`` and the caller should keep the default threshold.
+    """
+    from sklearn.metrics import f1_score
+
+    if not hasattr(model, "predict_proba"):
+        return 0.5, 0.0
+    val_probs = model.predict_proba(val_X)[:, 1]
+    thresholds = np.linspace(0.05, 0.95, 91)
+    best_thr = 0.5
+    best_score = -1.0
+    for thr in thresholds:
+        preds = (val_probs >= thr).astype(int)
+        if metric == "macro_f1":
+            score = float(f1_score(val_y, preds, average="macro", zero_division=0))
+        else:
+            score = float(f1_score(val_y, preds, average="binary", zero_division=0))
+        if score > best_score:
+            best_score = score
+            best_thr = float(thr)
+    return best_thr, best_score
+
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger(__name__)
 
@@ -185,6 +230,27 @@ def main() -> None:
         default="results/models",
         help="Directory to save the trained classifier model file",
     )
+    parser.add_argument(
+        "--threshold-calibrate",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help=(
+            "For binary tasks, scan decision thresholds on validation and pick "
+            "the one that maximises macro F1. Default: on. Set --no-threshold-"
+            "calibrate to keep the fixed 0.5 threshold (matches pre-fix "
+            "behaviour). See docs/CODE_REVIEW_ISSUES.md §2.7."
+        ),
+    )
+    parser.add_argument(
+        "--calibrate-isotonic",
+        action="store_true",
+        help=(
+            "Wrap the fitted model in CalibratedClassifierCV(method='isotonic', "
+            "cv='prefit') fitted on the validation split. Has no meaningful "
+            "effect on standalone accuracy; only useful as a prerequisite for "
+            "downstream ensembling. See docs/CODE_REVIEW_ISSUES.md §7.9."
+        ),
+    )
     args = parser.parse_args()
 
     embeddings_dir = Path(args.embeddings_dir)
@@ -265,8 +331,41 @@ def main() -> None:
     model.fit(train_X, train_y)
     logger.info("Training completed successfully.")
 
+    # 4b. Optional isotonic probability calibration on validation. Only
+    #     meaningful for downstream ensembling; standalone metrics are
+    #     unchanged. See docs/CODE_REVIEW_ISSUES.md §7.9.
+    if args.calibrate_isotonic and args.task == "singleclass":
+        try:
+            from sklearn.calibration import CalibratedClassifierCV
+
+            logger.info("Calibrating classifier probabilities via isotonic regression...")
+            calibrated = CalibratedClassifierCV(model, method="isotonic", cv="prefit")
+            calibrated.fit(val_X, val_y)
+            model = calibrated
+        except Exception as exc:  # pragma: no cover - sklearn version issue would fail loud
+            logger.warning("Isotonic calibration failed (%s); using uncalibrated model.", exc)
+
+    # 4c. Optional threshold calibration on validation (binary tasks only).
+    #     Multi-label threshold tuning is deferred to a future commit — per-label
+    #     calibration needs a different code path.
+    binary_threshold = 0.5
+    if args.threshold_calibrate and args.task == "singleclass":
+        thr, val_score = calibrate_binary_threshold(model, val_X, val_y)
+        binary_threshold = thr
+        logger.info(
+            "Threshold calibration: best_thr=%.3f (val macro F1=%.4f)",
+            binary_threshold,
+            val_score,
+        )
+
+    def _predict(X: np.ndarray) -> np.ndarray:
+        """Apply the calibrated threshold for binary tasks; ``model.predict`` otherwise."""
+        if args.task == "singleclass" and hasattr(model, "predict_proba"):
+            return (model.predict_proba(X)[:, 1] >= binary_threshold).astype(int)
+        return model.predict(X)
+
     # 5. Evaluate on Validation split
-    val_preds = model.predict(val_X)
+    val_preds = _predict(val_X)
 
     logger.info("--- Evaluation Results (Validation Split) ---")
     val_results = []
@@ -339,7 +438,9 @@ def main() -> None:
         test_img, test_txt, test_y_bin, test_y_multi, _, _ = test_data
         test_X = fuse_embeddings(test_img, test_txt, args.fusion)
         test_y = test_y_bin if args.task == "singleclass" else test_y_multi
-        test_preds = model.predict(test_X)
+        # Use the same threshold picked from validation. Keeps split hygiene:
+        # the threshold is a hyperparameter fitted on val, applied to test unchanged.
+        test_preds = _predict(test_X)
 
         test_results = []
         logger.info("--- Evaluation Results (Test Split) ---")

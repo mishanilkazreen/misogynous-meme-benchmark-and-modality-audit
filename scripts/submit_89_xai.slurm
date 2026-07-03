@@ -13,7 +13,7 @@
 
 # Issue #89 (Gist tasks 12-13): XAI for the XGBoost Fusion classifier.
 #   Part 1 - Modality-Level SHAP attribution (run_shap_modality.py)
-#   Part 2 - CLIP Concept Activation Vectors  (run_clip_cav.py)
+#   Part 2 - CLIP Concept-Embedding Projection (run_clip_concept_projection.py)
 #
 # Both are CPU-light but depend on gitignored artifacts that live only on
 # SCIAMA: the trained .pkl model, the ViT-L-14 + PaddleOCR test embeddings, and
@@ -49,13 +49,14 @@ echo ">>> [#89 Part 1] Modality-Level SHAP attribution..."
 uv run python auto_benchmark/scripts/run_shap_modality.py || echo "FAILED: #89 SHAP"
 echo ""
 
-echo ">>> [#89 Part 2] CLIP Concept Activation Vectors..."
-uv run python auto_benchmark/scripts/run_clip_cav.py || echo "FAILED: #89 CAV"
+echo ">>> [#89 Part 2] CLIP Concept-Embedding Projection..."
+uv run python auto_benchmark/scripts/run_clip_concept_projection.py || echo "FAILED: #89 concept projection"
 echo ""
 
 echo "Output files:"
 ls -la results/shap_modality_importance.csv results/figures/shap_modality_importance.png \
-    results/cav_concept_similarity.csv results/cav_global_concept_presence.csv 2>&1
+    results/concept_projection_similarity.csv \
+    results/concept_projection_global_presence.csv 2>&1
 
 echo "=== Issue #89 XAI Complete ==="
 echo "Date: $(date)"

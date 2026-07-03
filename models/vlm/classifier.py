@@ -284,25 +284,172 @@ def extract_label(response: str, labels: list[str]) -> str | None:
 def build_subtype_prompt() -> str:
     """Return the multi-label sub-type classification prompt for MAMI Sub-task B.
 
-    Asks the model which of the four MAMI sub-type categories apply to the meme.
-    Response format: a comma-separated list of matching categories, or 'none'.
-    Use extract_subtypes() to parse the response into a {label: 0/1} dict.
+    Emits a JSON schema that pins each of the four sub-types to an explicit
+    boolean, together with MAMI-aligned definitions. The rigid schema avoids
+    the format drift ("shaming and stereotype" vs "shaming, stereotype") that
+    the previous free-text prompt suffered from, and makes every sub-type
+    an independent binary decision at generation time. See
+    docs/CODE_REVIEW_ISSUES.md §6.1.
+
+    Parse the response with :func:`extract_subtypes`. The parser accepts
+    the JSON schema below and falls back to the legacy comma-separated
+    format for zero-shot models that ignore the schema.
     """
     return (
-        "This meme may target women. Which of the following categories apply to it? "
-        "Categories: shaming, stereotype, objectification, violence. "
-        "Reply with a comma-separated list of all categories that apply, or reply with 'none' "
-        "if none of them apply. Do not add any explanation."
+        "This is a meme. Following the MAMI task, identify which TYPE(s) of "
+        "misogyny it expresses, if any. A meme can express more than one type "
+        "at the same time. Consider these four categories:\n"
+        "- shaming: insults or attacks a woman's body, appearance, or behaviour.\n"
+        "- stereotype: portrays women through oversimplified gender roles.\n"
+        "- objectification: reduces a woman to a sexual object.\n"
+        "- violence: depicts or threatens physical or sexual violence against women.\n"
+        "Reply with EXACTLY this JSON structure and nothing else:\n"
+        '{"shaming": <true|false>, "stereotype": <true|false>, '
+        '"objectification": <true|false>, "violence": <true|false>}'
+    )
+
+
+def build_subtype_response(row: dict[str, int]) -> str:
+    """Build the JSON target string for a MAMI sub-type training example.
+
+    Companion to :func:`build_subtype_prompt`. Given a MAMI dataset row
+    (with integer 0/1 fields for each sub-type), returns the exact JSON
+    string the model is trained to reproduce.
+    """
+    import json
+
+    return json.dumps(
+        {
+            "shaming": bool(row.get("shaming", 0)),
+            "stereotype": bool(row.get("stereotype", 0)),
+            "objectification": bool(row.get("objectification", 0)),
+            "violence": bool(row.get("violence", 0)),
+        }
+    )
+
+
+PER_CATEGORY_PROMPTS: dict[str, str] = {
+    "shaming": (
+        "Does this meme shame or insult a woman's body, appearance, or "
+        "behaviour (for example body-shaming or slut-shaming)? Answer with "
+        "exactly one word: yes or no."
+    ),
+    "stereotype": (
+        "Does this meme reinforce oversimplified or traditional gender "
+        "stereotypes about women? Answer with exactly one word: yes or no."
+    ),
+    "objectification": (
+        "Does this meme reduce a woman to a sexual object or focus on her "
+        "body for sexual purposes? Answer with exactly one word: yes or no."
+    ),
+    "violence": (
+        "Does this meme depict, encourage, or threaten physical or sexual "
+        "violence against women? Answer with exactly one word: yes or no."
+    ),
+}
+"""Per-sub-type binary prompts for VLM inference (docs/CODE_REVIEW_ISSUES.md §6.5).
+
+Rather than asking one multi-label question and parsing structured
+output, ``--per-category`` inference asks four independent yes/no
+questions per image. Each decision is independent (no ordering bias),
+each answer is a single token (fast to generate), and per-category
+threshold calibration becomes trivial via the yes/no logits.
+"""
+
+
+def build_joint_prompt() -> str:
+    """Return the joint Task A + Task B prompt used by ``--task joint``.
+
+    Asks the VLM for a 5-field JSON output that combines a binary misogyny
+    verdict with the four MAMI sub-type booleans. One QLoRA adapter can
+    then be trained on both tasks simultaneously (docs/CODE_REVIEW_ISSUES.md
+    §6.3), cutting fine-tune compute cost in half versus one adapter per
+    task while giving Task A the multi-task boost Kapil & Ekbal 2025
+    reported.
+    """
+    return (
+        "This is a meme. Decide whether it is misogynistic and, if so, which "
+        "TYPE(s) of misogyny it expresses. A meme can express more than one "
+        "type at the same time. Consider these four sub-types:\n"
+        "- shaming: insults or attacks a woman's body, appearance, or behaviour.\n"
+        "- stereotype: portrays women through oversimplified gender roles.\n"
+        "- objectification: reduces a woman to a sexual object.\n"
+        "- violence: depicts or threatens physical or sexual violence against women.\n"
+        "Reply with EXACTLY this JSON structure and nothing else:\n"
+        '{"misogynous": <true|false>, "shaming": <true|false>, '
+        '"stereotype": <true|false>, "objectification": <true|false>, '
+        '"violence": <true|false>}'
+    )
+
+
+def extract_joint(response: str, labels: list[str]) -> dict[str, int]:
+    """Parse a joint-task JSON response into a per-key 0/1 dict.
+
+    Accepts the same JSON-object syntax as :func:`extract_subtypes` but
+    over the 5-key schema from :func:`build_joint_prompt`. Extra keys are
+    ignored; missing keys default to 0.
+    """
+    import json
+
+    match = re.search(r"\{[^{}]*\}", response.strip())
+    if not match:
+        return dict.fromkeys(labels, 0)
+    try:
+        parsed = json.loads(match.group(0))
+    except (json.JSONDecodeError, TypeError, ValueError):
+        return dict.fromkeys(labels, 0)
+    if not isinstance(parsed, dict):
+        return dict.fromkeys(labels, 0)
+    result: dict[str, int] = {}
+    for lbl in labels:
+        v = parsed.get(lbl)
+        if isinstance(v, bool):
+            result[lbl] = 1 if v else 0
+        elif isinstance(v, (int, float)) and not isinstance(v, bool):
+            result[lbl] = 1 if v >= 0.5 else 0
+        else:
+            result[lbl] = 0
+    return result
+
+
+def build_joint_response(row: dict[str, int]) -> str:
+    """Build a JSON target that combines Task A and Task B in one schema.
+
+    Used by ``scripts/train_vlm.py --task joint`` (§6.3): one QLoRA adapter,
+    one 5-field JSON target, trains both tasks at once. Reduces the compute
+    cost of the full paper table by a factor of ~2 vs training separate
+    adapters per task.
+    """
+    import json
+
+    return json.dumps(
+        {
+            "misogynous": bool(row.get("misogynous", 0)),
+            "shaming": bool(row.get("shaming", 0)),
+            "stereotype": bool(row.get("stereotype", 0)),
+            "objectification": bool(row.get("objectification", 0)),
+            "violence": bool(row.get("violence", 0)),
+        }
     )
 
 
 def extract_subtypes(response: str, labels: list[str]) -> dict[str, int]:
-    """Parse a generative model's free-text response into a per-label 0/1 dict.
+    """Parse a generative model's response into a per-label 0/1 dict.
 
-    Uses word-boundary regex matching so that e.g. 'objectification' is not
-    accidentally matched by an unrelated substring.  'none' or an empty /
-    unparseable response maps all labels to 0 (callers should count this toward
-    refusal_rate when the original response was empty or a refusal phrase).
+    Accepts three input formats, tried in order:
+
+    1. JSON object with per-label booleans, matching the schema emitted by
+       :func:`build_subtype_prompt`. Any object embedded in the response is
+       accepted (e.g. ``Answer: {"shaming": true, ...}``). Numeric values
+       are thresholded at 0.5.
+    2. Explicit "none" keyword -> all zeros.
+    3. Legacy word-boundary regex match on the label names in a free-text
+       response (comma-separated list, sentence, etc.). Preserves
+       backward compatibility with pre-JSON zero-shot outputs.
+
+    Empty / unparseable responses map to all zeros. Callers should count
+    those toward ``refusal_rate`` when the raw response was empty or a
+    refusal phrase.
 
     Args:
         response: Raw text returned by the model.
@@ -311,27 +458,51 @@ def extract_subtypes(response: str, labels: list[str]) -> dict[str, int]:
     Returns:
         Dict mapping each label to 1 if matched, 0 otherwise.
     """
-    cleaned = response.strip().lower()
+    import json
 
-    # Empty response or explicit refusal → all zeros
-    if not cleaned:
+    cleaned = response.strip()
+
+    # 1. JSON path. The regex grabs the innermost braces so we tolerate
+    #    surrounding text or chat-template artefacts.
+    json_match = re.search(r"\{[^{}]*\}", cleaned)
+    if json_match:
+        try:
+            parsed = json.loads(json_match.group(0))
+            if isinstance(parsed, dict):
+                json_result: dict[str, int] = {}
+                any_json_key = False
+                for lbl in labels:
+                    value = parsed.get(lbl)
+                    if isinstance(value, bool):
+                        json_result[lbl] = 1 if value else 0
+                        any_json_key = True
+                    elif isinstance(value, (int, float)) and not isinstance(value, bool):
+                        json_result[lbl] = 1 if value >= 0.5 else 0
+                        any_json_key = True
+                    else:
+                        json_result[lbl] = 0
+                if any_json_key:
+                    return json_result
+        except (json.JSONDecodeError, TypeError, ValueError):
+            pass  # fall through to legacy parsing
+
+    lowered = cleaned.lower()
+
+    # 2. Empty / explicit "none" -> all zeros.
+    if not lowered:
+        return dict.fromkeys(labels, 0)
+    if re.search(r"\bnone\b", lowered):
         return dict.fromkeys(labels, 0)
 
-    # Explicit 'none' → all zeros (word-boundary so it doesn't hit 'someone' etc.)
-    if re.search(r"\bnone\b", cleaned):
-        return dict.fromkeys(labels, 0)
-
+    # 3. Legacy word-boundary match on the labels themselves.
     result: dict[str, int] = {}
     any_matched = False
     for lbl in labels:
         pattern = r"\b" + re.escape(lbl.lower()) + r"\b"
-        matched = bool(re.search(pattern, cleaned))
+        matched = bool(re.search(pattern, lowered))
         result[lbl] = 1 if matched else 0
         if matched:
             any_matched = True
-
-    # If nothing at all matched (e.g. refusal text without 'none'), treat as all zeros
     if not any_matched:
         return dict.fromkeys(labels, 0)
-
     return result

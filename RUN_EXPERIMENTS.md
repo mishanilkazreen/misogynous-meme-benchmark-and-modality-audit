@@ -1,372 +1,313 @@
-# Guide to Running Content Moderation & OCR-augmented VLM Experiments
+# Guide to Running the MAMI Experiments
 
-This guide outlines the steps required to replicate and run all experiments on a machine with a powerful GPU
-(e.g. 12GB+ VRAM). All experiments are ordered **fastest first** to allow quick verification of pipeline
-components before committing to hours-long VLM training runs.
+Post-review pipeline. Reflects the fixes in
+[`docs/CODE_REVIEW_ISSUES.md`](docs/CODE_REVIEW_ISSUES.md) and the
+phased rerun order in [`docs/RERUN_PLAN.md`](docs/RERUN_PLAN.md). Every
+step below assumes:
 
-An automation script is provided under `scripts/run_all_experiments.ps1`. You can trigger it directly in
-PowerShell:
+- Working branch is `bug_fix_anna` (or merged into `main`).
+- All Phase A–E fixes are applied. Prior single-seed runs are treated
+  as exploratory and are NOT reportable.
+- GPU work runs on the SCIAMA HPC cluster (NVIDIA L40, 48 GB VRAM) via
+  SLURM. The Gemini API call is the only stage that needs an
+  internet-enabled machine.
 
-```powershell
-# Run the entire pipeline sequentially (estimated time: ~15 hours)
-.\scripts\run_all_experiments.ps1
-```
+For each stage below the reported compute cost assumes a single L40
+seed. Multi-seed reporting (recommended for every fine-tuned system)
+multiplies the cost by the number of seeds.
 
-> **Compute environment note:** The majority of experiments (steps 3–7) were
-> executed on the [SCIAMA HPC cluster](https://sciama.icg.port.ac.uk/sciama-wp/)
-> at the University of Portsmouth, using NVIDIA L40 GPUs (48 GB VRAM) via SLURM
-> batch jobs (`scripts/submit_experiments.slurm`). Because SCIAMA compute nodes
-> run offline (no internet access), the Gemini API evaluation
-> (`scripts/benchmark_gemini.py`) was run separately on an internet-enabled
-> local machine. See `README.md § Compute Environment` for full hardware specs.
-
----
-
-## Expected Execution Times per Model and Task (12GB+ VRAM GPU)
-
-This table shows the execution time estimates for running the experiments sequentially on a single 12GB VRAM GPU.
-
-| Phase | Model / Operation | Task / Split | Expected Time | Notes / Details |
-|---|---|---|---|---|
-| **Setup** | Dependency Sync (`uv sync`) | N/A | **30s – 3m** | Dependent on network speed. |
-| **Download** | Dataset Download (`download_dataset.py`) | N/A | **1m – 5m** | Downloads ~1.5 GB MAMI 2022 dataset. |
-| **Preprocessing** | OCR & CLIP Embedding Extraction (`extract_embeddings.py`) | 11k samples (all splits) | **~15 – 18m** | Primarily dominated by PaddleOCR inference. |
-| **XGBoost**| XGBoost Classifier (`train_classifier.py`) | Binary (`singleclass`) | **~15 seconds** | Extremely lightweight CPU/GPU training. |
-| | XGBoost Classifier (`train_classifier.py`) | Multiclass (`multiclass`) | **~15 seconds** | Trains 4 independent binary classifiers. |
-| **CLIP Head** | CLIP classification head (`train_clip.py`, 5 epochs) | ViT-B-32-quickgelu (Binary) | **~3 – 4 minutes** | Standard PyTorch classification loop. |
-| | CLIP classification head (`train_clip.py`, 5 epochs) | ViT-L-14-quickgelu (Binary) | **~10 minutes** | Larger image/text towers. |
-| | CLIP classification head (`train_clip.py`, 5 epochs) | ViT-L-14-quickgelu (Multiclass) | **~10 minutes** | Larger image/text towers. |
-| **VLM (2B)** | Qwen2-VL-2B-Instruct QLoRA (`train_vlm.py`, 3 epochs) | Binary (`singleclass`) | **~1h 10 minutes** | 4.5k steps/epoch, batch size 2. |
-| | Qwen2-VL-2B-Instruct QLoRA (`train_vlm.py`, 3 epochs) | Multiclass (`multiclass`) | **~1h 10 minutes** | 4.5k steps/epoch, batch size 2. |
-| **LLaVA (7B)** | LLaVA-1.5-7b-hf QLoRA (`train_vlm.py`, 3 epochs) | Binary (`singleclass`) | **~2h 15 minutes** | 4.5k steps/epoch, batch size 2. |
-| | LLaVA-1.5-7b-hf QLoRA (`train_vlm.py`, 3 epochs) | Multiclass (`multiclass`) | **~2h 15 minutes** | 4.5k steps/epoch, batch size 2. |
-| **Qwen (7B)** | Qwen2-VL-7B-Instruct QLoRA (`train_vlm.py`, 3 epochs) | Binary (`singleclass`) | **~2h 30 minutes** | 4.5k steps/epoch, batch size 2. |
-| | Qwen2-VL-7B-Instruct QLoRA (`train_vlm.py`, 3 epochs) | Multiclass (`multiclass`) | **~2h 30 minutes** | 4.5k steps/epoch, batch size 2. |
-| **Evaluation** | CLIP Cosine Similarity / head (`benchmark_clip.py`) | 1k Validation samples | **~10 seconds** | Linear/cosine classification. |
-| | Qwen2-VL-2B-Instruct (`benchmark_qwen2vl.py`) | 1k Validation samples | **~3 minutes** | Generative inference (batch size 4). |
-| | LLaVA-1.5-7b-hf (`benchmark_llava.py`) | 1k Validation samples | **~5 minutes** | Generative inference (batch size 4). |
-| | Qwen2-VL-7B-Instruct (`benchmark_qwen2vl.py`) | 1k Validation samples | **~6 minutes** | Generative inference (batch size 4). |
-
----
-
-## 1. Setup Environment & Dependencies (Estimated Time: 1–3 minutes)
-
-First, ensure that Python and `uv` are installed. Then sync the environment including the GPU/VLM dependencies:
+## 0. One-off setup
 
 ```bash
-# Sync dependencies
+uv venv --python 3.10
 uv sync --group vlm-gpu
+uv run pre-commit install --hook-type pre-commit --hook-type commit-msg --hook-type pre-push
 
-# Setup Kaggle Credentials
-# Create a `.env` file in the root directory and add your Kaggle username and key
-# to allow downloading the MAMI 2022 dataset via kagglehub:
-#
-# KAGGLE_USERNAME=your_kaggle_username
-# KAGGLE_KEY=your_kaggle_key
-```
-
----
-
-## 2. Download the Dataset (Estimated Time: 1–5 minutes)
-
-Download the MAMI 2022 dataset to the local cache folder managed by `kagglehub`:
-
-```bash
+# Kaggle credentials in .env, then:
 uv run python scripts/download_dataset.py
 ```
 
----
+## Task-name aliases
 
-## 3. Extract OCR Transcripts & Embeddings (Estimated Time: ~15–18 minutes)
+Every training and benchmark script accepts both the paper-facing
+names (``binary`` / ``multilabel``) and the legacy pipeline names
+(``singleclass`` / ``multiclass``). The two families are interchangeable
+in every command below; pick whichever you find easier to read. See
+[`docs/CODE_REVIEW_ISSUES.md`](docs/CODE_REVIEW_ISSUES.md) §4.1.
 
-Because the `.npz` embedding and OCR files are too large to be saved in the Git repository, you must first
-extract the text transcripts using the OCR engines. This script also extracts the CLIP image and text tower
-embeddings:
+## 1. Extract embeddings (Phase 0 of the rerun plan)
+
+The extract step now supports three text sources. The paper reports the
+`provided` variant as the primary row and the `paddleocr` / `combined`
+variants as ablations.
 
 ```bash
-# Extract ViT-L-14 embeddings + PaddleOCR transcripts (train, validation, test)
+# Provided text (MAMI's Text Transcription column, manually verified)
 uv run python scripts/extract_embeddings.py \
     --split train,validation,test \
     --model ViT-L-14-quickgelu \
-    --use-ocr \
-    --ocr-engine paddleocr
+    --text-source provided
 
-# Extract ViT-B-32 embeddings + PaddleOCR transcripts (train, validation, test)
+# PaddleOCR-only (kept as an ablation for the "OCR robustness" story)
 uv run python scripts/extract_embeddings.py \
     --split train,validation,test \
-    --model ViT-B-32-quickgelu \
-    --use-ocr \
+    --model ViT-L-14-quickgelu \
+    --text-source ocr \
+    --ocr-engine paddleocr
+
+# Union of both (best signal in practice; §7.8)
+uv run python scripts/extract_embeddings.py \
+    --split train,validation,test \
+    --model ViT-L-14-quickgelu \
+    --text-source combined \
     --ocr-engine paddleocr
 ```
 
-Outputs will be saved in `results/embeddings/` (e.g. `train_vit_l_14_quickgelu_ocr_paddleocr.npz`).
+Filenames follow the convention
+`{split}_{model}[_ocr_paddleocr|_combined_paddleocr].npz`. Runs at
+different text sources coexist in `results/embeddings/`.
 
----
+Higher-resolution CLIP variant (§7.6): replace `ViT-L-14-quickgelu`
+with `ViT-L-14-336-quickgelu` in any of the above.
 
-## 4. Train the XGBoost Fusion Classifiers (Estimated Time: ~30 seconds)
+Compute: ~30 minutes per (model, text_source) triple on SCIAMA.
 
-Once embeddings and OCR transcripts are extracted, train the Supervised Embedding Fusion Classifier
-(XGBoost head on top of CLIP + OCR representations):
+## 2. Tabular sweep (Phase 1.1 and 2.1)
+
+Trains 20+ classical ML models on top of CLIP + text embeddings. The
+sweep now applies `class_weight="balanced"` (§7.3), wraps non-tree
+models in a `StandardScaler` pipeline (§7.4), and reports the MAMI
+official Task B metric (§1.4).
 
 ```bash
-# Challenge 1: Train binary misogyny detector
+# Validation split (hyperparameter tuning + threshold pick)
+uv run autobench train --model auto_benchmark/config/model/mami_tabular_model.yaml
+
+# Test split (final evaluation, same seed)
+uv run autobench train --model auto_benchmark/config/model/mami_tabular_model_test.yaml
+```
+
+For each of `--text-source` in `{provided, paddleocr, combined}`,
+create a matching data config in `auto_benchmark/config/data/`
+pointing at the corresponding NPZ file.
+
+For multi-seed reporting, iterate `random_state` in
+`auto_benchmark/config/model/*.yaml` (default is 4711) over `{1, 2, 3}`
+and average.
+
+Compute: ~1 hour per (task, text_source, seed) triple on SCIAMA CPU.
+
+## 3. Top-level XGBoost head (feeds SHAP + concept projection)
+
+`scripts/train_classifier.py` fits a single XGBoost model on top of the
+pre-extracted embeddings and saves a `.pkl`. This is the model the XAI
+scripts (`run_shap_modality.py`, `run_clip_concept_projection.py`) load.
+
+```bash
+# Task A binary (previously ``--task singleclass``)
 uv run python scripts/train_classifier.py \
-    --model ViT-L-14-quickgelu \
-    --task singleclass \
+    --model-name ViT-L-14-quickgelu \
+    --task binary \
     --classifier xgboost \
-    --use-ocr \
-    --ocr-engine paddleocr
+    --text-source provided \
+    --threshold-calibrate \
+    --seed 42
 
-# Challenge 2: Train multiclass subtype detector
+# Task B multi-label (previously ``--task multiclass``)
 uv run python scripts/train_classifier.py \
-    --model ViT-L-14-quickgelu \
-    --task multiclass \
+    --model-name ViT-L-14-quickgelu \
+    --task multilabel \
     --classifier xgboost \
-    --use-ocr \
-    --ocr-engine paddleocr
+    --text-source provided \
+    --seed 42
 ```
 
-Outputs will be saved as `.pkl` files in `results/models/`.
+`--threshold-calibrate` (default on for binary) scans decision
+thresholds on validation and picks the one that maximises macro F1
+(§2.7). `--calibrate-isotonic` is an optional flag that wraps the fit
+in `CalibratedClassifierCV` for downstream ensembling (§7.9); it has
+no meaningful effect on standalone accuracy.
 
----
+Compute: ~15 seconds per task on CPU.
 
-## 5. Direct Fine-Tuning of the CLIP Classification Head (Estimated Time: ~24 minutes)
-
-Fine-tune the CLIP model classification head directly using the PaddleOCR transcripts:
+## 4. CLIP zero-shot benchmark (Phase 1.3, 2.4)
 
 ```bash
-# ===========================================================================
-# 5.1. CLIP ViT-B-32 Training
-# ===========================================================================
+uv run python scripts/benchmark_clip.py \
+    --split test \
+    --task binary \
+    --model-name ViT-L-14-quickgelu \
+    --text-source provided \
+    --prompt-ensemble \
+    --tta \
+    --device cuda
+```
 
-# Challenge 1: Fine-tune ViT-B-32 model for Binary misogyny (~3 minutes)
-uv run python scripts/train_clip.py \
-    --model ViT-B-32-quickgelu \
-    --epochs 5 \
-    --batch-size 16 \
-    --loss-mode classification \
-    --task singleclass \
-    --device cuda \
-    --use-ocr \
-    --ocr-engine paddleocr
+`--prompt-ensemble` (default on) averages 5-8 phrase embeddings per
+class (§7.1). `--tta` enables horizontal-flip test-time augmentation
+(§7.2). Both are inference-only wins.
 
-# ===========================================================================
-# 5.2. CLIP ViT-L-14 Training
-# ===========================================================================
+Compute: ~1 minute per (model, task, split).
 
-# Challenge 1: Fine-tune ViT-L-14 model for Binary misogyny (~10 minutes)
-uv run python scripts/train_clip.py \
+## 5. CLIP head fine-tune (Phase 1.4, 2.2)
+
+The refactored `train_clip.py`:
+
+- Freezes both towers by default (`--freeze-image --freeze-text` are on
+  by default; pass `--no-freeze-image` / `--no-freeze-text` for
+  full-tower fine-tuning per §2.1 Recipe B).
+- Adds an MLP classification head (`--head-hidden-dim 512` default).
+- Applies training-time augmentation (`--augment`; disable with
+  `--no-augment` for an ablation).
+- LR warmup for 100 steps + cosine decay + gradient clipping = 1.0.
+- Label smoothing 0.1 on both cross-entropy and BCE.
+- `pos_weight` per sub-type for Task B BCE (§1.2).
+- Best-val checkpoint selection (§2.4).
+- Reproducible with `--seed`.
+
+```bash
+for SEED in 1 2 3; do
+  uv run python scripts/train_clip.py \
     --model ViT-L-14-quickgelu \
-    --epochs 5 \
-    --batch-size 16 \
     --loss-mode classification \
-    --task singleclass \
-    --device cuda \
-    --use-ocr \
-    --ocr-engine paddleocr
-
-# Challenge 2: Fine-tune ViT-L-14 model for Multiclass subtypes (~10 minutes)
-uv run python scripts/train_clip.py \
-    --model ViT-L-14-quickgelu \
-    --epochs 5 \
-    --batch-size 16 \
-    --loss-mode classification \
-    --task multiclass \
-    --device cuda \
-    --use-ocr \
-    --ocr-engine paddleocr
+    --task binary \
+    --epochs 10 \
+    --batch-size 32 \
+    --text-source provided \
+    --seed $SEED \
+    --device cuda
+done
 ```
 
-Outputs will be saved as `.pth` files in `results/models/` (e.g. `finetuned_clip_classification_singleclass_vit_l_14_quickgelu.pth`).
+Change `--task binary` to `--task multilabel` for Task B.
 
----
+Compute: ~5 minutes per epoch on frozen ViT-L-14 = ~50 minutes per
+seed. Full-tower fine-tune (`--no-freeze-image --no-freeze-text`) is
+~10x that.
 
-## 6. Generative VLM QLoRA Fine-Tuning (Estimated Time: ~12 hours)
+## 6. VLM QLoRA fine-tune (Phase 1.7, 2.3)
 
-Fine-tune the local generative Vision-Language Models (VLMs) using **QLoRA** (4-bit quantization + LoRA
-adapters) with PaddleOCR transcripts injected dynamically into the prompt prefix:
+The refactored `train_vlm.py`:
+
+- LoRA `target_modules="all-linear"` and `task_type=None` (§2.6).
+- `--gradient-accumulation-steps 8` -> effective batch size 16 (§2.5).
+- Forces `padding_side="right"` before every collation and asserts on
+  the first batch (§1.1).
+- JSON schema targets for Task B and joint mode (§6.1, §6.3).
+- `--sampler balanced` for rare-class oversampling (§6.4).
+- Reproducible with `--seed`.
 
 ```bash
-# ===========================================================================
-# 6.1. Fine-Tune Qwen2-VL-2B-Instruct (Estimated Time: ~1h 10m per task)
-# ===========================================================================
-
-# Challenge 1: Binary misogyny
-uv run python scripts/train_vlm.py \
-    --model-id Qwen/Qwen2-VL-2B-Instruct \
-    --epochs 3 \
-    --batch-size 2 \
-    --quantize 4bit \
-    --device cuda \
-    --task singleclass \
-    --use-ocr \
-    --ocr-engine paddleocr
-
-# Challenge 2: Multiclass subtypes
-uv run python scripts/train_vlm.py \
-    --model-id Qwen/Qwen2-VL-2B-Instruct \
-    --epochs 3 \
-    --batch-size 2 \
-    --quantize 4bit \
-    --device cuda \
-    --task multiclass \
-    --use-ocr \
-    --ocr-engine paddleocr
-
-# ===========================================================================
-# 6.2. Fine-Tune LLaVA-1.5-7b (Estimated Time: ~2h 15m per task)
-# ===========================================================================
-
-# Challenge 1: Binary misogyny
-uv run python scripts/train_vlm.py \
-    --model-id llava-hf/llava-1.5-7b-hf \
-    --epochs 3 \
-    --batch-size 2 \
-    --quantize 4bit \
-    --device cuda \
-    --task singleclass \
-    --use-ocr \
-    --ocr-engine paddleocr
-
-# Challenge 2: Multiclass subtypes
-uv run python scripts/train_vlm.py \
-    --model-id llava-hf/llava-1.5-7b-hf \
-    --epochs 3 \
-    --batch-size 2 \
-    --quantize 4bit \
-    --device cuda \
-    --task multiclass \
-    --use-ocr \
-    --ocr-engine paddleocr
-
-# ===========================================================================
-# 6.3. Fine-Tune Qwen2-VL-7B-Instruct (Estimated Time: ~2h 30m per task)
-# ===========================================================================
-
-# Challenge 1: Binary misogyny
+# Qwen2-VL-7B, Task A
 uv run python scripts/train_vlm.py \
     --model-id Qwen/Qwen2-VL-7B-Instruct \
     --epochs 3 \
     --batch-size 2 \
+    --gradient-accumulation-steps 8 \
     --quantize 4bit \
-    --device cuda \
-    --task singleclass \
-    --use-ocr \
-    --ocr-engine paddleocr
+    --task binary \
+    --text-source provided \
+    --seed 1
 
-# Challenge 2: Multiclass subtypes
+# Joint Task A + Task B (one adapter, both tasks; §6.3)
 uv run python scripts/train_vlm.py \
     --model-id Qwen/Qwen2-VL-7B-Instruct \
-    --epochs 3 \
+    --epochs 5 \
     --batch-size 2 \
+    --gradient-accumulation-steps 16 \
     --quantize 4bit \
-    --device cuda \
-    --task multiclass \
-    --use-ocr \
-    --ocr-engine paddleocr
+    --task joint \
+    --sampler balanced \
+    --text-source provided \
+    --seed 1
 ```
 
-Outputs will be saved as LoRA adapters under `results/models/lora_<model_name_clean>_<task>/`.
+Compute per seed:
 
----
+- Qwen2-VL-2B: ~1h 10m per epoch = ~3.5h for 3 epochs.
+- Qwen2-VL-7B: ~2h 30m per epoch = ~7.5h for 3 epochs.
+- Joint at 5 epochs: 5/3 x the single-task time.
 
-## 7. Run Benchmarks & Evaluations (Estimated Time: ~30 minutes)
+## 7. VLM inference variants (Phase 1.6, 2b.4)
 
-Run evaluations on the 1,000-sample validation split using the trained adapters and checkpoints:
+Standard multi-label inference (JSON schema, §6.1):
 
 ```bash
-# ===========================================================================
-# 7.1. EVALUATING FINE-TUNED CLIP (Estimated Time: ~10 seconds per model)
-# ===========================================================================
-
-# Challenge 1: Binary misogyny (ViT-B-32)
-uv run python scripts/benchmark_clip.py \
-    --split validation \
-    --device cuda \
-    --model-path results/models/finetuned_clip_classification_singleclass_vit_b_32_quickgelu.pth \
-    --use-ocr \
-    --ocr-engine paddleocr
-
-# Challenge 1: Binary misogyny (ViT-L-14)
-uv run python scripts/benchmark_clip.py \
-    --split validation \
-    --device cuda \
-    --model-path results/models/finetuned_clip_classification_singleclass_vit_l_14_quickgelu.pth \
-    --use-ocr \
-    --ocr-engine paddleocr
-
-# Challenge 2: Multiclass subtypes (ViT-L-14)
-uv run python scripts/benchmark_clip.py \
-    --split validation \
-    --device cuda \
-    --model-path results/models/finetuned_clip_classification_multiclass_vit_l_14_quickgelu.pth \
-    --use-ocr \
-    --ocr-engine paddleocr \
-    --task multiclass
-
-
-# ===========================================================================
-# 7.2. EVALUATING FINE-TUNED QWEN2-VL-2B (Estimated Time: ~3 minutes per task)
-# ===========================================================================
-
-# Challenge 1: Binary misogyny
-uv run python scripts/benchmark_qwen2vl.py \
-    --model-id Qwen/Qwen2-VL-2B-Instruct \
-    --split validation \
-    --use-ocr \
-    --ocr-engine paddleocr \
-    --lora-path results/models/lora_qwen2_vl_2b_instruct_singleclass
-
-# Challenge 2: Multiclass subtypes
-uv run python scripts/benchmark_qwen2vl.py \
-    --model-id Qwen/Qwen2-VL-2B-Instruct \
-    --split validation \
-    --use-ocr \
-    --ocr-engine paddleocr \
-    --task multiclass \
-    --lora-path results/models/lora_qwen2_vl_2b_instruct_multiclass
-
-
-# ===========================================================================
-# 7.3. EVALUATING FINE-TUNED LLaVA-1.5-7B (Estimated Time: ~5 minutes per task)
-# ===========================================================================
-
-# Challenge 1: Binary misogyny
-uv run python scripts/benchmark_llava.py \
-    --model-id llava-hf/llava-1.5-7b-hf \
-    --split validation \
-    --use-ocr \
-    --ocr-engine paddleocr \
-    --lora-path results/models/lora_llava_1.5_7b_hf_singleclass
-
-# Challenge 2: Multiclass subtypes
-uv run python scripts/benchmark_llava.py \
-    --model-id llava-hf/llava-1.5-7b-hf \
-    --split validation \
-    --use-ocr \
-    --ocr-engine paddleocr \
-    --task multiclass \
-    --lora-path results/models/lora_llava_1.5_7b_hf_multiclass
-
-
-# ===========================================================================
-# 7.4. EVALUATING FINE-TUNED QWEN2-VL-7B (Estimated Time: ~6 minutes per task)
-# ===========================================================================
-
-# Challenge 1: Binary misogyny
 uv run python scripts/benchmark_qwen2vl.py \
     --model-id Qwen/Qwen2-VL-7B-Instruct \
-    --split validation \
-    --use-ocr \
-    --ocr-engine paddleocr \
-    --lora-path results/models/lora_qwen2_vl_7b_instruct_singleclass
-
-# Challenge 2: Multiclass subtypes
-uv run python scripts/benchmark_qwen2vl.py \
-    --model-id Qwen/Qwen2-VL-7B-Instruct \
-    --split validation \
-    --use-ocr \
-    --ocr-engine paddleocr \
-    --task multiclass \
-    --lora-path results/models/lora_qwen2_vl_7b_instruct_multiclass
+    --split test \
+    --task multilabel \
+    --quantize 4bit \
+    --text-source provided \
+    --lora-path results/models/lora_qwen2_vl_7b_instruct_multiclass_seed1
 ```
+
+Per-category binary prompting (§6.5): four yes/no questions per meme,
+one per sub-type. Slower but avoids format drift and gives per-class
+confidence:
+
+```bash
+uv run python scripts/benchmark_qwen2vl.py \
+    --model-id Qwen/Qwen2-VL-7B-Instruct \
+    --split test \
+    --task per_category \
+    --quantize 4bit \
+    --text-source provided
+```
+
+Compute: standard inference ~6 min; per-category ~24 min.
+
+## 8. Two-stage A -> B inference (Phase 2b.3)
+
+Runs Task B only on memes predicted misogynous by Task A. Reuses two
+existing benchmark result JSONs (§6.2):
+
+```bash
+uv run python scripts/benchmark_two_stage.py \
+    --task-a results/test/xgboost_test_xgboost_binary.json \
+    --task-b results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass_finetuned.json \
+    --output results/test/two_stage_test_multiclass.json
+```
+
+Compute: ~30 seconds (pure JSON merging + metric recompute).
+
+## 9. XAI regeneration (Phase 3)
+
+After the top-level XGBoost head (§3) is retrained:
+
+```bash
+sbatch scripts/submit_89_xai.slurm
+```
+
+Produces `results/shap_modality_importance.csv` (§SHAP) and
+`results/concept_projection_similarity.csv` +
+`results/concept_projection_global_presence.csv` (§concept projection).
+Note the file rename from the old `cav_*.csv` scheme (§5.1).
+
+## 10. Consolidated report
+
+Regenerates the paper-ready comparison table from every result JSON:
+
+```bash
+uv run python scripts/generate_consolidated_table.py
+```
+
+The MAMI-official Task B metric (`mami_score_b`) is the headline
+column; older result JSONs that predate the metric show `N/A` and
+should be regenerated. See `results/comparison_report.md`.
+
+## Deprecated flags kept for backward compatibility
+
+- `--use-ocr` on any script equals `--text-source ocr`.
+- `--task singleclass` equals `--task binary`.
+- `--task multiclass` equals `--task multilabel`.
+
+Old SLURM scripts and notebooks keep working without edits.
+
+## Compute-budget summary for a full paper-quality rerun
+
+For a one-week wall-clock plan hitting Task A + Task B on all reported
+systems with three seeds where appropriate, budget ~63 GPU-hours and
+~15 CPU-hours on SCIAMA. See
+[`docs/RERUN_PLAN.md`](docs/RERUN_PLAN.md) for the phase-by-phase
+breakdown.
