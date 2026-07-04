@@ -150,7 +150,9 @@ class VLMCollate:
             prompts.append(prompt)
 
         # Tokenize prompt + response end-to-end to compute outputs
-        full_texts = [f"{p} {r}" for p, r in zip(prompts, responses, strict=True)]
+        # Append the tokenizer's eos_token so the model learns when to stop generating.
+        eos = self.processor.tokenizer.eos_token or ""
+        full_texts = [f"{p} {r}{eos}" for p, r in zip(prompts, responses, strict=True)]
 
         # Multimodal processor call
         inputs = self.processor(images=pils, text=full_texts, padding=True, return_tensors="pt")
