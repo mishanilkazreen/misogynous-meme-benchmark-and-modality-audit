@@ -75,9 +75,9 @@ cd ..
 # Phase 3: Train XGBoost Head + XAI (SHAP & Concept Projection)
 echo ">>> [Phase 3] Training XGBoost Head and running XAI..."
 # Binary Provided XGBoost
-uv run python scripts/train_classifier.py --model-name ViT-L-14-quickgelu --task singleclass --classifier xgboost --text-source provided --threshold-calibrate --seed 42
+uv run python scripts/train_classifier.py --model-name ViT-L-14-quickgelu --task singleclass --classifier xgboost --text-source provided --threshold-calibrate
 # Multilabel Provided XGBoost
-uv run python scripts/train_classifier.py --model-name ViT-L-14-quickgelu --task multiclass --classifier xgboost --text-source provided --seed 42
+uv run python scripts/train_classifier.py --model-name ViT-L-14-quickgelu --task multiclass --classifier xgboost --text-source provided
 
 # Run XAI scripts
 cd auto_benchmark
