@@ -80,7 +80,9 @@ uv run python scripts/train_classifier.py --model-name ViT-L-14-quickgelu --task
 uv run python scripts/train_classifier.py --model-name ViT-L-14-quickgelu --task multiclass --classifier xgboost --text-source provided
 
 # Run XAI scripts
-uv run python auto_benchmark/scripts/run_shap_modality.py --model-path results/models/xgboost_singleclass_concat_vit_l_14_quickgelu.pkl --embeddings results/embeddings/test_vit_l_14_quickgelu.npz
+cd auto_benchmark
+uv run python scripts/run_shap_modality.py --model-path ../results/models/xgboost_singleclass_concat_vit_l_14_quickgelu.pkl --embeddings ../results/embeddings/test_vit_l_14_quickgelu.npz
+cd ..
 uv run python auto_benchmark/scripts/run_clip_concept_projection.py --model-path results/models/xgboost_singleclass_concat_vit_l_14_quickgelu.pkl --embeddings results/embeddings/test_vit_l_14_quickgelu.npz
 
 echo "=== MAMI Rerun Tabular - SLURM Job Finished ==="
