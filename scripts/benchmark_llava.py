@@ -105,11 +105,14 @@ def _load_model(
 
         print(f"  Loading LoRA adapters from {lora_path} …")
         model = PeftModel.from_pretrained(model, lora_path)
-        try:
-            model = model.merge_and_unload()
-            print("  Merged LoRA weights successfully.")
-        except Exception as e:
-            print(f"  Running with active adapters (unmerged): {e}")
+        if quantize == "none":
+            try:
+                model = model.merge_and_unload()
+                print("  Merged LoRA weights successfully.")
+            except Exception as e:
+                print(f"  Running with active adapters (unmerged): {e}")
+        else:
+            print("  Quantized model detected; running with active adapters (unmerged).")
 
     model.eval()
 
