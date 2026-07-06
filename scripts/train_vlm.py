@@ -365,17 +365,21 @@ def main() -> None:
         "device_map": args.device if args.quantize != "none" else None,
     }
 
+    bf16_supported = torch.cuda.is_available() and torch.cuda.is_bf16_supported()
+    compute_dtype = torch.bfloat16 if bf16_supported else torch.float16
+    logger.info("Using compute_dtype: %s", compute_dtype)
+
     if args.quantize == "4bit":
         load_kwargs["quantization_config"] = BitsAndBytesConfig(
             load_in_4bit=True,
-            bnb_4bit_compute_dtype=torch.float16,
+            bnb_4bit_compute_dtype=compute_dtype,
             bnb_4bit_quant_type="nf4",
             bnb_4bit_use_double_quant=True,
         )
     elif args.quantize == "8bit":
         load_kwargs["quantization_config"] = BitsAndBytesConfig(load_in_8bit=True)
     else:
-        load_kwargs["dtype"] = torch.float16
+        load_kwargs["dtype"] = compute_dtype
 
     logger.info("Loading model %s (%s)...", args.model_id, args.quantize)
     base_model = AutoModelForVision2Seq.from_pretrained(args.model_id, **load_kwargs)

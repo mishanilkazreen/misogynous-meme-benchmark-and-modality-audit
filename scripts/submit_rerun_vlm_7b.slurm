@@ -40,19 +40,19 @@ uv run python scripts/benchmark_qwen2vl.py --model-id $MODEL --split validation,
 
 # Phase 1.7: Qwen2-VL-7B QLoRA Task A (seed 1)
 echo ">>> [Phase 1.7] Qwen2-VL-7B QLoRA Task A fine-tuning..."
-uv run python scripts/train_vlm.py --model-id $MODEL --task singleclass --epochs 3 --batch-size 4 --lr 2e-4 --text-source provided --seed 1 --device cuda
+uv run python scripts/train_vlm.py --model-id $MODEL --task singleclass --epochs 3 --batch-size 4 --lr 2e-5 --text-source provided --seed 1 --device cuda
 echo "Evaluating Task A | Seed 1..."
 uv run python scripts/benchmark_qwen2vl.py --model-id $MODEL --split validation,test --task singleclass --text-source provided --lora-path results/models/lora_${MODEL_CLEAN}_singleclass_seed1 --device cuda
 
 # Phase 2.3: Qwen2-VL-7B QLoRA Task B (seed 1)
 echo ">>> [Phase 2.3] Qwen2-VL-7B QLoRA Task B fine-tuning..."
-uv run python scripts/train_vlm.py --model-id $MODEL --task multiclass --epochs 3 --batch-size 4 --lr 2e-4 --text-source provided --seed 1 --device cuda
+uv run python scripts/train_vlm.py --model-id $MODEL --task multiclass --epochs 3 --batch-size 4 --lr 2e-5 --text-source provided --seed 1 --device cuda
 echo "Evaluating Task B | Seed 1..."
 uv run python scripts/benchmark_qwen2vl.py --model-id $MODEL --split validation,test --task multiclass --text-source provided --lora-path results/models/lora_${MODEL_CLEAN}_multiclass_seed1 --device cuda
 
 # Phase 2b.2: Qwen2-VL-7B QLoRA Joint Training (seed 1)
 echo ">>> [Phase 2b.2] Qwen2-VL-7B Joint training..."
-uv run python scripts/train_vlm.py --model-id $MODEL --task joint --epochs 3 --batch-size 4 --lr 2e-4 --text-source provided --seed 1 --device cuda
+uv run python scripts/train_vlm.py --model-id $MODEL --task joint --epochs 3 --batch-size 4 --lr 2e-5 --text-source provided --seed 1 --device cuda
 
 echo "Evaluating Joint model on Task A..."
 uv run python scripts/benchmark_qwen2vl.py --model-id $MODEL --split validation,test --task singleclass --text-source provided --lora-path results/models/lora_${MODEL_CLEAN}_joint_seed1 --device cuda

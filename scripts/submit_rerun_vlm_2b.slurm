@@ -42,7 +42,7 @@ uv run python scripts/benchmark_qwen2vl.py --model-id $MODEL --split validation,
 echo ">>> [Phase 1.7] Qwen2-VL-2B QLoRA Task A fine-tuning..."
 for SEED in 1 2 3; do
   echo "=== Fine-tuning Task A | Seed: $SEED ==="
-  uv run python scripts/train_vlm.py --model-id $MODEL --task singleclass --epochs 3 --batch-size 4 --lr 2e-4 --text-source provided --seed $SEED --device cuda
+  uv run python scripts/train_vlm.py --model-id $MODEL --task singleclass --epochs 3 --batch-size 4 --lr 2e-5 --text-source provided --seed $SEED --device cuda
 
   echo "Evaluating Task A | Seed: $SEED..."
   uv run python scripts/benchmark_qwen2vl.py --model-id $MODEL --split validation,test --task singleclass --text-source provided --lora-path results/models/lora_${MODEL_CLEAN}_singleclass_seed${SEED} --device cuda
@@ -52,7 +52,7 @@ done
 echo ">>> [Phase 2.3] Qwen2-VL-2B QLoRA Task B fine-tuning..."
 for SEED in 1 2 3; do
   echo "=== Fine-tuning Task B | Seed: $SEED ==="
-  uv run python scripts/train_vlm.py --model-id $MODEL --task multiclass --epochs 3 --batch-size 4 --lr 2e-4 --text-source provided --seed $SEED --device cuda
+  uv run python scripts/train_vlm.py --model-id $MODEL --task multiclass --epochs 3 --batch-size 4 --lr 2e-5 --text-source provided --seed $SEED --device cuda
 
   echo "Evaluating Task B | Seed: $SEED..."
   uv run python scripts/benchmark_qwen2vl.py --model-id $MODEL --split validation,test --task multiclass --text-source provided --lora-path results/models/lora_${MODEL_CLEAN}_multiclass_seed${SEED} --device cuda
@@ -60,7 +60,7 @@ done
 
 # Phase 2b.2: Qwen2-VL-2B QLoRA Joint Training (seed 1)
 echo ">>> [Phase 2b.2] Qwen2-VL-2B Joint training..."
-uv run python scripts/train_vlm.py --model-id $MODEL --task joint --epochs 3 --batch-size 4 --lr 2e-4 --text-source provided --seed 1 --device cuda
+uv run python scripts/train_vlm.py --model-id $MODEL --task joint --epochs 3 --batch-size 4 --lr 2e-5 --text-source provided --seed 1 --device cuda
 
 echo "Evaluating Joint model on Task A..."
 uv run python scripts/benchmark_qwen2vl.py --model-id $MODEL --split validation,test --task singleclass --text-source provided --lora-path results/models/lora_${MODEL_CLEAN}_joint_seed1 --device cuda
