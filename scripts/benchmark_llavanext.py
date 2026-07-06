@@ -133,7 +133,7 @@ def collect_samples(split: str = "validation", limit: int | None = None) -> list
     samples: list[dict[str, Any]] = []
     for split_name in [s.strip() for s in split.split(",")]:
         dataset = manager.load_dataset(split=split_name)
-        for index in range(len(dataset)):
+        for index in range(len(dataset)):  
             samples.append(dataset[index])
     if limit is not None:
         samples = samples[:limit]
@@ -271,7 +271,7 @@ def _run_benchmark_multiclass(
     """Run LLaVA-Next on multiclass: multi-label sub-type classification."""
     prompt_text = build_subtype_prompt()
     # Bumped from 60 to 100 to fit the JSON-schema Task B response
-    # (docs/CODE_REVIEW_ISSUES.md §6.1).
+    # (docs/CODE_REVIEW_ISSUES.md \u00a76.1).
     max_new_tokens_multiclass = 100
     pipeline = PreprocessingPipeline() if preprocess else None
 
@@ -375,6 +375,8 @@ def _run_benchmark_multiclass(
         "micro_f1": ml_metrics["micro_f1"],
         "weighted_f1": ml_metrics["weighted_f1"],
         "per_class": ml_metrics["per_class"],
+        "mami_score_b": ml_metrics["mami_score_b"],
+        "per_label_binary_macro_f1": ml_metrics["per_label_binary_macro_f1"],
         "avg_latency_s": avg_latency,
         "refusal_rate": refusals / n_total if n_total else 0.0,
         "label_prevalence": label_prev,

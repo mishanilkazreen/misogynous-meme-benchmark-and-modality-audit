@@ -201,7 +201,7 @@ class VLMCollate:
             "VLMCollate expects processor.tokenizer.padding_side='right'; "
             f"found {self.processor.tokenizer.padding_side!r}. Label masking "
             "will train the model on prompt tokens instead of responses. "
-            "See docs/CODE_REVIEW_ISSUES.md §1.1."
+            "See docs/CODE_REVIEW_ISSUES.md \u00a71.1."
         )
         for i, expected_response in enumerate(responses):
             row = labels[i]
@@ -217,7 +217,7 @@ class VLMCollate:
                     "targets. Row %d expected response %r inside decoded "
                     "target %r. This usually means padding_side is 'left' "
                     "somewhere in the tokenizer stack. See "
-                    "docs/CODE_REVIEW_ISSUES.md §1.1." % (i, expected_response, decoded)
+                    "docs/CODE_REVIEW_ISSUES.md \u00a71.1." % (i, expected_response, decoded)
                 )
 
 
@@ -234,7 +234,7 @@ def compute_vlm_sample_weights(records: list[dict[str, Any]]) -> list[float]:
     QLoRA loss sees mostly negative-of-rare-class targets, and the trained
     model biases toward always-negative on the rare classes. Reweighting
     samples so those with rare-class positives are more likely to be
-    drawn evens out the training signal (docs/CODE_REVIEW_ISSUES.md §6.4).
+    drawn evens out the training signal (docs/CODE_REVIEW_ISSUES.md \u00a76.4).
 
     Weight scheme: base 1.0 per sample plus 3.0 for each rare-class
     positive (shaming, violence) and 1.0 for each common-class positive
@@ -248,6 +248,159 @@ def compute_vlm_sample_weights(records: list[dict[str, Any]]) -> list[float]:
         common = int(row.get("stereotype", 0)) + int(row.get("objectification", 0))
         weights.append(1.0 + 3.0 * rare + 1.0 * common)
     return weights
+
+
+@torch.no_grad()
+def _validate_vlm(
+    model: Any,
+    processor: Any,
+    val_dataset: Any,
+    model_type: str,
+    task: str,
+    device: str,
+    ocr_map: dict[str, str] | None = None,
+    batch_size: int = 4,
+    max_new_tokens: int = 100,
+    limit: int | None = 200,
+) -> float:
+    """Run generation-based inference on the validation split and return the primary metric.
+
+    Task A (singleclass): macro F1.
+    Task B (multiclass) and joint: MAMI 2022 official mami_score_b.
+
+    Temporarily switches the processor to left-padding for batched generation
+    (Qwen2's inference default), then restores right-padding so training can
+    resume. The ``VLMCollate._first_batch_verified`` flag is intentionally NOT
+    reset here; the masking assertion only runs on the training path.
+
+    See docs/CODE_REVIEW_ISSUES.md \u00a72.4.
+    """
+    from models.vlm.classifier import (
+        MISOGYNY_LABELS,
+        SUBTYPE_LABELS,
+        build_joint_prompt,
+        build_misogyny_prompt,
+        build_subtype_prompt,
+        extract_joint,
+        extract_label,
+        extract_subtypes,
+    )
+    from models.vlm.metrics_multilabel import compute_mami_score_b
+    from sklearn.metrics import f1_score
+
+    n_val = min(len(val_dataset), limit) if limit is not None else len(val_dataset)
+    if n_val == 0:
+        return 0.0
+
+    was_training = model.training
+    model.eval()
+
+    # Restore left-padding for generation (Qwen2's inference default).
+    # VLMCollate forced right-padding on the processor; undo that for the
+    # duration of validation so batched generation is correct.
+    prev_padding_side = processor.tokenizer.padding_side
+    processor.tokenizer.padding_side = "left"
+
+    if task == "singleclass":
+        base_prompt = build_misogyny_prompt()
+    elif task == "joint":
+        base_prompt = build_joint_prompt()
+    else:
+        base_prompt = build_subtype_prompt()
+
+    all_preds: list[int] = []
+    all_gts: list[int] = []
+    pred_dicts: list[dict[str, int]] = []
+    gt_dicts: list[dict[str, int]] = []
+
+    try:
+        for batch_start in range(0, n_val, batch_size):
+            batch = [val_dataset[i] for i in range(batch_start, min(batch_start + batch_size, n_val))]
+            pils = []
+            texts = []
+            for sample in batch:
+                arr = image_to_numpy(sample["image"])
+                pil = Image.fromarray(arr)
+                pils.append(pil)
+                image_id = str(sample["image_id"])
+                if ocr_map and image_id in ocr_map:
+                    ocr_text = ocr_map[image_id].strip()
+                    prompt_text = f'This meme contains the text: "{ocr_text}". {base_prompt}'
+                else:
+                    prompt_text = base_prompt
+                if "qwen2" in model_type:
+                    conversation = [
+                        {
+                            "role": "user",
+                            "content": [
+                                {"type": "image", "image": pil},
+                                {"type": "text", "text": prompt_text},
+                            ],
+                        }
+                    ]
+                    texts.append(
+                        processor.apply_chat_template(
+                            conversation, tokenize=False, add_generation_prompt=True
+                        )
+                    )
+                else:
+                    conversation = [
+                        {
+                            "role": "user",
+                            "content": [
+                                {"type": "image"},
+                                {"type": "text", "text": prompt_text},
+                            ],
+                        }
+                    ]
+                    texts.append(
+                        processor.apply_chat_template(conversation, add_generation_prompt=True)
+                    )
+            inputs = processor(
+                images=pils, text=texts, padding=True, return_tensors="pt"
+            )
+            inputs = {
+                k: v.to(device) if isinstance(v, torch.Tensor) else v
+                for k, v in inputs.items()
+            }
+            output_ids = model.generate(
+                **inputs, max_new_tokens=max_new_tokens, do_sample=False
+            )
+            input_len = inputs["input_ids"].shape[1]
+            responses = processor.batch_decode(
+                output_ids[:, input_len:], skip_special_tokens=True
+            )
+            for sample, resp in zip(batch, responses):
+                resp = resp.strip()
+                if task == "singleclass":
+                    matched = extract_label(resp, list(MISOGYNY_LABELS))
+                    pred_int = 1 if matched == "yes" else 0
+                    gt_int = int(sample["misogynous"])
+                    all_preds.append(pred_int)
+                    all_gts.append(gt_int)
+                elif task == "joint":
+                    joint_labels = ["misogynous"] + list(SUBTYPE_LABELS)
+                    parsed = extract_joint(resp, joint_labels)
+                    all_preds.append(parsed.get("misogynous", 0))
+                    all_gts.append(int(sample["misogynous"]))
+                    pred_dicts.append({lbl: parsed.get(lbl, 0) for lbl in SUBTYPE_LABELS})
+                    gt_dicts.append({lbl: int(sample.get(lbl, 0)) for lbl in SUBTYPE_LABELS})
+                else:
+                    parsed = extract_subtypes(resp, list(SUBTYPE_LABELS))
+                    pred_dicts.append(parsed)
+                    gt_dicts.append({lbl: int(sample.get(lbl, 0)) for lbl in SUBTYPE_LABELS})
+    finally:
+        # Always restore padding side and training mode regardless of errors.
+        processor.tokenizer.padding_side = prev_padding_side
+        if was_training:
+            model.train()
+
+    if task == "singleclass":
+        if not all_gts:
+            return 0.0
+        return float(f1_score(all_gts, all_preds, average="macro", zero_division=0))
+    mami = compute_mami_score_b(pred_dicts, gt_dicts, list(SUBTYPE_LABELS))
+    return float(mami["mami_score_b"])
 
 
 def main() -> None:
@@ -268,7 +421,7 @@ def main() -> None:
             "misogyny (yes/no target), 'multilabel'/'multiclass' = Task B "
             "multi-label sub-types (4-key JSON target), 'joint' = both tasks "
             "in a single adapter (5-key JSON target). See "
-            "docs/CODE_REVIEW_ISSUES.md §4.1, §6.3."
+            "docs/CODE_REVIEW_ISSUES.md \u00a74.1, \u00a76.3."
         ),
     )
     parser.add_argument(
@@ -312,7 +465,7 @@ def main() -> None:
         help=(
             "RNG seed for reproducible QLoRA training. Applied to Python's "
             "random module, NumPy, and PyTorch (CPU + CUDA). See "
-            "docs/CODE_REVIEW_ISSUES.md §3.1."
+            "docs/CODE_REVIEW_ISSUES.md \u00a73.1."
         ),
     )
     parser.add_argument(
@@ -323,7 +476,7 @@ def main() -> None:
             "Number of micro-batches per optimizer step. Effective batch size "
             "is ``batch-size * gradient-accumulation-steps``. Default 8 lifts "
             "the effective batch from 2 to 16 without extra VRAM. See "
-            "docs/CODE_REVIEW_ISSUES.md §2.5."
+            "docs/CODE_REVIEW_ISSUES.md \u00a72.5."
         ),
     )
     parser.add_argument(
@@ -335,7 +488,19 @@ def main() -> None:
             "(default). 'balanced' uses a WeightedRandomSampler that "
             "up-weights samples with rare-class positives (shaming, violence). "
             "Recommended for multi-label and joint training. See "
-            "docs/CODE_REVIEW_ISSUES.md §6.4."
+            "docs/CODE_REVIEW_ISSUES.md \u00a76.4."
+        ),
+    )
+    parser.add_argument(
+        "--val-limit",
+        type=int,
+        default=200,
+        help=(
+            "Maximum number of validation samples used for best-val checkpoint "
+            "selection after each training epoch. Default 200 keeps per-epoch "
+            "validation under ~10 minutes even for 7B models. Set to 0 to "
+            "disable per-epoch validation (last-epoch checkpoint is saved). "
+            "See docs/CODE_REVIEW_ISSUES.md \u00a72.4."
         ),
     )
     args = parser.parse_args()
@@ -394,7 +559,7 @@ def main() -> None:
     # projections (gate_proj, up_proj, down_proj), which contain the majority
     # of Qwen2-VL and LLaVA-1.5 parameters. The pre-fix config only touched
     # attention (q_proj, k_proj, v_proj, o_proj), halving effective LoRA
-    # capacity. See docs/CODE_REVIEW_ISSUES.md §2.6.
+    # capacity. See docs/CODE_REVIEW_ISSUES.md \u00a72.6.
     #
     # ``task_type=None`` lets PEFT infer the task from the model class instead
     # of forcing ``CAUSAL_LM``, which is technically wrong for Vision2Seq
@@ -418,7 +583,7 @@ def main() -> None:
     train_dataset = manager.load_dataset(split="train")
 
     if args.limit:
-        train_dataset._records = train_dataset._records[: args.limit]
+        train_dataset._records = train_dataset._records[: args.limit]  # pylint: disable=protected-access
         logger.info("Capped training samples to %d", args.limit)
 
     text_source = resolve_text_source(args.text_source, args.use_ocr)
@@ -433,6 +598,20 @@ def main() -> None:
                 "Text-source NPZ not found; falling back to dataset transcripts."
             )
             ocr_map = None
+
+    # Load validation dataset for best-val checkpoint selection
+    # (docs/CODE_REVIEW_ISSUES.md \u00a72.4).
+    val_dataset = manager.load_dataset(split="validation")
+    val_ocr_map: dict[str, str] | None = None
+    if text_source != "provided":
+        val_ocr_map = load_text_source_transcripts(
+            "validation", text_source, args.ocr_engine, MODELS_DIR.parent / "embeddings"
+        ) or None
+    logger.info(
+        "Validation dataset loaded (%d samples; will validate on up to %s per epoch).",
+        len(val_dataset),
+        str(args.val_limit) if args.val_limit > 0 else "disabled",
+    )
 
     collate_fn = VLMCollate(processor, args.model_id.lower(), args.task, ocr_map=ocr_map)
 
@@ -464,6 +643,9 @@ def main() -> None:
     logger.info("Starting VLM fine-tuning loop...")
     model.train()
 
+    best_val_metric = -1.0
+    best_trainable_state: dict[str, torch.Tensor] | None = None
+
     for epoch in range(1, args.epochs + 1):
         total_loss = 0.0
         t0 = time.perf_counter()
@@ -471,7 +653,7 @@ def main() -> None:
         # Gradient accumulation gives an effective batch size of
         # ``args.batch_size * args.gradient_accumulation_steps`` without the
         # VRAM cost of a larger per-step batch. QLoRA with batch size 2 has
-        # extremely noisy gradients (docs/CODE_REVIEW_ISSUES.md §2.5); an
+        # extremely noisy gradients (docs/CODE_REVIEW_ISSUES.md \u00a72.5); an
         # accumulation of 8 raises the effective batch to 16 and stabilises
         # convergence.
         optimizer.zero_grad()
@@ -509,7 +691,60 @@ def main() -> None:
             elapsed,
         )
 
-    # 6. Save Adapter Checkpoint
+        # Best-val checkpoint selection (docs/CODE_REVIEW_ISSUES.md \u00a72.4).
+        # Skip if --val-limit 0 was passed (caller opts out of per-epoch validation).
+        if args.val_limit != 0:
+            logger.info(
+                "Running validation on up to %d samples after epoch %d...",
+                args.val_limit,
+                epoch,
+            )
+            val_metric = _validate_vlm(
+                model,
+                processor,
+                val_dataset,
+                model_type=args.model_id.lower(),
+                task=args.task,
+                device=args.device,
+                ocr_map=val_ocr_map,
+                batch_size=args.batch_size,
+                limit=args.val_limit if args.val_limit > 0 else None,
+            )
+            logger.info("Epoch %d val_metric=%.4f", epoch, val_metric)
+            if val_metric > best_val_metric:
+                best_val_metric = val_metric
+                # Save only the trainable (LoRA) weights to CPU. The quantized
+                # base-model weights are frozen and identical across epochs, so
+                # we do not need to clone them.
+                best_trainable_state = {
+                    name: param.detach().cpu().clone()
+                    for name, param in model.named_parameters()
+                    if param.requires_grad
+                }
+                logger.info(
+                    "New best val_metric=%.4f saved at epoch %d.", best_val_metric, epoch
+                )
+
+    # 6. Restore best-val LoRA weights before saving.
+    # This ensures the persisted adapter corresponds to the checkpoint that
+    # scored best on the validation split, not whatever the last epoch produced.
+    if best_trainable_state is not None:
+        logger.info(
+            "Restoring best-val checkpoint (val_metric=%.4f) before saving.",
+            best_val_metric,
+        )
+        for name, param in model.named_parameters():
+            if name in best_trainable_state:
+                param.data.copy_(best_trainable_state[name].to(param.device))
+    elif args.val_limit != 0:
+        logger.warning(
+            "No best-val checkpoint recorded (val_limit=%d); saving last-epoch weights.",
+            args.val_limit,
+        )
+
+    # 7. Save Adapter Checkpoint
+    # Include the seed in the output path so that multi-seed runs do not
+    # overwrite each other (docs/CODE_REVIEW_ISSUES.md \u00a73.1).
     model_name_clean = args.model_id.lower().split("/")[-1].replace("-", "_")
     output_dir = MODELS_DIR / f"lora_{model_name_clean}_{args.task}_seed{args.seed}"
     output_dir.mkdir(parents=True, exist_ok=True)

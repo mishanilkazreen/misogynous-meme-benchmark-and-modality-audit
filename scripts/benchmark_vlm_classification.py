@@ -449,6 +449,8 @@ def _run_clip_multiclass(
         "micro_f1": ml_metrics["micro_f1"],
         "weighted_f1": ml_metrics["weighted_f1"],
         "per_class": ml_metrics["per_class"],
+        "mami_score_b": ml_metrics["mami_score_b"],
+        "per_label_binary_macro_f1": ml_metrics["per_label_binary_macro_f1"],
         "avg_latency_s": avg_latency,
         "refusal_rate": 0.0,
         "label_prevalence": build_label_prevalence(samples, task="multiclass"),
@@ -744,7 +746,7 @@ def main() -> None:
         help=(
             "Use prompt ensembling for zero-shot CLIP (default on). Averages "
             "5-8 prompt embeddings per class for a more robust text-side "
-            "representation. See docs/CODE_REVIEW_ISSUES.md §7.1. Fine-tuned "
+            "representation. See docs/CODE_REVIEW_ISSUES.md \u00a77.1. Fine-tuned "
             "CLIP runs ignore this because they bypass the text tower at "
             "inference."
         ),
@@ -756,7 +758,7 @@ def main() -> None:
             "Enable horizontal-flip test-time augmentation for zero-shot CLIP "
             "(each image is encoded twice, softmax outputs are averaged). "
             "Doubles zero-shot inference cost but typically gains 0.5-1 F1. "
-            "See docs/CODE_REVIEW_ISSUES.md §7.2."
+            "See docs/CODE_REVIEW_ISSUES.md \u00a77.2."
         ),
     )
     args = parser.parse_args()
