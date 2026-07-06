@@ -335,6 +335,8 @@ def _run_benchmark_multiclass(
         "micro_f1": ml_metrics["micro_f1"],
         "weighted_f1": ml_metrics["weighted_f1"],
         "per_class": ml_metrics["per_class"],
+        "mami_score_b": ml_metrics["mami_score_b"],
+        "per_label_binary_macro_f1": ml_metrics["per_label_binary_macro_f1"],
         "avg_latency_s": avg_latency,
         "refusal_rate": refusal_rate,
         "label_prevalence": label_prev,
