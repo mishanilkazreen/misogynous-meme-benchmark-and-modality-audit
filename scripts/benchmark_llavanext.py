@@ -133,7 +133,7 @@ def collect_samples(split: str = "validation", limit: int | None = None) -> list
     samples: list[dict[str, Any]] = []
     for split_name in [s.strip() for s in split.split(",")]:
         dataset = manager.load_dataset(split=split_name)
-        for index in range(len(dataset)):  
+        for index in range(len(dataset)):
             samples.append(dataset[index])
     if limit is not None:
         samples = samples[:limit]
