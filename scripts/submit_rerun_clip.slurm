@@ -45,13 +45,13 @@ for MODEL in ViT-B-32-quickgelu ViT-L-14-quickgelu; do
   MODEL_CLEAN=$(echo $MODEL | tr '[:upper:]' '[:lower:]' | tr '-' '_')
   for SEED in 1 2 3; do
     echo "=== Training $MODEL | Task: binary | Seed: $SEED ==="
-    uv run python scripts/train_clip.py --model $MODEL --loss-mode classification --task binary --epochs 10 --batch-size 32 --text-source provided --seed $SEED --device cuda
+    # uv run python scripts/train_clip.py --model $MODEL --loss-mode classification --task binary --epochs 10 --batch-size 32 --text-source provided --seed $SEED --device cuda
 
     echo "Evaluating $MODEL | Task: binary | Seed: $SEED..."
     uv run python scripts/benchmark_clip.py --split validation,test --device cuda --model-path results/models/finetuned_clip_classification_singleclass_${MODEL_CLEAN}_seed${SEED}.pth --task singleclass
 
     echo "=== Training $MODEL | Task: multilabel | Seed: $SEED ==="
-    uv run python scripts/train_clip.py --model $MODEL --loss-mode classification --task multilabel --epochs 10 --batch-size 32 --text-source provided --seed $SEED --device cuda
+    # uv run python scripts/train_clip.py --model $MODEL --loss-mode classification --task multilabel --epochs 10 --batch-size 32 --text-source provided --seed $SEED --device cuda
 
     echo "Evaluating $MODEL | Task: multilabel | Seed: $SEED..."
     uv run python scripts/benchmark_clip.py --split validation,test --device cuda --model-path results/models/finetuned_clip_classification_multiclass_${MODEL_CLEAN}_seed${SEED}.pth --task multiclass

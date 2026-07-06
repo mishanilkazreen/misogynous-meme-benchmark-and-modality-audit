@@ -34,19 +34,19 @@ MODEL="Qwen/Qwen2-VL-2B-Instruct"
 MODEL_CLEAN="qwen2_vl_2b_instruct"
 
 # Phase 1.6: Qwen2-VL-2B Zero-Shot (Task A & Task B)
-echo ">>> [Phase 1.6] Qwen2-VL-2B Zero-Shot..."
-uv run python scripts/benchmark_qwen2vl.py --model-id $MODEL --split validation,test --task singleclass --text-source provided --device cuda
-uv run python scripts/benchmark_qwen2vl.py --model-id $MODEL --split validation,test --task multiclass --text-source provided --device cuda
+# echo ">>> [Phase 1.6] Qwen2-VL-2B Zero-Shot..."
+# uv run python scripts/benchmark_qwen2vl.py --model-id $MODEL --split validation,test --task singleclass --text-source provided --device cuda
+# uv run python scripts/benchmark_qwen2vl.py --model-id $MODEL --split validation,test --task multiclass --text-source provided --device cuda
 
 # Phase 1.7: Qwen2-VL-2B QLoRA Task A (seeds 1, 2, 3)
-echo ">>> [Phase 1.7] Qwen2-VL-2B QLoRA Task A fine-tuning..."
-for SEED in 1 2 3; do
-  echo "=== Fine-tuning Task A | Seed: $SEED ==="
-  uv run python scripts/train_vlm.py --model-id $MODEL --task singleclass --epochs 3 --batch-size 4 --lr 2e-5 --text-source provided --seed $SEED --device cuda
-
-  echo "Evaluating Task A | Seed: $SEED..."
-  uv run python scripts/benchmark_qwen2vl.py --model-id $MODEL --split validation,test --task singleclass --text-source provided --lora-path results/models/lora_${MODEL_CLEAN}_singleclass_seed${SEED} --device cuda
-done
+# echo ">>> [Phase 1.7] Qwen2-VL-2B QLoRA Task A fine-tuning..."
+# for SEED in 1 2 3; do
+#   echo "=== Fine-tuning Task A | Seed: $SEED ==="
+#   uv run python scripts/train_vlm.py --model-id $MODEL --task singleclass --epochs 3 --batch-size 4 --lr 2e-5 --text-source provided --seed $SEED --device cuda
+#
+#   echo "Evaluating Task A | Seed: $SEED..."
+#   uv run python scripts/benchmark_qwen2vl.py --model-id $MODEL --split validation,test --task singleclass --text-source provided --lora-path results/models/lora_${MODEL_CLEAN}_singleclass_seed${SEED} --device cuda
+# done
 
 # Phase 2.3: Qwen2-VL-2B QLoRA Task B (seeds 1, 2, 3)
 echo ">>> [Phase 2.3] Qwen2-VL-2B QLoRA Task B fine-tuning..."
