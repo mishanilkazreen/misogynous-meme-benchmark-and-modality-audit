@@ -722,6 +722,7 @@ def _aggregate(
 
     per_class_prec: list[float] = []
     per_class_rec: list[float] = []
+    per_class_f1: list[float] = []
     for label in labels:
         tp = sum(
             1
@@ -738,15 +739,18 @@ def _aggregate(
             for p, gt in zip(predictions, ground_truths, strict=True)
             if p != label and gt == label
         )
-        per_class_prec.append(tp / (tp + fp) if (tp + fp) > 0 else 0.0)
-        per_class_rec.append(tp / (tp + fn) if (tp + fn) > 0 else 0.0)
+        prec = tp / (tp + fp) if (tp + fp) > 0 else 0.0
+        rec = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+        per_class_prec.append(prec)
+        per_class_rec.append(rec)
+        per_class_f1.append(2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0.0)
     macro_prec = sum(per_class_prec) / len(per_class_prec) if per_class_prec else 0.0
     macro_rec = sum(per_class_rec) / len(per_class_rec) if per_class_rec else 0.0
-    macro_f1 = (
-        2 * macro_prec * macro_rec / (macro_prec + macro_rec)
-        if (macro_prec + macro_rec) > 0
-        else 0.0
-    )
+    # Macro-F1 is the UNWEIGHTED MEAN OF PER-CLASS F1 (== sklearn
+    # f1_score(average="macro")), NOT the F1 of the averaged precision/recall.
+    # The latter overstates F1 whenever macro-precision and macro-recall
+    # diverge, and is not the SemEval MAMI Task A metric.
+    macro_f1 = sum(per_class_f1) / len(per_class_f1) if per_class_f1 else 0.0
 
     return {
         "benchmark_date": datetime.now(timezone.utc).isoformat(),
