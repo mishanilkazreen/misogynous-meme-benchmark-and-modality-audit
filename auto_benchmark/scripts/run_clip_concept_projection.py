@@ -189,7 +189,7 @@ def main() -> None:
         for d in top_dims:
             sims = concept_vecs[:, d]
             writer.writerow([int(d), f"{image_importances[d]:.6f}", *[f"{s:.6f}" for s in sims]])
-    print(f"Saved CAV dimension matrix: {matrix_path}")
+    print(f"Saved concept-projection dimension matrix: {matrix_path}")
 
     # 2) Dataset-level concept presence: mean cosine similarity between every
     #    L2-normalised image embedding and each concept vector.

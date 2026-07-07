@@ -305,3 +305,6 @@ results/validation/*/models/
 results/test/*/models/
 results/validation/*/*.joblib
 results/test/*/*.joblib
+
+# Local backup of SCIAMA result archives (not for git)
+.sciama_backup/

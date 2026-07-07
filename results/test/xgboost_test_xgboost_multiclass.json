@@ -4,8 +4,8 @@
     "filter": "none",
     "split": "test",
     "task": "multiclass",
-    "exact_match_accuracy": 0.503,
-    "f1": 0.483821,
-    "macro_f1": 0.483821
+    "exact_match_accuracy": 0.496,
+    "f1": 0.468182,
+    "macro_f1": 0.468182
   }
 ]

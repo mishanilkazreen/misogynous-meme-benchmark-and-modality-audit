@@ -121,6 +121,47 @@ def is_refusal(text: str) -> bool:
     return any(phrase in lower for phrase in _REFUSAL_PHRASES)
 
 
+def subtype_parse_status(response: str, labels: list[str]) -> str:
+    """Classify how a Task B response was interpreted.
+
+    Returns one of:
+
+    - ``"json"``: a valid JSON object with at least one expected sub-type key
+      (this is what a schema-fine-tuned model emits, including a confident
+      all-``false`` object).
+    - ``"none"``: an explicit ``none`` keyword (valid negative prediction).
+    - ``"labels"``: a free-text response that named at least one sub-type.
+    - ``"empty"``: no text was generated.
+    - ``"unparseable"``: text was generated but no schema, ``none`` keyword, or
+      label name could be found.
+
+    Only ``"empty"`` and ``"unparseable"`` (plus explicit refusal phrases) are
+    genuine parse failures. A confident all-``false`` JSON object is a valid
+    negative prediction and must NOT be counted as a refusal — conflating the
+    two previously inflated the reported ``refusal_rate`` with correct
+    non-misogynous predictions.
+    """
+    cleaned = response.strip()
+    if not cleaned:
+        return "empty"
+
+    json_match = re.search(r"\{[^{}]*\}", cleaned)
+    if json_match:
+        try:
+            parsed = json.loads(json_match.group(0))
+            if isinstance(parsed, dict) and any(lbl in parsed for lbl in labels):
+                return "json"
+        except (json.JSONDecodeError, TypeError, ValueError):
+            pass
+
+    lowered = cleaned.lower()
+    if re.search(r"\bnone\b", lowered):
+        return "none"
+    if any(re.search(r"\b" + re.escape(lbl.lower()) + r"\b", lowered) for lbl in labels):
+        return "labels"
+    return "unparseable"
+
+
 _model_cache: dict[str, tuple[Any, Any]] = {}
 
 
@@ -436,18 +477,18 @@ def _run_benchmark_multiclass(
         for s, raw_text in zip(batch, response_texts, strict=False):
             response_text = raw_text.strip()
             refusal = is_refusal(response_text)
+            status = subtype_parse_status(response_text, SUBTYPE_LABELS)
 
-            if refusal or not response_text:
+            # A genuine parse failure is a refusal phrase, an empty response,
+            # or generated text that matched no schema/keyword/label. A valid
+            # all-``false`` JSON object (status "json") or an explicit "none"
+            # is a confident negative prediction, NOT a refusal.
+            parse_failure = refusal or status in ("empty", "unparseable")
+            if parse_failure:
                 subtype_pred = dict.fromkeys(SUBTYPE_LABELS, 0)
                 refusals += 1
             else:
                 subtype_pred = extract_subtypes(response_text, SUBTYPE_LABELS)
-                if (
-                    all(v == 0 for v in subtype_pred.values())
-                    and response_text
-                    and not re.search(r"\bnone\b", response_text.lower())
-                ):
-                    refusals += 1
 
             gt_dict: dict[str, int] = {
                 "shaming": s.get("shaming", 0),
@@ -465,6 +506,9 @@ def _run_benchmark_multiclass(
                     "prediction": subtype_pred,
                     "correct": exact,
                     "misogynous": s.get("misogynous", 0),
+                    "raw_response": response_text,
+                    "parse_status": status,
+                    "parse_failure": parse_failure,
                 }
             )
         pbar.update(len(batch))
@@ -492,7 +536,12 @@ def _run_benchmark_multiclass(
         "mami_score_b": ml_metrics["mami_score_b"],
         "per_label_binary_macro_f1": ml_metrics["per_label_binary_macro_f1"],
         "avg_latency_s": avg_latency,
+        # refusal_rate now counts ONLY genuine parse failures (refusal phrases,
+        # empty output, or unparseable text). Confident all-false JSON is a
+        # valid negative prediction and is excluded. parse_failure_rate is an
+        # explicit alias documenting this meaning.
         "refusal_rate": refusals / n_total if n_total else 0.0,
+        "parse_failure_rate": refusals / n_total if n_total else 0.0,
         "label_prevalence": label_prev,
         "sample_predictions": sample_rows,
     }
@@ -777,6 +826,18 @@ def main() -> None:
         choices=["easyocr", "paddleocr"],
         help="OCR engine that produced the pre-extracted transcripts",
     )
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default=None,
+        help=(
+            "Seed of the fine-tuned adapter under evaluation. Appended to the "
+            "output filename as ``_seed{N}`` so multi-seed evaluations of the "
+            "same model/task never overwrite each other. Evaluation itself is "
+            "deterministic (do_sample=False); this only tags the output. Leave "
+            "unset for zero-shot runs."
+        ),
+    )
     args = parser.parse_args()
 
     # MAMI has no hidden visual content, so preprocessing filters do not help.
@@ -831,7 +892,13 @@ def main() -> None:
     ocr_suffix = filename_suffix_for_source(resolved_source, args.ocr_engine)
     # Include the model id so different model sizes (e.g. 2B vs 7B) never overwrite each other.
     model_slug = args.model_id.split("/")[-1].lower().replace("-", "_").replace(".", "_")
-    out = split_dir / f"qwen2vl_{split_slug}_{model_slug}{ocr_suffix}{suffix}{path_suffix}.json"
+    # Seed suffix keeps per-seed evaluations of the same fine-tuned model/task
+    # from overwriting each other. Only fine-tuned runs pass --seed.
+    seed_suffix = f"_seed{args.seed}" if args.seed is not None else ""
+    out = (
+        split_dir
+        / f"qwen2vl_{split_slug}_{model_slug}{ocr_suffix}{suffix}{path_suffix}{seed_suffix}.json"
+    )
     out.write_text(json.dumps(all_results, indent=2) + "\n", encoding="utf-8")
     print(f"\nSaved {len(all_results)} filter rows to {out}")
 

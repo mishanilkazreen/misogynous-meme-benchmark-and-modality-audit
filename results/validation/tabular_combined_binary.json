@@ -1,0 +1,141 @@
+{
+  "task": "binary",
+  "split": "validation",
+  "variant": "combined",
+  "source_csv": "auto_benchmark/results/model_results/mami_tabular_model_combined/mami_tabular_model_combined_predictions.csv",
+  "best_model": "Support Vector Machine - RBF SVC",
+  "models": {
+    "Support Vector Machine - RBF SVC": {
+      "accuracy": 0.876,
+      "macro_f1": 0.876,
+      "precision": 0.87751,
+      "recall": 0.874
+    },
+    "Neural Network - MLPClassifier": {
+      "accuracy": 0.853,
+      "macro_f1": 0.852988,
+      "precision": 0.846758,
+      "recall": 0.862
+    },
+    "Hist Gradient Boosting Classifier": {
+      "accuracy": 0.851,
+      "macro_f1": 0.850988,
+      "precision": 0.857434,
+      "recall": 0.842
+    },
+    "Gradient Boosting Classifier": {
+      "accuracy": 0.844,
+      "macro_f1": 0.844,
+      "precision": 0.844,
+      "recall": 0.844
+    },
+    "LightGBM": {
+      "accuracy": 0.84,
+      "macro_f1": 0.84,
+      "precision": 0.84,
+      "recall": 0.84
+    },
+    "XGBoost": {
+      "accuracy": 0.84,
+      "macro_f1": 0.83999,
+      "precision": 0.845528,
+      "recall": 0.832
+    },
+    "Extra Trees Classifier": {
+      "accuracy": 0.84,
+      "macro_f1": 0.839792,
+      "precision": 0.866379,
+      "recall": 0.804
+    },
+    "Linear Discriminant Analysis": {
+      "accuracy": 0.839,
+      "macro_f1": 0.838999,
+      "precision": 0.836978,
+      "recall": 0.842
+    },
+    "Ridge Classifier": {
+      "accuracy": 0.839,
+      "macro_f1": 0.838981,
+      "precision": 0.831703,
+      "recall": 0.85
+    },
+    "Random Forest": {
+      "accuracy": 0.838,
+      "macro_f1": 0.837594,
+      "precision": 0.875556,
+      "recall": 0.788
+    },
+    "KNN": {
+      "accuracy": 0.823,
+      "macro_f1": 0.822153,
+      "precision": 0.783831,
+      "recall": 0.892
+    },
+    "Logistic Regression": {
+      "accuracy": 0.821,
+      "macro_f1": 0.820991,
+      "precision": 0.816568,
+      "recall": 0.828
+    },
+    "Support Vector Machine - LinearSVC": {
+      "accuracy": 0.821,
+      "macro_f1": 0.820978,
+      "precision": 0.81409,
+      "recall": 0.832
+    },
+    "SGD Classifier": {
+      "accuracy": 0.814,
+      "macro_f1": 0.813993,
+      "precision": 0.817814,
+      "recall": 0.808
+    },
+    "AdaBoost Classifier": {
+      "accuracy": 0.805,
+      "macro_f1": 0.804984,
+      "precision": 0.810591,
+      "recall": 0.796
+    },
+    "Bernoulli Naive Bayes": {
+      "accuracy": 0.804,
+      "macro_f1": 0.803773,
+      "precision": 0.82618,
+      "recall": 0.77
+    },
+    "Gaussian Naive Bayes": {
+      "accuracy": 0.803,
+      "macro_f1": 0.80273,
+      "precision": 0.827214,
+      "recall": 0.766
+    },
+    "Perceptron": {
+      "accuracy": 0.801,
+      "macro_f1": 0.800976,
+      "precision": 0.807771,
+      "recall": 0.79
+    },
+    "Bagging Classifier": {
+      "accuracy": 0.787,
+      "macro_f1": 0.785859,
+      "precision": 0.836066,
+      "recall": 0.714
+    },
+    "PassiveAggressiveClassifier": {
+      "accuracy": 0.783,
+      "macro_f1": 0.782982,
+      "precision": 0.777996,
+      "recall": 0.792
+    },
+    "Decision Tree": {
+      "accuracy": 0.697,
+      "macro_f1": 0.69684,
+      "precision": 0.706499,
+      "recall": 0.674
+    },
+    "Extra Tree Classifier": {
+      "accuracy": 0.625,
+      "macro_f1": 0.624955,
+      "precision": 0.627812,
+      "recall": 0.614
+    }
+  }
+}
