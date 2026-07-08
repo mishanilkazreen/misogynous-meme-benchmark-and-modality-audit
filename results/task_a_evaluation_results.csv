@@ -1,0 +1,45 @@
+Model,Origin,Test Accuracy,Test Macro-F1,Val Accuracy,Val Macro-F1
+Gemini 1.5 Pro (Zero-Shot),Ours (API),88.30%,0.8829,88.75%,0.8874
+Kapil 2025 — MTL-Transformer (BERT+ResNet152),SOTA Literature,86.40%,0.8530,N/A,N/A
+DD-TIG 2022 — multimodal + augmentation,SOTA Literature,79.40%,0.7940,N/A,N/A
+PRISM 2026 — CLIP pyramidal fusion,SOTA Literature,77.50%,0.7610,N/A,N/A
+Qwen2-VL-7B (Zero-Shot),Ours (VLM),77.00%,0.7693,77.10%,0.7702
+Qwen2-VL-7B QLoRA (Fine-Tuned),Ours (VLM),76.70%,0.7578,88.70%,0.8868
+"CLIP ViT-L-14 (Fine-Tuned, Mean)",Ours (CLIP),74.33%,0.7332,87.13%,0.8713
+Qwen2-VL-2B (Zero-Shot),Ours (VLM),72.50%,0.7250,74.00%,0.7395
+"CLIP ViT-B-32 (Fine-Tuned, Mean)",Ours (CLIP),70.70%,0.6922,83.97%,0.8397
+Tabular: XGBoost,Traditional ML,70.10%,0.7494,80.60%,0.8012
+Tabular: Hist Gradient Boosting Classifier,Traditional ML,70.00%,0.7492,82.30%,0.8188
+Tabular: LightGBM,Traditional ML,70.00%,0.7487,82.80%,0.8234
+Tabular: Gradient Boosting Classifier,Traditional ML,69.60%,0.7441,81.90%,0.8155
+Tabular: Neural Network - MLPClassifier,Traditional ML,68.20%,0.7363,77.60%,0.7647
+Tabular: Perceptron,Traditional ML,67.80%,0.6646,73.70%,0.7258
+Tabular: Random Forest,Traditional ML,67.70%,0.7232,80.30%,0.7946
+Qwen2-VL-2B QLoRA (Fine-Tuned),Ours (VLM),67.30%,0.6390,84.90%,0.8474
+Tabular: Extra Trees Classifier,Traditional ML,66.70%,0.7156,78.20%,0.7734
+Tabular: PassiveAggressiveClassifier,Traditional ML,66.40%,0.7063,72.50%,0.6843
+Tabular: Support Vector Machine - RBF SVC,Traditional ML,66.20%,0.7225,74.60%,0.7257
+Tabular: Linear Discriminant Analysis,Traditional ML,66.20%,0.7106,75.50%,0.7508
+LLaVA-1.5-7B QLoRA (Fine-Tuned),Ours (VLM),66.00%,0.6297,71.20%,0.6976
+Tabular: Logistic Regression,Traditional ML,65.80%,0.7150,77.40%,0.7699
+Tabular: Ridge Classifier,Traditional ML,65.80%,0.7082,75.70%,0.7518
+Tabular: Support Vector Machine - LinearSVC,Traditional ML,65.70%,0.7086,75.20%,0.7510
+Tabular: Bagging Classifier,Traditional ML,65.70%,0.6868,75.00%,0.7323
+Tabular: AdaBoost Classifier,Traditional ML,65.30%,0.6969,77.00%,0.7658
+LLaVA-1.5-7B (Zero-Shot),Ours (VLM),65.20%,0.6160,58.40%,0.5094
+CLIP ViT-L-14 (Zero-Shot),Ours (CLIP),64.40%,0.6062,73.20%,0.7288
+CLIP ViT-B-32 (Zero-Shot),Ours (CLIP),62.60%,0.5857,74.40%,0.7426
+Tabular: KNN,Traditional ML,61.40%,0.6799,66.10%,0.6620
+Tabular: Decision Tree,Traditional ML,61.40%,0.6560,66.20%,0.6613
+Tabular: SGD Classifier,Traditional ML,61.20%,0.7104,76.80%,0.7661
+Tabular: Bernoulli Naive Bayes,Traditional ML,59.80%,0.6683,66.90%,0.6626
+Tabular: Gaussian Naive Bayes,Traditional ML,57.60%,0.6748,62.80%,0.6737
+Tabular: Extra Tree Classifier,Traditional ML,54.30%,0.5701,62.80%,0.6287
+VisualBERT (Zero-Shot),Ours (VLM),50.90%,0.4731,60.00%,0.5797
+SRCB 2022 — UNITER+CLIP+BERT ensemble (SemEval Winner),SOTA Literature,N/A,0.8340,N/A,N/A
+KERMIT 2024 — knowledge + cross-attention,SOTA Literature,N/A,0.8340,N/A,N/A
+CTXSGMNet 2024 — VisualBERT + scene graphs,SOTA Literature,N/A,0.7959,N/A,N/A
+TIB-VA 2022 — CLIP ViT-L/14 + LSTM,SOTA Literature,N/A,0.7340,N/A,N/A
+UniBO 2022 — MMBT (BERT+CLIP),SOTA Literature,N/A,0.7270,N/A,N/A
+HateU 2022 — CLIP ViT-B/32,SOTA Literature,N/A,0.7100,N/A,N/A
+MilaNLP 2022 — multimodal transformer,SOTA Literature,N/A,0.6990,N/A,N/A
