@@ -1,15 +1,15 @@
 [
   {
-    "benchmark_date": "2026-07-07T14:31:54.216270+00:00",
+    "benchmark_date": "2026-07-07T14:35:44.310537+00:00",
     "model": "qwen2vl",
     "filter": "none",
     "split": "test",
     "task": "singleclass",
-    "exact_match_accuracy": 0.725,
-    "precision": 0.7250081002916104,
-    "recall": 0.725,
-    "f1": 0.7250040501231795,
-    "avg_latency_s": 0.07661487565562129,
+    "exact_match_accuracy": 0.719,
+    "precision": 0.7223088448466983,
+    "recall": 0.7190000000000001,
+    "f1": 0.7206506243289093,
+    "avg_latency_s": 0.07834293745737522,
     "refusal_rate": 0.0,
     "sample_predictions": [
       {
@@ -155,8 +155,8 @@
       {
         "image_id": "15846",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -232,8 +232,8 @@
       {
         "image_id": "15795",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -288,8 +288,8 @@
       {
         "image_id": "15277",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -309,8 +309,8 @@
       {
         "image_id": "15148",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -330,22 +330,22 @@
       {
         "image_id": "15758",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "refusal": false
-      },
-      {
-        "image_id": "15095",
-        "ground_truth": 1,
         "prediction": 1,
         "correct": true,
         "refusal": false
       },
       {
+        "image_id": "15095",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
         "image_id": "15521",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
+        "prediction": 1,
+        "correct": false,
         "refusal": false
       },
       {
@@ -435,8 +435,8 @@
       {
         "image_id": "16055",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -449,8 +449,8 @@
       {
         "image_id": "15506",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -603,8 +603,8 @@
       {
         "image_id": "15955",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -617,15 +617,15 @@
       {
         "image_id": "15487",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
+        "prediction": 1,
+        "correct": true,
         "refusal": false
       },
       {
         "image_id": "15659",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -673,8 +673,8 @@
       {
         "image_id": "15031",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -687,15 +687,15 @@
       {
         "image_id": "16075",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
         "image_id": "17076",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
+        "prediction": 1,
+        "correct": false,
         "refusal": false
       },
       {
@@ -715,8 +715,8 @@
       {
         "image_id": "15235",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
+        "prediction": 1,
+        "correct": true,
         "refusal": false
       },
       {
@@ -729,8 +729,8 @@
       {
         "image_id": "15451",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -820,8 +820,8 @@
       {
         "image_id": "15100",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -848,8 +848,8 @@
       {
         "image_id": "15977",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -869,8 +869,8 @@
       {
         "image_id": "15615",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -939,8 +939,8 @@
       {
         "image_id": "15667",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
+        "prediction": 1,
+        "correct": true,
         "refusal": false
       },
       {
@@ -1093,15 +1093,15 @@
       {
         "image_id": "15073",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
+        "prediction": 1,
+        "correct": true,
         "refusal": false
       },
       {
         "image_id": "15865",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -1128,8 +1128,8 @@
       {
         "image_id": "16177",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -1219,15 +1219,15 @@
       {
         "image_id": "15994",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
         "image_id": "16144",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -1380,15 +1380,15 @@
       {
         "image_id": "15341",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
+        "prediction": 1,
+        "correct": true,
         "refusal": false
       },
       {
         "image_id": "17073",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -1408,8 +1408,8 @@
       {
         "image_id": "15785",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -1436,8 +1436,8 @@
       {
         "image_id": "16164",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -1471,15 +1471,15 @@
       {
         "image_id": "15701",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
         "image_id": "17033",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
+        "prediction": 1,
+        "correct": true,
         "refusal": false
       },
       {
@@ -1576,8 +1576,8 @@
       {
         "image_id": "15857",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
+        "prediction": 1,
+        "correct": false,
         "refusal": false
       },
       {
@@ -1730,8 +1730,8 @@
       {
         "image_id": "16336",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -1814,8 +1814,8 @@
       {
         "image_id": "15350",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
+        "prediction": 1,
+        "correct": true,
         "refusal": false
       },
       {
@@ -1842,8 +1842,8 @@
       {
         "image_id": "16093",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -1884,8 +1884,8 @@
       {
         "image_id": "15200",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -1940,8 +1940,8 @@
       {
         "image_id": "16052",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -1982,15 +1982,15 @@
       {
         "image_id": "15497",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
         "image_id": "16247",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -2031,8 +2031,8 @@
       {
         "image_id": "15340",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -2045,8 +2045,8 @@
       {
         "image_id": "15323",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
+        "prediction": 1,
+        "correct": true,
         "refusal": false
       },
       {
@@ -2297,8 +2297,8 @@
       {
         "image_id": "15787",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -2374,8 +2374,8 @@
       {
         "image_id": "15855",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -2395,15 +2395,15 @@
       {
         "image_id": "15537",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
         "image_id": "15057",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
+        "prediction": 1,
+        "correct": true,
         "refusal": false
       },
       {
@@ -2416,8 +2416,8 @@
       {
         "image_id": "15632",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -2430,8 +2430,8 @@
       {
         "image_id": "15688",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -2465,8 +2465,8 @@
       {
         "image_id": "15357",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -2528,8 +2528,8 @@
       {
         "image_id": "15391",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -2647,8 +2647,8 @@
       {
         "image_id": "15479",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -2696,8 +2696,8 @@
       {
         "image_id": "15492",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -2738,8 +2738,8 @@
       {
         "image_id": "15205",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -2766,8 +2766,8 @@
       {
         "image_id": "15613",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -2794,8 +2794,8 @@
       {
         "image_id": "15641",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -2885,8 +2885,8 @@
       {
         "image_id": "16152",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
+        "prediction": 1,
+        "correct": false,
         "refusal": false
       },
       {
@@ -2934,8 +2934,8 @@
       {
         "image_id": "16297",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -3032,8 +3032,8 @@
       {
         "image_id": "16039",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -3053,15 +3053,15 @@
       {
         "image_id": "15484",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
         "image_id": "15511",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -3074,8 +3074,8 @@
       {
         "image_id": "16002",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -3137,8 +3137,8 @@
       {
         "image_id": "15717",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
+        "prediction": 1,
+        "correct": true,
         "refusal": false
       },
       {
@@ -3284,8 +3284,8 @@
       {
         "image_id": "16084",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -3389,8 +3389,8 @@
       {
         "image_id": "15196",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
+        "prediction": 1,
+        "correct": false,
         "refusal": false
       },
       {
@@ -3417,8 +3417,8 @@
       {
         "image_id": "15305",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -3452,8 +3452,8 @@
       {
         "image_id": "16329",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -3473,8 +3473,8 @@
       {
         "image_id": "15880",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -3543,8 +3543,8 @@
       {
         "image_id": "15944",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -3578,8 +3578,8 @@
       {
         "image_id": "15485",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
+        "prediction": 1,
+        "correct": false,
         "refusal": false
       },
       {
@@ -3669,8 +3669,8 @@
       {
         "image_id": "15024",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -3704,8 +3704,8 @@
       {
         "image_id": "15995",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -3774,8 +3774,8 @@
       {
         "image_id": "15207",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -3963,8 +3963,8 @@
       {
         "image_id": "16184",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
+        "prediction": 1,
+        "correct": false,
         "refusal": false
       },
       {
@@ -4047,8 +4047,8 @@
       {
         "image_id": "17017",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -4075,15 +4075,15 @@
       {
         "image_id": "16243",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
+        "prediction": 1,
+        "correct": false,
         "refusal": false
       },
       {
         "image_id": "17071",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -4117,8 +4117,8 @@
       {
         "image_id": "16238",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
+        "prediction": 1,
+        "correct": false,
         "refusal": false
       },
       {
@@ -4173,8 +4173,8 @@
       {
         "image_id": "15937",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
+        "prediction": 1,
+        "correct": true,
         "refusal": false
       },
       {
@@ -4201,8 +4201,8 @@
       {
         "image_id": "16307",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
+        "prediction": 1,
+        "correct": true,
         "refusal": false
       },
       {
@@ -4229,8 +4229,8 @@
       {
         "image_id": "16088",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
+        "prediction": 1,
+        "correct": true,
         "refusal": false
       },
       {
@@ -4243,8 +4243,8 @@
       {
         "image_id": "15825",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -4292,8 +4292,8 @@
       {
         "image_id": "16325",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -4327,8 +4327,8 @@
       {
         "image_id": "15891",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
+        "prediction": 1,
+        "correct": false,
         "refusal": false
       },
       {
@@ -4390,8 +4390,8 @@
       {
         "image_id": "17027",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -4411,8 +4411,8 @@
       {
         "image_id": "16309",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
+        "prediction": 1,
+        "correct": true,
         "refusal": false
       },
       {
@@ -4467,8 +4467,8 @@
       {
         "image_id": "16248",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -4523,8 +4523,8 @@
       {
         "image_id": "17043",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -4551,8 +4551,8 @@
       {
         "image_id": "16117",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
+        "prediction": 1,
+        "correct": false,
         "refusal": false
       },
       {
@@ -4565,8 +4565,8 @@
       {
         "image_id": "15300",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -4670,8 +4670,8 @@
       {
         "image_id": "15237",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -4691,15 +4691,15 @@
       {
         "image_id": "15228",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
         "image_id": "15915",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -4796,8 +4796,8 @@
       {
         "image_id": "17079",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -4838,8 +4838,8 @@
       {
         "image_id": "16303",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
+        "prediction": 1,
+        "correct": true,
         "refusal": false
       },
       {
@@ -4936,8 +4936,8 @@
       {
         "image_id": "16058",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -4957,8 +4957,8 @@
       {
         "image_id": "15652",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
+        "prediction": 1,
+        "correct": false,
         "refusal": false
       },
       {
@@ -5048,8 +5048,8 @@
       {
         "image_id": "16222",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -5083,8 +5083,8 @@
       {
         "image_id": "15566",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -5097,8 +5097,8 @@
       {
         "image_id": "15664",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -5125,8 +5125,8 @@
       {
         "image_id": "15598",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
+        "prediction": 1,
+        "correct": true,
         "refusal": false
       },
       {
@@ -5167,8 +5167,8 @@
       {
         "image_id": "15678",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
+        "prediction": 1,
+        "correct": false,
         "refusal": false
       },
       {
@@ -5342,8 +5342,8 @@
       {
         "image_id": "15763",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -5412,15 +5412,15 @@
       {
         "image_id": "15303",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
         "image_id": "16212",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -5545,8 +5545,8 @@
       {
         "image_id": "15304",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
+        "prediction": 1,
+        "correct": true,
         "refusal": false
       },
       {
@@ -5559,8 +5559,8 @@
       {
         "image_id": "15818",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -5657,22 +5657,22 @@
       {
         "image_id": "15454",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
         "image_id": "15789",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
         "image_id": "15493",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -5713,15 +5713,15 @@
       {
         "image_id": "15829",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
         "image_id": "16090",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -5790,8 +5790,8 @@
       {
         "image_id": "15067",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -5853,8 +5853,8 @@
       {
         "image_id": "15293",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -5895,8 +5895,8 @@
       {
         "image_id": "16188",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
+        "prediction": 1,
+        "correct": true,
         "refusal": false
       },
       {
@@ -5909,15 +5909,15 @@
       {
         "image_id": "15198",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
         "image_id": "15145",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -5951,8 +5951,8 @@
       {
         "image_id": "15650",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
+        "prediction": 1,
+        "correct": false,
         "refusal": false
       },
       {
@@ -5986,8 +5986,8 @@
       {
         "image_id": "15691",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -6147,8 +6147,8 @@
       {
         "image_id": "16033",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
+        "prediction": 1,
+        "correct": true,
         "refusal": false
       },
       {
@@ -6168,15 +6168,15 @@
       {
         "image_id": "15707",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
         "image_id": "15928",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -6224,8 +6224,8 @@
       {
         "image_id": "16208",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -6238,8 +6238,8 @@
       {
         "image_id": "15790",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
+        "prediction": 1,
+        "correct": true,
         "refusal": false
       },
       {
@@ -6322,8 +6322,8 @@
       {
         "image_id": "16134",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -6336,8 +6336,8 @@
       {
         "image_id": "17058",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -6392,15 +6392,15 @@
       {
         "image_id": "15624",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
         "image_id": "15753",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -6427,8 +6427,8 @@
       {
         "image_id": "15693",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -6497,8 +6497,8 @@
       {
         "image_id": "16015",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -6574,8 +6574,8 @@
       {
         "image_id": "15584",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
+        "prediction": 1,
+        "correct": false,
         "refusal": false
       },
       {
@@ -6602,8 +6602,8 @@
       {
         "image_id": "15238",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
+        "prediction": 1,
+        "correct": false,
         "refusal": false
       },
       {
@@ -6791,8 +6791,8 @@
       {
         "image_id": "15903",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
+        "prediction": 1,
+        "correct": true,
         "refusal": false
       },
       {
@@ -6805,15 +6805,15 @@
       {
         "image_id": "15628",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
+        "prediction": 1,
+        "correct": true,
         "refusal": false
       },
       {
         "image_id": "15600",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
+        "prediction": 0,
+        "correct": true,
         "refusal": false
       },
       {
@@ -6840,8 +6840,8 @@
       {
         "image_id": "15893",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -6889,8 +6889,8 @@
       {
         "image_id": "16337",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -6910,8 +6910,8 @@
       {
         "image_id": "17038",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
+        "prediction": 0,
+        "correct": false,
         "refusal": false
       },
       {
@@ -6924,8 +6924,8 @@
       {
         "image_id": "15575",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
+        "prediction": 1,
+        "correct": true,
         "refusal": false
       },
       {

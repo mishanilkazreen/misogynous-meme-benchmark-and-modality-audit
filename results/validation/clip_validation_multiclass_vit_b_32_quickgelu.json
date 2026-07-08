@@ -4,40 +4,47 @@
     "filter": "none",
     "split": "validation",
     "task": "multiclass",
-    "exact_match_accuracy": 0.133,
-    "f1": 0.333226,
-    "precision": 0.233429,
-    "recall": 0.630677,
-    "macro_f1": 0.333226,
-    "micro_f1": 0.352107,
-    "weighted_f1": 0.37636,
+    "exact_match_accuracy": 0.15,
+    "f1": 0.358779,
+    "precision": 0.251651,
+    "recall": 0.701972,
+    "macro_f1": 0.358779,
+    "micro_f1": 0.362101,
+    "weighted_f1": 0.388006,
     "per_class": {
       "shaming": {
-        "precision": 0.1675,
-        "recall": 0.544715,
-        "f1": 0.256214,
+        "precision": 0.230971,
+        "recall": 0.715447,
+        "f1": 0.349206,
         "support": 123
       },
       "stereotype": {
-        "precision": 0.374781,
-        "recall": 0.775362,
-        "f1": 0.505313,
+        "precision": 0.324272,
+        "recall": 0.605072,
+        "f1": 0.42225,
         "support": 276
       },
       "objectification": {
-        "precision": 0.261954,
-        "recall": 0.552632,
-        "f1": 0.35543,
+        "precision": 0.320565,
+        "recall": 0.697368,
+        "f1": 0.439227,
         "support": 228
       },
       "violence": {
-        "precision": 0.129482,
-        "recall": 0.65,
-        "f1": 0.215947,
+        "precision": 0.130795,
+        "recall": 0.79,
+        "f1": 0.224432,
         "support": 100
       }
     },
-    "avg_latency_s": 0.004302928949240595,
+    "mami_score_b": 0.524835,
+    "per_label_binary_macro_f1": {
+      "shaming": 0.564978,
+      "stereotype": 0.522126,
+      "objectification": 0.560522,
+      "violence": 0.401568
+    },
+    "avg_latency_s": 0.004198766751214862,
     "refusal_rate": 0.0,
     "label_prevalence": {
       "shaming": 123,
@@ -57,10 +64,10 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 1,
-          "violence": 1
+          "objectification": 0,
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -106,7 +113,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
           "violence": 1
@@ -141,9 +148,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "stereotype": 0,
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -175,9 +182,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -193,7 +200,7 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 0,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -208,10 +215,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 0,
+          "shaming": 0,
+          "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -226,7 +233,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
           "violence": 1
         },
@@ -244,8 +251,8 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -278,7 +285,7 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -294,9 +301,9 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -311,11 +318,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
           "violence": 0
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -346,7 +353,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -381,9 +388,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -395,10 +402,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 1,
+          "shaming": 0,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -429,12 +436,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -446,12 +453,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -463,10 +470,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -480,7 +487,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 0,
           "objectification": 1,
           "violence": 0
@@ -498,7 +505,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
           "violence": 1
         },
@@ -514,9 +521,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -532,7 +539,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 1
         },
@@ -551,9 +558,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -584,7 +591,7 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -600,9 +607,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -619,7 +626,7 @@
           "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -651,7 +658,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
           "violence": 0
         },
@@ -668,7 +675,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
           "violence": 0
         },
@@ -684,12 +691,12 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -704,7 +711,7 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -721,7 +728,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -735,12 +742,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 1,
+          "shaming": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -752,12 +759,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -769,9 +776,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 0
         },
         "correct": false,
@@ -803,10 +810,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -823,7 +830,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -838,9 +845,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -856,7 +863,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 0
         },
         "correct": false,
@@ -874,7 +881,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -890,7 +897,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 0
         },
         "correct": false,
@@ -908,7 +915,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -922,12 +929,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 1,
+          "shaming": 0,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 1
       },
       {
@@ -939,9 +946,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 1,
-          "objectification": 1,
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -958,7 +965,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -975,7 +982,7 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -1009,10 +1016,10 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 0,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -1026,7 +1033,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -1041,8 +1048,8 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 0,
+          "shaming": 0,
+          "stereotype": 1,
           "objectification": 0,
           "violence": 1
         },
@@ -1059,9 +1066,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
-          "objectification": 1,
-          "violence": 1
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -1075,12 +1082,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -1093,9 +1100,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
-          "objectification": 1,
-          "violence": 1
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -1109,9 +1116,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 0
         },
         "correct": false,
@@ -1146,9 +1153,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -1160,12 +1167,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "objectification": 1,
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 1
       },
       {
@@ -1180,7 +1187,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -1194,8 +1201,8 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 1,
+          "shaming": 0,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 1
         },
@@ -1214,7 +1221,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -1231,7 +1238,7 @@
           "shaming": 1,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -1265,7 +1272,7 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -1297,9 +1304,9 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -1313,12 +1320,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -1347,8 +1354,8 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 1,
+          "shaming": 0,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 1
         },
@@ -1364,7 +1371,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 0,
           "objectification": 0,
           "violence": 0
@@ -1384,9 +1391,9 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 1
       },
       {
@@ -1398,10 +1405,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -1416,11 +1423,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
           "violence": 0
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -1466,9 +1473,9 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 0,
-          "objectification": 1,
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
           "violence": 0
         },
         "correct": false,
@@ -1501,11 +1508,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
           "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 1
       },
       {
@@ -1535,7 +1542,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
           "violence": 0
         },
@@ -1551,12 +1558,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -1568,12 +1575,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 1,
+          "shaming": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 1
       },
       {
@@ -1620,11 +1627,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 1
       },
       {
@@ -1655,7 +1662,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 0
         },
         "correct": false,
@@ -1673,7 +1680,7 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -1688,9 +1695,9 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "stereotype": 0,
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -1704,9 +1711,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -1724,7 +1731,7 @@
           "shaming": 1,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -1741,7 +1748,7 @@
           "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -1758,7 +1765,7 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -1790,9 +1797,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -1809,7 +1816,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -1826,7 +1833,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -1843,9 +1850,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -1860,7 +1867,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -1892,7 +1899,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
@@ -1927,7 +1934,7 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -1943,8 +1950,8 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
-          "objectification": 1,
+          "stereotype": 1,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -1959,7 +1966,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -1977,9 +1984,9 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -2011,7 +2018,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
           "violence": 0
         },
@@ -2030,7 +2037,7 @@
           "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -2047,9 +2054,9 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -2078,10 +2085,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 0,
-          "objectification": 1,
-          "violence": 1
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -2114,10 +2121,10 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 0,
-          "objectification": 0,
-          "violence": 0
+          "objectification": 1,
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -2147,11 +2154,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -2165,10 +2172,10 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 1
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -2183,7 +2190,7 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -2198,11 +2205,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
           "violence": 0
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -2214,10 +2221,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -2232,8 +2239,8 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
-          "objectification": 0,
+          "stereotype": 0,
+          "objectification": 1,
           "violence": 0
         },
         "correct": false,
@@ -2248,7 +2255,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -2265,12 +2272,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -2285,7 +2292,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -2316,12 +2323,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -2333,7 +2340,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -2368,11 +2375,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
           "violence": 0
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -2385,7 +2392,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 0
         },
@@ -2402,7 +2409,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 1
         },
@@ -2421,7 +2428,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -2437,10 +2444,10 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -2454,7 +2461,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -2486,9 +2493,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -2506,9 +2513,9 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -2523,7 +2530,7 @@
           "shaming": 1,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -2538,8 +2545,8 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
-          "objectification": 1,
+          "stereotype": 0,
+          "objectification": 0,
           "violence": 0
         },
         "correct": false,
@@ -2571,7 +2578,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -2589,9 +2596,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -2640,8 +2647,8 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
-          "objectification": 0,
+          "stereotype": 0,
+          "objectification": 1,
           "violence": 0
         },
         "correct": false,
@@ -2656,8 +2663,8 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 0,
+          "shaming": 1,
+          "stereotype": 1,
           "objectification": 1,
           "violence": 1
         },
@@ -2673,7 +2680,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -2690,10 +2697,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -2710,7 +2717,7 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -2725,9 +2732,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -2741,9 +2748,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 0,
-          "objectification": 1,
+          "shaming": 1,
+          "stereotype": 1,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -2758,9 +2765,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 0,
-          "objectification": 1,
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -2775,10 +2782,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -2792,10 +2799,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -2811,7 +2818,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -2827,9 +2834,9 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -2844,9 +2851,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -2861,9 +2868,9 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -2877,10 +2884,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 0,
-          "objectification": 0,
-          "violence": 0
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -2894,10 +2901,10 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 1,
+          "shaming": 0,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -2945,9 +2952,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -2963,7 +2970,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 0
         },
@@ -3016,7 +3023,7 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -3031,9 +3038,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -3047,7 +3054,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -3101,9 +3108,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -3116,8 +3123,8 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 0,
-          "objectification": 0,
+          "stereotype": 1,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -3135,9 +3142,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -3149,10 +3156,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 0,
+          "shaming": 1,
+          "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -3166,7 +3173,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 0,
           "violence": 0
@@ -3200,10 +3207,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -3220,7 +3227,7 @@
           "shaming": 1,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -3236,10 +3243,10 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
-          "violence": 1
+          "objectification": 0,
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -3269,11 +3276,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -3302,12 +3309,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -3319,12 +3326,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -3390,9 +3397,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -3407,7 +3414,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -3439,7 +3446,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
@@ -3457,8 +3464,8 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
-          "violence": 0
+          "objectification": 0,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -3474,7 +3481,7 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -3490,9 +3497,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "stereotype": 0,
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -3507,7 +3514,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
@@ -3525,10 +3532,10 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -3542,8 +3549,8 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 1,
-          "violence": 0
+          "objectification": 0,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -3557,10 +3564,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -3594,7 +3601,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -3611,7 +3618,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -3628,7 +3635,7 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -3644,8 +3651,8 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 1,
-          "violence": 1
+          "objectification": 0,
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -3661,7 +3668,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -3676,7 +3683,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 0,
           "violence": 0
@@ -3696,9 +3703,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -3712,7 +3719,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -3746,10 +3753,10 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 0,
-          "objectification": 0,
-          "violence": 0
+          "objectification": 1,
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -3763,7 +3770,7 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 0,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -3780,10 +3787,10 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
-          "violence": 1
+          "objectification": 0,
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -3795,7 +3802,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -3830,7 +3837,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 1
         },
@@ -3846,7 +3853,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 0,
           "objectification": 0,
           "violence": 0
@@ -3863,9 +3870,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 0,
-          "objectification": 1,
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
           "violence": 0
         },
         "correct": false,
@@ -3880,7 +3887,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
           "violence": 1
@@ -3900,9 +3907,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -3915,11 +3922,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -3931,9 +3938,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -3950,7 +3957,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 0,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -3984,7 +3991,7 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -4016,10 +4023,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -4034,7 +4041,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 1
         },
@@ -4085,9 +4092,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -4101,8 +4108,8 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 0,
+          "shaming": 0,
+          "stereotype": 1,
           "objectification": 0,
           "violence": 1
         },
@@ -4121,7 +4128,7 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -4153,8 +4160,8 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
-          "objectification": 0,
+          "stereotype": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -4188,8 +4195,8 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -4203,10 +4210,10 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "shaming": 1,
+          "stereotype": 0,
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -4223,9 +4230,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -4238,9 +4245,9 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -4254,9 +4261,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -4272,8 +4279,8 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
-          "objectification": 0,
+          "stereotype": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -4290,8 +4297,8 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 0,
-          "objectification": 1,
-          "violence": 0
+          "objectification": 0,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -4305,7 +4312,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -4342,9 +4349,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -4373,9 +4380,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 0
         },
         "correct": false,
@@ -4391,7 +4398,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 1
         },
@@ -4410,7 +4417,7 @@
           "shaming": 1,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -4425,7 +4432,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 1
         },
@@ -4443,7 +4450,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -4460,10 +4467,10 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -4512,9 +4519,9 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -4526,9 +4533,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -4545,10 +4552,10 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 0,
-          "objectification": 0,
-          "violence": 0
+          "objectification": 1,
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -4562,10 +4569,10 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "objectification": 1,
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 1
       },
       {
@@ -4577,10 +4584,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 1,
-          "objectification": 0,
-          "violence": 1
+          "shaming": 1,
+          "stereotype": 0,
+          "objectification": 1,
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -4596,8 +4603,8 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 1,
-          "violence": 0
+          "objectification": 0,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -4612,9 +4619,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -4630,7 +4637,7 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -4645,7 +4652,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -4665,9 +4672,9 @@
           "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -4715,8 +4722,8 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -4732,10 +4739,10 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 0,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 0
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -4747,8 +4754,8 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 0,
+          "shaming": 0,
+          "stereotype": 1,
           "objectification": 0,
           "violence": 0
         },
@@ -4765,9 +4772,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -4784,7 +4791,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -4799,7 +4806,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 1
         },
@@ -4817,8 +4824,8 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 1,
-          "violence": 1
+          "objectification": 0,
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -4833,7 +4840,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 1
         },
@@ -4849,9 +4856,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -4866,10 +4873,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 1,
+          "shaming": 0,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -4900,12 +4907,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 1,
+          "shaming": 0,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -4919,8 +4926,8 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -4935,9 +4942,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
-          "objectification": 1,
-          "violence": 0
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -4951,7 +4958,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -4969,7 +4976,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
@@ -5036,8 +5043,8 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 0,
+          "shaming": 1,
+          "stereotype": 1,
           "objectification": 1,
           "violence": 1
         },
@@ -5056,7 +5063,7 @@
           "shaming": 1,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -5071,11 +5078,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
-          "objectification": 0,
-          "violence": 0
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -5088,11 +5095,11 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 1
       },
       {
@@ -5104,9 +5111,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 0,
-          "objectification": 1,
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -5121,9 +5128,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 0,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -5155,7 +5162,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -5175,7 +5182,7 @@
           "shaming": 1,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -5192,9 +5199,9 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -5209,7 +5216,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -5242,8 +5249,8 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
-          "violence": 0
+          "objectification": 0,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -5258,11 +5265,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 1
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -5277,9 +5284,9 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -5309,9 +5316,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
-          "objectification": 1,
-          "violence": 0
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -5325,9 +5332,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 0
         },
         "correct": false,
@@ -5342,12 +5349,12 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -5359,10 +5366,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 0,
-          "objectification": 1,
-          "violence": 1
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -5376,10 +5383,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 1,
+          "shaming": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -5394,7 +5401,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
           "violence": 0
         },
@@ -5413,7 +5420,7 @@
           "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -5496,11 +5503,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
           "violence": 0
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -5563,10 +5570,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -5583,7 +5590,7 @@
           "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -5597,7 +5604,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
           "violence": 0
@@ -5614,7 +5621,7 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
           "violence": 1
@@ -5631,10 +5638,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 0,
+          "shaming": 0,
+          "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -5665,10 +5672,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
-          "violence": 1
+          "objectification": 0,
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -5702,7 +5709,7 @@
           "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -5717,8 +5724,8 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
-          "objectification": 1,
+          "stereotype": 1,
+          "objectification": 0,
           "violence": 0
         },
         "correct": false,
@@ -5802,7 +5809,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 1
         },
@@ -5821,7 +5828,7 @@
           "shaming": 1,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -5835,12 +5842,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -5853,8 +5860,8 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
-          "objectification": 1,
+          "stereotype": 1,
+          "objectification": 0,
           "violence": 0
         },
         "correct": false,
@@ -5903,10 +5910,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
-          "objectification": 1,
-          "violence": 0
+          "objectification": 0,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -5937,7 +5944,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -5954,10 +5961,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -5988,10 +5995,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "shaming": 1,
+          "stereotype": 0,
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -6006,9 +6013,9 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -6022,12 +6029,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -6039,7 +6046,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
           "violence": 1
@@ -6057,9 +6064,9 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -6073,9 +6080,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -6109,8 +6116,8 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
-          "violence": 0
+          "objectification": 0,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -6125,7 +6132,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
           "violence": 1
         },
@@ -6142,8 +6149,8 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 0,
-          "objectification": 1,
+          "stereotype": 1,
+          "objectification": 0,
           "violence": 0
         },
         "correct": false,
@@ -6175,7 +6182,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -6192,10 +6199,10 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -6212,7 +6219,7 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -6228,7 +6235,7 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -6246,7 +6253,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -6260,7 +6267,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 0,
           "objectification": 0,
           "violence": 0
@@ -6280,7 +6287,7 @@
           "shaming": 1,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -6297,7 +6304,7 @@
           "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -6346,7 +6353,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
           "violence": 0
         },
@@ -6363,8 +6370,8 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
-          "objectification": 0,
+          "stereotype": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -6380,9 +6387,9 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -6396,9 +6403,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -6416,7 +6423,7 @@
           "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -6433,9 +6440,9 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -6465,7 +6472,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
           "violence": 1
         },
@@ -6484,7 +6491,7 @@
           "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -6498,12 +6505,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -6516,9 +6523,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -6532,10 +6539,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -6549,10 +6556,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 1,
+          "shaming": 0,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -6586,7 +6593,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -6600,12 +6607,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 1,
+          "shaming": 0,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -6620,7 +6627,7 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -6669,9 +6676,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -6686,11 +6693,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -6702,7 +6709,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -6719,10 +6726,10 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 0,
+          "shaming": 0,
+          "stereotype": 1,
           "objectification": 1,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -6737,8 +6744,8 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 0,
-          "objectification": 1,
+          "stereotype": 1,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -6754,7 +6761,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 1
         },
@@ -6771,8 +6778,8 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
-          "objectification": 0,
+          "stereotype": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -6790,9 +6797,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -6821,10 +6828,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -6840,7 +6847,7 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -6907,9 +6914,9 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -6924,9 +6931,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -6941,7 +6948,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 1
         },
@@ -6957,12 +6964,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 1
       },
       {
@@ -6975,11 +6982,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
           "violence": 0
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -6992,7 +6999,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
           "violence": 1
         },
@@ -7028,9 +7035,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -7042,10 +7049,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -7060,7 +7067,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 1
         },
@@ -7076,7 +7083,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -7093,7 +7100,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -7111,7 +7118,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
           "violence": 1
         },
@@ -7129,8 +7136,8 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 1,
-          "violence": 0
+          "objectification": 0,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -7144,9 +7151,9 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -7198,7 +7205,7 @@
           "shaming": 1,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -7212,7 +7219,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -7230,11 +7237,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 1
       },
       {
@@ -7249,7 +7256,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -7263,10 +7270,10 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -7280,7 +7287,7 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -7300,7 +7307,7 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -7316,7 +7323,7 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -7334,7 +7341,7 @@
           "shaming": 1,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -7348,8 +7355,8 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 1,
+          "shaming": 0,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 1
         },
@@ -7368,7 +7375,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -7382,10 +7389,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -7401,8 +7408,8 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -7433,10 +7440,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 1,
+          "shaming": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -7451,8 +7458,8 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
-          "objectification": 0,
+          "stereotype": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -7501,10 +7508,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 0,
-          "objectification": 0,
-          "violence": 1
+          "objectification": 1,
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -7536,11 +7543,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 1
       },
       {
@@ -7552,12 +7559,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 0,
-          "objectification": 0,
-          "violence": 0
+          "objectification": 1,
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -7569,12 +7576,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -7621,11 +7628,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 1
       },
       {
@@ -7640,9 +7647,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -7654,9 +7661,9 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -7673,7 +7680,7 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 0
         },
         "correct": false,
@@ -7706,9 +7713,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -7722,7 +7729,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
           "violence": 1
@@ -7740,7 +7747,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 0
         },
@@ -7773,10 +7780,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -7791,7 +7798,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 0
         },
@@ -7807,10 +7814,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
-          "objectification": 1,
-          "violence": 1
+          "objectification": 0,
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -7842,8 +7849,8 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 0,
-          "objectification": 0,
+          "stereotype": 1,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -7858,7 +7865,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 1,
           "violence": 1
@@ -7875,12 +7882,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -7892,7 +7899,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -7910,9 +7917,9 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -7927,9 +7934,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
-          "objectification": 0,
-          "violence": 1
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -7960,7 +7967,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 0,
           "violence": 1
@@ -7977,7 +7984,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
           "violence": 1
@@ -7994,7 +8001,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -8011,7 +8018,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
           "violence": 0
@@ -8030,10 +8037,10 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
-          "violence": 1
+          "objectification": 0,
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -8046,11 +8053,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
           "violence": 0
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -8096,9 +8103,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 0,
-          "objectification": 1,
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -8113,7 +8120,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
           "violence": 1
@@ -8131,7 +8138,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 1
         },
@@ -8200,10 +8207,10 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "objectification": 1,
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 1
       },
       {
@@ -8216,9 +8223,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
-          "objectification": 1,
-          "violence": 0
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -8233,11 +8240,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -8250,11 +8257,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 1
       },
       {
@@ -8268,7 +8275,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 0
         },
         "correct": false,
@@ -8283,9 +8290,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 0
         },
         "correct": false,
@@ -8302,8 +8309,8 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 1,
-          "violence": 1
+          "objectification": 0,
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -8317,7 +8324,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -8368,12 +8375,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
-          "violence": 1
+          "objectification": 0,
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -8386,7 +8393,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 1
         },
@@ -8404,7 +8411,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -8420,9 +8427,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -8454,7 +8461,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 1
         },
@@ -8470,10 +8477,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 0,
-          "objectification": 0,
-          "violence": 0
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -8504,10 +8511,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
-          "violence": 0
+          "objectification": 0,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -8522,9 +8529,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -8538,8 +8545,8 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 1,
+          "shaming": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 1
         },
@@ -8555,9 +8562,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 0,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 0
         },
         "correct": false,
@@ -8592,7 +8599,7 @@
           "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -8608,7 +8615,7 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -8626,7 +8633,7 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -8642,8 +8649,8 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 0,
-          "objectification": 0,
-          "violence": 0
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -8658,7 +8665,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 1
         },
@@ -8676,7 +8683,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -8694,7 +8701,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -8708,7 +8715,7 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 0,
           "objectification": 1,
           "violence": 1
@@ -8728,7 +8735,7 @@
           "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -8742,10 +8749,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 1,
+          "shaming": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -8796,7 +8803,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -8829,8 +8836,8 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 1,
-          "violence": 1
+          "objectification": 0,
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -8844,8 +8851,8 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 1,
+          "shaming": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 1
         },
@@ -8878,7 +8885,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -8932,7 +8939,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -8946,7 +8953,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
           "violence": 1
@@ -8963,7 +8970,7 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
           "violence": 1
@@ -8983,7 +8990,7 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -9049,9 +9056,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -9065,7 +9072,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -9100,11 +9107,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -9151,9 +9158,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "stereotype": 0,
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -9170,9 +9177,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -9184,12 +9191,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -9201,9 +9208,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 0
         },
         "correct": false,
@@ -9219,7 +9226,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 0
         },
@@ -9235,10 +9242,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -9252,7 +9259,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 0
@@ -9270,7 +9277,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
           "violence": 1
         },
@@ -9303,12 +9310,12 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 1
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -9321,11 +9328,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -9338,9 +9345,9 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "stereotype": 0,
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -9372,9 +9379,9 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -9388,9 +9395,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 1,
-          "objectification": 0,
+          "shaming": 1,
+          "stereotype": 0,
+          "objectification": 1,
           "violence": 0
         },
         "correct": false,
@@ -9425,9 +9432,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -9442,9 +9449,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 1
       },
       {
@@ -9456,10 +9463,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 1,
-          "objectification": 0,
-          "violence": 1
+          "shaming": 1,
+          "stereotype": 0,
+          "objectification": 1,
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -9474,9 +9481,9 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -9508,8 +9515,8 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
-          "objectification": 1,
+          "stereotype": 1,
+          "objectification": 0,
           "violence": 0
         },
         "correct": false,
@@ -9524,7 +9531,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -9543,7 +9550,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -9558,10 +9565,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -9577,10 +9584,10 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
-          "violence": 1
+          "objectification": 0,
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -9595,7 +9602,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -9611,7 +9618,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 0
         },
         "correct": false,
@@ -9629,9 +9636,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 1
       },
       {
@@ -9661,9 +9668,9 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -9678,7 +9685,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 1
         },
@@ -9695,11 +9702,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -9748,9 +9755,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -9765,7 +9772,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -9797,9 +9804,9 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -9814,9 +9821,9 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -9831,11 +9838,11 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
-          "objectification": 0,
+          "stereotype": 0,
+          "objectification": 1,
           "violence": 1
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -9848,8 +9855,8 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
-          "objectification": 1,
+          "stereotype": 0,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -9865,7 +9872,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
@@ -9881,8 +9888,8 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 1,
+          "shaming": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 0
         },
@@ -9899,7 +9906,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
           "violence": 1
         },
@@ -9951,7 +9958,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 0,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 0
         },
         "correct": false,
@@ -9967,11 +9974,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
           "violence": 0
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -9984,8 +9991,8 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
-          "objectification": 0,
+          "stereotype": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -10020,9 +10027,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -10037,9 +10044,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -10069,7 +10076,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 1
         },
@@ -10086,7 +10093,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 1
         },
@@ -10120,7 +10127,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
           "violence": 1
         },
@@ -10136,10 +10143,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -10171,11 +10178,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 1
       },
       {
@@ -10188,11 +10195,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
-          "objectification": 0,
-          "violence": 0
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -10204,7 +10211,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 0,
           "objectification": 1,
           "violence": 1
@@ -10241,9 +10248,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -10258,7 +10265,7 @@
           "shaming": 1,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -10275,9 +10282,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -10289,10 +10296,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -10306,12 +10313,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 0,
           "objectification": 1,
           "violence": 0
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 1
       },
       {
@@ -10340,9 +10347,9 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -10357,7 +10364,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -10375,11 +10382,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
-          "objectification": 1,
-          "violence": 1
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -10391,12 +10398,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -10410,8 +10417,8 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -10428,7 +10435,7 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -10444,7 +10451,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -10510,8 +10517,8 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 0,
+          "shaming": 0,
+          "stereotype": 1,
           "objectification": 0,
           "violence": 1
         },
@@ -10544,10 +10551,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 1,
+          "shaming": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -10561,7 +10568,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
           "violence": 0
@@ -10578,8 +10585,8 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 1,
+          "shaming": 0,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 1
         },
@@ -10595,7 +10602,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -10629,12 +10636,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -10649,7 +10656,7 @@
           "shaming": 1,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -10666,7 +10673,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -10680,7 +10687,7 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -10716,8 +10723,8 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 0,
-          "objectification": 0,
-          "violence": 0
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -10751,7 +10758,7 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -10765,10 +10772,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 1,
-          "objectification": 0,
-          "violence": 1
+          "shaming": 1,
+          "stereotype": 0,
+          "objectification": 1,
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -10782,12 +10789,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -10799,9 +10806,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -10817,8 +10824,8 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
-          "objectification": 1,
+          "stereotype": 1,
+          "objectification": 0,
           "violence": 0
         },
         "correct": false,
@@ -10835,8 +10842,8 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -10850,7 +10857,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -10869,8 +10876,8 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
-          "violence": 1
+          "objectification": 0,
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -10936,7 +10943,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 1
         },
@@ -10955,7 +10962,7 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -10972,7 +10979,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -11003,7 +11010,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 0
@@ -11037,9 +11044,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -11054,10 +11061,10 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 1,
+          "shaming": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -11073,8 +11080,8 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 0,
-          "objectification": 1,
-          "violence": 0
+          "objectification": 0,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -11141,10 +11148,10 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 1
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -11176,7 +11183,7 @@
           "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -11210,9 +11217,9 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -11241,10 +11248,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "shaming": 1,
+          "stereotype": 0,
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -11261,7 +11268,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -11278,7 +11285,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -11294,7 +11301,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -11309,9 +11316,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 0
         },
         "correct": false,
@@ -11326,10 +11333,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -11345,7 +11352,7 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -11361,7 +11368,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
           "violence": 0
         },
@@ -11378,8 +11385,8 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 0,
-          "objectification": 0,
+          "stereotype": 1,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -11445,12 +11452,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 0,
           "objectification": 1,
           "violence": 0
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 1
       },
       {
@@ -11463,9 +11470,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -11479,12 +11486,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -11515,8 +11522,8 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -11566,7 +11573,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -11598,7 +11605,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
           "violence": 0
@@ -11618,9 +11625,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -11633,9 +11640,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
-          "objectification": 1,
-          "violence": 1
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -11686,7 +11693,7 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -11718,11 +11725,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 1
       },
       {
@@ -11734,9 +11741,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -11802,10 +11809,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -11822,7 +11829,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -11837,7 +11844,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 1
         },
@@ -11888,11 +11895,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
           "violence": 0
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -11921,7 +11928,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 0,
           "objectification": 1,
           "violence": 1
@@ -11939,7 +11946,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 0
         },
@@ -11956,7 +11963,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
@@ -11973,7 +11980,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 1
         },
@@ -11991,7 +11998,7 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 0
         },
         "correct": false,
@@ -12009,9 +12016,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 1
       },
       {
@@ -12023,9 +12030,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -12075,11 +12082,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
           "violence": 0
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -12108,10 +12115,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -12128,7 +12135,7 @@
           "shaming": 1,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -12143,7 +12150,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 1
         },
@@ -12159,7 +12166,7 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -12177,9 +12184,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -12196,7 +12203,7 @@
           "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -12210,9 +12217,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 0,
-          "objectification": 1,
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -12227,10 +12234,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -12281,9 +12288,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -12296,7 +12303,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
@@ -12313,7 +12320,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
@@ -12364,9 +12371,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -12415,7 +12422,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 1
         },
@@ -12448,8 +12455,8 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 0,
+          "shaming": 0,
+          "stereotype": 1,
           "objectification": 0,
           "violence": 1
         },
@@ -12482,7 +12489,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -12499,10 +12506,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -12516,12 +12523,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 1,
+          "shaming": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -12533,7 +12540,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 0,
           "violence": 0
@@ -12550,9 +12557,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 1,
-          "objectification": 1,
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -12567,7 +12574,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 0,
           "violence": 0
@@ -12586,8 +12593,8 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 0,
-          "objectification": 1,
-          "violence": 1
+          "objectification": 0,
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -12601,7 +12608,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
           "violence": 1
@@ -12621,7 +12628,7 @@
           "shaming": 1,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -12706,7 +12713,7 @@
           "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -12720,10 +12727,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 1,
-          "objectification": 1,
-          "violence": 0
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -12737,10 +12744,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
-          "violence": 1
+          "objectification": 0,
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -12757,13 +12764,30 @@
           "shaming": 1,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
       },
       {
         "image_id": "9808",
+        "ground_truth": {
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
+        },
+        "prediction": {
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 1
+        },
+        "correct": false,
+        "misogynous": 0
+      },
+      {
+        "image_id": "6568",
         "ground_truth": {
           "shaming": 0,
           "stereotype": 0,
@@ -12780,23 +12804,6 @@
         "misogynous": 0
       },
       {
-        "image_id": "6568",
-        "ground_truth": {
-          "shaming": 0,
-          "stereotype": 0,
-          "objectification": 0,
-          "violence": 0
-        },
-        "prediction": {
-          "shaming": 1,
-          "stereotype": 0,
-          "objectification": 0,
-          "violence": 0
-        },
-        "correct": false,
-        "misogynous": 0
-      },
-      {
         "image_id": "9912",
         "ground_truth": {
           "shaming": 0,
@@ -12807,7 +12814,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 0,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -12825,7 +12832,7 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -12857,9 +12864,9 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -12874,9 +12881,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -12893,7 +12900,7 @@
           "shaming": 1,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -12910,9 +12917,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -12924,9 +12931,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -12942,7 +12949,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
           "violence": 1
         },
@@ -12961,7 +12968,7 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -12976,7 +12983,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
           "violence": 1
         },
@@ -13027,9 +13034,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
-          "objectification": 0,
-          "violence": 1
+          "stereotype": 0,
+          "objectification": 1,
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -13043,7 +13050,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -13062,7 +13069,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 0
         },
         "correct": false,
@@ -13094,8 +13101,8 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 0,
+          "shaming": 1,
+          "stereotype": 1,
           "objectification": 1,
           "violence": 1
         },
@@ -13128,12 +13135,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 0,
+          "shaming": 1,
+          "stereotype": 1,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -13145,7 +13152,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
           "violence": 1
@@ -13214,11 +13221,11 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
-          "objectification": 0,
+          "stereotype": 0,
+          "objectification": 1,
           "violence": 0
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 1
       },
       {
@@ -13230,7 +13237,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 0
@@ -13247,10 +13254,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -13281,7 +13288,7 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -13298,7 +13305,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 0
@@ -13316,9 +13323,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -13333,8 +13340,8 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
-          "objectification": 0,
+          "stereotype": 1,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -13350,9 +13357,9 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -13383,10 +13390,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -13417,10 +13424,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -13437,7 +13444,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -13451,7 +13458,7 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -13468,7 +13475,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
           "violence": 1
@@ -13486,11 +13493,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
           "violence": 0
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -13503,9 +13510,9 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -13537,8 +13544,8 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
-          "objectification": 1,
+          "stereotype": 0,
+          "objectification": 0,
           "violence": 0
         },
         "correct": false,
@@ -13554,9 +13561,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
-          "objectification": 1,
-          "violence": 1
+          "stereotype": 1,
+          "objectification": 0,
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -13573,9 +13580,9 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -13589,7 +13596,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -13604,9 +13611,9 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 0,
-          "objectification": 1,
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
           "violence": 0
         },
         "correct": false,
@@ -13638,7 +13645,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -13658,9 +13665,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -13673,11 +13680,11 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
-          "objectification": 0,
-          "violence": 1
+          "stereotype": 0,
+          "objectification": 1,
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -13691,7 +13698,7 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -13707,9 +13714,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -13723,12 +13730,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -13742,7 +13749,7 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 0
         },
         "correct": false,
@@ -13760,7 +13767,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -13792,9 +13799,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -13828,7 +13835,7 @@
           "shaming": 1,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -13842,10 +13849,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -13860,9 +13867,9 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -13877,7 +13884,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
           "violence": 1
         },
@@ -13911,7 +13918,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
@@ -13927,7 +13934,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
           "violence": 1
@@ -13962,11 +13969,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
           "violence": 0
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -13980,10 +13987,10 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 1
       },
       {
@@ -13995,12 +14002,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -14032,7 +14039,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -14049,7 +14056,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -14063,10 +14070,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 0,
+          "shaming": 1,
+          "stereotype": 1,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -14115,7 +14122,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 1
         },
@@ -14134,7 +14141,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -14149,9 +14156,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -14166,9 +14173,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
-          "objectification": 1,
-          "violence": 1
+          "stereotype": 0,
+          "objectification": 0,
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -14182,7 +14189,7 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -14200,7 +14207,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 1
         },
@@ -14233,7 +14240,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 0,
           "objectification": 1,
           "violence": 1
@@ -14284,7 +14291,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -14301,10 +14308,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -14318,7 +14325,7 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -14336,9 +14343,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -14352,12 +14359,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -14370,9 +14377,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -14437,7 +14444,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
           "violence": 0
@@ -14457,7 +14464,7 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -14488,12 +14495,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 1
       },
       {
@@ -14506,8 +14513,8 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
-          "objectification": 1,
+          "stereotype": 1,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -14522,7 +14529,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -14541,8 +14548,8 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -14607,10 +14614,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -14627,9 +14634,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -14658,10 +14665,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "shaming": 1,
+          "stereotype": 0,
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -14712,7 +14719,7 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -14744,9 +14751,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -14779,10 +14786,10 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 1
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -14797,9 +14804,9 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 1
       },
       {
@@ -14830,7 +14837,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -14864,7 +14871,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -14881,8 +14888,8 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 1,
-          "violence": 0
+          "objectification": 0,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -14896,10 +14903,10 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -14915,10 +14922,10 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
-          "violence": 1
+          "objectification": 0,
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -14948,7 +14955,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 1
         },
@@ -14965,8 +14972,8 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
-          "objectification": 0,
+          "stereotype": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -15000,10 +15007,10 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
-          "violence": 1
+          "objectification": 0,
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -15016,9 +15023,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -15033,9 +15040,9 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -15049,8 +15056,8 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 1,
+          "shaming": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 1
         },
@@ -15069,7 +15076,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -15086,9 +15093,9 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -15101,7 +15108,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 0
         },
@@ -15119,7 +15126,7 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 0
         },
         "correct": false,
@@ -15134,12 +15141,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 1,
-          "objectification": 1,
+          "shaming": 0,
+          "stereotype": 0,
+          "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -15171,7 +15178,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -15188,9 +15195,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -15202,9 +15209,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 0
         },
         "correct": false,
@@ -15222,9 +15229,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -15237,9 +15244,9 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
-          "objectification": 0,
-          "violence": 0
+          "stereotype": 0,
+          "objectification": 1,
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -15256,7 +15263,7 @@
           "shaming": 1,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -15287,9 +15294,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 0,
-          "objectification": 1,
+          "shaming": 0,
+          "stereotype": 1,
+          "objectification": 0,
           "violence": 0
         },
         "correct": false,
@@ -15321,7 +15328,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -15339,8 +15346,8 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
-          "objectification": 1,
+          "stereotype": 0,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -15355,12 +15362,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -15375,9 +15382,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -15392,7 +15399,7 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -15407,11 +15414,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
-          "objectification": 0,
-          "violence": 0
+          "stereotype": 1,
+          "objectification": 1,
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -15423,10 +15430,10 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -15441,11 +15448,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -15474,12 +15481,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -15511,7 +15518,7 @@
           "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -15525,10 +15532,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 0,
-          "objectification": 1,
-          "violence": 1
+          "objectification": 0,
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -15543,7 +15550,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 1
         },
@@ -15559,7 +15566,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -15576,12 +15583,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -15595,7 +15602,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -15610,12 +15617,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 1,
+          "shaming": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -15627,9 +15634,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -15644,10 +15651,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -15661,9 +15668,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -15695,10 +15702,10 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -15713,9 +15720,9 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -15729,7 +15736,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 0,
           "violence": 0
@@ -15747,8 +15754,8 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
-          "objectification": 1,
+          "stereotype": 0,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -15781,8 +15788,8 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
-          "objectification": 0,
+          "stereotype": 0,
+          "objectification": 1,
           "violence": 0
         },
         "correct": false,
@@ -15800,9 +15807,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -15814,12 +15821,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -15833,10 +15840,10 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
-          "violence": 1
+          "objectification": 0,
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -15849,9 +15856,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -15867,7 +15874,7 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -15884,10 +15891,10 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 1
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -15936,7 +15943,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -15951,9 +15958,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 0
@@ -15984,7 +15991,7 @@
           "violence": 1
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -16021,7 +16028,7 @@
           "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -16035,10 +16042,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 1,
+          "shaming": 1,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -16055,7 +16062,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -16070,7 +16077,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
           "violence": 1
         },
@@ -16089,7 +16096,7 @@
           "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -16104,9 +16111,9 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -16240,7 +16247,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
           "violence": 1
         },
@@ -16259,9 +16266,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -16274,7 +16281,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 1
         },
@@ -16292,7 +16299,7 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 1,
-          "objectification": 1,
+          "objectification": 0,
           "violence": 1
         },
         "correct": false,
@@ -16307,7 +16314,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 0
@@ -16361,7 +16368,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -16376,9 +16383,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -16410,7 +16417,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
           "violence": 1
         },
@@ -16426,9 +16433,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -16446,9 +16453,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -16460,8 +16467,8 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
-          "stereotype": 1,
+          "shaming": 0,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 1
         },
@@ -16479,7 +16486,7 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -16496,10 +16503,10 @@
         "prediction": {
           "shaming": 0,
           "stereotype": 0,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 0
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -16511,7 +16518,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -16528,7 +16535,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -16546,7 +16553,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 1
         },
@@ -16563,11 +16570,11 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -16599,9 +16606,9 @@
           "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -16614,7 +16621,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 1,
           "violence": 1
         },
@@ -16647,10 +16654,10 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
-          "stereotype": 1,
+          "shaming": 1,
+          "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -16682,7 +16689,7 @@
         },
         "prediction": {
           "shaming": 1,
-          "stereotype": 1,
+          "stereotype": 0,
           "objectification": 0,
           "violence": 1
         },
@@ -16698,12 +16705,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 0,
-          "objectification": 0,
-          "violence": 0
+          "objectification": 1,
+          "violence": 1
         },
-        "correct": true,
+        "correct": false,
         "misogynous": 0
       },
       {
@@ -16733,7 +16740,7 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
           "violence": 1
         },
@@ -16767,9 +16774,9 @@
         },
         "prediction": {
           "shaming": 0,
-          "stereotype": 0,
+          "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1
@@ -16783,7 +16790,7 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
           "objectification": 1,
           "violence": 1
@@ -16820,7 +16827,7 @@
           "shaming": 1,
           "stereotype": 0,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -16837,7 +16844,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -16888,7 +16895,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 1,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 0
@@ -16921,8 +16928,8 @@
         "prediction": {
           "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
-          "violence": 1
+          "objectification": 1,
+          "violence": 0
         },
         "correct": false,
         "misogynous": 1
@@ -16953,12 +16960,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
-          "objectification": 1,
-          "violence": 1
+          "objectification": 0,
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 0
       },
       {
@@ -16970,12 +16977,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 1
+          "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -16987,9 +16994,9 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 0,
+          "shaming": 1,
           "stereotype": 1,
-          "objectification": 0,
+          "objectification": 1,
           "violence": 1
         },
         "correct": false,
@@ -17021,12 +17028,12 @@
           "violence": 0
         },
         "prediction": {
-          "shaming": 1,
+          "shaming": 0,
           "stereotype": 0,
           "objectification": 0,
           "violence": 0
         },
-        "correct": false,
+        "correct": true,
         "misogynous": 1
       },
       {
@@ -17041,7 +17048,7 @@
           "shaming": 0,
           "stereotype": 1,
           "objectification": 0,
-          "violence": 0
+          "violence": 1
         },
         "correct": false,
         "misogynous": 1

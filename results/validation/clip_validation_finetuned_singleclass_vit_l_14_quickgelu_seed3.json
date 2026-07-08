@@ -8,11 +8,11 @@
       "misogynistic meme",
       "not misogynistic meme"
     ],
-    "exact_match_accuracy": 0.74,
-    "precision": 0.7536525974025974,
-    "recall": 0.74,
-    "f1": 0.7467639035311763,
-    "avg_latency_s": 0.00501502465736121,
+    "exact_match_accuracy": 0.867,
+    "precision": 0.8670132124756491,
+    "recall": 0.867,
+    "f1": 0.8670066061874877,
+    "avg_latency_s": 0.012924778207205235,
     "refusal_rate": 0.0,
     "label_prevalence": {
       "misogynous": 500,
@@ -24,7000 +24,7000 @@
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5053
+        "confidence": 0.9082
       },
       {
         "image_id": "5498",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5056
+        "confidence": 0.9392
       },
       {
         "image_id": "5697",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5028
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.8193
       },
       {
         "image_id": "5182",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5046
+        "confidence": 0.9344
       },
       {
         "image_id": "6162",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5036
+        "confidence": 0.8626
       },
       {
         "image_id": "6772",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5001
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.693
       },
       {
         "image_id": "3932",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5027
+        "confidence": 0.9069
       },
       {
         "image_id": "5457",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5002
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8296
       },
       {
         "image_id": "10007",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5015
+        "confidence": 0.671
       },
       {
         "image_id": "7391",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.501
+        "confidence": 0.71
       },
       {
         "image_id": "2991",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5053
+        "confidence": 0.955
       },
       {
         "image_id": "6324",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.502
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.5927
       },
       {
         "image_id": "1804",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5041
+        "confidence": 0.6322
       },
       {
         "image_id": "552",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.501
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.5222
       },
       {
         "image_id": "13261",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5065
+        "confidence": 0.9502
       },
       {
         "image_id": "10285",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5055
+        "confidence": 0.9268
       },
       {
         "image_id": "6225",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5025
+        "confidence": 0.7581
       },
       {
         "image_id": "7602",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5037
+        "confidence": 0.8271
       },
       {
         "image_id": "5988",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5041
+        "confidence": 0.9332
       },
       {
         "image_id": "991",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5024
+        "confidence": 0.8146
       },
       {
         "image_id": "10270",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5062
+        "confidence": 0.8945
       },
       {
         "image_id": "2588",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5055
+        "confidence": 0.9053
       },
       {
         "image_id": "132",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.507
+        "confidence": 0.887
       },
       {
         "image_id": "10293",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5032
+        "confidence": 0.72
       },
       {
         "image_id": "6391",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5027
+        "confidence": 0.8478
       },
       {
         "image_id": "7197",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5031
+        "confidence": 0.5528
       },
       {
         "image_id": "7184",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5007
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7347
       },
       {
         "image_id": "1118",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5074
+        "confidence": 0.8492
       },
       {
         "image_id": "3289",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5001
+        "confidence": 0.6861
       },
       {
         "image_id": "3029",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5005
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.5282
       },
       {
         "image_id": "865",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5063
+        "confidence": 0.9645
       },
       {
         "image_id": "10033",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5003
+        "confidence": 0.6981
       },
       {
         "image_id": "4599",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5002
+        "confidence": 0.769
       },
       {
         "image_id": "4937",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5022
+        "confidence": 0.861
       },
       {
         "image_id": "9799",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5023
+        "confidence": 0.8424
       },
       {
         "image_id": "4010",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5008
+        "confidence": 0.798
       },
       {
         "image_id": "2460",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5026
+        "confidence": 0.7274
       },
       {
         "image_id": "220",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5037
+        "confidence": 0.9323
       },
       {
         "image_id": "8245",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5015
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.8554
       },
       {
         "image_id": "4824",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5009
+        "confidence": 0.5697
       },
       {
         "image_id": "9923",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5038
+        "confidence": 0.8617
       },
       {
         "image_id": "1317",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5045
+        "confidence": 0.8485
       },
       {
         "image_id": "6504",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5031
+        "confidence": 0.7742
       },
       {
         "image_id": "2732",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8814
       },
       {
         "image_id": "5201",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5033
+        "confidence": 0.8649
       },
       {
         "image_id": "11512",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.501
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.6337
       },
       {
         "image_id": "5025",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5017
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8851
       },
       {
         "image_id": "6119",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5019
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7381
       },
       {
         "image_id": "3990",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5027
+        "confidence": 0.8026
       },
       {
         "image_id": "3238",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5046
+        "confidence": 0.9059
       },
       {
         "image_id": "22",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5034
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.6889
       },
       {
         "image_id": "8806",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5051
+        "confidence": 0.9306
       },
       {
         "image_id": "4576",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5029
+        "confidence": 0.8059
       },
       {
         "image_id": "3739",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5078
+        "confidence": 0.9708
       },
       {
         "image_id": "4296",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.5002
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.7557
       },
       {
         "image_id": "6483",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5035
+        "confidence": 0.8893
       },
       {
         "image_id": "5967",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5003
+        "confidence": 0.5611
       },
       {
         "image_id": "8308",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5013
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.9066
       },
       {
         "image_id": "10574",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5033
+        "confidence": 0.9283
       },
       {
         "image_id": "1892",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5035
+        "confidence": 0.8685
       },
       {
         "image_id": "1381",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.503
+        "confidence": 0.91
       },
       {
         "image_id": "1590",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
-        "confidence": 0.502
+        "prediction": 1,
+        "correct": false,
+        "confidence": 0.5457
       },
       {
         "image_id": "8909",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5015
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8105
       },
       {
         "image_id": "3462",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5027
+        "confidence": 0.6942
       },
       {
         "image_id": "3552",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5008
+        "confidence": 0.8085
       },
       {
         "image_id": "8068",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5025
+        "confidence": 0.9381
       },
       {
         "image_id": "732",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5025
+        "confidence": 0.8052
       },
       {
         "image_id": "11600",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5042
+        "confidence": 0.5885
       },
       {
         "image_id": "8180",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5007
+        "confidence": 0.5708
       },
       {
         "image_id": "6190",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.501
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8175
       },
       {
         "image_id": "464",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5014
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.5576
       },
       {
         "image_id": "9711",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5033
+        "confidence": 0.697
       },
       {
         "image_id": "7635",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5024
+        "confidence": 0.6308
       },
       {
         "image_id": "8982",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5054
+        "confidence": 0.9803
       },
       {
         "image_id": "83",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5051
+        "confidence": 0.7566
       },
       {
         "image_id": "8730",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5002
+        "confidence": 0.7821
       },
       {
         "image_id": "3235",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5037
+        "confidence": 0.7773
       },
       {
         "image_id": "5488",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.502
+        "confidence": 0.699
       },
       {
         "image_id": "7713",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.5004
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.6568
       },
       {
         "image_id": "3791",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5014
+        "confidence": 0.6091
       },
       {
         "image_id": "7674",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5036
+        "confidence": 0.9722
       },
       {
         "image_id": "6131",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5052
+        "confidence": 0.5237
       },
       {
         "image_id": "7491",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5011
+        "confidence": 0.6603
       },
       {
         "image_id": "2814",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5007
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.759
       },
       {
         "image_id": "1023",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5014
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.5799
       },
       {
         "image_id": "9007",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5022
+        "confidence": 0.5905
       },
       {
         "image_id": "11694",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5005
+        "confidence": 0.7687
       },
       {
         "image_id": "8039",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5034
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.6722
       },
       {
         "image_id": "8380",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5051
+        "confidence": 0.5693
       },
       {
         "image_id": "10174",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5032
+        "confidence": 0.8848
       },
       {
         "image_id": "1599",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5033
+        "confidence": 0.7573
       },
       {
         "image_id": "13360",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5062
+        "confidence": 0.8452
       },
       {
         "image_id": "4421",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5062
+        "confidence": 0.9176
       },
       {
         "image_id": "7865",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5067
+        "confidence": 0.9704
       },
       {
         "image_id": "1614",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5076
+        "confidence": 0.9504
       },
       {
         "image_id": "9340",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5036
+        "confidence": 0.6972
       },
       {
         "image_id": "7487",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5053
+        "confidence": 0.7454
       },
       {
         "image_id": "2645",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5005
+        "confidence": 0.8145
       },
       {
         "image_id": "5302",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5064
+        "confidence": 0.9625
       },
       {
         "image_id": "10040",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5025
+        "confidence": 0.8168
       },
       {
         "image_id": "2208",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5021
+        "confidence": 0.6049
       },
       {
         "image_id": "5758",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5031
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.545
       },
       {
         "image_id": "2063",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5018
+        "confidence": 0.8129
       },
       {
         "image_id": "408",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5014
+        "confidence": 0.8259
       },
       {
         "image_id": "9835",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5025
+        "confidence": 0.8581
       },
       {
         "image_id": "6883",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5065
+        "confidence": 0.9352
       },
       {
         "image_id": "9484",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5046
+        "confidence": 0.8213
       },
       {
         "image_id": "5474",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5029
+        "confidence": 0.9076
       },
       {
         "image_id": "3201",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5072
+        "confidence": 0.959
       },
       {
         "image_id": "181",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5014
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8543
       },
       {
         "image_id": "2592",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5017
+        "confidence": 0.8527
       },
       {
         "image_id": "9192",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5012
+        "confidence": 0.8622
       },
       {
         "image_id": "13264",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5035
+        "confidence": 0.8181
       },
       {
         "image_id": "4034",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5061
+        "confidence": 0.8624
       },
       {
         "image_id": "9516",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.502
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7635
       },
       {
         "image_id": "6615",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5007
+        "confidence": 0.8883
       },
       {
         "image_id": "10421",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5054
+        "confidence": 0.9095
       },
       {
         "image_id": "3663",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5034
+        "confidence": 0.7143
       },
       {
         "image_id": "1490",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.5038
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.5041
       },
       {
         "image_id": "7794",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5024
+        "confidence": 0.5931
       },
       {
         "image_id": "8952",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.506
+        "confidence": 0.9045
       },
       {
         "image_id": "35",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5002
+        "confidence": 0.8817
       },
       {
         "image_id": "4683",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5042
+        "confidence": 0.7535
       },
       {
         "image_id": "8942",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5034
+        "confidence": 0.7497
       },
       {
         "image_id": "3748",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5002
+        "confidence": 0.7736
       },
       {
         "image_id": "6644",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5016
+        "confidence": 0.7314
       },
       {
         "image_id": "8322",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.502
+        "confidence": 0.9135
       },
       {
         "image_id": "9678",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5002
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.6137
       },
       {
         "image_id": "9444",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5048
+        "confidence": 0.96
       },
       {
         "image_id": "11664",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.502
+        "confidence": 0.7691
       },
       {
         "image_id": "11679",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5038
+        "confidence": 0.9513
       },
       {
         "image_id": "9989",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5027
+        "confidence": 0.7647
       },
       {
         "image_id": "1863",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5031
+        "confidence": 0.9017
       },
       {
         "image_id": "2210",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5005
+        "confidence": 0.7971
       },
       {
         "image_id": "6385",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5001
+        "confidence": 0.9113
       },
       {
         "image_id": "4530",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5011
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.5651
       },
       {
         "image_id": "11596",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5021
+        "confidence": 0.7607
       },
       {
         "image_id": "2522",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5064
+        "confidence": 0.9204
       },
       {
         "image_id": "5800",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5048
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.6558
       },
       {
         "image_id": "9964",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5004
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.6985
       },
       {
         "image_id": "8977",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5005
+        "confidence": 0.5637
       },
       {
         "image_id": "4073",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5055
+        "confidence": 0.9087
       },
       {
         "image_id": "304",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5018
+        "confidence": 0.8125
       },
       {
         "image_id": "7833",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5001
+        "confidence": 0.7283
       },
       {
         "image_id": "13117",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5085
+        "confidence": 0.9377
       },
       {
         "image_id": "6981",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5036
+        "confidence": 0.8635
       },
       {
         "image_id": "10479",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5009
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.9246
       },
       {
         "image_id": "10697",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5036
+        "confidence": 0.8553
       },
       {
         "image_id": "10555",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5051
+        "confidence": 0.9275
       },
       {
         "image_id": "6393",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5003
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8063
       },
       {
         "image_id": "2367",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
-        "confidence": 0.5039
+        "prediction": 1,
+        "correct": false,
+        "confidence": 0.793
       },
       {
         "image_id": "9375",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5019
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.6103
       },
       {
         "image_id": "3414",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5004
+        "confidence": 0.8314
       },
       {
         "image_id": "5220",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5016
+        "confidence": 0.8086
       },
       {
         "image_id": "9990",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.501
+        "confidence": 0.5693
       },
       {
         "image_id": "9482",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5004
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.5691
       },
       {
         "image_id": "10564",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.5002
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.5102
       },
       {
         "image_id": "4639",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5002
+        "confidence": 0.7128
       },
       {
         "image_id": "6039",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.501
+        "confidence": 0.8021
       },
       {
         "image_id": "4610",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.5008
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.6186
       },
       {
         "image_id": "7700",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5007
+        "confidence": 0.8533
       },
       {
         "image_id": "5006",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5052
+        "confidence": 0.904
       },
       {
         "image_id": "11558",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5024
+        "confidence": 0.976
       },
       {
         "image_id": "11399",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.5004
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.566
       },
       {
         "image_id": "2905",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5043
+        "confidence": 0.8136
       },
       {
         "image_id": "9126",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5026
+        "confidence": 0.6335
       },
       {
         "image_id": "9849",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5012
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8101
       },
       {
         "image_id": "2746",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5089
+        "confidence": 0.9056
       },
       {
         "image_id": "11470",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5036
+        "confidence": 0.8723
       },
       {
         "image_id": "10305",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5021
+        "confidence": 0.6867
       },
       {
         "image_id": "555",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5002
+        "confidence": 0.7719
       },
       {
         "image_id": "13237",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.503
+        "confidence": 0.8906
       },
       {
         "image_id": "6416",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5037
+        "confidence": 0.7052
       },
       {
         "image_id": "9532",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5033
+        "confidence": 0.8194
       },
       {
         "image_id": "5492",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5005
+        "confidence": 0.8143
       },
       {
         "image_id": "9011",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.507
+        "confidence": 0.8968
       },
       {
         "image_id": "10425",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5002
+        "confidence": 0.5571
       },
       {
         "image_id": "5404",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5038
+        "confidence": 0.7475
       },
       {
         "image_id": "1675",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5025
+        "confidence": 0.7504
       },
       {
         "image_id": "8664",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5024
+        "confidence": 0.715
       },
       {
         "image_id": "3059",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5017
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.6978
       },
       {
         "image_id": "1940",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5003
+        "confidence": 0.8174
       },
       {
         "image_id": "9813",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5002
+        "confidence": 0.6577
       },
       {
         "image_id": "3033",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5017
+        "confidence": 0.8567
       },
       {
         "image_id": "6260",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5025
+        "confidence": 0.5294
       },
       {
         "image_id": "8207",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5031
+        "confidence": 0.9626
       },
       {
         "image_id": "4519",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5037
+        "confidence": 0.9609
       },
       {
         "image_id": "8135",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5005
+        "confidence": 0.7759
       },
       {
         "image_id": "3432",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5025
+        "confidence": 0.765
       },
       {
         "image_id": "3258",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5025
+        "confidence": 0.824
       },
       {
         "image_id": "9617",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5029
+        "confidence": 0.7589
       },
       {
         "image_id": "4821",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5015
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.5511
       },
       {
         "image_id": "9495",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
-        "confidence": 0.5018
+        "prediction": 1,
+        "correct": false,
+        "confidence": 0.6971
       },
       {
         "image_id": "3852",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5046
+        "confidence": 0.6262
       },
       {
         "image_id": "3241",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5013
+        "confidence": 0.68
       },
       {
         "image_id": "8852",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5019
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.9046
       },
       {
         "image_id": "5296",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5001
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.6971
       },
       {
         "image_id": "10364",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5041
+        "confidence": 0.7217
       },
       {
         "image_id": "3689",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5048
+        "confidence": 0.8038
       },
       {
         "image_id": "7371",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5012
+        "confidence": 0.7647
       },
       {
         "image_id": "4460",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5008
+        "confidence": 0.7511
       },
       {
         "image_id": "4302",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5006
+        "confidence": 0.9433
       },
       {
         "image_id": "2964",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.501
+        "confidence": 0.8348
       },
       {
         "image_id": "585",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5001
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.6956
       },
       {
         "image_id": "2903",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5029
+        "confidence": 0.7076
       },
       {
         "image_id": "1165",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
-        "confidence": 0.5009
+        "prediction": 1,
+        "correct": false,
+        "confidence": 0.6008
       },
       {
         "image_id": "5854",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5018
+        "confidence": 0.8957
       },
       {
         "image_id": "10042",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.507
+        "confidence": 0.8113
       },
       {
         "image_id": "8473",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5033
+        "confidence": 0.5402
       },
       {
         "image_id": "4690",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5019
+        "confidence": 0.8577
       },
       {
         "image_id": "8737",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5002
+        "confidence": 0.8768
       },
       {
         "image_id": "14035",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.505
+        "confidence": 0.7971
       },
       {
         "image_id": "1521",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5068
+        "confidence": 0.9493
       },
       {
         "image_id": "8467",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5065
+        "confidence": 0.8761
       },
       {
         "image_id": "2192",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5015
+        "confidence": 0.9485
       },
       {
         "image_id": "6319",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5041
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7281
       },
       {
         "image_id": "6839",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5002
+        "confidence": 0.7457
       },
       {
         "image_id": "2671",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.6857
       },
       {
         "image_id": "6801",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8422
       },
       {
         "image_id": "6424",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5034
+        "confidence": 0.8881
       },
       {
         "image_id": "10284",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5082
+        "confidence": 0.9629
       },
       {
         "image_id": "52",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5015
+        "confidence": 0.6773
       },
       {
         "image_id": "5276",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5046
+        "confidence": 0.5644
       },
       {
         "image_id": "8415",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5021
+        "confidence": 0.5643
       },
       {
         "image_id": "3121",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5001
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7556
       },
       {
         "image_id": "8422",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5083
+        "confidence": 0.7029
       },
       {
         "image_id": "2008",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5026
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7
       },
       {
         "image_id": "10404",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5024
+        "confidence": 0.923
       },
       {
         "image_id": "9880",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5029
+        "confidence": 0.9275
       },
       {
         "image_id": "9459",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5023
+        "confidence": 0.7009
       },
       {
         "image_id": "1938",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.501
+        "confidence": 0.6128
       },
       {
         "image_id": "10251",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5048
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.6368
       },
       {
         "image_id": "3669",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5091
+        "confidence": 0.9777
       },
       {
         "image_id": "4765",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5048
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.6598
       },
       {
         "image_id": "2377",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5019
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.723
       },
       {
         "image_id": "5766",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5003
+        "confidence": 0.5295
       },
       {
         "image_id": "10320",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5069
+        "confidence": 0.6398
       },
       {
         "image_id": "5138",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5026
+        "confidence": 0.8369
       },
       {
         "image_id": "5299",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5001
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.6259
       },
       {
         "image_id": "5241",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5039
+        "confidence": 0.8386
       },
       {
         "image_id": "11327",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5
+        "confidence": 0.6513
       },
       {
         "image_id": "3051",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5021
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8579
       },
       {
         "image_id": "5026",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5011
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8368
       },
       {
         "image_id": "5538",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5007
+        "confidence": 0.6743
       },
       {
         "image_id": "6454",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5007
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.8119
       },
       {
         "image_id": "1642",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5019
+        "confidence": 0.656
       },
       {
         "image_id": "8693",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5035
+        "confidence": 0.7899
       },
       {
         "image_id": "2842",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5023
+        "confidence": 0.8673
       },
       {
         "image_id": "6889",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5065
+        "confidence": 0.872
       },
       {
         "image_id": "7076",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5017
+        "confidence": 0.7715
       },
       {
         "image_id": "11055",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5051
+        "confidence": 0.7633
       },
       {
         "image_id": "7728",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5035
+        "confidence": 0.9341
       },
       {
         "image_id": "5361",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5018
+        "confidence": 0.826
       },
       {
         "image_id": "8212",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5012
+        "confidence": 0.8504
       },
       {
         "image_id": "2931",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5016
+        "confidence": 0.9283
       },
       {
         "image_id": "2699",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5008
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8326
       },
       {
         "image_id": "10877",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5006
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8763
       },
       {
         "image_id": "1696",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5055
+        "confidence": 0.8698
       },
       {
         "image_id": "11247",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5007
+        "confidence": 0.574
       },
       {
         "image_id": "6227",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5022
+        "confidence": 0.7783
       },
       {
         "image_id": "11319",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5003
+        "confidence": 0.8191
       },
       {
         "image_id": "9619",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5045
+        "confidence": 0.6136
       },
       {
         "image_id": "3466",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5025
+        "confidence": 0.9411
       },
       {
         "image_id": "5300",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5001
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8846
       },
       {
         "image_id": "6900",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5032
+        "confidence": 0.6826
       },
       {
         "image_id": "2571",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.503
+        "confidence": 0.8169
       },
       {
         "image_id": "3866",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.506
+        "confidence": 0.8597
       },
       {
         "image_id": "8521",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5021
+        "confidence": 0.7461
       },
       {
         "image_id": "3457",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.501
+        "confidence": 0.6291
       },
       {
         "image_id": "10413",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.504
+        "confidence": 0.5909
       },
       {
         "image_id": "7626",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5005
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.5892
       },
       {
         "image_id": "1935",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.506
+        "confidence": 0.8892
       },
       {
         "image_id": "7034",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5034
+        "confidence": 0.9242
       },
       {
         "image_id": "691",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5045
+        "confidence": 0.8661
       },
       {
         "image_id": "200",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5017
+        "confidence": 0.5043
       },
       {
         "image_id": "6781",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5039
+        "confidence": 0.7073
       },
       {
         "image_id": "1707",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5009
+        "confidence": 0.8541
       },
       {
         "image_id": "5764",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5028
+        "confidence": 0.5688
       },
       {
         "image_id": "255",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5007
+        "confidence": 0.944
       },
       {
         "image_id": "1139",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5026
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.5918
       },
       {
         "image_id": "6199",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5011
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.5575
       },
       {
         "image_id": "10829",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5034
+        "confidence": 0.735
       },
       {
         "image_id": "350",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5022
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.5713
       },
       {
         "image_id": "9372",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5064
+        "confidence": 0.9194
       },
       {
         "image_id": "10583",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5057
+        "confidence": 0.6741
       },
       {
         "image_id": "8927",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5062
+        "confidence": 0.9367
       },
       {
         "image_id": "133",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5033
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7156
       },
       {
         "image_id": "11119",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5052
+        "confidence": 0.6836
       },
       {
         "image_id": "11688",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5016
+        "confidence": 0.6118
       },
       {
         "image_id": "1298",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5007
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.553
       },
       {
         "image_id": "8955",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5002
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8016
       },
       {
         "image_id": "9003",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5041
+        "confidence": 0.9534
       },
       {
         "image_id": "3746",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5012
+        "confidence": 0.6579
       },
       {
         "image_id": "3272",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5017
+        "confidence": 0.7295
       },
       {
         "image_id": "7633",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5001
+        "confidence": 0.7906
       },
       {
         "image_id": "5995",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5022
+        "confidence": 0.9332
       },
       {
         "image_id": "98",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5047
+        "confidence": 0.9421
       },
       {
         "image_id": "921",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5006
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7236
       },
       {
         "image_id": "6060",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5033
+        "confidence": 0.7135
       },
       {
         "image_id": "6705",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.5025
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.6524
       },
       {
         "image_id": "1939",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5004
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8381
       },
       {
         "image_id": "2738",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5012
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.5828
       },
       {
         "image_id": "8243",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5057
+        "confidence": 0.9036
       },
       {
         "image_id": "3",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5046
+        "confidence": 0.9245
       },
       {
         "image_id": "7377",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5082
+        "confidence": 0.9149
       },
       {
         "image_id": "1389",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.5012
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.6343
       },
       {
         "image_id": "3105",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5055
+        "confidence": 0.6043
       },
       {
         "image_id": "2297",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5067
+        "confidence": 0.8815
       },
       {
         "image_id": "5119",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5067
+        "confidence": 0.7672
       },
       {
         "image_id": "5447",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5005
+        "confidence": 0.5127
       },
       {
         "image_id": "6837",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5042
+        "confidence": 0.9257
       },
       {
         "image_id": "3523",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5016
+        "confidence": 0.5755
       },
       {
         "image_id": "13072",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5023
+        "confidence": 0.7191
       },
       {
         "image_id": "10928",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5037
+        "confidence": 0.5842
       },
       {
         "image_id": "10907",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5043
+        "confidence": 0.5702
       },
       {
         "image_id": "5315",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5047
+        "confidence": 0.9241
       },
       {
         "image_id": "8311",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5043
+        "confidence": 0.7744
       },
       {
         "image_id": "4723",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5014
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7835
       },
       {
         "image_id": "2641",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5032
+        "confidence": 0.6695
       },
       {
         "image_id": "165",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5007
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8797
       },
       {
         "image_id": "7162",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5032
+        "confidence": 0.8537
       },
       {
         "image_id": "6817",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.503
+        "confidence": 0.6431
       },
       {
         "image_id": "10244",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5006
+        "confidence": 0.9303
       },
       {
         "image_id": "9473",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5007
+        "confidence": 0.8164
       },
       {
         "image_id": "5566",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5093
+        "confidence": 0.926
       },
       {
         "image_id": "10653",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5015
+        "confidence": 0.8228
       },
       {
         "image_id": "9010",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5023
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.6637
       },
       {
         "image_id": "1272",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5036
+        "confidence": 0.8766
       },
       {
         "image_id": "8564",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5003
+        "confidence": 0.9481
       },
       {
         "image_id": "4075",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5037
+        "confidence": 0.9667
       },
       {
         "image_id": "11006",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.503
+        "confidence": 0.8329
       },
       {
         "image_id": "8986",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5026
+        "confidence": 0.7966
       },
       {
         "image_id": "13537",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5054
+        "confidence": 0.9264
       },
       {
         "image_id": "3737",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5011
+        "confidence": 0.5049
       },
       {
         "image_id": "9648",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5006
+        "confidence": 0.6514
       },
       {
         "image_id": "1557",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5006
+        "confidence": 0.907
       },
       {
         "image_id": "9716",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5035
+        "confidence": 0.898
       },
       {
         "image_id": "6051",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.502
+        "confidence": 0.9237
       },
       {
         "image_id": "3333",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5033
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.6007
       },
       {
         "image_id": "1260",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5002
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8692
       },
       {
         "image_id": "4214",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5045
+        "confidence": 0.5932
       },
       {
         "image_id": "5030",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5026
+        "confidence": 0.7903
       },
       {
         "image_id": "10389",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5035
+        "confidence": 0.9322
       },
       {
         "image_id": "3243",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.501
+        "confidence": 0.8888
       },
       {
         "image_id": "9740",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5005
+        "confidence": 0.6629
       },
       {
         "image_id": "985",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5039
+        "confidence": 0.8173
       },
       {
         "image_id": "625",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5001
+        "confidence": 0.7077
       },
       {
         "image_id": "9055",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5053
+        "confidence": 0.7927
       },
       {
         "image_id": "9770",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5075
+        "confidence": 0.9747
       },
       {
         "image_id": "6067",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5036
+        "confidence": 0.944
       },
       {
         "image_id": "4890",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5029
+        "confidence": 0.9538
       },
       {
         "image_id": "11704",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5024
+        "confidence": 0.7232
       },
       {
         "image_id": "5814",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5034
+        "confidence": 0.5783
       },
       {
         "image_id": "11468",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.504
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7608
       },
       {
         "image_id": "4283",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5099
+        "confidence": 0.9074
       },
       {
         "image_id": "8159",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5063
+        "confidence": 0.7684
       },
       {
         "image_id": "5793",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.504
+        "confidence": 0.7939
       },
       {
         "image_id": "8163",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.503
+        "confidence": 0.8095
       },
       {
         "image_id": "3810",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5034
+        "confidence": 0.8741
       },
       {
         "image_id": "1991",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5041
+        "confidence": 0.7719
       },
       {
         "image_id": "3762",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5001
+        "confidence": 0.7073
       },
       {
         "image_id": "1820",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5015
+        "confidence": 0.8904
       },
       {
         "image_id": "11232",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5005
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8501
       },
       {
         "image_id": "6107",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5008
+        "confidence": 0.8425
       },
       {
         "image_id": "7702",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5
+        "confidence": 0.6786
       },
       {
         "image_id": "260",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5048
+        "confidence": 0.8084
       },
       {
         "image_id": "6999",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5032
+        "confidence": 0.8811
       },
       {
         "image_id": "3979",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5039
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7793
       },
       {
         "image_id": "7428",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5036
+        "confidence": 0.9257
       },
       {
         "image_id": "681",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5042
+        "confidence": 0.9359
       },
       {
         "image_id": "3348",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5038
+        "confidence": 0.8798
       },
       {
         "image_id": "7283",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5035
+        "confidence": 0.9392
       },
       {
         "image_id": "6910",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5018
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7514
       },
       {
         "image_id": "7932",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5005
+        "confidence": 0.8833
       },
       {
         "image_id": "6527",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5033
+        "confidence": 0.7604
       },
       {
         "image_id": "6669",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5014
+        "confidence": 0.7416
       },
       {
         "image_id": "104",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5009
+        "confidence": 0.6256
       },
       {
         "image_id": "8702",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5014
+        "confidence": 0.7148
       },
       {
         "image_id": "2959",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5014
+        "confidence": 0.9179
       },
       {
         "image_id": "11407",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5014
+        "confidence": 0.7472
       },
       {
         "image_id": "1105",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5059
+        "confidence": 0.9548
       },
       {
         "image_id": "6727",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5023
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7109
       },
       {
         "image_id": "5716",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5021
+        "confidence": 0.9187
       },
       {
         "image_id": "8400",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5053
+        "confidence": 0.7905
       },
       {
         "image_id": "2369",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.502
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.6227
       },
       {
         "image_id": "10559",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5015
+        "confidence": 0.835
       },
       {
         "image_id": "10153",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5014
+        "confidence": 0.7185
       },
       {
         "image_id": "9789",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5003
+        "confidence": 0.7853
       },
       {
         "image_id": "9220",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5017
+        "confidence": 0.6241
       },
       {
         "image_id": "7938",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5027
+        "confidence": 0.5567
       },
       {
         "image_id": "3264",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5047
+        "confidence": 0.9086
       },
       {
         "image_id": "617",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5001
+        "confidence": 0.9377
       },
       {
         "image_id": "5780",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.501
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.5759
       },
       {
         "image_id": "6412",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5039
+        "confidence": 0.8101
       },
       {
         "image_id": "1087",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5081
+        "confidence": 0.8707
       },
       {
         "image_id": "7645",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5001
+        "confidence": 0.6842
       },
       {
         "image_id": "5834",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5045
+        "confidence": 0.9473
       },
       {
         "image_id": "952",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5008
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.746
       },
       {
         "image_id": "678",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5006
+        "confidence": 0.5107
       },
       {
         "image_id": "8332",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5038
+        "confidence": 0.804
       },
       {
         "image_id": "10378",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
-        "confidence": 0.5014
+        "prediction": 1,
+        "correct": false,
+        "confidence": 0.7156
       },
       {
         "image_id": "3036",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5016
+        "confidence": 0.8514
       },
       {
         "image_id": "6737",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5033
+        "confidence": 0.5769
       },
       {
         "image_id": "5387",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5009
+        "confidence": 0.6005
       },
       {
         "image_id": "5794",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5068
+        "confidence": 0.9185
       },
       {
         "image_id": "8780",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5026
+        "confidence": 0.8224
       },
       {
         "image_id": "6406",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5056
+        "confidence": 0.8921
       },
       {
         "image_id": "2537",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5013
+        "confidence": 0.8272
       },
       {
         "image_id": "1273",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5012
+        "confidence": 0.7078
       },
       {
         "image_id": "3600",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5005
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8991
       },
       {
         "image_id": "1722",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5008
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7296
       },
       {
         "image_id": "1332",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5034
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.6225
       },
       {
         "image_id": "10291",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.503
+        "confidence": 0.8297
       },
       {
         "image_id": "8870",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5018
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7394
       },
       {
         "image_id": "7080",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5037
+        "confidence": 0.5086
       },
       {
         "image_id": "8999",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.504
+        "confidence": 0.9382
       },
       {
         "image_id": "6556",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5034
+        "confidence": 0.7723
       },
       {
         "image_id": "2287",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5046
+        "confidence": 0.7556
       },
       {
         "image_id": "5628",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5055
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.6229
       },
       {
         "image_id": "1941",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5026
+        "confidence": 0.9023
       },
       {
         "image_id": "5644",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5009
+        "confidence": 0.6852
       },
       {
         "image_id": "11484",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5029
+        "confidence": 0.9435
       },
       {
         "image_id": "1253",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.501
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.5946
       },
       {
         "image_id": "5395",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5015
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.6222
       },
       {
         "image_id": "1341",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.503
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.6522
       },
       {
         "image_id": "11233",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5057
+        "confidence": 0.7907
       },
       {
         "image_id": "1597",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5012
+        "confidence": 0.8932
       },
       {
         "image_id": "4623",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5041
+        "confidence": 0.6694
       },
       {
         "image_id": "4391",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.5018
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.5105
       },
       {
         "image_id": "10537",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5011
+        "confidence": 0.5314
       },
       {
         "image_id": "2025",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5048
+        "confidence": 0.971
       },
       {
         "image_id": "44",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5051
+        "confidence": 0.8574
       },
       {
         "image_id": "7676",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5022
+        "confidence": 0.7203
       },
       {
         "image_id": "8356",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5034
+        "confidence": 0.5886
       },
       {
         "image_id": "8861",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5006
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.9125
       },
       {
         "image_id": "5669",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5027
+        "confidence": 0.8836
       },
       {
         "image_id": "6006",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5046
+        "confidence": 0.7531
       },
       {
         "image_id": "3043",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5025
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7026
       },
       {
         "image_id": "1041",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
-        "confidence": 0.5037
+        "prediction": 1,
+        "correct": false,
+        "confidence": 0.5222
       },
       {
         "image_id": "1145",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
-        "confidence": 0.5009
+        "prediction": 1,
+        "correct": false,
+        "confidence": 0.7774
       },
       {
         "image_id": "245",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5069
+        "confidence": 0.7939
       },
       {
         "image_id": "3730",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5012
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.5078
       },
       {
         "image_id": "10921",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5014
+        "confidence": 0.7493
       },
       {
         "image_id": "9491",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5026
+        "confidence": 0.6756
       },
       {
         "image_id": "3783",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.508
+        "confidence": 0.9501
       },
       {
         "image_id": "8214",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.5009
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.5127
       },
       {
         "image_id": "5362",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5037
+        "confidence": 0.9007
       },
       {
         "image_id": "3334",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5048
+        "confidence": 0.783
       },
       {
         "image_id": "13168",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.505
+        "confidence": 0.876
       },
       {
         "image_id": "15001",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5026
+        "confidence": 0.7697
       },
       {
         "image_id": "1143",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.502
+        "confidence": 0.8999
       },
       {
         "image_id": "9130",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5008
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8763
       },
       {
         "image_id": "9001",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5006
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8145
       },
       {
         "image_id": "3919",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.503
+        "confidence": 0.5987
       },
       {
         "image_id": "3296",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5035
+        "confidence": 0.8879
       },
       {
         "image_id": "7767",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5033
+        "confidence": 0.5262
       },
       {
         "image_id": "10627",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5036
+        "confidence": 0.8315
       },
       {
         "image_id": "10380",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.501
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.5679
       },
       {
         "image_id": "6083",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5035
+        "confidence": 0.8619
       },
       {
         "image_id": "7435",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5003
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.9213
       },
       {
         "image_id": "1816",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5044
+        "confidence": 0.782
       },
       {
         "image_id": "6070",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5063
+        "confidence": 0.9495
       },
       {
         "image_id": "9456",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5047
+        "confidence": 0.9697
       },
       {
         "image_id": "1609",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5004
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8825
       },
       {
         "image_id": "11678",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5057
+        "confidence": 0.9624
       },
       {
         "image_id": "9749",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5008
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.6201
       },
       {
         "image_id": "3642",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5036
+        "confidence": 0.5582
       },
       {
         "image_id": "8083",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5
+        "confidence": 0.8403
       },
       {
         "image_id": "5867",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5022
+        "confidence": 0.7653
       },
       {
         "image_id": "11087",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5016
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8763
       },
       {
         "image_id": "574",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5045
+        "confidence": 0.9568
       },
       {
         "image_id": "7093",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5042
+        "confidence": 0.6485
       },
       {
         "image_id": "8244",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5027
+        "confidence": 0.7535
       },
       {
         "image_id": "11168",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5021
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.764
       },
       {
         "image_id": "787",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5028
+        "confidence": 0.6671
       },
       {
         "image_id": "5700",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5058
+        "confidence": 0.9347
       },
       {
         "image_id": "4787",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5002
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.6608
       },
       {
         "image_id": "8001",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.504
+        "confidence": 0.8232
       },
       {
         "image_id": "7792",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5042
+        "confidence": 0.9197
       },
       {
         "image_id": "5987",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.503
+        "confidence": 0.8903
       },
       {
         "image_id": "8694",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5033
+        "confidence": 0.9677
       },
       {
         "image_id": "9226",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5047
+        "confidence": 0.8599
       },
       {
         "image_id": "6403",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.502
+        "confidence": 0.7621
       },
       {
         "image_id": "9331",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5033
+        "confidence": 0.5752
       },
       {
         "image_id": "5972",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5007
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.9084
       },
       {
         "image_id": "6291",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5064
+        "confidence": 0.7256
       },
       {
         "image_id": "4278",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5051
+        "confidence": 0.7456
       },
       {
         "image_id": "10910",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5
+        "confidence": 0.8811
       },
       {
         "image_id": "361",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5038
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.6115
       },
       {
         "image_id": "3102",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5008
+        "confidence": 0.8887
       },
       {
         "image_id": "3413",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.504
+        "confidence": 0.7308
       },
       {
         "image_id": "8142",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5037
+        "confidence": 0.8676
       },
       {
         "image_id": "8110",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5023
+        "confidence": 0.8888
       },
       {
         "image_id": "6670",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5016
+        "confidence": 0.7515
       },
       {
         "image_id": "9269",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5043
+        "confidence": 0.8141
       },
       {
         "image_id": "2569",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5013
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.6096
       },
       {
         "image_id": "7944",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5011
+        "confidence": 0.7235
       },
       {
         "image_id": "9016",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5033
+        "confidence": 0.8388
       },
       {
         "image_id": "6465",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5
+        "confidence": 0.6005
       },
       {
         "image_id": "2529",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5028
+        "confidence": 0.8615
       },
       {
         "image_id": "4915",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5019
+        "confidence": 0.6663
       },
       {
         "image_id": "1950",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5046
+        "confidence": 0.9234
       },
       {
         "image_id": "5452",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5028
+        "confidence": 0.5879
       },
       {
         "image_id": "9803",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5062
+        "confidence": 0.9487
       },
       {
         "image_id": "3756",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.5025
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.5455
       },
       {
         "image_id": "2040",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5022
+        "confidence": 0.7622
       },
       {
         "image_id": "11516",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5041
+        "confidence": 0.7947
       },
       {
         "image_id": "9682",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
-        "confidence": 0.5003
+        "prediction": 1,
+        "correct": false,
+        "confidence": 0.6719
       },
       {
         "image_id": "4416",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5023
+        "confidence": 0.8194
       },
       {
         "image_id": "7378",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.501
+        "confidence": 0.9352
       },
       {
         "image_id": "11138",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5003
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.5059
       },
       {
         "image_id": "6511",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.501
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.6073
       },
       {
         "image_id": "2818",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5035
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.6368
       },
       {
         "image_id": "1731",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5041
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.6884
       },
       {
         "image_id": "1975",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5014
+        "confidence": 0.7951
       },
       {
         "image_id": "278",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5035
+        "confidence": 0.6881
       },
       {
         "image_id": "5614",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5006
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8436
       },
       {
         "image_id": "10800",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5046
+        "confidence": 0.8649
       },
       {
         "image_id": "6069",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.506
+        "confidence": 0.9321
       },
       {
         "image_id": "4029",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5012
+        "confidence": 0.8354
       },
       {
         "image_id": "9133",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5051
+        "confidence": 0.6442
       },
       {
         "image_id": "1289",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.506
+        "confidence": 0.8885
       },
       {
         "image_id": "1697",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5011
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7762
       },
       {
         "image_id": "6379",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5022
+        "confidence": 0.9192
       },
       {
         "image_id": "1063",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.5056
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.5666
       },
       {
         "image_id": "8319",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5004
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.6829
       },
       {
         "image_id": "11258",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5006
+        "confidence": 0.7196
       },
       {
         "image_id": "1685",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5053
+        "confidence": 0.7503
       },
       {
         "image_id": "1745",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5028
+        "confidence": 0.8986
       },
       {
         "image_id": "5442",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.502
+        "confidence": 0.8785
       },
       {
         "image_id": "5329",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5063
+        "confidence": 0.9391
       },
       {
         "image_id": "261",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5022
+        "confidence": 0.9001
       },
       {
         "image_id": "4740",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5008
+        "confidence": 0.7255
       },
       {
         "image_id": "14160",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5039
+        "confidence": 0.9891
       },
       {
         "image_id": "3254",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5001
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.5584
       },
       {
         "image_id": "11722",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5017
+        "confidence": 0.8158
       },
       {
         "image_id": "726",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5002
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.664
       },
       {
         "image_id": "60",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5032
+        "confidence": 0.8878
       },
       {
         "image_id": "3591",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5049
+        "confidence": 0.9519
       },
       {
         "image_id": "7652",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5031
+        "confidence": 0.8866
       },
       {
         "image_id": "4755",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5057
+        "confidence": 0.8616
       },
       {
         "image_id": "9540",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5025
+        "confidence": 0.6545
       },
       {
         "image_id": "2366",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5039
+        "confidence": 0.9646
       },
       {
         "image_id": "5798",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5018
+        "confidence": 0.6204
       },
       {
         "image_id": "9241",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.5001
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.5125
       },
       {
         "image_id": "2930",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5035
+        "confidence": 0.6931
       },
       {
         "image_id": "4709",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5067
+        "confidence": 0.9714
       },
       {
         "image_id": "7649",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5063
+        "confidence": 0.932
       },
       {
         "image_id": "9543",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5029
+        "confidence": 0.582
       },
       {
         "image_id": "10522",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5072
+        "confidence": 0.9748
       },
       {
         "image_id": "4602",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5048
+        "confidence": 0.7965
       },
       {
         "image_id": "10721",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5041
+        "confidence": 0.9079
       },
       {
         "image_id": "10216",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5048
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.5461
       },
       {
         "image_id": "8310",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5041
+        "confidence": 0.8565
       },
       {
         "image_id": "3040",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5054
+        "confidence": 0.8196
       },
       {
         "image_id": "8326",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.501
+        "confidence": 0.8155
       },
       {
         "image_id": "10198",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5033
+        "confidence": 0.9159
       },
       {
         "image_id": "2687",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5028
+        "confidence": 0.878
       },
       {
         "image_id": "1292",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5074
+        "confidence": 0.9898
       },
       {
         "image_id": "4853",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5023
+        "confidence": 0.8289
       },
       {
         "image_id": "3171",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5038
+        "confidence": 0.9194
       },
       {
         "image_id": "2087",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5005
+        "confidence": 0.7086
       },
       {
         "image_id": "10211",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5035
+        "confidence": 0.9198
       },
       {
         "image_id": "8443",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5017
+        "confidence": 0.7667
       },
       {
         "image_id": "3521",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5028
+        "confidence": 0.6734
       },
       {
         "image_id": "4869",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5021
+        "confidence": 0.7574
       },
       {
         "image_id": "6355",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5068
+        "confidence": 0.5449
       },
       {
         "image_id": "7714",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5027
+        "confidence": 0.7783
       },
       {
         "image_id": "9004",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.502
+        "confidence": 0.9154
       },
       {
         "image_id": "6850",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5014
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.8336
       },
       {
         "image_id": "1363",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5023
+        "confidence": 0.7611
       },
       {
         "image_id": "1786",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5
+        "confidence": 0.7356
       },
       {
         "image_id": "7923",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.502
+        "confidence": 0.6804
       },
       {
         "image_id": "3303",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5002
+        "confidence": 0.8661
       },
       {
         "image_id": "1337",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5004
+        "confidence": 0.5274
       },
       {
         "image_id": "7072",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5042
+        "confidence": 0.9675
       },
       {
         "image_id": "977",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5072
+        "confidence": 0.7209
       },
       {
         "image_id": "1391",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.505
+        "confidence": 0.982
       },
       {
         "image_id": "507",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5031
+        "confidence": 0.7824
       },
       {
         "image_id": "5723",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.5009
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.6485
       },
       {
         "image_id": "2996",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5026
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7746
       },
       {
         "image_id": "6175",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5074
+        "confidence": 0.9272
       },
       {
         "image_id": "5204",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5035
+        "confidence": 0.6348
       },
       {
         "image_id": "1571",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5023
+        "confidence": 0.8581
       },
       {
         "image_id": "10744",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.5011
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.5728
       },
       {
         "image_id": "3548",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.503
+        "confidence": 0.9151
       },
       {
         "image_id": "1775",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5004
+        "confidence": 0.5916
       },
       {
         "image_id": "3774",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5048
+        "confidence": 0.9153
       },
       {
         "image_id": "1777",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5007
+        "confidence": 0.7755
       },
       {
         "image_id": "7019",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.502
+        "confidence": 0.8484
       },
       {
         "image_id": "8299",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.505
+        "confidence": 0.9509
       },
       {
         "image_id": "9292",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5017
+        "confidence": 0.8161
       },
       {
         "image_id": "5272",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5027
+        "confidence": 0.8916
       },
       {
         "image_id": "152",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5044
+        "confidence": 0.6478
       },
       {
         "image_id": "5144",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5018
+        "confidence": 0.5595
       },
       {
         "image_id": "1187",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5065
+        "confidence": 0.7257
       },
       {
         "image_id": "7430",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5004
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.6797
       },
       {
         "image_id": "6266",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5004
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.6854
       },
       {
         "image_id": "828",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5009
+        "confidence": 0.831
       },
       {
         "image_id": "3772",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5033
+        "confidence": 0.7814
       },
       {
         "image_id": "4190",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5027
+        "confidence": 0.7318
       },
       {
         "image_id": "4350",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5035
+        "confidence": 0.9189
       },
       {
         "image_id": "3057",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5036
+        "confidence": 0.8325
       },
       {
         "image_id": "11702",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5008
+        "confidence": 0.6247
       },
       {
         "image_id": "4494",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5024
+        "confidence": 0.9514
       },
       {
         "image_id": "2837",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.504
+        "confidence": 0.5349
       },
       {
         "image_id": "5657",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5001
+        "confidence": 0.8118
       },
       {
         "image_id": "6485",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.502
+        "confidence": 0.6732
       },
       {
         "image_id": "4291",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5016
+        "confidence": 0.7105
       },
       {
         "image_id": "4257",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5041
+        "confidence": 0.9471
       },
       {
         "image_id": "510",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5013
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.5585
       },
       {
         "image_id": "4658",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5047
+        "confidence": 0.8416
       },
       {
         "image_id": "5028",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5044
+        "confidence": 0.8569
       },
       {
         "image_id": "5682",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5009
+        "confidence": 0.5555
       },
       {
         "image_id": "8147",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.501
+        "confidence": 0.9253
       },
       {
         "image_id": "5974",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5004
+        "confidence": 0.7876
       },
       {
         "image_id": "6849",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5017
+        "confidence": 0.7147
       },
       {
         "image_id": "9810",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5085
+        "confidence": 0.9433
       },
       {
         "image_id": "10327",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5008
+        "confidence": 0.6123
       },
       {
         "image_id": "7928",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5004
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8469
       },
       {
         "image_id": "2503",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5044
+        "confidence": 0.8981
       },
       {
         "image_id": "8685",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5004
+        "confidence": 0.6303
       },
       {
         "image_id": "7621",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5036
+        "confidence": 0.7672
       },
       {
         "image_id": "9510",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5049
+        "confidence": 0.9503
       },
       {
         "image_id": "9300",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5029
+        "confidence": 0.7453
       },
       {
         "image_id": "1513",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.502
+        "confidence": 0.7303
       },
       {
         "image_id": "13420",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5083
+        "confidence": 0.9897
       },
       {
         "image_id": "8765",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5012
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.895
       },
       {
         "image_id": "11613",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5031
+        "confidence": 0.9508
       },
       {
         "image_id": "13480",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5039
+        "confidence": 0.6609
       },
       {
         "image_id": "11515",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5016
+        "confidence": 0.944
       },
       {
         "image_id": "6578",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5003
+        "confidence": 0.6362
       },
       {
         "image_id": "7848",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5021
+        "confidence": 0.5818
       },
       {
         "image_id": "2921",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.501
+        "confidence": 0.6655
       },
       {
         "image_id": "9468",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.501
+        "confidence": 0.7225
       },
       {
         "image_id": "5471",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5035
+        "confidence": 0.9142
       },
       {
         "image_id": "10858",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5039
+        "confidence": 0.5105
       },
       {
         "image_id": "8786",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5031
+        "confidence": 0.6577
       },
       {
         "image_id": "1952",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5022
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.9256
       },
       {
         "image_id": "11192",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5057
+        "confidence": 0.7629
       },
       {
         "image_id": "2070",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5071
+        "confidence": 0.9432
       },
       {
         "image_id": "8061",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5013
+        "confidence": 0.6363
       },
       {
         "image_id": "8917",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5039
+        "confidence": 0.6156
       },
       {
         "image_id": "10323",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
-        "confidence": 0.5
+        "prediction": 1,
+        "correct": false,
+        "confidence": 0.517
       },
       {
         "image_id": "9138",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5016
+        "confidence": 0.6957
       },
       {
         "image_id": "8430",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5035
+        "confidence": 0.798
       },
       {
         "image_id": "1631",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5035
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.5415
       },
       {
         "image_id": "131",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5029
+        "confidence": 0.5455
       },
       {
         "image_id": "7712",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5009
+        "confidence": 0.952
       },
       {
         "image_id": "1689",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5001
+        "confidence": 0.9285
       },
       {
         "image_id": "126",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.5005
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.6495
       },
       {
         "image_id": "5778",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
-        "confidence": 0.502
+        "prediction": 1,
+        "correct": false,
+        "confidence": 0.6615
       },
       {
         "image_id": "11351",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5048
+        "confidence": 0.8677
       },
       {
         "image_id": "3822",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5032
+        "confidence": 0.9228
       },
       {
         "image_id": "7201",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5006
+        "confidence": 0.6109
       },
       {
         "image_id": "2615",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5055
+        "confidence": 0.9568
       },
       {
         "image_id": "7253",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5078
+        "confidence": 0.9027
       },
       {
         "image_id": "4173",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.503
+        "confidence": 0.7033
       },
       {
         "image_id": "1469",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5028
+        "confidence": 0.5366
       },
       {
         "image_id": "53",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5062
+        "confidence": 0.8507
       },
       {
         "image_id": "1973",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5007
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7518
       },
       {
         "image_id": "7656",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5061
+        "confidence": 0.9117
       },
       {
         "image_id": "8057",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5021
+        "confidence": 0.9619
       },
       {
         "image_id": "3986",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5048
+        "confidence": 0.7038
       },
       {
         "image_id": "7459",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5053
+        "confidence": 0.7249
       },
       {
         "image_id": "9222",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5034
+        "confidence": 0.6613
       },
       {
         "image_id": "156",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5011
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.9259
       },
       {
         "image_id": "949",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.506
+        "confidence": 0.9697
       },
       {
         "image_id": "6345",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5002
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.936
       },
       {
         "image_id": "9616",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5016
+        "confidence": 0.9309
       },
       {
         "image_id": "10098",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5032
+        "confidence": 0.5464
       },
       {
         "image_id": "9274",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5028
+        "confidence": 0.8253
       },
       {
         "image_id": "2634",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
-        "confidence": 0.5013
+        "prediction": 1,
+        "correct": false,
+        "confidence": 0.6385
       },
       {
         "image_id": "10560",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5006
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.564
       },
       {
         "image_id": "5338",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5032
+        "confidence": 0.5806
       },
       {
         "image_id": "3502",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5031
+        "confidence": 0.6955
       },
       {
         "image_id": "4324",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5001
+        "confidence": 0.7065
       },
       {
         "image_id": "13246",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.505
+        "confidence": 0.7204
       },
       {
         "image_id": "11338",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5029
+        "confidence": 0.9199
       },
       {
         "image_id": "10410",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5039
+        "confidence": 0.631
       },
       {
         "image_id": "10149",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5029
+        "confidence": 0.9635
       },
       {
         "image_id": "9608",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5006
+        "confidence": 0.5161
       },
       {
         "image_id": "2062",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5026
+        "confidence": 0.7417
       },
       {
         "image_id": "6152",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5014
+        "confidence": 0.9197
       },
       {
         "image_id": "7467",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
-        "confidence": 0.5004
+        "prediction": 1,
+        "correct": false,
+        "confidence": 0.5407
       },
       {
         "image_id": "9917",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5002
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8454
       },
       {
         "image_id": "3695",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5065
+        "confidence": 0.8304
       },
       {
         "image_id": "379",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5032
+        "confidence": 0.9243
       },
       {
         "image_id": "7881",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.503
+        "confidence": 0.9072
       },
       {
         "image_id": "6281",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5
+        "confidence": 0.7268
       },
       {
         "image_id": "105",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5051
+        "confidence": 0.9133
       },
       {
         "image_id": "4892",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5022
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7438
       },
       {
         "image_id": "976",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5022
+        "confidence": 0.66
       },
       {
         "image_id": "10632",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5025
+        "confidence": 0.9415
       },
       {
         "image_id": "9215",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.503
+        "confidence": 0.7651
       },
       {
         "image_id": "2338",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.502
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.512
       },
       {
         "image_id": "224",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5031
+        "confidence": 0.7247
       },
       {
         "image_id": "5825",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.502
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.5157
       },
       {
         "image_id": "648",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.502
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8426
       },
       {
         "image_id": "8586",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5044
+        "confidence": 0.9152
       },
       {
         "image_id": "656",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5058
+        "confidence": 0.8006
       },
       {
         "image_id": "494",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.5018
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.6055
       },
       {
         "image_id": "10517",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.5005
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.7178
       },
       {
         "image_id": "4521",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5028
+        "confidence": 0.7969
       },
       {
         "image_id": "10317",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5059
+        "confidence": 0.5923
       },
       {
         "image_id": "1555",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5011
+        "confidence": 0.9418
       },
       {
         "image_id": "6347",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5026
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.9056
       },
       {
         "image_id": "5391",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5026
+        "confidence": 0.961
       },
       {
         "image_id": "11437",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5034
+        "confidence": 0.9096
       },
       {
         "image_id": "10992",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.5018
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.5719
       },
       {
         "image_id": "13351",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5056
+        "confidence": 0.8708
       },
       {
         "image_id": "9140",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5027
+        "confidence": 0.8728
       },
       {
         "image_id": "3702",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5051
+        "confidence": 0.6149
       },
       {
         "image_id": "6659",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5013
+        "confidence": 0.6049
       },
       {
         "image_id": "10227",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5055
+        "confidence": 0.5985
       },
       {
         "image_id": "4734",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5016
+        "confidence": 0.6999
       },
       {
         "image_id": "5287",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
-        "confidence": 0.5008
+        "prediction": 1,
+        "correct": false,
+        "confidence": 0.7955
       },
       {
         "image_id": "8432",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5022
+        "confidence": 0.6053
       },
       {
         "image_id": "6829",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.504
+        "confidence": 0.7372
       },
       {
         "image_id": "11283",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5034
+        "confidence": 0.9638
       },
       {
         "image_id": "1808",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5028
+        "confidence": 0.9266
       },
       {
         "image_id": "13213",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.508
+        "confidence": 0.9818
       },
       {
         "image_id": "9898",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5044
+        "confidence": 0.9233
       },
       {
         "image_id": "3496",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5025
+        "confidence": 0.6864
       },
       {
         "image_id": "5176",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5008
+        "confidence": 0.6369
       },
       {
         "image_id": "9514",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5018
+        "confidence": 0.9067
       },
       {
         "image_id": "10948",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5046
+        "confidence": 0.8331
       },
       {
         "image_id": "8031",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5007
+        "confidence": 0.5439
       },
       {
         "image_id": "4856",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5031
+        "confidence": 0.6126
       },
       {
         "image_id": "4904",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.501
+        "confidence": 0.5835
       },
       {
         "image_id": "11507",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5014
+        "confidence": 0.6069
       },
       {
         "image_id": "10959",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5059
+        "confidence": 0.9765
       },
       {
         "image_id": "10409",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.5001
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.5922
       },
       {
         "image_id": "13051",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5039
+        "confidence": 0.9176
       },
       {
         "image_id": "7403",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5036
+        "confidence": 0.9404
       },
       {
         "image_id": "3972",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.507
+        "confidence": 0.8485
       },
       {
         "image_id": "3262",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5062
+        "confidence": 0.8999
       },
       {
         "image_id": "11517",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5007
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.696
       },
       {
         "image_id": "9056",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5022
+        "confidence": 0.662
       },
       {
         "image_id": "5368",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.503
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.532
       },
       {
         "image_id": "3076",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5037
+        "confidence": 0.9455
       },
       {
         "image_id": "3280",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5047
+        "confidence": 0.8344
       },
       {
         "image_id": "7347",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5057
+        "confidence": 0.9539
       },
       {
         "image_id": "11193",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5016
+        "confidence": 0.8621
       },
       {
         "image_id": "2829",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5021
+        "confidence": 0.6551
       },
       {
         "image_id": "3937",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5025
+        "confidence": 0.6311
       },
       {
         "image_id": "7230",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5027
+        "confidence": 0.7399
       },
       {
         "image_id": "2171",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.501
+        "confidence": 0.951
       },
       {
         "image_id": "9808",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5016
+        "confidence": 0.8122
       },
       {
         "image_id": "6568",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5054
+        "confidence": 0.9534
       },
       {
         "image_id": "9912",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5006
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.811
       },
       {
         "image_id": "9913",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5005
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7779
       },
       {
         "image_id": "10593",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5023
+        "confidence": 0.8522
       },
       {
         "image_id": "898",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5048
+        "confidence": 0.8718
       },
       {
         "image_id": "8368",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5041
+        "confidence": 0.8605
       },
       {
         "image_id": "13276",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5059
+        "confidence": 0.9747
       },
       {
         "image_id": "6620",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.504
+        "confidence": 0.9561
       },
       {
         "image_id": "9505",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5068
+        "confidence": 0.6619
       },
       {
         "image_id": "4445",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5042
+        "confidence": 0.9732
       },
       {
         "image_id": "11340",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5013
+        "confidence": 0.9276
       },
       {
         "image_id": "2061",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5055
+        "confidence": 0.9122
       },
       {
         "image_id": "64",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5041
+        "confidence": 0.9328
       },
       {
         "image_id": "9002",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5024
+        "confidence": 0.8906
       },
       {
         "image_id": "4909",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5025
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.5116
       },
       {
         "image_id": "5279",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5039
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.6452
       },
       {
         "image_id": "8125",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5053
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8682
       },
       {
         "image_id": "6073",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5025
+        "confidence": 0.8693
       },
       {
         "image_id": "10071",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5016
+        "confidence": 0.611
       },
       {
         "image_id": "2795",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5011
+        "confidence": 0.7064
       },
       {
         "image_id": "8185",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5034
+        "confidence": 0.6966
       },
       {
         "image_id": "4622",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5061
+        "confidence": 0.9148
       },
       {
         "image_id": "3606",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5033
+        "confidence": 0.6489
       },
       {
         "image_id": "6010",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.502
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.865
       },
       {
         "image_id": "5777",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5058
+        "confidence": 0.9724
       },
       {
         "image_id": "6063",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5001
+        "confidence": 0.5925
       },
       {
         "image_id": "7882",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5023
+        "confidence": 0.7762
       },
       {
         "image_id": "10316",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5001
+        "confidence": 0.7754
       },
       {
         "image_id": "8831",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5018
+        "confidence": 0.6744
       },
       {
         "image_id": "3948",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5034
+        "confidence": 0.9123
       },
       {
         "image_id": "6105",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5014
+        "confidence": 0.8324
       },
       {
         "image_id": "1003",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.502
+        "confidence": 0.8213
       },
       {
         "image_id": "2701",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5019
+        "confidence": 0.8282
       },
       {
         "image_id": "79",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5023
+        "confidence": 0.8918
       },
       {
         "image_id": "9289",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.503
+        "confidence": 0.837
       },
       {
         "image_id": "8046",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5011
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.7737
       },
       {
         "image_id": "6426",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5023
+        "confidence": 0.5337
       },
       {
         "image_id": "7340",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.5012
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.5065
       },
       {
         "image_id": "6486",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5016
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7483
       },
       {
         "image_id": "10511",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5067
+        "confidence": 0.9382
       },
       {
         "image_id": "11566",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5022
+        "confidence": 0.8993
       },
       {
         "image_id": "11099",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5009
+        "confidence": 0.7724
       },
       {
         "image_id": "6522",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5062
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.6197
       },
       {
         "image_id": "6223",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.508
+        "confidence": 0.8889
       },
       {
         "image_id": "1779",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5023
+        "confidence": 0.7856
       },
       {
         "image_id": "11238",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5023
+        "confidence": 0.7967
       },
       {
         "image_id": "6361",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5058
+        "confidence": 0.9542
       },
       {
         "image_id": "9045",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5046
+        "confidence": 0.8868
       },
       {
         "image_id": "9675",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5023
+        "confidence": 0.512
       },
       {
         "image_id": "6089",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.501
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8532
       },
       {
         "image_id": "5439",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5054
+        "confidence": 0.7883
       },
       {
         "image_id": "3750",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5011
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7802
       },
       {
         "image_id": "11278",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5039
+        "confidence": 0.9595
       },
       {
         "image_id": "7745",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5004
+        "confidence": 0.899
       },
       {
         "image_id": "4766",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5062
+        "confidence": 0.7256
       },
       {
         "image_id": "11358",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5055
+        "confidence": 0.8607
       },
       {
         "image_id": "1022",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5019
+        "confidence": 0.7414
       },
       {
         "image_id": "3067",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5007
+        "confidence": 0.6833
       },
       {
         "image_id": "5470",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5037
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7449
       },
       {
         "image_id": "1713",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5026
+        "confidence": 0.8664
       },
       {
         "image_id": "582",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5042
+        "confidence": 0.6577
       },
       {
         "image_id": "13102",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5039
+        "confidence": 0.9275
       },
       {
         "image_id": "3625",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5048
+        "confidence": 0.8769
       },
       {
         "image_id": "2609",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5052
+        "confidence": 0.9729
       },
       {
         "image_id": "9517",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5022
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7931
       },
       {
         "image_id": "8011",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5029
+        "confidence": 0.9252
       },
       {
         "image_id": "11661",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5091
+        "confidence": 0.957
       },
       {
         "image_id": "11116",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5013
+        "confidence": 0.8697
       },
       {
         "image_id": "6170",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5039
+        "confidence": 0.8502
       },
       {
         "image_id": "779",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5009
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.9059
       },
       {
         "image_id": "13090",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5033
+        "confidence": 0.7315
       },
       {
         "image_id": "8078",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5006
+        "confidence": 0.6013
       },
       {
         "image_id": "7270",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5013
+        "confidence": 0.528
       },
       {
         "image_id": "9888",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
-        "confidence": 0.5025
+        "prediction": 1,
+        "correct": false,
+        "confidence": 0.5696
       },
       {
         "image_id": "9351",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5013
+        "confidence": 0.7803
       },
       {
         "image_id": "13369",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5001
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.7657
       },
       {
         "image_id": "7978",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5013
+        "confidence": 0.8515
       },
       {
         "image_id": "7599",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5015
+        "confidence": 0.7788
       },
       {
         "image_id": "903",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5057
+        "confidence": 0.8166
       },
       {
         "image_id": "7252",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.5011
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.6334
       },
       {
         "image_id": "2225",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5017
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.5088
       },
       {
         "image_id": "8190",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5042
+        "confidence": 0.9546
       },
       {
         "image_id": "5557",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5024
+        "confidence": 0.7884
       },
       {
         "image_id": "10868",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5068
+        "confidence": 0.8565
       },
       {
         "image_id": "752",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5022
+        "confidence": 0.7534
       },
       {
         "image_id": "4698",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5
+        "confidence": 0.9421
       },
       {
         "image_id": "5044",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5034
+        "confidence": 0.7979
       },
       {
         "image_id": "8782",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5072
+        "confidence": 0.9433
       },
       {
         "image_id": "9559",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5038
+        "confidence": 0.9787
       },
       {
         "image_id": "2700",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5006
+        "confidence": 0.6868
       },
       {
         "image_id": "3021",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5007
+        "confidence": 0.6983
       },
       {
         "image_id": "6880",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5031
+        "confidence": 0.834
       },
       {
         "image_id": "1793",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5013
+        "confidence": 0.9401
       },
       {
         "image_id": "2636",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5024
+        "confidence": 0.8732
       },
       {
         "image_id": "6782",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5012
+        "confidence": 0.5723
       },
       {
         "image_id": "6667",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5015
+        "confidence": 0.5754
       },
       {
         "image_id": "9054",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5006
+        "confidence": 0.5358
       },
       {
         "image_id": "4588",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5047
+        "confidence": 0.5275
       },
       {
         "image_id": "11042",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5016
+        "confidence": 0.6833
       },
       {
         "image_id": "4906",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5014
+        "confidence": 0.6937
       },
       {
         "image_id": "9196",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5002
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.844
       },
       {
         "image_id": "6555",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5016
+        "confidence": 0.9361
       },
       {
         "image_id": "7526",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5025
+        "confidence": 0.5564
       },
       {
         "image_id": "333",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5008
+        "confidence": 0.8443
       },
       {
         "image_id": "2274",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5028
+        "confidence": 0.802
       },
       {
         "image_id": "5213",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.505
+        "confidence": 0.8805
       },
       {
         "image_id": "876",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5056
+        "confidence": 0.9348
       },
       {
         "image_id": "10453",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5051
+        "confidence": 0.8435
       },
       {
         "image_id": "9727",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5043
+        "confidence": 0.9284
       },
       {
         "image_id": "1711",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5061
+        "confidence": 0.9829
       },
       {
         "image_id": "11369",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5033
+        "confidence": 0.5959
       },
       {
         "image_id": "9469",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5051
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.5589
       },
       {
         "image_id": "36",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5016
+        "confidence": 0.9456
       },
       {
         "image_id": "1925",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5035
+        "confidence": 0.7796
       },
       {
         "image_id": "9248",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5036
+        "confidence": 0.6824
       },
       {
         "image_id": "3426",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5034
+        "confidence": 0.9362
       },
       {
         "image_id": "3961",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5024
+        "confidence": 0.6837
       },
       {
         "image_id": "2937",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.501
+        "confidence": 0.8256
       },
       {
         "image_id": "11347",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5091
+        "confidence": 0.9819
       },
       {
         "image_id": "4157",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5036
+        "confidence": 0.8836
       },
       {
         "image_id": "6940",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5053
+        "confidence": 0.6524
       },
       {
         "image_id": "7895",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5036
+        "confidence": 0.9498
       },
       {
         "image_id": "9476",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5063
+        "confidence": 0.9545
       },
       {
         "image_id": "5556",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5025
+        "confidence": 0.6362
       },
       {
         "image_id": "443",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5027
+        "confidence": 0.8308
       },
       {
         "image_id": "4455",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5022
+        "confidence": 0.9559
       },
       {
         "image_id": "5187",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5004
+        "confidence": 0.5084
       },
       {
         "image_id": "10607",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5069
+        "confidence": 0.9485
       },
       {
         "image_id": "5513",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5003
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.5205
       },
       {
         "image_id": "13018",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5043
+        "confidence": 0.7546
       },
       {
         "image_id": "5207",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5002
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.61
       },
       {
         "image_id": "9997",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5002
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.9024
       },
       {
         "image_id": "13333",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5051
+        "confidence": 0.5489
       },
       {
         "image_id": "7210",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5035
+        "confidence": 0.912
       },
       {
         "image_id": "4761",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5047
+        "confidence": 0.5449
       },
       {
         "image_id": "8899",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5064
+        "confidence": 0.7914
       },
       {
         "image_id": "9955",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5047
+        "confidence": 0.9794
       },
       {
         "image_id": "9562",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5044
+        "confidence": 0.8956
       },
       {
         "image_id": "9345",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5021
+        "confidence": 0.8595
       },
       {
         "image_id": "11615",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5028
+        "confidence": 0.5654
       },
       {
         "image_id": "2121",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5015
+        "confidence": 0.9275
       },
       {
         "image_id": "4506",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5008
+        "confidence": 0.6348
       },
       {
         "image_id": "9146",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5064
+        "confidence": 0.9588
       },
       {
         "image_id": "7954",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5019
+        "confidence": 0.746
       },
       {
         "image_id": "6852",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5043
+        "confidence": 0.9614
       },
       {
         "image_id": "8471",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5022
+        "confidence": 0.8814
       },
       {
         "image_id": "13339",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.5004
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.522
       },
       {
         "image_id": "7476",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5009
+        "confidence": 0.9282
       },
       {
         "image_id": "4706",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5008
+        "confidence": 0.7072
       },
       {
         "image_id": "1204",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5028
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8902
       },
       {
         "image_id": "4886",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5021
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.7559
       },
       {
         "image_id": "1124",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5068
+        "confidence": 0.761
       },
       {
         "image_id": "624",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5017
+        "confidence": 0.8189
       },
       {
         "image_id": "4484",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5026
+        "confidence": 0.8125
       },
       {
         "image_id": "1424",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5007
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.5274
       },
       {
         "image_id": "599",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5008
+        "confidence": 0.8207
       },
       {
         "image_id": "9162",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5049
+        "confidence": 0.7732
       },
       {
         "image_id": "7473",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5039
+        "confidence": 0.9594
       },
       {
         "image_id": "7510",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5039
+        "confidence": 0.911
       },
       {
         "image_id": "1233",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5064
+        "confidence": 0.894
       },
       {
         "image_id": "7481",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.503
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.5835
       },
       {
         "image_id": "5635",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.9418
       },
       {
         "image_id": "11071",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5009
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.5307
       },
       {
         "image_id": "5494",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5003
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.9283
       },
       {
         "image_id": "9284",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5008
+        "confidence": 0.8321
       },
       {
         "image_id": "3693",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5056
+        "confidence": 0.949
       },
       {
         "image_id": "13282",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5041
+        "confidence": 0.7944
       },
       {
         "image_id": "8551",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5032
+        "confidence": 0.8182
       },
       {
         "image_id": "2791",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5003
+        "confidence": 0.8183
       },
       {
         "image_id": "3488",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5045
+        "confidence": 0.6866
       },
       {
         "image_id": "1699",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5021
+        "confidence": 0.9242
       },
       {
         "image_id": "11208",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5037
+        "confidence": 0.7101
       },
       {
         "image_id": "11268",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.502
+        "confidence": 0.6504
       },
       {
         "image_id": "1388",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5047
+        "confidence": 0.7048
       },
       {
         "image_id": "4068",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5054
+        "confidence": 0.8995
       },
       {
         "image_id": "10856",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5048
+        "confidence": 0.8497
       },
       {
         "image_id": "8961",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5048
+        "confidence": 0.8911
       },
       {
         "image_id": "11052",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.501
+        "confidence": 0.8968
       },
       {
         "image_id": "8337",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.502
+        "confidence": 0.9554
       },
       {
         "image_id": "10837",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5012
+        "confidence": 0.8615
       },
       {
         "image_id": "4893",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5003
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7997
       },
       {
         "image_id": "7082",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5005
+        "confidence": 0.6513
       },
       {
         "image_id": "2090",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.502
+        "confidence": 0.7864
       },
       {
         "image_id": "11083",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5048
+        "confidence": 0.8498
       },
       {
         "image_id": "10729",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5042
+        "confidence": 0.8773
       },
       {
         "image_id": "5864",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.502
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.595
       },
       {
         "image_id": "4240",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5017
+        "confidence": 0.5382
       },
       {
         "image_id": "9347",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5039
+        "confidence": 0.5851
       },
       {
         "image_id": "4923",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5014
+        "confidence": 0.8427
       },
       {
         "image_id": "9209",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5023
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7204
       },
       {
         "image_id": "3778",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5003
+        "confidence": 0.8138
       },
       {
         "image_id": "2280",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5047
+        "confidence": 0.9587
       },
       {
         "image_id": "5265",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.502
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.5411
       },
       {
         "image_id": "13414",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5032
+        "confidence": 0.9593
       },
       {
         "image_id": "1319",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5015
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7199
       },
       {
         "image_id": "7824",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.5009
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.5235
       },
       {
         "image_id": "3086",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5001
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7803
       },
       {
         "image_id": "4606",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5007
+        "confidence": 0.5784
       },
       {
         "image_id": "8157",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5033
+        "confidence": 0.7947
       },
       {
         "image_id": "2493",
         "ground_truth": 1,
-        "prediction": 0,
-        "correct": false,
-        "confidence": 0.5004
+        "prediction": 1,
+        "correct": true,
+        "confidence": 0.8499
       },
       {
         "image_id": "10987",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5027
+        "confidence": 0.6629
       },
       {
         "image_id": "10660",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5046
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.51
       },
       {
         "image_id": "2786",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
-        "confidence": 0.5001
+        "prediction": 1,
+        "correct": false,
+        "confidence": 0.6442
       },
       {
         "image_id": "6580",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5022
+        "confidence": 0.7306
       },
       {
         "image_id": "3123",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5008
+        "confidence": 0.9304
       },
       {
         "image_id": "6987",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5049
+        "confidence": 0.8105
       },
       {
         "image_id": "4586",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5063
+        "confidence": 0.969
       },
       {
         "image_id": "4394",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5017
+        "confidence": 0.6682
       },
       {
         "image_id": "6404",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5023
+        "confidence": 0.8829
       },
       {
         "image_id": "3703",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5059
+        "confidence": 0.8661
       },
       {
         "image_id": "1817",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5001
+        "confidence": 0.9114
       },
       {
         "image_id": "8914",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5013
+        "confidence": 0.7467
       },
       {
         "image_id": "5555",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.5
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.5611
       },
       {
         "image_id": "2332",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5002
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.8823
       },
       {
         "image_id": "7319",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5044
+        "confidence": 0.676
       },
       {
         "image_id": "9638",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5044
+        "confidence": 0.966
       },
       {
         "image_id": "3338",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5009
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7164
       },
       {
         "image_id": "10292",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5056
+        "confidence": 0.9738
       },
       {
         "image_id": "5280",
         "ground_truth": 0,
-        "prediction": 0,
-        "correct": true,
-        "confidence": 0.5
+        "prediction": 1,
+        "correct": false,
+        "confidence": 0.6187
       },
       {
         "image_id": "1374",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5021
+        "confidence": 0.6366
       },
       {
         "image_id": "11721",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5026
+        "confidence": 0.9454
       },
       {
         "image_id": "8798",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5045
+        "confidence": 0.8825
       },
       {
         "image_id": "365",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5022
+        "confidence": 0.806
       },
       {
         "image_id": "1694",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5043
+        "confidence": 0.8699
       },
       {
         "image_id": "7267",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5042
+        "confidence": 0.8367
       },
       {
         "image_id": "8598",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5013
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.6004
       },
       {
         "image_id": "13252",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5046
+        "confidence": 0.857
       },
       {
         "image_id": "7921",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5021
+        "confidence": 0.9227
       },
       {
         "image_id": "10509",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5025
+        "confidence": 0.9451
       },
       {
         "image_id": "9981",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5043
+        "confidence": 0.6211
       },
       {
         "image_id": "11541",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5027
+        "confidence": 0.9386
       },
       {
         "image_id": "11589",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5009
+        "confidence": 0.5817
       },
       {
         "image_id": "4352",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5027
+        "confidence": 0.934
       },
       {
         "image_id": "2060",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5049
+        "confidence": 0.772
       },
       {
         "image_id": "6015",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5013
+        "confidence": 0.5072
       },
       {
         "image_id": "13471",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5032
+        "confidence": 0.9709
       },
       {
         "image_id": "1866",
         "ground_truth": 1,
-        "prediction": 1,
-        "correct": true,
-        "confidence": 0.5023
+        "prediction": 0,
+        "correct": false,
+        "confidence": 0.6808
       },
       {
         "image_id": "5652",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5043
+        "confidence": 0.8906
       },
       {
         "image_id": "6761",
         "ground_truth": 0,
         "prediction": 1,
         "correct": false,
-        "confidence": 0.5029
+        "confidence": 0.8014
       },
       {
         "image_id": "1625",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5075
+        "confidence": 0.9336
       },
       {
         "image_id": "9396",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.501
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.5144
       },
       {
         "image_id": "5956",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5005
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.7751
       },
       {
         "image_id": "8475",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5034
+        "confidence": 0.961
       },
       {
         "image_id": "4912",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5057
+        "confidence": 0.9548
       },
       {
         "image_id": "3234",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5076
+        "confidence": 0.7942
       },
       {
         "image_id": "9610",
         "ground_truth": 0,
-        "prediction": 1,
-        "correct": false,
-        "confidence": 0.5031
+        "prediction": 0,
+        "correct": true,
+        "confidence": 0.5355
       },
       {
         "image_id": "5186",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5055
+        "confidence": 0.8928
       },
       {
         "image_id": "5595",
         "ground_truth": 0,
         "prediction": 0,
         "correct": true,
-        "confidence": 0.5007
+        "confidence": 0.8739
       },
       {
         "image_id": "1432",
         "ground_truth": 1,
         "prediction": 1,
         "correct": true,
-        "confidence": 0.5069
+        "confidence": 0.9581
       },
       {
         "image_id": "7814",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.502
+        "confidence": 0.8812
       },
       {
         "image_id": "3982",
         "ground_truth": 1,
         "prediction": 0,
         "correct": false,
-        "confidence": 0.5019
+        "confidence": 0.7609
       }
     ]
   }
