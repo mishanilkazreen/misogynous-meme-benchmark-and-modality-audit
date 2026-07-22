@@ -26,7 +26,7 @@ module load services/slurm
 module load anaconda3
 module load uv
 
-# 3. Configure cache directories to use the high-performance Lustre filesystem (20GB home quota bypass)
+# 3. Configure cache directories to use the high-performance Lustre filesystem (50GB home quota bypass)
 export HF_HOME=/mnt/lustre2/mres/ghahrem/.cache/huggingface
 export KAGGLEHUB_CACHE=/mnt/lustre2/mres/ghahrem/.cache/kagglehub
 
