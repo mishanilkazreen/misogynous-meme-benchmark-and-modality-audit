@@ -308,3 +308,6 @@ results/test/*/*.joblib
 
 # Local backup of SCIAMA result archives (not for git)
 .sciama_backup/
+journal_table.md
+tmp_template/
+Download+the+journal+article+template+package*.zip

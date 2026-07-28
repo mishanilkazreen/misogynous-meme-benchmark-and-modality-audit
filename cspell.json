@@ -511,6 +511,11 @@
     "**/tests/**",
     "**/data/symbols/**",
     "**/data/**/*.yaml",
-    "**/auto_benchmark/opentodo.md"
+    "**/auto_benchmark/opentodo.md",
+    "**/*.bst",
+    "**/*.cls",
+    "**/submission/bst/**",
+    "**/submission/build_paper.bat",
+    "**/scripts/check_journal_guidelines.py"
   ]
 }

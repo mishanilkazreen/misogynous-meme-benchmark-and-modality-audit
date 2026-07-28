@@ -11,7 +11,9 @@ repos:
     rev: "v4.6.0"
     hooks:
       - id: trailing-whitespace
+        exclude: '^submission/(bst/|.*\.cls$|.*\.bst$)'
       - id: end-of-file-fixer
+        exclude: '^submission/(bst/|.*\.cls$|.*\.bst$)'
       - id: check-yaml
       - id: check-added-large-files
         args: ['--maxkb=1000']
@@ -20,6 +22,7 @@ repos:
       - id: check-json
       - id: debug-statements
       - id: mixed-line-ending
+        exclude: '^submission/(bst/|.*\.cls$|.*\.bst$)'
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: "v0.14.10"
@@ -78,6 +81,13 @@ repos:
         entry: python3 scripts/check_commit_msg.py
         language: system
         stages: [commit-msg]
+        always_run: true
+
+      - id: journal-guidelines-check
+        name: Springer submission guidelines check
+        entry: python3 scripts/check_journal_guidelines.py
+        language: system
+        pass_filenames: false
         always_run: true
 
       - id: ci-preflight
