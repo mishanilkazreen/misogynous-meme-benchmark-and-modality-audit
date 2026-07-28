@@ -90,6 +90,12 @@ repos:
         pass_filenames: false
         always_run: true
 
+      - id: bib-linter-check
+        name: BibTeX format and ground-truth linter (bib-linter)
+        entry: uv run bib-linter check
+        language: system
+        files: \.bib$
+
       - id: ci-preflight
         name: CI preflight (pre-commit --all-files + pytest)
         entry: bash scripts/preflight.sh
