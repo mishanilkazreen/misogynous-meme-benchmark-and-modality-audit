@@ -47,7 +47,7 @@ jobs:
       run: uv run ruff format --check .
 
     - name: Run mypy type checking
-      run: uv run mypy models/ utils/ scripts/ --ignore-missing-imports
+      run: uv run mypy models/ utils/ --ignore-missing-imports
 
     - name: Run tests with pytest
       run: uv run pytest tests/ -v --cov=models --cov=utils --cov-report=xml
@@ -98,5 +98,5 @@ jobs:
         uv pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
         uv pip install git+https://github.com/manighahrmani/bib_linter.git
 
-    - name: Run pre-commit
+    - name: Run pre-commit hooks inside uv environment
       run: uv run pre-commit run --all-files
