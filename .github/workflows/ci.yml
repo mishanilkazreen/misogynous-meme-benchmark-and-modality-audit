@@ -96,7 +96,7 @@ jobs:
       run: |
         uv pip install -e ".[dev]"
         uv pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
-        uv pip install bib-linter
+        uv pip install git+https://github.com/manighahrmani/bib_linter.git
 
     - name: Run pre-commit
       uses: pre-commit/action@v3.0.1
