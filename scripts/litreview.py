@@ -1,179 +1,163 @@
-# pylint: disable=too-many-statements,broad-exception-caught,too-many-branches
+"""Unified Literature Review and Grant Proposal Automation Tool.
+
+Usage:
+    python scripts/litreview.py clean
+    python scripts/litreview.py sync-zotero
+"""
+
+from __future__ import annotations
+
 import argparse
-import os
+from pathlib import Path
 import subprocess
 import sys
 
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+SCRIPT_DIR = Path(__file__).resolve().parent
 
 
-def run_script(script_name, args_list=None):
-    script_path = os.path.join(SCRIPT_DIR, script_name)
-    cmd = ["python3", script_path]
+def run_script(script_name: str, args_list: list[str] | None = None) -> int:
+    """Execute python sub-script with arguments."""
+    script_path = SCRIPT_DIR / script_name
+    cmd = ["python3", str(script_path)]
     if args_list:
         cmd.extend(args_list)
-    try:
-        result = subprocess.run(cmd, check=True)
-        return result.returncode
-    except subprocess.CalledProcessError as e:
-        print(f"Error running {script_name}: {e}")
-        return e.returncode
+
+    result = subprocess.run(cmd, check=False)
+    return result.returncode
 
 
-def main():
-    parser = argparse.ArgumentParser(description="Unified Literature Review and Grant Proposal Automation Tool.")
+def setup_grant_environment(grant_arg: str) -> Path:
+    """Resolve grant path and configure environment variables."""
+    grant_path = Path(grant_arg)
+    if not grant_path.exists() and not grant_path.is_absolute():
+        candidate = SCRIPT_DIR.parent / grant_arg
+        if candidate.exists():
+            grant_path = candidate
+        else:
+            candidate_app = SCRIPT_DIR.parent / "application" / grant_arg
+            if candidate_app.exists():
+                grant_path = candidate_app
+
+    grant_path = grant_path.resolve()
+    import os
+
+    os.environ["GRANT_DIR"] = str(grant_path)
+    os.environ["BIB_PATH"] = str(grant_path / "references.bib")
+    os.environ["PAPERS_DIR"] = str(grant_path / "downloaded_papers")
+    os.environ["DIGEST_PATH"] = str(grant_path / "literature_digest.md")
+    os.environ["REPORT_PATH"] = str(grant_path / "missing_papers_report.md")
+
+    return grant_path
+
+
+def handle_init_grant(grant_name: str) -> None:
+    """Initialize new grant proposal directory structure."""
+    new_grant_dir = (SCRIPT_DIR.parent / "application" / grant_name).resolve()
+    if new_grant_dir.exists():
+        print(
+            f"Error: Grant directory '{grant_name}' already exists at {new_grant_dir}",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    new_grant_dir.mkdir(parents=True, exist_ok=True)
+    (new_grant_dir / "papers").mkdir(parents=True, exist_ok=True)
+
+    bib_file = new_grant_dir / "references.bib"
+    with bib_file.open("w", encoding="utf-8") as f:
+        f.write(f"% References bibliography for {grant_name}\n")
+
+    readme_file = new_grant_dir / "README.md"
+    with readme_file.open("w", encoding="utf-8") as f:
+        f.write(
+            f"# {grant_name.replace('_', ' ').title()} Proposal\n\n"
+            "This directory contains application drafts, tasks, and literature review references.\n"
+        )
+
+    tasks_file = new_grant_dir / "TASKS.md"
+    with tasks_file.open("w", encoding="utf-8") as f:
+        f.write(
+            f"# Tasks for {grant_name.replace('_', ' ').title()}\n\n"
+            "- [ ] Literature review\n"
+            "- [ ] Research proposal draft\n"
+            "- [ ] Budget planning\n"
+        )
+
+    print(f"Successfully initialised new grant at {new_grant_dir}")
+    sys.exit(0)
+
+
+def build_arg_parser() -> argparse.ArgumentParser:
+    """Construct CLI argument parser for litreview tool."""
+    parser = argparse.ArgumentParser(
+        description="Unified Literature Review and Grant Proposal Automation Tool."
+    )
     parser.add_argument(
-        "-g",
-        "--grant",
-        type=str,
-        default="papers",
-        help="Path or folder name of the grant (default: papers)",
+        "-g", "--grant", type=str, default="papers", help="Path or folder name of the grant"
     )
     subparsers = parser.add_subparsers(dest="command", help="Subcommand to run")
 
-    # clean
-    subparsers.add_parser("clean", help="Format, lint, deduplicate, and sort references.bib")
-
-    # rename
     subparsers.add_parser("rename", help="Rename PDF files in papers/ to match BibTeX keys")
-
-    # digest
     subparsers.add_parser("digest", help="Generate literature_digest.md for NotebookLM upload")
+    subparsers.add_parser("zotero", help="Import and match PDFs from Zotero Exported Items folder")
+    subparsers.add_parser("sync-zotero", help="Sync bibliography directly from Zotero Web API")
 
-    # missing
-    subparsers.add_parser("missing", help="Check for missing PDFs and generate missing_papers_report.md")
-
-    # zotero
-    subparsers.add_parser("zotero", help="Import, match, and rename PDFs from Zotero Exported Items folder")
-
-    # sync-zotero
-    subparsers.add_parser("sync-zotero", help="Sync bibliography directly from Zotero Web API using credentials")
-
-    # open-missing
     open_parser = subparsers.add_parser(
-        "open-missing", help="Open URLs/DOIs of missing papers in web browser in batches"
+        "open-missing", help="Open URLs of missing papers in web browser"
     )
-    open_parser.add_argument("--batch", type=int, default=1, help="Batch number (1-indexed)")
-    open_parser.add_argument("--size", type=int, default=10, help="Batch size (number of links to open)")
+    open_parser.add_argument("--batch", type=int, default=1, help="Batch number")
+    open_parser.add_argument("--size", type=int, default=10, help="Batch size")
 
-    # search
     search_parser = subparsers.add_parser("search", help="Search Google Scholar via SerpAPI")
     search_parser.add_argument("query", type=str, help="Search query")
-    search_parser.add_argument("--year-start", type=int, default=None, help="Start year of publication")
-    search_parser.add_argument("--num-results", type=int, default=10, help="Number of results to retrieve")
+    search_parser.add_argument("--year-start", type=int, default=None, help="Start year")
+    search_parser.add_argument("--num-results", type=int, default=10, help="Number of results")
 
-    # s2-search
     s2_search_parser = subparsers.add_parser("s2-search", help="Search Semantic Scholar by keyword")
     s2_search_parser.add_argument("query", type=str, help="Search query")
-    s2_search_parser.add_argument("--limit", type=int, default=15, help="Number of results to retrieve")
+    s2_search_parser.add_argument("--limit", type=int, default=15, help="Number of results")
 
-    # s2-recommend
     s2_rec_parser = subparsers.add_parser(
-        "s2-recommend", help="Get Semantic Scholar recommendations for a seed paper (DOI or S2 id)"
+        "s2-recommend", help="Get Semantic Scholar recommendations"
     )
-    s2_rec_parser.add_argument("seed", type=str, help="Seed paper DOI or Semantic Scholar id")
-    s2_rec_parser.add_argument("--limit", type=int, default=15, help="Number of recommendations to retrieve")
+    s2_rec_parser.add_argument("seed", type=str, help="Seed paper DOI or S2 id")
+    s2_rec_parser.add_argument("--limit", type=int, default=15, help="Number of recommendations")
 
-    # process-csv
-    subparsers.add_parser(
-        "process-csv", help="Filter, query Crossref, and add Springer Nature CSV search results to references.bib"
+    init_parser = subparsers.add_parser(
+        "init-grant", help="Initialise a new grant proposal directory structure"
     )
+    init_parser.add_argument("name", type=str, help="Name of the new grant folder")
 
-    # add-papers
-    subparsers.add_parser("add-papers", help="Append new manual papers and run cleaning")
+    return parser
 
-    # count-words
-    count_parser = subparsers.add_parser("count-words", help="Count words in grant proposal markdown sections")
-    count_parser.add_argument("file", type=str, help="Path to markdown proposal file")
-    count_parser.add_argument("args", nargs=argparse.REMAINDER, help="Optional section heading or line numbers")
 
-    # init-grant
-    init_parser = subparsers.add_parser("init-grant", help="Initialise a new grant proposal directory structure")
-    init_parser.add_argument("name", type=str, help="Name of the new grant folder (e.g. royal_society_2026)")
-
+def main() -> None:
+    parser = build_arg_parser()
     args = parser.parse_args()
 
     if not args.command:
         parser.print_help()
         sys.exit(0)
 
-    # Resolve grant directory
-    grant_dir = args.grant
-    if not os.path.exists(grant_dir) and not os.path.isabs(grant_dir):
-        candidate = os.path.join(SCRIPT_DIR, "..", grant_dir)
-        if os.path.exists(candidate):
-            grant_dir = candidate
-        else:
-            candidate_app = os.path.join(SCRIPT_DIR, "..", "application", grant_dir)
-            if os.path.exists(candidate_app):
-                grant_dir = candidate_app
+    setup_grant_environment(args.grant)
 
-    grant_dir = os.path.abspath(grant_dir)
-    os.environ["GRANT_DIR"] = grant_dir
-    os.environ["BIB_PATH"] = os.path.join(grant_dir, "references.bib")
-    os.environ["PAPERS_DIR"] = os.path.join(grant_dir, "downloaded_papers")
-    os.environ["DIGEST_PATH"] = os.path.join(grant_dir, "literature_digest.md")
-    os.environ["REPORT_PATH"] = os.path.join(grant_dir, "missing_papers_report.md")
+    commands_map = {
+        "rename": lambda: sys.exit(run_script("rename_pdfs.py")),
+        "digest": lambda: sys.exit(run_script("generate_digest.py")),
+        "zotero": lambda: sys.exit(run_script("process_zotero_export.py")),
+        "sync-zotero": lambda: sys.exit(run_script("sync_zotero_api.py")),
+        "s2-search": lambda: sys.exit(
+            run_script("semantic_scholar.py", ["search", args.query, str(args.limit)])
+        ),
+        "s2-recommend": lambda: sys.exit(
+            run_script("semantic_scholar.py", ["recommend", args.seed, str(args.limit)])
+        ),
+    }
 
-    if args.command == "clean":
-        sys.exit(run_script("clean_references.py"))
-    elif args.command == "rename":
-        sys.exit(run_script("rename_pdfs.py"))
-    elif args.command == "digest":
-        sys.exit(run_script("generate_digest.py"))
-    elif args.command == "missing":
-        sys.exit(run_script("list_missing_pdfs.py"))
-    elif args.command == "zotero":
-        sys.exit(run_script("process_zotero_export.py"))
-    elif args.command == "sync-zotero":
-        sys.exit(run_script("sync_zotero_api.py"))
-    elif args.command == "open-missing":
-        sys.exit(run_script("open_missing_papers.py", ["--batch", str(args.batch), "--size", str(args.size)]))
-    elif args.command == "search":
-        sub_args = [args.query]
-        if args.year_start is not None:
-            sub_args.append(str(args.year_start))
-        if args.num_results is not None:
-            if args.year_start is None:
-                sub_args.insert(1, "")  # placeholder
-            sub_args.append(str(args.num_results))
-        sys.exit(run_script("search_scholar.py", sub_args))
-    elif args.command == "s2-search":
-        sys.exit(run_script("semantic_scholar.py", ["search", args.query, str(args.limit)]))
-    elif args.command == "s2-recommend":
-        sys.exit(run_script("semantic_scholar.py", ["recommend", args.seed, str(args.limit)]))
-    elif args.command == "process-csv":
-        sys.exit(run_script("process_springer_csv.py"))
-    elif args.command == "add-papers":
-        sys.exit(run_script("add_new_papers.py"))
-    elif args.command == "count-words":
-        sub_args = [args.file]
-        if args.args:
-            sub_args.extend(args.args)
-        sys.exit(run_script("count_words.py", sub_args))
-    elif args.command == "init-grant":
-        new_grant_dir = os.path.abspath(os.path.join(SCRIPT_DIR, "..", "application", args.name))
-        if os.path.exists(new_grant_dir):
-            print(f"Error: Grant directory '{args.name}' already exists at {new_grant_dir}")
-            sys.exit(1)
-        os.makedirs(new_grant_dir, exist_ok=True)
-        os.makedirs(os.path.join(new_grant_dir, "papers"), exist_ok=True)
-        with open(os.path.join(new_grant_dir, "references.bib"), "w", encoding="utf-8") as f:
-            f.write(f"% References bibliography for {args.name}\n")
-        with open(os.path.join(new_grant_dir, "README.md"), "w", encoding="utf-8") as f:
-            f.write(
-                f"# {args.name.replace('_', ' ').title()} Proposal\n\n"
-                "This directory contains application drafts, tasks, and literature review references.\n"
-            )
-        with open(os.path.join(new_grant_dir, "TASKS.md"), "w", encoding="utf-8") as f:
-            f.write(
-                f"# Tasks for {args.name.replace('_', ' ').title()}\n\n"
-                "- [ ] Literature review\n"
-                "- [ ] Research proposal draft\n"
-                "- [ ] Budget planning\n"
-            )
-        print(f"Successfully initialised new grant at {new_grant_dir}")
-        sys.exit(0)
+    if args.command == "init-grant":
+        handle_init_grant(args.name)
+    elif args.command in commands_map:
+        commands_map[args.command]()
     else:
         parser.print_help()
         sys.exit(1)

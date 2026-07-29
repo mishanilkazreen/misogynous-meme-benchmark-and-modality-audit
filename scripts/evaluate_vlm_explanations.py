@@ -14,7 +14,6 @@ Usage:
 # cspell:ignore ngrams ngram
 from __future__ import annotations
 
-
 import argparse
 from collections import Counter
 import json
@@ -36,7 +35,9 @@ def get_ngrams(tokens: list[str], n: int) -> list[tuple[str, ...]]:
     return [tuple(tokens[i : i + n]) for i in range(len(tokens) - n + 1)]
 
 
-def compute_bleu_n(reference_tokens: list[str], hypothesis_tokens: list[str], max_n: int = 4) -> dict[str, float]:
+def compute_bleu_n(
+    reference_tokens: list[str], hypothesis_tokens: list[str], max_n: int = 4
+) -> dict[str, float]:
     """Compute smoothed BLEU-1 through BLEU-4 scores."""
     if not hypothesis_tokens or not reference_tokens:
         return {"bleu_1": 0.0, "bleu_4": 0.0}
@@ -148,15 +149,17 @@ def evaluate_explanations(input_path: str, output_path: str) -> dict:
         bleu4_scores.append(b_scores["bleu_4"])
         rouge_l_scores.append(r_l)
 
-        evaluation_results.append({
-            "image_id": r.get("image_id"),
-            "ground_truth": r.get("ground_truth"),
-            "predicted_misogynous": r.get("predicted_misogynous"),
-            "explanation": exp,
-            "bleu_1": b_scores["bleu_1"],
-            "bleu_4": b_scores["bleu_4"],
-            "rouge_l": r_l,
-        })
+        evaluation_results.append(
+            {
+                "image_id": r.get("image_id"),
+                "ground_truth": r.get("ground_truth"),
+                "predicted_misogynous": r.get("predicted_misogynous"),
+                "explanation": exp,
+                "bleu_1": b_scores["bleu_1"],
+                "bleu_4": b_scores["bleu_4"],
+                "rouge_l": r_l,
+            }
+        )
 
     summary = {
         "num_samples": len(records),
@@ -186,8 +189,16 @@ def evaluate_explanations(input_path: str, output_path: str) -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--input", default="results/vlm_explanations.jsonl", help="Path to input JSONL explanations file")
-    parser.add_argument("--output", default="results/automated_explanation_metrics.json", help="Path to save output JSON metrics")
+    parser.add_argument(
+        "--input",
+        default="results/vlm_explanations.jsonl",
+        help="Path to input JSONL explanations file",
+    )
+    parser.add_argument(
+        "--output",
+        default="results/automated_explanation_metrics.json",
+        help="Path to save output JSON metrics",
+    )
     args = parser.parse_args()
 
     evaluate_explanations(args.input, args.output)

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Strict pre-commit check script for Springer Nature (Neural Computing and Applications) submission guidelines.
+r"""Strict pre-commit check script for Springer Nature (Neural Computing and Applications) submission guidelines.
 
 Checks:
 - Documentclass uses sn-jnl with valid pdflatex and reference style options.
@@ -13,24 +13,43 @@ Checks:
 - Successful PDF compilation check using build_paper.sh.
 """
 
-import os
+from pathlib import Path
 import re
+import shutil
 import subprocess
 import sys
-from pathlib import Path
+import tempfile
 
 
 def check_submission_dir_cleanliness(sub_dir: Path) -> list[str]:
     errors = []
-    unallowed_extensions = {".aux", ".log", ".out", ".bbl", ".blg", ".fls", ".fdb_latexmk", ".synctex.gz", ".toc"}
-    unallowed_files = {"AUTHORS.md", "METHODOLOGY.md", "PROMPTS.md", "RESULTS.md", "paper_template.tex"}
+    unallowed_extensions = {
+        ".aux",
+        ".log",
+        ".out",
+        ".bbl",
+        ".blg",
+        ".fls",
+        ".fdb_latexmk",
+        ".synctex.gz",
+        ".toc",
+    }
+    unallowed_files = {
+        "AUTHORS.md",
+        "METHODOLOGY.md",
+        "PROMPTS.md",
+        "RESULTS.md",
+        "paper_template.tex",
+    }
 
     for item in sub_dir.iterdir():
         if item.is_file():
             if item.name in unallowed_files:
                 errors.append(f"Forbidden non-submission file in submission folder: {item.name}")
             if item.suffix in unallowed_extensions:
-                errors.append(f"Leftover temporary LaTeX build file found: {item.name}. Run build_paper script to clean.")
+                errors.append(
+                    f"Leftover temporary LaTeX build file found: {item.name}. Run build_paper script to clean."
+                )
     return errors
 
 
@@ -41,18 +60,29 @@ def check_latex_guidelines(tex_path: Path) -> list[str]:
     # 1. Documentclass check
     docclass_match = re.search(r"\\documentclass\[(.*?)\]\{sn-jnl\}", content)
     if not docclass_match:
-        errors.append("Document class must be '\\documentclass[...]{sn-jnl}' (Springer Nature template).")
+        errors.append(
+            "Document class must be '\\documentclass[...]{sn-jnl}' (Springer Nature template)."
+        )
     else:
         opts = docclass_match.group(1)
         if "pdflatex" not in opts:
             errors.append("Documentclass options must include 'pdflatex'.")
-        if not any(ref_opt in opts for ref_opt in ["sn-mathphys-num", "sn-basic", "sn-mathphys-ay", "sn-standard"]):
-            errors.append("Documentclass options must specify a valid Springer reference style (e.g. 'sn-mathphys-num' or 'sn-basic').")
+        if not any(
+            ref_opt in opts
+            for ref_opt in ["sn-mathphys-num", "sn-basic", "sn-mathphys-ay", "sn-standard"]
+        ):
+            errors.append(
+                "Documentclass options must specify a valid Springer reference style (e.g. 'sn-mathphys-num' or 'sn-basic')."
+            )
 
     # 2. Anonymization check (Double-Blind Review)
-    if re.search(r"\\author\{(?!\s*\\fnm\{Anonymous\}).+?\}", content, re.DOTALL):
-        if "Anonymous" not in content.split(r"\maketitle")[0]:
-            errors.append("Paper title block must be anonymized ('Anonymous Author(s)') for double-blind peer review.")
+    if (
+        re.search(r"\\author\{(?!\s*\\fnm\{Anonymous\}).+?\}", content, re.DOTALL)
+        and "Anonymous" not in content.split(r"\maketitle")[0]
+    ):
+        errors.append(
+            "Paper title block must be anonymized ('Anonymous Author(s)') for double-blind peer review."
+        )
 
     # 3. Abstract check
     abstract_match = re.search(r"\\abstract\{(.*?)\}", content, re.DOTALL)
@@ -63,7 +93,9 @@ def check_latex_guidelines(tex_path: Path) -> list[str]:
         words = re.findall(r"\b\w+\b", abstract_text)
         word_count = len(words)
         if word_count < 150 or word_count > 450:
-            errors.append(f"Abstract word count ({word_count} words) is outside Springer guidelines (150-450 words).")
+            errors.append(
+                f"Abstract word count ({word_count} words) is outside Springer guidelines (150-450 words)."
+            )
 
     # 4. Keywords check
     keywords_match = re.search(r"\\keywords\{(.*?)\}", content, re.DOTALL)
@@ -73,20 +105,31 @@ def check_latex_guidelines(tex_path: Path) -> list[str]:
         keywords_text = keywords_match.group(1).strip()
         keywords_list = [k.strip() for k in re.split(r"[,;]", keywords_text) if k.strip()]
         if len(keywords_list) < 4 or len(keywords_list) > 6:
-            errors.append(f"Keywords count ({len(keywords_list)}) must be between 4 and 6 keywords per guidelines.")
+            errors.append(
+                f"Keywords count ({len(keywords_list)}) must be between 4 and 6 keywords per guidelines."
+            )
 
     # 5. Heading hierarchy check (max 3 levels)
     if r"\subsubsubsection" in content:
-        errors.append("Heading hierarchy exceeds 3 levels ('\\subsubsubsection' is forbidden). Use \\section, \\subsection, \\subsubsection.")
+        errors.append(
+            "Heading hierarchy exceeds 3 levels ('\\subsubsubsection' is forbidden). Use \\section, \\subsection, \\subsubsection."
+        )
 
     # 6. Declarations section check
     if r"\section*{Declarations}" not in content and r"\section{Declarations}" not in content:
         errors.append("Missing mandatory '\\section*{Declarations}' block.")
     else:
-        required_declarations = ["Funding", "Conflict of Interest", "Data Availability", "Code Availability"]
+        required_declarations = [
+            "Funding",
+            "Conflict of Interest",
+            "Data Availability",
+            "Code Availability",
+        ]
         for decl in required_declarations:
             if decl.lower() not in content.lower():
-                errors.append(f"Mandatory declaration item '{decl}' is missing from the Declarations section.")
+                errors.append(
+                    f"Mandatory declaration item '{decl}' is missing from the Declarations section."
+                )
 
     return errors
 
@@ -97,24 +140,25 @@ def check_pdf_compilation(sub_dir: Path) -> list[str]:
     if not tex_file.exists():
         return ["Missing main.tex in submission directory."]
 
-    import tempfile
-    import shutil
-
     with tempfile.TemporaryDirectory() as tmpdir:
         # Copy submission files to temporary directory for test compilation
         for item in sub_dir.iterdir():
             if item.is_file():
                 shutil.copy(item, tmpdir)
             elif item.is_dir():
-                shutil.copytree(item, os.path.join(tmpdir, item.name))
+                shutil.copytree(item, Path(tmpdir) / item.name)
 
         build_script = Path(tmpdir) / "build_paper.sh"
         if not build_script.exists():
             return ["Missing build_paper.sh in submission directory."]
 
-        result = subprocess.run([str(build_script)], cwd=tmpdir, capture_output=True, text=True)
+        result = subprocess.run(
+            [str(build_script)], cwd=tmpdir, capture_output=True, text=True, check=False
+        )
         if result.returncode != 0:
-            errors.append(f"Compilation script build_paper.sh failed with exit code {result.returncode}:\n{result.stderr[-500:]}")
+            errors.append(
+                f"Compilation script build_paper.sh failed with exit code {result.returncode}:\n{result.stderr[-500:]}"
+            )
         else:
             pdf_file = Path(tmpdir) / "main.pdf"
             if not pdf_file.exists():
