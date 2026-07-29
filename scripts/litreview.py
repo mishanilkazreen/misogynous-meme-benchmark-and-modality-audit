@@ -141,23 +141,20 @@ def main() -> None:
 
     setup_grant_environment(args.grant)
 
-    commands_map = {
-        "rename": lambda: sys.exit(run_script("rename_pdfs.py")),
-        "digest": lambda: sys.exit(run_script("generate_digest.py")),
-        "zotero": lambda: sys.exit(run_script("process_zotero_export.py")),
-        "sync-zotero": lambda: sys.exit(run_script("sync_zotero_api.py")),
-        "s2-search": lambda: sys.exit(
-            run_script("semantic_scholar.py", ["search", args.query, str(args.limit)])
-        ),
-        "s2-recommend": lambda: sys.exit(
-            run_script("semantic_scholar.py", ["recommend", args.seed, str(args.limit)])
-        ),
-    }
-
     if args.command == "init-grant":
         handle_init_grant(args.name)
-    elif args.command in commands_map:
-        commands_map[args.command]()
+    elif args.command == "rename":
+        sys.exit(run_script("rename_pdfs.py"))
+    elif args.command == "digest":
+        sys.exit(run_script("generate_digest.py"))
+    elif args.command == "zotero":
+        sys.exit(run_script("process_zotero_export.py"))
+    elif args.command == "sync-zotero":
+        sys.exit(run_script("sync_zotero_api.py"))
+    elif args.command == "s2-search":
+        sys.exit(run_script("semantic_scholar.py", ["search", args.query, str(args.limit)]))
+    elif args.command == "s2-recommend":
+        sys.exit(run_script("semantic_scholar.py", ["recommend", args.seed, str(args.limit)]))
     else:
         parser.print_help()
         sys.exit(1)
