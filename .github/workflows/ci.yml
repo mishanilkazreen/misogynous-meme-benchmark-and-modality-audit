@@ -73,6 +73,16 @@ jobs:
         sudo rm -rf "$AGENT_TOOLSDIRECTORY"
         sudo apt-get clean
 
+    - name: Install system dependencies for submission checks
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends \
+          texlive-latex-base \
+          texlive-latex-recommended \
+          texlive-fonts-recommended \
+          texlive-bibtex-extra \
+          latexmk
+
     - name: Install uv
       uses: astral-sh/setup-uv@v3
 
@@ -86,6 +96,7 @@ jobs:
       run: |
         uv pip install -e ".[dev]"
         uv pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+        uv pip install bib-linter
 
     - name: Run pre-commit
       uses: pre-commit/action@v3.0.1
