@@ -213,11 +213,9 @@ class VLMCollate:
             # only when the expected string is empty.
             if expected_response and expected_response.lower() not in decoded.lower():
                 raise RuntimeError(
-                    "VLMCollate label masking is producing wrong training "
-                    "targets. Row %d expected response %r inside decoded "
-                    "target %r. This usually means padding_side is 'left' "
-                    "somewhere in the tokenizer stack. See "
-                    "docs/CODE_REVIEW_ISSUES.md \u00a71.1." % (i, expected_response, decoded)
+                    f"VLMCollate label masking is producing wrong training targets. Row {i} expected response "
+                    f"{expected_response!r} inside decoded target {decoded!r}. This usually means padding_side "
+                    "is 'left' somewhere in the tokenizer stack. See docs/CODE_REVIEW_ISSUES.md §1.1."
                 )
 
 
@@ -275,6 +273,8 @@ def _validate_vlm(
 
     See docs/CODE_REVIEW_ISSUES.md \u00a72.4.
     """
+    from sklearn.metrics import f1_score
+
     from models.vlm.classifier import (
         MISOGYNY_LABELS,
         SUBTYPE_LABELS,
@@ -286,7 +286,6 @@ def _validate_vlm(
         extract_subtypes,
     )
     from models.vlm.metrics_multilabel import compute_mami_score_b
-    from sklearn.metrics import f1_score
 
     n_val = min(len(val_dataset), limit) if limit is not None else len(val_dataset)
     if n_val == 0:
@@ -315,7 +314,9 @@ def _validate_vlm(
 
     try:
         for batch_start in range(0, n_val, batch_size):
-            batch = [val_dataset[i] for i in range(batch_start, min(batch_start + batch_size, n_val))]
+            batch = [
+                val_dataset[i] for i in range(batch_start, min(batch_start + batch_size, n_val))
+            ]
             pils = []
             texts = []
             for sample in batch:
@@ -356,21 +357,14 @@ def _validate_vlm(
                     texts.append(
                         processor.apply_chat_template(conversation, add_generation_prompt=True)
                     )
-            inputs = processor(
-                images=pils, text=texts, padding=True, return_tensors="pt"
-            )
+            inputs = processor(images=pils, text=texts, padding=True, return_tensors="pt")
             inputs = {
-                k: v.to(device) if isinstance(v, torch.Tensor) else v
-                for k, v in inputs.items()
+                k: v.to(device) if isinstance(v, torch.Tensor) else v for k, v in inputs.items()
             }
-            output_ids = model.generate(
-                **inputs, max_new_tokens=max_new_tokens, do_sample=False
-            )
+            output_ids = model.generate(**inputs, max_new_tokens=max_new_tokens, do_sample=False)
             input_len = inputs["input_ids"].shape[1]
-            responses = processor.batch_decode(
-                output_ids[:, input_len:], skip_special_tokens=True
-            )
-            for sample, resp in zip(batch, responses):
+            responses = processor.batch_decode(output_ids[:, input_len:], skip_special_tokens=True)
+            for sample, resp in zip(batch, responses, strict=False):
                 resp = resp.strip()
                 if task == "singleclass":
                     matched = extract_label(resp, list(MISOGYNY_LABELS))
@@ -379,7 +373,7 @@ def _validate_vlm(
                     all_preds.append(pred_int)
                     all_gts.append(gt_int)
                 elif task == "joint":
-                    joint_labels = ["misogynous"] + list(SUBTYPE_LABELS)
+                    joint_labels = ["misogynous", *list(SUBTYPE_LABELS)]
                     parsed = extract_joint(resp, joint_labels)
                     all_preds.append(parsed.get("misogynous", 0))
                     all_gts.append(int(sample["misogynous"]))
@@ -448,8 +442,7 @@ def main() -> None:
         "--use-ocr",
         action="store_true",
         help=(
-            "Deprecated alias: equivalent to --text-source ocr. Kept for "
-            "backward compatibility."
+            "Deprecated alias: equivalent to --text-source ocr. Kept for backward compatibility."
         ),
     )
     parser.add_argument(
@@ -512,7 +505,6 @@ def main() -> None:
     if not torch.cuda.is_available() and args.device == "cuda":
         logger.warning("CUDA not available, running on CPU (extremely slow for VLMs).")
         args.device = "cpu"
-    device = torch.device(args.device)
 
     # 1. Load quant config
     from transformers import AutoModelForVision2Seq, AutoProcessor, BitsAndBytesConfig
@@ -594,9 +586,7 @@ def main() -> None:
             "train", text_source, args.ocr_engine, MODELS_DIR.parent / "embeddings"
         )
         if not ocr_map:
-            logger.warning(
-                "Text-source NPZ not found; falling back to dataset transcripts."
-            )
+            logger.warning("Text-source NPZ not found; falling back to dataset transcripts.")
             ocr_map = None
 
     # Load validation dataset for best-val checkpoint selection
@@ -604,9 +594,12 @@ def main() -> None:
     val_dataset = manager.load_dataset(split="validation")
     val_ocr_map: dict[str, str] | None = None
     if text_source != "provided":
-        val_ocr_map = load_text_source_transcripts(
-            "validation", text_source, args.ocr_engine, MODELS_DIR.parent / "embeddings"
-        ) or None
+        val_ocr_map = (
+            load_text_source_transcripts(
+                "validation", text_source, args.ocr_engine, MODELS_DIR.parent / "embeddings"
+            )
+            or None
+        )
     logger.info(
         "Validation dataset loaded (%d samples; will validate on up to %s per epoch).",
         len(val_dataset),
@@ -721,9 +714,7 @@ def main() -> None:
                     for name, param in model.named_parameters()
                     if param.requires_grad
                 }
-                logger.info(
-                    "New best val_metric=%.4f saved at epoch %d.", best_val_metric, epoch
-                )
+                logger.info("New best val_metric=%.4f saved at epoch %d.", best_val_metric, epoch)
 
     # 6. Restore best-val LoRA weights before saving.
     # This ensures the persisted adapter corresponds to the checkpoint that

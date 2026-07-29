@@ -43,8 +43,12 @@ def main():
 
     with open(digest_path, "w", encoding="utf-8") as f:
         f.write("# Project Literature Digest - Horizon Europe CL3 DRS-03\n\n")
-        f.write("This document compiles the metadata and abstracts of all references in our project bibliography.\n")
-        f.write("Upload this file to NotebookLM to provide it with a searchable index of the literature,\n")
+        f.write(
+            "This document compiles the metadata and abstracts of all references in our project bibliography.\n"
+        )
+        f.write(
+            "Upload this file to NotebookLM to provide it with a searchable index of the literature,\n"
+        )
         f.write("citation keys, and research abstracts.\n\n")
 
         f.write(f"**Total References:** {len(entries)}\n")
@@ -63,7 +67,9 @@ def main():
             url = clean_value(fields.get("url", ""))
             abstract = clean_value(fields.get("abstract", ""))
 
-            pdf_status = "✅ PDF Available" if key in pdf_files else "❌ PDF Missing (Needs Download)"
+            pdf_status = (
+                "✅ PDF Available" if key in pdf_files else "❌ PDF Missing (Needs Download)"
+            )
 
             wrapped_title = textwrap.fill(title, width=100)
             f.write(f"## [{idx + 1}] {wrapped_title}\n\n")

@@ -56,7 +56,13 @@ def main():
 
         title_tokens = clean_text_to_tokens(title)
         bib_data.append(
-            {"key": entry["original_key"], "title": title, "author": author, "year": year, "title_tokens": title_tokens}
+            {
+                "key": entry["original_key"],
+                "title": title,
+                "author": author,
+                "year": year,
+                "title_tokens": title_tokens,
+            }
         )
 
     # 2. Find all PDF files in Zotero export folder recursively
@@ -123,7 +129,9 @@ def main():
 
             # Copy and rename to papers/
             if os.path.exists(dest_path):
-                print(f"Warning: PDF for {best_entry['key']} already exists in papers/. Skipping copy of '{filename}'.")
+                print(
+                    f"Warning: PDF for {best_entry['key']} already exists in papers/. Skipping copy of '{filename}'."
+                )
                 skipped_count += 1
             else:
                 shutil.copy2(pdf_path, dest_path)
@@ -133,7 +141,9 @@ def main():
             print(f"Could not match PDF: '{filename}'")
             unmatched_files.append(pdf_path)
 
-    print(f"\nCompleted Zotero Ingestion: Moved {copied_count} files, skipped {skipped_count} existing files.")
+    print(
+        f"\nCompleted Zotero Ingestion: Moved {copied_count} files, skipped {skipped_count} existing files."
+    )
     if unmatched_files:
         print(f"Total unmatched files: {len(unmatched_files)}")
         # Copy unmatched files to papers/ with their original names for manual checking

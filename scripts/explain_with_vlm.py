@@ -55,21 +55,38 @@ def generate_mock_explanation(sample: dict) -> dict:
         "misogynous": is_misogynous,
         "explanation": explanation,
         "raw_response": "MOCK_RESPONSE",
-        "latency_s": 0.01
+        "latency_s": 0.01,
     }
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--model", default="llava", choices=["llava", "qwen"], help="VLM type (llava or qwen)")
+    parser.add_argument(
+        "--model", default="llava", choices=["llava", "qwen"], help="VLM type (llava or qwen)"
+    )
     parser.add_argument("--model-id", default=None, help="HuggingFace model ID (optional)")
-    parser.add_argument("--split", default="validation", help="Dataset split to evaluate (default: validation)")
-    parser.add_argument("--limit", type=int, default=30, help="Limit number of samples to process (default: 30)")
+    parser.add_argument(
+        "--split", default="validation", help="Dataset split to evaluate (default: validation)"
+    )
+    parser.add_argument(
+        "--limit", type=int, default=30, help="Limit number of samples to process (default: 30)"
+    )
     parser.add_argument("--device", default=None, help="Device to run on (cuda, mps, cpu)")
-    parser.add_argument("--quantize", default="none", choices=["none", "4bit", "8bit"], help="Quantization mode")
-    parser.add_argument("--output", default="results/vlm_explanations.jsonl", help="Output JSONL filepath")
-    parser.add_argument("--mock", action="store_true", help="Run in mock mode (no weights loaded, fast)")
-    parser.add_argument("--use-ocr", action="store_true", default=True, help="Incorporate OCR transcripts in prompt context")
+    parser.add_argument(
+        "--quantize", default="none", choices=["none", "4bit", "8bit"], help="Quantization mode"
+    )
+    parser.add_argument(
+        "--output", default="results/vlm_explanations.jsonl", help="Output JSONL filepath"
+    )
+    parser.add_argument(
+        "--mock", action="store_true", help="Run in mock mode (no weights loaded, fast)"
+    )
+    parser.add_argument(
+        "--use-ocr",
+        action="store_true",
+        default=True,
+        help="Incorporate OCR transcripts in prompt context",
+    )
     args = parser.parse_args()
 
     # Create output directory
@@ -110,6 +127,7 @@ def main() -> None:
         # Load image
         img = sample["image"]
         import torch
+
         if isinstance(img, torch.Tensor):
             img_np = (img.detach().cpu().numpy().transpose(1, 2, 0) * 255.0).astype(np.uint8)
             img = Image.fromarray(img_np)
@@ -134,7 +152,7 @@ def main() -> None:
                     "misogynous": None,
                     "explanation": f"Inference failed: {e}",
                     "raw_response": "",
-                    "latency_s": 0.0
+                    "latency_s": 0.0,
                 }
 
         record = {

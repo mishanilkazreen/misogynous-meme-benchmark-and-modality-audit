@@ -61,7 +61,9 @@ def request_json(url, max_retries=5):
                 backoff = min(backoff * 2, 16)
                 continue
             if e.code == 429:
-                print("Still rate limited after retries. Wait a moment and try again, or add an API key.")
+                print(
+                    "Still rate limited after retries. Wait a moment and try again, or add an API key."
+                )
             else:
                 print(f"HTTP error {e.code}: {e.reason}")
             return None
@@ -112,7 +114,10 @@ def do_recommend(seed, limit):
     if seed.lower().startswith("10."):
         paper_id = f"DOI:{seed}"
     params = {"fields": FIELDS, "limit": limit}
-    url = f"{REC_BASE}/papers/forpaper/{urllib.parse.quote(paper_id, safe=':')}?" + urllib.parse.urlencode(params)
+    url = (
+        f"{REC_BASE}/papers/forpaper/{urllib.parse.quote(paper_id, safe=':')}?"
+        + urllib.parse.urlencode(params)
+    )
     print(f"Recommendations related to: {seed}\n")
     data = request_json(url)
     if data:

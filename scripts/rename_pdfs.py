@@ -94,7 +94,6 @@ def main():
                 continue
 
             # Score formula: Jaccard similarity weighted by token overlap
-            # Jaccard = intersection / union
             union = pdf_tokens.union(entry["title_tokens"])
             jaccard = overlap_count / len(union) if union else 0.0
 
@@ -117,7 +116,12 @@ def main():
         threshold = 0.15
         if best_entry and best_score >= threshold and best_overlap_count >= 2:
             matches.append(
-                {"filename": filename, "key": best_entry["key"], "title": best_entry["title"], "score": best_score}
+                {
+                    "filename": filename,
+                    "key": best_entry["key"],
+                    "title": best_entry["title"],
+                    "score": best_score,
+                }
             )
         else:
             # Let's try one more fallback: substring matching or lower threshold if year and author match
@@ -166,7 +170,9 @@ def main():
             # If the destination already exists, we might have multiple PDFs matching the same reference
             # Or we already renamed it in a previous run.
             # To be safe, we don't overwrite if files are different, but here let's append a suffix or skip
-            print(f"Warning: Destination {new_filename} already exists. Skipping rename of {match['filename']}.")
+            print(
+                f"Warning: Destination {new_filename} already exists. Skipping rename of {match['filename']}."
+            )
             skipped_count += 1
             continue
 

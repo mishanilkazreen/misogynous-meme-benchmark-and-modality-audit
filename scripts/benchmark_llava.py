@@ -236,9 +236,12 @@ def run_benchmark(
     resolved_source = resolve_text_source(text_source, use_ocr)
     ocr_map: dict[str, str] | None = None
     if resolved_source != "provided":
-        ocr_map = load_text_source_transcripts(
-            split, resolved_source, ocr_engine, RESULTS_DIR / "embeddings"
-        ) or None
+        ocr_map = (
+            load_text_source_transcripts(
+                split, resolved_source, ocr_engine, RESULTS_DIR / "embeddings"
+            )
+            or None
+        )
 
     pipeline = PreprocessingPipeline() if preprocess else None
     results: list[ClassificationResult] = []
@@ -334,9 +337,12 @@ def _run_benchmark_multiclass(
     resolved_source = resolve_text_source(text_source, use_ocr)
     ocr_map: dict[str, str] | None = None
     if resolved_source != "provided":
-        ocr_map = load_text_source_transcripts(
-            split, resolved_source, ocr_engine, RESULTS_DIR / "embeddings"
-        ) or None
+        ocr_map = (
+            load_text_source_transcripts(
+                split, resolved_source, ocr_engine, RESULTS_DIR / "embeddings"
+            )
+            or None
+        )
     # Bumped from 60 to 100 to fit the JSON-schema Task B response
     # (docs/CODE_REVIEW_ISSUES.md §6.1). Extra tokens for a smaller
     # payload are cheap; being one token short truncates the JSON and
@@ -569,8 +575,7 @@ def main() -> None:
         "--use-ocr",
         action="store_true",
         help=(
-            "Deprecated alias: equivalent to --text-source ocr. Kept for "
-            "backward compatibility."
+            "Deprecated alias: equivalent to --text-source ocr. Kept for backward compatibility."
         ),
     )
     parser.add_argument(

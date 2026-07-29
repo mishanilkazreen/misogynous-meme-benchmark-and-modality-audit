@@ -112,7 +112,8 @@ ignore = [
 ]
 "scripts/**/*.py" = [
     "T201",    # print statements allowed in scripts
-    "F841",    # unused variables in scripts
+    "PTH",     # legacy os.path calls allowed in helper scripts
+    "PLW2901", # loop variable overwriting
 ]
 
 [tool.ruff.lint.isort]

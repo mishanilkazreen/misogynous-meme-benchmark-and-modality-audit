@@ -67,8 +67,7 @@ def main() -> None:
         "--use-ocr",
         action="store_true",
         help=(
-            "Deprecated alias: equivalent to --text-source ocr. Kept for "
-            "backward compatibility."
+            "Deprecated alias: equivalent to --text-source ocr. Kept for backward compatibility."
         ),
     )
     parser.add_argument(

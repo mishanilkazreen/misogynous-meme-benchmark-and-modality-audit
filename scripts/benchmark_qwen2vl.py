@@ -299,9 +299,12 @@ def run_benchmark(
 
     ocr_map: dict[str, str] | None = None
     if resolved_source != "provided":
-        ocr_map = load_text_source_transcripts(
-            split, resolved_source, ocr_engine, RESULTS_DIR / "embeddings"
-        ) or None
+        ocr_map = (
+            load_text_source_transcripts(
+                split, resolved_source, ocr_engine, RESULTS_DIR / "embeddings"
+            )
+            or None
+        )
 
     pipeline = PreprocessingPipeline() if preprocess else None
     results: list[ClassificationResult] = []
@@ -354,9 +357,7 @@ def run_benchmark(
             # generation_config with do_sample=True and temperature=0.7 by
             # default, so without this every eval run is stochastic even at
             # the same seed. See docs/CODE_REVIEW_ISSUES.md §6.6.
-            output_ids = model.generate(
-                **inputs, max_new_tokens=MAX_NEW_TOKENS, do_sample=False
-            )
+            output_ids = model.generate(**inputs, max_new_tokens=MAX_NEW_TOKENS, do_sample=False)
         elapsed = (time.perf_counter() - t0) / len(batch)
 
         input_len = inputs["input_ids"].shape[1]
@@ -408,9 +409,12 @@ def _run_benchmark_multiclass(
     resolved_source = resolve_text_source(text_source, use_ocr)
     ocr_map: dict[str, str] | None = None
     if resolved_source != "provided":
-        ocr_map = load_text_source_transcripts(
-            split, resolved_source, ocr_engine, RESULTS_DIR / "embeddings"
-        ) or None
+        ocr_map = (
+            load_text_source_transcripts(
+                split, resolved_source, ocr_engine, RESULTS_DIR / "embeddings"
+            )
+            or None
+        )
     # Bumped from 60 to 100 to fit the JSON-schema Task B response
     # (docs/CODE_REVIEW_ISSUES.md §6.1).
     max_new_tokens_multiclass = 100
@@ -575,18 +579,19 @@ def _run_benchmark_per_category(
     resolved_source = resolve_text_source(text_source, use_ocr)
     ocr_map: dict[str, str] | None = None
     if resolved_source != "provided":
-        ocr_map = load_text_source_transcripts(
-            split, resolved_source, ocr_engine, RESULTS_DIR / "embeddings"
-        ) or None
+        ocr_map = (
+            load_text_source_transcripts(
+                split, resolved_source, ocr_engine, RESULTS_DIR / "embeddings"
+            )
+            or None
+        )
 
     pipeline = PreprocessingPipeline() if preprocess else None
 
     # For each meme we accumulate a per-sub-type prediction (0/1) across the
     # four categories. Ordering of categories does not matter because each
     # question is independent.
-    per_image_preds: list[dict[str, int]] = [
-        dict.fromkeys(SUBTYPE_LABELS, 0) for _ in samples
-    ]
+    per_image_preds: list[dict[str, int]] = [dict.fromkeys(SUBTYPE_LABELS, 0) for _ in samples]
     latencies: list[float] = []
     refusals = 0
 
@@ -820,8 +825,7 @@ def main() -> None:
         "--use-ocr",
         action="store_true",
         help=(
-            "Deprecated alias: equivalent to --text-source ocr. Kept for "
-            "backward compatibility."
+            "Deprecated alias: equivalent to --text-source ocr. Kept for backward compatibility."
         ),
     )
     parser.add_argument(

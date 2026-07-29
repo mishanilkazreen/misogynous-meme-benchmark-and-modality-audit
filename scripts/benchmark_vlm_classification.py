@@ -321,9 +321,12 @@ def run_clip(
 
     ocr_map: dict[str, str] | None = None
     if resolved_source != "provided":
-        ocr_map = load_text_source_transcripts(
-            split, resolved_source, ocr_engine, RESULTS_DIR / "embeddings"
-        ) or None
+        ocr_map = (
+            load_text_source_transcripts(
+                split, resolved_source, ocr_engine, RESULTS_DIR / "embeddings"
+            )
+            or None
+        )
 
     t0 = time.perf_counter()
     if ocr_map:
@@ -386,9 +389,12 @@ def _run_clip_multiclass(
     resolved_source = resolve_text_source(text_source, use_ocr)
     ocr_map: dict[str, str] | None = None
     if resolved_source != "provided":
-        ocr_map = load_text_source_transcripts(
-            split, resolved_source, ocr_engine, RESULTS_DIR / "embeddings"
-        ) or None
+        ocr_map = (
+            load_text_source_transcripts(
+                split, resolved_source, ocr_engine, RESULTS_DIR / "embeddings"
+            )
+            or None
+        )
 
     # Per-category independent binary predictions
     category_preds: dict[str, list[int]] = {lbl: [] for lbl in SUBTYPE_LABELS}
@@ -399,9 +405,7 @@ def _run_clip_multiclass(
         cat_labels = [pos_phrase, neg_phrase]
         if prompt_ensemble and not classifier.is_classification:
             pos_prompts, neg_prompts = CLIP_SUBTYPE_PROMPT_ENSEMBLE[category]
-            classifier.set_classes_ensemble(
-                {pos_phrase: pos_prompts, neg_phrase: neg_prompts}
-            )
+            classifier.set_classes_ensemble({pos_phrase: pos_prompts, neg_phrase: neg_prompts})
         else:
             classifier.set_classes(cat_labels)
 
@@ -729,8 +733,7 @@ def main() -> None:
         "--use-ocr",
         action="store_true",
         help=(
-            "Deprecated alias: equivalent to --text-source ocr. Kept for "
-            "backward compatibility."
+            "Deprecated alias: equivalent to --text-source ocr. Kept for backward compatibility."
         ),
     )
     parser.add_argument(

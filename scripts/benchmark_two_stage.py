@@ -203,8 +203,7 @@ def main() -> None:
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(output_payload, indent=2) + "\n", encoding="utf-8")
     logger.info(
-        "Two-stage MAMI score B: %.4f (macro F1: %.4f, exact match: %.4f). "
-        "Wrote %s.",
+        "Two-stage MAMI score B: %.4f (macro F1: %.4f, exact match: %.4f). Wrote %s.",
         output_payload[0].get("mami_score_b") or 0.0,
         output_payload[0]["macro_f1"],
         output_payload[0]["exact_match_accuracy"],

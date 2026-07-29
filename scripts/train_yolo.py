@@ -63,7 +63,6 @@ def prepare_yolo_training_data(samples: list[dict[str, Any]], output_dir: Path) 
     labels_dir.mkdir(parents=True, exist_ok=True)
 
     class_list = ["hateful"]
-    class_to_id = {"hateful": 0}
 
     # Write labels and images
     for sample in samples:

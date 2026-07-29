@@ -12,14 +12,12 @@ from pathlib import Path
 import time
 from typing import Any
 
-import numpy as np
 import open_clip  # type: ignore[import-untyped]
 import torch
 from torch import nn
 import torch.nn.functional as F
 from torch.optim.lr_scheduler import LambdaLR
 from torch.utils.data import DataLoader
-
 from torchvision import transforms as T  # type: ignore[import-untyped]
 
 from models.vlm.metrics_multilabel import compute_mami_score_b
@@ -324,9 +322,7 @@ def build_warmup_cosine_scheduler(
     def _lr_lambda(current_step: int) -> float:
         if current_step < warmup_steps:
             return float(current_step) / float(max(1, warmup_steps))
-        progress = float(current_step - warmup_steps) / float(
-            max(1, total_steps - warmup_steps)
-        )
+        progress = float(current_step - warmup_steps) / float(max(1, total_steps - warmup_steps))
         # Clamp progress to [0, 1] so any extra step beyond the schedule
         # gives LR=0 rather than a negative multiplier.
         progress = min(1.0, max(0.0, progress))
@@ -385,9 +381,7 @@ def evaluate_classification(
                 all_pred_dicts.append(
                     {lbl: int(preds_bin[i][j]) for j, lbl in enumerate(MULTILABEL_ORDER)}
                 )
-                all_gt_dicts.append(
-                    {lbl: int(batch[lbl][i].item()) for lbl in MULTILABEL_ORDER}
-                )
+                all_gt_dicts.append({lbl: int(batch[lbl][i].item()) for lbl in MULTILABEL_ORDER})
 
     if was_training:
         model.train()
@@ -526,10 +520,7 @@ def main() -> None:
         "--grad-clip-norm",
         type=float,
         default=1.0,
-        help=(
-            "Maximum L2 norm for gradient clipping. Set to 0 to disable "
-            "clipping. Default: 1.0."
-        ),
+        help=("Maximum L2 norm for gradient clipping. Set to 0 to disable clipping. Default: 1.0."),
     )
     parser.add_argument(
         "--label-smoothing",
@@ -560,8 +551,7 @@ def main() -> None:
         "--use-ocr",
         action="store_true",
         help=(
-            "Deprecated alias: equivalent to --text-source ocr. Kept for "
-            "backward compatibility."
+            "Deprecated alias: equivalent to --text-source ocr. Kept for backward compatibility."
         ),
     )
     parser.add_argument(
@@ -637,9 +627,7 @@ def main() -> None:
     logger.info("Loading dataset splits...")
     train_preprocess = build_train_preprocess(preprocess) if args.augment else preprocess
     if args.augment:
-        logger.info(
-            "Training with augmentation: RandomResizedCrop, HorizontalFlip, ColorJitter."
-        )
+        logger.info("Training with augmentation: RandomResizedCrop, HorizontalFlip, ColorJitter.")
     else:
         logger.info("Training with deterministic preprocess (augmentation disabled).")
     manager = DatasetManager()
@@ -671,9 +659,12 @@ def main() -> None:
             drop_last=False,
         )
         if text_source != "provided":
-            val_ocr_map = load_text_source_transcripts(
-                "validation", text_source, args.ocr_engine, Path("results/embeddings")
-            ) or None
+            val_ocr_map = (
+                load_text_source_transcripts(
+                    "validation", text_source, args.ocr_engine, Path("results/embeddings")
+                )
+                or None
+            )
 
     # 3. Setup optimizer + LR scheduler + gradient clipping settings.
     trainable_params = [p for p in model.parameters() if p.requires_grad]
@@ -709,9 +700,7 @@ def main() -> None:
             "train", text_source, args.ocr_engine, Path("results/embeddings")
         )
         if not ocr_map:
-            logger.warning(
-                "Text-source NPZ not found; falling back to dataset transcripts."
-            )
+            logger.warning("Text-source NPZ not found; falling back to dataset transcripts.")
             ocr_map = None
 
     # Compute per-label pos_weight ONCE from the training set for Task B BCE.
@@ -719,7 +708,8 @@ def main() -> None:
     pos_weight: torch.Tensor | None = None
     if args.loss_mode == "classification" and args.task == "multiclass":
         pos_weight = compute_multilabel_pos_weight(
-            train_dataset._records, labels=MULTILABEL_ORDER  # pylint: disable=protected-access
+            train_dataset._records,
+            labels=MULTILABEL_ORDER,  # pylint: disable=protected-access
         )
         logger.info(
             "Task B pos_weight (shaming, stereotype, objectification, violence): %s",
@@ -775,9 +765,7 @@ def main() -> None:
             val_metric_str = f" | Val metric: {val_metric:.4f}"
             if val_metric > best_val_metric:
                 best_val_metric = val_metric
-                best_state = {
-                    k: v.detach().cpu().clone() for k, v in model.state_dict().items()
-                }
+                best_state = {k: v.detach().cpu().clone() for k, v in model.state_dict().items()}
                 val_metric_str += " (new best)"
 
         logger.info(
@@ -807,9 +795,7 @@ def main() -> None:
     from utils.text_source import filename_suffix_for_source
 
     ocr_suffix = filename_suffix_for_source(text_source, args.ocr_engine)
-    checkpoint_name = (
-        f"finetuned_clip_{args.loss_mode}{task_suffix}_{model_name_clean}{ocr_suffix}_seed{args.seed}.pth"
-    )
+    checkpoint_name = f"finetuned_clip_{args.loss_mode}{task_suffix}_{model_name_clean}{ocr_suffix}_seed{args.seed}.pth"
     save_path = MODELS_DIR / checkpoint_name
 
     torch.save(model.state_dict(), save_path)
