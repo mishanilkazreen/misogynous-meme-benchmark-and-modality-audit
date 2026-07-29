@@ -46,8 +46,8 @@ repos:
           - types-PyYAML
           - types-tqdm
         args: [--ignore-missing-imports]
-        files: ^(models/|utils/)
-        exclude: ^(tests/|scripts/)
+        files: ^(models/|utils/|scripts/)
+        exclude: ^tests/
 
   - repo: https://github.com/streetsidesoftware/cspell-cli
     rev: "v8.17.3"
