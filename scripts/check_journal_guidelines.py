@@ -27,7 +27,6 @@ def check_submission_dir_cleanliness(sub_dir: Path) -> list[str]:
         ".aux",
         ".log",
         ".out",
-        ".bbl",
         ".blg",
         ".fls",
         ".fdb_latexmk",

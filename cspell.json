@@ -516,6 +516,7 @@
     "**/*.cls",
     "**/submission/bst/**",
     "**/submission/build_paper.bat",
-    "**/scripts/check_journal_guidelines.py"
+    "**/scripts/check_journal_guidelines.py",
+    "**/*.bbl"
   ]
 }
