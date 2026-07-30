@@ -96,6 +96,12 @@ repos:
         language: system
         files: \.bib$
 
+      - id: latex-syntax-check
+        name: LaTeX syntax and quotation check
+        entry: python3 scripts/check_latex_syntax.py
+        language: system
+        files: \.tex$
+
       - id: ci-preflight
         name: CI preflight (pre-commit --all-files + pytest)
         entry: bash scripts/preflight.sh
