@@ -92,7 +92,7 @@ repos:
 
       - id: bib-linter-check
         name: BibTeX format and ground-truth linter (bib-linter)
-        entry: uv run bib-linter check --no-remote
+        entry: uv run python3 -m bib_linter.cli check --no-remote
         language: system
         files: \.bib$
 
