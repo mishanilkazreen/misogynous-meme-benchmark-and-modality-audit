@@ -87,6 +87,31 @@ def handle_init_grant(grant_name: str) -> None:
     sys.exit(0)
 
 
+def handle_notebook_info() -> None:
+    """Print primary NotebookLM details and check authentication status."""
+    import os
+
+    notebook_id = "[redacted-notebook-id]"
+    notebook_url = "https://notebooklm.google.com/notebook/[redacted-notebook-id]"
+
+    print("Primary Repository Notebook:")
+    print("  Title: MAMI 2022 Misogyny detection and VLM fine-tuning")
+    print(f"  ID:    {notebook_id}")
+    print(f"  URL:   {notebook_url}\n")
+
+    auth_path = os.path.expanduser("~/.notebooklm-mcp/auth.json")
+    if os.path.exists(auth_path):
+        print(f"Auth file found at {auth_path}")
+    else:
+        print(f"Warning: Auth file not found at {auth_path}")
+        print("To authenticate:")
+        print("  1. Save session cookies from personal Google account tab to ~/cookies.txt")
+        print("  2. Run: [redacted-auth-command]")
+        print("  3. Run: pkill -9 -f notebooklm-mcp || true")
+
+    sys.exit(0)
+
+
 def build_arg_parser() -> argparse.ArgumentParser:
     """Construct CLI argument parser for litreview tool."""
     parser = argparse.ArgumentParser(
@@ -99,6 +124,9 @@ def build_arg_parser() -> argparse.ArgumentParser:
 
     subparsers.add_parser("rename", help="Rename PDF files in papers/ to match BibTeX keys")
     subparsers.add_parser("digest", help="Generate literature_digest.md for NotebookLM upload")
+    subparsers.add_parser(
+        "notebook", help="Show NotebookLM primary notebook ID, URL, and auth status"
+    )
     subparsers.add_parser("zotero", help="Import and match PDFs from Zotero Exported Items folder")
     subparsers.add_parser("sync-zotero", help="Sync bibliography directly from Zotero Web API")
 
@@ -143,6 +171,8 @@ def main() -> None:
 
     if args.command == "init-grant":
         handle_init_grant(args.name)
+    elif args.command == "notebook":
+        handle_notebook_info()
     elif args.command == "rename":
         sys.exit(run_script("rename_pdfs.py"))
     elif args.command == "digest":
