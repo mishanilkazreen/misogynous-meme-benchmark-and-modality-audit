@@ -63,6 +63,17 @@ uv run python scripts/train_classifier.py --model ViT-L-14-quickgelu --task sing
 - **Gist (consolidated table):** [Results & SOTA Comparison]([redacted-gist-link])
 - **Literature review:** [`papers/literature_review.md`](papers/literature_review.md)
 
+## Google NotebookLM Integration
+
+- **Notebook URL:** [MAMI 2022 Misogyny detection](https://notebooklm.google.com/notebook/[redacted-notebook-id])
+- **Notebook ID:** `[redacted-notebook-id]`
+- **MCP Connection & Troubleshooting:**
+  - MCP executable: `[redacted-path]` (`uv tool install notebooklm-mcp-server`).
+  - Auth setup: Save cookies from personal account tab into `~/cookies.txt` and run:
+    `[redacted-auth-command]`.
+  - Config requirement: `mcp_config.json` requires `FASTMCP_SHOW_SERVER_BANNER: "false"` & `FASTMCP_LOG_LEVEL: "WARNING"`.
+  - Disconnect Pulse Secure VPN (`[redacted-ip]`) before calling Google RPC endpoints.
+
 ## Project Task Tracker
 
 All tasks from the
