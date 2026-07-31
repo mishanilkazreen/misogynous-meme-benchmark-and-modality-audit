@@ -524,7 +524,8 @@
     "ization",
     "isation",
     "footnotesize",
-    "xcolor"
+    "xcolor",
+    "Cleanup"
   ],
   "ignorePaths": [
     "**/node_modules/**",

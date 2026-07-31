@@ -102,6 +102,12 @@ repos:
         language: system
         files: \.tex$
 
+      - id: subjective-wording-check
+        name: Subjective wording check (academic tone enforcement)
+        entry: python3 scripts/check_subjective_words.py
+        language: system
+        files: \.tex$
+
       - id: ci-preflight
         name: CI preflight (pre-commit --all-files + pytest)
         entry: bash scripts/preflight.sh
