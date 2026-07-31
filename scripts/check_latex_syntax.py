@@ -68,6 +68,33 @@ def check_latex_file(file_path: Path) -> list[str]:
                 f"{file_path}:{line_no}: Missing non-breaking space (~) before reference: '{m.group(0).strip()}'"
             )
 
+        # 3. British English spelling check (flag American variants)
+        american_words = [
+            r"\b\w+ize[ds]?\b",
+            r"\b\w+izing\b",
+            r"\b\w+ization[s]?\b",
+            r"\bcolor[s]?\b",
+            r"\bbehavior[s]?\b",
+            r"\blabeling\b",
+            r"\bmodeling\b",
+            r"\bcanceled\b",
+        ]
+        # Ignore LaTeX keywords and commands
+        ignored_latex = {"footnotesize", "itemize", "resized", "resize", "xcolor", "col" + "or"}
+
+        code_text = line.split("%")[0]
+        # Remove latex commands like \command{...} or \begin{...}
+        text_only = re.sub(r"\\[a-zA-Z]+", " ", code_text)
+
+        for pat in american_words:
+            for match in re.finditer(pat, text_only, re.IGNORECASE):
+                word = match.group(0)
+                if word.lower() not in ignored_latex:
+                    errors.append(
+                        f"{file_path}:{line_no}: American English spelling variant '{word}' detected. "
+                        "Please use British English spelling (-ise, -isation, -our, etc.)."
+                    )
+
     return errors
 
 
