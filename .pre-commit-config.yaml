@@ -57,6 +57,7 @@ repos:
         # touches only ignored files (0 files to check), which would wrongly
         # block the commit. CI runs --all-files so this never hides real issues.
         args: ["--config", "cspell.json", "--no-must-find-files"]
+        files: ^(submission/|README\.md|CONTRIBUTING\.md)
 
   - repo: local
     hooks:

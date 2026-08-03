@@ -525,9 +525,13 @@
     "isation",
     "footnotesize",
     "xcolor",
-    "Cleanup"
+    "Cleanup",
+    "attn"
   ],
   "ignorePaths": [
+    "**/*.py",
+    "**/docs/dataset_survey.md",
+    "**/docs/IMPLEMENTATION_PLAN.md",
     "**/node_modules/**",
     "**/.venv/**",
     "**/.git/**",

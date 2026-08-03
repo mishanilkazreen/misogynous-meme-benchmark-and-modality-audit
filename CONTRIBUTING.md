@@ -17,7 +17,7 @@ code --install-extension tamasfe.even-better-toml
 ## 2. Set up the repo (once per clone)
 
 ```bash
-git clone https://github.com/mishanilkazreen/content-moderation.git
+git clone https://github.com/mishanilkazreen/misogynous-meme-benchmark-and-modality-audit.git
 cd content-moderation
 uv venv --python 3.10
 uv sync --dev
@@ -30,7 +30,7 @@ uv run pre-commit install
 ## 3. Workflow
 
 All work happens on `main`. Open tasks are tracked in
-[GitHub issues](https://github.com/mishanilkazreen/content-moderation/issues)
+[GitHub issues](https://github.com/mishanilkazreen/misogynous-meme-benchmark-and-modality-audit/issues)
 with verification commands and closing criteria in each issue body.
 
 See the project task tracker in [`README.md`](README.md) for current
