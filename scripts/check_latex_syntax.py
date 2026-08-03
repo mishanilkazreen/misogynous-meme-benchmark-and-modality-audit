@@ -68,6 +68,12 @@ def check_latex_file(file_path: Path) -> list[str]:
                 f"{file_path}:{line_no}: Missing non-breaking space (~) before reference: '{m.group(0).strip()}'"
             )
 
+        # 4. Check for forbidden \resizebox wrapping on tabular
+        if r"\resizebox" in line:
+            errors.append(
+                f"{file_path}:{line_no}: Forbidden '\\resizebox' detected. Do not wrap tabular environments in \\resizebox under sn-jnl.cls."
+            )
+
         # 3. British English spelling check (flag American variants)
         american_words = [
             r"\b\w+ize[ds]?\b",
