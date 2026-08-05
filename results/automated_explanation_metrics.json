@@ -1,280 +1,280 @@
 {
   "num_samples": 30,
-  "mean_bleu_1": 0.2726682841236502,
-  "mean_bleu_4": 0.02766788560129308,
-  "mean_rouge_l": 0.24129503767181146,
-  "std_bleu_4": 0.01643373441251184,
-  "std_rouge_l": 0.10476529153798458,
+  "mean_bleu_1": 0.07029478458049887,
+  "mean_bleu_4": 0.005540902128995082,
+  "mean_rouge_l": 0.08102423127350424,
+  "std_bleu_4": 1.734723475976807e-18,
+  "std_rouge_l": 0.01918482896018257,
   "details": [
     {
-      "image_id": "1377",
-      "ground_truth": 1,
-      "predicted_misogynous": true,
-      "explanation": "The meme suggests that women should only be paid equally if they are willing to do the same physically demanding work as men, reinforcing the idea that women are only capable of doing physically demanding jobs.",
-      "bleu_1": 0.11357340720221602,
-      "bleu_4": 0.007317231434088292,
-      "rouge_l": 0.13591635916359163
-    },
-    {
-      "image_id": "5498",
+      "image_id": "0",
       "ground_truth": 1,
       "predicted_misogynous": false,
-      "explanation": "The meme does not contain any text or visual elements that demeans, objectifies, reinforces harmful gender stereotypes, expresses hostility or violence toward women.",
-      "bleu_1": 0.37717859954208943,
-      "bleu_4": 0.053445393958049946,
-      "rouge_l": 0.339738662567256
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.060514786418400864
     },
     {
-      "image_id": "5697",
-      "ground_truth": 1,
-      "predicted_misogynous": true,
-      "explanation": "The text overlay 'When a woman is a driver' implies a comparison or judgment based on gender, which can be seen as demeaning or objectifying.",
-      "bleu_1": 0.20318725099601592,
-      "bleu_4": 0.011336233678283972,
-      "rouge_l": 0.12268689859363434
-    },
-    {
-      "image_id": "5182",
-      "ground_truth": 1,
-      "predicted_misogynous": true,
-      "explanation": "The text 'SEXY BITCHES?' objectifies women and reinforces harmful gender stereotypes by reducing them to their physical appearance.",
-      "bleu_1": 0.24148292787293452,
-      "bleu_4": 0.04713583981566506,
-      "rouge_l": 0.23490646258503403
-    },
-    {
-      "image_id": "6162",
-      "ground_truth": 1,
-      "predicted_misogynous": true,
-      "explanation": "The meme contains a statement that suggests a woman's consent is not implied when she puts a penis in her mouth, which reinforces harmful gender stereotypes and objectifies women.",
-      "bleu_1": 0.3023255813953489,
-      "bleu_4": 0.04213369714206778,
-      "rouge_l": 0.2620257452574526
-    },
-    {
-      "image_id": "6772",
-      "ground_truth": 0,
-      "predicted_misogynous": true,
-      "explanation": "The meme contains a scenario where a character is in a relationship with a teacher and ends up getting beaten by her husband, which is a depiction of domestic violence and abuse.",
-      "bleu_1": 0.09657320872274144,
-      "bleu_4": 0.00771630164943276,
-      "rouge_l": 0.1205673758865248
-    },
-    {
-      "image_id": "3932",
-      "ground_truth": 0,
-      "predicted_misogynous": false,
-      "explanation": "The meme does not contain any elements that demeans, objectifies, reinforces harmful gender stereotypes, expresses hostility or violence toward women.",
-      "bleu_1": 0.45273631840796014,
-      "bleu_4": 0.03561140793270959,
-      "rouge_l": 0.3598511281693416
-    },
-    {
-      "image_id": "5457",
-      "ground_truth": 0,
-      "predicted_misogynous": false,
-      "explanation": "The meme does not contain any text or visual elements that demeans, objectifies, reinforces harmful gender stereotypes, expresses hostility or violence toward women.",
-      "bleu_1": 0.3939393939393939,
-      "bleu_4": 0.030650988149441005,
-      "rouge_l": 0.3363774733637747
-    },
-    {
-      "image_id": "10007",
-      "ground_truth": 0,
-      "predicted_misogynous": true,
-      "explanation": "The meme contains a conversation that is hostile and dismissive towards a person, using racial and gender stereotypes to demean them.",
-      "bleu_1": 0.14691943127962084,
-      "bleu_4": 0.012058486728874827,
-      "rouge_l": 0.1507160718345078
-    },
-    {
-      "image_id": "7391",
-      "ground_truth": 0,
-      "predicted_misogynous": false,
-      "explanation": "The meme does not contain any text or visual elements that demeans, objectifies, reinforces harmful gender stereotypes, expresses hostility or violence toward women.",
-      "bleu_1": 0.3939393939393939,
-      "bleu_4": 0.030650988149441005,
-      "rouge_l": 0.3363774733637747
-    },
-    {
-      "image_id": "2991",
-      "ground_truth": 1,
-      "predicted_misogynous": true,
-      "explanation": "The meme uses derogatory language to describe a woman and implies that she is teaching girls to be graceful, which reinforces harmful gender stereotypes.",
-      "bleu_1": 0.29460580912863066,
-      "bleu_4": 0.050135072151609485,
-      "rouge_l": 0.25
-    },
-    {
-      "image_id": "6324",
-      "ground_truth": 0,
-      "predicted_misogynous": true,
-      "explanation": "The text 'WIFE CAME TO MY ROOM FOR A QUICKIE' implies a sexual act between a man and a woman, which is a common trope in media that can be seen as objectifying women.",
-      "bleu_1": 0.0909090909090909,
-      "bleu_4": 0.007242332754134788,
-      "rouge_l": 0.11633619933321636
-    },
-    {
-      "image_id": "1804",
-      "ground_truth": 1,
-      "predicted_misogynous": true,
-      "explanation": "The meme uses a violent and harmful action (hitting a woman) to humorously depict a feminist perspective, which reinforces negative stereotypes and objectification of women.",
-      "bleu_1": 0.20318725099601592,
-      "bleu_4": 0.011336233678283972,
-      "rouge_l": 0.2044781643227239
-    },
-    {
-      "image_id": "552",
-      "ground_truth": 1,
-      "predicted_misogynous": true,
-      "explanation": "The meme implies that the man's girlfriend is prioritizing her own needs over his, which is a common trope that demeans women's priorities and choices.",
-      "bleu_1": 0.18819188191881916,
-      "bleu_4": 0.010448823746762257,
-      "rouge_l": 0.15774446823697358
-    },
-    {
-      "image_id": "13261",
-      "ground_truth": 1,
-      "predicted_misogynous": true,
-      "explanation": "The meme objectifies the woman's body by focusing on her buttocks and using a term that implies a sexualized or provocative behavior.",
-      "bleu_1": 0.16993761078269964,
-      "bleu_4": 0.011231632990416822,
-      "rouge_l": 0.169869331283628
-    },
-    {
-      "image_id": "10285",
-      "ground_truth": 0,
-      "predicted_misogynous": false,
-      "explanation": "The meme does not contain any text or visual elements that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women.",
-      "bleu_1": 0.37759336099585056,
-      "bleu_4": 0.029291339592702203,
-      "rouge_l": 0.3292189827622899
-    },
-    {
-      "image_id": "6225",
-      "ground_truth": 0,
-      "predicted_misogynous": false,
-      "explanation": "The meme does not contain any text or visual elements that demeans, objectifies, reinforces harmful gender stereotypes, expresses hostility or violence toward women.",
-      "bleu_1": 0.3939393939393939,
-      "bleu_4": 0.030650988149441005,
-      "rouge_l": 0.3363774733637747
-    },
-    {
-      "image_id": "7602",
+      "image_id": "1",
       "ground_truth": 1,
       "predicted_misogynous": false,
-      "explanation": "The meme does not contain any elements that demeans, objectifies, reinforces harmful gender stereotypes, expresses hostility or violence toward women.",
-      "bleu_1": 0.28920340034097863,
-      "bleu_4": 0.049903689849546,
-      "rouge_l": 0.2703915171288744
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.060514786418400864
     },
     {
-      "image_id": "5988",
+      "image_id": "2",
       "ground_truth": 1,
       "predicted_misogynous": false,
-      "explanation": "The meme does not contain any text or visual elements that demeans, objectifies, reinforces harmful gender stereotypes, expresses hostility or violence toward women.",
-      "bleu_1": 0.37717859954208943,
-      "bleu_4": 0.053445393958049946,
-      "rouge_l": 0.339738662567256
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.060514786418400864
     },
     {
-      "image_id": "991",
-      "ground_truth": 0,
-      "predicted_misogynous": true,
-      "explanation": "The text labels the characters in a way that objectifies them, with the ",
-      "bleu_1": 0.004811551042723054,
-      "bleu_4": 0.0054592268147316625,
-      "rouge_l": 0.0
-    },
-    {
-      "image_id": "10270",
+      "image_id": "3",
       "ground_truth": 1,
-      "predicted_misogynous": true,
-      "explanation": "The text 'WOMEN ARE INFERIOR TO MEN' explicitly demeans and objectifies women, reinforcing harmful gender stereotypes.",
-      "bleu_1": 0.22980354187869959,
-      "bleu_4": 0.04539571960667686,
-      "rouge_l": 0.24533747779751336
-    },
-    {
-      "image_id": "2588",
-      "ground_truth": 0,
       "predicted_misogynous": false,
-      "explanation": "The meme does not contain any visual elements or text that demeans, objectifies, reinforces harmful gender stereotypes, expresses hostility or violence toward women.",
-      "bleu_1": 0.3939393939393939,
-      "bleu_4": 0.030650988149441005,
-      "rouge_l": 0.3363774733637747
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.060514786418400864
     },
     {
-      "image_id": "132",
-      "ground_truth": 0,
-      "predicted_misogynous": false,
-      "explanation": "The meme does not contain any visual elements or text that demeans, objectifies, reinforces harmful gender stereotypes, expresses hostility or violence toward women.",
-      "bleu_1": 0.3939393939393939,
-      "bleu_4": 0.030650988149441005,
-      "rouge_l": 0.3363774733637747
-    },
-    {
-      "image_id": "10293",
-      "ground_truth": 0,
-      "predicted_misogynous": false,
-      "explanation": "The meme does not contain any elements that demeans, objectifies, reinforces harmful gender stereotypes, expresses hostility or violence toward women.",
-      "bleu_1": 0.45273631840796014,
-      "bleu_4": 0.03561140793270959,
-      "rouge_l": 0.3598511281693416
-    },
-    {
-      "image_id": "6391",
+      "image_id": "4",
       "ground_truth": 1,
-      "predicted_misogynous": true,
-      "explanation": "The meme makes a comparison between the way girls are treated for making fun of a guy's height, weight, social standing, and penis size, and the way girls are treated when they are called fat. This comparison reinforces the harmful stereotype that women are more sensitive to criticism about their weight than men are to criticism about their physical appearance.",
-      "bleu_1": 0.09983633387888705,
-      "bleu_4": 0.004689889765547288,
-      "rouge_l": 0.09817858729453577
+      "predicted_misogynous": false,
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.060514786418400864
     },
     {
-      "image_id": "7197",
+      "image_id": "5",
       "ground_truth": 0,
       "predicted_misogynous": false,
-      "explanation": "The meme does not contain any text or visual elements that demeans, objectifies, reinforces harmful gender stereotypes, expresses hostility or violence toward women.",
-      "bleu_1": 0.3939393939393939,
-      "bleu_4": 0.030650988149441005,
-      "rouge_l": 0.3363774733637747
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.09896999552171966
     },
     {
-      "image_id": "7184",
+      "image_id": "6",
       "ground_truth": 0,
       "predicted_misogynous": false,
-      "explanation": "The meme does not contain any text or visual elements that demeans, objectifies, reinforces harmful gender stereotypes, expresses hostility or violence toward women.",
-      "bleu_1": 0.3939393939393939,
-      "bleu_4": 0.030650988149441005,
-      "rouge_l": 0.3363774733637747
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.09896999552171966
     },
     {
-      "image_id": "1118",
+      "image_id": "7",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.09896999552171966
+    },
+    {
+      "image_id": "8",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.09896999552171966
+    },
+    {
+      "image_id": "9",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.09896999552171966
+    },
+    {
+      "image_id": "10",
       "ground_truth": 1,
-      "predicted_misogynous": true,
-      "explanation": "The meme contains a derogatory and objectifying statement about women over 40, suggesting they should shave their private parts, which reinforces harmful gender stereotypes.",
-      "bleu_1": 0.29460580912863066,
-      "bleu_4": 0.050135072151609485,
-      "rouge_l": 0.25
+      "predicted_misogynous": false,
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.060514786418400864
     },
     {
-      "image_id": "3289",
+      "image_id": "11",
       "ground_truth": 0,
       "predicted_misogynous": false,
-      "explanation": "The meme does not contain any visual elements or text that demeans, objectifies, reinforces harmful gender stereotypes, expresses hostility or violence toward women.",
-      "bleu_1": 0.3939393939393939,
-      "bleu_4": 0.030650988149441005,
-      "rouge_l": 0.3363774733637747
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.09896999552171966
     },
     {
-      "image_id": "3029",
+      "image_id": "12",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.060514786418400864
+    },
+    {
+      "image_id": "13",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.060514786418400864
+    },
+    {
+      "image_id": "14",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.060514786418400864
+    },
+    {
+      "image_id": "15",
       "ground_truth": 0,
-      "predicted_misogynous": true,
-      "explanation": "The meme contains a comparison between two scenarios involving boys and their friends' girlfriends, implying that boys are more concerned about their friends' relationships than their friends' girlfriends, which reinforces the idea that men are more focused on their own interests and less on the well-being of their partners.",
-      "bleu_1": 0.021956087824351295,
-      "bleu_4": 0.003748235511311798,
-      "rouge_l": 0.03027812029045075
+      "predicted_misogynous": false,
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.09896999552171966
+    },
+    {
+      "image_id": "16",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.09896999552171966
+    },
+    {
+      "image_id": "17",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.060514786418400864
+    },
+    {
+      "image_id": "18",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.060514786418400864
+    },
+    {
+      "image_id": "19",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.09896999552171966
+    },
+    {
+      "image_id": "20",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.060514786418400864
+    },
+    {
+      "image_id": "21",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.09896999552171966
+    },
+    {
+      "image_id": "22",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.09896999552171966
+    },
+    {
+      "image_id": "23",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.09896999552171966
+    },
+    {
+      "image_id": "24",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.060514786418400864
+    },
+    {
+      "image_id": "25",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.09896999552171966
+    },
+    {
+      "image_id": "26",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.09896999552171966
+    },
+    {
+      "image_id": "27",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.060514786418400864
+    },
+    {
+      "image_id": "28",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.09896999552171966
+    },
+    {
+      "image_id": "29",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "{\"misogynous\": false, \"explanation\": \"Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}\"}",
+      "bleu_1": 0.07029478458049887,
+      "bleu_4": 0.005540902128995084,
+      "rouge_l": 0.09896999552171966
     }
   ]
 }
