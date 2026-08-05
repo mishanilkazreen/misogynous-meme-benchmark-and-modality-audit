@@ -117,6 +117,25 @@ def main() -> None:
         file_errors = check_latex_file(tex_path)
         total_errors.extend(file_errors)
 
+        # Check for auxiliary build log warnings if main.log exists
+        log_path = tex_path.parent / "main.log"
+        if log_path.exists():
+            log_text = log_path.read_text(encoding="utf-8", errors="ignore")
+            undefined_cites = re.findall(
+                r"LaTeX Warning: Citation `([^']+)' on page \d+ undefined", log_text
+            )
+            for cite in set(undefined_cites):
+                total_errors.append(
+                    f"Build log warning: Citation '{cite}' is undefined (renders as '?'). Check .bib entry or compilation passes."
+                )
+            undefined_refs = re.findall(
+                r"LaTeX Warning: Reference `([^']+)' on page \d+ undefined", log_text
+            )
+            for ref in set(undefined_refs):
+                total_errors.append(
+                    f"Build log warning: Reference '{ref}' is undefined (renders as '?'). Check label name."
+                )
+
     if total_errors:
         print(f"\nFound {len(total_errors)} LaTeX syntax/style issues:\n")
         for err in total_errors:
