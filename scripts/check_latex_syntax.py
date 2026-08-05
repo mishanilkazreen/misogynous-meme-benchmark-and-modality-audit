@@ -74,6 +74,15 @@ def check_latex_file(file_path: Path) -> list[str]:
                 f"{file_path}:{line_no}: Forbidden '\\resizebox' detected. Do not wrap tabular environments in \\resizebox under sn-jnl.cls."
             )
 
+        # 5. Check for double backslash typos on LaTeX commands
+        if re.search(
+            r"\\\\(bibliography|section|subsection|subsubsection|caption|label|cite|ref|begin|end)\b",
+            line,
+        ):
+            errors.append(
+                f"{file_path}:{line_no}: Escaped double backslash '\\\\' before command detected. Use single backslash '\\'."
+            )
+
         # 3. British English spelling check (flag American variants)
         american_words = [
             r"\b\w+ize[ds]?\b",
@@ -122,18 +131,25 @@ def main() -> None:
         if log_path.exists():
             log_text = log_path.read_text(encoding="utf-8", errors="ignore")
             undefined_cites = re.findall(
-                r"LaTeX Warning: Citation `([^']+)' on page \d+ undefined", log_text
+                r"LaTeX Warning: Citation [`']([^']+)['`].*?undefined", log_text
             )
             for cite in set(undefined_cites):
                 total_errors.append(
                     f"Build log warning: Citation '{cite}' is undefined (renders as '?'). Check .bib entry or compilation passes."
                 )
             undefined_refs = re.findall(
-                r"LaTeX Warning: Reference `([^']+)' on page \d+ undefined", log_text
+                r"LaTeX Warning: Reference [`']([^']+)['`].*?undefined", log_text
             )
             for ref in set(undefined_refs):
                 total_errors.append(
                     f"Build log warning: Reference '{ref}' is undefined (renders as '?'). Check label name."
+                )
+            if (
+                "There were undefined references" in log_text
+                or "There were undefined citations" in log_text
+            ):
+                total_errors.append(
+                    "Build log warning: LaTeX reported undefined references or citations ('?')."
                 )
 
     if total_errors:
