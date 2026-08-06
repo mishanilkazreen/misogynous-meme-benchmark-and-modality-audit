@@ -131,14 +131,14 @@ def main() -> None:
         if log_path.exists():
             log_text = log_path.read_text(encoding="utf-8", errors="ignore")
             undefined_cites = re.findall(
-                r"LaTeX Warning: Citation [`']([^']+)['`].*?undefined", log_text
+                r"(?:LaTeX|Package natbib) Warning: Citation [`']([^']+)['`].*?undefined", log_text
             )
             for cite in set(undefined_cites):
                 total_errors.append(
                     f"Build log warning: Citation '{cite}' is undefined (renders as '?'). Check .bib entry or compilation passes."
                 )
             undefined_refs = re.findall(
-                r"LaTeX Warning: Reference [`']([^']+)['`].*?undefined", log_text
+                r"(?:LaTeX|Package natbib) Warning: Reference [`']([^']+)['`].*?undefined", log_text
             )
             for ref in set(undefined_refs):
                 total_errors.append(
@@ -149,7 +149,7 @@ def main() -> None:
                 or "There were undefined citations" in log_text
             ):
                 total_errors.append(
-                    "Build log warning: LaTeX reported undefined references or citations ('?')."
+                    "Build log warning: LaTeX/natbib reported undefined references or citations ('?')."
                 )
 
     if total_errors:
