@@ -117,7 +117,7 @@ def main() -> None:
             )
             raw_text = response.text or ""
         except Exception as e:
-            raw_text = f"{{\"misogynous\": false, \"explanation\": \"Error: {e}\"}}"
+            raw_text = f'{{"misogynous": false, "explanation": "Error: {e}"}}'
 
         latency = time.perf_counter() - t0
 
