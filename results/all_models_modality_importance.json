@@ -1,0 +1,114 @@
+[
+  {
+    "model": "Gradient Boosting Classifier",
+    "method": "Gini / Split Gain",
+    "visual_importance": 0.8961186181862513,
+    "text_importance": 0.10388138181374887,
+    "visual_pct": 89.6118618186251,
+    "text_pct": 10.388138181374885
+  },
+  {
+    "model": "AdaBoost Classifier",
+    "method": "Gini / Split Gain",
+    "visual_importance": 0.8372128505843063,
+    "text_importance": 0.16278714941569378,
+    "visual_pct": 83.72128505843062,
+    "text_pct": 16.278714941569376
+  },
+  {
+    "model": "Decision Tree",
+    "method": "Gini / Split Gain",
+    "visual_importance": 0.7409678068777867,
+    "text_importance": 0.25903219312221315,
+    "visual_pct": 74.09678068777869,
+    "text_pct": 25.90321931222132
+  },
+  {
+    "model": "Random Forest",
+    "method": "Gini / Split Gain",
+    "visual_importance": 0.6700883076453334,
+    "text_importance": 0.3299116923546668,
+    "visual_pct": 67.00883076453333,
+    "text_pct": 32.99116923546667
+  },
+  {
+    "model": "Extra Tree Classifier",
+    "method": "Gini / Split Gain",
+    "visual_importance": 0.6467025190086229,
+    "text_importance": 0.35329748099137726,
+    "visual_pct": 64.67025190086228,
+    "text_pct": 35.329748099137724
+  },
+  {
+    "model": "Extra Trees Classifier",
+    "method": "Gini / Split Gain",
+    "visual_importance": 0.6203856436013828,
+    "text_importance": 0.3796143563986171,
+    "visual_pct": 62.03856436013828,
+    "text_pct": 37.96143563986171
+  },
+  {
+    "model": "XGBoost",
+    "method": "Gini / Split Gain",
+    "visual_importance": 0.6054859757423401,
+    "text_importance": 0.3945140242576599,
+    "visual_pct": 60.54859757423401,
+    "text_pct": 39.45140242576599
+  },
+  {
+    "model": "Logistic Regression",
+    "method": "Linear Weight Magnitude",
+    "visual_importance": 465.53314208984375,
+    "text_importance": 306.421875,
+    "visual_pct": 60.30573437359534,
+    "text_pct": 39.69426562640465
+  },
+  {
+    "model": "Ridge Classifier",
+    "method": "Linear Weight Magnitude",
+    "visual_importance": 218.91952514648438,
+    "text_importance": 169.57180786132812,
+    "visual_pct": 56.35119925367342,
+    "text_pct": 43.64880074632658
+  },
+  {
+    "model": "SGD Classifier",
+    "method": "Linear Weight Magnitude",
+    "visual_importance": 453.87396240234375,
+    "text_importance": 354.30908203125,
+    "visual_pct": 56.159797650844844,
+    "text_pct": 43.840202349155156
+  },
+  {
+    "model": "Support Vector Machine LinearSVC",
+    "method": "Linear Weight Magnitude",
+    "visual_importance": 353.7588406760617,
+    "text_importance": 302.0788381830532,
+    "visual_pct": 53.93999949674363,
+    "text_pct": 46.06000050325637
+  },
+  {
+    "model": "PassiveAggressiveClassifier",
+    "method": "Linear Weight Magnitude",
+    "visual_importance": 1431.186279296875,
+    "text_importance": 1293.60791015625,
+    "visual_pct": 52.524564417987065,
+    "text_pct": 47.47543558201294
+  },
+  {
+    "model": "Perceptron",
+    "method": "Linear Weight Magnitude",
+    "visual_importance": 1359.75634765625,
+    "text_importance": 1243.71337890625,
+    "visual_pct": 52.228621434811494,
+    "text_pct": 47.77137856518851
+  },
+  {
+    "model": "Linear Discriminant Analysis",
+    "method": "Linear Weight Magnitude",
+    "visual_importance": 28110.85546875,
+    "text_importance": 195266.59375,
+    "visual_pct": 12.584464352630997,
+    "text_pct": 87.415535647369
+  }
+]

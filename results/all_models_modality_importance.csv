@@ -1,0 +1,15 @@
+model,attribution_method,visual_importance,text_importance,visual_percentage,text_percentage
+Gradient Boosting Classifier,Gini / Split Gain,0.8961,0.1039,89.61,10.39
+AdaBoost Classifier,Gini / Split Gain,0.8372,0.1628,83.72,16.28
+Decision Tree,Gini / Split Gain,0.7410,0.2590,74.10,25.90
+Random Forest,Gini / Split Gain,0.6701,0.3299,67.01,32.99
+Extra Tree Classifier,Gini / Split Gain,0.6467,0.3533,64.67,35.33
+Extra Trees Classifier,Gini / Split Gain,0.6204,0.3796,62.04,37.96
+XGBoost,Gini / Split Gain,0.6055,0.3945,60.55,39.45
+Logistic Regression,Linear Weight Magnitude,465.5331,306.4219,60.31,39.69
+Ridge Classifier,Linear Weight Magnitude,218.9195,169.5718,56.35,43.65
+SGD Classifier,Linear Weight Magnitude,453.8740,354.3091,56.16,43.84
+Support Vector Machine LinearSVC,Linear Weight Magnitude,353.7588,302.0788,53.94,46.06
+PassiveAggressiveClassifier,Linear Weight Magnitude,1431.1863,1293.6079,52.52,47.48
+Perceptron,Linear Weight Magnitude,1359.7563,1243.7134,52.23,47.77
+Linear Discriminant Analysis,Linear Weight Magnitude,28110.8555,195266.5938,12.58,87.42

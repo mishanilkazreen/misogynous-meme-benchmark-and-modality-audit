@@ -1,71 +1,97 @@
 #!/usr/bin/env python3
-"""Compute modality-level feature attribution across all classical classifier families.
+"""Compute and tabulate modality-level feature importance across all trained classical classifiers on frozen CLIP representations for MAMI 2022."""
 
-Evaluates global reliance on visual (CLIP visual) vs textual (CLIP text) features
-across tree-based models (XGBoost, Random Forest, Extra Trees) and regularised linear
-models (Logistic Regression, Ridge, Linear SVC, LDA).
-"""
-
-from __future__ import annotations
-
+import json
 from pathlib import Path
+
+import joblib
 import numpy as np
-from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
-from sklearn.ensemble import ExtraTreesClassifier, RandomForestClassifier
-from sklearn.linear_model import LogisticRegression, RidgeClassifier, SGDClassifier
-import xgboost as xgb
 
 
 def main() -> None:
-    data_path = Path("auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_data.npz")
+    data_path = Path(
+        "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_data.npz"
+    )
     if not data_path.exists():
-        raise FileNotFoundError(f"Missing test data: {data_path}")
+        print(f"Data file not found: {data_path}")
+        return
 
-    data = np.load(data_path, allow_pickle=True)
-    x_train, _ = data["X_train"], data["X_test"]
-    y_train, _ = data["y_train"], data["y_test"]
+    image_dim = 768  # CLIP ViT-L-14 visual dimensions
 
-    image_dim = 768
+    model_dir = Path("auto_benchmark/results/model_results/mami_tabular_model_test/models")
+    model_files = sorted(model_dir.glob("*.joblib"))
 
-    models = {
-        "XGBoost": (xgb.XGBClassifier(n_estimators=100, n_jobs=8, random_state=42, eval_metric="logloss"), "Tree Gain"),
-        "Random Forest": (RandomForestClassifier(n_estimators=50, max_depth=10, random_state=42, n_jobs=8), "Gini Importance"),
-        "Extra Trees": (ExtraTreesClassifier(n_estimators=50, max_depth=10, random_state=42, n_jobs=8), "Gini Importance"),
-        "Logistic Regression": (LogisticRegression(max_iter=500, random_state=42, n_jobs=8), "|Weight Coef|"),
-        "Ridge Classifier": (RidgeClassifier(random_state=42), "|Weight Coef|"),
-        "Linear SVC (SGD)": (SGDClassifier(loss="hinge", random_state=42), "|Weight Coef|"),
-        "Linear Discriminant Analysis": (LinearDiscriminantAnalysis(), "Scaling Coef"),
-    }
+    results = []
 
-    out_csv = Path("results/all_model_modality_importance.csv")
-    out_csv.parent.mkdir(parents=True, exist_ok=True)
+    for mf in model_files:
+        raw_name = mf.stem.replace("mami_tabular_model_test_", "")
+        display_name = raw_name.replace("_-_", " ").replace("_", " ")
 
-    rows = ["model,method,visual_importance,text_importance,visual_pct,text_pct\n"]
+        try:
+            clf = joblib.load(mf)
+        except Exception as e:
+            print(f"Failed to load {mf}: {e}")
+            continue
 
-    for name, (clf, method) in models.items():
-        clf.fit(x_train, y_train)
         if hasattr(clf, "feature_importances_"):
             imp = clf.feature_importances_
-            img_imp = float(imp[:image_dim].sum())
-            txt_imp = float(imp[image_dim:].sum())
+            img_val = float(imp[:image_dim].sum())
+            txt_val = float(imp[image_dim:].sum())
+            method = "Gini / Split Gain"
         elif hasattr(clf, "coef_"):
             coef = np.abs(clf.coef_).ravel()
-            img_imp = float(coef[:image_dim].sum())
-            txt_imp = float(coef[image_dim:].sum())
-        elif hasattr(clf, "scalings_"):
-            scal = np.abs(clf.scalings_).ravel()
-            img_imp = float(scal[:image_dim].sum())
-            txt_imp = float(scal[image_dim:].sum())
+            img_val = float(coef[:image_dim].sum())
+            txt_val = float(coef[image_dim:].sum())
+            method = "Linear Weight Magnitude"
         else:
             continue
 
-        tot = img_imp + txt_imp
-        img_pct = 100.0 * img_imp / tot if tot > 0 else 0.0
-        txt_pct = 100.0 * txt_imp / tot if tot > 0 else 0.0
-        rows.append(f"{name},{method},{img_imp:.6f},{txt_imp:.6f},{img_pct:.2f},{txt_pct:.2f}\n")
+        tot = img_val + txt_val
+        if tot > 0:
+            img_pct = (img_val / tot) * 100.0
+            txt_pct = (txt_val / tot) * 100.0
+        else:
+            img_pct, txt_pct = 50.0, 50.0
 
-    out_csv.write_text("".join(rows))
-    print(f"Saved: {out_csv}")
+        results.append(
+            {
+                "model": display_name,
+                "method": method,
+                "visual_importance": img_val,
+                "text_importance": txt_val,
+                "visual_pct": img_pct,
+                "text_pct": txt_pct,
+            }
+        )
+
+    # Sort results by visual reliance
+    results.sort(key=lambda x: x["visual_pct"], reverse=True)
+
+    print(
+        f"\n{'Model Architecture':35s} | {'Attribution Method':24s} | {'Visual Reliance':16s} | {'Text Reliance':16s}"
+    )
+    print("-" * 98)
+    for r in results:
+        print(
+            f"{r['model']:35s} | {r['method']:24s} | {r['visual_pct']:13.2f}% | {r['text_pct']:13.2f}%"
+        )
+
+    out_csv = Path("results/all_models_modality_importance.csv")
+    out_json = Path("results/all_models_modality_importance.json")
+
+    with open(out_csv, "w") as f:
+        f.write(
+            "model,attribution_method,visual_importance,text_importance,visual_percentage,text_percentage\n"
+        )
+        for r in results:
+            f.write(
+                f"{r['model']},{r['method']},{r['visual_importance']:.4f},{r['text_importance']:.4f},{r['visual_pct']:.2f},{r['text_pct']:.2f}\n"
+            )
+
+    with open(out_json, "w") as f:
+        json.dump(results, f, indent=2)
+
+    print(f"\nSaved full results to {out_csv} and {out_json}")
 
 
 if __name__ == "__main__":
