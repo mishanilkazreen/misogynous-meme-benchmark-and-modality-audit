@@ -3,6 +3,7 @@
 
 import json
 from pathlib import Path
+from typing import Any
 
 import joblib
 import numpy as np
@@ -21,7 +22,7 @@ def main() -> None:
     model_dir = Path("auto_benchmark/results/model_results/mami_tabular_model_test/models")
     model_files = sorted(model_dir.glob("*.joblib"))
 
-    results = []
+    results: list[dict[str, Any]] = []
 
     for mf in model_files:
         raw_name = mf.stem.replace("mami_tabular_model_test_", "")
@@ -65,7 +66,7 @@ def main() -> None:
         )
 
     # Sort results by visual reliance
-    results.sort(key=lambda x: x["visual_pct"], reverse=True)
+    results.sort(key=lambda x: float(x["visual_pct"]), reverse=True)
 
     print(
         f"\n{'Model Architecture':35s} | {'Attribution Method':24s} | {'Visual Reliance':16s} | {'Text Reliance':16s}"

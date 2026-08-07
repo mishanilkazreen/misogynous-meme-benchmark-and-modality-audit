@@ -8,12 +8,13 @@ Ensures strict consistency in:
 - Spine styling, grid line weights, and legend formatting
 """
 
+import csv
 import json
 from pathlib import Path
+from typing import Any
 
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 FIGURES_DIR = ROOT_DIR / "submission" / "figures"
@@ -59,39 +60,51 @@ def generate_figure_1_generalisation_gap() -> None:
         print(f"File not found: {task_a_path}")
         return
 
-    df_a = pd.read_csv(task_a_path)
-    df_trad = df_a[df_a["Origin"] == "Traditional ML"].copy()
-
-    # Clean display names
-    df_trad["Clean_Name"] = (
-        df_trad["Model"].str.replace("Tabular: ", "").str.replace("Classifier", "").str.strip()
-    )
-
-    df_trad["Test_F1"] = df_trad["Test Macro-F1"].astype(float)
-    df_trad["Val_F1"] = df_trad["Val Macro-F1"].astype(float)
+    records: list[dict[str, Any]] = []
+    with open(task_a_path, encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if row.get("Origin") == "Traditional ML":
+                name = row["Model"].replace("Tabular: ", "").replace("Classifier", "").strip()
+                try:
+                    test_f1 = float(row["Test Macro-F1"])
+                    val_f1 = float(row["Val Macro-F1"])
+                    records.append(
+                        {
+                            "name": name,
+                            "test_f1": test_f1,
+                            "val_f1": val_f1,
+                        }
+                    )
+                except (ValueError, KeyError):
+                    continue
 
     # Sort ascending for bottom-to-top display
-    df_trad = df_trad.sort_values(by="Test_F1", ascending=True)
+    records.sort(key=lambda x: float(x["test_f1"]))
 
     fig, ax = plt.subplots(figsize=(8.0, 5.8), dpi=300)
-    y_pos = np.arange(len(df_trad))
+    y_pos = np.arange(len(records))
     bar_height = 0.36
+
+    val_f1s = [r["val_f1"] for r in records]
+    test_f1s = [r["test_f1"] for r in records]
+    names = [r["name"] for r in records]
 
     # Validation (Primary) and Test (Secondary) bars
     ax.barh(
         y_pos + bar_height / 2,
-        df_trad["Val_F1"],
+        val_f1s,
         bar_height,
-        label="Validation Split Macro-$F_1$",
+        label=r"Validation Split Macro-$F_1$",
         color=COLOR_PRIMARY,
         edgecolor="none",
         zorder=3,
     )
     ax.barh(
         y_pos - bar_height / 2,
-        df_trad["Test_F1"],
+        test_f1s,
         bar_height,
-        label="Test Split Macro-$F_1$",
+        label=r"Test Split Macro-$F_1$",
         color=COLOR_SECONDARY,
         edgecolor="none",
         zorder=3,
@@ -100,8 +113,8 @@ def generate_figure_1_generalisation_gap() -> None:
     apply_shared_axes_styling(ax)
 
     ax.set_yticks(y_pos)
-    ax.set_yticklabels(df_trad["Clean_Name"])
-    ax.set_xlabel("Macro-$F_1$ Classification Score")
+    ax.set_yticklabels(names)
+    ax.set_xlabel(r"Macro-$F_1$ Classification Score")
     ax.set_title("Validation vs. Test Generalisability Gap on Frozen CLIP Representations", pad=12)
     ax.set_xlim(0.50, 0.90)
 
@@ -127,18 +140,18 @@ def generate_figure_2_modality_importance() -> None:
         print(f"File not found: {importance_path}")
         return
 
-    with open(importance_path) as f:
-        data = json.load(f)
+    with open(importance_path, encoding="utf-8") as f:
+        data: list[dict[str, Any]] = json.load(f)
 
     # Sort ascending for bottom-to-top horizontal bar chart
-    data.sort(key=lambda x: x["visual_pct"], reverse=False)
+    data.sort(key=lambda x: float(x["visual_pct"]))
 
     models = [
-        d["model"].replace("Classifier", "").replace("Support Vector Machine", "SVM").strip()
+        str(d["model"]).replace("Classifier", "").replace("Support Vector Machine", "SVM").strip()
         for d in data
     ]
-    visual_pct = [d["visual_pct"] for d in data]
-    text_pct = [d["text_pct"] for d in data]
+    visual_pct = [float(d["visual_pct"]) for d in data]
+    text_pct = [float(d["text_pct"]) for d in data]
 
     fig, ax = plt.subplots(figsize=(8.0, 5.8), dpi=300)
     y_pos = np.arange(len(models))
