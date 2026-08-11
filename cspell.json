@@ -526,7 +526,8 @@
     "footnotesize",
     "xcolor",
     "Cleanup",
-    "attn"
+    "attn",
+    "Woodford"
   ],
   "ignorePaths": [
     "**/*.py",

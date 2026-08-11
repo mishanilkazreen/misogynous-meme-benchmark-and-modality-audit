@@ -109,6 +109,12 @@ repos:
         language: system
         files: \.tex$
 
+      - id: acronym-check
+        name: Acronym usage check (consistent abbreviation enforcement)
+        entry: python3 scripts/check_acronyms.py
+        language: system
+        files: \.tex$
+
       - id: ci-preflight
         name: CI preflight (pre-commit --all-files + pytest)
         entry: bash scripts/preflight.sh

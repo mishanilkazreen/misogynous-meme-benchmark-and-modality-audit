@@ -74,7 +74,7 @@ def check_latex_guidelines(tex_path: Path) -> list[str]:
                 "Documentclass options must specify a valid Springer reference style (e.g. 'sn-mathphys-num' or 'sn-basic')."
             )
 
-    # 2. Anonymization check (Double-Blind Review)
+    # 2. Anonymization & Author Biographies check (Double-Blind Review)
     if (
         re.search(r"\\author\{(?!\s*\\fnm\{Anonymous\}).+?\}", content, re.DOTALL)
         and "Anonymous" not in content.split(r"\maketitle")[0]
@@ -82,6 +82,34 @@ def check_latex_guidelines(tex_path: Path) -> list[str]:
         errors.append(
             "Paper title block must be anonymized ('Anonymous Author(s)') for double-blind peer review."
         )
+
+    # Check for forbidden author biography environments or headings
+    if re.search(
+        r"\\begin\{(?:IEEE)?biography\}|\\bio\{|\\section\*?\{Author Biograph",
+        content,
+        re.IGNORECASE,
+    ):
+        errors.append(
+            "Author biography detected in manuscript. Neural Computing and Applications strictly forbids author bios in double-blind submissions."
+        )
+
+    # Check that real author names do not appear in body text
+    real_authors = [
+        "Anna Rösner",
+        "Mani Ghahremani",
+        "Mishanil Kazreen",
+        "Louis Papot",
+        "Morgan Woodford",
+        "Golcarenarenji",
+    ]
+    for author_name in real_authors:
+        # Match author name outside comments
+        for line_no, line in enumerate(content.splitlines(), start=1):
+            stripped = line.split("%")[0]
+            if author_name.lower() in stripped.lower():
+                errors.append(
+                    f"Real author name '{author_name}' detected on line {line_no} violating double-blind review policy."
+                )
 
     # 3. Abstract check
     abstract_match = re.search(r"\\abstract\{(.*?)\}", content, re.DOTALL)
@@ -114,15 +142,25 @@ def check_latex_guidelines(tex_path: Path) -> list[str]:
             "Heading hierarchy exceeds 3 levels ('\\subsubsubsection' is forbidden). Use \\section, \\subsection, \\subsubsection."
         )
 
-    # 6. Declarations section check
+    # 6. Table formatting check (no resizebox on tabular)
+    if re.search(r"\\resizebox\{.*?\}\{.*?\}\{\s*\\begin\{tabular\}", content):
+        errors.append(
+            "Forbidden table resizing: Wrapping '\\begin{tabular}' inside '\\resizebox' corrupts sn-jnl hooks. Use '\\footnotesize' or '\\setlength{\\tabcolsep}{...}' instead."
+        )
+
+    # 7. Declarations section check
     if r"\section*{Declarations}" not in content and r"\section{Declarations}" not in content:
         errors.append("Missing mandatory '\\section*{Declarations}' block.")
     else:
         required_declarations = [
             "Funding",
             "Conflict of Interest",
+            "Ethics Approval",
+            "Consent to Participate",
+            "Consent for Publication",
             "Data Availability",
             "Code Availability",
+            "Authors' Contributions",
         ]
         for decl in required_declarations:
             if decl.lower() not in content.lower():

@@ -1,14 +1,21 @@
+from pathlib import Path
 import re
 import sys
 
-with open("submission/main.tex") as f:
-    tex = f.read()
+if len(sys.argv) > 1:
+    tex_path = Path(sys.argv[1])
+else:
+    tex_path = Path(__file__).resolve().parent.parent / "submission" / "main.tex"
+
+tex = tex_path.read_text(encoding="utf-8")
 
 # Ignore standard terms that do not require acronym usage rules
 IGNORED = {
     "AI",
     "API",
     "CPU",
+    "FN",
+    "FP",
     "GPU",
     "JSON",
     "LGBTQ",
@@ -18,6 +25,8 @@ IGNORED = {
     "RAM",
     "RGB",
     "SVM",
+    "TN",
+    "TP",
     "TSV",
     "URL",
     "USA",
