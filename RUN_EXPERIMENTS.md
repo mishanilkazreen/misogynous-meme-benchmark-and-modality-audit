@@ -1,11 +1,5 @@
 # Guide to Running the MAMI Experiments
 
-Post-review pipeline. Reflects the fixes in
-[`docs/CODE_REVIEW_ISSUES.md`](docs/CODE_REVIEW_ISSUES.md) and the
-phased rerun order in [`docs/RERUN_PLAN.md`](docs/RERUN_PLAN.md). Every
-step below assumes:
-
-- Working branch is `bug_fix_anna` (or merged into `main`).
 - All Phase A–E fixes are applied. Prior single-seed runs are treated
   as exploratory and are NOT reportable.
 - GPU work runs on the SCIAMA HPC cluster (NVIDIA L40, 48 GB VRAM) via
@@ -32,8 +26,7 @@ uv run python scripts/download_dataset.py
 Every training and benchmark script accepts both the paper-facing
 names (``binary`` / ``multilabel``) and the legacy pipeline names
 (``singleclass`` / ``multiclass``). The two families are interchangeable
-in every command below; pick whichever you find easier to read. See
-[`docs/CODE_REVIEW_ISSUES.md`](docs/CODE_REVIEW_ISSUES.md) §4.1.
+in every command below; pick whichever you find easier to read.
 
 ## 1. Extract embeddings (Phase 0 of the rerun plan)
 
@@ -308,6 +301,4 @@ Old SLURM scripts and notebooks keep working without edits.
 
 For a one-week wall-clock plan hitting Task A + Task B on all reported
 systems with three seeds where appropriate, budget ~63 GPU-hours and
-~15 CPU-hours on SCIAMA. See
-[`docs/RERUN_PLAN.md`](docs/RERUN_PLAN.md) for the phase-by-phase
-breakdown.
+~15 CPU-hours on SCIAMA.
