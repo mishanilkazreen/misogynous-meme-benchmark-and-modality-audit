@@ -4,7 +4,8 @@ Multimodal content moderation on social media platforms presents a technical
 challenge, especially in the context of internet memes where visual and textual
 modalities interact implicitly. In this paper, we conduct a systematic benchmark
 of over 30 classification architectures on the SemEval-2022 Task 5 (MAMI)
-dataset, including closed-source frontier foundation models (Gemini 1.5 Pro), finetuned open-weights Vision-Language Models (Qwen2-VL, LLaVA-1.5), fine-tuned
+dataset, including closed-source frontier foundation models (Gemini 1.5 Pro),
+finetuned open-weights Vision-Language Models (Qwen2-VL, LLaVA-1.5), fine-tuned
 contrastive encoders (CLIP), and 23 classical machine learning models trained on
 pre-extracted CLIP embeddings. Our findings expose key insights: (1) Gemini
 1.5 Pro in a zero-shot setting establishes top performance on binary misogyny
