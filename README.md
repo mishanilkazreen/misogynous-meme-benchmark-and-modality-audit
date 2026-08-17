@@ -1,13 +1,22 @@
-# Multimodal Misogyny Detection with Vision-Language Models
+# Vision-Language Models and Classical Classifiers: A Benchmark and Modality Audit in Misogynous Meme Detection
 
-Benchmarking vision-language models (CLIP, LLaVA, Qwen2-VL, Gemini) and
-traditional ML baselines (XGBoost, LightGBM) on misogyny classification
-using the MAMI 2022 dataset.
+Multimodal content moderation on social media platforms presents a technical
+challenge, especially in the context of internet memes where visual and textual
+modalities interact implicitly. In this paper, we conduct a systematic benchmark
+of over 30 classification architectures on the SemEval-2022 Task 5 (MAMI)
+dataset, including closed-source frontier foundation models (Gemini 1.5 Pro), finetuned open-weights Vision-Language Models (Qwen2-VL, LLaVA-1.5), fine-tuned
+contrastive encoders (CLIP), and 23 classical machine learning models trained on
+pre-extracted CLIP embeddings. Our findings expose key insights: (1) Gemini
+1.5 Pro in a zero-shot setting establishes top performance on binary misogyny
+detection (Task A) with a Macro-F1 of 0.8829, outperforming all custom-trained
+literature pipelines; (2) for multi-label sub-type classification (Task B), a simple
+tuned Support Vector Machine (SVM-RBF) on frozen CLIP features achieves a
+MAMI Score B of 0.7321, matching or exceeding the SemEval winner (0.7310); and
+(3) we audit the validation-test discrepancy, proving via SHAP feature importance
+that fine-tuned classifiers overfit by memorising visual templates (72.42% image
+importance vs. 27.58% text importance).
 
-Two tasks:
-
-- **Task A** (binary): Is this meme misogynistic? (yes/no)
-- **Task B** (multilabel): Which sub-types? (shaming, stereotype, objectification, violence)
+---
 
 ## Setup
 
@@ -79,3 +88,10 @@ content-moderation/
 ├── results/             # JSON outputs, figures (mostly gitignored)
 └── tests/               # Unit and property tests
 ```
+
+## Citation
+
+*This paper is currently under review. Citation details will be updated upon publication.*
+
+If you use this work, please contact the corresponding author at `mani.ghahremani@port.ac.uk` for citation details
+until the paper is published.
