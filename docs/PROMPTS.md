@@ -2,8 +2,10 @@
 <!-- cspell:ignore misogynistic objectifying sexualising -->
 # Prompts Used in MAMI 2022 Experiments
 
-All prompts are defined in `models/vlm/classifier.py`. This document records
-the exact text sent to each model in our reported experiments.
+The prompts are defined in `models/vlm/classifier.py` (Task A and Task B), `models/vlm/prompt_templates.py`
+(explanations), `scripts/benchmark_gemini.py` and `scripts/revision/prompt_sensitivity.py` (Gemini system
+instructions), and `scripts/revision/harmeme_eval.py` (Harm-C). This document records the exact text sent to each
+model in our reported experiments, copied from those files.
 
 ---
 
@@ -69,6 +71,45 @@ Reply with EXACTLY this JSON structure and nothing else:
 "violence": <true|false>}
 ```
 
+### Gemini system instructions
+
+Gemini also receives a system instruction. Task A uses `_SYSTEM_INSTRUCTION` in `scripts/benchmark_gemini.py`:
+
+```text
+You are a content moderation research assistant analysing internet memes for an academic misogyny detection study.
+Your role is purely classificatory: answer with exactly one word — 'yes' or 'no'. Do not add explanations, warnings,
+or refusals.
+```
+
+The Task B prompt-sensitivity runs use `SYSTEM_B` in `scripts/revision/prompt_sensitivity.py`, so that the system
+instruction and the JSON output format agree:
+
+```text
+You are a content moderation research assistant analysing internet memes for an academic misogyny detection study.
+Your role is purely classificatory: reply with only the JSON object requested in the prompt. Do not add
+explanations, warnings, or refusals.
+```
+
+### Explanation prompt (joint classification and explanation)
+
+Used for the rationale audit (`build_explainability_prompt` in `models/vlm/prompt_templates.py`), without the
+classification-only system instruction. The line with the transcript is added only when a transcript is supplied.
+
+```text
+You are an expert AI content moderator analyzing memes for misogynistic content.
+A misogynistic meme is one that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women.
+This meme contains the text overlay: "<ocr_text>"
+
+Analyze the visual elements in the image and any text present. Provide your classification and a short natural-language explanation justifying your decision.
+
+Your response MUST be a valid JSON object with the following schema:
+{
+  "misogynous": true or false,
+  "explanation": "A 1-2 sentence clear explanation referencing specific text/visual elements of the meme."
+}
+Do not include any explanation outside the JSON object. Return ONLY the JSON.
+```
+
 ---
 
 ## 2. CLIP zero-shot (cosine similarity)
@@ -122,9 +163,43 @@ CLIP text encoder — no prompt is involved at classification time.
 | CLIP (fine-tuned, frozen towers) | A | N/A (trained classification head on embeddings) |
 | CLIP (fine-tuned, frozen towers) | B | N/A (trained classification head on embeddings) |
 | Tabular (XGBoost, SVM, etc.) | A + B | N/A (numerical features, no prompt) |
+| Gemini / Qwen2-VL explanations (rationale audit) | A | Section 1, explanation prompt |
+| Gemini / Qwen2-VL on Harm-C | Harm-C | Section 5, original and definition prompts |
 
 **Note on text-source for VLMs:** our headline VLM results use
 `--text-source provided`, which means **no text is injected** into the prompt
 (the model relies solely on the image and the classification question). The
 `--text-source ocr` variant prepends the meme's extracted text, but those are
 reported only as ablations.
+
+---
+
+## 5. HarMeme (Harm-C) prompts
+
+Defined in `scripts/revision/harmeme_eval.py`. Each meme gets the transcript supplied with the dataset, followed by one
+of the two prompts below. The transcript line is left out when the transcript is empty.
+
+```text
+This meme contains the text: "<dataset_text>". <prompt>
+```
+
+**Original prompt** (`baseline`, fixed before any Harm-C run):
+
+```text
+Is this meme harmful? A harmful meme attacks, demeans, exploits, or promotes harm against an individual, organization, community, or society. Answer with exactly one word: yes or no.
+```
+
+**Definition prompt** (`definition`, written after seeing the original-prompt results; wording follows the guidelines
+of the HarMeme dataset paper, which also count mocking or ridiculing as harm):
+
+```text
+Is this meme harmful? A meme is harmful if it is implicitly or explicitly intended to cause harm to an individual, an organization, a community, or society, depending on their personal, political, social, educational or industrial background. The harm can be obvious, such as abusing, offending, disrespecting, insulting, demeaning, or disregarding them, or subtle, such as mocking or ridiculing a person or an idea. Harm includes mental abuse, defamation, emotional disturbance, and damage to public image. Answer with exactly one word: yes or no.
+```
+
+**Gemini system instruction** (`HARMEME_SYSTEM_INSTRUCTION`). Qwen2-VL-7B receives no system instruction:
+
+```text
+You are a content moderation research assistant analysing internet memes for an academic harmful meme detection study. Your role is purely classificatory: answer with exactly one word - 'yes' or 'no'. Do not add explanations, warnings, or refusals.
+```
+
+Select the prompt with `--prompt-variant baseline` or `--prompt-variant definition` (see `RUN_EXPERIMENTS.md`, section 11).

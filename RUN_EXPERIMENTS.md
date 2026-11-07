@@ -287,6 +287,71 @@ The MAMI-official Task B metric (`mami_score_b`) is the headline
 column; older result JSONs that predate the metric show `N/A` and
 should be regenerated.
 
+## 11. Second dataset: HarMeme (Harm-C)
+
+Binary task (harmful or harmless) on the official Harm-C split (3,013 train, 177 validation, 354 test memes).
+Run every command from the repository root.
+
+Download the annotations and images (about 590 MB):
+
+```bash
+uv run python -m scripts.revision.harmeme_eval download
+```
+
+Classical classifiers on frozen CLIP ViT-L-14 features. No API key is needed, and a GPU speeds up `extract`:
+
+```bash
+uv run python -m scripts.revision.harmeme_eval extract
+uv run python -m scripts.revision.harmeme_eval classify
+```
+
+Zero-shot Qwen2-VL-7B (needs a CUDA GPU; 4-bit):
+
+```bash
+uv run python -m scripts.revision.harmeme_eval qwen --device cuda
+```
+
+On SCIAMA, `extract`, `classify`, `qwen` and `summarize` run together as job S6 (`bash sciama/submit.sh S6`, see
+`sciama/JOBS.md`). Compute: ~7 min on one L40 GPU.
+
+Zero-shot Gemini (needs `GEMINI_API_KEY` in `.env`; 531 API calls):
+
+```bash
+uv run python -m scripts.revision.harmeme_eval gemini
+```
+
+Compute: ~10 min with one call at a time (about 220 s for validation and 390 s for test).
+
+Summary table and statistics (no model is run):
+
+```bash
+uv run python -m scripts.revision.harmeme_eval summarize
+uv run python -m scripts.revision.harmeme_analysis
+```
+
+These write `metrics.json`, `table_rows.tex`, `summary.md` and `analysis.json` (confidence intervals, McNemar tests, the
+single-word rule) to `results/revision/dis01_harmeme/`.
+
+Prompt sensitivity and repeat runs. The first Gemini run is repeated to check that it reproduces, and a second prompt
+based on the dataset paper's definition of harm is tried (both prompts are in `docs/PROMPTS.md`):
+
+```bash
+# Repeat the original Gemini run (new file names; existing files are never overwritten)
+uv run python -m scripts.revision.harmeme_eval gemini --output-tag _rerun
+uv run python -m scripts.revision.harmeme_eval compare --tag _rerun
+
+# Definition prompt: validation first. Run it on test only if `compare` prints "clears validation bar: yes".
+uv run python -m scripts.revision.harmeme_eval gemini --prompt-variant definition --output-tag _definition --splits validation
+uv run python -m scripts.revision.harmeme_eval compare --tag _definition
+uv run python -m scripts.revision.harmeme_eval gemini --prompt-variant definition --output-tag _definition --splits test
+
+# Same prompt on Qwen2-VL-7B (CUDA GPU; job S6-qwen-def on SCIAMA)
+uv run python -m scripts.revision.harmeme_eval qwen --device cuda --prompt-variant definition --output-tag _definition
+uv run python -m scripts.revision.harmeme_eval compare --model qwen2_vl_7b_instruct --tag _definition
+```
+
+`summarize` reads only the untagged result files, so these extra runs never change the main table.
+
 ## Deprecated flags kept for backward compatibility
 
 - `--use-ocr` on any script equals `--text-source ocr`.
