@@ -3,7 +3,7 @@ name = "autobenchmark"
 version = "0.1.0"
 description = "Automated benchmarking of classical ML baselines on MAMI meme features"
 readme = "README.md"
-authors = [{ name = "Anna Rösner" }]
+authors = [{ name = "Content Moderation Team" }]
 requires-python = ">=3.11"
 dependencies = [
     "imbalanced-learn>=0.14.2",

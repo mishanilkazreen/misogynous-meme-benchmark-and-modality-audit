@@ -59,7 +59,7 @@ def main():
         print("Error: data_config_name not specified in model configuration.")
         return
 
-    base_dir = init_cfg.get("system", {}).get("base_dir", "C:/Github/auto_benchmark")
+    base_dir = init_cfg.get("system", {}).get("base_dir", "")
     data_cfg_path = os.path.join(base_dir, "config", "data", f"{data_config_name}.yaml")
     if not os.path.exists(data_cfg_path):
         # Fallback to relative check

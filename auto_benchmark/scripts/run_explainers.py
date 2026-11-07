@@ -66,7 +66,7 @@ def main():
         print("Error: model_config_name not specified in explainer configuration.")
         return
 
-    base_dir = init_cfg.get("system", {}).get("base_dir", "C:/Github/auto_benchmark")
+    base_dir = init_cfg.get("system", {}).get("base_dir", "")
     results_dir = init_cfg.get("paths", {}).get("results_dir", "results")
 
     # Locate trained models and datasets

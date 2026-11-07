@@ -43,7 +43,7 @@ def main():
     with open(args.init, encoding="utf-8") as f:
         init_cfg = yaml.safe_load(f)
 
-    base_dir = init_cfg.get("system", {}).get("base_dir", "C:/Github/auto_benchmark")
+    base_dir = init_cfg.get("system", {}).get("base_dir", "")
     results_dir = init_cfg.get("paths", {}).get("results_dir", "results")
 
     # Locate evaluation file

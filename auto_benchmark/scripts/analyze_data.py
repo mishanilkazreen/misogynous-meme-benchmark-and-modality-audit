@@ -58,7 +58,7 @@ def main():
     print(f"Data loaded successfully. Shape: {df.shape}")
 
     # Build output path
-    base_dir = init_cfg.get("system", {}).get("base_dir", "C:/Github/auto_benchmark")
+    base_dir = init_cfg.get("system", {}).get("base_dir", "")
     results_dir = init_cfg.get("paths", {}).get("results_dir", "results")
 
     output_dir = os.path.join(base_dir, results_dir, "data_analysis", data_config_name)

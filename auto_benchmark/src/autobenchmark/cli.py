@@ -31,7 +31,7 @@ def run_profile(args):
     df = load_data(filepath, init_cfg, nrows=row_limit)
     print(f"Data loaded successfully. Shape: {df.shape}")
 
-    base_dir = init_cfg.get("system", {}).get("base_dir", "C:/Github/auto_benchmark")
+    base_dir = init_cfg.get("system", {}).get("base_dir", "")
     results_dir = init_cfg.get("paths", {}).get("results_dir", "results")
     output_dir = os.path.join(base_dir, results_dir, "data_analysis", data_config_name)
 
@@ -70,7 +70,7 @@ def run_train(args):
         print("Error: data_config_name not specified in model configuration.")
         return
 
-    base_dir = init_cfg.get("system", {}).get("base_dir", "C:/Github/auto_benchmark")
+    base_dir = init_cfg.get("system", {}).get("base_dir", "")
     data_cfg_path = os.path.join(base_dir, "config", "data", f"{data_config_name}.yaml")
     if not os.path.exists(data_cfg_path):
         data_cfg_path = os.path.join("config", "data", f"{data_config_name}.yaml")
@@ -200,7 +200,7 @@ def run_explain(args):
         print("Error: model_config_name not specified in explainer configuration.")
         return
 
-    base_dir = init_cfg.get("system", {}).get("base_dir", "C:/Github/auto_benchmark")
+    base_dir = init_cfg.get("system", {}).get("base_dir", "")
     results_dir = init_cfg.get("paths", {}).get("results_dir", "results")
 
     model_results_dir = os.path.join(base_dir, results_dir, "model_results", model_config_name)
@@ -364,7 +364,7 @@ def run_detect(args):
         print("Error: data_config_name not specified in model configuration.")
         return
 
-    base_dir = init_cfg.get("system", {}).get("base_dir", "C:/Github/auto_benchmark")
+    base_dir = init_cfg.get("system", {}).get("base_dir", "")
     data_cfg_path = os.path.join(base_dir, "config", "data", f"{data_config_name}.yaml")
 
     if not os.path.exists(data_cfg_path):
@@ -435,7 +435,7 @@ def run_classify(args):
         print("Error: data_config_name not specified in model configuration.")
         return
 
-    base_dir = init_cfg.get("system", {}).get("base_dir", "C:/Github/auto_benchmark")
+    base_dir = init_cfg.get("system", {}).get("base_dir", "")
     data_cfg_path = os.path.join(base_dir, "config", "data", f"{data_config_name}.yaml")
 
     if not os.path.exists(data_cfg_path):
@@ -497,7 +497,7 @@ def run_vlmbench(args):
         print("Error: data_config_name not specified in VLM configuration.")
         return
 
-    base_dir = init_cfg.get("system", {}).get("base_dir", "C:/Github/auto_benchmark")
+    base_dir = init_cfg.get("system", {}).get("base_dir", "")
     data_cfg_path = os.path.join(base_dir, "config", "data", f"{data_config_name}.yaml")
 
     if not os.path.exists(data_cfg_path):

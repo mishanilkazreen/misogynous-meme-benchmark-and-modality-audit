@@ -445,7 +445,7 @@ def prepare_data(df, data_config, init_config=None):
                 emb_model_name = prep_cfg.get("embeddings_model", "all-MiniLM-L6-v2")
                 emb_model_safe = re.sub(r"[^a-zA-Z0-9_-]", "_", emb_model_name)
 
-                base_dir = "C:/Github/auto_benchmark"
+                base_dir = ""
                 if init_config:
                     base_dir = init_config.get("system", {}).get("base_dir", base_dir)
 
@@ -497,7 +497,7 @@ def prepare_data(df, data_config, init_config=None):
             image_dir = dataset_cfg.get("image_directory", "data_files")
             images = df[image_col].fillna("").astype(str).tolist()
 
-            base_dir = "C:/Github/auto_benchmark"
+            base_dir = ""
             if init_config:
                 base_dir = init_config.get("system", {}).get("base_dir", base_dir)
 
