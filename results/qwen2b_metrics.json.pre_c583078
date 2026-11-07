@@ -1,0 +1,280 @@
+{
+  "num_samples": 30,
+  "mean_bleu_1": 0.1465029003948724,
+  "mean_bleu_4": 0.013359018228371548,
+  "mean_rouge_l": 0.13391793678556763,
+  "std_bleu_4": 0.011489989346288044,
+  "std_rouge_l": 0.09399844137753408,
+  "details": [
+    {
+      "image_id": "1377",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The text overlay on the meme is a clear example of gender discrimination and reinforces harmful gender stereotypes. It suggests that women should do physical labor to earn equal pay, which is a form of sexism and reinforces the idea that women are not capable of doing physical work. This type of message is misogynistic and should not be tolerated.",
+      "bleu_1": 0.2013311148086522,
+      "bleu_4": 0.024325758392780762,
+      "rouge_l": 0.1737421383647799
+    },
+    {
+      "image_id": "5498",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The text overlay on the image reads: ",
+      "bleu_1": 0.013659008211069466,
+      "bleu_4": 0.0029268296557222154,
+      "rouge_l": 0.061320754716981125
+    },
+    {
+      "image_id": "5697",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "The image shows a man and a woman in a car, with the woman driving. The text overlay does not contain any derogatory or sexist language.",
+      "bleu_1": 0.11877394636015327,
+      "bleu_4": 0.00960184322345291,
+      "rouge_l": 0.08030523255813954
+    },
+    {
+      "image_id": "5182",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The text overlay on the meme is derogatory and sexist, referring to women as 'bitches' and implying that they should be made sexier by giving them bacon. This is a clear example of misogynistic content.",
+      "bleu_1": 0.25925925925925924,
+      "bleu_4": 0.016749810151982222,
+      "rouge_l": 0.17254840724547155
+    },
+    {
+      "image_id": "6162",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains text that reinforces harmful gender stereotypes and objectifies women. The text suggests that putting a penis in a woman's mouth does not mean she consented, which is a form of sexual harassment and reinforces harmful gender stereotypes.",
+      "bleu_1": 0.24574209245742093,
+      "bleu_4": 0.03441493521156193,
+      "rouge_l": 0.25242718446601947
+    },
+    {
+      "image_id": "6772",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The text overlay contains derogatory language and references to women, which demeans and objectifies them. The image of a football player is also used to reinforce harmful gender stereotypes and express hostility or violence toward women.",
+      "bleu_1": 0.22437673130193903,
+      "bleu_4": 0.015798660014617726,
+      "rouge_l": 0.1873198847262248
+    },
+    {
+      "image_id": "3932",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The image does not contain any text or visual elements that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women.",
+      "bleu_1": 0.33609958506224064,
+      "bleu_4": 0.028451170649326247,
+      "rouge_l": 0.28218769951053413
+    },
+    {
+      "image_id": "5457",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The image does not contain any text or visual elements that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women.",
+      "bleu_1": 0.33609958506224064,
+      "bleu_4": 0.028451170649326247,
+      "rouge_l": 0.28218769951053413
+    },
+    {
+      "image_id": "10007",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The text overlay on the image contains derogatory and sexist language, such as referring to a white male as a 'straight white male' and using derogatory terms like 'white male' and 'white man.' Additionally, the text implies that the person being harassed is a white male and that the harassment is being directed towards a white male. This aligns with the definition of a misogynistic meme.",
+      "bleu_1": 0.10741301059001514,
+      "bleu_4": 0.004494145491555045,
+      "rouge_l": 0.0745027531183279
+    },
+    {
+      "image_id": "7391",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The text overlay on the image is derogatory and sexist, implying that the girlfriend is the source of the delicious breakfast and that the boyfriend is inferior or dependent on her. This is a clear example of misogynistic content.",
+      "bleu_1": 0.13043478260869565,
+      "bleu_4": 0.007110445841799624,
+      "rouge_l": 0.10695273431198579
+    },
+    {
+      "image_id": "2991",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The text overlay on the image is derogatory and sexist, referring to a woman as a 'huge disgusting bovine cow woman' and teaching petite girls to be 'graceful'. This is a clear example of misogynistic content.",
+      "bleu_1": 0.16897506925207756,
+      "bleu_4": 0.008081338270946304,
+      "rouge_l": 0.10193726937269372
+    },
+    {
+      "image_id": "6324",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The text overlay on the image reads: 'FIRST DAY OF HOMEOFFICE 10 WIFE CAME TO MY ROOM FOR A QUICKIE'. This text is derogatory and reinforces harmful gender stereotypes, specifically objectifying women and suggesting that they are not welcome in the workplace. The visual element of the baby meme is not relevant to the analysis of the misogynistic nature of the text.",
+      "bleu_1": 0.13043478260869565,
+      "bleu_4": 0.009017179918631428,
+      "rouge_l": 0.13001529591716673
+    },
+    {
+      "image_id": "1804",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The text overlay and the visual of a man hitting a woman in a violent manner are clearly misogynistic. The text implies that the person playing the hit-woman role is a feminist, which reinforces harmful gender stereotypes and objectifies women.",
+      "bleu_1": 0.24574209245742093,
+      "bleu_4": 0.031222045804571795,
+      "rouge_l": 0.25242718446601947
+    },
+    {
+      "image_id": "552",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The text overlay in the image reads: ",
+      "bleu_1": 0.013659008211069466,
+      "bleu_4": 0.0029268296557222154,
+      "rouge_l": 0.061320754716981125
+    },
+    {
+      "image_id": "13261",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The text overlay on the image reads, ",
+      "bleu_1": 0.013659008211069466,
+      "bleu_4": 0.0029268296557222154,
+      "rouge_l": 0.061320754716981125
+    },
+    {
+      "image_id": "10285",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The image is a humorous meme that depicts a dog with a happy expression, which is not related to gender stereotypes or violence. The text overlay does not contain any derogatory language or references to women.",
+      "bleu_1": 0.2520775623268698,
+      "bleu_4": 0.01626519770668108,
+      "rouge_l": 0.22478386167146971
+    },
+    {
+      "image_id": "6225",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The text overlay in the image reads: ",
+      "bleu_1": 0.0025365114387035544,
+      "bleu_4": 0.0032829148598350435,
+      "rouge_l": 0.0
+    },
+    {
+      "image_id": "7602",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The image humorously contrasts the expectations of a woman in a superhero costume with her actual appearance, highlighting the absurdity of these expectations and the reality of her appearance. The text adds a humorous tone to the image, but the underlying message is clear and misogynistic.",
+      "bleu_1": 0.08893709327548807,
+      "bleu_4": 0.005675415114635825,
+      "rouge_l": 0.05890191897654584
+    },
+    {
+      "image_id": "5988",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The text overlay on the image reads: ",
+      "bleu_1": 0.013659008211069466,
+      "bleu_4": 0.0029268296557222154,
+      "rouge_l": 0.061320754716981125
+    },
+    {
+      "image_id": "991",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The text overlay on the image includes derogatory terms such as 'prostitute', 'drug girl addict', and 'the emo girl', which reinforce harmful gender stereotypes and objectify women. The image also features a character named 'Nicolas Cage' in a superhero costume, which is not relevant to the context of the meme. The text and visual elements together suggest a misogynistic tone.",
+      "bleu_1": 0.13477537437603992,
+      "bleu_4": 0.005120386057364984,
+      "rouge_l": 0.07988914327027354
+    },
+    {
+      "image_id": "10270",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The text overlay on the image reads: ",
+      "bleu_1": 0.013659008211069466,
+      "bleu_4": 0.0029268296557222154,
+      "rouge_l": 0.061320754716981125
+    },
+    {
+      "image_id": "2588",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The image does not contain any text or visual elements that suggest it is a misogynistic meme. It appears to be a simple instructional image related to setting up a lamp.",
+      "bleu_1": 0.22829581993569129,
+      "bleu_4": 0.017872331452840402,
+      "rouge_l": 0.12280051861455824
+    },
+    {
+      "image_id": "132",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The image does not contain any text or visual elements that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women.",
+      "bleu_1": 0.33609958506224064,
+      "bleu_4": 0.028451170649326247,
+      "rouge_l": 0.28218769951053413
+    },
+    {
+      "image_id": "10293",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The text overlay on the image is derogatory and sexist, referring to a woman as 'his son' and implying that she is having sex with her own son. This is a clear example of misogynistic content.",
+      "bleu_1": 0.1412742382271468,
+      "bleu_4": 0.007727577534447633,
+      "rouge_l": 0.11239193083573486
+    },
+    {
+      "image_id": "6391",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The image contains text that reads: ",
+      "bleu_1": 0.025301624908258727,
+      "bleu_4": 0.004797817880318713,
+      "rouge_l": 0.1892123287671233
+    },
+    {
+      "image_id": "7197",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The image does not contain any text or visual elements that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women.",
+      "bleu_1": 0.33609958506224064,
+      "bleu_4": 0.028451170649326247,
+      "rouge_l": 0.28218769951053413
+    },
+    {
+      "image_id": "7184",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The text overlay on the image reads: ",
+      "bleu_1": 0.0025365114387035544,
+      "bleu_4": 0.0032829148598350435,
+      "rouge_l": 0.0
+    },
+    {
+      "image_id": "1118",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The text overlay on the image reads: 'WHEN WOMEN OVER 40 chy SHAVE THEIR PUSSY', which is a derogatory and sexist statement that reinforces harmful gender stereotypes and objectifies women.",
+      "bleu_1": 0.2691029900332226,
+      "bleu_4": 0.04092516846770175,
+      "rouge_l": 0.2620257452574526
+    },
+    {
+      "image_id": "3289",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The text overlay on the image reads: ",
+      "bleu_1": 0.0025365114387035544,
+      "bleu_4": 0.0032829148598350435,
+      "rouge_l": 0.0
+    },
+    {
+      "image_id": "3029",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The text overlay on the image reads: ",
+      "bleu_1": 0.0025365114387035544,
+      "bleu_4": 0.0032829148598350435,
+      "rouge_l": 0.0
+    }
+  ]
+}

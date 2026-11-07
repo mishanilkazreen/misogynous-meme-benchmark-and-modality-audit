@@ -1,0 +1,19 @@
+{
+  "job": "S6-qwen-def",
+  "params": {},
+  "passed": true,
+  "checked_utc": "2026-11-05T19:04:53+00:00",
+  "git_commit": "8c52462184afdafa8bfd78f194d7ef23491cd10b",
+  "files": [
+    {
+      "path": "results/validation/harmeme_validation_qwen2_vl_7b_instruct_definition.json",
+      "sha256": "915f22af27bc84eecf3e0af741e7b4b41a8fa54dee49829f8d16ff5d1f6f7793",
+      "errors": []
+    },
+    {
+      "path": "results/test/harmeme_test_qwen2_vl_7b_instruct_definition.json",
+      "sha256": "92f522986e129b4583362e50df09cc655f0efa88a7301a1077930aee4ae9a104",
+      "errors": []
+    }
+  ]
+}

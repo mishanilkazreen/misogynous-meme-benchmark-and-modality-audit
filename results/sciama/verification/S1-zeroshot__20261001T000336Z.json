@@ -1,0 +1,49 @@
+{
+  "job": "S1-zeroshot",
+  "params": {},
+  "passed": true,
+  "checked_utc": "2026-10-01T00:03:36+00:00",
+  "git_commit": "0535da0c672f6dd20f1b8620c2483a34e4d643c1",
+  "files": [
+    {
+      "path": "results/validation/llava_validation_llava_1_5_7b_hf.json",
+      "sha256": "134b6ee54befe77125e699a9a6e75b7666ecf811a329d630ef82c78e0c7938f8",
+      "errors": []
+    },
+    {
+      "path": "results/test/llava_test_llava_1_5_7b_hf.json",
+      "sha256": "c1db5540b95f09882bad3d927c9e474517c29e897b6abfdfe47416a20b67ea3e",
+      "errors": []
+    },
+    {
+      "path": "results/validation/llava_validation_llava_1_5_7b_hf_ocr_paddleocr.json",
+      "sha256": "503f37e092e62a69e03d80056179069de33f963cc915aac7161d52fe3299dbc0",
+      "errors": []
+    },
+    {
+      "path": "results/test/llava_test_llava_1_5_7b_hf_ocr_paddleocr.json",
+      "sha256": "24765d908a9ea915d39dd719da70181df8e8c3d0738f4ca807a5cd989130d7f6",
+      "errors": []
+    },
+    {
+      "path": "results/validation/llava_validation_llava_1_5_7b_hf_multiclass.json",
+      "sha256": "7e083985dfb8dbc384f8be9956f4ce93d57d8346ec7be03471896671cd42dd8f",
+      "errors": []
+    },
+    {
+      "path": "results/test/llava_test_llava_1_5_7b_hf_multiclass.json",
+      "sha256": "bf2c417d8198b13cc7939f63dd4346fbbd1856eff383df348538834aa190c0e7",
+      "errors": []
+    },
+    {
+      "path": "results/validation/llava_validation_llava_1_5_7b_hf_ocr_paddleocr_multiclass.json",
+      "sha256": "854e1dd2c640dedf531a87aa48e562a285dac673ec202cebf71ffe182fbff4f4",
+      "errors": []
+    },
+    {
+      "path": "results/test/llava_test_llava_1_5_7b_hf_ocr_paddleocr_multiclass.json",
+      "sha256": "68a2d021b67d197e1897ca0a77e6d32bba2db8907ed9f951ce0e2a1b39c1b659",
+      "errors": []
+    }
+  ]
+}

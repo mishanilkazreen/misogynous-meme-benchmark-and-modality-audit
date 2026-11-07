@@ -1,0 +1,33 @@
+# Configuration for explainers run
+
+# References which model config results to explain
+model_config_name: "model1"
+
+# Target model to explain. Options:
+# - "best": Explains the top-performing model from the evaluation CSV
+# - "Model Name": e.g., "Random Forest" (explains that specific model)
+# - ["Model A", "Model B"]: List of model names to explain
+model_to_explain: "best"
+
+# List of explainers to run, or "all" to run all supported explainers.
+# Supported explainers: ['shap', 'lime', 'permutation_importance', 'surrogate']
+explainers: "all"
+
+# SHAP global explanation settings
+shap_settings:
+  max_display: 20   # Maximum number of top features to show on the summary plots
+  n_background: 100 # Samples from training set used as reference background dataset
+
+# LIME local instance explanation settings
+lime_settings:
+  n_instances: 5    # Number of test instances to explain (balanced across classes)
+  n_features: 15    # Maximum features to list in local explanation plots
+
+# Model-agnostic permutation feature importance settings
+permutation_settings:
+  n_repeats: 10     # Times to shuffle each feature to compute importance scores
+  top_n: 25         # Maximum features to display on permutation importance chart
+
+# Global surrogate decision tree model settings
+surrogate_settings:
+  test_size: 0.2    # Size of split if doing separate evaluation

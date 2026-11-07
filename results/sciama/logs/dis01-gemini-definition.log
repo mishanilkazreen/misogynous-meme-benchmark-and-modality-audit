@@ -1,0 +1,1077 @@
+Gemini validation:   0%|          | 0/177 [00:00<?, ?img/s]2026-11-05 17:35:30,747 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:31,940 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:   1%|          | 1/177 [00:01<03:41,  1.26s/img]2026-11-05 17:35:32,031 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:33,724 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:   1%|          | 2/177 [00:03<04:34,  1.57s/img]2026-11-05 17:35:33,746 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:34,768 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:   2%|\u258f         | 3/177 [00:04<03:50,  1.33s/img]2026-11-05 17:35:34,775 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:35,604 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:   2%|\u258f         | 4/177 [00:04<03:16,  1.13s/img]2026-11-05 17:35:35,611 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:36,535 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:   3%|\u258e         | 5/177 [00:05<03:02,  1.06s/img]2026-11-05 17:35:36,545 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:37,466 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:   3%|\u258e         | 6/177 [00:06<02:53,  1.02s/img]2026-11-05 17:35:37,473 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:38,357 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:   4%|\u258d         | 7/177 [00:07<02:46,  1.02img/s]2026-11-05 17:35:38,373 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:39,226 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:   5%|\u258d         | 8/177 [00:08<02:38,  1.06img/s]2026-11-05 17:35:39,234 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:40,383 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:   5%|\u258c         | 9/177 [00:09<02:49,  1.01s/img]2026-11-05 17:35:40,392 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:41,234 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:   6%|\u258c         | 10/177 [00:10<02:40,  1.04img/s]2026-11-05 17:35:41,243 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:42,121 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:   6%|\u258c         | 11/177 [00:11<02:35,  1.07img/s]2026-11-05 17:35:42,131 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:42,991 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:   7%|\u258b         | 12/177 [00:12<02:31,  1.09img/s]2026-11-05 17:35:42,999 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:43,994 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:   7%|\u258b         | 13/177 [00:13<02:34,  1.06img/s]2026-11-05 17:35:44,000 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:44,708 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:   8%|\u258a         | 14/177 [00:14<02:22,  1.14img/s]2026-11-05 17:35:44,717 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:45,626 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:   8%|\u258a         | 15/177 [00:14<02:23,  1.13img/s]2026-11-05 17:35:45,633 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:46,765 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:   9%|\u2589         | 16/177 [00:16<02:35,  1.04img/s]2026-11-05 17:35:46,773 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:47,681 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  10%|\u2589         | 17/177 [00:16<02:31,  1.05img/s]2026-11-05 17:35:47,688 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:48,401 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  10%|\u2588         | 18/177 [00:17<02:20,  1.14img/s]2026-11-05 17:35:48,409 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:49,398 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  11%|\u2588         | 19/177 [00:18<02:24,  1.09img/s]2026-11-05 17:35:49,406 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:50,266 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  11%|\u2588\u258f        | 20/177 [00:19<02:21,  1.11img/s]2026-11-05 17:35:50,278 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:51,363 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  12%|\u2588\u258f        | 21/177 [00:20<02:29,  1.04img/s]2026-11-05 17:35:51,369 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:52,055 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  12%|\u2588\u258f        | 22/177 [00:21<02:16,  1.14img/s]2026-11-05 17:35:52,065 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:52,835 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  13%|\u2588\u258e        | 23/177 [00:22<02:10,  1.18img/s]2026-11-05 17:35:52,845 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:53,909 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  14%|\u2588\u258e        | 24/177 [00:23<02:20,  1.09img/s]2026-11-05 17:35:53,919 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:54,649 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  14%|\u2588\u258d        | 25/177 [00:23<02:11,  1.16img/s]2026-11-05 17:35:54,657 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:55,688 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  15%|\u2588\u258d        | 26/177 [00:25<02:18,  1.09img/s]2026-11-05 17:35:55,698 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:55,771 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 503 Service Unavailable"
+2026-11-05 17:35:57,777 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:58,544 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  15%|\u2588\u258c        | 27/177 [00:27<03:44,  1.50s/img]2026-11-05 17:35:58,550 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:35:59,712 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  16%|\u2588\u258c        | 28/177 [00:29<03:30,  1.41s/img]2026-11-05 17:35:59,755 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:00,540 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  16%|\u2588\u258b        | 29/177 [00:29<03:01,  1.23s/img]2026-11-05 17:36:00,559 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:01,328 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  17%|\u2588\u258b        | 30/177 [00:30<02:43,  1.11s/img]2026-11-05 17:36:01,395 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:02,351 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  18%|\u2588\u258a        | 31/177 [00:31<02:36,  1.07s/img]2026-11-05 17:36:02,373 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:03,172 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  18%|\u2588\u258a        | 32/177 [00:32<02:24,  1.01img/s]2026-11-05 17:36:03,194 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:04,345 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  19%|\u2588\u258a        | 33/177 [00:33<02:31,  1.05s/img]2026-11-05 17:36:04,370 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:05,271 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  19%|\u2588\u2589        | 34/177 [00:34<02:24,  1.01s/img]2026-11-05 17:36:05,283 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:06,677 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  20%|\u2588\u2589        | 35/177 [00:35<02:40,  1.13s/img]2026-11-05 17:36:06,703 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:07,556 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  20%|\u2588\u2588        | 36/177 [00:36<02:28,  1.05s/img]2026-11-05 17:36:07,564 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:08,490 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  21%|\u2588\u2588        | 37/177 [00:37<02:25,  1.04s/img]2026-11-05 17:36:08,566 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:09,585 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  21%|\u2588\u2588\u258f       | 38/177 [00:38<02:24,  1.04s/img]2026-11-05 17:36:09,601 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:10,653 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  22%|\u2588\u2588\u258f       | 39/177 [00:39<02:24,  1.05s/img]2026-11-05 17:36:10,677 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:11,597 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  23%|\u2588\u2588\u258e       | 40/177 [00:40<02:18,  1.01s/img]2026-11-05 17:36:11,605 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:12,407 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  23%|\u2588\u2588\u258e       | 41/177 [00:41<02:09,  1.05img/s]2026-11-05 17:36:12,416 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:13,305 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  24%|\u2588\u2588\u258e       | 42/177 [00:42<02:06,  1.07img/s]2026-11-05 17:36:13,311 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:13,993 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  24%|\u2588\u2588\u258d       | 43/177 [00:43<01:55,  1.16img/s]2026-11-05 17:36:13,999 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:14,777 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  25%|\u2588\u2588\u258d       | 44/177 [00:44<01:51,  1.19img/s]2026-11-05 17:36:14,784 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:15,663 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  25%|\u2588\u2588\u258c       | 45/177 [00:44<01:52,  1.17img/s]2026-11-05 17:36:15,672 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:16,515 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  26%|\u2588\u2588\u258c       | 46/177 [00:45<01:51,  1.17img/s]2026-11-05 17:36:16,523 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:17,539 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  27%|\u2588\u2588\u258b       | 47/177 [00:46<01:57,  1.11img/s]2026-11-05 17:36:17,546 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:18,457 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  27%|\u2588\u2588\u258b       | 48/177 [00:47<01:57,  1.10img/s]2026-11-05 17:36:18,463 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:19,091 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  28%|\u2588\u2588\u258a       | 49/177 [00:48<01:45,  1.21img/s]2026-11-05 17:36:19,101 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:20,000 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  28%|\u2588\u2588\u258a       | 50/177 [00:49<01:48,  1.17img/s]2026-11-05 17:36:20,010 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:20,909 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  29%|\u2588\u2588\u2589       | 51/177 [00:50<01:49,  1.15img/s]2026-11-05 17:36:20,923 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:21,686 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  29%|\u2588\u2588\u2589       | 52/177 [00:51<01:45,  1.19img/s]2026-11-05 17:36:21,695 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:22,543 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  30%|\u2588\u2588\u2589       | 53/177 [00:51<01:44,  1.18img/s]2026-11-05 17:36:22,549 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:23,318 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  31%|\u2588\u2588\u2588       | 54/177 [00:52<01:41,  1.21img/s]2026-11-05 17:36:23,323 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:24,145 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  31%|\u2588\u2588\u2588       | 55/177 [00:53<01:40,  1.21img/s]2026-11-05 17:36:24,150 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:24,956 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  32%|\u2588\u2588\u2588\u258f      | 56/177 [00:54<01:39,  1.22img/s]2026-11-05 17:36:24,960 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:25,776 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  32%|\u2588\u2588\u2588\u258f      | 57/177 [00:55<01:38,  1.22img/s]2026-11-05 17:36:25,783 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:26,472 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  33%|\u2588\u2588\u2588\u258e      | 58/177 [00:55<01:33,  1.28img/s]2026-11-05 17:36:26,480 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:27,328 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  33%|\u2588\u2588\u2588\u258e      | 59/177 [00:56<01:34,  1.24img/s]2026-11-05 17:36:27,334 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:28,219 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  34%|\u2588\u2588\u2588\u258d      | 60/177 [00:57<01:37,  1.20img/s]2026-11-05 17:36:28,225 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:29,266 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  34%|\u2588\u2588\u2588\u258d      | 61/177 [00:58<01:43,  1.12img/s]2026-11-05 17:36:29,271 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:30,037 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  35%|\u2588\u2588\u2588\u258c      | 62/177 [00:59<01:38,  1.16img/s]2026-11-05 17:36:30,047 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:30,906 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  36%|\u2588\u2588\u2588\u258c      | 63/177 [01:00<01:38,  1.16img/s]2026-11-05 17:36:30,912 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:31,734 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  36%|\u2588\u2588\u2588\u258c      | 64/177 [01:01<01:36,  1.17img/s]2026-11-05 17:36:31,744 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:32,536 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  37%|\u2588\u2588\u2588\u258b      | 65/177 [01:01<01:33,  1.20img/s]2026-11-05 17:36:32,545 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:33,428 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  37%|\u2588\u2588\u2588\u258b      | 66/177 [01:02<01:34,  1.17img/s]2026-11-05 17:36:33,434 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:34,258 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  38%|\u2588\u2588\u2588\u258a      | 67/177 [01:03<01:33,  1.18img/s]2026-11-05 17:36:34,266 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:35,256 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  38%|\u2588\u2588\u2588\u258a      | 68/177 [01:04<01:37,  1.12img/s]2026-11-05 17:36:35,265 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:35,955 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  39%|\u2588\u2588\u2588\u2589      | 69/177 [01:05<01:30,  1.20img/s]2026-11-05 17:36:35,964 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:36,930 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  40%|\u2588\u2588\u2588\u2589      | 70/177 [01:06<01:33,  1.14img/s]2026-11-05 17:36:36,941 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:37,829 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  40%|\u2588\u2588\u2588\u2588      | 71/177 [01:07<01:33,  1.13img/s]2026-11-05 17:36:37,835 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:38,847 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  41%|\u2588\u2588\u2588\u2588      | 72/177 [01:08<01:36,  1.08img/s]2026-11-05 17:36:38,856 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:39,658 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  41%|\u2588\u2588\u2588\u2588      | 73/177 [01:08<01:32,  1.12img/s]2026-11-05 17:36:39,666 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:40,649 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  42%|\u2588\u2588\u2588\u2588\u258f     | 74/177 [01:09<01:34,  1.09img/s]2026-11-05 17:36:40,660 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:41,524 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  42%|\u2588\u2588\u2588\u2588\u258f     | 75/177 [01:10<01:32,  1.10img/s]2026-11-05 17:36:41,532 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:42,563 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  43%|\u2588\u2588\u2588\u2588\u258e     | 76/177 [01:11<01:35,  1.06img/s]2026-11-05 17:36:42,570 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:43,359 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  44%|\u2588\u2588\u2588\u2588\u258e     | 77/177 [01:12<01:30,  1.11img/s]2026-11-05 17:36:43,367 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:44,503 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  44%|\u2588\u2588\u2588\u2588\u258d     | 78/177 [01:13<01:36,  1.03img/s]2026-11-05 17:36:44,509 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:45,286 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  45%|\u2588\u2588\u2588\u2588\u258d     | 79/177 [01:14<01:29,  1.09img/s]2026-11-05 17:36:45,294 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:46,288 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  45%|\u2588\u2588\u2588\u2588\u258c     | 80/177 [01:15<01:31,  1.06img/s]2026-11-05 17:36:46,314 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:47,267 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  46%|\u2588\u2588\u2588\u2588\u258c     | 81/177 [01:16<01:31,  1.05img/s]2026-11-05 17:36:47,375 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:48,973 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  46%|\u2588\u2588\u2588\u2588\u258b     | 82/177 [01:18<01:52,  1.18s/img]2026-11-05 17:36:48,997 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:49,969 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  47%|\u2588\u2588\u2588\u2588\u258b     | 83/177 [01:19<01:45,  1.12s/img]2026-11-05 17:36:49,976 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:51,198 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  47%|\u2588\u2588\u2588\u2588\u258b     | 84/177 [01:20<01:47,  1.16s/img]2026-11-05 17:36:51,209 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:52,059 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  48%|\u2588\u2588\u2588\u2588\u258a     | 85/177 [01:21<01:38,  1.07s/img]2026-11-05 17:36:52,069 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:53,229 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  49%|\u2588\u2588\u2588\u2588\u258a     | 86/177 [01:22<01:39,  1.10s/img]2026-11-05 17:36:53,240 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:54,173 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  49%|\u2588\u2588\u2588\u2588\u2589     | 87/177 [01:23<01:34,  1.05s/img]2026-11-05 17:36:54,211 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:55,357 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  50%|\u2588\u2588\u2588\u2588\u2589     | 88/177 [01:24<01:37,  1.09s/img]2026-11-05 17:36:55,396 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:56,395 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  50%|\u2588\u2588\u2588\u2588\u2588     | 89/177 [01:25<01:34,  1.08s/img]2026-11-05 17:36:56,515 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:58,215 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  51%|\u2588\u2588\u2588\u2588\u2588     | 90/177 [01:27<01:53,  1.30s/img]2026-11-05 17:36:58,296 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:36:59,283 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  51%|\u2588\u2588\u2588\u2588\u2588\u258f    | 91/177 [01:28<01:45,  1.23s/img]2026-11-05 17:36:59,305 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:00,272 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  52%|\u2588\u2588\u2588\u2588\u2588\u258f    | 92/177 [01:29<01:38,  1.16s/img]2026-11-05 17:37:00,326 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:01,510 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  53%|\u2588\u2588\u2588\u2588\u2588\u258e    | 93/177 [01:30<01:39,  1.18s/img]2026-11-05 17:37:01,565 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:02,816 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  53%|\u2588\u2588\u2588\u2588\u2588\u258e    | 94/177 [01:32<01:41,  1.22s/img]2026-11-05 17:37:02,825 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:03,846 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  54%|\u2588\u2588\u2588\u2588\u2588\u258e    | 95/177 [01:33<01:35,  1.16s/img]2026-11-05 17:37:03,882 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:04,903 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  54%|\u2588\u2588\u2588\u2588\u2588\u258d    | 96/177 [01:34<01:31,  1.13s/img]2026-11-05 17:37:04,911 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:05,925 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  55%|\u2588\u2588\u2588\u2588\u2588\u258d    | 97/177 [01:35<01:27,  1.10s/img]2026-11-05 17:37:06,008 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:07,429 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  55%|\u2588\u2588\u2588\u2588\u2588\u258c    | 98/177 [01:36<01:36,  1.22s/img]2026-11-05 17:37:07,442 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:08,309 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  56%|\u2588\u2588\u2588\u2588\u2588\u258c    | 99/177 [01:37<01:27,  1.12s/img]2026-11-05 17:37:08,346 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:09,415 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  56%|\u2588\u2588\u2588\u2588\u2588\u258b    | 100/177 [01:38<01:25,  1.11s/img]2026-11-05 17:37:09,425 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:10,261 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  57%|\u2588\u2588\u2588\u2588\u2588\u258b    | 101/177 [01:39<01:18,  1.03s/img]2026-11-05 17:37:10,271 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:11,261 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  58%|\u2588\u2588\u2588\u2588\u2588\u258a    | 102/177 [01:40<01:16,  1.02s/img]2026-11-05 17:37:11,271 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:12,106 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  58%|\u2588\u2588\u2588\u2588\u2588\u258a    | 103/177 [01:41<01:11,  1.03img/s]2026-11-05 17:37:12,139 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:13,271 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  59%|\u2588\u2588\u2588\u2588\u2588\u2589    | 104/177 [01:42<01:15,  1.03s/img]2026-11-05 17:37:13,279 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:14,313 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  59%|\u2588\u2588\u2588\u2588\u2588\u2589    | 105/177 [01:43<01:14,  1.03s/img]2026-11-05 17:37:14,322 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:15,266 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  60%|\u2588\u2588\u2588\u2588\u2588\u2589    | 106/177 [01:44<01:11,  1.01s/img]2026-11-05 17:37:15,406 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:16,972 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  60%|\u2588\u2588\u2588\u2588\u2588\u2588    | 107/177 [01:46<01:25,  1.22s/img]2026-11-05 17:37:16,983 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:18,001 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  61%|\u2588\u2588\u2588\u2588\u2588\u2588    | 108/177 [01:47<01:20,  1.16s/img]2026-11-05 17:37:18,030 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:19,387 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  62%|\u2588\u2588\u2588\u2588\u2588\u2588\u258f   | 109/177 [01:48<01:23,  1.23s/img]2026-11-05 17:37:19,393 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:20,286 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  62%|\u2588\u2588\u2588\u2588\u2588\u2588\u258f   | 110/177 [01:49<01:15,  1.13s/img]2026-11-05 17:37:20,295 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:21,211 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  63%|\u2588\u2588\u2588\u2588\u2588\u2588\u258e   | 111/177 [01:50<01:10,  1.07s/img]2026-11-05 17:37:21,220 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:22,064 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  63%|\u2588\u2588\u2588\u2588\u2588\u2588\u258e   | 112/177 [01:51<01:05,  1.00s/img]2026-11-05 17:37:22,102 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:23,072 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  64%|\u2588\u2588\u2588\u2588\u2588\u2588\u258d   | 113/177 [01:52<01:04,  1.00s/img]2026-11-05 17:37:23,098 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:24,056 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  64%|\u2588\u2588\u2588\u2588\u2588\u2588\u258d   | 114/177 [01:53<01:02,  1.00img/s]2026-11-05 17:37:24,065 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:24,806 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  65%|\u2588\u2588\u2588\u2588\u2588\u2588\u258d   | 115/177 [01:54<00:57,  1.08img/s]2026-11-05 17:37:24,818 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:25,841 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  66%|\u2588\u2588\u2588\u2588\u2588\u2588\u258c   | 116/177 [01:55<00:58,  1.04img/s]2026-11-05 17:37:25,856 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:26,674 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  66%|\u2588\u2588\u2588\u2588\u2588\u2588\u258c   | 117/177 [01:55<00:55,  1.09img/s]2026-11-05 17:37:26,690 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:27,575 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  67%|\u2588\u2588\u2588\u2588\u2588\u2588\u258b   | 118/177 [01:56<00:53,  1.09img/s]2026-11-05 17:37:27,608 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:28,681 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  67%|\u2588\u2588\u2588\u2588\u2588\u2588\u258b   | 119/177 [01:57<00:56,  1.03img/s]2026-11-05 17:37:28,690 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:29,500 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  68%|\u2588\u2588\u2588\u2588\u2588\u2588\u258a   | 120/177 [01:58<00:52,  1.08img/s]2026-11-05 17:37:29,509 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:30,294 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  68%|\u2588\u2588\u2588\u2588\u2588\u2588\u258a   | 121/177 [01:59<00:49,  1.13img/s]2026-11-05 17:37:30,304 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:31,091 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  69%|\u2588\u2588\u2588\u2588\u2588\u2588\u2589   | 122/177 [02:00<00:47,  1.16img/s]2026-11-05 17:37:31,103 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:31,849 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  69%|\u2588\u2588\u2588\u2588\u2588\u2588\u2589   | 123/177 [02:01<00:44,  1.21img/s]2026-11-05 17:37:31,859 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:33,069 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  70%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588   | 124/177 [02:02<00:50,  1.06img/s]2026-11-05 17:37:33,080 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:34,267 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  71%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588   | 125/177 [02:03<00:53,  1.02s/img]2026-11-05 17:37:34,310 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:35,335 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  71%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588   | 126/177 [02:04<00:52,  1.04s/img]2026-11-05 17:37:35,412 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:36,334 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  72%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f  | 127/177 [02:05<00:51,  1.02s/img]2026-11-05 17:37:36,387 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:37,418 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  72%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f  | 128/177 [02:06<00:51,  1.04s/img]2026-11-05 17:37:37,440 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:38,310 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  73%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e  | 129/177 [02:07<00:47,  1.00img/s]2026-11-05 17:37:38,379 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:39,336 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  73%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e  | 130/177 [02:08<00:47,  1.01s/img]2026-11-05 17:37:39,438 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:40,665 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  74%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d  | 131/177 [02:09<00:50,  1.10s/img]2026-11-05 17:37:40,749 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:42,101 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  75%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d  | 132/177 [02:11<00:54,  1.20s/img]2026-11-05 17:37:42,200 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:43,561 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  75%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c  | 133/177 [02:12<00:56,  1.28s/img]2026-11-05 17:37:43,583 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:44,305 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  76%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c  | 134/177 [02:13<00:48,  1.12s/img]2026-11-05 17:37:44,388 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:45,642 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  76%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b  | 135/177 [02:14<00:49,  1.18s/img]2026-11-05 17:37:45,690 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:46,898 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  77%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b  | 136/177 [02:16<00:49,  1.21s/img]2026-11-05 17:37:47,540 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:50,392 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  77%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b  | 137/177 [02:19<01:15,  1.89s/img]2026-11-05 17:37:50,426 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:51,308 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  78%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a  | 138/177 [02:20<01:02,  1.60s/img]2026-11-05 17:37:51,331 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:52,309 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  79%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a  | 139/177 [02:21<00:53,  1.42s/img]2026-11-05 17:37:52,434 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:53,724 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  79%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589  | 140/177 [02:23<00:52,  1.42s/img]2026-11-05 17:37:53,781 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:54,912 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  80%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589  | 141/177 [02:24<00:48,  1.35s/img]2026-11-05 17:37:54,982 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:56,260 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  80%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588  | 142/177 [02:25<00:47,  1.35s/img]2026-11-05 17:37:56,270 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:57,044 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  81%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588  | 143/177 [02:26<00:40,  1.18s/img]2026-11-05 17:37:57,053 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:57,897 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  81%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f | 144/177 [02:27<00:35,  1.08s/img]2026-11-05 17:37:57,907 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:58,482 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  82%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f | 145/177 [02:27<00:29,  1.07img/s]2026-11-05 17:37:58,599 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:37:59,820 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  82%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f | 146/177 [02:29<00:32,  1.05s/img]2026-11-05 17:37:59,831 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:00,589 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  83%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e | 147/177 [02:29<00:29,  1.03img/s]2026-11-05 17:38:00,598 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:01,415 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  84%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e | 148/177 [02:30<00:26,  1.08img/s]2026-11-05 17:38:01,522 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:02,790 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  84%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d | 149/177 [02:32<00:29,  1.06s/img]2026-11-05 17:38:02,800 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:03,870 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  85%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d | 150/177 [02:33<00:28,  1.07s/img]2026-11-05 17:38:03,880 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:04,734 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  85%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c | 151/177 [02:34<00:26,  1.01s/img]2026-11-05 17:38:04,747 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:05,638 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  86%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c | 152/177 [02:34<00:24,  1.03img/s]2026-11-05 17:38:05,767 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:07,057 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  86%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b | 153/177 [02:36<00:26,  1.11s/img]2026-11-05 17:38:07,160 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:08,326 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  87%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b | 154/177 [02:37<00:26,  1.16s/img]2026-11-05 17:38:08,393 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:09,480 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  88%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a | 155/177 [02:38<00:25,  1.16s/img]2026-11-05 17:38:09,604 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:10,922 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  88%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a | 156/177 [02:40<00:26,  1.24s/img]2026-11-05 17:38:10,934 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:11,564 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  89%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a | 157/177 [02:40<00:21,  1.06s/img]2026-11-05 17:38:11,687 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:13,327 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  89%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589 | 158/177 [02:42<00:24,  1.27s/img]2026-11-05 17:38:13,438 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:15,212 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  90%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589 | 159/177 [02:44<00:26,  1.46s/img]2026-11-05 17:38:15,225 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:15,843 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  90%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588 | 160/177 [02:45<00:20,  1.21s/img]2026-11-05 17:38:15,887 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:17,032 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  91%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588 | 161/177 [02:46<00:19,  1.20s/img]2026-11-05 17:38:17,073 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:17,868 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  92%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f| 162/177 [02:47<00:16,  1.09s/img]2026-11-05 17:38:17,878 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:18,578 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  92%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f| 163/177 [02:47<00:13,  1.02img/s]2026-11-05 17:38:18,587 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:19,434 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  93%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e| 164/177 [02:48<00:12,  1.06img/s]2026-11-05 17:38:19,443 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:20,148 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  93%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e| 165/177 [02:49<00:10,  1.15img/s]2026-11-05 17:38:20,224 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:21,277 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  94%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d| 166/177 [02:50<00:10,  1.05img/s]2026-11-05 17:38:21,315 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:22,155 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  94%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d| 167/177 [02:51<00:09,  1.08img/s]2026-11-05 17:38:22,241 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:23,333 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  95%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d| 168/177 [02:52<00:09,  1.00s/img]2026-11-05 17:38:23,385 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:24,466 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  95%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c| 169/177 [02:53<00:08,  1.04s/img]2026-11-05 17:38:24,501 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:25,430 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  96%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c| 170/177 [02:54<00:07,  1.02s/img]2026-11-05 17:38:25,461 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:26,351 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  97%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b| 171/177 [02:55<00:05,  1.01img/s]2026-11-05 17:38:26,387 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:27,348 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  97%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b| 172/177 [02:56<00:04,  1.01img/s]2026-11-05 17:38:27,379 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:28,206 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  98%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a| 173/177 [02:57<00:03,  1.05img/s]2026-11-05 17:38:28,213 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:28,816 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  98%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a| 174/177 [02:58<00:02,  1.18img/s]2026-11-05 17:38:28,824 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:29,766 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  99%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589| 175/177 [02:59<00:01,  1.14img/s]2026-11-05 17:38:29,777 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:30,561 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation:  99%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589| 176/177 [02:59<00:00,  1.17img/s]2026-11-05 17:38:30,570 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:38:31,341 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini validation: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 177/177 [03:00<00:00,  1.20img/s]Gemini validation: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 177/177 [03:00<00:00,  1.02s/img]
+2026-11-05 17:38:31,355 [INFO] Gemini [validation]: Acc=66.67%, Macro-F1=52.77% -> harmeme_validation_gemini_3_1_flash_lite_definition.json
+2026-11-05 17:43:34,826 [INFO] validation: 9 of 177 answers changed; Macro-F1 45.95% -> 52.77%; harmful recall 8.20% -> 18.03%; elapsed 180.7s; errors none
+2026-11-05 17:43:34,826 [INFO] reproduced: NO
+2026-11-05 17:43:34,826 [INFO] clears validation bar (Macro-F1 above 52.69%): yes
+2026-11-05 17:43:34,826 [INFO] Wrote M:\_Research\content-moderation\results\revision\dis01_harmeme\compare_gemini_3_1_flash_lite_definition.json
+Gemini test:   0%|          | 0/354 [00:00<?, ?img/s]2026-11-05 17:43:44,606 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:43:45,531 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   0%|          | 1/354 [00:00<05:47,  1.02img/s]2026-11-05 17:43:45,556 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:43:46,591 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   1%|          | 2/354 [00:02<06:01,  1.03s/img]2026-11-05 17:43:46,598 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:43:47,313 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   1%|          | 3/354 [00:02<05:11,  1.13img/s]2026-11-05 17:43:47,320 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:43:47,985 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   1%|          | 4/354 [00:03<04:40,  1.25img/s]2026-11-05 17:43:47,993 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:43:48,760 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   1%|\u258f         | 5/354 [00:04<04:36,  1.26img/s]2026-11-05 17:43:48,884 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:43:50,325 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   2%|\u258f         | 6/354 [00:05<06:07,  1.06s/img]2026-11-05 17:43:50,367 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:43:51,293 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   2%|\u258f         | 7/354 [00:06<05:56,  1.03s/img]2026-11-05 17:43:51,326 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:43:52,429 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   2%|\u258f         | 8/354 [00:07<06:07,  1.06s/img]2026-11-05 17:43:52,469 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:43:53,427 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   3%|\u258e         | 9/354 [00:08<05:59,  1.04s/img]2026-11-05 17:43:53,481 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:43:54,832 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   3%|\u258e         | 10/354 [00:10<06:36,  1.15s/img]2026-11-05 17:43:54,841 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:43:55,717 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   3%|\u258e         | 11/354 [00:11<06:07,  1.07s/img]2026-11-05 17:43:55,728 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:43:56,850 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   3%|\u258e         | 12/354 [00:12<06:12,  1.09s/img]2026-11-05 17:43:56,906 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:43:58,254 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   4%|\u258e         | 13/354 [00:13<06:44,  1.19s/img]2026-11-05 17:43:58,266 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:43:58,921 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   4%|\u258d         | 14/354 [00:14<05:49,  1.03s/img]2026-11-05 17:43:58,931 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:43:59,862 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   4%|\u258d         | 15/354 [00:15<05:39,  1.00s/img]2026-11-05 17:43:59,884 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:00,873 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   5%|\u258d         | 16/354 [00:16<05:39,  1.00s/img]2026-11-05 17:44:00,884 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:01,846 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   5%|\u258d         | 17/354 [00:17<05:35,  1.01img/s]2026-11-05 17:44:01,886 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:02,933 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   5%|\u258c         | 18/354 [00:18<05:43,  1.02s/img]2026-11-05 17:44:02,944 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:03,623 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   5%|\u258c         | 19/354 [00:19<05:09,  1.08img/s]2026-11-05 17:44:03,670 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:04,472 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   6%|\u258c         | 20/354 [00:19<05:00,  1.11img/s]2026-11-05 17:44:04,513 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:06,100 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   6%|\u258c         | 21/354 [00:21<06:12,  1.12s/img]2026-11-05 17:44:06,146 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:07,171 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   6%|\u258c         | 22/354 [00:22<06:06,  1.10s/img]2026-11-05 17:44:07,183 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:08,274 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   6%|\u258b         | 23/354 [00:23<06:05,  1.10s/img]2026-11-05 17:44:08,285 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:09,000 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   7%|\u258b         | 24/354 [00:24<05:26,  1.01img/s]2026-11-05 17:44:09,012 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:10,065 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   7%|\u258b         | 25/354 [00:25<05:33,  1.01s/img]2026-11-05 17:44:10,072 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:10,832 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   7%|\u258b         | 26/354 [00:26<05:08,  1.06img/s]2026-11-05 17:44:10,865 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:11,973 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   8%|\u258a         | 27/354 [00:27<05:26,  1.00img/s]2026-11-05 17:44:11,984 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:12,724 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   8%|\u258a         | 28/354 [00:28<05:01,  1.08img/s]2026-11-05 17:44:12,734 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:13,480 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   8%|\u258a         | 29/354 [00:28<04:44,  1.14img/s]2026-11-05 17:44:13,490 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:14,323 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   8%|\u258a         | 30/354 [00:29<04:40,  1.16img/s]2026-11-05 17:44:14,334 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:15,011 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   9%|\u2589         | 31/354 [00:30<04:22,  1.23img/s]2026-11-05 17:44:15,021 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:15,737 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   9%|\u2589         | 32/354 [00:31<04:13,  1.27img/s]2026-11-05 17:44:15,747 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:16,631 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:   9%|\u2589         | 33/354 [00:32<04:22,  1.22img/s]2026-11-05 17:44:16,641 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:17,304 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  10%|\u2589         | 34/354 [00:32<04:07,  1.29img/s]2026-11-05 17:44:17,315 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:18,210 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  10%|\u2589         | 35/354 [00:33<04:19,  1.23img/s]2026-11-05 17:44:18,220 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:19,058 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  10%|\u2588         | 36/354 [00:34<04:22,  1.21img/s]2026-11-05 17:44:19,069 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:19,790 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  10%|\u2588         | 37/354 [00:35<04:12,  1.26img/s]2026-11-05 17:44:19,799 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:20,518 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  11%|\u2588         | 38/354 [00:35<04:05,  1.29img/s]2026-11-05 17:44:20,528 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:21,327 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  11%|\u2588         | 39/354 [00:36<04:07,  1.27img/s]2026-11-05 17:44:21,337 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:22,162 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  11%|\u2588\u258f        | 40/354 [00:37<04:11,  1.25img/s]2026-11-05 17:44:22,173 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:23,080 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  12%|\u2588\u258f        | 41/354 [00:38<04:21,  1.20img/s]2026-11-05 17:44:23,089 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:23,949 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  12%|\u2588\u258f        | 42/354 [00:39<04:23,  1.18img/s]2026-11-05 17:44:23,983 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:24,886 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  12%|\u2588\u258f        | 43/354 [00:40<04:31,  1.15img/s]2026-11-05 17:44:24,947 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:26,284 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  12%|\u2588\u258f        | 44/354 [00:41<05:19,  1.03s/img]2026-11-05 17:44:26,293 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:27,086 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  13%|\u2588\u258e        | 45/354 [00:42<04:57,  1.04img/s]2026-11-05 17:44:27,096 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:27,803 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  13%|\u2588\u258e        | 46/354 [00:43<04:33,  1.13img/s]2026-11-05 17:44:27,813 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:28,726 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  13%|\u2588\u258e        | 47/354 [00:44<04:35,  1.11img/s]2026-11-05 17:44:28,735 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:29,709 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  14%|\u2588\u258e        | 48/354 [00:45<04:42,  1.08img/s]2026-11-05 17:44:29,720 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:30,471 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  14%|\u2588\u258d        | 49/354 [00:45<04:26,  1.14img/s]2026-11-05 17:44:30,480 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:31,231 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  14%|\u2588\u258d        | 50/354 [00:46<04:15,  1.19img/s]2026-11-05 17:44:31,244 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:31,933 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  14%|\u2588\u258d        | 51/354 [00:47<04:02,  1.25img/s]2026-11-05 17:44:31,944 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:32,803 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  15%|\u2588\u258d        | 52/354 [00:48<04:07,  1.22img/s]2026-11-05 17:44:32,812 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:33,623 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  15%|\u2588\u258d        | 53/354 [00:49<04:07,  1.21img/s]2026-11-05 17:44:33,645 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:34,315 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  15%|\u2588\u258c        | 54/354 [00:49<03:54,  1.28img/s]2026-11-05 17:44:34,325 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:35,045 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  16%|\u2588\u258c        | 55/354 [00:50<03:48,  1.31img/s]2026-11-05 17:44:35,056 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:36,086 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  16%|\u2588\u258c        | 56/354 [00:51<04:12,  1.18img/s]2026-11-05 17:44:36,094 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:36,933 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  16%|\u2588\u258c        | 57/354 [00:52<04:11,  1.18img/s]2026-11-05 17:44:36,943 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:37,983 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  16%|\u2588\u258b        | 58/354 [00:53<04:28,  1.10img/s]2026-11-05 17:44:37,992 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:38,831 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  17%|\u2588\u258b        | 59/354 [00:54<04:22,  1.12img/s]2026-11-05 17:44:38,837 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:39,609 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  17%|\u2588\u258b        | 60/354 [00:55<04:11,  1.17img/s]2026-11-05 17:44:39,618 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:40,476 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  17%|\u2588\u258b        | 61/354 [00:55<04:11,  1.16img/s]2026-11-05 17:44:40,485 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:41,383 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  18%|\u2588\u258a        | 62/354 [00:56<04:15,  1.14img/s]2026-11-05 17:44:41,394 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:42,423 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  18%|\u2588\u258a        | 63/354 [00:57<04:28,  1.08img/s]2026-11-05 17:44:42,434 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:43,246 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  18%|\u2588\u258a        | 64/354 [00:58<04:19,  1.12img/s]2026-11-05 17:44:43,257 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:44,290 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  18%|\u2588\u258a        | 65/354 [00:59<04:31,  1.07img/s]2026-11-05 17:44:44,299 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:45,298 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  19%|\u2588\u258a        | 66/354 [01:00<04:36,  1.04img/s]2026-11-05 17:44:45,308 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:46,285 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  19%|\u2588\u2589        | 67/354 [01:01<04:37,  1.03img/s]2026-11-05 17:44:46,295 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:47,284 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  19%|\u2588\u2589        | 68/354 [01:02<04:39,  1.02img/s]2026-11-05 17:44:47,294 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:48,252 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  19%|\u2588\u2589        | 69/354 [01:03<04:37,  1.03img/s]2026-11-05 17:44:48,262 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:49,208 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  20%|\u2588\u2589        | 70/354 [01:04<04:35,  1.03img/s]2026-11-05 17:44:49,217 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:49,949 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  20%|\u2588\u2588        | 71/354 [01:05<04:14,  1.11img/s]2026-11-05 17:44:49,959 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:50,795 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  20%|\u2588\u2588        | 72/354 [01:06<04:09,  1.13img/s]2026-11-05 17:44:50,804 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:51,828 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  21%|\u2588\u2588        | 73/354 [01:07<04:21,  1.08img/s]2026-11-05 17:44:51,838 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:52,936 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  21%|\u2588\u2588        | 74/354 [01:08<04:35,  1.02img/s]2026-11-05 17:44:52,944 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:53,912 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  21%|\u2588\u2588        | 75/354 [01:09<04:33,  1.02img/s]2026-11-05 17:44:53,923 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:54,834 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  21%|\u2588\u2588\u258f       | 76/354 [01:10<04:27,  1.04img/s]2026-11-05 17:44:54,842 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:55,692 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  22%|\u2588\u2588\u258f       | 77/354 [01:11<04:18,  1.07img/s]2026-11-05 17:44:55,701 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:56,648 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  22%|\u2588\u2588\u258f       | 78/354 [01:12<04:19,  1.07img/s]2026-11-05 17:44:56,657 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:57,604 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  22%|\u2588\u2588\u258f       | 79/354 [01:13<04:19,  1.06img/s]2026-11-05 17:44:57,614 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:58,404 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  23%|\u2588\u2588\u258e       | 80/354 [01:13<04:06,  1.11img/s]2026-11-05 17:44:58,415 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:44:59,380 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  23%|\u2588\u2588\u258e       | 81/354 [01:14<04:12,  1.08img/s]2026-11-05 17:44:59,389 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:00,143 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  23%|\u2588\u2588\u258e       | 82/354 [01:15<03:58,  1.14img/s]2026-11-05 17:45:00,151 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:00,922 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  23%|\u2588\u2588\u258e       | 83/354 [01:16<03:49,  1.18img/s]2026-11-05 17:45:00,932 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:01,795 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  24%|\u2588\u2588\u258e       | 84/354 [01:17<03:50,  1.17img/s]2026-11-05 17:45:01,807 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:02,808 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  24%|\u2588\u2588\u258d       | 85/354 [01:18<04:02,  1.11img/s]2026-11-05 17:45:02,820 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:03,563 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  24%|\u2588\u2588\u258d       | 86/354 [01:19<03:50,  1.16img/s]2026-11-05 17:45:03,575 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:04,453 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  25%|\u2588\u2588\u258d       | 87/354 [01:19<03:51,  1.15img/s]2026-11-05 17:45:04,463 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:05,283 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  25%|\u2588\u2588\u258d       | 88/354 [01:20<03:47,  1.17img/s]2026-11-05 17:45:05,293 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:06,044 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  25%|\u2588\u2588\u258c       | 89/354 [01:21<03:39,  1.21img/s]2026-11-05 17:45:06,055 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:07,385 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  25%|\u2588\u2588\u258c       | 90/354 [01:22<04:19,  1.02img/s]2026-11-05 17:45:07,394 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:08,570 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  26%|\u2588\u2588\u258c       | 91/354 [01:24<04:34,  1.04s/img]2026-11-05 17:45:08,582 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:09,489 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  26%|\u2588\u2588\u258c       | 92/354 [01:24<04:23,  1.01s/img]2026-11-05 17:45:09,499 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:10,378 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  26%|\u2588\u2588\u258b       | 93/354 [01:25<04:13,  1.03img/s]2026-11-05 17:45:10,388 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:11,104 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  27%|\u2588\u2588\u258b       | 94/354 [01:26<03:53,  1.11img/s]2026-11-05 17:45:11,113 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:12,258 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  27%|\u2588\u2588\u258b       | 95/354 [01:27<04:12,  1.03img/s]2026-11-05 17:45:12,267 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:13,143 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  27%|\u2588\u2588\u258b       | 96/354 [01:28<04:04,  1.06img/s]2026-11-05 17:45:13,154 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:14,129 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  27%|\u2588\u2588\u258b       | 97/354 [01:29<04:06,  1.04img/s]2026-11-05 17:45:14,140 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:15,360 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  28%|\u2588\u2588\u258a       | 98/354 [01:30<04:26,  1.04s/img]2026-11-05 17:45:15,372 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:16,379 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  28%|\u2588\u2588\u258a       | 99/354 [01:31<04:23,  1.03s/img]2026-11-05 17:45:16,389 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:17,302 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  28%|\u2588\u2588\u258a       | 100/354 [01:32<04:14,  1.00s/img]2026-11-05 17:45:17,311 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:18,114 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  29%|\u2588\u2588\u258a       | 101/354 [01:33<03:58,  1.06img/s]2026-11-05 17:45:18,124 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:18,787 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  29%|\u2588\u2588\u2589       | 102/354 [01:34<03:37,  1.16img/s]2026-11-05 17:45:18,794 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:19,482 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  29%|\u2588\u2588\u2589       | 103/354 [01:34<03:23,  1.23img/s]2026-11-05 17:45:19,490 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:20,428 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  29%|\u2588\u2588\u2589       | 104/354 [01:35<03:33,  1.17img/s]2026-11-05 17:45:20,437 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:21,292 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  30%|\u2588\u2588\u2589       | 105/354 [01:36<03:33,  1.17img/s]2026-11-05 17:45:21,303 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:22,258 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  30%|\u2588\u2588\u2589       | 106/354 [01:37<03:40,  1.12img/s]2026-11-05 17:45:22,264 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:23,285 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  30%|\u2588\u2588\u2588       | 107/354 [01:38<03:49,  1.07img/s]2026-11-05 17:45:23,295 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:24,253 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  31%|\u2588\u2588\u2588       | 108/354 [01:39<03:51,  1.06img/s]2026-11-05 17:45:24,262 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:25,090 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  31%|\u2588\u2588\u2588       | 109/354 [01:40<03:42,  1.10img/s]2026-11-05 17:45:25,100 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:26,108 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  31%|\u2588\u2588\u2588       | 110/354 [01:41<03:49,  1.06img/s]2026-11-05 17:45:26,114 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:27,252 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  31%|\u2588\u2588\u2588\u258f      | 111/354 [01:42<04:03,  1.00s/img]2026-11-05 17:45:27,260 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:28,049 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  32%|\u2588\u2588\u2588\u258f      | 112/354 [01:43<03:47,  1.06img/s]2026-11-05 17:45:28,059 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:28,951 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  32%|\u2588\u2588\u2588\u258f      | 113/354 [01:44<03:43,  1.08img/s]2026-11-05 17:45:28,956 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:29,722 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  32%|\u2588\u2588\u2588\u258f      | 114/354 [01:45<03:31,  1.13img/s]2026-11-05 17:45:29,733 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:30,781 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  32%|\u2588\u2588\u2588\u258f      | 115/354 [01:46<03:43,  1.07img/s]2026-11-05 17:45:30,788 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:31,471 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  33%|\u2588\u2588\u2588\u258e      | 116/354 [01:46<03:25,  1.16img/s]2026-11-05 17:45:31,479 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:32,098 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  33%|\u2588\u2588\u2588\u258e      | 117/354 [01:47<03:07,  1.26img/s]2026-11-05 17:45:32,106 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:32,983 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  33%|\u2588\u2588\u2588\u258e      | 118/354 [01:48<03:13,  1.22img/s]2026-11-05 17:45:32,993 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:33,725 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  34%|\u2588\u2588\u2588\u258e      | 119/354 [01:49<03:07,  1.26img/s]2026-11-05 17:45:33,733 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:34,402 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  34%|\u2588\u2588\u2588\u258d      | 120/354 [01:49<02:57,  1.31img/s]2026-11-05 17:45:34,413 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:35,641 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  34%|\u2588\u2588\u2588\u258d      | 121/354 [01:51<03:30,  1.11img/s]2026-11-05 17:45:35,651 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:36,779 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  34%|\u2588\u2588\u2588\u258d      | 122/354 [01:52<03:45,  1.03img/s]2026-11-05 17:45:36,790 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:37,534 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  35%|\u2588\u2588\u2588\u258d      | 123/354 [01:52<03:29,  1.10img/s]2026-11-05 17:45:37,544 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:38,268 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  35%|\u2588\u2588\u2588\u258c      | 124/354 [01:53<03:16,  1.17img/s]2026-11-05 17:45:38,277 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:39,424 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  35%|\u2588\u2588\u2588\u258c      | 125/354 [01:54<03:36,  1.06img/s]2026-11-05 17:45:39,433 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:40,554 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  36%|\u2588\u2588\u2588\u258c      | 126/354 [01:56<03:48,  1.00s/img]2026-11-05 17:45:40,562 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:41,497 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  36%|\u2588\u2588\u2588\u258c      | 127/354 [01:56<03:43,  1.02img/s]2026-11-05 17:45:41,554 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:42,565 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  36%|\u2588\u2588\u2588\u258c      | 128/354 [01:58<03:48,  1.01s/img]2026-11-05 17:45:42,576 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:43,542 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  36%|\u2588\u2588\u2588\u258b      | 129/354 [01:58<03:44,  1.00img/s]2026-11-05 17:45:43,581 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:44,353 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  37%|\u2588\u2588\u2588\u258b      | 130/354 [01:59<03:31,  1.06img/s]2026-11-05 17:45:44,362 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:45,276 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  37%|\u2588\u2588\u2588\u258b      | 131/354 [02:00<03:28,  1.07img/s]2026-11-05 17:45:45,285 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:45,988 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  37%|\u2588\u2588\u2588\u258b      | 132/354 [02:01<03:12,  1.15img/s]2026-11-05 17:45:45,997 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:46,857 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  38%|\u2588\u2588\u2588\u258a      | 133/354 [02:02<03:12,  1.15img/s]2026-11-05 17:45:46,864 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:47,807 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  38%|\u2588\u2588\u2588\u258a      | 134/354 [02:03<03:16,  1.12img/s]2026-11-05 17:45:47,833 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:48,723 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  38%|\u2588\u2588\u2588\u258a      | 135/354 [02:04<03:17,  1.11img/s]2026-11-05 17:45:48,731 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:49,521 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  38%|\u2588\u2588\u2588\u258a      | 136/354 [02:04<03:09,  1.15img/s]2026-11-05 17:45:49,533 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:50,405 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  39%|\u2588\u2588\u2588\u258a      | 137/354 [02:05<03:09,  1.14img/s]2026-11-05 17:45:50,465 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:51,465 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  39%|\u2588\u2588\u2588\u2589      | 138/354 [02:06<03:20,  1.08img/s]2026-11-05 17:45:51,475 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:52,352 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  39%|\u2588\u2588\u2588\u2589      | 139/354 [02:07<03:17,  1.09img/s]2026-11-05 17:45:52,383 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:53,234 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  40%|\u2588\u2588\u2588\u2589      | 140/354 [02:08<03:13,  1.10img/s]2026-11-05 17:45:53,255 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:54,195 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  40%|\u2588\u2588\u2588\u2589      | 141/354 [02:09<03:16,  1.08img/s]2026-11-05 17:45:54,207 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:55,123 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  40%|\u2588\u2588\u2588\u2588      | 142/354 [02:10<03:15,  1.08img/s]2026-11-05 17:45:55,132 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:55,953 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  40%|\u2588\u2588\u2588\u2588      | 143/354 [02:11<03:08,  1.12img/s]2026-11-05 17:45:55,981 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:56,903 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  41%|\u2588\u2588\u2588\u2588      | 144/354 [02:12<03:11,  1.10img/s]2026-11-05 17:45:56,994 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:57,971 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  41%|\u2588\u2588\u2588\u2588      | 145/354 [02:13<03:20,  1.04img/s]2026-11-05 17:45:57,981 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:45:59,252 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  41%|\u2588\u2588\u2588\u2588      | 146/354 [02:14<03:39,  1.06s/img]2026-11-05 17:45:59,290 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:00,665 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  42%|\u2588\u2588\u2588\u2588\u258f     | 147/354 [02:16<04:00,  1.16s/img]2026-11-05 17:46:00,675 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:01,393 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  42%|\u2588\u2588\u2588\u2588\u258f     | 148/354 [02:16<03:32,  1.03s/img]2026-11-05 17:46:01,403 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:02,270 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  42%|\u2588\u2588\u2588\u2588\u258f     | 149/354 [02:17<03:22,  1.01img/s]2026-11-05 17:46:02,277 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:02,997 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  42%|\u2588\u2588\u2588\u2588\u258f     | 150/354 [02:18<03:05,  1.10img/s]2026-11-05 17:46:03,006 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:03,675 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  43%|\u2588\u2588\u2588\u2588\u258e     | 151/354 [02:19<02:50,  1.19img/s]2026-11-05 17:46:03,685 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:04,452 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  43%|\u2588\u2588\u2588\u2588\u258e     | 152/354 [02:19<02:45,  1.22img/s]2026-11-05 17:46:04,463 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:05,199 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  43%|\u2588\u2588\u2588\u2588\u258e     | 153/354 [02:20<02:40,  1.25img/s]2026-11-05 17:46:05,209 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:06,013 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  44%|\u2588\u2588\u2588\u2588\u258e     | 154/354 [02:21<02:40,  1.24img/s]2026-11-05 17:46:06,023 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:07,336 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  44%|\u2588\u2588\u2588\u2588\u258d     | 155/354 [02:22<03:10,  1.04img/s]2026-11-05 17:46:07,343 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:08,263 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  44%|\u2588\u2588\u2588\u2588\u258d     | 156/354 [02:23<03:07,  1.05img/s]2026-11-05 17:46:08,273 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:08,869 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  44%|\u2588\u2588\u2588\u2588\u258d     | 157/354 [02:24<02:46,  1.18img/s]2026-11-05 17:46:08,877 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:09,579 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  45%|\u2588\u2588\u2588\u2588\u258d     | 158/354 [02:25<02:37,  1.24img/s]2026-11-05 17:46:09,652 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:10,954 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  45%|\u2588\u2588\u2588\u2588\u258d     | 159/354 [02:26<03:10,  1.02img/s]2026-11-05 17:46:10,998 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:12,178 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  45%|\u2588\u2588\u2588\u2588\u258c     | 160/354 [02:27<03:23,  1.05s/img]2026-11-05 17:46:12,197 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:12,932 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  45%|\u2588\u2588\u2588\u2588\u258c     | 161/354 [02:28<03:05,  1.04img/s]2026-11-05 17:46:12,941 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:13,595 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  46%|\u2588\u2588\u2588\u2588\u258c     | 162/354 [02:29<02:47,  1.15img/s]2026-11-05 17:46:13,601 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:14,403 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  46%|\u2588\u2588\u2588\u2588\u258c     | 163/354 [02:29<02:42,  1.17img/s]2026-11-05 17:46:14,414 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:15,117 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  46%|\u2588\u2588\u2588\u2588\u258b     | 164/354 [02:30<02:34,  1.23img/s]2026-11-05 17:46:15,121 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:16,132 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  47%|\u2588\u2588\u2588\u2588\u258b     | 165/354 [02:31<02:44,  1.15img/s]2026-11-05 17:46:16,142 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:17,004 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  47%|\u2588\u2588\u2588\u2588\u258b     | 166/354 [02:32<02:43,  1.15img/s]2026-11-05 17:46:17,013 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:17,835 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  47%|\u2588\u2588\u2588\u2588\u258b     | 167/354 [02:33<02:40,  1.16img/s]2026-11-05 17:46:17,845 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:18,810 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  47%|\u2588\u2588\u2588\u2588\u258b     | 168/354 [02:34<02:46,  1.12img/s]2026-11-05 17:46:18,821 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:19,570 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  48%|\u2588\u2588\u2588\u2588\u258a     | 169/354 [02:35<02:37,  1.17img/s]2026-11-05 17:46:19,581 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:20,512 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  48%|\u2588\u2588\u2588\u2588\u258a     | 170/354 [02:35<02:42,  1.14img/s]2026-11-05 17:46:20,521 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:21,417 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  48%|\u2588\u2588\u2588\u2588\u258a     | 171/354 [02:36<02:42,  1.13img/s]2026-11-05 17:46:21,428 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:22,394 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  49%|\u2588\u2588\u2588\u2588\u258a     | 172/354 [02:37<02:46,  1.09img/s]2026-11-05 17:46:22,401 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:23,148 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  49%|\u2588\u2588\u2588\u2588\u2589     | 173/354 [02:38<02:36,  1.15img/s]2026-11-05 17:46:23,161 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:24,047 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  49%|\u2588\u2588\u2588\u2588\u2589     | 174/354 [02:39<02:37,  1.14img/s]2026-11-05 17:46:24,060 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:24,667 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  49%|\u2588\u2588\u2588\u2588\u2589     | 175/354 [02:40<02:23,  1.25img/s]2026-11-05 17:46:24,677 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:25,366 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  50%|\u2588\u2588\u2588\u2588\u2589     | 176/354 [02:40<02:16,  1.30img/s]2026-11-05 17:46:25,377 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:26,070 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  50%|\u2588\u2588\u2588\u2588\u2588     | 177/354 [02:41<02:12,  1.33img/s]2026-11-05 17:46:26,080 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:26,983 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  50%|\u2588\u2588\u2588\u2588\u2588     | 178/354 [02:42<02:20,  1.25img/s]2026-11-05 17:46:26,993 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:27,851 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  51%|\u2588\u2588\u2588\u2588\u2588     | 179/354 [02:43<02:23,  1.22img/s]2026-11-05 17:46:27,861 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:28,792 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  51%|\u2588\u2588\u2588\u2588\u2588     | 180/354 [02:44<02:28,  1.17img/s]2026-11-05 17:46:28,800 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:29,538 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  51%|\u2588\u2588\u2588\u2588\u2588     | 181/354 [02:44<02:22,  1.22img/s]2026-11-05 17:46:29,546 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:30,244 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  51%|\u2588\u2588\u2588\u2588\u2588\u258f    | 182/354 [02:45<02:15,  1.27img/s]2026-11-05 17:46:30,251 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:31,131 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  52%|\u2588\u2588\u2588\u2588\u2588\u258f    | 183/354 [02:46<02:19,  1.22img/s]2026-11-05 17:46:31,140 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:32,002 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  52%|\u2588\u2588\u2588\u2588\u2588\u258f    | 184/354 [02:47<02:21,  1.20img/s]2026-11-05 17:46:32,012 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:32,746 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  52%|\u2588\u2588\u2588\u2588\u2588\u258f    | 185/354 [02:48<02:16,  1.24img/s]2026-11-05 17:46:32,758 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:33,553 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  53%|\u2588\u2588\u2588\u2588\u2588\u258e    | 186/354 [02:49<02:15,  1.24img/s]2026-11-05 17:46:33,562 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:34,279 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  53%|\u2588\u2588\u2588\u2588\u2588\u258e    | 187/354 [02:49<02:10,  1.28img/s]2026-11-05 17:46:34,288 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:35,171 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  53%|\u2588\u2588\u2588\u2588\u2588\u258e    | 188/354 [02:50<02:15,  1.23img/s]2026-11-05 17:46:35,183 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:35,914 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  53%|\u2588\u2588\u2588\u2588\u2588\u258e    | 189/354 [02:51<02:10,  1.26img/s]2026-11-05 17:46:35,925 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:36,785 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  54%|\u2588\u2588\u2588\u2588\u2588\u258e    | 190/354 [02:52<02:13,  1.22img/s]2026-11-05 17:46:36,796 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:37,632 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  54%|\u2588\u2588\u2588\u2588\u2588\u258d    | 191/354 [02:53<02:14,  1.21img/s]2026-11-05 17:46:37,642 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:38,403 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  54%|\u2588\u2588\u2588\u2588\u2588\u258d    | 192/354 [02:53<02:11,  1.24img/s]2026-11-05 17:46:38,411 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:39,519 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  55%|\u2588\u2588\u2588\u2588\u2588\u258d    | 193/354 [02:54<02:25,  1.11img/s]2026-11-05 17:46:39,529 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:40,181 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  55%|\u2588\u2588\u2588\u2588\u2588\u258d    | 194/354 [02:55<02:12,  1.21img/s]2026-11-05 17:46:40,190 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:40,941 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  55%|\u2588\u2588\u2588\u2588\u2588\u258c    | 195/354 [02:56<02:08,  1.24img/s]2026-11-05 17:46:40,950 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:41,694 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  55%|\u2588\u2588\u2588\u2588\u2588\u258c    | 196/354 [02:57<02:05,  1.26img/s]2026-11-05 17:46:41,703 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:42,405 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  56%|\u2588\u2588\u2588\u2588\u2588\u258c    | 197/354 [02:57<02:00,  1.30img/s]2026-11-05 17:46:42,415 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:43,400 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  56%|\u2588\u2588\u2588\u2588\u2588\u258c    | 198/354 [02:58<02:10,  1.20img/s]2026-11-05 17:46:43,409 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:44,281 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  56%|\u2588\u2588\u2588\u2588\u2588\u258c    | 199/354 [02:59<02:11,  1.18img/s]2026-11-05 17:46:44,293 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:45,136 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  56%|\u2588\u2588\u2588\u2588\u2588\u258b    | 200/354 [03:00<02:11,  1.18img/s]2026-11-05 17:46:45,143 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:45,760 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  57%|\u2588\u2588\u2588\u2588\u2588\u258b    | 201/354 [03:01<01:59,  1.28img/s]2026-11-05 17:46:45,768 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:46,668 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  57%|\u2588\u2588\u2588\u2588\u2588\u258b    | 202/354 [03:02<02:04,  1.22img/s]2026-11-05 17:46:46,676 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:47,429 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  57%|\u2588\u2588\u2588\u2588\u2588\u258b    | 203/354 [03:02<02:01,  1.24img/s]2026-11-05 17:46:47,441 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:48,267 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  58%|\u2588\u2588\u2588\u2588\u2588\u258a    | 204/354 [03:03<02:01,  1.23img/s]2026-11-05 17:46:48,276 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:49,106 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  58%|\u2588\u2588\u2588\u2588\u2588\u258a    | 205/354 [03:04<02:02,  1.22img/s]2026-11-05 17:46:49,117 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:50,026 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  58%|\u2588\u2588\u2588\u2588\u2588\u258a    | 206/354 [03:05<02:05,  1.18img/s]2026-11-05 17:46:50,035 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:50,782 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  58%|\u2588\u2588\u2588\u2588\u2588\u258a    | 207/354 [03:06<02:00,  1.22img/s]2026-11-05 17:46:50,790 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:51,570 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  59%|\u2588\u2588\u2588\u2588\u2588\u2589    | 208/354 [03:07<01:58,  1.23img/s]2026-11-05 17:46:51,580 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:52,501 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  59%|\u2588\u2588\u2588\u2588\u2588\u2589    | 209/354 [03:07<02:02,  1.18img/s]2026-11-05 17:46:52,514 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:53,398 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  59%|\u2588\u2588\u2588\u2588\u2588\u2589    | 210/354 [03:08<02:04,  1.16img/s]2026-11-05 17:46:53,406 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:54,034 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  60%|\u2588\u2588\u2588\u2588\u2588\u2589    | 211/354 [03:09<01:53,  1.26img/s]2026-11-05 17:46:54,041 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:54,991 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  60%|\u2588\u2588\u2588\u2588\u2588\u2589    | 212/354 [03:10<01:59,  1.19img/s]2026-11-05 17:46:55,002 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:55,766 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  60%|\u2588\u2588\u2588\u2588\u2588\u2588    | 213/354 [03:11<01:56,  1.21img/s]2026-11-05 17:46:55,776 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:56,457 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  60%|\u2588\u2588\u2588\u2588\u2588\u2588    | 214/354 [03:11<01:49,  1.28img/s]2026-11-05 17:46:56,467 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:57,343 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  61%|\u2588\u2588\u2588\u2588\u2588\u2588    | 215/354 [03:12<01:53,  1.23img/s]2026-11-05 17:46:57,355 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:58,220 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  61%|\u2588\u2588\u2588\u2588\u2588\u2588    | 216/354 [03:13<01:54,  1.20img/s]2026-11-05 17:46:58,231 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:58,964 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  61%|\u2588\u2588\u2588\u2588\u2588\u2588\u258f   | 217/354 [03:14<01:50,  1.24img/s]2026-11-05 17:46:58,972 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:46:59,610 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  62%|\u2588\u2588\u2588\u2588\u2588\u2588\u258f   | 218/354 [03:15<01:43,  1.32img/s]2026-11-05 17:46:59,617 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:00,285 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  62%|\u2588\u2588\u2588\u2588\u2588\u2588\u258f   | 219/354 [03:15<01:38,  1.36img/s]2026-11-05 17:47:00,294 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:00,897 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  62%|\u2588\u2588\u2588\u2588\u2588\u2588\u258f   | 220/354 [03:16<01:33,  1.44img/s]2026-11-05 17:47:00,904 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:01,902 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  62%|\u2588\u2588\u2588\u2588\u2588\u2588\u258f   | 221/354 [03:17<01:44,  1.27img/s]2026-11-05 17:47:01,907 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:02,703 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  63%|\u2588\u2588\u2588\u2588\u2588\u2588\u258e   | 222/354 [03:18<01:44,  1.26img/s]2026-11-05 17:47:02,713 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:03,785 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  63%|\u2588\u2588\u2588\u2588\u2588\u2588\u258e   | 223/354 [03:19<01:55,  1.14img/s]2026-11-05 17:47:03,793 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:04,659 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  63%|\u2588\u2588\u2588\u2588\u2588\u2588\u258e   | 224/354 [03:20<01:54,  1.14img/s]2026-11-05 17:47:04,667 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:05,600 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  64%|\u2588\u2588\u2588\u2588\u2588\u2588\u258e   | 225/354 [03:21<01:55,  1.11img/s]2026-11-05 17:47:05,609 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:06,397 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  64%|\u2588\u2588\u2588\u2588\u2588\u2588\u258d   | 226/354 [03:21<01:50,  1.15img/s]2026-11-05 17:47:06,406 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:07,194 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  64%|\u2588\u2588\u2588\u2588\u2588\u2588\u258d   | 227/354 [03:22<01:47,  1.18img/s]2026-11-05 17:47:07,205 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:08,050 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  64%|\u2588\u2588\u2588\u2588\u2588\u2588\u258d   | 228/354 [03:23<01:46,  1.18img/s]2026-11-05 17:47:08,061 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:08,947 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  65%|\u2588\u2588\u2588\u2588\u2588\u2588\u258d   | 229/354 [03:24<01:47,  1.16img/s]2026-11-05 17:47:08,956 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:09,667 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  65%|\u2588\u2588\u2588\u2588\u2588\u2588\u258d   | 230/354 [03:25<01:41,  1.22img/s]2026-11-05 17:47:09,691 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:10,435 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  65%|\u2588\u2588\u2588\u2588\u2588\u2588\u258c   | 231/354 [03:25<01:38,  1.24img/s]2026-11-05 17:47:10,444 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:11,210 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  66%|\u2588\u2588\u2588\u2588\u2588\u2588\u258c   | 232/354 [03:26<01:37,  1.26img/s]2026-11-05 17:47:11,233 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:12,214 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  66%|\u2588\u2588\u2588\u2588\u2588\u2588\u258c   | 233/354 [03:27<01:43,  1.16img/s]2026-11-05 17:47:12,225 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:12,891 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  66%|\u2588\u2588\u2588\u2588\u2588\u2588\u258c   | 234/354 [03:28<01:36,  1.24img/s]2026-11-05 17:47:12,898 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:13,578 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  66%|\u2588\u2588\u2588\u2588\u2588\u2588\u258b   | 235/354 [03:29<01:31,  1.30img/s]2026-11-05 17:47:13,589 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:14,487 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  67%|\u2588\u2588\u2588\u2588\u2588\u2588\u258b   | 236/354 [03:29<01:35,  1.23img/s]2026-11-05 17:47:14,497 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:15,184 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  67%|\u2588\u2588\u2588\u2588\u2588\u2588\u258b   | 237/354 [03:30<01:30,  1.29img/s]2026-11-05 17:47:15,191 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:16,024 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  67%|\u2588\u2588\u2588\u2588\u2588\u2588\u258b   | 238/354 [03:31<01:32,  1.26img/s]2026-11-05 17:47:16,034 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:17,201 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  68%|\u2588\u2588\u2588\u2588\u2588\u2588\u258a   | 239/354 [03:32<01:44,  1.10img/s]2026-11-05 17:47:17,210 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:18,076 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  68%|\u2588\u2588\u2588\u2588\u2588\u2588\u258a   | 240/354 [03:33<01:42,  1.11img/s]2026-11-05 17:47:18,088 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:18,762 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  68%|\u2588\u2588\u2588\u2588\u2588\u2588\u258a   | 241/354 [03:34<01:34,  1.20img/s]2026-11-05 17:47:18,772 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:19,442 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  68%|\u2588\u2588\u2588\u2588\u2588\u2588\u258a   | 242/354 [03:34<01:28,  1.27img/s]2026-11-05 17:47:19,451 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:20,196 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  69%|\u2588\u2588\u2588\u2588\u2588\u2588\u258a   | 243/354 [03:35<01:26,  1.29img/s]2026-11-05 17:47:20,204 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:21,085 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  69%|\u2588\u2588\u2588\u2588\u2588\u2588\u2589   | 244/354 [03:36<01:29,  1.23img/s]2026-11-05 17:47:21,096 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:21,826 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  69%|\u2588\u2588\u2588\u2588\u2588\u2588\u2589   | 245/354 [03:37<01:26,  1.27img/s]2026-11-05 17:47:21,833 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:22,476 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  69%|\u2588\u2588\u2588\u2588\u2588\u2588\u2589   | 246/354 [03:37<01:20,  1.34img/s]2026-11-05 17:47:22,485 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:23,393 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  70%|\u2588\u2588\u2588\u2588\u2588\u2588\u2589   | 247/354 [03:38<01:25,  1.25img/s]2026-11-05 17:47:23,402 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:24,084 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  70%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588   | 248/354 [03:39<01:21,  1.30img/s]2026-11-05 17:47:24,091 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:25,057 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  70%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588   | 249/354 [03:40<01:27,  1.21img/s]2026-11-05 17:47:25,066 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:25,948 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  71%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588   | 250/354 [03:41<01:28,  1.18img/s]2026-11-05 17:47:25,958 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:26,666 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  71%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588   | 251/354 [03:42<01:23,  1.24img/s]2026-11-05 17:47:26,675 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:27,558 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  71%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588   | 252/354 [03:43<01:25,  1.20img/s]2026-11-05 17:47:27,570 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:28,329 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  71%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f  | 253/354 [03:43<01:22,  1.23img/s]2026-11-05 17:47:28,342 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:29,059 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  72%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f  | 254/354 [03:44<01:18,  1.27img/s]2026-11-05 17:47:29,068 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:29,893 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  72%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f  | 255/354 [03:45<01:19,  1.25img/s]2026-11-05 17:47:29,903 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:30,697 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  72%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f  | 256/354 [03:46<01:18,  1.25img/s]2026-11-05 17:47:30,710 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:31,576 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  73%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e  | 257/354 [03:47<01:20,  1.21img/s]2026-11-05 17:47:31,587 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:32,213 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  73%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e  | 258/354 [03:47<01:13,  1.30img/s]2026-11-05 17:47:32,224 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:33,036 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  73%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e  | 259/354 [03:48<01:14,  1.27img/s]2026-11-05 17:47:33,045 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:33,913 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  73%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e  | 260/354 [03:49<01:16,  1.23img/s]2026-11-05 17:47:33,924 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:34,853 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  74%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e  | 261/354 [03:50<01:19,  1.17img/s]2026-11-05 17:47:34,863 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:35,596 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  74%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d  | 262/354 [03:51<01:15,  1.22img/s]2026-11-05 17:47:35,604 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:36,395 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  74%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d  | 263/354 [03:51<01:13,  1.23img/s]2026-11-05 17:47:36,404 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:37,080 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  75%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d  | 264/354 [03:52<01:09,  1.29img/s]2026-11-05 17:47:37,091 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:38,045 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  75%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d  | 265/354 [03:53<01:13,  1.20img/s]2026-11-05 17:47:38,055 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:38,983 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  75%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c  | 266/354 [03:54<01:15,  1.16img/s]2026-11-05 17:47:38,992 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:39,795 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  75%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c  | 267/354 [03:55<01:13,  1.18img/s]2026-11-05 17:47:39,804 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:40,578 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  76%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c  | 268/354 [03:56<01:11,  1.21img/s]2026-11-05 17:47:40,586 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:41,341 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  76%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c  | 269/354 [03:56<01:08,  1.24img/s]2026-11-05 17:47:41,352 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:42,117 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  76%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b  | 270/354 [03:57<01:07,  1.25img/s]2026-11-05 17:47:42,128 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:42,878 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  77%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b  | 271/354 [03:58<01:05,  1.27img/s]2026-11-05 17:47:42,889 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:43,653 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  77%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b  | 272/354 [03:59<01:04,  1.28img/s]2026-11-05 17:47:43,664 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:44,416 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  77%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b  | 273/354 [03:59<01:02,  1.29img/s]2026-11-05 17:47:44,424 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:45,172 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  77%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b  | 274/354 [04:00<01:01,  1.30img/s]2026-11-05 17:47:45,181 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:46,090 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  78%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a  | 275/354 [04:01<01:04,  1.23img/s]2026-11-05 17:47:46,099 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:46,854 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  78%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a  | 276/354 [04:02<01:02,  1.25img/s]2026-11-05 17:47:46,864 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:47,820 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  78%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a  | 277/354 [04:03<01:05,  1.18img/s]2026-11-05 17:47:47,828 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:48,924 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  79%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a  | 278/354 [04:04<01:10,  1.08img/s]2026-11-05 17:47:48,933 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:49,811 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  79%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589  | 279/354 [04:05<01:08,  1.09img/s]2026-11-05 17:47:49,820 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:50,775 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  79%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589  | 280/354 [04:06<01:08,  1.08img/s]2026-11-05 17:47:50,785 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:51,457 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  79%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589  | 281/354 [04:06<01:02,  1.17img/s]2026-11-05 17:47:51,465 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:52,284 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  80%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589  | 282/354 [04:07<01:00,  1.18img/s]2026-11-05 17:47:52,296 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:53,077 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  80%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589  | 283/354 [04:08<00:58,  1.20img/s]2026-11-05 17:47:53,090 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:53,954 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  80%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588  | 284/354 [04:09<00:59,  1.18img/s]2026-11-05 17:47:53,963 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:54,895 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  81%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588  | 285/354 [04:10<01:00,  1.14img/s]2026-11-05 17:47:54,902 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:55,670 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  81%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588  | 286/354 [04:11<00:57,  1.18img/s]2026-11-05 17:47:55,681 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:56,395 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  81%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588  | 287/354 [04:11<00:54,  1.24img/s]2026-11-05 17:47:56,406 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:57,150 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  81%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f | 288/354 [04:12<00:52,  1.26img/s]2026-11-05 17:47:57,156 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:57,939 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  82%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f | 289/354 [04:13<00:51,  1.26img/s]2026-11-05 17:47:57,949 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:58,687 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  82%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f | 290/354 [04:14<00:49,  1.28img/s]2026-11-05 17:47:58,698 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:47:59,309 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  82%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f | 291/354 [04:14<00:46,  1.37img/s]2026-11-05 17:47:59,319 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:00,084 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  82%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f | 292/354 [04:15<00:46,  1.34img/s]2026-11-05 17:48:00,093 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:00,834 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  83%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e | 293/354 [04:16<00:45,  1.34img/s]2026-11-05 17:48:00,870 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:01,703 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  83%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e | 294/354 [04:17<00:46,  1.28img/s]2026-11-05 17:48:01,818 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:03,345 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  83%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e | 295/354 [04:18<01:01,  1.04s/img]2026-11-05 17:48:03,358 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:04,108 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  84%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e | 296/354 [04:19<00:55,  1.04img/s]2026-11-05 17:48:04,114 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:05,334 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  84%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d | 297/354 [04:20<00:59,  1.04s/img]2026-11-05 17:48:05,345 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:06,133 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  84%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d | 298/354 [04:21<00:54,  1.03img/s]2026-11-05 17:48:06,141 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:06,793 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  84%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d | 299/354 [04:22<00:48,  1.14img/s]2026-11-05 17:48:06,804 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:07,673 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  85%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d | 300/354 [04:23<00:47,  1.14img/s]2026-11-05 17:48:07,684 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:08,735 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  85%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c | 301/354 [04:24<00:49,  1.07img/s]2026-11-05 17:48:08,744 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:09,892 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  85%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c | 302/354 [04:25<00:51,  1.00img/s]2026-11-05 17:48:09,899 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:10,846 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  86%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c | 303/354 [04:26<00:50,  1.01img/s]2026-11-05 17:48:10,852 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:11,553 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  86%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c | 304/354 [04:27<00:45,  1.11img/s]2026-11-05 17:48:11,566 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:12,296 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  86%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c | 305/354 [04:27<00:41,  1.17img/s]2026-11-05 17:48:12,300 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:12,945 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  86%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b | 306/354 [04:28<00:38,  1.26img/s]2026-11-05 17:48:12,954 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:13,970 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  87%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b | 307/354 [04:29<00:40,  1.16img/s]2026-11-05 17:48:13,980 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:14,715 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  87%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b | 308/354 [04:30<00:38,  1.21img/s]2026-11-05 17:48:14,725 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:15,830 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  87%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b | 309/354 [04:31<00:41,  1.09img/s]2026-11-05 17:48:15,842 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:16,700 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  88%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a | 310/354 [04:32<00:39,  1.11img/s]2026-11-05 17:48:16,711 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:17,379 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  88%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a | 311/354 [04:32<00:35,  1.20img/s]2026-11-05 17:48:17,390 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:18,139 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  88%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a | 312/354 [04:33<00:34,  1.23img/s]2026-11-05 17:48:18,149 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:18,972 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  88%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a | 313/354 [04:34<00:33,  1.22img/s]2026-11-05 17:48:18,979 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:19,929 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  89%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a | 314/354 [04:35<00:34,  1.16img/s]2026-11-05 17:48:19,937 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:20,582 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  89%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589 | 315/354 [04:36<00:31,  1.25img/s]2026-11-05 17:48:20,591 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:21,608 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  89%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589 | 316/354 [04:37<00:32,  1.15img/s]2026-11-05 17:48:21,618 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:22,484 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  90%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589 | 317/354 [04:37<00:32,  1.15img/s]2026-11-05 17:48:22,494 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:23,605 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  90%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589 | 318/354 [04:39<00:34,  1.06img/s]2026-11-05 17:48:23,615 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:24,723 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  90%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588 | 319/354 [04:40<00:34,  1.00img/s]2026-11-05 17:48:24,730 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:25,356 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  90%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588 | 320/354 [04:40<00:30,  1.13img/s]2026-11-05 17:48:25,363 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:26,085 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  91%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588 | 321/354 [04:41<00:27,  1.19img/s]2026-11-05 17:48:26,095 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:27,060 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  91%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588 | 322/354 [04:42<00:28,  1.14img/s]2026-11-05 17:48:27,070 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:28,029 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  91%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588 | 323/354 [04:43<00:28,  1.10img/s]2026-11-05 17:48:28,040 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:28,861 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  92%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f| 324/354 [04:44<00:26,  1.13img/s]2026-11-05 17:48:28,866 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:29,745 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  92%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f| 325/354 [04:45<00:25,  1.13img/s]2026-11-05 17:48:29,756 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:30,649 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  92%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f| 326/354 [04:46<00:24,  1.12img/s]2026-11-05 17:48:30,659 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:31,628 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  92%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f| 327/354 [04:47<00:24,  1.09img/s]2026-11-05 17:48:31,639 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:32,262 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  93%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e| 328/354 [04:47<00:21,  1.20img/s]2026-11-05 17:48:32,274 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:32,950 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  93%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e| 329/354 [04:48<00:19,  1.27img/s]2026-11-05 17:48:32,960 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:33,689 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  93%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e| 330/354 [04:49<00:18,  1.29img/s]2026-11-05 17:48:33,698 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:34,449 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  94%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e| 331/354 [04:49<00:17,  1.30img/s]2026-11-05 17:48:34,456 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:35,323 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  94%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d| 332/354 [04:50<00:17,  1.25img/s]2026-11-05 17:48:35,330 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:35,858 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  94%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d| 333/354 [04:51<00:15,  1.39img/s]2026-11-05 17:48:35,867 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:36,621 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  94%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d| 334/354 [04:52<00:14,  1.36img/s]2026-11-05 17:48:36,631 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:37,298 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  95%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d| 335/354 [04:52<00:13,  1.39img/s]2026-11-05 17:48:37,306 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:38,786 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  95%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d| 336/354 [04:54<00:17,  1.05img/s]2026-11-05 17:48:38,796 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:39,894 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  95%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c| 337/354 [04:55<00:16,  1.00img/s]2026-11-05 17:48:39,904 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:40,771 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  95%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c| 338/354 [04:56<00:15,  1.04img/s]2026-11-05 17:48:40,778 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:41,527 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  96%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c| 339/354 [04:56<00:13,  1.11img/s]2026-11-05 17:48:41,533 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:42,307 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  96%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c| 340/354 [04:57<00:12,  1.16img/s]2026-11-05 17:48:42,319 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:43,345 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  96%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b| 341/354 [04:58<00:11,  1.09img/s]2026-11-05 17:48:43,351 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:44,262 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  97%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b| 342/354 [04:59<00:10,  1.09img/s]2026-11-05 17:48:44,268 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:45,133 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  97%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b| 343/354 [05:00<00:09,  1.11img/s]2026-11-05 17:48:45,144 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:45,986 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  97%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b| 344/354 [05:01<00:08,  1.13img/s]2026-11-05 17:48:45,995 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:46,863 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  97%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b| 345/354 [05:02<00:07,  1.13img/s]2026-11-05 17:48:46,875 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:47,593 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  98%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a| 346/354 [05:03<00:06,  1.19img/s]2026-11-05 17:48:47,605 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:48,626 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  98%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a| 347/354 [05:04<00:06,  1.12img/s]2026-11-05 17:48:48,637 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:49,694 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  98%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a| 348/354 [05:05<00:05,  1.05img/s]2026-11-05 17:48:49,702 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:50,449 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  99%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a| 349/354 [05:05<00:04,  1.12img/s]2026-11-05 17:48:50,457 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:51,338 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  99%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589| 350/354 [05:06<00:03,  1.12img/s]2026-11-05 17:48:51,394 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:52,501 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  99%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589| 351/354 [05:07<00:02,  1.03img/s]2026-11-05 17:48:52,531 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:53,428 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test:  99%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589| 352/354 [05:08<00:01,  1.04img/s]2026-11-05 17:48:53,485 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:54,547 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589| 353/354 [05:09<00:01,  1.01s/img]2026-11-05 17:48:54,750 [INFO] AFC is enabled with max remote calls: 10.
+2026-11-05 17:48:56,313 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+Gemini test: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 354/354 [05:11<00:00,  1.23s/img]Gemini test: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 354/354 [05:11<00:00,  1.14img/s]
+2026-11-05 17:48:56,329 [INFO] Gemini [test]: Acc=69.21%, Macro-F1=58.31% -> harmeme_test_gemini_3_1_flash_lite_definition.json
+2026-11-05 17:57:28,886 [INFO] validation: 9 of 177 answers changed; Macro-F1 45.95% -> 52.77%; harmful recall 8.20% -> 18.03%; elapsed 180.7s; errors none
+2026-11-05 17:57:28,886 [INFO] test: 32 of 354 answers changed; Macro-F1 46.42% -> 58.31%; harmful recall 8.06% -> 25.81%; elapsed 311.8s; errors none
+2026-11-05 17:57:28,886 [INFO] reproduced: NO
+2026-11-05 17:57:28,886 [INFO] clears validation bar (Macro-F1 above 52.69%): yes
+2026-11-05 17:57:28,886 [INFO] Wrote M:\_Research\content-moderation\results\revision\dis01_harmeme\compare_gemini_3_1_flash_lite_definition.json

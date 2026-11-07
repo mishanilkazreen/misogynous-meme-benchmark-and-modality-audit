@@ -1,0 +1,283 @@
+{
+  "model": "llava-hf/llava-1.5-7b-hf+lora_llava_1.5_7b_hf_singleclass",
+  "split": "test",
+  "input_file": "results/rationales/llava7b_test.jsonl",
+  "num_samples": 30,
+  "mean_bleu_1": 0.26471427221425925,
+  "mean_bleu_4": 0.03184754752519947,
+  "mean_rouge_l": 0.22083539037684527,
+  "std_bleu_4": 0.023539160288989974,
+  "std_rouge_l": 0.0885968526946004,
+  "details": [
+    {
+      "image_id": "15236",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme is misogynistic as it demeans women by suggesting they join a group for the purpose of being objectified.",
+      "bleu_1": 0.30348258706467657,
+      "bleu_4": 0.06468372558919729,
+      "rouge_l": 0.30844382414515
+    },
+    {
+      "image_id": "15805",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme is misogynistic because it implies that women are not supposed to eat dairy products, which is a harmful gender stereotype. The text overlay reinforces this stereotype by suggesting that women should not consume dairy products.",
+      "bleu_1": 0.2991913746630728,
+      "bleu_4": 0.042037727284642834,
+      "rouge_l": 0.30118110236220474
+    },
+    {
+      "image_id": "16254",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme does not contain any text or visual elements that demean, objectify, or express hostility toward women.",
+      "bleu_1": 0.3710669739910516,
+      "bleu_4": 0.0354913535458224,
+      "rouge_l": 0.3234935350085386
+    },
+    {
+      "image_id": "16191",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme objectifies women by photographing them and placing them next to a brick object. This reinforces harmful gender stereotypes and demeans women.",
+      "bleu_1": 0.2942822040383335,
+      "bleu_4": 0.05023015540421155,
+      "rouge_l": 0.254803996925442
+    },
+    {
+      "image_id": "15952",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains text that demeans women by implying they should make sandwiches for men. This is a common trope that objectifies women and reinforces harmful gender stereotypes.",
+      "bleu_1": 0.18149466192170816,
+      "bleu_4": 0.010055301199739823,
+      "rouge_l": 0.1300254951951363
+    },
+    {
+      "image_id": "15662",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme does not contain any text or visual elements that demean, objectify, or express hostility toward women.",
+      "bleu_1": 0.3710669739910516,
+      "bleu_4": 0.0354913535458224,
+      "rouge_l": 0.3234935350085386
+    },
+    {
+      "image_id": "15828",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains text overlay that demeans women and expresses hostility towards them. It is misogynistic.",
+      "bleu_1": 0.34282167722887974,
+      "bleu_4": 0.023436241820544927,
+      "rouge_l": 0.24533747779751336
+    },
+    {
+      "image_id": "15905",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme does not contain any misogynistic content. It is a lighthearted joke about a mother's advice to her child.",
+      "bleu_1": 0.2890995260663507,
+      "bleu_4": 0.026009560657163654,
+      "rouge_l": 0.1507160718345078
+    },
+    {
+      "image_id": "15971",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The text overlay 'women women women 0 respect' demeans women by implying that they are not respected.",
+      "bleu_1": 0.12009873799539013,
+      "bleu_4": 0.0100463608258807,
+      "rouge_l": 0.09600347523892269
+    },
+    {
+      "image_id": "16197",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "This meme contains text that demeans women by suggesting that they ask for rape. It reinforces harmful gender stereotypes and expresses hostility toward women.",
+      "bleu_1": 0.4605809128630705,
+      "bleu_4": 0.06626724907900465,
+      "rouge_l": 0.375
+    },
+    {
+      "image_id": "15916",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains text that demeans women by objectifying them and suggesting they are spreading viruses. This is a misogynistic meme.",
+      "bleu_1": 0.2417061611374407,
+      "bleu_4": 0.013656673618740033,
+      "rouge_l": 0.1507160718345078
+    },
+    {
+      "image_id": "16130",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme objectifies a woman by describing her as having a big fat ass and a couple of STDs. This demeans and objectifies women.",
+      "bleu_1": 0.21161825726141079,
+      "bleu_4": 0.0118390432240566,
+      "rouge_l": 0.16666666666666666
+    },
+    {
+      "image_id": "15742",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The text overlay contains misogynistic language that demeans women and reinforces harmful gender stereotypes.",
+      "bleu_1": 0.31594532638072864,
+      "bleu_4": 0.04696813433205851,
+      "rouge_l": 0.25673791821561337
+    },
+    {
+      "image_id": "15502",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains text that demeans women by suggesting they are only interested in material possessions.",
+      "bleu_1": 0.10813423280613918,
+      "bleu_4": 0.012191335988410774,
+      "rouge_l": 0.11336240061554245
+    },
+    {
+      "image_id": "15037",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme objectifies women by depicting them as superheroes with vulnerabilities. The text overlay reinforces this by stating that every superhero has a vulnerability that they just can't overcome. This demeans women by implying that they are weak and can be easily exploited.",
+      "bleu_1": 0.16099773242630383,
+      "bleu_4": 0.006816393330558458,
+      "rouge_l": 0.15128696604600217
+    },
+    {
+      "image_id": "15592",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme does not contain any misogynistic content. It is a light-hearted joke about a man feeling like a failure, but his girlfriend gives him a kiss, which makes him feel better about himself.",
+      "bleu_1": 0.17378917378917377,
+      "bleu_4": 0.015155909371249497,
+      "rouge_l": 0.11433005690636316
+    },
+    {
+      "image_id": "15540",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme objectifies a woman and reinforces harmful gender stereotypes by using a beach volleyball context and making a joke about gay people.",
+      "bleu_1": 0.21138580853457756,
+      "bleu_4": 0.04624262494203331,
+      "rouge_l": 0.212336664104535
+    },
+    {
+      "image_id": "16323",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme does not contain any text or visual elements that demean, objectify, or express hostility toward women.",
+      "bleu_1": 0.3710669739910516,
+      "bleu_4": 0.0354913535458224,
+      "rouge_l": 0.3234935350085386
+    },
+    {
+      "image_id": "15136",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme objectifies a woman and demeans her by making a joke about diarrhea. This is misogynistic as it uses derogatory language and reduces a person to their body parts.",
+      "bleu_1": 0.23588039867109634,
+      "bleu_4": 0.039598962575918654,
+      "rouge_l": 0.25023589356482356
+    },
+    {
+      "image_id": "16298",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains text that demeans women by stating that they are rich while men are poor. This reinforces harmful gender stereotypes that women are more financially successful than men.",
+      "bleu_1": 0.13621262458471758,
+      "bleu_4": 0.008854462242350106,
+      "rouge_l": 0.12511794678241178
+    },
+    {
+      "image_id": "15846",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "The meme does not contain any text or visual elements that demean, objectify, or express hostility toward women.",
+      "bleu_1": 0.32065765832307697,
+      "bleu_4": 0.11939344090751496,
+      "rouge_l": 0.37585034013605445
+    },
+    {
+      "image_id": "16203",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme demeans women by calling them fat and making light of their weight. It also implies that women are not beautiful, as the speaker claims to know 5 fat people and the target is one of them.",
+      "bleu_1": 0.1601049868766404,
+      "bleu_4": 0.007639310421525739,
+      "rouge_l": 0.1087063453025086
+    },
+    {
+      "image_id": "15560",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme does not contain any text or visual elements that demean, objectify, or express hostility toward women.",
+      "bleu_1": 0.3710669739910516,
+      "bleu_4": 0.0354913535458224,
+      "rouge_l": 0.3234935350085386
+    },
+    {
+      "image_id": "16056",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme does not contain any text or visual elements that demean, objectify, or express hostility towards women.",
+      "bleu_1": 0.31880401990780494,
+      "bleu_4": 0.02906924697194857,
+      "rouge_l": 0.26957794584044886
+    },
+    {
+      "image_id": "15038",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme does not contain any misogynistic content. It is a light-hearted joke about clean eating and donuts.",
+      "bleu_1": 0.31937172774869105,
+      "bleu_4": 0.028976581463867897,
+      "rouge_l": 0.15789473684210525
+    },
+    {
+      "image_id": "15676",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme does not contain any text or visual elements that demean, objectify, or express hostility toward women.",
+      "bleu_1": 0.3710669739910516,
+      "bleu_4": 0.0354913535458224,
+      "rouge_l": 0.3234935350085386
+    },
+    {
+      "image_id": "15457",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme demeans women by objectifying them and treating them as sexual objects. The text 'demands respect and not be treated as a sexual object' is used to mock the idea of women demanding respect, while the rest of the text reinforces the stereotype of women being treated as sexual objects.",
+      "bleu_1": 0.1193737769080235,
+      "bleu_4": 0.005635872507749113,
+      "rouge_l": 0.138055972013993
+    },
+    {
+      "image_id": "15692",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains text that demeans women, specifically referring to Chris Brown. The text is overlaid on a picture of a woman, which reinforces harmful gender stereotypes.",
+      "bleu_1": 0.3357933579335793,
+      "bleu_4": 0.05189479518686269,
+      "rouge_l": 0.2760528194147038
+    },
+    {
+      "image_id": "16334",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains text that demeans women by objectifying them and implies that men are superior.",
+      "bleu_1": 0.10813423280613918,
+      "bleu_4": 0.012191335988410774,
+      "rouge_l": 0.11336240061554245
+    },
+    {
+      "image_id": "17077",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme does not contain any misogynistic content. It is a joke about diplomacy and solving problems.",
+      "bleu_1": 0.31713213853549305,
+      "bleu_4": 0.029079213093230867,
+      "rouge_l": 0.16579144786196548
+    }
+  ]
+}

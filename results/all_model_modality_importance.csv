@@ -1,0 +1,8 @@
+model,method,visual_importance,text_importance,visual_pct,text_pct
+XGBoost,Tree Gain,0.627912,0.372088,62.79,37.21
+Random Forest,Gini Importance,0.700408,0.299592,70.04,29.96
+Extra Trees,Gini Importance,0.736878,0.263122,73.69,26.31
+Logistic Regression,|Weight Coef|,465.532859,306.421594,60.31,39.69
+Ridge Classifier,|Weight Coef|,218.919083,169.571884,56.35,43.65
+Linear SVC (SGD),|Weight Coef|,453.950073,357.093994,55.97,44.03
+Linear Discriminant Analysis,Scaling Coef,28111.666016,194415.093750,12.63,87.37

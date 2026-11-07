@@ -1,0 +1,1129 @@
+{
+  "task": "EXP-04/EXP-06 feature extraction",
+  "created_utc": "2026-09-29T22:21:51+00:00",
+  "command": "scripts\\revision\\extract_features.py --features clip,masked --log results/revision/exp04_exp06/extraction_log_clip.json",
+  "features": [
+    "clip",
+    "masked"
+  ],
+  "clip": {
+    "model": "ViT-L-14-quickgelu",
+    "pretrained": "openai",
+    "context_tokens": 77
+  },
+  "siglip": {
+    "model": "ViT-SO400M-14-SigLIP-384",
+    "pretrained": "webli",
+    "hf_equivalent": "google/siglip-so400m-patch14-384",
+    "context_tokens": 64
+  },
+  "text_source": "provided",
+  "l2_normalised": true,
+  "masking": {
+    "detector": "easyocr-craft",
+    "easyocr_version": "1.7.2",
+    "min_size": 10,
+    "text_threshold": 0.7,
+    "low_text": 0.4,
+    "link_threshold": 0.4,
+    "add_margin": 0.1,
+    "dilate_px": 5,
+    "fill": "cv2.inpaint INPAINT_TELEA radius=5",
+    "example_and_audit_selection": "random.Random(20260708) over test indices"
+  },
+  "device": "NVIDIA GeForce RTX 4080 Laptop GPU",
+  "torch": "2.11.0+cu128",
+  "open_clip": "3.3.0",
+  "limit": null,
+  "splits": {
+    "train": {
+      "n": 9000,
+      "seconds": 2363.1,
+      "files": {
+        "clip": {
+          "path": "results/embeddings/train_vit_l_14_quickgelu.npz",
+          "sha256": "e077f79429737f628d5e3d2a4eef51d99a6cc4c160e05c65ddafd8504cffb7bb",
+          "image_dim": 768,
+          "text_dim": 768
+        },
+        "masked": {
+          "path": "results/embeddings/train_vit_l_14_quickgelu_textmasked_easyocr.npz",
+          "sha256": "baa5a50e87f2c4deddb6f8a44e075fb26fc5118a179d3488c62f2804f6317f97",
+          "image_dim": 768,
+          "text_dim": 768
+        }
+      },
+      "masking": {
+        "mean_mask_fraction": 0.21175815886636704,
+        "median_mask_fraction": 0.194836627537672,
+        "share_no_text_detected": 0.0005555555555555556,
+        "mean_boxes": 6.005777777777777
+      }
+    },
+    "validation": {
+      "n": 1000,
+      "seconds": 263.2,
+      "files": {
+        "clip": {
+          "path": "results/embeddings/validation_vit_l_14_quickgelu.npz",
+          "sha256": "f62e903bcc14cfe757c31e7dcd4aa1e8bd08d7da8753ea8384ad35bad77acf81",
+          "image_dim": 768,
+          "text_dim": 768
+        },
+        "masked": {
+          "path": "results/embeddings/validation_vit_l_14_quickgelu_textmasked_easyocr.npz",
+          "sha256": "6c952a2a999c6a19959299b0a25a8e88f159f32c2beab2180aaf2178bfdf57f9",
+          "image_dim": 768,
+          "text_dim": 768
+        }
+      },
+      "masking": {
+        "mean_mask_fraction": 0.20979147798276812,
+        "median_mask_fraction": 0.19425926045542236,
+        "share_no_text_detected": 0.001,
+        "mean_boxes": 5.983
+      }
+    },
+    "test": {
+      "n": 1000,
+      "seconds": 308.7,
+      "files": {
+        "clip": {
+          "path": "results/embeddings/test_vit_l_14_quickgelu.npz",
+          "sha256": "4fc772344b92197e8633b987d4accd45c1469332f078fb4ddc8673f70fdb6f8d",
+          "image_dim": 768,
+          "text_dim": 768
+        },
+        "masked": {
+          "path": "results/embeddings/test_vit_l_14_quickgelu_textmasked_easyocr.npz",
+          "sha256": "228aab4c64ba698cd2d9c3452a8c6d10f7cda48a8c57cfe6df4a5c3862f6adb1",
+          "image_dim": 768,
+          "text_dim": 768
+        }
+      },
+      "masking": {
+        "mean_mask_fraction": 0.2401356012044606,
+        "median_mask_fraction": 0.22989977550141466,
+        "share_no_text_detected": 0.001,
+        "mean_boxes": 4.243
+      },
+      "mask_audit": {
+        "n_images": 200,
+        "recogniser": "easyocr en, conf >= 0.3, alphanumeric characters",
+        "chars_original": 9423,
+        "chars_masked": 0,
+        "residual_char_ratio": 0.0,
+        "per_image": [
+          {
+            "image_id": "15037",
+            "chars_original": 71,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15540",
+            "chars_original": 73,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16298",
+            "chars_original": 31,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15038",
+            "chars_original": 49,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "17077",
+            "chars_original": 94,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16245",
+            "chars_original": 14,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15277",
+            "chars_original": 91,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15095",
+            "chars_original": 28,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15731",
+            "chars_original": 30,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15679",
+            "chars_original": 11,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15947",
+            "chars_original": 60,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16055",
+            "chars_original": 17,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15438",
+            "chars_original": 51,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "17074",
+            "chars_original": 27,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16075",
+            "chars_original": 28,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "17054",
+            "chars_original": 47,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15647",
+            "chars_original": 43,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16176",
+            "chars_original": 15,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15100",
+            "chars_original": 61,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15999",
+            "chars_original": 50,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15615",
+            "chars_original": 43,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16036",
+            "chars_original": 25,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15938",
+            "chars_original": 51,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15456",
+            "chars_original": 49,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15607",
+            "chars_original": 25,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16306",
+            "chars_original": 60,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16142",
+            "chars_original": 47,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16099",
+            "chars_original": 44,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16144",
+            "chars_original": 15,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "17046",
+            "chars_original": 20,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15618",
+            "chars_original": 54,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15388",
+            "chars_original": 48,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15035",
+            "chars_original": 24,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16137",
+            "chars_original": 40,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16013",
+            "chars_original": 27,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15217",
+            "chars_original": 15,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15098",
+            "chars_original": 68,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15816",
+            "chars_original": 56,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15918",
+            "chars_original": 30,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16037",
+            "chars_original": 62,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16005",
+            "chars_original": 64,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15982",
+            "chars_original": 32,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15820",
+            "chars_original": 32,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16259",
+            "chars_original": 0,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15350",
+            "chars_original": 59,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15101",
+            "chars_original": 18,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15786",
+            "chars_original": 52,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16052",
+            "chars_original": 29,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15898",
+            "chars_original": 48,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15836",
+            "chars_original": 12,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15091",
+            "chars_original": 49,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15497",
+            "chars_original": 64,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15861",
+            "chars_original": 26,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15178",
+            "chars_original": 66,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15711",
+            "chars_original": 37,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15973",
+            "chars_original": 18,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15696",
+            "chars_original": 51,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15472",
+            "chars_original": 39,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15204",
+            "chars_original": 50,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15630",
+            "chars_original": 10,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15980",
+            "chars_original": 0,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16018",
+            "chars_original": 27,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15855",
+            "chars_original": 30,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15988",
+            "chars_original": 24,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15455",
+            "chars_original": 76,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15391",
+            "chars_original": 109,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16251",
+            "chars_original": 37,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15720",
+            "chars_original": 47,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15970",
+            "chars_original": 30,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "17059",
+            "chars_original": 54,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "17075",
+            "chars_original": 16,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15402",
+            "chars_original": 72,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16297",
+            "chars_original": 10,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15734",
+            "chars_original": 22,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15674",
+            "chars_original": 23,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15646",
+            "chars_original": 87,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15498",
+            "chars_original": 96,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15484",
+            "chars_original": 58,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15001",
+            "chars_original": 145,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16002",
+            "chars_original": 11,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16044",
+            "chars_original": 18,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15247",
+            "chars_original": 70,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16159",
+            "chars_original": 7,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15143",
+            "chars_original": 54,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15423",
+            "chars_original": 40,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15089",
+            "chars_original": 129,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15025",
+            "chars_original": 14,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15887",
+            "chars_original": 57,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "17021",
+            "chars_original": 57,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15390",
+            "chars_original": 58,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15196",
+            "chars_original": 50,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16308",
+            "chars_original": 64,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15324",
+            "chars_original": 54,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15180",
+            "chars_original": 47,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16061",
+            "chars_original": 52,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16329",
+            "chars_original": 21,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15880",
+            "chars_original": 34,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15750",
+            "chars_original": 65,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15189",
+            "chars_original": 55,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15062",
+            "chars_original": 137,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16284",
+            "chars_original": 37,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16204",
+            "chars_original": 40,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15774",
+            "chars_original": 186,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15995",
+            "chars_original": 23,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16045",
+            "chars_original": 30,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16196",
+            "chars_original": 98,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15901",
+            "chars_original": 13,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15207",
+            "chars_original": 48,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "17052",
+            "chars_original": 34,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15580",
+            "chars_original": 65,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15414",
+            "chars_original": 56,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "17067",
+            "chars_original": 43,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15016",
+            "chars_original": 9,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16184",
+            "chars_original": 35,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16081",
+            "chars_original": 37,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16089",
+            "chars_original": 25,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15858",
+            "chars_original": 67,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "17017",
+            "chars_original": 41,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "17071",
+            "chars_original": 4,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15170",
+            "chars_original": 38,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15738",
+            "chars_original": 7,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16088",
+            "chars_original": 24,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "17003",
+            "chars_original": 79,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15215",
+            "chars_original": 50,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15473",
+            "chars_original": 58,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15308",
+            "chars_original": 78,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15538",
+            "chars_original": 28,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16332",
+            "chars_original": 0,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15318",
+            "chars_original": 99,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16219",
+            "chars_original": 41,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15408",
+            "chars_original": 62,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15240",
+            "chars_original": 34,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16309",
+            "chars_original": 43,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15906",
+            "chars_original": 114,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15330",
+            "chars_original": 22,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15349",
+            "chars_original": 31,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15602",
+            "chars_original": 45,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15097",
+            "chars_original": 26,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16161",
+            "chars_original": 10,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15969",
+            "chars_original": 13,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16131",
+            "chars_original": 24,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15333",
+            "chars_original": 90,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15008",
+            "chars_original": 45,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15221",
+            "chars_original": 25,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15351",
+            "chars_original": 49,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15558",
+            "chars_original": 44,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "17007",
+            "chars_original": 75,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15195",
+            "chars_original": 100,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15230",
+            "chars_original": 101,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15946",
+            "chars_original": 53,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15104",
+            "chars_original": 97,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15664",
+            "chars_original": 60,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15987",
+            "chars_original": 61,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16170",
+            "chars_original": 36,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15756",
+            "chars_original": 61,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15800",
+            "chars_original": 43,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15833",
+            "chars_original": 67,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15879",
+            "chars_original": 70,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15619",
+            "chars_original": 29,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15444",
+            "chars_original": 23,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15588",
+            "chars_original": 85,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15962",
+            "chars_original": 22,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16029",
+            "chars_original": 57,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "17068",
+            "chars_original": 22,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15561",
+            "chars_original": 29,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15348",
+            "chars_original": 34,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15747",
+            "chars_original": 22,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15925",
+            "chars_original": 37,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15621",
+            "chars_original": 88,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16255",
+            "chars_original": 49,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15926",
+            "chars_original": 0,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15691",
+            "chars_original": 33,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15981",
+            "chars_original": 53,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15843",
+            "chars_original": 37,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15449",
+            "chars_original": 28,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15490",
+            "chars_original": 74,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15146",
+            "chars_original": 106,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16162",
+            "chars_original": 37,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15624",
+            "chars_original": 53,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15321",
+            "chars_original": 67,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15429",
+            "chars_original": 107,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15680",
+            "chars_original": 45,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15963",
+            "chars_original": 37,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15545",
+            "chars_original": 65,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15461",
+            "chars_original": 43,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15573",
+            "chars_original": 52,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15844",
+            "chars_original": 27,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15878",
+            "chars_original": 62,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "17036",
+            "chars_original": 57,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15600",
+            "chars_original": 33,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15123",
+            "chars_original": 108,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15203",
+            "chars_original": 66,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "17015",
+            "chars_original": 37,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15660",
+            "chars_original": 28,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "16337",
+            "chars_original": 34,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15881",
+            "chars_original": 36,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15575",
+            "chars_original": 42,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15591",
+            "chars_original": 84,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15363",
+            "chars_original": 43,
+            "chars_masked": 0
+          },
+          {
+            "image_id": "15853",
+            "chars_original": 31,
+            "chars_masked": 0
+          }
+        ]
+      },
+      "examples": [
+        "results/revision/exp04_exp06/examples/masked_15115.png",
+        "results/revision/exp04_exp06/examples/masked_15746.png",
+        "results/revision/exp04_exp06/examples/masked_16002.png",
+        "results/revision/exp04_exp06/examples/masked_16242.png",
+        "results/revision/exp04_exp06/examples/masked_17032.png"
+      ]
+    }
+  },
+  "total_seconds": 2942.4
+}

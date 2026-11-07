@@ -1,0 +1,557 @@
+{
+  "keyword_selected_on_train": "trump",
+  "splits": {
+    "train": {
+      "memes": 3013,
+      "harmful": 1064,
+      "harmful_targets": {
+        "individual": 413,
+        "community": 321,
+        "society": 255,
+        "organization": 75
+      },
+      "topic_mentions": {
+        "trump": {
+          "harmful": 217,
+          "harmless": 16
+        },
+        "vaccine": {
+          "harmful": 52,
+          "harmless": 36
+        },
+        "political_term": {
+          "harmful": 266,
+          "harmless": 32
+        }
+      },
+      "keyword_rule": {
+        "exact_match_accuracy": 0.7102555592432791,
+        "macro_f1": 0.5682421003301771
+      }
+    },
+    "validation": {
+      "memes": 177,
+      "harmful": 61,
+      "harmful_targets": {
+        "individual": 50,
+        "society": 8,
+        "community": 3
+      },
+      "topic_mentions": {
+        "trump": {
+          "harmful": 32,
+          "harmless": 5
+        },
+        "vaccine": {
+          "harmful": 0,
+          "harmless": 12
+        },
+        "political_term": {
+          "harmful": 38,
+          "harmless": 8
+        }
+      },
+      "keyword_rule": {
+        "exact_match_accuracy": 0.7570621468926554,
+        "macro_f1": 0.6772948908204367
+      },
+      "runs": {
+        "svm_rbf": {
+          "accuracy": 0.6892655367231638,
+          "macro_f1": 0.6867054999517266,
+          "harmful_recall": 0.8688524590163934,
+          "predicted_harmful_share": 0.5649717514124294,
+          "accuracy_ci95": [
+            0.6214689265536724,
+            0.7570621468926554
+          ],
+          "macro_f1_ci95": [
+            0.6148122421011415,
+            0.7513409961685824
+          ],
+          "memes": 177
+        },
+        "xgboost": {
+          "accuracy": 0.7288135593220338,
+          "macro_f1": 0.723293381969776,
+          "harmful_recall": 0.8524590163934426,
+          "predicted_harmful_share": 0.5141242937853108,
+          "accuracy_ci95": [
+            0.6610169491525424,
+            0.7909604519774012
+          ],
+          "macro_f1_ci95": [
+            0.6502897787144363,
+            0.7837611993154473
+          ],
+          "memes": 177
+        },
+        "gemini_original": {
+          "accuracy": 0.6497175141242938,
+          "macro_f1": 0.45951536643026003,
+          "harmful_recall": 0.08196721311475409,
+          "predicted_harmful_share": 0.062146892655367235,
+          "accuracy_ci95": [
+            0.576271186440678,
+            0.7231638418079096
+          ],
+          "macro_f1_ci95": [
+            0.3969488939740657,
+            0.5269186712485681
+          ],
+          "memes": 177
+        },
+        "gemini_rerun": {
+          "accuracy": 0.6497175141242938,
+          "macro_f1": 0.45951536643026003,
+          "harmful_recall": 0.08196721311475409,
+          "predicted_harmful_share": 0.062146892655367235,
+          "accuracy_ci95": [
+            0.576271186440678,
+            0.7231638418079096
+          ],
+          "macro_f1_ci95": [
+            0.3969488939740657,
+            0.5269186712485681
+          ],
+          "memes": 177
+        },
+        "gemini_definition": {
+          "accuracy": 0.6666666666666666,
+          "macro_f1": 0.5277438610771944,
+          "harmful_recall": 0.18032786885245902,
+          "predicted_harmful_share": 0.11299435028248588,
+          "accuracy_ci95": [
+            0.5988700564971752,
+            0.7401129943502824
+          ],
+          "macro_f1_ci95": [
+            0.4509124087591241,
+            0.6053511705685619
+          ],
+          "memes": 177
+        },
+        "qwen_original": {
+          "accuracy": 0.6440677966101694,
+          "macro_f1": 0.4329519450800915,
+          "harmful_recall": 0.04918032786885246,
+          "predicted_harmful_share": 0.04519774011299435,
+          "accuracy_ci95": [
+            0.576271186440678,
+            0.711864406779661
+          ],
+          "macro_f1_ci95": [
+            0.38279015524254306,
+            0.49715909090909083
+          ],
+          "memes": 177
+        },
+        "qwen_definition": {
+          "accuracy": 0.6497175141242938,
+          "macro_f1": 0.4703667953667954,
+          "harmful_recall": 0.09836065573770492,
+          "predicted_harmful_share": 0.07344632768361582,
+          "accuracy_ci95": [
+            0.5819209039548022,
+            0.7175141242937854
+          ],
+          "macro_f1_ci95": [
+            0.4040404040404041,
+            0.5396109839816932
+          ],
+          "memes": 177
+        },
+        "all_negative": {
+          "accuracy": 0.655367231638418,
+          "macro_f1": 0.39590443686006827,
+          "harmful_recall": 0.0,
+          "predicted_harmful_share": 0.0,
+          "accuracy_ci95": [
+            0.5875706214689266,
+            0.7231638418079096
+          ],
+          "macro_f1_ci95": [
+            0.37010676156583633,
+            0.419672131147541
+          ],
+          "memes": 177
+        }
+      },
+      "paired_tests": {
+        "gemini_original_vs_all_negative": {
+          "only_first_right": 5,
+          "only_second_right": 6,
+          "exact_mcnemar_p": 1.0
+        },
+        "gemini_definition_vs_all_negative": {
+          "only_first_right": 11,
+          "only_second_right": 9,
+          "exact_mcnemar_p": 0.8238029479980469
+        },
+        "qwen_original_vs_all_negative": {
+          "only_first_right": 3,
+          "only_second_right": 5,
+          "exact_mcnemar_p": 0.7265625
+        },
+        "qwen_definition_vs_all_negative": {
+          "only_first_right": 6,
+          "only_second_right": 7,
+          "exact_mcnemar_p": 1.0
+        },
+        "gemini_definition_vs_gemini_original": {
+          "only_first_right": 6,
+          "only_second_right": 3,
+          "exact_mcnemar_p": 0.5078125
+        },
+        "qwen_definition_vs_qwen_original": {
+          "only_first_right": 3,
+          "only_second_right": 2,
+          "exact_mcnemar_p": 1.0
+        },
+        "gemini_original_vs_qwen_original": {
+          "only_first_right": 8,
+          "only_second_right": 7,
+          "exact_mcnemar_p": 1.0
+        },
+        "svm_rbf_vs_gemini_original": {
+          "only_first_right": 49,
+          "only_second_right": 42,
+          "exact_mcnemar_p": 0.5296020954762451
+        },
+        "svm_rbf_vs_gemini_definition": {
+          "only_first_right": 44,
+          "only_second_right": 40,
+          "exact_mcnemar_p": 0.7436441861052041
+        }
+      },
+      "gemini_rerun_identical_replies": 177,
+      "gemini_rerun_elapsed_seconds": 220.1,
+      "keyword_strata": {
+        "svm_rbf": {
+          "with_word": {
+            "accuracy": 0.7142857142857143,
+            "macro_f1": 0.41666666666666663,
+            "harmful_recall": 0.8695652173913043,
+            "predicted_harmful_share": 0.8928571428571429
+          },
+          "without_word": {
+            "accuracy": 0.6845637583892618,
+            "macro_f1": 0.6650083712030616,
+            "harmful_recall": 0.868421052631579,
+            "predicted_harmful_share": 0.5033557046979866
+          }
+        },
+        "xgboost": {
+          "with_word": {
+            "accuracy": 0.7142857142857143,
+            "macro_f1": 0.41666666666666663,
+            "harmful_recall": 0.8695652173913043,
+            "predicted_harmful_share": 0.8928571428571429
+          },
+          "without_word": {
+            "accuracy": 0.7315436241610739,
+            "macro_f1": 0.7045995241871531,
+            "harmful_recall": 0.8421052631578947,
+            "predicted_harmful_share": 0.4429530201342282
+          }
+        },
+        "gemini_original": {
+          "with_word": {
+            "accuracy": 0.25,
+            "macro_f1": 0.2412903225806452,
+            "harmful_recall": 0.08695652173913043,
+            "predicted_harmful_share": 0.07142857142857142
+          },
+          "without_word": {
+            "accuracy": 0.7248322147651006,
+            "macro_f1": 0.48215648046113413,
+            "harmful_recall": 0.07894736842105263,
+            "predicted_harmful_share": 0.06040268456375839
+          }
+        },
+        "gemini_definition": {
+          "with_word": {
+            "accuracy": 0.32142857142857145,
+            "macro_f1": 0.3205619412515964,
+            "harmful_recall": 0.17391304347826086,
+            "predicted_harmful_share": 0.14285714285714285
+          },
+          "without_word": {
+            "accuracy": 0.7315436241610739,
+            "macro_f1": 0.5476624165148756,
+            "harmful_recall": 0.18421052631578946,
+            "predicted_harmful_share": 0.10738255033557047
+          }
+        }
+      },
+      "keyword_strata_sizes": {
+        "with_word": 28,
+        "without_word": 149,
+        "with_word_harmful": 23,
+        "without_word_harmful": 38
+      }
+    },
+    "test": {
+      "memes": 354,
+      "harmful": 124,
+      "harmful_targets": {
+        "individual": 119,
+        "community": 3,
+        "society": 2
+      },
+      "topic_mentions": {
+        "trump": {
+          "harmful": 71,
+          "harmless": 13
+        },
+        "vaccine": {
+          "harmful": 3,
+          "harmless": 9
+        },
+        "political_term": {
+          "harmful": 88,
+          "harmless": 18
+        }
+      },
+      "keyword_rule": {
+        "exact_match_accuracy": 0.7966101694915254,
+        "macro_f1": 0.7491338582677165
+      },
+      "runs": {
+        "svm_rbf": {
+          "accuracy": 0.8389830508474576,
+          "macro_f1": 0.8326241134751773,
+          "harmful_recall": 0.9193548387096774,
+          "predicted_harmful_share": 0.4548022598870056,
+          "accuracy_ci95": [
+            0.7994350282485876,
+            0.8757062146892656
+          ],
+          "macro_f1_ci95": [
+            0.7897453633753871,
+            0.870335378900408
+          ],
+          "memes": 354
+        },
+        "xgboost": {
+          "accuracy": 0.8163841807909604,
+          "macro_f1": 0.8045810084333359,
+          "harmful_recall": 0.8145161290322581,
+          "predicted_harmful_share": 0.403954802259887,
+          "accuracy_ci95": [
+            0.7740112994350282,
+            0.8559322033898306
+          ],
+          "macro_f1_ci95": [
+            0.7587477959383104,
+            0.845202910343693
+          ],
+          "memes": 354
+        },
+        "gemini_original": {
+          "accuracy": 0.6581920903954802,
+          "macro_f1": 0.4642200457803294,
+          "harmful_recall": 0.08064516129032258,
+          "predicted_harmful_share": 0.0480225988700565,
+          "accuracy_ci95": [
+            0.6101694915254238,
+            0.7062146892655368
+          ],
+          "macro_f1_ci95": [
+            0.4186034937540437,
+            0.5112317057064989
+          ],
+          "memes": 354
+        },
+        "gemini_rerun": {
+          "accuracy": 0.6581920903954802,
+          "macro_f1": 0.4642200457803294,
+          "harmful_recall": 0.08064516129032258,
+          "predicted_harmful_share": 0.0480225988700565,
+          "accuracy_ci95": [
+            0.6101694915254238,
+            0.7062146892655368
+          ],
+          "macro_f1_ci95": [
+            0.4186034937540437,
+            0.5112317057064989
+          ],
+          "memes": 354
+        },
+        "gemini_definition": {
+          "accuracy": 0.692090395480226,
+          "macro_f1": 0.5831019393873912,
+          "harmful_recall": 0.25806451612903225,
+          "predicted_harmful_share": 0.1384180790960452,
+          "accuracy_ci95": [
+            0.6440677966101694,
+            0.7372881355932204
+          ],
+          "macro_f1_ci95": [
+            0.5272686582072461,
+            0.6355043084220269
+          ],
+          "memes": 354
+        },
+        "qwen_original": {
+          "accuracy": 0.6468926553672316,
+          "macro_f1": 0.4279619934070196,
+          "harmful_recall": 0.04032258064516129,
+          "predicted_harmful_share": 0.031073446327683617,
+          "accuracy_ci95": [
+            0.5988700564971752,
+            0.6949858757062143
+          ],
+          "macro_f1_ci95": [
+            0.3933507846472861,
+            0.46873662065788424
+          ],
+          "memes": 354
+        },
+        "qwen_definition": {
+          "accuracy": 0.655367231638418,
+          "macro_f1": 0.4889719803104885,
+          "harmful_recall": 0.12096774193548387,
+          "predicted_harmful_share": 0.07909604519774012,
+          "accuracy_ci95": [
+            0.6073446327683616,
+            0.7033898305084746
+          ],
+          "macro_f1_ci95": [
+            0.4398904085433452,
+            0.5406890028738769
+          ],
+          "memes": 354
+        },
+        "all_negative": {
+          "accuracy": 0.6497175141242938,
+          "macro_f1": 0.3938356164383562,
+          "harmful_recall": 0.0,
+          "predicted_harmful_share": 0.0,
+          "accuracy_ci95": [
+            0.6016949152542372,
+            0.7005649717514124
+          ],
+          "macro_f1_ci95": [
+            0.37566137566137564,
+            0.4119601328903654
+          ],
+          "memes": 354
+        }
+      },
+      "paired_tests": {
+        "gemini_original_vs_all_negative": {
+          "only_first_right": 10,
+          "only_second_right": 7,
+          "exact_mcnemar_p": 0.629058837890625
+        },
+        "gemini_definition_vs_all_negative": {
+          "only_first_right": 32,
+          "only_second_right": 17,
+          "exact_mcnemar_p": 0.04438416098714981
+        },
+        "qwen_original_vs_all_negative": {
+          "only_first_right": 5,
+          "only_second_right": 6,
+          "exact_mcnemar_p": 1.0
+        },
+        "qwen_definition_vs_all_negative": {
+          "only_first_right": 15,
+          "only_second_right": 13,
+          "exact_mcnemar_p": 0.8505540192127228
+        },
+        "gemini_definition_vs_gemini_original": {
+          "only_first_right": 22,
+          "only_second_right": 10,
+          "exact_mcnemar_p": 0.050102459732443094
+        },
+        "qwen_definition_vs_qwen_original": {
+          "only_first_right": 10,
+          "only_second_right": 7,
+          "exact_mcnemar_p": 0.629058837890625
+        },
+        "gemini_original_vs_qwen_original": {
+          "only_first_right": 9,
+          "only_second_right": 5,
+          "exact_mcnemar_p": 0.4239501953125
+        },
+        "svm_rbf_vs_gemini_original": {
+          "only_first_right": 108,
+          "only_second_right": 44,
+          "exact_mcnemar_p": 2.158757083704191e-07
+        },
+        "svm_rbf_vs_gemini_definition": {
+          "only_first_right": 90,
+          "only_second_right": 38,
+          "exact_mcnemar_p": 4.922847559437514e-06
+        }
+      },
+      "gemini_rerun_identical_replies": 354,
+      "gemini_rerun_elapsed_seconds": 392.6,
+      "keyword_strata": {
+        "svm_rbf": {
+          "with_word": {
+            "accuracy": 0.7894736842105263,
+            "macro_f1": 0.4958540630182421,
+            "harmful_recall": 0.921875,
+            "predicted_harmful_share": 0.9210526315789473
+          },
+          "without_word": {
+            "accuracy": 0.8525179856115108,
+            "macro_f1": 0.8136211266454092,
+            "harmful_recall": 0.9166666666666666,
+            "predicted_harmful_share": 0.3273381294964029
+          }
+        },
+        "xgboost": {
+          "with_word": {
+            "accuracy": 0.7105263157894737,
+            "macro_f1": 0.4557291666666667,
+            "harmful_recall": 0.828125,
+            "predicted_harmful_share": 0.8421052631578947
+          },
+          "without_word": {
+            "accuracy": 0.8453237410071942,
+            "macro_f1": 0.7937649880095923,
+            "harmful_recall": 0.8,
+            "predicted_harmful_share": 0.2841726618705036
+          }
+        },
+        "gemini_original": {
+          "with_word": {
+            "accuracy": 0.2236842105263158,
+            "macro_f1": 0.2170420813689541,
+            "harmful_recall": 0.078125,
+            "predicted_harmful_share": 0.06578947368421052
+          },
+          "without_word": {
+            "accuracy": 0.7769784172661871,
+            "macro_f1": 0.505394857667585,
+            "harmful_recall": 0.08333333333333333,
+            "predicted_harmful_share": 0.04316546762589928
+          }
+        },
+        "gemini_definition": {
+          "with_word": {
+            "accuracy": 0.3815789473684211,
+            "macro_f1": 0.37889062771691884,
+            "harmful_recall": 0.265625,
+            "predicted_harmful_share": 0.2236842105263158
+          },
+          "without_word": {
+            "accuracy": 0.7769784172661871,
+            "macro_f1": 0.5962331334332833,
+            "harmful_recall": 0.25,
+            "predicted_harmful_share": 0.11510791366906475
+          }
+        }
+      },
+      "keyword_strata_sizes": {
+        "with_word": 76,
+        "without_word": 278,
+        "with_word_harmful": 64,
+        "without_word_harmful": 60
+      }
+    }
+  }
+}

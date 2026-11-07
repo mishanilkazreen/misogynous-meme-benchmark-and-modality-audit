@@ -1,0 +1,35 @@
+# YOLO Object Detection Model Benchmark Configuration
+# Benchmarks multiple YOLO architectures and sizes on the same dataset.
+
+data_config_name: "image_data1"   # references config/data/image_data1.yaml
+
+# List of YOLO models to benchmark.
+# Each entry specifies a human-readable name and the Ultralytics weights identifier.
+# Ultralytics auto-downloads pretrained weights on first use.
+models_to_run:
+  - name: "YOLOv5n"
+    weights: "yolov5nu.pt"        # YOLOv5 nano (Ultralytics-wrapped)
+  - name: "YOLOv5s"
+    weights: "yolov5su.pt"        # YOLOv5 small (Ultralytics-wrapped)
+  - name: "YOLOv8n"
+    weights: "yolov8n.pt"
+  - name: "YOLOv8s"
+    weights: "yolov8s.pt"
+  - name: "YOLO11n"
+    weights: "yolo11n.pt"
+  - name: "YOLO11s"
+    weights: "yolo11s.pt"
+  - name: "YOLO12n"
+    weights: "yolo12n.pt"
+  - name: "YOLO12s"
+    weights: "yolo12s.pt"
+  - name: "YOLO26n"
+    weights: "yolo26n.pt"
+  - name: "YOLO26s"
+    weights: "yolo26s.pt"
+
+# Metric used to rank models (options: mAP50, mAP50-95, precision, recall, f1)
+optimize_metric: "mAP50"
+
+# Whether to save trained model weights (.pt files)
+save_models: true

@@ -1,0 +1,911 @@
+{
+  "task": "multilabel",
+  "split": "validation",
+  "variant": "combined",
+  "source_csv": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_combined/mami_tabular_model_multiclass_combined_predictions.csv",
+  "best_model": "Support Vector Machine - RBF SVC",
+  "models": {
+    "Support Vector Machine - RBF SVC": {
+      "per_class": {
+        "shaming": {
+          "precision": 0.575,
+          "recall": 0.560976,
+          "f1": 0.567901,
+          "support": 123
+        },
+        "stereotype": {
+          "precision": 0.623418,
+          "recall": 0.713768,
+          "f1": 0.665541,
+          "support": 276
+        },
+        "objectification": {
+          "precision": 0.703704,
+          "recall": 0.75,
+          "f1": 0.726115,
+          "support": 228
+        },
+        "violence": {
+          "precision": 0.698113,
+          "recall": 0.37,
+          "f1": 0.48366,
+          "support": 100
+        }
+      },
+      "macro_f1": 0.610804,
+      "micro_f1": 0.64976,
+      "weighted_f1": 0.643,
+      "macro_precision": 0.650059,
+      "macro_recall": 0.598686,
+      "exact_match_accuracy": 0.632,
+      "mami_score_b": 0.77358,
+      "per_label_binary_macro_f1": {
+        "shaming": 0.75407,
+        "stereotype": 0.762458,
+        "objectification": 0.820873,
+        "violence": 0.720444
+      }
+    },
+    "Neural Network - MLPClassifier": {
+      "per_class": {
+        "shaming": {
+          "precision": 0.609195,
+          "recall": 0.430894,
+          "f1": 0.504762,
+          "support": 123
+        },
+        "stereotype": {
+          "precision": 0.637097,
+          "recall": 0.572464,
+          "f1": 0.603053,
+          "support": 276
+        },
+        "objectification": {
+          "precision": 0.721311,
+          "recall": 0.578947,
+          "f1": 0.642336,
+          "support": 228
+        },
+        "violence": {
+          "precision": 0.673077,
+          "recall": 0.35,
+          "f1": 0.460526,
+          "support": 100
+        }
+      },
+      "macro_f1": 0.552669,
+      "micro_f1": 0.582884,
+      "weighted_f1": 0.579138,
+      "macro_precision": 0.66017,
+      "macro_recall": 0.483076,
+      "exact_match_accuracy": 0.606,
+      "mami_score_b": 0.740346,
+      "per_label_binary_macro_f1": {
+        "shaming": 0.723331,
+        "stereotype": 0.731066,
+        "objectification": 0.774912,
+        "violence": 0.708077
+      }
+    },
+    "Linear Discriminant Analysis": {
+      "per_class": {
+        "shaming": {
+          "precision": 0.558824,
+          "recall": 0.463415,
+          "f1": 0.506667,
+          "support": 123
+        },
+        "stereotype": {
+          "precision": 0.628205,
+          "recall": 0.532609,
+          "f1": 0.576471,
+          "support": 276
+        },
+        "objectification": {
+          "precision": 0.727749,
+          "recall": 0.609649,
+          "f1": 0.663484,
+          "support": 228
+        },
+        "violence": {
+          "precision": 0.655172,
+          "recall": 0.38,
+          "f1": 0.481013,
+          "support": 100
+        }
+      },
+      "macro_f1": 0.556909,
+      "micro_f1": 0.580793,
+      "weighted_f1": 0.578819,
+      "macro_precision": 0.642487,
+      "macro_recall": 0.496418,
+      "exact_match_accuracy": 0.589,
+      "mami_score_b": 0.739555,
+      "per_label_binary_macro_f1": {
+        "shaming": 0.722066,
+        "stereotype": 0.715752,
+        "objectification": 0.78715,
+        "violence": 0.718248
+      }
+    },
+    "Ridge Classifier": {
+      "per_class": {
+        "shaming": {
+          "precision": 0.344681,
+          "recall": 0.658537,
+          "f1": 0.452514,
+          "support": 123
+        },
+        "stereotype": {
+          "precision": 0.544959,
+          "recall": 0.724638,
+          "f1": 0.622084,
+          "support": 276
+        },
+        "objectification": {
+          "precision": 0.559486,
+          "recall": 0.763158,
+          "f1": 0.64564,
+          "support": 228
+        },
+        "violence": {
+          "precision": 0.296875,
+          "recall": 0.57,
+          "f1": 0.390411,
+          "support": 100
+        }
+      },
+      "macro_f1": 0.527662,
+      "micro_f1": 0.558952,
+      "weighted_f1": 0.568915,
+      "macro_precision": 0.4365,
+      "macro_recall": 0.679083,
+      "exact_match_accuracy": 0.453,
+      "mami_score_b": 0.712701,
+      "per_label_binary_macro_f1": {
+        "shaming": 0.666574,
+        "stereotype": 0.721506,
+        "objectification": 0.757454,
+        "violence": 0.643098
+      }
+    },
+    "Hist Gradient Boosting Classifier": {
+      "per_class": {
+        "shaming": {
+          "precision": 0.75,
+          "recall": 0.219512,
+          "f1": 0.339623,
+          "support": 123
+        },
+        "stereotype": {
+          "precision": 0.727778,
+          "recall": 0.474638,
+          "f1": 0.574561,
+          "support": 276
+        },
+        "objectification": {
+          "precision": 0.798561,
+          "recall": 0.486842,
+          "f1": 0.604905,
+          "support": 228
+        },
+        "violence": {
+          "precision": 1.0,
+          "recall": 0.17,
+          "f1": 0.290598,
+          "support": 100
+        }
+      },
+      "macro_f1": 0.452422,
+      "micro_f1": 0.520473,
+      "weighted_f1": 0.505269,
+      "macro_precision": 0.819085,
+      "macro_recall": 0.337748,
+      "exact_match_accuracy": 0.638,
+      "mami_score_b": 0.707004,
+      "per_label_binary_macro_f1": {
+        "shaming": 0.641294,
+        "stereotype": 0.724457,
+        "objectification": 0.758056,
+        "violence": 0.62326
+      }
+    },
+    "LightGBM": {
+      "per_class": {
+        "shaming": {
+          "precision": 0.702128,
+          "recall": 0.268293,
+          "f1": 0.388235,
+          "support": 123
+        },
+        "stereotype": {
+          "precision": 0.714286,
+          "recall": 0.452899,
+          "f1": 0.554324,
+          "support": 276
+        },
+        "objectification": {
+          "precision": 0.805755,
+          "recall": 0.491228,
+          "f1": 0.610354,
+          "support": 228
+        },
+        "violence": {
+          "precision": 0.85,
+          "recall": 0.17,
+          "f1": 0.283333,
+          "support": 100
+        }
+      },
+      "macro_f1": 0.459062,
+      "micro_f1": 0.518051,
+      "weighted_f1": 0.50652,
+      "macro_precision": 0.768042,
+      "macro_recall": 0.345605,
+      "exact_match_accuracy": 0.628,
+      "mami_score_b": 0.706944,
+      "per_label_binary_macro_f1": {
+        "shaming": 0.665702,
+        "stereotype": 0.712281,
+        "objectification": 0.761393,
+        "violence": 0.618794
+      }
+    },
+    "Gradient Boosting Classifier": {
+      "per_class": {
+        "shaming": {
+          "precision": 0.659574,
+          "recall": 0.252033,
+          "f1": 0.364706,
+          "support": 123
+        },
+        "stereotype": {
+          "precision": 0.728324,
+          "recall": 0.456522,
+          "f1": 0.561247,
+          "support": 276
+        },
+        "objectification": {
+          "precision": 0.81203,
+          "recall": 0.473684,
+          "f1": 0.598338,
+          "support": 228
+        },
+        "violence": {
+          "precision": 0.708333,
+          "recall": 0.17,
+          "f1": 0.274194,
+          "support": 100
+        }
+      },
+      "macro_f1": 0.449621,
+      "micro_f1": 0.51087,
+      "weighted_f1": 0.500142,
+      "macro_precision": 0.727065,
+      "macro_recall": 0.33806,
+      "exact_match_accuracy": 0.619,
+      "mami_score_b": 0.703796,
+      "per_label_binary_macro_f1": {
+        "shaming": 0.652845,
+        "stereotype": 0.717116,
+        "objectification": 0.754935,
+        "violence": 0.61311
+      }
+    },
+    "KNN": {
+      "per_class": {
+        "shaming": {
+          "precision": 0.604167,
+          "recall": 0.235772,
+          "f1": 0.339181,
+          "support": 123
+        },
+        "stereotype": {
+          "precision": 0.578231,
+          "recall": 0.615942,
+          "f1": 0.596491,
+          "support": 276
+        },
+        "objectification": {
+          "precision": 0.662857,
+          "recall": 0.508772,
+          "f1": 0.575682,
+          "support": 228
+        },
+        "violence": {
+          "precision": 0.692308,
+          "recall": 0.27,
+          "f1": 0.388489,
+          "support": 100
+        }
+      },
+      "macro_f1": 0.474961,
+      "micro_f1": 0.533125,
+      "weighted_f1": 0.51782,
+      "macro_precision": 0.634391,
+      "macro_recall": 0.407622,
+      "exact_match_accuracy": 0.583,
+      "mami_score_b": 0.703221,
+      "per_label_binary_macro_f1": {
+        "shaming": 0.638699,
+        "stereotype": 0.717826,
+        "objectification": 0.734303,
+        "violence": 0.671407
+      }
+    },
+    "XGBoost": {
+      "per_class": {
+        "shaming": {
+          "precision": 0.688889,
+          "recall": 0.252033,
+          "f1": 0.369048,
+          "support": 123
+        },
+        "stereotype": {
+          "precision": 0.686813,
+          "recall": 0.452899,
+          "f1": 0.545852,
+          "support": 276
+        },
+        "objectification": {
+          "precision": 0.792857,
+          "recall": 0.486842,
+          "f1": 0.603261,
+          "support": 228
+        },
+        "violence": {
+          "precision": 0.947368,
+          "recall": 0.18,
+          "f1": 0.302521,
+          "support": 100
+        }
+      },
+      "macro_f1": 0.45517,
+      "micro_f1": 0.512129,
+      "weighted_f1": 0.500472,
+      "macro_precision": 0.778982,
+      "macro_recall": 0.342943,
+      "exact_match_accuracy": 0.629,
+      "mami_score_b": 0.702674,
+      "per_label_binary_macro_f1": {
+        "shaming": 0.655594,
+        "stereotype": 0.705481,
+        "objectification": 0.7569,
+        "violence": 0.629198
+      }
+    },
+    "Logistic Regression": {
+      "per_class": {
+        "shaming": {
+          "precision": 0.377451,
+          "recall": 0.626016,
+          "f1": 0.470948,
+          "support": 123
+        },
+        "stereotype": {
+          "precision": 0.540845,
+          "recall": 0.695652,
+          "f1": 0.608558,
+          "support": 276
+        },
+        "objectification": {
+          "precision": 0.540541,
+          "recall": 0.701754,
+          "f1": 0.610687,
+          "support": 228
+        },
+        "violence": {
+          "precision": 0.266234,
+          "recall": 0.41,
+          "f1": 0.322835,
+          "support": 100
+        }
+      },
+      "macro_f1": 0.503257,
+      "micro_f1": 0.541475,
+      "weighted_f1": 0.546642,
+      "macro_precision": 0.431268,
+      "macro_recall": 0.608356,
+      "exact_match_accuracy": 0.457,
+      "mami_score_b": 0.701877,
+      "per_label_binary_macro_f1": {
+        "shaming": 0.68377,
+        "stereotype": 0.714067,
+        "objectification": 0.736238,
+        "violence": 0.612162
+      }
+    },
+    "Support Vector Machine - LinearSVC": {
+      "per_class": {
+        "shaming": {
+          "precision": 0.368687,
+          "recall": 0.593496,
+          "f1": 0.454829,
+          "support": 123
+        },
+        "stereotype": {
+          "precision": 0.541311,
+          "recall": 0.688406,
+          "f1": 0.606061,
+          "support": 276
+        },
+        "objectification": {
+          "precision": 0.546075,
+          "recall": 0.701754,
+          "f1": 0.614203,
+          "support": 228
+        },
+        "violence": {
+          "precision": 0.264151,
+          "recall": 0.42,
+          "f1": 0.324324,
+          "support": 100
+        }
+      },
+      "macro_f1": 0.499854,
+      "micro_f1": 0.538194,
+      "weighted_f1": 0.544274,
+      "macro_precision": 0.430056,
+      "macro_recall": 0.600914,
+      "exact_match_accuracy": 0.458,
+      "mami_score_b": 0.700948,
+      "per_label_binary_macro_f1": {
+        "shaming": 0.6753,
+        "stereotype": 0.713081,
+        "objectification": 0.73915,
+        "violence": 0.611904
+      }
+    },
+    "Bernoulli Naive Bayes": {
+      "per_class": {
+        "shaming": {
+          "precision": 0.315589,
+          "recall": 0.674797,
+          "f1": 0.430052,
+          "support": 123
+        },
+        "stereotype": {
+          "precision": 0.530831,
+          "recall": 0.717391,
+          "f1": 0.610169,
+          "support": 276
+        },
+        "objectification": {
+          "precision": 0.566176,
+          "recall": 0.675439,
+          "f1": 0.616,
+          "support": 228
+        },
+        "violence": {
+          "precision": 0.283843,
+          "recall": 0.65,
+          "f1": 0.395137,
+          "support": 100
+        }
+      },
+      "macro_f1": 0.51284,
+      "micro_f1": 0.536481,
+      "weighted_f1": 0.551946,
+      "macro_precision": 0.42411,
+      "macro_recall": 0.679407,
+      "exact_match_accuracy": 0.506,
+      "mami_score_b": 0.700633,
+      "per_label_binary_macro_f1": {
+        "shaming": 0.646872,
+        "stereotype": 0.71145,
+        "objectification": 0.744,
+        "violence": 0.638023
+      }
+    },
+    "Gaussian Naive Bayes": {
+      "per_class": {
+        "shaming": {
+          "precision": 0.298113,
+          "recall": 0.642276,
+          "f1": 0.407216,
+          "support": 123
+        },
+        "stereotype": {
+          "precision": 0.535135,
+          "recall": 0.717391,
+          "f1": 0.613003,
+          "support": 276
+        },
+        "objectification": {
+          "precision": 0.551601,
+          "recall": 0.679825,
+          "f1": 0.609037,
+          "support": 228
+        },
+        "violence": {
+          "precision": 0.276423,
+          "recall": 0.68,
+          "f1": 0.393064,
+          "support": 100
+        }
+      },
+      "macro_f1": 0.50558,
+      "micro_f1": 0.529381,
+      "weighted_f1": 0.54669,
+      "macro_precision": 0.415318,
+      "macro_recall": 0.679873,
+      "exact_match_accuracy": 0.492,
+      "mami_score_b": 0.696566,
+      "per_label_binary_macro_f1": {
+        "shaming": 0.632268,
+        "stereotype": 0.714182,
+        "objectification": 0.737785,
+        "violence": 0.633049
+      }
+    },
+    "AdaBoost Classifier": {
+      "per_class": {
+        "shaming": {
+          "precision": 0.557377,
+          "recall": 0.276423,
+          "f1": 0.369565,
+          "support": 123
+        },
+        "stereotype": {
+          "precision": 0.635468,
+          "recall": 0.467391,
+          "f1": 0.538622,
+          "support": 276
+        },
+        "objectification": {
+          "precision": 0.680233,
+          "recall": 0.513158,
+          "f1": 0.585,
+          "support": 228
+        },
+        "violence": {
+          "precision": 0.540541,
+          "recall": 0.2,
+          "f1": 0.291971,
+          "support": 100
+        }
+      },
+      "macro_f1": 0.44629,
+      "micro_f1": 0.5,
+      "weighted_f1": 0.490637,
+      "macro_precision": 0.603405,
+      "macro_recall": 0.364243,
+      "exact_match_accuracy": 0.583,
+      "mami_score_b": 0.692484,
+      "per_label_binary_macro_f1": {
+        "shaming": 0.652844,
+        "stereotype": 0.696661,
+        "objectification": 0.740625,
+        "violence": 0.619952
+      }
+    },
+    "SGD Classifier": {
+      "per_class": {
+        "shaming": {
+          "precision": 0.372449,
+          "recall": 0.593496,
+          "f1": 0.45768,
+          "support": 123
+        },
+        "stereotype": {
+          "precision": 0.475703,
+          "recall": 0.673913,
+          "f1": 0.557721,
+          "support": 276
+        },
+        "objectification": {
+          "precision": 0.509202,
+          "recall": 0.72807,
+          "f1": 0.599278,
+          "support": 228
+        },
+        "violence": {
+          "precision": 0.30303,
+          "recall": 0.4,
+          "f1": 0.344828,
+          "support": 100
+        }
+      },
+      "macro_f1": 0.489877,
+      "micro_f1": 0.524831,
+      "weighted_f1": 0.524544,
+      "macro_precision": 0.415096,
+      "macro_recall": 0.59887,
+      "exact_match_accuracy": 0.45,
+      "mami_score_b": 0.681571,
+      "per_label_binary_macro_f1": {
+        "shaming": 0.677383,
+        "stereotype": 0.668208,
+        "objectification": 0.722876,
+        "violence": 0.629427
+      }
+    },
+    "Perceptron": {
+      "per_class": {
+        "shaming": {
+          "precision": 0.322581,
+          "recall": 0.650407,
+          "f1": 0.431267,
+          "support": 123
+        },
+        "stereotype": {
+          "precision": 0.474934,
+          "recall": 0.652174,
+          "f1": 0.549618,
+          "support": 276
+        },
+        "objectification": {
+          "precision": 0.514706,
+          "recall": 0.767544,
+          "f1": 0.616197,
+          "support": 228
+        },
+        "violence": {
+          "precision": 0.276995,
+          "recall": 0.59,
+          "f1": 0.376997,
+          "support": 100
+        }
+      },
+      "macro_f1": 0.49352,
+      "micro_f1": 0.518091,
+      "weighted_f1": 0.526731,
+      "macro_precision": 0.397304,
+      "macro_recall": 0.665031,
+      "exact_match_accuracy": 0.408,
+      "mami_score_b": 0.678953,
+      "per_label_binary_macro_f1": {
+        "shaming": 0.65087,
+        "stereotype": 0.665144,
+        "objectification": 0.731981,
+        "violence": 0.630704
+      }
+    },
+    "PassiveAggressiveClassifier": {
+      "per_class": {
+        "shaming": {
+          "precision": 0.229692,
+          "recall": 0.666667,
+          "f1": 0.341667,
+          "support": 123
+        },
+        "stereotype": {
+          "precision": 0.441176,
+          "recall": 0.652174,
+          "f1": 0.526316,
+          "support": 276
+        },
+        "objectification": {
+          "precision": 0.47929,
+          "recall": 0.710526,
+          "f1": 0.572438,
+          "support": 228
+        },
+        "violence": {
+          "precision": 0.210191,
+          "recall": 0.66,
+          "f1": 0.318841,
+          "support": 100
+        }
+      },
+      "macro_f1": 0.439815,
+      "micro_f1": 0.45709,
+      "weighted_f1": 0.481002,
+      "macro_precision": 0.340087,
+      "macro_recall": 0.672342,
+      "exact_match_accuracy": 0.315,
+      "mami_score_b": 0.637488,
+      "per_label_binary_macro_f1": {
+        "shaming": 0.566886,
+        "stereotype": 0.640058,
+        "objectification": 0.70184,
+        "violence": 0.570517
+      }
+    },
+    "Bagging Classifier": {
+      "per_class": {
+        "shaming": {
+          "precision": 0.571429,
+          "recall": 0.130081,
+          "f1": 0.211921,
+          "support": 123
+        },
+        "stereotype": {
+          "precision": 0.62931,
+          "recall": 0.264493,
+          "f1": 0.372449,
+          "support": 276
+        },
+        "objectification": {
+          "precision": 0.787234,
+          "recall": 0.324561,
+          "f1": 0.459627,
+          "support": 228
+        },
+        "violence": {
+          "precision": 0.727273,
+          "recall": 0.08,
+          "f1": 0.144144,
+          "support": 100
+        }
+      },
+      "macro_f1": 0.297035,
+      "micro_f1": 0.35041,
+      "weighted_f1": 0.341226,
+      "macro_precision": 0.678811,
+      "macro_recall": 0.199784,
+      "exact_match_accuracy": 0.557,
+      "mami_score_b": 0.61641,
+      "per_label_binary_macro_f1": {
+        "shaming": 0.573781,
+        "stereotype": 0.609732,
+        "objectification": 0.677966,
+        "violence": 0.546926
+      }
+    },
+    "Decision Tree": {
+      "per_class": {
+        "shaming": {
+          "precision": 0.222222,
+          "recall": 0.211382,
+          "f1": 0.216667,
+          "support": 123
+        },
+        "stereotype": {
+          "precision": 0.416031,
+          "recall": 0.394928,
+          "f1": 0.405204,
+          "support": 276
+        },
+        "objectification": {
+          "precision": 0.466667,
+          "recall": 0.460526,
+          "f1": 0.463576,
+          "support": 228
+        },
+        "violence": {
+          "precision": 0.296703,
+          "recall": 0.27,
+          "f1": 0.282723,
+          "support": 100
+        }
+      },
+      "macro_f1": 0.342042,
+      "micro_f1": 0.375527,
+      "weighted_f1": 0.374765,
+      "macro_precision": 0.350406,
+      "macro_recall": 0.334209,
+      "exact_match_accuracy": 0.432,
+      "mami_score_b": 0.606959,
+      "per_label_binary_macro_f1": {
+        "shaming": 0.554924,
+        "stereotype": 0.593163,
+        "objectification": 0.653249,
+        "violence": 0.603495
+      }
+    },
+    "Random Forest": {
+      "per_class": {
+        "shaming": {
+          "precision": 0.833333,
+          "recall": 0.04065,
+          "f1": 0.077519,
+          "support": 123
+        },
+        "stereotype": {
+          "precision": 0.753846,
+          "recall": 0.177536,
+          "f1": 0.28739,
+          "support": 276
+        },
+        "objectification": {
+          "precision": 0.84058,
+          "recall": 0.254386,
+          "f1": 0.390572,
+          "support": 228
+        },
+        "violence": {
+          "precision": 1.0,
+          "recall": 0.04,
+          "f1": 0.076923,
+          "support": 100
+        }
+      },
+      "macro_f1": 0.208101,
+      "micro_f1": 0.266361,
+      "weighted_f1": 0.255292,
+      "macro_precision": 0.85694,
+      "macro_recall": 0.128143,
+      "exact_match_accuracy": 0.581,
+      "mami_score_b": 0.574313,
+      "per_label_binary_macro_f1": {
+        "shaming": 0.506959,
+        "stereotype": 0.570458,
+        "objectification": 0.642145,
+        "violence": 0.513145
+      }
+    },
+    "Extra Tree Classifier": {
+      "per_class": {
+        "shaming": {
+          "precision": 0.222222,
+          "recall": 0.292683,
+          "f1": 0.252632,
+          "support": 123
+        },
+        "stereotype": {
+          "precision": 0.394636,
+          "recall": 0.373188,
+          "f1": 0.383613,
+          "support": 276
+        },
+        "objectification": {
+          "precision": 0.360656,
+          "recall": 0.385965,
+          "f1": 0.372881,
+          "support": 228
+        },
+        "violence": {
+          "precision": 0.133929,
+          "recall": 0.15,
+          "f1": 0.141509,
+          "support": 100
+        }
+      },
+      "macro_f1": 0.287659,
+      "micro_f1": 0.321381,
+      "weighted_f1": 0.324785,
+      "macro_precision": 0.277861,
+      "macro_recall": 0.300459,
+      "exact_match_accuracy": 0.34,
+      "mami_score_b": 0.571562,
+      "per_label_binary_macro_f1": {
+        "shaming": 0.564217,
+        "stereotype": 0.578683,
+        "objectification": 0.589582,
+        "violence": 0.51986
+      }
+    },
+    "Extra Trees Classifier": {
+      "per_class": {
+        "shaming": {
+          "precision": 1.0,
+          "recall": 0.04065,
+          "f1": 0.078125,
+          "support": 123
+        },
+        "stereotype": {
+          "precision": 0.826923,
+          "recall": 0.155797,
+          "f1": 0.262195,
+          "support": 276
+        },
+        "objectification": {
+          "precision": 0.854545,
+          "recall": 0.20614,
+          "f1": 0.332155,
+          "support": 228
+        },
+        "violence": {
+          "precision": 1.0,
+          "recall": 0.01,
+          "f1": 0.019802,
+          "support": 100
+        }
+      },
+      "macro_f1": 0.173069,
+      "micro_f1": 0.228571,
+      "weighted_f1": 0.219652,
+      "macro_precision": 0.920367,
+      "macro_recall": 0.103147,
+      "exact_match_accuracy": 0.576,
+      "mami_score_b": 0.556173,
+      "per_label_binary_macro_f1": {
+        "shaming": 0.507545,
+        "stereotype": 0.558729,
+        "objectification": 0.61104,
+        "violence": 0.483835
+      }
+    }
+  }
+}

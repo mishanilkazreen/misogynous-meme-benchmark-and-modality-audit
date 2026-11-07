@@ -1,0 +1,52 @@
+[
+  {
+    "benchmark_date": "2026-06-15T09:03:32.993901+00:00",
+    "model": "qwen2vl",
+    "filter": "none",
+    "split": "validation",
+    "task": "singleclass",
+    "exact_match_accuracy": 0.8,
+    "precision": 0.5,
+    "recall": 0.4,
+    "f1": 0.4444444444444445,
+    "avg_latency_s": 0.5114899600011995,
+    "refusal_rate": 0.0,
+    "sample_predictions": [
+      {
+        "image_id": "1377",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5498",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5697",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "5182",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6162",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      }
+    ]
+  }
+]

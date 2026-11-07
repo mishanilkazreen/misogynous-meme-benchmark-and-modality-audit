@@ -1,0 +1,57 @@
+{
+  "model": "gemini_3_1_flash_lite",
+  "tag": "_definition",
+  "reproduced": false,
+  "validation_macro_f1_bar": 0.5269186712485681,
+  "clears_validation_bar": true,
+  "splits": {
+    "validation": {
+      "verification_errors": [],
+      "memes": 177,
+      "changed_answers": 9,
+      "changed_share": 0.05084745762711865,
+      "reference": {
+        "accuracy": 0.6497175141242938,
+        "macro_f1": 0.45951536643026003,
+        "harmful_recall": 0.08196721311475409,
+        "predicted_harmful_share": 0.062146892655367235
+      },
+      "new": {
+        "accuracy": 0.6666666666666666,
+        "macro_f1": 0.5277438610771944,
+        "harmful_recall": 0.18032786885245902,
+        "predicted_harmful_share": 0.11299435028248588
+      },
+      "prompt_variant": "definition",
+      "elapsed_seconds": 180.7,
+      "retries": 1,
+      "api_model_versions": [
+        "gemini-3.1-flash-lite"
+      ]
+    },
+    "test": {
+      "verification_errors": [],
+      "memes": 354,
+      "changed_answers": 32,
+      "changed_share": 0.0903954802259887,
+      "reference": {
+        "accuracy": 0.6581920903954802,
+        "macro_f1": 0.4642200457803294,
+        "harmful_recall": 0.08064516129032258,
+        "predicted_harmful_share": 0.0480225988700565
+      },
+      "new": {
+        "accuracy": 0.692090395480226,
+        "macro_f1": 0.5831019393873912,
+        "harmful_recall": 0.25806451612903225,
+        "predicted_harmful_share": 0.1384180790960452
+      },
+      "prompt_variant": "definition",
+      "elapsed_seconds": 311.8,
+      "retries": 0,
+      "api_model_versions": [
+        "gemini-3.1-flash-lite"
+      ]
+    }
+  }
+}

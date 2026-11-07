@@ -1,0 +1,79 @@
+Loading system/sciama
+  Loading requirement: services/slurm
+2026-10-04 19:13:11,464 [INFO] Seeded RNGs with 99 (deterministic_cudnn=True)
+2026-10-04 19:13:22,637 [INFO] Initializing processor for Qwen/Qwen2-VL-2B-Instruct...
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+2026-10-04 19:13:24,149 [INFO] Using compute_dtype: torch.bfloat16
+2026-10-04 19:13:24,150 [INFO] Loading model Qwen/Qwen2-VL-2B-Instruct (4bit)...
+$PROJECT_ROOT/.venv/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:2284: FutureWarning: The class `AutoModelForVision2Seq` is deprecated and will be removed in v5.0. Please use `AutoModelForImageTextToText` instead.
+  warnings.warn(
+
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]$PROJECT_ROOT/.venv/lib/python3.10/site-packages/bitsandbytes/backends/cuda/ops.py:213: FutureWarning: _check_is_size will be removed in a future PyTorch release along with guard_size_oblivious.     Use _check(i >= 0) instead.
+  torch._check_is_size(blocksize)
+
+Loading checkpoint shards:  50%|█████     | 1/2 [01:02<01:02, 62.90s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [01:08<00:00, 29.25s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [01:08<00:00, 34.30s/it]
+2026-10-04 19:15:11,721 [INFO] Injecting LoRA adapters...
+2026-10-04 19:15:12,627 [INFO] Loading MAMI dataset split...
+2026-10-04 19:15:13,752 [INFO] Capped training samples to 16
+2026-10-04 19:15:13,753 [INFO] Text source for training: provided
+2026-10-04 19:15:13,759 [INFO] Validation dataset loaded (1000 samples; will validate on up to 4 per epoch).
+2026-10-04 19:15:13,767 [INFO] Starting VLM fine-tuning loop...
+$PROJECT_ROOT/.venv/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py:1263: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. Starting in PyTorch 2.9, calling checkpoint without use_reentrant will raise an exception. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+$PROJECT_ROOT/.venv/lib/python3.10/site-packages/torch/utils/checkpoint.py:232: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  check_backward_validity(args)
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+2026-10-04 19:15:31,663 [INFO] Epoch 1/1 completed | Avg Loss: 4.1543 | Time: 17.89 seconds
+2026-10-04 19:15:31,664 [INFO] Running validation on up to 4 samples after epoch 1...
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+2026-10-04 19:15:33,270 [INFO] Epoch 1 val_metric=0.3333
+2026-10-04 19:15:33,357 [INFO] New best val_metric=0.3333 saved at epoch 1.
+2026-10-04 19:15:33,358 [INFO] Restoring best-val checkpoint (val_metric=0.3333) before saving.
+$PROJECT_ROOT/.venv/lib/python3.10/site-packages/peft/utils/save_and_load.py:372: UserWarning: Could not find a config file in Qwen/Qwen2-VL-2B-Instruct - will assume that the vocabulary was not modified.
+  warnings.warn(
+2026-10-04 19:15:33,899 [INFO] Successfully saved fine-tuned LoRA adapters to $PROJECT_ROOT/results/models/lora_qwen2_vl_2b_instruct_singleclass_seed99_tdisjoint_smoke
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]$PROJECT_ROOT/.venv/lib/python3.10/site-packages/bitsandbytes/backends/cuda/ops.py:213: FutureWarning: _check_is_size will be removed in a future PyTorch release along with guard_size_oblivious.     Use _check(i >= 0) instead.
+  torch._check_is_size(blocksize)
+
+Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.57s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.17s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.38s/it]
+
+qwen2vl/none:   0%|          | 0/10 [00:00<?, ?img/s]The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+
+qwen2vl/none:  40%|████      | 4/10 [00:02<00:03,  1.62img/s]
+qwen2vl/none:  80%|████████  | 8/10 [00:02<00:00,  3.05img/s]
+qwen2vl/none: 100%|██████████| 10/10 [00:03<00:00,  3.58img/s]
+qwen2vl/none: 100%|██████████| 10/10 [00:03<00:00,  3.03img/s]
+$PROJECT_ROOT/.venv/lib/python3.10/site-packages/bitsandbytes/backends/cuda/ops.py:213: FutureWarning: _check_is_size will be removed in a future PyTorch release along with guard_size_oblivious.     Use _check(i >= 0) instead.
+  torch._check_is_size(blocksize)
+
+internvl/none:   0%|          | 0/10 [00:00<?, ?img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  40%|████      | 4/10 [00:01<00:02,  2.06img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  80%|████████  | 8/10 [00:02<00:00,  3.47img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none: 100%|██████████| 10/10 [00:02<00:00,  4.01img/s]
+internvl/none: 100%|██████████| 10/10 [00:02<00:00,  3.50img/s]
+2026-10-04 19:17:19,539 [INFO] Seeded RNGs with 99 (deterministic_cudnn=True)
+2026-10-04 19:17:24,585 [INFO] Initializing processor for OpenGVLab/InternVL3-1B-hf...
+2026-10-04 19:17:25,230 [INFO] Using compute_dtype: torch.bfloat16
+2026-10-04 19:17:25,232 [INFO] Loading model OpenGVLab/InternVL3-1B-hf (4bit)...
+$PROJECT_ROOT/.venv/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py:2284: FutureWarning: The class `AutoModelForVision2Seq` is deprecated and will be removed in v5.0. Please use `AutoModelForImageTextToText` instead.
+  warnings.warn(
+Traceback (most recent call last):
+  File "$PROJECT_ROOT/scripts/train_vlm.py", line 786, in <module>
+    main()
+  File "$PROJECT_ROOT/scripts/train_vlm.py", line 576, in main
+    base_model = AutoModelForVision2Seq.from_pretrained(args.model_id, **load_kwargs)
+  File "$PROJECT_ROOT/.venv/lib/python3.10/site-packages/transformers/models/auto/modeling_auto.py", line 2289, in from_pretrained
+    return super().from_pretrained(pretrained_model_name_or_path, *model_args, **kwargs)
+  File "$PROJECT_ROOT/.venv/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py", line 607, in from_pretrained
+    raise ValueError(
+ValueError: Unrecognized configuration class <class 'transformers.models.internvl.configuration_internvl.InternVLConfig'> for this kind of AutoModel: AutoModelForVision2Seq.
+Model type should be one of BlipConfig, Blip2Config, ChameleonConfig, GitConfig, Idefics2Config, Idefics3Config, InstructBlipConfig, InstructBlipVideoConfig, Kosmos2Config, Kosmos2_5Config, LlavaConfig, LlavaNextConfig, LlavaNextVideoConfig, LlavaOnevisionConfig, Mistral3Config, MllamaConfig, Ovis2Config, PaliGemmaConfig, Pix2StructConfig, Qwen2_5_VLConfig, Qwen2VLConfig, Qwen3VLConfig, Qwen3VLMoeConfig, VideoLlavaConfig, VipLlavaConfig, VisionEncoderDecoderConfig.

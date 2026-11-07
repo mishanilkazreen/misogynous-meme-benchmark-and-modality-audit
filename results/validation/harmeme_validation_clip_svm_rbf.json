@@ -1,0 +1,1259 @@
+[
+  {
+    "model": "CLIP ViT-L-14 + SVM-RBF",
+    "dataset": "harmeme_harm_c",
+    "split": "validation",
+    "task": "singleclass",
+    "threshold": "margin 0",
+    "timestamp": "2026-11-02T14:48:27+00:00",
+    "mock": false,
+    "error": null,
+    "num_samples": 177,
+    "exact_match_accuracy": 0.6892655367231638,
+    "macro_f1": 0.6867054999517266,
+    "f1": 0.6867054999517266,
+    "refusal_count": 0,
+    "refusal_rate": 0.0,
+    "sample_predictions": [
+      {
+        "image_id": "covid_memes_2069",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2075",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2080",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2108",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2117",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2210",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2213",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5674",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2221",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5676",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5677",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2287",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2222",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2237",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5678",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2242",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2261",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2262",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2263",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2331",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2359",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2395",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2398",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5680",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2405",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5681",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5682",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2426",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2432",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2473",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2475",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2352",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2483",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2540",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2354",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2606",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2360",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5684",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5685",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5687",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2619",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2362",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5688",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2645",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2649",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5694",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2706",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2733",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2763",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2364",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5695",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2777",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2821",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2438",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5699",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5701",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2841",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2889",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5702",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5704",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5707",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2444",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2932",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5708",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2934",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_3001",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_2449",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5709",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_3056",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_3061",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5711",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5712",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5713",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5716",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_3135",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5718",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5719",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_3175",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5725",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_3317",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_8",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_21",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_25",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5726",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5732",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5735",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5736",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_27",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_32",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_34",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_38",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_42",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_44",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_45",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5737",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_49",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5739",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_50",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5741",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_51",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5744",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5745",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5746",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_52",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5747",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5750",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_54",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5751",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_59",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5753",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5754",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5755",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_61",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_64",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5759",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5761",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_65",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_66",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_67",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5764",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5765",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5767",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5768",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5770",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_5776",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_69",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_70",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_71",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_72",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_73",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_74",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_75",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_77",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_78",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_79",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_80",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_82",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_89",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_91",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_92",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_93",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_94",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_98",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_99",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_101",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_109",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_110",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_113",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_114",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_115",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_116",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_117",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_118",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_119",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_120",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_122",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_124",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_129",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_134",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_137",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_159",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_161",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_163",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_164",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_166",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_168",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_181",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_209",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_210",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_215",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_216",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_217",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_219",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_224",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_225",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_235",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "covid_memes_237",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      }
+    ]
+  }
+]

@@ -1,0 +1,4351 @@
+{
+  "generated_utc": "2026-09-29T22:18:07+00:00",
+  "script": "scripts/revision/template_overlap.py",
+  "definition": "seen = the meme's template cluster contains at least one original train meme",
+  "metric": "Score A = official MAMI macro-F1 (scripts/official_mami_evaluation.py)",
+  "bootstrap": {
+    "resamples": 2000,
+    "seed": 20260517,
+    "ci": "percentile 95%"
+  },
+  "invalid_prediction_policy": "refusals / unparseable outputs are scored as wrong",
+  "thresholds": {
+    "strict": {
+      "chance_matches_per_meme_max": 0.01,
+      "phash_max_hamming": 3,
+      "clip_min_cosine": 0.94,
+      "phash_pairs_observed": 265,
+      "phash_pairs_chance_est": 41.8,
+      "clip_pairs_observed": 153,
+      "clip_pairs_chance_est": 54.1
+    },
+    "central": {
+      "chance_matches_per_meme_max": 0.03,
+      "phash_max_hamming": 5,
+      "clip_min_cosine": 0.907,
+      "phash_pairs_observed": 635,
+      "phash_pairs_chance_est": 117.0,
+      "clip_pairs_observed": 315,
+      "clip_pairs_chance_est": 163.6
+    },
+    "loose": {
+      "chance_matches_per_meme_max": 0.1,
+      "phash_max_hamming": 8,
+      "clip_min_cosine": 0.871,
+      "phash_pairs_observed": 2733,
+      "phash_pairs_chance_est": 548.2,
+      "clip_pairs_observed": 669,
+      "clip_pairs_chance_est": 547.0
+    }
+  },
+  "validation": {
+    "counts": {
+      "strict": {
+        "seen": 33,
+        "unseen": 967
+      },
+      "central": {
+        "seen": 71,
+        "unseen": 929
+      },
+      "loose": {
+        "seen": 151,
+        "unseen": 849
+      }
+    },
+    "template_majority_baseline": {
+      "strict": {
+        "n_seen": 33,
+        "n_decided_no_tie": 29,
+        "accuracy_on_decided": 0.7931
+      },
+      "central": {
+        "n_seen": 71,
+        "n_decided_no_tie": 69,
+        "accuracy_on_decided": 0.8261
+      },
+      "loose": {
+        "n_seen": 151,
+        "n_decided_no_tie": 144,
+        "accuracy_on_decided": 0.7708
+      }
+    },
+    "models": {
+      "SVM-RBF (tabular, PaddleOCR)": [
+        {
+          "provenance": {
+            "file": "auto_benchmark/results/model_results/mami_tabular_model/mami_tabular_model_predictions.csv"
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.871,
+            "score_a_ci95": [
+              0.8499,
+              0.8918
+            ],
+            "accuracy": 0.871,
+            "accuracy_ci95": [
+              0.85,
+              0.892
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 33,
+              "misogynous_share": 0.5758,
+              "score_a": 0.8167,
+              "score_a_ci95": [
+                0.6617,
+                0.9393
+              ],
+              "accuracy": 0.8182,
+              "accuracy_ci95": [
+                0.6667,
+                0.9394
+              ]
+            },
+            "unseen": {
+              "n": 967,
+              "misogynous_share": 0.4974,
+              "score_a": 0.8728,
+              "score_a_ci95": [
+                0.8509,
+                0.8934
+              ],
+              "accuracy": 0.8728,
+              "accuracy_ci95": [
+                0.8511,
+                0.8935
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 71,
+              "misogynous_share": 0.493,
+              "score_a": 0.8307,
+              "score_a_ci95": [
+                0.7452,
+                0.9153
+              ],
+              "accuracy": 0.831,
+              "accuracy_ci95": [
+                0.7465,
+                0.9155
+              ]
+            },
+            "unseen": {
+              "n": 929,
+              "misogynous_share": 0.5005,
+              "score_a": 0.874,
+              "score_a_ci95": [
+                0.8515,
+                0.8954
+              ],
+              "accuracy": 0.8741,
+              "accuracy_ci95": [
+                0.8515,
+                0.8956
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": -0.0434,
+              "score_a_diff_ci95": [
+                -0.1366,
+                0.0449
+              ],
+              "accuracy_diff": -0.0431,
+              "accuracy_diff_ci95": [
+                -0.133,
+                0.0458
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 151,
+              "misogynous_share": 0.4901,
+              "score_a": 0.8541,
+              "score_a_ci95": [
+                0.7947,
+                0.907
+              ],
+              "accuracy": 0.8543,
+              "accuracy_ci95": [
+                0.7947,
+                0.9073
+              ]
+            },
+            "unseen": {
+              "n": 849,
+              "misogynous_share": 0.5018,
+              "score_a": 0.874,
+              "score_a_ci95": [
+                0.8514,
+                0.8963
+              ],
+              "accuracy": 0.874,
+              "accuracy_ci95": [
+                0.8516,
+                0.8963
+              ]
+            }
+          }
+        }
+      ],
+      "XGBoost (tabular, PaddleOCR)": [
+        {
+          "provenance": {
+            "file": "auto_benchmark/results/model_results/mami_tabular_model/mami_tabular_model_predictions.csv"
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.856,
+            "score_a_ci95": [
+              0.834,
+              0.877
+            ],
+            "accuracy": 0.856,
+            "accuracy_ci95": [
+              0.834,
+              0.877
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 33,
+              "misogynous_share": 0.5758,
+              "score_a": 0.8462,
+              "score_a_ci95": [
+                0.6967,
+                0.9687
+              ],
+              "accuracy": 0.8485,
+              "accuracy_ci95": [
+                0.7273,
+                0.9697
+              ]
+            },
+            "unseen": {
+              "n": 967,
+              "misogynous_share": 0.4974,
+              "score_a": 0.8562,
+              "score_a_ci95": [
+                0.8325,
+                0.878
+              ],
+              "accuracy": 0.8563,
+              "accuracy_ci95": [
+                0.8325,
+                0.878
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 71,
+              "misogynous_share": 0.493,
+              "score_a": 0.8451,
+              "score_a_ci95": [
+                0.7572,
+                0.9291
+              ],
+              "accuracy": 0.8451,
+              "accuracy_ci95": [
+                0.7606,
+                0.9296
+              ]
+            },
+            "unseen": {
+              "n": 929,
+              "misogynous_share": 0.5005,
+              "score_a": 0.8568,
+              "score_a_ci95": [
+                0.8329,
+                0.8793
+              ],
+              "accuracy": 0.8568,
+              "accuracy_ci95": [
+                0.8332,
+                0.8794
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": -0.0117,
+              "score_a_diff_ci95": [
+                -0.1051,
+                0.0693
+              ],
+              "accuracy_diff": -0.0118,
+              "accuracy_diff_ci95": [
+                -0.1028,
+                0.0695
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 151,
+              "misogynous_share": 0.4901,
+              "score_a": 0.8807,
+              "score_a_ci95": [
+                0.8265,
+                0.9271
+              ],
+              "accuracy": 0.8808,
+              "accuracy_ci95": [
+                0.8278,
+                0.9272
+              ]
+            },
+            "unseen": {
+              "n": 849,
+              "misogynous_share": 0.5018,
+              "score_a": 0.8516,
+              "score_a_ci95": [
+                0.8276,
+                0.8753
+              ],
+              "accuracy": 0.8516,
+              "accuracy_ci95": [
+                0.828,
+                0.8763
+              ]
+            }
+          }
+        }
+      ],
+      "Qwen2-VL-7B QLoRA": [
+        {
+          "provenance": {
+            "file": "results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_finetuned_seed1.json",
+            "model_field": "qwen2vl",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.8889,
+            "score_a_ci95": [
+              0.8695,
+              0.9083
+            ],
+            "accuracy": 0.889,
+            "accuracy_ci95": [
+              0.87,
+              0.909
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 33,
+              "misogynous_share": 0.5758,
+              "score_a": 0.8759,
+              "score_a_ci95": [
+                0.7462,
+                0.9697
+              ],
+              "accuracy": 0.8788,
+              "accuracy_ci95": [
+                0.7576,
+                0.9697
+              ]
+            },
+            "unseen": {
+              "n": 967,
+              "misogynous_share": 0.4974,
+              "score_a": 0.8893,
+              "score_a_ci95": [
+                0.8691,
+                0.9088
+              ],
+              "accuracy": 0.8893,
+              "accuracy_ci95": [
+                0.8697,
+                0.909
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 71,
+              "misogynous_share": 0.493,
+              "score_a": 0.9011,
+              "score_a_ci95": [
+                0.8282,
+                0.9705
+              ],
+              "accuracy": 0.9014,
+              "accuracy_ci95": [
+                0.831,
+                0.9718
+              ]
+            },
+            "unseen": {
+              "n": 929,
+              "misogynous_share": 0.5005,
+              "score_a": 0.888,
+              "score_a_ci95": [
+                0.8665,
+                0.9074
+              ],
+              "accuracy": 0.8881,
+              "accuracy_ci95": [
+                0.8665,
+                0.9074
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": 0.0131,
+              "score_a_diff_ci95": [
+                -0.0625,
+                0.0824
+              ],
+              "accuracy_diff": 0.0134,
+              "accuracy_diff_ci95": [
+                -0.0614,
+                0.0826
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 151,
+              "misogynous_share": 0.4901,
+              "score_a": 0.9072,
+              "score_a_ci95": [
+                0.8584,
+                0.947
+              ],
+              "accuracy": 0.9073,
+              "accuracy_ci95": [
+                0.8609,
+                0.947
+              ]
+            },
+            "unseen": {
+              "n": 849,
+              "misogynous_share": 0.5018,
+              "score_a": 0.8857,
+              "score_a_ci95": [
+                0.8645,
+                0.9057
+              ],
+              "accuracy": 0.8857,
+              "accuracy_ci95": [
+                0.8645,
+                0.9058
+              ]
+            }
+          }
+        },
+        {
+          "provenance": {
+            "file": "results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_finetuned_seed2.json",
+            "model_field": "qwen2vl",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.8868,
+            "score_a_ci95": [
+              0.8668,
+              0.906
+            ],
+            "accuracy": 0.887,
+            "accuracy_ci95": [
+              0.867,
+              0.906
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 33,
+              "misogynous_share": 0.5758,
+              "score_a": 0.9365,
+              "score_a_ci95": [
+                0.8332,
+                1.0
+              ],
+              "accuracy": 0.9394,
+              "accuracy_ci95": [
+                0.8485,
+                1.0
+              ]
+            },
+            "unseen": {
+              "n": 967,
+              "misogynous_share": 0.4974,
+              "score_a": 0.8851,
+              "score_a_ci95": [
+                0.8641,
+                0.9057
+              ],
+              "accuracy": 0.8852,
+              "accuracy_ci95": [
+                0.8645,
+                0.9059
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 71,
+              "misogynous_share": 0.493,
+              "score_a": 0.9296,
+              "score_a_ci95": [
+                0.8589,
+                0.9858
+              ],
+              "accuracy": 0.9296,
+              "accuracy_ci95": [
+                0.8592,
+                0.9859
+              ]
+            },
+            "unseen": {
+              "n": 929,
+              "misogynous_share": 0.5005,
+              "score_a": 0.8835,
+              "score_a_ci95": [
+                0.8618,
+                0.9026
+              ],
+              "accuracy": 0.8837,
+              "accuracy_ci95": [
+                0.8622,
+                0.9031
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": 0.0461,
+              "score_a_diff_ci95": [
+                -0.0241,
+                0.1026
+              ],
+              "accuracy_diff": 0.0458,
+              "accuracy_diff_ci95": [
+                -0.0223,
+                0.1023
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 151,
+              "misogynous_share": 0.4901,
+              "score_a": 0.9006,
+              "score_a_ci95": [
+                0.8528,
+                0.9455
+              ],
+              "accuracy": 0.9007,
+              "accuracy_ci95": [
+                0.8543,
+                0.947
+              ]
+            },
+            "unseen": {
+              "n": 849,
+              "misogynous_share": 0.5018,
+              "score_a": 0.8843,
+              "score_a_ci95": [
+                0.8622,
+                0.9057
+              ],
+              "accuracy": 0.8846,
+              "accuracy_ci95": [
+                0.8622,
+                0.9058
+              ]
+            }
+          }
+        },
+        {
+          "provenance": {
+            "file": "results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_finetuned_seed3.json",
+            "model_field": "qwen2vl",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.8809,
+            "score_a_ci95": [
+              0.8607,
+              0.901
+            ],
+            "accuracy": 0.881,
+            "accuracy_ci95": [
+              0.861,
+              0.901
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 33,
+              "misogynous_share": 0.5758,
+              "score_a": 0.9365,
+              "score_a_ci95": [
+                0.8332,
+                1.0
+              ],
+              "accuracy": 0.9394,
+              "accuracy_ci95": [
+                0.8485,
+                1.0
+              ]
+            },
+            "unseen": {
+              "n": 967,
+              "misogynous_share": 0.4974,
+              "score_a": 0.879,
+              "score_a_ci95": [
+                0.8587,
+                0.8997
+              ],
+              "accuracy": 0.879,
+              "accuracy_ci95": [
+                0.8593,
+                0.8997
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 71,
+              "misogynous_share": 0.493,
+              "score_a": 0.9013,
+              "score_a_ci95": [
+                0.8207,
+                0.9577
+              ],
+              "accuracy": 0.9014,
+              "accuracy_ci95": [
+                0.831,
+                0.9577
+              ]
+            },
+            "unseen": {
+              "n": 929,
+              "misogynous_share": 0.5005,
+              "score_a": 0.8794,
+              "score_a_ci95": [
+                0.8588,
+                0.8999
+              ],
+              "accuracy": 0.8794,
+              "accuracy_ci95": [
+                0.859,
+                0.8999
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": 0.022,
+              "score_a_diff_ci95": [
+                -0.0554,
+                0.0889
+              ],
+              "accuracy_diff": 0.022,
+              "accuracy_diff_ci95": [
+                -0.0538,
+                0.0892
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 151,
+              "misogynous_share": 0.4901,
+              "score_a": 0.894,
+              "score_a_ci95": [
+                0.8464,
+                0.9404
+              ],
+              "accuracy": 0.894,
+              "accuracy_ci95": [
+                0.8477,
+                0.9404
+              ]
+            },
+            "unseen": {
+              "n": 849,
+              "misogynous_share": 0.5018,
+              "score_a": 0.8786,
+              "score_a_ci95": [
+                0.857,
+                0.8999
+              ],
+              "accuracy": 0.8787,
+              "accuracy_ci95": [
+                0.8575,
+                0.8999
+              ]
+            }
+          }
+        }
+      ],
+      "Qwen2-VL-2B QLoRA": [
+        {
+          "provenance": {
+            "file": "results/validation/qwen2vl_validation_qwen2_vl_2b_instruct_finetuned_seed1.json",
+            "model_field": "qwen2vl",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.8474,
+            "score_a_ci95": [
+              0.8252,
+              0.8686
+            ],
+            "accuracy": 0.849,
+            "accuracy_ci95": [
+              0.828,
+              0.87
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 33,
+              "misogynous_share": 0.5758,
+              "score_a": 0.8731,
+              "score_a_ci95": [
+                0.7381,
+                0.9692
+              ],
+              "accuracy": 0.8788,
+              "accuracy_ci95": [
+                0.7576,
+                0.9697
+              ]
+            },
+            "unseen": {
+              "n": 967,
+              "misogynous_share": 0.4974,
+              "score_a": 0.8465,
+              "score_a_ci95": [
+                0.8243,
+                0.8688
+              ],
+              "accuracy": 0.848,
+              "accuracy_ci95": [
+                0.8263,
+                0.8697
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 71,
+              "misogynous_share": 0.493,
+              "score_a": 0.8301,
+              "score_a_ci95": [
+                0.7324,
+                0.9151
+              ],
+              "accuracy": 0.831,
+              "accuracy_ci95": [
+                0.7324,
+                0.9155
+              ]
+            },
+            "unseen": {
+              "n": 929,
+              "misogynous_share": 0.5005,
+              "score_a": 0.8488,
+              "score_a_ci95": [
+                0.8261,
+                0.8715
+              ],
+              "accuracy": 0.8504,
+              "accuracy_ci95": [
+                0.8278,
+                0.873
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": -0.0186,
+              "score_a_diff_ci95": [
+                -0.1083,
+                0.0671
+              ],
+              "accuracy_diff": -0.0194,
+              "accuracy_diff_ci95": [
+                -0.1081,
+                0.0673
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 151,
+              "misogynous_share": 0.4901,
+              "score_a": 0.8402,
+              "score_a_ci95": [
+                0.7796,
+                0.8939
+              ],
+              "accuracy": 0.8411,
+              "accuracy_ci95": [
+                0.7815,
+                0.894
+              ]
+            },
+            "unseen": {
+              "n": 849,
+              "misogynous_share": 0.5018,
+              "score_a": 0.8487,
+              "score_a_ci95": [
+                0.824,
+                0.8734
+              ],
+              "accuracy": 0.8504,
+              "accuracy_ci95": [
+                0.8257,
+                0.874
+              ]
+            }
+          }
+        },
+        {
+          "provenance": {
+            "file": "results/validation/qwen2vl_validation_qwen2_vl_2b_instruct_finetuned_seed2.json",
+            "model_field": "qwen2vl",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.884,
+            "score_a_ci95": [
+              0.8644,
+              0.9032
+            ],
+            "accuracy": 0.884,
+            "accuracy_ci95": [
+              0.865,
+              0.904
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 33,
+              "misogynous_share": 0.5758,
+              "score_a": 0.8759,
+              "score_a_ci95": [
+                0.7412,
+                0.9696
+              ],
+              "accuracy": 0.8788,
+              "accuracy_ci95": [
+                0.7576,
+                0.9697
+              ]
+            },
+            "unseen": {
+              "n": 967,
+              "misogynous_share": 0.4974,
+              "score_a": 0.8841,
+              "score_a_ci95": [
+                0.8629,
+                0.9038
+              ],
+              "accuracy": 0.8842,
+              "accuracy_ci95": [
+                0.8635,
+                0.9038
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 71,
+              "misogynous_share": 0.493,
+              "score_a": 0.8871,
+              "score_a_ci95": [
+                0.8028,
+                0.9576
+              ],
+              "accuracy": 0.8873,
+              "accuracy_ci95": [
+                0.8028,
+                0.9577
+              ]
+            },
+            "unseen": {
+              "n": 929,
+              "misogynous_share": 0.5005,
+              "score_a": 0.8837,
+              "score_a_ci95": [
+                0.8633,
+                0.9031
+              ],
+              "accuracy": 0.8837,
+              "accuracy_ci95": [
+                0.8633,
+                0.9031
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": 0.0034,
+              "score_a_diff_ci95": [
+                -0.0771,
+                0.074
+              ],
+              "accuracy_diff": 0.0036,
+              "accuracy_diff_ci95": [
+                -0.0755,
+                0.0751
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 151,
+              "misogynous_share": 0.4901,
+              "score_a": 0.8805,
+              "score_a_ci95": [
+                0.8261,
+                0.927
+              ],
+              "accuracy": 0.8808,
+              "accuracy_ci95": [
+                0.8278,
+                0.9272
+              ]
+            },
+            "unseen": {
+              "n": 849,
+              "misogynous_share": 0.5018,
+              "score_a": 0.8846,
+              "score_a_ci95": [
+                0.8626,
+                0.9046
+              ],
+              "accuracy": 0.8846,
+              "accuracy_ci95": [
+                0.8633,
+                0.9046
+              ]
+            }
+          }
+        },
+        {
+          "provenance": {
+            "file": "results/validation/qwen2vl_validation_qwen2_vl_2b_instruct_finetuned_seed3.json",
+            "model_field": "qwen2vl",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.8465,
+            "score_a_ci95": [
+              0.8243,
+              0.8681
+            ],
+            "accuracy": 0.848,
+            "accuracy_ci95": [
+              0.826,
+              0.869
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 33,
+              "misogynous_share": 0.5758,
+              "score_a": 0.7664,
+              "score_a_ci95": [
+                0.5926,
+                0.9035
+              ],
+              "accuracy": 0.7879,
+              "accuracy_ci95": [
+                0.6364,
+                0.9091
+              ]
+            },
+            "unseen": {
+              "n": 967,
+              "misogynous_share": 0.4974,
+              "score_a": 0.8487,
+              "score_a_ci95": [
+                0.8253,
+                0.8705
+              ],
+              "accuracy": 0.8501,
+              "accuracy_ci95": [
+                0.8263,
+                0.8718
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 71,
+              "misogynous_share": 0.493,
+              "score_a": 0.8145,
+              "score_a_ci95": [
+                0.7168,
+                0.9013
+              ],
+              "accuracy": 0.8169,
+              "accuracy_ci95": [
+                0.7183,
+                0.9014
+              ]
+            },
+            "unseen": {
+              "n": 929,
+              "misogynous_share": 0.5005,
+              "score_a": 0.8489,
+              "score_a_ci95": [
+                0.8267,
+                0.8712
+              ],
+              "accuracy": 0.8504,
+              "accuracy_ci95": [
+                0.8288,
+                0.873
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": -0.0343,
+              "score_a_diff_ci95": [
+                -0.1324,
+                0.0506
+              ],
+              "accuracy_diff": -0.0335,
+              "accuracy_diff_ci95": [
+                -0.1267,
+                0.052
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 151,
+              "misogynous_share": 0.4901,
+              "score_a": 0.8464,
+              "score_a_ci95": [
+                0.7878,
+                0.8981
+              ],
+              "accuracy": 0.8477,
+              "accuracy_ci95": [
+                0.7881,
+                0.9007
+              ]
+            },
+            "unseen": {
+              "n": 849,
+              "misogynous_share": 0.5018,
+              "score_a": 0.8465,
+              "score_a_ci95": [
+                0.8217,
+                0.87
+              ],
+              "accuracy": 0.8481,
+              "accuracy_ci95": [
+                0.8233,
+                0.8716
+              ]
+            }
+          }
+        }
+      ],
+      "CLIP ViT-L-14 fine-tuned": [
+        {
+          "provenance": {
+            "file": "results/validation/clip_validation_finetuned_singleclass_vit_l_14_quickgelu_seed1.json",
+            "model_field": "clip",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.867,
+            "score_a_ci95": [
+              0.8448,
+              0.888
+            ],
+            "accuracy": 0.867,
+            "accuracy_ci95": [
+              0.845,
+              0.888
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 33,
+              "misogynous_share": 0.5758,
+              "score_a": 0.8433,
+              "score_a_ci95": [
+                0.6966,
+                0.9678
+              ],
+              "accuracy": 0.8485,
+              "accuracy_ci95": [
+                0.7273,
+                0.9697
+              ]
+            },
+            "unseen": {
+              "n": 967,
+              "misogynous_share": 0.4974,
+              "score_a": 0.8676,
+              "score_a_ci95": [
+                0.8459,
+                0.8883
+              ],
+              "accuracy": 0.8676,
+              "accuracy_ci95": [
+                0.8459,
+                0.8883
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 71,
+              "misogynous_share": 0.493,
+              "score_a": 0.8168,
+              "score_a_ci95": [
+                0.727,
+                0.9016
+              ],
+              "accuracy": 0.8169,
+              "accuracy_ci95": [
+                0.7324,
+                0.9018
+              ]
+            },
+            "unseen": {
+              "n": 929,
+              "misogynous_share": 0.5005,
+              "score_a": 0.8708,
+              "score_a_ci95": [
+                0.8482,
+                0.8918
+              ],
+              "accuracy": 0.8708,
+              "accuracy_ci95": [
+                0.8482,
+                0.8924
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": -0.0541,
+              "score_a_diff_ci95": [
+                -0.1581,
+                0.0353
+              ],
+              "accuracy_diff": -0.0539,
+              "accuracy_diff_ci95": [
+                -0.1514,
+                0.037
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 151,
+              "misogynous_share": 0.4901,
+              "score_a": 0.8543,
+              "score_a_ci95": [
+                0.7938,
+                0.9072
+              ],
+              "accuracy": 0.8543,
+              "accuracy_ci95": [
+                0.7947,
+                0.9073
+              ]
+            },
+            "unseen": {
+              "n": 849,
+              "misogynous_share": 0.5018,
+              "score_a": 0.8692,
+              "score_a_ci95": [
+                0.8457,
+                0.8917
+              ],
+              "accuracy": 0.8693,
+              "accuracy_ci95": [
+                0.8457,
+                0.8917
+              ]
+            }
+          }
+        },
+        {
+          "provenance": {
+            "file": "results/validation/clip_validation_finetuned_singleclass_vit_l_14_quickgelu_seed2.json",
+            "model_field": "clip",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.868,
+            "score_a_ci95": [
+              0.846,
+              0.8887
+            ],
+            "accuracy": 0.868,
+            "accuracy_ci95": [
+              0.846,
+              0.889
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 33,
+              "misogynous_share": 0.5758,
+              "score_a": 0.8433,
+              "score_a_ci95": [
+                0.6966,
+                0.9678
+              ],
+              "accuracy": 0.8485,
+              "accuracy_ci95": [
+                0.7273,
+                0.9697
+              ]
+            },
+            "unseen": {
+              "n": 967,
+              "misogynous_share": 0.4974,
+              "score_a": 0.8686,
+              "score_a_ci95": [
+                0.8479,
+                0.89
+              ],
+              "accuracy": 0.8687,
+              "accuracy_ci95": [
+                0.848,
+                0.8904
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 71,
+              "misogynous_share": 0.493,
+              "score_a": 0.8168,
+              "score_a_ci95": [
+                0.727,
+                0.9016
+              ],
+              "accuracy": 0.8169,
+              "accuracy_ci95": [
+                0.7324,
+                0.9018
+              ]
+            },
+            "unseen": {
+              "n": 929,
+              "misogynous_share": 0.5005,
+              "score_a": 0.8719,
+              "score_a_ci95": [
+                0.8492,
+                0.8932
+              ],
+              "accuracy": 0.8719,
+              "accuracy_ci95": [
+                0.8493,
+                0.8934
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": -0.0551,
+              "score_a_diff_ci95": [
+                -0.1552,
+                0.0363
+              ],
+              "accuracy_diff": -0.055,
+              "accuracy_diff_ci95": [
+                -0.1504,
+                0.0381
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 151,
+              "misogynous_share": 0.4901,
+              "score_a": 0.8542,
+              "score_a_ci95": [
+                0.7946,
+                0.9072
+              ],
+              "accuracy": 0.8543,
+              "accuracy_ci95": [
+                0.7947,
+                0.9073
+              ]
+            },
+            "unseen": {
+              "n": 849,
+              "misogynous_share": 0.5018,
+              "score_a": 0.8704,
+              "score_a_ci95": [
+                0.848,
+                0.8934
+              ],
+              "accuracy": 0.8704,
+              "accuracy_ci95": [
+                0.8481,
+                0.894
+              ]
+            }
+          }
+        },
+        {
+          "provenance": {
+            "file": "results/validation/clip_validation_finetuned_singleclass_vit_l_14_quickgelu_seed3.json",
+            "model_field": "clip",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.867,
+            "score_a_ci95": [
+              0.846,
+              0.8879
+            ],
+            "accuracy": 0.867,
+            "accuracy_ci95": [
+              0.846,
+              0.888
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 33,
+              "misogynous_share": 0.5758,
+              "score_a": 0.8433,
+              "score_a_ci95": [
+                0.6966,
+                0.9678
+              ],
+              "accuracy": 0.8485,
+              "accuracy_ci95": [
+                0.7273,
+                0.9697
+              ]
+            },
+            "unseen": {
+              "n": 967,
+              "misogynous_share": 0.4974,
+              "score_a": 0.8676,
+              "score_a_ci95": [
+                0.8459,
+                0.8892
+              ],
+              "accuracy": 0.8676,
+              "accuracy_ci95": [
+                0.8459,
+                0.8893
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 71,
+              "misogynous_share": 0.493,
+              "score_a": 0.8168,
+              "score_a_ci95": [
+                0.727,
+                0.9016
+              ],
+              "accuracy": 0.8169,
+              "accuracy_ci95": [
+                0.7324,
+                0.9018
+              ]
+            },
+            "unseen": {
+              "n": 929,
+              "misogynous_share": 0.5005,
+              "score_a": 0.8708,
+              "score_a_ci95": [
+                0.8491,
+                0.8924
+              ],
+              "accuracy": 0.8708,
+              "accuracy_ci95": [
+                0.8493,
+                0.8924
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": -0.0541,
+              "score_a_diff_ci95": [
+                -0.1549,
+                0.0351
+              ],
+              "accuracy_diff": -0.0539,
+              "accuracy_diff_ci95": [
+                -0.1493,
+                0.0371
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 151,
+              "misogynous_share": 0.4901,
+              "score_a": 0.8541,
+              "score_a_ci95": [
+                0.7941,
+                0.9071
+              ],
+              "accuracy": 0.8543,
+              "accuracy_ci95": [
+                0.7947,
+                0.9073
+              ]
+            },
+            "unseen": {
+              "n": 849,
+              "misogynous_share": 0.5018,
+              "score_a": 0.8693,
+              "score_a_ci95": [
+                0.8467,
+                0.8916
+              ],
+              "accuracy": 0.8693,
+              "accuracy_ci95": [
+                0.8469,
+                0.8916
+              ]
+            }
+          }
+        }
+      ],
+      "CLIP ViT-B-32 fine-tuned": [
+        {
+          "provenance": {
+            "file": "results/validation/clip_validation_finetuned_singleclass_vit_b_32_quickgelu_seed1.json",
+            "model_field": "clip",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.851,
+            "score_a_ci95": [
+              0.8288,
+              0.8728
+            ],
+            "accuracy": 0.851,
+            "accuracy_ci95": [
+              0.829,
+              0.873
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 33,
+              "misogynous_share": 0.5758,
+              "score_a": 0.8139,
+              "score_a_ci95": [
+                0.6617,
+                0.9389
+              ],
+              "accuracy": 0.8182,
+              "accuracy_ci95": [
+                0.6667,
+                0.9394
+              ]
+            },
+            "unseen": {
+              "n": 967,
+              "misogynous_share": 0.4974,
+              "score_a": 0.8521,
+              "score_a_ci95": [
+                0.8289,
+                0.8738
+              ],
+              "accuracy": 0.8521,
+              "accuracy_ci95": [
+                0.8293,
+                0.8738
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 71,
+              "misogynous_share": 0.493,
+              "score_a": 0.8168,
+              "score_a_ci95": [
+                0.7245,
+                0.9134
+              ],
+              "accuracy": 0.8169,
+              "accuracy_ci95": [
+                0.7324,
+                0.9155
+              ]
+            },
+            "unseen": {
+              "n": 929,
+              "misogynous_share": 0.5005,
+              "score_a": 0.8536,
+              "score_a_ci95": [
+                0.8299,
+                0.8751
+              ],
+              "accuracy": 0.8536,
+              "accuracy_ci95": [
+                0.8299,
+                0.8751
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": -0.0368,
+              "score_a_diff_ci95": [
+                -0.136,
+                0.0507
+              ],
+              "accuracy_diff": -0.0367,
+              "accuracy_diff_ci95": [
+                -0.1341,
+                0.0511
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 151,
+              "misogynous_share": 0.4901,
+              "score_a": 0.8675,
+              "score_a_ci95": [
+                0.8079,
+                0.9204
+              ],
+              "accuracy": 0.8675,
+              "accuracy_ci95": [
+                0.8079,
+                0.9205
+              ]
+            },
+            "unseen": {
+              "n": 849,
+              "misogynous_share": 0.5018,
+              "score_a": 0.848,
+              "score_a_ci95": [
+                0.8231,
+                0.8726
+              ],
+              "accuracy": 0.8481,
+              "accuracy_ci95": [
+                0.8233,
+                0.8728
+              ]
+            }
+          }
+        },
+        {
+          "provenance": {
+            "file": "results/validation/clip_validation_finetuned_singleclass_vit_b_32_quickgelu_seed2.json",
+            "model_field": "clip",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.849,
+            "score_a_ci95": [
+              0.8269,
+              0.8718
+            ],
+            "accuracy": 0.849,
+            "accuracy_ci95": [
+              0.827,
+              0.872
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 33,
+              "misogynous_share": 0.5758,
+              "score_a": 0.8139,
+              "score_a_ci95": [
+                0.6617,
+                0.9389
+              ],
+              "accuracy": 0.8182,
+              "accuracy_ci95": [
+                0.6667,
+                0.9394
+              ]
+            },
+            "unseen": {
+              "n": 967,
+              "misogynous_share": 0.4974,
+              "score_a": 0.85,
+              "score_a_ci95": [
+                0.8272,
+                0.872
+              ],
+              "accuracy": 0.8501,
+              "accuracy_ci95": [
+                0.8273,
+                0.8728
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 71,
+              "misogynous_share": 0.493,
+              "score_a": 0.8168,
+              "score_a_ci95": [
+                0.7245,
+                0.9134
+              ],
+              "accuracy": 0.8169,
+              "accuracy_ci95": [
+                0.7324,
+                0.9155
+              ]
+            },
+            "unseen": {
+              "n": 929,
+              "misogynous_share": 0.5005,
+              "score_a": 0.8514,
+              "score_a_ci95": [
+                0.8278,
+                0.874
+              ],
+              "accuracy": 0.8515,
+              "accuracy_ci95": [
+                0.8278,
+                0.8741
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": -0.0347,
+              "score_a_diff_ci95": [
+                -0.1342,
+                0.0543
+              ],
+              "accuracy_diff": -0.0346,
+              "accuracy_diff_ci95": [
+                -0.132,
+                0.0564
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 151,
+              "misogynous_share": 0.4901,
+              "score_a": 0.8742,
+              "score_a_ci95": [
+                0.8146,
+                0.9265
+              ],
+              "accuracy": 0.8742,
+              "accuracy_ci95": [
+                0.8146,
+                0.9272
+              ]
+            },
+            "unseen": {
+              "n": 849,
+              "misogynous_share": 0.5018,
+              "score_a": 0.8445,
+              "score_a_ci95": [
+                0.8194,
+                0.8681
+              ],
+              "accuracy": 0.8445,
+              "accuracy_ci95": [
+                0.8198,
+                0.8681
+              ]
+            }
+          }
+        },
+        {
+          "provenance": {
+            "file": "results/validation/clip_validation_finetuned_singleclass_vit_b_32_quickgelu_seed3.json",
+            "model_field": "clip",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.84,
+            "score_a_ci95": [
+              0.8187,
+              0.862
+            ],
+            "accuracy": 0.84,
+            "accuracy_ci95": [
+              0.819,
+              0.862
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 33,
+              "misogynous_share": 0.5758,
+              "score_a": 0.8139,
+              "score_a_ci95": [
+                0.6617,
+                0.9389
+              ],
+              "accuracy": 0.8182,
+              "accuracy_ci95": [
+                0.6667,
+                0.9394
+              ]
+            },
+            "unseen": {
+              "n": 967,
+              "misogynous_share": 0.4974,
+              "score_a": 0.8407,
+              "score_a_ci95": [
+                0.8178,
+                0.8635
+              ],
+              "accuracy": 0.8407,
+              "accuracy_ci95": [
+                0.818,
+                0.8635
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 71,
+              "misogynous_share": 0.493,
+              "score_a": 0.8168,
+              "score_a_ci95": [
+                0.7245,
+                0.9134
+              ],
+              "accuracy": 0.8169,
+              "accuracy_ci95": [
+                0.7324,
+                0.9155
+              ]
+            },
+            "unseen": {
+              "n": 929,
+              "misogynous_share": 0.5005,
+              "score_a": 0.8418,
+              "score_a_ci95": [
+                0.8177,
+                0.8644
+              ],
+              "accuracy": 0.8418,
+              "accuracy_ci95": [
+                0.8181,
+                0.8644
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": -0.025,
+              "score_a_diff_ci95": [
+                -0.1224,
+                0.0638
+              ],
+              "accuracy_diff": -0.0249,
+              "accuracy_diff_ci95": [
+                -0.1212,
+                0.0639
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 151,
+              "misogynous_share": 0.4901,
+              "score_a": 0.8675,
+              "score_a_ci95": [
+                0.8079,
+                0.9204
+              ],
+              "accuracy": 0.8675,
+              "accuracy_ci95": [
+                0.8079,
+                0.9205
+              ]
+            },
+            "unseen": {
+              "n": 849,
+              "misogynous_share": 0.5018,
+              "score_a": 0.8351,
+              "score_a_ci95": [
+                0.809,
+                0.8597
+              ],
+              "accuracy": 0.8351,
+              "accuracy_ci95": [
+                0.8092,
+                0.8598
+              ]
+            }
+          }
+        }
+      ],
+      "Gemini (zero-shot)": [
+        {
+          "provenance": {
+            "file": "results/validation/gemini_validation.json",
+            "model_field": "gemini",
+            "n_predictions": 400,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 400,
+            "misogynous_share": 0.49,
+            "score_a": 0.8874,
+            "score_a_ci95": [
+              0.8548,
+              0.9175
+            ],
+            "accuracy": 0.8875,
+            "accuracy_ci95": [
+              0.855,
+              0.9175
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 17,
+              "misogynous_share": 0.5882,
+              "score_a": 0.7167,
+              "score_a_ci95": [
+                0.4138,
+                0.9328
+              ],
+              "accuracy": 0.7647,
+              "accuracy_ci95": [
+                0.5294,
+                0.9412
+              ]
+            },
+            "unseen": {
+              "n": 383,
+              "misogynous_share": 0.4856,
+              "score_a": 0.8929,
+              "score_a_ci95": [
+                0.8616,
+                0.9235
+              ],
+              "accuracy": 0.893,
+              "accuracy_ci95": [
+                0.8616,
+                0.9243
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 34,
+              "misogynous_share": 0.5294,
+              "score_a": 0.785,
+              "score_a_ci95": [
+                0.6357,
+                0.9111
+              ],
+              "accuracy": 0.7941,
+              "accuracy_ci95": [
+                0.6471,
+                0.9118
+              ]
+            },
+            "unseen": {
+              "n": 366,
+              "misogynous_share": 0.4863,
+              "score_a": 0.8961,
+              "score_a_ci95": [
+                0.8647,
+                0.9262
+              ],
+              "accuracy": 0.8962,
+              "accuracy_ci95": [
+                0.8661,
+                0.9262
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": -0.1111,
+              "score_a_diff_ci95": [
+                -0.2685,
+                0.0145
+              ],
+              "accuracy_diff": -0.1021,
+              "accuracy_diff_ci95": [
+                -0.2491,
+                0.019
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 62,
+              "misogynous_share": 0.4839,
+              "score_a": 0.8539,
+              "score_a_ci95": [
+                0.7575,
+                0.9352
+              ],
+              "accuracy": 0.8548,
+              "accuracy_ci95": [
+                0.7581,
+                0.9355
+              ]
+            },
+            "unseen": {
+              "n": 338,
+              "misogynous_share": 0.4911,
+              "score_a": 0.8934,
+              "score_a_ci95": [
+                0.8605,
+                0.9251
+              ],
+              "accuracy": 0.8935,
+              "accuracy_ci95": [
+                0.8609,
+                0.926
+              ]
+            }
+          }
+        }
+      ],
+      "Qwen2-VL-7B zero-shot": [
+        {
+          "provenance": {
+            "file": "results/validation/qwen2vl_validation_qwen2_vl_7b_instruct.json",
+            "model_field": "qwen2vl",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.7672,
+            "score_a_ci95": [
+              0.7419,
+              0.793
+            ],
+            "accuracy": 0.768,
+            "accuracy_ci95": [
+              0.743,
+              0.794
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 33,
+              "misogynous_share": 0.5758,
+              "score_a": 0.6726,
+              "score_a_ci95": [
+                0.4906,
+                0.8256
+              ],
+              "accuracy": 0.697,
+              "accuracy_ci95": [
+                0.5455,
+                0.8485
+              ]
+            },
+            "unseen": {
+              "n": 967,
+              "misogynous_share": 0.4974,
+              "score_a": 0.7693,
+              "score_a_ci95": [
+                0.7421,
+                0.7967
+              ],
+              "accuracy": 0.7704,
+              "accuracy_ci95": [
+                0.7435,
+                0.7983
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 71,
+              "misogynous_share": 0.493,
+              "score_a": 0.6901,
+              "score_a_ci95": [
+                0.5754,
+                0.7887
+              ],
+              "accuracy": 0.6901,
+              "accuracy_ci95": [
+                0.5775,
+                0.7887
+              ]
+            },
+            "unseen": {
+              "n": 929,
+              "misogynous_share": 0.5005,
+              "score_a": 0.773,
+              "score_a_ci95": [
+                0.747,
+                0.7995
+              ],
+              "accuracy": 0.774,
+              "accuracy_ci95": [
+                0.7481,
+                0.8009
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": -0.083,
+              "score_a_diff_ci95": [
+                -0.2022,
+                0.0254
+              ],
+              "accuracy_diff": -0.0838,
+              "accuracy_diff_ci95": [
+                -0.1996,
+                0.0266
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 151,
+              "misogynous_share": 0.4901,
+              "score_a": 0.7217,
+              "score_a_ci95": [
+                0.6475,
+                0.7876
+              ],
+              "accuracy": 0.7219,
+              "accuracy_ci95": [
+                0.649,
+                0.7881
+              ]
+            },
+            "unseen": {
+              "n": 849,
+              "misogynous_share": 0.5018,
+              "score_a": 0.775,
+              "score_a_ci95": [
+                0.7453,
+                0.8024
+              ],
+              "accuracy": 0.7762,
+              "accuracy_ci95": [
+                0.7468,
+                0.8033
+              ]
+            }
+          }
+        }
+      ],
+      "Qwen2-VL-2B zero-shot": [
+        {
+          "provenance": {
+            "file": "results/validation/qwen2vl_validation_qwen2_vl_2b_instruct.json",
+            "model_field": "qwen2vl",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.7395,
+            "score_a_ci95": [
+              0.7113,
+              0.7657
+            ],
+            "accuracy": 0.74,
+            "accuracy_ci95": [
+              0.712,
+              0.766
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 33,
+              "misogynous_share": 0.5758,
+              "score_a": 0.5658,
+              "score_a_ci95": [
+                0.3889,
+                0.7232
+              ],
+              "accuracy": 0.5758,
+              "accuracy_ci95": [
+                0.3939,
+                0.7273
+              ]
+            },
+            "unseen": {
+              "n": 967,
+              "misogynous_share": 0.4974,
+              "score_a": 0.745,
+              "score_a_ci95": [
+                0.717,
+                0.7718
+              ],
+              "accuracy": 0.7456,
+              "accuracy_ci95": [
+                0.7177,
+                0.7725
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 71,
+              "misogynous_share": 0.493,
+              "score_a": 0.6056,
+              "score_a_ci95": [
+                0.4904,
+                0.7155
+              ],
+              "accuracy": 0.6056,
+              "accuracy_ci95": [
+                0.493,
+                0.7183
+              ]
+            },
+            "unseen": {
+              "n": 929,
+              "misogynous_share": 0.5005,
+              "score_a": 0.7497,
+              "score_a_ci95": [
+                0.7206,
+                0.7765
+              ],
+              "accuracy": 0.7503,
+              "accuracy_ci95": [
+                0.7212,
+                0.7772
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": -0.1442,
+              "score_a_diff_ci95": [
+                -0.2599,
+                -0.0269
+              ],
+              "accuracy_diff": -0.1446,
+              "accuracy_diff_ci95": [
+                -0.2561,
+                -0.0265
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 151,
+              "misogynous_share": 0.4901,
+              "score_a": 0.6622,
+              "score_a_ci95": [
+                0.5825,
+                0.7345
+              ],
+              "accuracy": 0.6623,
+              "accuracy_ci95": [
+                0.5828,
+                0.7351
+              ]
+            },
+            "unseen": {
+              "n": 849,
+              "misogynous_share": 0.5018,
+              "score_a": 0.7532,
+              "score_a_ci95": [
+                0.723,
+                0.7815
+              ],
+              "accuracy": 0.7538,
+              "accuracy_ci95": [
+                0.7244,
+                0.7821
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "test": {
+    "counts": {
+      "strict": {
+        "seen": 18,
+        "unseen": 982
+      },
+      "central": {
+        "seen": 50,
+        "unseen": 950
+      },
+      "loose": {
+        "seen": 131,
+        "unseen": 869
+      }
+    },
+    "template_majority_baseline": {
+      "strict": {
+        "n_seen": 18,
+        "n_decided_no_tie": 17,
+        "accuracy_on_decided": 0.7647
+      },
+      "central": {
+        "n_seen": 50,
+        "n_decided_no_tie": 49,
+        "accuracy_on_decided": 0.7755
+      },
+      "loose": {
+        "n_seen": 131,
+        "n_decided_no_tie": 123,
+        "accuracy_on_decided": 0.7805
+      }
+    },
+    "models": {
+      "SVM-RBF (tabular, PaddleOCR)": [
+        {
+          "provenance": {
+            "file": "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv"
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.7289,
+            "score_a_ci95": [
+              0.7009,
+              0.7565
+            ],
+            "accuracy": 0.739,
+            "accuracy_ci95": [
+              0.712,
+              0.766
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 18,
+              "misogynous_share": 0.5556,
+              "score_a": 0.8831,
+              "score_a_ci95": [
+                0.6786,
+                1.0
+              ],
+              "accuracy": 0.8889,
+              "accuracy_ci95": [
+                0.7222,
+                1.0
+              ]
+            },
+            "unseen": {
+              "n": 982,
+              "misogynous_share": 0.499,
+              "score_a": 0.7261,
+              "score_a_ci95": [
+                0.6974,
+                0.7542
+              ],
+              "accuracy": 0.7363,
+              "accuracy_ci95": [
+                0.7098,
+                0.7637
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 50,
+              "misogynous_share": 0.64,
+              "score_a": 0.7702,
+              "score_a_ci95": [
+                0.633,
+                0.8869
+              ],
+              "accuracy": 0.8,
+              "accuracy_ci95": [
+                0.68,
+                0.9
+              ]
+            },
+            "unseen": {
+              "n": 950,
+              "misogynous_share": 0.4926,
+              "score_a": 0.7265,
+              "score_a_ci95": [
+                0.6964,
+                0.754
+              ],
+              "accuracy": 0.7358,
+              "accuracy_ci95": [
+                0.7073,
+                0.7632
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": 0.0437,
+              "score_a_diff_ci95": [
+                -0.0992,
+                0.1623
+              ],
+              "accuracy_diff": 0.0642,
+              "accuracy_diff_ci95": [
+                -0.0558,
+                0.1716
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 131,
+              "misogynous_share": 0.6489,
+              "score_a": 0.7776,
+              "score_a_ci95": [
+                0.6935,
+                0.856
+              ],
+              "accuracy": 0.8168,
+              "accuracy_ci95": [
+                0.7481,
+                0.8779
+              ]
+            },
+            "unseen": {
+              "n": 869,
+              "misogynous_share": 0.4776,
+              "score_a": 0.7202,
+              "score_a_ci95": [
+                0.6894,
+                0.7493
+              ],
+              "accuracy": 0.7273,
+              "accuracy_ci95": [
+                0.6985,
+                0.7549
+              ]
+            }
+          }
+        }
+      ],
+      "XGBoost (tabular, PaddleOCR)": [
+        {
+          "provenance": {
+            "file": "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv"
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.7194,
+            "score_a_ci95": [
+              0.6909,
+              0.7473
+            ],
+            "accuracy": 0.73,
+            "accuracy_ci95": [
+              0.702,
+              0.757
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 18,
+              "misogynous_share": 0.5556,
+              "score_a": 0.8286,
+              "score_a_ci95": [
+                0.6,
+                1.0
+              ],
+              "accuracy": 0.8333,
+              "accuracy_ci95": [
+                0.6111,
+                1.0
+              ]
+            },
+            "unseen": {
+              "n": 982,
+              "misogynous_share": 0.499,
+              "score_a": 0.7174,
+              "score_a_ci95": [
+                0.6875,
+                0.7452
+              ],
+              "accuracy": 0.7281,
+              "accuracy_ci95": [
+                0.6996,
+                0.7556
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 50,
+              "misogynous_share": 0.64,
+              "score_a": 0.6962,
+              "score_a_ci95": [
+                0.5559,
+                0.82
+              ],
+              "accuracy": 0.72,
+              "accuracy_ci95": [
+                0.6,
+                0.84
+              ]
+            },
+            "unseen": {
+              "n": 950,
+              "misogynous_share": 0.4926,
+              "score_a": 0.7205,
+              "score_a_ci95": [
+                0.6898,
+                0.7481
+              ],
+              "accuracy": 0.7305,
+              "accuracy_ci95": [
+                0.7011,
+                0.7568
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": -0.0243,
+              "score_a_diff_ci95": [
+                -0.1757,
+                0.0981
+              ],
+              "accuracy_diff": -0.0105,
+              "accuracy_diff_ci95": [
+                -0.1453,
+                0.1063
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 131,
+              "misogynous_share": 0.6489,
+              "score_a": 0.7619,
+              "score_a_ci95": [
+                0.6761,
+                0.8356
+              ],
+              "accuracy": 0.7939,
+              "accuracy_ci95": [
+                0.7252,
+                0.8626
+              ]
+            },
+            "unseen": {
+              "n": 869,
+              "misogynous_share": 0.4776,
+              "score_a": 0.7122,
+              "score_a_ci95": [
+                0.6808,
+                0.742
+              ],
+              "accuracy": 0.7204,
+              "accuracy_ci95": [
+                0.6904,
+                0.7491
+              ]
+            }
+          }
+        }
+      ],
+      "Qwen2-VL-7B QLoRA": [
+        {
+          "provenance": {
+            "file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_finetuned_seed1.json",
+            "model_field": "qwen2vl",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.784,
+            "score_a_ci95": [
+              0.7579,
+              0.8088
+            ],
+            "accuracy": 0.787,
+            "accuracy_ci95": [
+              0.762,
+              0.811
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 18,
+              "misogynous_share": 0.5556,
+              "score_a": 0.9429,
+              "score_a_ci95": [
+                0.8036,
+                1.0
+              ],
+              "accuracy": 0.9444,
+              "accuracy_ci95": [
+                0.8333,
+                1.0
+              ]
+            },
+            "unseen": {
+              "n": 982,
+              "misogynous_share": 0.499,
+              "score_a": 0.7812,
+              "score_a_ci95": [
+                0.753,
+                0.8069
+              ],
+              "accuracy": 0.7841,
+              "accuracy_ci95": [
+                0.7566,
+                0.8096
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 50,
+              "misogynous_share": 0.64,
+              "score_a": 0.7772,
+              "score_a_ci95": [
+                0.6485,
+                0.8869
+              ],
+              "accuracy": 0.8,
+              "accuracy_ci95": [
+                0.68,
+                0.9
+              ]
+            },
+            "unseen": {
+              "n": 950,
+              "misogynous_share": 0.4926,
+              "score_a": 0.7839,
+              "score_a_ci95": [
+                0.756,
+                0.8088
+              ],
+              "accuracy": 0.7863,
+              "accuracy_ci95": [
+                0.7589,
+                0.8116
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": -0.0067,
+              "score_a_diff_ci95": [
+                -0.1504,
+                0.1105
+              ],
+              "accuracy_diff": 0.0137,
+              "accuracy_diff_ci95": [
+                -0.1084,
+                0.1211
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 131,
+              "misogynous_share": 0.6489,
+              "score_a": 0.8171,
+              "score_a_ci95": [
+                0.7443,
+                0.8849
+              ],
+              "accuracy": 0.8397,
+              "accuracy_ci95": [
+                0.7786,
+                0.9008
+              ]
+            },
+            "unseen": {
+              "n": 869,
+              "misogynous_share": 0.4776,
+              "score_a": 0.7776,
+              "score_a_ci95": [
+                0.7484,
+                0.8033
+              ],
+              "accuracy": 0.7791,
+              "accuracy_ci95": [
+                0.7503,
+                0.8044
+              ]
+            }
+          }
+        },
+        {
+          "provenance": {
+            "file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_finetuned_seed2.json",
+            "model_field": "qwen2vl",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.7578,
+            "score_a_ci95": [
+              0.7306,
+              0.7835
+            ],
+            "accuracy": 0.767,
+            "accuracy_ci95": [
+              0.741,
+              0.793
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 18,
+              "misogynous_share": 0.5556,
+              "score_a": 0.9429,
+              "score_a_ci95": [
+                0.7778,
+                1.0
+              ],
+              "accuracy": 0.9444,
+              "accuracy_ci95": [
+                0.8333,
+                1.0
+              ]
+            },
+            "unseen": {
+              "n": 982,
+              "misogynous_share": 0.499,
+              "score_a": 0.7544,
+              "score_a_ci95": [
+                0.7264,
+                0.7809
+              ],
+              "accuracy": 0.7637,
+              "accuracy_ci95": [
+                0.7373,
+                0.7892
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 50,
+              "misogynous_share": 0.64,
+              "score_a": 0.8162,
+              "score_a_ci95": [
+                0.6783,
+                0.92
+              ],
+              "accuracy": 0.84,
+              "accuracy_ci95": [
+                0.72,
+                0.94
+              ]
+            },
+            "unseen": {
+              "n": 950,
+              "misogynous_share": 0.4926,
+              "score_a": 0.7546,
+              "score_a_ci95": [
+                0.7254,
+                0.781
+              ],
+              "accuracy": 0.7632,
+              "accuracy_ci95": [
+                0.7347,
+                0.7884
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": 0.0615,
+              "score_a_diff_ci95": [
+                -0.074,
+                0.1652
+              ],
+              "accuracy_diff": 0.0768,
+              "accuracy_diff_ci95": [
+                -0.04,
+                0.1716
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 131,
+              "misogynous_share": 0.6489,
+              "score_a": 0.8069,
+              "score_a_ci95": [
+                0.7199,
+                0.8786
+              ],
+              "accuracy": 0.8397,
+              "accuracy_ci95": [
+                0.771,
+                0.9008
+              ]
+            },
+            "unseen": {
+              "n": 869,
+              "misogynous_share": 0.4776,
+              "score_a": 0.7494,
+              "score_a_ci95": [
+                0.7191,
+                0.7773
+              ],
+              "accuracy": 0.756,
+              "accuracy_ci95": [
+                0.7273,
+                0.7848
+              ]
+            }
+          }
+        },
+        {
+          "provenance": {
+            "file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_finetuned_seed3.json",
+            "model_field": "qwen2vl",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.7597,
+            "score_a_ci95": [
+              0.7327,
+              0.7858
+            ],
+            "accuracy": 0.768,
+            "accuracy_ci95": [
+              0.741,
+              0.793
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 18,
+              "misogynous_share": 0.5556,
+              "score_a": 0.9429,
+              "score_a_ci95": [
+                0.7778,
+                1.0
+              ],
+              "accuracy": 0.9444,
+              "accuracy_ci95": [
+                0.8333,
+                1.0
+              ]
+            },
+            "unseen": {
+              "n": 982,
+              "misogynous_share": 0.499,
+              "score_a": 0.7563,
+              "score_a_ci95": [
+                0.7286,
+                0.7823
+              ],
+              "accuracy": 0.7648,
+              "accuracy_ci95": [
+                0.7383,
+                0.7902
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 50,
+              "misogynous_share": 0.64,
+              "score_a": 0.7896,
+              "score_a_ci95": [
+                0.6533,
+                0.896
+              ],
+              "accuracy": 0.82,
+              "accuracy_ci95": [
+                0.7,
+                0.92
+              ]
+            },
+            "unseen": {
+              "n": 950,
+              "misogynous_share": 0.4926,
+              "score_a": 0.7578,
+              "score_a_ci95": [
+                0.7287,
+                0.7848
+              ],
+              "accuracy": 0.7653,
+              "accuracy_ci95": [
+                0.7368,
+                0.7916
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": 0.0318,
+              "score_a_diff_ci95": [
+                -0.11,
+                0.1436
+              ],
+              "accuracy_diff": 0.0547,
+              "accuracy_diff_ci95": [
+                -0.06,
+                0.1548
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 131,
+              "misogynous_share": 0.6489,
+              "score_a": 0.8069,
+              "score_a_ci95": [
+                0.722,
+                0.8788
+              ],
+              "accuracy": 0.8397,
+              "accuracy_ci95": [
+                0.771,
+                0.9008
+              ]
+            },
+            "unseen": {
+              "n": 869,
+              "misogynous_share": 0.4776,
+              "score_a": 0.7515,
+              "score_a_ci95": [
+                0.7216,
+                0.7786
+              ],
+              "accuracy": 0.7572,
+              "accuracy_ci95": [
+                0.7284,
+                0.7837
+              ]
+            }
+          }
+        }
+      ],
+      "Qwen2-VL-2B QLoRA": [
+        {
+          "provenance": {
+            "file": "results/test/qwen2vl_test_qwen2_vl_2b_instruct_finetuned_seed1.json",
+            "model_field": "qwen2vl",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.639,
+            "score_a_ci95": [
+              0.6093,
+              0.6686
+            ],
+            "accuracy": 0.673,
+            "accuracy_ci95": [
+              0.645,
+              0.701
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 18,
+              "misogynous_share": 0.5556,
+              "score_a": 0.6727,
+              "score_a_ci95": [
+                0.4,
+                0.884
+              ],
+              "accuracy": 0.7222,
+              "accuracy_ci95": [
+                0.5,
+                0.8889
+              ]
+            },
+            "unseen": {
+              "n": 982,
+              "misogynous_share": 0.499,
+              "score_a": 0.6383,
+              "score_a_ci95": [
+                0.6055,
+                0.6689
+              ],
+              "accuracy": 0.6721,
+              "accuracy_ci95": [
+                0.6405,
+                0.7006
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 50,
+              "misogynous_share": 0.64,
+              "score_a": 0.6533,
+              "score_a_ci95": [
+                0.4902,
+                0.7921
+              ],
+              "accuracy": 0.74,
+              "accuracy_ci95": [
+                0.62,
+                0.8405
+              ]
+            },
+            "unseen": {
+              "n": 950,
+              "misogynous_share": 0.4926,
+              "score_a": 0.6375,
+              "score_a_ci95": [
+                0.6059,
+                0.6683
+              ],
+              "accuracy": 0.6695,
+              "accuracy_ci95": [
+                0.64,
+                0.6979
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": 0.0158,
+              "score_a_diff_ci95": [
+                -0.1507,
+                0.1546
+              ],
+              "accuracy_diff": 0.0705,
+              "accuracy_diff_ci95": [
+                -0.0621,
+                0.1863
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 131,
+              "misogynous_share": 0.6489,
+              "score_a": 0.7033,
+              "score_a_ci95": [
+                0.6047,
+                0.7893
+              ],
+              "accuracy": 0.7786,
+              "accuracy_ci95": [
+                0.7023,
+                0.8473
+              ]
+            },
+            "unseen": {
+              "n": 869,
+              "misogynous_share": 0.4776,
+              "score_a": 0.6285,
+              "score_a_ci95": [
+                0.595,
+                0.6605
+              ],
+              "accuracy": 0.6571,
+              "accuracy_ci95": [
+                0.6237,
+                0.6859
+              ]
+            }
+          }
+        },
+        {
+          "provenance": {
+            "file": "results/test/qwen2vl_test_qwen2_vl_2b_instruct_finetuned_seed2.json",
+            "model_field": "qwen2vl",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.7597,
+            "score_a_ci95": [
+              0.7328,
+              0.7853
+            ],
+            "accuracy": 0.764,
+            "accuracy_ci95": [
+              0.738,
+              0.79
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 18,
+              "misogynous_share": 0.5556,
+              "score_a": 0.9429,
+              "score_a_ci95": [
+                0.8036,
+                1.0
+              ],
+              "accuracy": 0.9444,
+              "accuracy_ci95": [
+                0.8333,
+                1.0
+              ]
+            },
+            "unseen": {
+              "n": 982,
+              "misogynous_share": 0.499,
+              "score_a": 0.7564,
+              "score_a_ci95": [
+                0.7293,
+                0.7831
+              ],
+              "accuracy": 0.7607,
+              "accuracy_ci95": [
+                0.7332,
+                0.7872
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 50,
+              "misogynous_share": 0.64,
+              "score_a": 0.8264,
+              "score_a_ci95": [
+                0.7059,
+                0.9341
+              ],
+              "accuracy": 0.84,
+              "accuracy_ci95": [
+                0.74,
+                0.94
+              ]
+            },
+            "unseen": {
+              "n": 950,
+              "misogynous_share": 0.4926,
+              "score_a": 0.7561,
+              "score_a_ci95": [
+                0.7269,
+                0.7824
+              ],
+              "accuracy": 0.76,
+              "accuracy_ci95": [
+                0.7316,
+                0.7863
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": 0.0703,
+              "score_a_diff_ci95": [
+                -0.0614,
+                0.1757
+              ],
+              "accuracy_diff": 0.08,
+              "accuracy_diff_ci95": [
+                -0.0348,
+                0.1758
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 131,
+              "misogynous_share": 0.6489,
+              "score_a": 0.7947,
+              "score_a_ci95": [
+                0.7175,
+                0.8631
+              ],
+              "accuracy": 0.8168,
+              "accuracy_ci95": [
+                0.7481,
+                0.8779
+              ]
+            },
+            "unseen": {
+              "n": 869,
+              "misogynous_share": 0.4776,
+              "score_a": 0.7533,
+              "score_a_ci95": [
+                0.7236,
+                0.7799
+              ],
+              "accuracy": 0.756,
+              "accuracy_ci95": [
+                0.7261,
+                0.7825
+              ]
+            }
+          }
+        },
+        {
+          "provenance": {
+            "file": "results/test/qwen2vl_test_qwen2_vl_2b_instruct_finetuned_seed3.json",
+            "model_field": "qwen2vl",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.6514,
+            "score_a_ci95": [
+              0.6201,
+              0.6805
+            ],
+            "accuracy": 0.683,
+            "accuracy_ci95": [
+              0.655,
+              0.711
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 18,
+              "misogynous_share": 0.5556,
+              "score_a": 0.6727,
+              "score_a_ci95": [
+                0.4,
+                0.884
+              ],
+              "accuracy": 0.7222,
+              "accuracy_ci95": [
+                0.5,
+                0.8889
+              ]
+            },
+            "unseen": {
+              "n": 982,
+              "misogynous_share": 0.499,
+              "score_a": 0.651,
+              "score_a_ci95": [
+                0.6191,
+                0.6803
+              ],
+              "accuracy": 0.6823,
+              "accuracy_ci95": [
+                0.6527,
+                0.7108
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 50,
+              "misogynous_share": 0.64,
+              "score_a": 0.633,
+              "score_a_ci95": [
+                0.4762,
+                0.7807
+              ],
+              "accuracy": 0.74,
+              "accuracy_ci95": [
+                0.62,
+                0.86
+              ]
+            },
+            "unseen": {
+              "n": 950,
+              "misogynous_share": 0.4926,
+              "score_a": 0.651,
+              "score_a_ci95": [
+                0.6171,
+                0.6803
+              ],
+              "accuracy": 0.68,
+              "accuracy_ci95": [
+                0.6505,
+                0.7084
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": -0.018,
+              "score_a_diff_ci95": [
+                -0.1833,
+                0.123
+              ],
+              "accuracy_diff": 0.06,
+              "accuracy_diff_ci95": [
+                -0.0726,
+                0.1737
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 131,
+              "misogynous_share": 0.6489,
+              "score_a": 0.6829,
+              "score_a_ci95": [
+                0.5861,
+                0.7726
+              ],
+              "accuracy": 0.7634,
+              "accuracy_ci95": [
+                0.687,
+                0.8321
+              ]
+            },
+            "unseen": {
+              "n": 869,
+              "misogynous_share": 0.4776,
+              "score_a": 0.6449,
+              "score_a_ci95": [
+                0.6127,
+                0.6777
+              ],
+              "accuracy": 0.6709,
+              "accuracy_ci95": [
+                0.6398,
+                0.7008
+              ]
+            }
+          }
+        }
+      ],
+      "CLIP ViT-L-14 fine-tuned": [
+        {
+          "provenance": {
+            "file": "results/test/clip_test_finetuned_singleclass_vit_l_14_quickgelu_seed1.json",
+            "model_field": "clip",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.7282,
+            "score_a_ci95": [
+              0.7005,
+              0.7555
+            ],
+            "accuracy": 0.738,
+            "accuracy_ci95": [
+              0.712,
+              0.764
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 18,
+              "misogynous_share": 0.5556,
+              "score_a": 0.8831,
+              "score_a_ci95": [
+                0.6786,
+                1.0
+              ],
+              "accuracy": 0.8889,
+              "accuracy_ci95": [
+                0.7222,
+                1.0
+              ]
+            },
+            "unseen": {
+              "n": 982,
+              "misogynous_share": 0.499,
+              "score_a": 0.7254,
+              "score_a_ci95": [
+                0.6968,
+                0.7541
+              ],
+              "accuracy": 0.7352,
+              "accuracy_ci95": [
+                0.7088,
+                0.7627
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 50,
+              "misogynous_share": 0.64,
+              "score_a": 0.6961,
+              "score_a_ci95": [
+                0.5536,
+                0.8217
+              ],
+              "accuracy": 0.74,
+              "accuracy_ci95": [
+                0.62,
+                0.86
+              ]
+            },
+            "unseen": {
+              "n": 950,
+              "misogynous_share": 0.4926,
+              "score_a": 0.7291,
+              "score_a_ci95": [
+                0.7001,
+                0.7578
+              ],
+              "accuracy": 0.7379,
+              "accuracy_ci95": [
+                0.7084,
+                0.7663
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": -0.033,
+              "score_a_diff_ci95": [
+                -0.1838,
+                0.0899
+              ],
+              "accuracy_diff": 0.0021,
+              "accuracy_diff_ci95": [
+                -0.1211,
+                0.1148
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 131,
+              "misogynous_share": 0.6489,
+              "score_a": 0.7552,
+              "score_a_ci95": [
+                0.6624,
+                0.8332
+              ],
+              "accuracy": 0.8015,
+              "accuracy_ci95": [
+                0.7252,
+                0.8702
+              ]
+            },
+            "unseen": {
+              "n": 869,
+              "misogynous_share": 0.4776,
+              "score_a": 0.7219,
+              "score_a_ci95": [
+                0.6906,
+                0.7519
+              ],
+              "accuracy": 0.7284,
+              "accuracy_ci95": [
+                0.6985,
+                0.7583
+              ]
+            }
+          }
+        },
+        {
+          "provenance": {
+            "file": "results/test/clip_test_finetuned_singleclass_vit_l_14_quickgelu_seed2.json",
+            "model_field": "clip",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.7448,
+            "score_a_ci95": [
+              0.7173,
+              0.7722
+            ],
+            "accuracy": 0.754,
+            "accuracy_ci95": [
+              0.727,
+              0.781
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 18,
+              "misogynous_share": 0.5556,
+              "score_a": 0.8831,
+              "score_a_ci95": [
+                0.6786,
+                1.0
+              ],
+              "accuracy": 0.8889,
+              "accuracy_ci95": [
+                0.7222,
+                1.0
+              ]
+            },
+            "unseen": {
+              "n": 982,
+              "misogynous_share": 0.499,
+              "score_a": 0.7423,
+              "score_a_ci95": [
+                0.7136,
+                0.7711
+              ],
+              "accuracy": 0.7515,
+              "accuracy_ci95": [
+                0.724,
+                0.779
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 50,
+              "misogynous_share": 0.64,
+              "score_a": 0.7717,
+              "score_a_ci95": [
+                0.633,
+                0.8901
+              ],
+              "accuracy": 0.82,
+              "accuracy_ci95": [
+                0.72,
+                0.92
+              ]
+            },
+            "unseen": {
+              "n": 950,
+              "misogynous_share": 0.4926,
+              "score_a": 0.7426,
+              "score_a_ci95": [
+                0.7128,
+                0.7697
+              ],
+              "accuracy": 0.7505,
+              "accuracy_ci95": [
+                0.7221,
+                0.7768
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": 0.0291,
+              "score_a_diff_ci95": [
+                -0.1211,
+                0.1468
+              ],
+              "accuracy_diff": 0.0695,
+              "accuracy_diff_ci95": [
+                -0.0411,
+                0.1684
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 131,
+              "misogynous_share": 0.6489,
+              "score_a": 0.7856,
+              "score_a_ci95": [
+                0.6987,
+                0.861
+              ],
+              "accuracy": 0.8321,
+              "accuracy_ci95": [
+                0.7634,
+                0.8931
+              ]
+            },
+            "unseen": {
+              "n": 869,
+              "misogynous_share": 0.4776,
+              "score_a": 0.7364,
+              "score_a_ci95": [
+                0.7046,
+                0.7656
+              ],
+              "accuracy": 0.7422,
+              "accuracy_ci95": [
+                0.7112,
+                0.7699
+              ]
+            }
+          }
+        },
+        {
+          "provenance": {
+            "file": "results/test/clip_test_finetuned_singleclass_vit_l_14_quickgelu_seed3.json",
+            "model_field": "clip",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.7213,
+            "score_a_ci95": [
+              0.6923,
+              0.7485
+            ],
+            "accuracy": 0.733,
+            "accuracy_ci95": [
+              0.706,
+              0.761
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 18,
+              "misogynous_share": 0.5556,
+              "score_a": 0.8831,
+              "score_a_ci95": [
+                0.6786,
+                1.0
+              ],
+              "accuracy": 0.8889,
+              "accuracy_ci95": [
+                0.7222,
+                1.0
+              ]
+            },
+            "unseen": {
+              "n": 982,
+              "misogynous_share": 0.499,
+              "score_a": 0.7183,
+              "score_a_ci95": [
+                0.6884,
+                0.7463
+              ],
+              "accuracy": 0.7301,
+              "accuracy_ci95": [
+                0.7006,
+                0.7576
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 50,
+              "misogynous_share": 0.64,
+              "score_a": 0.7717,
+              "score_a_ci95": [
+                0.633,
+                0.8904
+              ],
+              "accuracy": 0.82,
+              "accuracy_ci95": [
+                0.72,
+                0.92
+              ]
+            },
+            "unseen": {
+              "n": 950,
+              "misogynous_share": 0.4926,
+              "score_a": 0.7181,
+              "score_a_ci95": [
+                0.6872,
+                0.7467
+              ],
+              "accuracy": 0.7284,
+              "accuracy_ci95": [
+                0.6989,
+                0.7568
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": 0.0536,
+              "score_a_diff_ci95": [
+                -0.1017,
+                0.1743
+              ],
+              "accuracy_diff": 0.0916,
+              "accuracy_diff_ci95": [
+                -0.0221,
+                0.1895
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 131,
+              "misogynous_share": 0.6489,
+              "score_a": 0.7737,
+              "score_a_ci95": [
+                0.6867,
+                0.8524
+              ],
+              "accuracy": 0.8244,
+              "accuracy_ci95": [
+                0.7557,
+                0.8855
+              ]
+            },
+            "unseen": {
+              "n": 869,
+              "misogynous_share": 0.4776,
+              "score_a": 0.7114,
+              "score_a_ci95": [
+                0.6796,
+                0.7407
+              ],
+              "accuracy": 0.7192,
+              "accuracy_ci95": [
+                0.6881,
+                0.748
+              ]
+            }
+          }
+        }
+      ],
+      "CLIP ViT-B-32 fine-tuned": [
+        {
+          "provenance": {
+            "file": "results/test/clip_test_finetuned_singleclass_vit_b_32_quickgelu_seed1.json",
+            "model_field": "clip",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.6884,
+            "score_a_ci95": [
+              0.6599,
+              0.7175
+            ],
+            "accuracy": 0.705,
+            "accuracy_ci95": [
+              0.678,
+              0.733
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 18,
+              "misogynous_share": 0.5556,
+              "score_a": 0.8194,
+              "score_a_ci95": [
+                0.5846,
+                1.0
+              ],
+              "accuracy": 0.8333,
+              "accuracy_ci95": [
+                0.6667,
+                1.0
+              ]
+            },
+            "unseen": {
+              "n": 982,
+              "misogynous_share": 0.499,
+              "score_a": 0.686,
+              "score_a_ci95": [
+                0.6566,
+                0.7158
+              ],
+              "accuracy": 0.7026,
+              "accuracy_ci95": [
+                0.6731,
+                0.7312
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 50,
+              "misogynous_share": 0.64,
+              "score_a": 0.6357,
+              "score_a_ci95": [
+                0.4802,
+                0.7772
+              ],
+              "accuracy": 0.7,
+              "accuracy_ci95": [
+                0.5795,
+                0.82
+              ]
+            },
+            "unseen": {
+              "n": 950,
+              "misogynous_share": 0.4926,
+              "score_a": 0.6901,
+              "score_a_ci95": [
+                0.6595,
+                0.7189
+              ],
+              "accuracy": 0.7053,
+              "accuracy_ci95": [
+                0.6758,
+                0.7337
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": -0.0544,
+              "score_a_diff_ci95": [
+                -0.2091,
+                0.073
+              ],
+              "accuracy_diff": -0.0053,
+              "accuracy_diff_ci95": [
+                -0.1358,
+                0.1106
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 131,
+              "misogynous_share": 0.6489,
+              "score_a": 0.6936,
+              "score_a_ci95": [
+                0.5984,
+                0.781
+              ],
+              "accuracy": 0.7557,
+              "accuracy_ci95": [
+                0.6868,
+                0.8244
+              ]
+            },
+            "unseen": {
+              "n": 869,
+              "misogynous_share": 0.4776,
+              "score_a": 0.685,
+              "score_a_ci95": [
+                0.6538,
+                0.7148
+              ],
+              "accuracy": 0.6974,
+              "accuracy_ci95": [
+                0.6674,
+                0.7261
+              ]
+            }
+          }
+        },
+        {
+          "provenance": {
+            "file": "results/test/clip_test_finetuned_singleclass_vit_b_32_quickgelu_seed2.json",
+            "model_field": "clip",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.7006,
+            "score_a_ci95": [
+              0.6716,
+              0.7273
+            ],
+            "accuracy": 0.715,
+            "accuracy_ci95": [
+              0.688,
+              0.741
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 18,
+              "misogynous_share": 0.5556,
+              "score_a": 0.9429,
+              "score_a_ci95": [
+                0.8036,
+                1.0
+              ],
+              "accuracy": 0.9444,
+              "accuracy_ci95": [
+                0.8333,
+                1.0
+              ]
+            },
+            "unseen": {
+              "n": 982,
+              "misogynous_share": 0.499,
+              "score_a": 0.6961,
+              "score_a_ci95": [
+                0.6664,
+                0.7258
+              ],
+              "accuracy": 0.7108,
+              "accuracy_ci95": [
+                0.6823,
+                0.7393
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 50,
+              "misogynous_share": 0.64,
+              "score_a": 0.7429,
+              "score_a_ci95": [
+                0.6026,
+                0.8663
+              ],
+              "accuracy": 0.78,
+              "accuracy_ci95": [
+                0.66,
+                0.88
+              ]
+            },
+            "unseen": {
+              "n": 950,
+              "misogynous_share": 0.4926,
+              "score_a": 0.6982,
+              "score_a_ci95": [
+                0.6684,
+                0.7273
+              ],
+              "accuracy": 0.7116,
+              "accuracy_ci95": [
+                0.6832,
+                0.74
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": 0.0447,
+              "score_a_diff_ci95": [
+                -0.1032,
+                0.1647
+              ],
+              "accuracy_diff": 0.0684,
+              "accuracy_diff_ci95": [
+                -0.0526,
+                0.1737
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 131,
+              "misogynous_share": 0.6489,
+              "score_a": 0.7701,
+              "score_a_ci95": [
+                0.6867,
+                0.8468
+              ],
+              "accuracy": 0.8092,
+              "accuracy_ci95": [
+                0.7405,
+                0.8779
+              ]
+            },
+            "unseen": {
+              "n": 869,
+              "misogynous_share": 0.4776,
+              "score_a": 0.6896,
+              "score_a_ci95": [
+                0.6578,
+                0.7195
+              ],
+              "accuracy": 0.7008,
+              "accuracy_ci95": [
+                0.6697,
+                0.7296
+              ]
+            }
+          }
+        },
+        {
+          "provenance": {
+            "file": "results/test/clip_test_finetuned_singleclass_vit_b_32_quickgelu_seed3.json",
+            "model_field": "clip",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.696,
+            "score_a_ci95": [
+              0.667,
+              0.7236
+            ],
+            "accuracy": 0.709,
+            "accuracy_ci95": [
+              0.681,
+              0.736
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 18,
+              "misogynous_share": 0.5556,
+              "score_a": 0.8831,
+              "score_a_ci95": [
+                0.699,
+                1.0
+              ],
+              "accuracy": 0.8889,
+              "accuracy_ci95": [
+                0.7222,
+                1.0
+              ]
+            },
+            "unseen": {
+              "n": 982,
+              "misogynous_share": 0.499,
+              "score_a": 0.6926,
+              "score_a_ci95": [
+                0.6623,
+                0.7222
+              ],
+              "accuracy": 0.7057,
+              "accuracy_ci95": [
+                0.6762,
+                0.7352
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 50,
+              "misogynous_share": 0.64,
+              "score_a": 0.6783,
+              "score_a_ci95": [
+                0.5338,
+                0.807
+              ],
+              "accuracy": 0.72,
+              "accuracy_ci95": [
+                0.6,
+                0.84
+              ]
+            },
+            "unseen": {
+              "n": 950,
+              "misogynous_share": 0.4926,
+              "score_a": 0.6964,
+              "score_a_ci95": [
+                0.6662,
+                0.7254
+              ],
+              "accuracy": 0.7084,
+              "accuracy_ci95": [
+                0.68,
+                0.7358
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": -0.0181,
+              "score_a_diff_ci95": [
+                -0.1719,
+                0.1084
+              ],
+              "accuracy_diff": 0.0116,
+              "accuracy_diff_ci95": [
+                -0.12,
+                0.1253
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 131,
+              "misogynous_share": 0.6489,
+              "score_a": 0.7291,
+              "score_a_ci95": [
+                0.6425,
+                0.8124
+              ],
+              "accuracy": 0.7786,
+              "accuracy_ci95": [
+                0.7099,
+                0.8473
+              ]
+            },
+            "unseen": {
+              "n": 869,
+              "misogynous_share": 0.4776,
+              "score_a": 0.6891,
+              "score_a_ci95": [
+                0.6565,
+                0.718
+              ],
+              "accuracy": 0.6985,
+              "accuracy_ci95": [
+                0.6674,
+                0.7273
+              ]
+            }
+          }
+        }
+      ],
+      "Gemini (zero-shot)": [
+        {
+          "provenance": {
+            "file": "results/test/gemini_test.json",
+            "model_field": "gemini",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.8818,
+            "score_a_ci95": [
+              0.8607,
+              0.9008
+            ],
+            "accuracy": 0.882,
+            "accuracy_ci95": [
+              0.861,
+              0.901
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 18,
+              "misogynous_share": 0.5556,
+              "score_a": 0.8875,
+              "score_a_ci95": [
+                0.7143,
+                1.0
+              ],
+              "accuracy": 0.8889,
+              "accuracy_ci95": [
+                0.7222,
+                1.0
+              ]
+            },
+            "unseen": {
+              "n": 982,
+              "misogynous_share": 0.499,
+              "score_a": 0.8817,
+              "score_a_ci95": [
+                0.8605,
+                0.9008
+              ],
+              "accuracy": 0.8819,
+              "accuracy_ci95": [
+                0.8615,
+                0.9012
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 50,
+              "misogynous_share": 0.64,
+              "score_a": 0.9132,
+              "score_a_ci95": [
+                0.8182,
+                0.9796
+              ],
+              "accuracy": 0.92,
+              "accuracy_ci95": [
+                0.84,
+                0.98
+              ]
+            },
+            "unseen": {
+              "n": 950,
+              "misogynous_share": 0.4926,
+              "score_a": 0.8799,
+              "score_a_ci95": [
+                0.8584,
+                0.9
+              ],
+              "accuracy": 0.88,
+              "accuracy_ci95": [
+                0.8589,
+                0.9
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": 0.0333,
+              "score_a_diff_ci95": [
+                -0.0609,
+                0.106
+              ],
+              "accuracy_diff": 0.04,
+              "accuracy_diff_ci95": [
+                -0.0442,
+                0.1084
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 131,
+              "misogynous_share": 0.6489,
+              "score_a": 0.9064,
+              "score_a_ci95": [
+                0.8496,
+                0.9547
+              ],
+              "accuracy": 0.916,
+              "accuracy_ci95": [
+                0.8702,
+                0.9618
+              ]
+            },
+            "unseen": {
+              "n": 869,
+              "misogynous_share": 0.4776,
+              "score_a": 0.8769,
+              "score_a_ci95": [
+                0.8537,
+                0.8985
+              ],
+              "accuracy": 0.8769,
+              "accuracy_ci95": [
+                0.8539,
+                0.8987
+              ]
+            }
+          }
+        }
+      ],
+      "Qwen2-VL-7B zero-shot": [
+        {
+          "provenance": {
+            "file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct.json",
+            "model_field": "qwen2vl",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.766,
+            "score_a_ci95": [
+              0.7384,
+              0.7922
+            ],
+            "accuracy": 0.767,
+            "accuracy_ci95": [
+              0.74,
+              0.793
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 18,
+              "misogynous_share": 0.5556,
+              "score_a": 0.8875,
+              "score_a_ci95": [
+                0.7143,
+                1.0
+              ],
+              "accuracy": 0.8889,
+              "accuracy_ci95": [
+                0.7222,
+                1.0
+              ]
+            },
+            "unseen": {
+              "n": 982,
+              "misogynous_share": 0.499,
+              "score_a": 0.7637,
+              "score_a_ci95": [
+                0.7357,
+                0.789
+              ],
+              "accuracy": 0.7648,
+              "accuracy_ci95": [
+                0.7373,
+                0.7902
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 50,
+              "misogynous_share": 0.64,
+              "score_a": 0.764,
+              "score_a_ci95": [
+                0.6195,
+                0.8768
+              ],
+              "accuracy": 0.78,
+              "accuracy_ci95": [
+                0.66,
+                0.88
+              ]
+            },
+            "unseen": {
+              "n": 950,
+              "misogynous_share": 0.4926,
+              "score_a": 0.7647,
+              "score_a_ci95": [
+                0.7369,
+                0.7909
+              ],
+              "accuracy": 0.7663,
+              "accuracy_ci95": [
+                0.7389,
+                0.7926
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": -0.0007,
+              "score_a_diff_ci95": [
+                -0.141,
+                0.1202
+              ],
+              "accuracy_diff": 0.0137,
+              "accuracy_diff_ci95": [
+                -0.1169,
+                0.1295
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 131,
+              "misogynous_share": 0.6489,
+              "score_a": 0.7808,
+              "score_a_ci95": [
+                0.7009,
+                0.8528
+              ],
+              "accuracy": 0.7939,
+              "accuracy_ci95": [
+                0.725,
+                0.8626
+              ]
+            },
+            "unseen": {
+              "n": 869,
+              "misogynous_share": 0.4776,
+              "score_a": 0.76,
+              "score_a_ci95": [
+                0.731,
+                0.7882
+              ],
+              "accuracy": 0.7629,
+              "accuracy_ci95": [
+                0.7342,
+                0.7906
+              ]
+            }
+          }
+        }
+      ],
+      "Qwen2-VL-2B zero-shot": [
+        {
+          "provenance": {
+            "file": "results/test/qwen2vl_test_qwen2_vl_2b_instruct.json",
+            "model_field": "qwen2vl",
+            "n_predictions": 1000,
+            "invalid_predictions_scored_wrong": 0
+          },
+          "all": {
+            "n": 1000,
+            "misogynous_share": 0.5,
+            "score_a": 0.725,
+            "score_a_ci95": [
+              0.6987,
+              0.75
+            ],
+            "accuracy": 0.725,
+            "accuracy_ci95": [
+              0.699,
+              0.75
+            ]
+          },
+          "strict": {
+            "seen": {
+              "n": 18,
+              "misogynous_share": 0.5556,
+              "score_a": 0.8194,
+              "score_a_ci95": [
+                0.6,
+                1.0
+              ],
+              "accuracy": 0.8333,
+              "accuracy_ci95": [
+                0.6667,
+                1.0
+              ]
+            },
+            "unseen": {
+              "n": 982,
+              "misogynous_share": 0.499,
+              "score_a": 0.723,
+              "score_a_ci95": [
+                0.6944,
+                0.7514
+              ],
+              "accuracy": 0.723,
+              "accuracy_ci95": [
+                0.6945,
+                0.7515
+              ]
+            }
+          },
+          "central": {
+            "seen": {
+              "n": 50,
+              "misogynous_share": 0.64,
+              "score_a": 0.7512,
+              "score_a_ci95": [
+                0.6073,
+                0.8727
+              ],
+              "accuracy": 0.78,
+              "accuracy_ci95": [
+                0.66,
+                0.8805
+              ]
+            },
+            "unseen": {
+              "n": 950,
+              "misogynous_share": 0.4926,
+              "score_a": 0.722,
+              "score_a_ci95": [
+                0.6936,
+                0.7515
+              ],
+              "accuracy": 0.7221,
+              "accuracy_ci95": [
+                0.6937,
+                0.7516
+              ]
+            },
+            "seen_minus_unseen": {
+              "score_a_diff": 0.0293,
+              "score_a_diff_ci95": [
+                -0.1194,
+                0.1561
+              ],
+              "accuracy_diff": 0.0579,
+              "accuracy_diff_ci95": [
+                -0.0747,
+                0.1747
+              ]
+            }
+          },
+          "loose": {
+            "seen": {
+              "n": 131,
+              "misogynous_share": 0.6489,
+              "score_a": 0.6885,
+              "score_a_ci95": [
+                0.5984,
+                0.7664
+              ],
+              "accuracy": 0.7176,
+              "accuracy_ci95": [
+                0.6336,
+                0.7863
+              ]
+            },
+            "unseen": {
+              "n": 869,
+              "misogynous_share": 0.4776,
+              "score_a": 0.7254,
+              "score_a_ci95": [
+                0.695,
+                0.7548
+              ],
+              "accuracy": 0.7261,
+              "accuracy_ci95": [
+                0.6951,
+                0.756
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

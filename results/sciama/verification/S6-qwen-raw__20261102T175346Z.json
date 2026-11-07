@@ -1,0 +1,19 @@
+{
+  "job": "S6-qwen-raw",
+  "params": {},
+  "passed": true,
+  "checked_utc": "2026-11-02T17:53:46+00:00",
+  "git_commit": "914befec124c8d7fe107e4e73caa1e786d12f40a",
+  "files": [
+    {
+      "path": "results/validation/harmeme_validation_qwen2_vl_7b_instruct_raw_responses.json",
+      "sha256": "f3bfa83422c3674c9e2786dbe862d349afbd069859a86230e58d58c15840315b",
+      "errors": []
+    },
+    {
+      "path": "results/test/harmeme_test_qwen2_vl_7b_instruct_raw_responses.json",
+      "sha256": "cdb759391d6c561367652349e20a2a04acb9973ae4e9f47a73fc53a11571b8dd",
+      "errors": []
+    }
+  ]
+}

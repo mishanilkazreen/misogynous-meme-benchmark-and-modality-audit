@@ -1,0 +1,3 @@
+Loading system/sciama
+  Loading requirement: services/slurm
+[2026-11-02T17:45:42.777] error: *** JOB 3589398 ON gpu12 CANCELLED AT 2026-11-02T17:45:42 DUE to SIGNAL Terminated ***

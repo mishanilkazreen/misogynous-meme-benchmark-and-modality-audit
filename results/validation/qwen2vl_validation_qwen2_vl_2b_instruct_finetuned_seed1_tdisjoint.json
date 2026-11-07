@@ -1,0 +1,7019 @@
+[
+  {
+    "benchmark_date": "2026-10-04T20:55:08.636926+00:00",
+    "model": "qwen2vl",
+    "filter": "none",
+    "split": "validation",
+    "task": "singleclass",
+    "exact_match_accuracy": 0.868,
+    "precision": 0.8683772182715099,
+    "recall": 0.868,
+    "f1": 0.8679661993470329,
+    "avg_latency_s": 0.12160828275419772,
+    "refusal_rate": 0.0,
+    "sample_predictions": [
+      {
+        "image_id": "2606",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8886",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4681",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "597",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1617",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4381",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9544",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1889",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9578",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4948",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11431",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8785",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10350",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2616",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10463",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5547",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5718",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7100",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7595",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "14200",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1257",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "149",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "6438",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1291",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2298",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "718",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5412",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "664",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1890",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11357",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3580",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "323",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5739",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8820",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10356",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10315",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9581",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8393",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "4758",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "8584",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11312",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2224",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5973",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7456",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9776",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8843",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10844",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "8699",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8934",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7852",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2285",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2892",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10667",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "847",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5073",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "10423",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5487",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6824",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11097",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4992",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1959",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8775",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7115",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8079",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3676",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1323",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5876",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2853",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4924",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11716",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5602",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6137",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8248",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1539",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "241",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5024",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2281",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "8978",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "10901",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5843",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9232",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8706",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6318",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4524",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5115",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10521",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10036",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5532",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6755",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5000",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1308",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9763",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "738",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1792",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8594",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "5383",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "368",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10184",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1232",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4976",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8992",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2473",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11476",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4304",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7758",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3252",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "635",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7429",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2125",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7334",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "501",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8121",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6411",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1245",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11124",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8813",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "11265",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5242",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2200",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2479",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7446",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "9149",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "758",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2631",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4404",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2589",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5355",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5676",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5328",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8143",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1773",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "13297",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8022",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2230",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "992",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3962",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6681",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "9689",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2427",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1915",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4451",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6554",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3044",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "3080",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6955",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5481",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6293",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8644",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11561",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4534",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7281",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4323",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5921",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1576",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6549",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6150",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4330",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4216",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6523",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1848",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7454",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1994",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6402",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "9928",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4252",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "468",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4891",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2494",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1350",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3842",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "2649",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2268",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6141",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "11643",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10225",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6187",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "7999",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6348",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "4089",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2356",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4495",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "8102",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10201",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8132",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7651",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9046",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3441",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11708",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2432",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "2702",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10533",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9868",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8162",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "351",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4058",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6002",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11333",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "4130",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "5257",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "5812",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8428",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6144",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5990",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7109",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "852",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1600",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10674",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9189",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6171",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5916",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11203",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "5785",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8835",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8116",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6034",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5560",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1581",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9355",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1772",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4849",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7770",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10154",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5868",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2826",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "370",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10682",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1725",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "2050",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5927",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11219",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3106",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4744",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "888",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "8151",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "6253",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7393",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11673",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3344",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10680",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "864",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4703",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4771",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11450",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "202",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3128",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3401",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "3420",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3176",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7112",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9832",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7433",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "233",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "4817",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4000",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4345",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10704",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8846",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "7151",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4781",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8577",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4591",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2650",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9421",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "7582",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2161",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5234",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "6776",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9402",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10300",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5289",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1443",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1027",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3409",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6132",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5975",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4845",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2544",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "10053",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1684",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9553",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6534",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3246",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3339",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8474",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1978",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7050",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8910",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10685",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5461",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4141",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5129",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "6153",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "8522",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7216",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "4114",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9601",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7288",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11483",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9410",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1373",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "21",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1602",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "963",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2841",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6616",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9395",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4432",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1203",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9247",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "9906",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9667",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "657",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3179",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11699",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5500",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "450",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1218",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2730",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2052",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "4950",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6126",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "144",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4195",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4496",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "3555",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "753",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6704",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "280",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "14030",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "6302",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3376",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "13039",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "10129",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5942",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7353",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9877",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4772",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4398",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8097",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9361",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3671",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "3314",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7671",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "546",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "724",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5262",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3629",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "1306",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "412",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5855",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2845",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8241",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "4452",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9175",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9302",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11180",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7620",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6008",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4027",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "11322",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10395",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2317",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "4642",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6658",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9084",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3519",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1551",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5521",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7780",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5912",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2527",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11267",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5003",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5428",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7136",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3597",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5849",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4762",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8489",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1296",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8261",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "665",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "812",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9107",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8240",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3239",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6777",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8014",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "2622",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5741",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7874",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6744",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2430",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "989",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3122",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1368",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3590",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "2907",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7338",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10342",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9521",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4863",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "733",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "3952",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4299",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "1968",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4850",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4544",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1534",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "320",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4090",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6004",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7631",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7705",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4693",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5226",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "9187",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1896",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4011",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "10779",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11047",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3288",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6768",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3980",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "609",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3024",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8772",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10714",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4868",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10938",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7474",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2596",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8510",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6449",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7333",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "5029",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "4311",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10197",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "11474",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6657",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5781",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6317",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8023",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "344",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8000",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11557",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6611",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10050",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4082",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9539",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "8166",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3536",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10148",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "824",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "294",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9979",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10690",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1411",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5401",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6505",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "853",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10775",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "4143",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "173",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9135",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9280",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "706",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3478",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8989",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9074",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9752",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "1639",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10662",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7992",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7606",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6619",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6180",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2999",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3804",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "520",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10713",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7529",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6313",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9245",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8700",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6888",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5388",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8105",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8624",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "204",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "798",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10294",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "383",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8173",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1771",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "9615",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11649",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9441",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11012",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7475",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "545",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5015",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5708",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7361",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4811",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "13435",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3916",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "336",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1082",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9663",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "9205",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3421",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2988",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2113",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3469",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "660",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2747",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "6932",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9676",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4290",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2262",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11177",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4113",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8363",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5731",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1937",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "594",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "4428",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2036",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "1800",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7439",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10035",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2420",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8361",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "3528",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "4038",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "744",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10563",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6088",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4997",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4707",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1120",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9652",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2339",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6501",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8189",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "4449",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2916",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7289",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4009",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5348",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "13027",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10172",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "6717",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "307",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6934",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10157",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2127",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11060",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6569",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2906",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "186",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11227",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9791",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1261",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4341",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10549",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9317",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4353",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "5297",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "13033",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5879",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5196",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4111",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9039",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "377",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11015",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10341",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7648",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8801",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7146",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10295",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11646",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11088",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11195",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "737",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6621",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "123",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3566",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8108",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2901",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7775",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7902",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2022",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6832",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11216",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1419",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3198",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1015",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2541",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6636",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2448",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8936",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3626",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9506",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2232",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4846",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11487",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10333",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10273",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "10440",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "386",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "5233",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6826",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7871",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3098",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2968",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "478",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7018",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3347",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9720",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8403",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1010",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5031",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1069",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "607",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "419",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "5585",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11526",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2055",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10747",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11453",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2576",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7855",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4998",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8590",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "577",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5536",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1860",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7485",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10490",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4877",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5415",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11314",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10656",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5537",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1796",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8707",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9249",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4191",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4360",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "9498",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8365",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1251",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5424",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1851",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5291",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8035",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4899",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5578",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9526",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1706",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8661",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "11169",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "11545",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5774",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2565",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1976",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9061",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7837",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3893",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3572",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1084",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4573",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4355",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3412",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1688",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9636",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10539",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2051",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7290",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10205",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "9874",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6950",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9297",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8270",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9319",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "13354",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9685",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2231",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1211",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1567",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2875",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "113",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1921",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5620",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2045",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5357",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10008",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11094",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9116",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2696",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4371",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5950",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2395",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4070",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8526",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7178",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4007",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7696",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10128",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9019",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8401",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6810",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2684",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6929",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9884",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "5862",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7584",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10995",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10465",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10310",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6896",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4382",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11672",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8258",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5755",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11011",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10816",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6735",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2752",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5062",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11132",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2223",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10222",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "13270",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9089",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "955",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "11414",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "471",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5290",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6721",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4731",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "712",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1032",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10916",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9313",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8544",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4093",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1065",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7543",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8922",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "182",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8015",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10237",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "7663",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5087",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2256",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "7272",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10185",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "8681",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6922",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6689",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11050",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "3399",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8850",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6808",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "637",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1732",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7604",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "761",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1217",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "6699",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6166",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2504",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11577",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7412",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11574",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "11068",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8724",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "6173",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4042",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2560",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11209",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5190",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3801",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6330",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9365",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10180",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "6743",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2614",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7691",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11228",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "688",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "13486",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "378",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "980",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2292",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1993",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "580",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10809",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10867",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4786",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "7975",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9384",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4316",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "6524",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2396",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2324",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2884",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3649",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "10449",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2691",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "363",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8433",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7149",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3117",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7660",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11658",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5306",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1622",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4597",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11620",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3932",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6391",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10033",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8806",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5967",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9711",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7635",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "8730",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3791",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5474",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4034",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7794",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "2522",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3414",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5006",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9126",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "9813",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3033",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3432",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3258",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10364",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4460",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "4690",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10284",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5538",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1696",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3457",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6781",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5764",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "11119",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3746",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6705",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3523",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "13072",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9648",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "8159",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1820",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6527",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "104",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "617",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "678",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5794",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1722",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "2287",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8861",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6006",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "13168",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "11678",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5987",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9331",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10910",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6670",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9803",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "14160",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "7652",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5798",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "3040",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "6266",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "510",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "9510",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5471",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1952",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10323",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8430",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1973",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "5338",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10410",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "3695",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6281",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "494",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "8432",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10959",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6568",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9913",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4909",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1003",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5439",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "443",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4455",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5187",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "7954",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "8471",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "4484",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "599",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "11083",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "1319",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "10660",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "6580",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "5652",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "9396",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15521",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15663",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15929",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15732",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "16155",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "16075",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "15667",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15556",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15705",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15701",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "16013",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "16001",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "15593",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15759",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "17082",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15982",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "15101",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "15468",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "16052",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "16064",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15472",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15524",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "16003",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15931",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15391",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "15019",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15970",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "16265",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15481",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "16080",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "16152",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "15658",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "15484",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15633",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "16035",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15247",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15213",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "16034",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15631",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "17021",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15317",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "17048",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15180",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15088",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "16148",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15995",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15626",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15177",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "16040",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "17067",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15722",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "16226",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "16328",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "17020",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "16307",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15538",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "16332",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15408",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15966",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15969",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15008",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "16181",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "15737",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15763",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15772",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "15847",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15619",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15444",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "17024",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15348",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "15789",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15493",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15621",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "16188",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15198",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "16198",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15546",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "15928",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15129",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "16063",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15162",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "refusal": false
+      },
+      {
+        "image_id": "15285",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "15429",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "16112",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "16147",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      },
+      {
+        "image_id": "17038",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "refusal": false
+      }
+    ],
+    "split_dir": "data/splits/template_disjoint",
+    "split_tag": "tdisjoint"
+  }
+]

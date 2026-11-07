@@ -1,0 +1,2894 @@
+{
+  "bootstrap": {
+    "n_resamples": 2000,
+    "rng": "numpy.default_rng",
+    "seed": 20220705,
+    "unit": "meme",
+    "interval": "percentile 2.5-97.5",
+    "verified_against_official_resamples": 20
+  },
+  "ci95_test": {
+    "clipB_ft": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "results/test/clip_test_finetuned_singleclass_vit_b_32_quickgelu_seed1.json",
+        "point": 0.6883711742279792,
+        "ci95": [
+          0.6586579760494895,
+          0.7167617755502926
+        ],
+        "n_seeds": 3,
+        "seed_range": [
+          0.6883711742279792,
+          0.7006425156952603
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "results/test/clip_test_finetuned_multiclass_vit_b_32_quickgelu_seed1.json",
+        "point": 0.5386566691784624,
+        "ci95": [
+          0.5178284448817743,
+          0.5583078375114181
+        ],
+        "n_seeds": 3,
+        "seed_range": [
+          0.5370300026810705,
+          0.5486502757497955
+        ]
+      }
+    },
+    "clipB_zs": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "results/test/clip_test_vit_b_32_quickgelu.json",
+        "point": 0.58719915744001,
+        "ci95": [
+          0.5546508460226516,
+          0.6179338513178164
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.58719915744001,
+          0.58719915744001
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "results/test/clip_test_multiclass_vit_b_32_quickgelu.json",
+        "point": 0.5109806540739811,
+        "ci95": [
+          0.4911010468983661,
+          0.5291613870201006
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.5109806540739811,
+          0.5109806540739811
+        ]
+      }
+    },
+    "clipL_ft": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "results/test/clip_test_finetuned_singleclass_vit_l_14_quickgelu_seed1.json",
+        "point": 0.7281875713248263,
+        "ci95": [
+          0.7002709782712248,
+          0.7557327197241349
+        ],
+        "n_seeds": 3,
+        "seed_range": [
+          0.7212870899553746,
+          0.7447868036103329
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "results/test/clip_test_finetuned_multiclass_vit_l_14_quickgelu_seed1.json",
+        "point": 0.6158133846634188,
+        "ci95": [
+          0.5979515224186229,
+          0.6335216284627637
+        ],
+        "n_seeds": 3,
+        "seed_range": [
+          0.6157730917122869,
+          0.6215805296061996
+        ]
+      }
+    },
+    "clipL_zs": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "results/test/clip_test_vit_l_14_quickgelu.json",
+        "point": 0.5826074332171893,
+        "ci95": [
+          0.5503290672279153,
+          0.6156527193401297
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.5826074332171893,
+          0.5826074332171893
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "results/test/clip_test_multiclass_vit_l_14_quickgelu.json",
+        "point": 0.5164551667626349,
+        "ci95": [
+          0.49794925551654534,
+          0.5340588872578874
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.5164551667626349,
+          0.5164551667626349
+        ]
+      }
+    },
+    "gemini": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "results/test/gemini_test.json",
+        "point": 0.8818468735481184,
+        "ci95": [
+          0.8608662925070993,
+          0.9000117400627946
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.8818468735481184,
+          0.8818468735481184
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "results/test/gemini_test_multiclass.json",
+        "point": 0.36508360167077586,
+        "ci95": [
+          0.35889733195728396,
+          0.3714036365225994
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.36508360167077586,
+          0.36508360167077586
+        ]
+      }
+    },
+    "llava_ft": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "results/test/llava_test_llava_1_5_7b_hf_finetuned.json",
+        "point": 0.6297119158705473,
+        "ci95": [
+          0.5992162866151965,
+          0.6592311546300484
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.6297119158705473,
+          0.6297119158705473
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "results/test/llava_test_llava_1_5_7b_hf_multiclass_finetuned.json",
+        "point": 0.417114925900047,
+        "ci95": [
+          0.4086879569657669,
+          0.4257964799861949
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.417114925900047,
+          0.417114925900047
+        ]
+      }
+    },
+    "llava_zs": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "results/test/llava_test_llava_1_5_7b_hf.json",
+        "point": 0.5949532517869052,
+        "ci95": [
+          0.5629836577580345,
+          0.6258874008711877
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.5949532517869052,
+          0.5949532517869052
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "results/test/llava_test_llava_1_5_7b_hf_multiclass.json",
+        "point": 0.41388099324116184,
+        "ci95": [
+          0.40606067743519897,
+          0.42152651930272866
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.41388099324116184,
+          0.41388099324116184
+        ]
+      }
+    },
+    "ml_paddleocr::AdaBoost Classifier": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv",
+        "point": 0.6847660870732248,
+        "ci95": [
+          0.6546699831865019,
+          0.7145529699312326
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.6847660870732248,
+          0.6847660870732248
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+        "point": 0.658291451533076,
+        "ci95": [
+          0.6398091039036425,
+          0.6759911266411058
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.658291451533076,
+          0.658291451533076
+        ]
+      }
+    },
+    "ml_paddleocr::Bagging Classifier": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv",
+        "point": 0.7088509316770186,
+        "ci95": [
+          0.6798982256718031,
+          0.7378858214445831
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.7088509316770186,
+          0.7088509316770186
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+        "point": 0.5930065071388442,
+        "ci95": [
+          0.573946886159665,
+          0.6120533342088592
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.5930065071388442,
+          0.5930065071388442
+        ]
+      }
+    },
+    "ml_paddleocr::Bernoulli Naive Bayes": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv",
+        "point": 0.6927996644911012,
+        "ci95": [
+          0.6630168779949578,
+          0.7219630719703762
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.6927996644911012,
+          0.6927996644911012
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+        "point": 0.6615919683294533,
+        "ci95": [
+          0.6438918951004882,
+          0.6790040203679791
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.6615919683294533,
+          0.6615919683294533
+        ]
+      }
+    },
+    "ml_paddleocr::Decision Tree": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv",
+        "point": 0.6600771848691602,
+        "ci95": [
+          0.6303464837266661,
+          0.6884417298039291
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.6600771848691602,
+          0.6600771848691602
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+        "point": 0.6064205723376669,
+        "ci95": [
+          0.5881512374450883,
+          0.623525840798938
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.6064205723376669,
+          0.6064205723376669
+        ]
+      }
+    },
+    "ml_paddleocr::Extra Tree Classifier": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv",
+        "point": 0.6020500452215858,
+        "ci95": [
+          0.5704532171243302,
+          0.6320890135735623
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.6020500452215858,
+          0.6020500452215858
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+        "point": 0.555290264648753,
+        "ci95": [
+          0.5378540180381982,
+          0.5724361981221288
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.555290264648753,
+          0.555290264648753
+        ]
+      }
+    },
+    "ml_paddleocr::Extra Trees Classifier": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv",
+        "point": 0.7085905635194794,
+        "ci95": [
+          0.6805484260821233,
+          0.7377676496608092
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.7085905635194794,
+          0.7085905635194794
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+        "point": 0.5375715064483759,
+        "ci95": [
+          0.5204396770717449,
+          0.5554964643381256
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.5375715064483759,
+          0.5375715064483759
+        ]
+      }
+    },
+    "ml_paddleocr::Gaussian Naive Bayes": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv",
+        "point": 0.6823446749607663,
+        "ci95": [
+          0.6522600875773661,
+          0.7113595587746695
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.6823446749607663,
+          0.6823446749607663
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+        "point": 0.6583981800189332,
+        "ci95": [
+          0.640516717443996,
+          0.6762801068432465
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.6583981800189332,
+          0.6583981800189332
+        ]
+      }
+    },
+    "ml_paddleocr::Gradient Boosting Classifier": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv",
+        "point": 0.7159773655808264,
+        "ci95": [
+          0.6872979752088311,
+          0.7438281013550201
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.7159773655808264,
+          0.7159773655808264
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+        "point": 0.675161917592234,
+        "ci95": [
+          0.6565135964597166,
+          0.69283891911912
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.675161917592234,
+          0.675161917592234
+        ]
+      }
+    },
+    "ml_paddleocr::Hist Gradient Boosting Classifier": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv",
+        "point": 0.7288188924218336,
+        "ci95": [
+          0.7005273359456108,
+          0.7555468778740041
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.7288188924218336,
+          0.7288188924218336
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+        "point": 0.6753439522026081,
+        "ci95": [
+          0.6563192876650596,
+          0.6932478549719738
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.6753439522026081,
+          0.6753439522026081
+        ]
+      }
+    },
+    "ml_paddleocr::KNN": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv",
+        "point": 0.6687041888280278,
+        "ci95": [
+          0.6385028917710379,
+          0.6977040950133003
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.6687041888280278,
+          0.6687041888280278
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+        "point": 0.6533817932360498,
+        "ci95": [
+          0.635795749188326,
+          0.6700172126660193
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.6533817932360498,
+          0.6533817932360498
+        ]
+      }
+    },
+    "ml_paddleocr::LightGBM": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv",
+        "point": 0.7162088411861016,
+        "ci95": [
+          0.6887905826017134,
+          0.7449667333630567
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.7162088411861016,
+          0.7162088411861016
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+        "point": 0.6814404429721711,
+        "ci95": [
+          0.6623860936484752,
+          0.699682751400354
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.6814404429721711,
+          0.6814404429721711
+        ]
+      }
+    },
+    "ml_paddleocr::Linear Discriminant Analysis": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv",
+        "point": 0.7177533163985323,
+        "ci95": [
+          0.689563067964498,
+          0.745347261872882
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.7177533163985323,
+          0.7177533163985323
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+        "point": 0.7003217368451508,
+        "ci95": [
+          0.6830881022297967,
+          0.7168180368411542
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.7003217368451508,
+          0.7003217368451508
+        ]
+      }
+    },
+    "ml_paddleocr::Logistic Regression": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv",
+        "point": 0.7138876449221276,
+        "ci95": [
+          0.6858807511432949,
+          0.7416215769852764
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.7138876449221276,
+          0.7138876449221276
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+        "point": 0.6658459575189988,
+        "ci95": [
+          0.6484886922737256,
+          0.6836329335470122
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.6658459575189988,
+          0.6658459575189988
+        ]
+      }
+    },
+    "ml_paddleocr::Neural Network - MLPClassifier": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv",
+        "point": 0.7401050969428697,
+        "ci95": [
+          0.714343400347713,
+          0.7687511988491049
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.7401050969428697,
+          0.7401050969428697
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+        "point": 0.7060415606872071,
+        "ci95": [
+          0.6889526600803138,
+          0.7228436748322754
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.7060415606872071,
+          0.7060415606872071
+        ]
+      }
+    },
+    "ml_paddleocr::PassiveAggressiveClassifier": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv",
+        "point": 0.686737197321448,
+        "ci95": [
+          0.6568811955602051,
+          0.7155054765427121
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.686737197321448,
+          0.686737197321448
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+        "point": 0.6241339795693623,
+        "ci95": [
+          0.6074705189614558,
+          0.6406861018146464
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.6241339795693623,
+          0.6241339795693623
+        ]
+      }
+    },
+    "ml_paddleocr::Perceptron": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv",
+        "point": 0.664389209077236,
+        "ci95": [
+          0.6347680065613475,
+          0.6940887043983657
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.664389209077236,
+          0.664389209077236
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+        "point": 0.6353534740130267,
+        "ci95": [
+          0.6173940669866858,
+          0.6533970073082026
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.6353534740130267,
+          0.6353534740130267
+        ]
+      }
+    },
+    "ml_paddleocr::Random Forest": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv",
+        "point": 0.7359853959859508,
+        "ci95": [
+          0.7090460913829519,
+          0.7628132369847426
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.7359853959859508,
+          0.7359853959859508
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+        "point": 0.5763600602206815,
+        "ci95": [
+          0.55681840489925,
+          0.5950327404362704
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.5763600602206815,
+          0.5763600602206815
+        ]
+      }
+    },
+    "ml_paddleocr::Ridge Classifier": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv",
+        "point": 0.7173254640055914,
+        "ci95": [
+          0.6900836134715834,
+          0.7450114641606903
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.7173254640055914,
+          0.7173254640055914
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+        "point": 0.6739935521386646,
+        "ci95": [
+          0.6566495521994851,
+          0.6917371951240746
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.6739935521386646,
+          0.6739935521386646
+        ]
+      }
+    },
+    "ml_paddleocr::SGD Classifier": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv",
+        "point": 0.7113305817610063,
+        "ci95": [
+          0.6828004389209351,
+          0.7390300890152055
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.7113305817610063,
+          0.7113305817610063
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+        "point": 0.6508525698727715,
+        "ci95": [
+          0.6328734565404626,
+          0.6689222877051852
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.6508525698727715,
+          0.6508525698727715
+        ]
+      }
+    },
+    "ml_paddleocr::Support Vector Machine - LinearSVC": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv",
+        "point": 0.7039778749337573,
+        "ci95": [
+          0.6748899767437271,
+          0.7327558549078104
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.7039778749337573,
+          0.7039778749337573
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+        "point": 0.6611488865500901,
+        "ci95": [
+          0.6443145294366753,
+          0.678117619107627
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.6611488865500901,
+          0.6611488865500901
+        ]
+      }
+    },
+    "ml_paddleocr::Support Vector Machine - RBF SVC": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv",
+        "point": 0.7289018655914146,
+        "ci95": [
+          0.700971350318873,
+          0.7555866962441636
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.7289018655914146,
+          0.7289018655914146
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+        "point": 0.7334442368485325,
+        "ci95": [
+          0.7173799381861058,
+          0.7488815465075455
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.7334442368485325,
+          0.7334442368485325
+        ]
+      }
+    },
+    "ml_paddleocr::XGBoost": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv",
+        "point": 0.7194408768407796,
+        "ci95": [
+          0.692469301309491,
+          0.7479982453211156
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.7194408768407796,
+          0.7194408768407796
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+        "point": 0.6856977402657003,
+        "ci95": [
+          0.6674033740038735,
+          0.702344961454641
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.6856977402657003,
+          0.6856977402657003
+        ]
+      }
+    },
+    "qwen2b_ft": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "results/test/qwen2vl_test_qwen2_vl_2b_instruct_finetuned_seed1.json",
+        "point": 0.6389736252016283,
+        "ci95": [
+          0.607824021554169,
+          0.6698624450288827
+        ],
+        "n_seeds": 3,
+        "seed_range": [
+          0.6389736252016283,
+          0.7596849021021461
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "results/test/qwen2vl_test_qwen2_vl_2b_instruct_multiclass_finetuned_seed1.json",
+        "point": 0.7209819570667511,
+        "ci95": [
+          0.702806609542003,
+          0.7367424922223987
+        ],
+        "n_seeds": 5,
+        "seed_range": [
+          0.6847995604522293,
+          0.7209819570667511
+        ]
+      }
+    },
+    "qwen2b_zs": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "results/test/qwen2vl_test_qwen2_vl_2b_instruct.json",
+        "point": 0.7249975249777247,
+        "ci95": [
+          0.6969071408445883,
+          0.751920043802149
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.7249975249777247,
+          0.7249975249777247
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "results/test/qwen2vl_test_qwen2_vl_2b_instruct_multiclass.json",
+        "point": 0.44251959543111924,
+        "ci95": [
+          0.42823392313095643,
+          0.4569574638038808
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.44251959543111924,
+          0.44251959543111924
+        ]
+      }
+    },
+    "qwen7b_ft": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_finetuned_seed1.json",
+        "point": 0.7840437752392501,
+        "ci95": [
+          0.758035656191034,
+          0.8080280284016913
+        ],
+        "n_seeds": 4,
+        "seed_range": [
+          0.7577899633566362,
+          0.7840437752392501
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass_finetuned_seed1.json",
+        "point": 0.7532033434025595,
+        "ci95": [
+          0.7365091794447425,
+          0.7674765053997182
+        ],
+        "n_seeds": 5,
+        "seed_range": [
+          0.7194948232343082,
+          0.7532033434025595
+        ]
+      }
+    },
+    "qwen7b_zs": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct.json",
+        "point": 0.7660113981572142,
+        "ci95": [
+          0.7399940250532786,
+          0.7917687244780423
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.7660113981572142,
+          0.7660113981572142
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass.json",
+        "point": 0.6089649674253407,
+        "ci95": [
+          0.5904243386703345,
+          0.6275143517215777
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.6089649674253407,
+          0.6089649674253407
+        ]
+      }
+    },
+    "visualbert": {
+      "A": {
+        "metric": "score_a",
+        "bootstrapped_file": "results/test/visualbert_test.json",
+        "point": 0.47310756010168703,
+        "ci95": [
+          0.4415902937334092,
+          0.5039833153685527
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.47310756010168703,
+          0.47310756010168703
+        ]
+      },
+      "B": {
+        "metric": "score_b",
+        "bootstrapped_file": "results/test/visualbert_test_multiclass.json",
+        "point": 0.4377249320554541,
+        "ci95": [
+          0.41755053809070364,
+          0.45920786854069673
+        ],
+        "n_seeds": 1,
+        "seed_range": [
+          0.4377249320554541,
+          0.4377249320554541
+        ]
+      }
+    },
+    "ml_provided::KNN": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_combined::KNN": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_provided::Logistic Regression": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_combined::Logistic Regression": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_provided::SGD Classifier": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_combined::SGD Classifier": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_provided::Ridge Classifier": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_combined::Ridge Classifier": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_provided::Perceptron": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_combined::Perceptron": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_provided::PassiveAggressiveClassifier": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_combined::PassiveAggressiveClassifier": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_provided::Linear Discriminant Analysis": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_combined::Linear Discriminant Analysis": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_provided::Support Vector Machine - LinearSVC": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_combined::Support Vector Machine - LinearSVC": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_provided::Support Vector Machine - RBF SVC": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_combined::Support Vector Machine - RBF SVC": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_provided::Neural Network - MLPClassifier": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_combined::Neural Network - MLPClassifier": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_provided::Extra Tree Classifier": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_combined::Extra Tree Classifier": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_provided::Bernoulli Naive Bayes": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_combined::Bernoulli Naive Bayes": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_provided::Gaussian Naive Bayes": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_combined::Gaussian Naive Bayes": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_provided::Decision Tree": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_combined::Decision Tree": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_provided::Random Forest": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_combined::Random Forest": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_provided::Hist Gradient Boosting Classifier": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_combined::Hist Gradient Boosting Classifier": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_provided::Gradient Boosting Classifier": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_combined::Gradient Boosting Classifier": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_provided::XGBoost": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_combined::XGBoost": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_provided::LightGBM": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_combined::LightGBM": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_provided::Extra Trees Classifier": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_combined::Extra Trees Classifier": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_provided::AdaBoost Classifier": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_combined::AdaBoost Classifier": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_provided::Bagging Classifier": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    },
+    "ml_combined::Bagging Classifier": {
+      "note": "not computable: per-sample predictions for this text variant are not in the repository (only aggregate summary JSONs)"
+    }
+  },
+  "paired_tests_test": {
+    "gemini_vs_qwen7b_qlora__task_A": {
+      "metric": "score_a",
+      "x_file": "results/test/gemini_test.json",
+      "y_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_finetuned_seed1.json",
+      "n": 1000,
+      "x": 0.8818468735481184,
+      "y": 0.7840437752392501,
+      "delta": 0.09780309830886835,
+      "delta_ci95": [
+        0.06872145785475257,
+        0.12656091909486267
+      ],
+      "p_bootstrap_two_sided": 0.0,
+      "mcnemar": {
+        "x_only_correct": 160,
+        "y_only_correct": 65,
+        "p_exact": 1.9960188179157773e-10,
+        "chi2_cc": 39.27111111111111,
+        "p_chi2_cc": 3.688585636387872e-10,
+        "acc_x": 0.882,
+        "acc_y": 0.787
+      },
+      "x_model": "Gemini 3.1 Flash Lite",
+      "y_model": "Qwen2-VL-7B QLoRA",
+      "x_variant": null,
+      "y_variant": null,
+      "all_seed_pairs": [
+        {
+          "metric": "score_a",
+          "x_file": "results/test/gemini_test.json",
+          "y_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_finetuned_seed1.json",
+          "n": 1000,
+          "x": 0.8818468735481184,
+          "y": 0.7840437752392501,
+          "delta": 0.09780309830886835,
+          "delta_ci95": [
+            0.06872145785475257,
+            0.12656091909486267
+          ],
+          "p_bootstrap_two_sided": 0.0,
+          "mcnemar_p_exact": 1.9960188179157773e-10
+        },
+        {
+          "metric": "score_a",
+          "x_file": "results/test/gemini_test.json",
+          "y_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_finetuned_seed2.json",
+          "n": 1000,
+          "x": 0.8818468735481184,
+          "y": 0.7577899633566362,
+          "delta": 0.12405691019148224,
+          "delta_ci95": [
+            0.09696242675204655,
+            0.15129383186501325
+          ],
+          "p_bootstrap_two_sided": 0.0,
+          "mcnemar_p_exact": 3.752772069621273e-16
+        },
+        {
+          "metric": "score_a",
+          "x_file": "results/test/gemini_test.json",
+          "y_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_finetuned_seed3.json",
+          "n": 1000,
+          "x": 0.8818468735481184,
+          "y": 0.7596861003269098,
+          "delta": 0.12216077322120866,
+          "delta_ci95": [
+            0.09410543136938382,
+            0.14972354407021518
+          ],
+          "p_bootstrap_two_sided": 0.0,
+          "mcnemar_p_exact": 3.2493450760718367e-15
+        },
+        {
+          "metric": "score_a",
+          "x_file": "results/test/gemini_test.json",
+          "y_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_finetuned_seed4.json",
+          "n": 1000,
+          "x": 0.8818468735481184,
+          "y": 0.7761246143797831,
+          "delta": 0.10572225916833533,
+          "delta_ci95": [
+            0.07858215329945861,
+            0.1339002265402862
+          ],
+          "p_bootstrap_two_sided": 0.0,
+          "mcnemar_p_exact": 1.4678071430318404e-12
+        }
+      ]
+    },
+    "gemini_vs_qwen7b_qlora__task_B": {
+      "metric": "score_b",
+      "x_file": "results/test/gemini_test_multiclass.json",
+      "y_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass_finetuned_seed1.json",
+      "n": 1000,
+      "x": 0.36508360167077586,
+      "y": 0.7532033434025595,
+      "delta": -0.3881197417317836,
+      "delta_ci95": [
+        -0.4024972710966805,
+        -0.37175578668609255
+      ],
+      "p_bootstrap_two_sided": 0.0,
+      "x_model": "Gemini 3.1 Flash Lite",
+      "y_model": "Qwen2-VL-7B QLoRA",
+      "x_variant": null,
+      "y_variant": null,
+      "all_seed_pairs": [
+        {
+          "metric": "score_b",
+          "x_file": "results/test/gemini_test_multiclass.json",
+          "y_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass_finetuned_seed1.json",
+          "n": 1000,
+          "x": 0.36508360167077586,
+          "y": 0.7532033434025595,
+          "delta": -0.3881197417317836,
+          "delta_ci95": [
+            -0.4024972710966805,
+            -0.37175578668609255
+          ],
+          "p_bootstrap_two_sided": 0.0
+        },
+        {
+          "metric": "score_b",
+          "x_file": "results/test/gemini_test_multiclass.json",
+          "y_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass_finetuned_seed2.json",
+          "n": 1000,
+          "x": 0.36508360167077586,
+          "y": 0.7428093205479707,
+          "delta": -0.3777257188771948,
+          "delta_ci95": [
+            -0.3918369889486611,
+            -0.36217636143399695
+          ],
+          "p_bootstrap_two_sided": 0.0
+        },
+        {
+          "metric": "score_b",
+          "x_file": "results/test/gemini_test_multiclass.json",
+          "y_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass_finetuned_seed3.json",
+          "n": 1000,
+          "x": 0.36508360167077586,
+          "y": 0.7194948232343082,
+          "delta": -0.3544112215635324,
+          "delta_ci95": [
+            -0.3689759882336483,
+            -0.3385187661099089
+          ],
+          "p_bootstrap_two_sided": 0.0
+        },
+        {
+          "metric": "score_b",
+          "x_file": "results/test/gemini_test_multiclass.json",
+          "y_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass_finetuned_seed4.json",
+          "n": 1000,
+          "x": 0.36508360167077586,
+          "y": 0.7400757646775494,
+          "delta": -0.37499216300677357,
+          "delta_ci95": [
+            -0.3893267980603129,
+            -0.35859324872066844
+          ],
+          "p_bootstrap_two_sided": 0.0
+        },
+        {
+          "metric": "score_b",
+          "x_file": "results/test/gemini_test_multiclass.json",
+          "y_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass_finetuned_seed5.json",
+          "n": 1000,
+          "x": 0.36508360167077586,
+          "y": 0.7342479312363893,
+          "delta": -0.36916432956561346,
+          "delta_ci95": [
+            -0.3835533864844228,
+            -0.35371965590503485
+          ],
+          "p_bootstrap_two_sided": 0.0
+        }
+      ],
+      "warning": "constant-prediction (likely failed) run(s): ['results/test/gemini_test_multiclass.json']"
+    },
+    "qwen7b_qlora_vs_svm_rbf_paddleocr__task_B": {
+      "metric": "score_b",
+      "x_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass_finetuned_seed1.json",
+      "y_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+      "n": 1000,
+      "x": 0.7532033434025595,
+      "y": 0.7334442368485325,
+      "delta": 0.019759106554026906,
+      "delta_ci95": [
+        0.0017667380515123871,
+        0.03636707872774697
+      ],
+      "p_bootstrap_two_sided": 0.026,
+      "x_model": "Qwen2-VL-7B QLoRA",
+      "y_model": "SVM-RBF",
+      "x_variant": null,
+      "y_variant": "paddleocr",
+      "all_seed_pairs": [
+        {
+          "metric": "score_b",
+          "x_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass_finetuned_seed1.json",
+          "y_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+          "n": 1000,
+          "x": 0.7532033434025595,
+          "y": 0.7334442368485325,
+          "delta": 0.019759106554026906,
+          "delta_ci95": [
+            0.0017667380515123871,
+            0.03636707872774697
+          ],
+          "p_bootstrap_two_sided": 0.026
+        },
+        {
+          "metric": "score_b",
+          "x_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass_finetuned_seed2.json",
+          "y_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+          "n": 1000,
+          "x": 0.7428093205479707,
+          "y": 0.7334442368485325,
+          "delta": 0.009365083699438115,
+          "delta_ci95": [
+            -0.007902234930573683,
+            0.026859730920361563
+          ],
+          "p_bootstrap_two_sided": 0.3035
+        },
+        {
+          "metric": "score_b",
+          "x_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass_finetuned_seed3.json",
+          "y_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+          "n": 1000,
+          "x": 0.7194948232343082,
+          "y": 0.7334442368485325,
+          "delta": -0.013949413614224304,
+          "delta_ci95": [
+            -0.03209021781508581,
+            0.004828836388007764
+          ],
+          "p_bootstrap_two_sided": 0.1435
+        },
+        {
+          "metric": "score_b",
+          "x_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass_finetuned_seed4.json",
+          "y_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+          "n": 1000,
+          "x": 0.7400757646775494,
+          "y": 0.7334442368485325,
+          "delta": 0.006631527829016881,
+          "delta_ci95": [
+            -0.012884858342193958,
+            0.024384836057773036
+          ],
+          "p_bootstrap_two_sided": 0.49
+        },
+        {
+          "metric": "score_b",
+          "x_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass_finetuned_seed5.json",
+          "y_file": "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv",
+          "n": 1000,
+          "x": 0.7342479312363893,
+          "y": 0.7334442368485325,
+          "delta": 0.0008036943878567682,
+          "delta_ci95": [
+            -0.017543865305946874,
+            0.01934480765601013
+          ],
+          "p_bootstrap_two_sided": 0.929
+        }
+      ],
+      "note": "SVM-RBF / XGBoost use PaddleOCR-text embeddings: the paper's provided-text rows have no per-sample predictions in the repository"
+    },
+    "svm_rbf_vs_xgboost_paddleocr__task_A": {
+      "metric": "score_a",
+      "x_file": "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv",
+      "y_file": "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv",
+      "n": 1000,
+      "x": 0.7289018655914146,
+      "y": 0.7194408768407796,
+      "delta": 0.009460988750634947,
+      "delta_ci95": [
+        -0.0110225190247486,
+        0.030594513646686063
+      ],
+      "p_bootstrap_two_sided": 0.37,
+      "mcnemar": {
+        "x_only_correct": 50,
+        "y_only_correct": 41,
+        "p_exact": 0.4018127960698797,
+        "chi2_cc": 0.7032967032967034,
+        "p_chi2_cc": 0.4016781664697727,
+        "acc_x": 0.739,
+        "acc_y": 0.73
+      },
+      "x_model": "SVM-RBF",
+      "y_model": "XGBoost",
+      "x_variant": "paddleocr",
+      "y_variant": "paddleocr",
+      "note": "SVM-RBF / XGBoost use PaddleOCR-text embeddings: the paper's provided-text rows have no per-sample predictions in the repository"
+    },
+    "qwen7b_qlora_vs_qwen7b_zero_shot__task_A": {
+      "metric": "score_a",
+      "x_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_finetuned_seed1.json",
+      "y_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct.json",
+      "n": 1000,
+      "x": 0.7840437752392501,
+      "y": 0.7660113981572142,
+      "delta": 0.018032377082035866,
+      "delta_ci95": [
+        -0.010834008833603527,
+        0.04899727046720696
+      ],
+      "p_bootstrap_two_sided": 0.2435,
+      "mcnemar": {
+        "x_only_correct": 136,
+        "y_only_correct": 116,
+        "p_exact": 0.23128430773119596,
+        "chi2_cc": 1.4325396825396826,
+        "p_chi2_cc": 0.23135040777413468,
+        "acc_x": 0.787,
+        "acc_y": 0.767
+      },
+      "x_model": "Qwen2-VL-7B QLoRA",
+      "y_model": "Qwen2-VL-7B (Zero-Shot)",
+      "x_variant": null,
+      "y_variant": null,
+      "all_seed_pairs": [
+        {
+          "metric": "score_a",
+          "x_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_finetuned_seed1.json",
+          "y_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct.json",
+          "n": 1000,
+          "x": 0.7840437752392501,
+          "y": 0.7660113981572142,
+          "delta": 0.018032377082035866,
+          "delta_ci95": [
+            -0.010834008833603527,
+            0.04899727046720696
+          ],
+          "p_bootstrap_two_sided": 0.2435,
+          "mcnemar_p_exact": 0.23128430773119596
+        },
+        {
+          "metric": "score_a",
+          "x_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_finetuned_seed2.json",
+          "y_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct.json",
+          "n": 1000,
+          "x": 0.7577899633566362,
+          "y": 0.7660113981572142,
+          "delta": -0.00822143480057802,
+          "delta_ci95": [
+            -0.03964169581237023,
+            0.023891383261902228
+          ],
+          "p_bootstrap_two_sided": 0.614,
+          "mcnemar_p_exact": 1.0
+        },
+        {
+          "metric": "score_a",
+          "x_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_finetuned_seed3.json",
+          "y_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct.json",
+          "n": 1000,
+          "x": 0.7596861003269098,
+          "y": 0.7660113981572142,
+          "delta": -0.006325297830304444,
+          "delta_ci95": [
+            -0.038287628978159266,
+            0.025037450732825154
+          ],
+          "p_bootstrap_two_sided": 0.707,
+          "mcnemar_p_exact": 1.0
+        },
+        {
+          "metric": "score_a",
+          "x_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_finetuned_seed4.json",
+          "y_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct.json",
+          "n": 1000,
+          "x": 0.7761246143797831,
+          "y": 0.7660113981572142,
+          "delta": 0.010113216222568888,
+          "delta_ci95": [
+            -0.020577269224585935,
+            0.03950638694646224
+          ],
+          "p_bootstrap_two_sided": 0.5185,
+          "mcnemar_p_exact": 0.3769088032876113
+        }
+      ]
+    },
+    "qwen7b_qlora_vs_qwen7b_zero_shot__task_B": {
+      "metric": "score_b",
+      "x_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass_finetuned_seed1.json",
+      "y_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass.json",
+      "n": 1000,
+      "x": 0.7532033434025595,
+      "y": 0.6089649674253407,
+      "delta": 0.14423837597721878,
+      "delta_ci95": [
+        0.1219240085775844,
+        0.16618091688934492
+      ],
+      "p_bootstrap_two_sided": 0.0,
+      "x_model": "Qwen2-VL-7B QLoRA",
+      "y_model": "Qwen2-VL-7B (Zero-Shot)",
+      "x_variant": null,
+      "y_variant": null,
+      "all_seed_pairs": [
+        {
+          "metric": "score_b",
+          "x_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass_finetuned_seed1.json",
+          "y_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass.json",
+          "n": 1000,
+          "x": 0.7532033434025595,
+          "y": 0.6089649674253407,
+          "delta": 0.14423837597721878,
+          "delta_ci95": [
+            0.1219240085775844,
+            0.16618091688934492
+          ],
+          "p_bootstrap_two_sided": 0.0
+        },
+        {
+          "metric": "score_b",
+          "x_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass_finetuned_seed2.json",
+          "y_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass.json",
+          "n": 1000,
+          "x": 0.7428093205479707,
+          "y": 0.6089649674253407,
+          "delta": 0.13384435312263,
+          "delta_ci95": [
+            0.11134842199362736,
+            0.15617584448856292
+          ],
+          "p_bootstrap_two_sided": 0.0
+        },
+        {
+          "metric": "score_b",
+          "x_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass_finetuned_seed3.json",
+          "y_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass.json",
+          "n": 1000,
+          "x": 0.7194948232343082,
+          "y": 0.6089649674253407,
+          "delta": 0.11052985580896757,
+          "delta_ci95": [
+            0.08646475153066824,
+            0.13460692351507295
+          ],
+          "p_bootstrap_two_sided": 0.0
+        },
+        {
+          "metric": "score_b",
+          "x_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass_finetuned_seed4.json",
+          "y_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass.json",
+          "n": 1000,
+          "x": 0.7400757646775494,
+          "y": 0.6089649674253407,
+          "delta": 0.13111079725220876,
+          "delta_ci95": [
+            0.10747388287687357,
+            0.1539860689056706
+          ],
+          "p_bootstrap_two_sided": 0.0
+        },
+        {
+          "metric": "score_b",
+          "x_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass_finetuned_seed5.json",
+          "y_file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass.json",
+          "n": 1000,
+          "x": 0.7342479312363893,
+          "y": 0.6089649674253407,
+          "delta": 0.12528296381104864,
+          "delta_ci95": [
+            0.10080833481239239,
+            0.15021310451296785
+          ],
+          "p_bootstrap_two_sided": 0.0
+        }
+      ]
+    },
+    "svm_rbf_provided_vs_paddleocr__task_B": {
+      "computed": false,
+      "reason": "per-sample predictions for the provided-text run (auto_benchmark/results/model_results/mami_tabular_model_multiclass_provided_test/) are not in the repository; only aggregate metrics exist, so no paired test is possible"
+    }
+  },
+  "all_negative": {
+    "test": {
+      "task_a": {
+        "acc": 0.5,
+        "score_a": 0.3333333333333333
+      },
+      "task_b": {
+        "score_b": 0.41388099324116184,
+        "subtype_f1": 0.0,
+        "em": 0.5,
+        "per_label_binary_macro_f1": {
+          "shaming": 0.4606256742179072,
+          "stereotype": 0.393939393939394,
+          "objectification": 0.39467312348668276,
+          "violence": 0.4585814834867352
+        },
+        "per_label_positive_f1": {
+          "shaming": 0.0,
+          "stereotype": 0.0,
+          "objectification": 0.0,
+          "violence": 0.0
+        }
+      },
+      "frac_no_subtype_gold": 0.5
+    },
+    "validation": {
+      "task_a": {
+        "acc": 0.5,
+        "score_a": 0.3333333333333333
+      },
+      "task_b": {
+        "score_b": 0.44027144545407965,
+        "subtype_f1": 0.0,
+        "em": 0.523,
+        "per_label_binary_macro_f1": {
+          "shaming": 0.4672349493873202,
+          "stereotype": 0.419953596287703,
+          "objectification": 0.435665914221219,
+          "violence": 0.4736842105263158
+        },
+        "per_label_positive_f1": {
+          "shaming": 0.0,
+          "stereotype": 0.0,
+          "objectification": 0.0,
+          "violence": 0.0
+        }
+      },
+      "frac_no_subtype_gold": 0.523
+    }
+  },
+  "thresholds": {
+    "rules": {
+      "gemini": "generated yes/no text and JSON booleans; no threshold",
+      "qwen": "generated text parsed to labels; no threshold",
+      "llava": "generated text parsed to labels; no threshold",
+      "visualbert": "argmax of yes/no MLM logits",
+      "clip_ft": "Task A argmax of 2 logits; Task B sigmoid >= 0.50 (scripts/train_clip.py)",
+      "clip_zs": "Task A argmax softmax; Task B softmax prob >= 0.50 (models/vlm/clip_classifier.py)",
+      "ml": "estimator.predict() in auto_benchmark/src/autobenchmark/models.py: argmax of predict_proba (= 0.50) or decision_function sign for margin models; the calibrated taus in results/threshold_calibration_results.csv are never applied to predictions"
+    },
+    "per_row_thr": {
+      "gemini": "N/A",
+      "qwen7b_ft": "N/A",
+      "qwen7b_zs": "N/A",
+      "qwen2b_ft": "N/A",
+      "qwen2b_zs": "N/A",
+      "llava_ft": "N/A",
+      "llava_zs": "N/A",
+      "clipL_ft": "0.50",
+      "clipB_ft": "0.50",
+      "clipL_zs": "0.50",
+      "clipB_zs": "0.50",
+      "visualbert": "N/A",
+      "ml_provided::KNN": "0.50",
+      "ml_paddleocr::KNN": "0.50",
+      "ml_combined::KNN": "0.50",
+      "ml_provided::Logistic Regression": "0.50",
+      "ml_paddleocr::Logistic Regression": "0.50",
+      "ml_combined::Logistic Regression": "0.50",
+      "ml_provided::SGD Classifier": "margin 0",
+      "ml_paddleocr::SGD Classifier": "margin 0",
+      "ml_combined::SGD Classifier": "margin 0",
+      "ml_provided::Ridge Classifier": "margin 0",
+      "ml_paddleocr::Ridge Classifier": "margin 0",
+      "ml_combined::Ridge Classifier": "margin 0",
+      "ml_provided::Perceptron": "margin 0",
+      "ml_paddleocr::Perceptron": "margin 0",
+      "ml_combined::Perceptron": "margin 0",
+      "ml_provided::PassiveAggressiveClassifier": "margin 0",
+      "ml_paddleocr::PassiveAggressiveClassifier": "margin 0",
+      "ml_combined::PassiveAggressiveClassifier": "margin 0",
+      "ml_provided::Linear Discriminant Analysis": "0.50",
+      "ml_paddleocr::Linear Discriminant Analysis": "0.50",
+      "ml_combined::Linear Discriminant Analysis": "0.50",
+      "ml_provided::Support Vector Machine - LinearSVC": "margin 0",
+      "ml_paddleocr::Support Vector Machine - LinearSVC": "margin 0",
+      "ml_combined::Support Vector Machine - LinearSVC": "margin 0",
+      "ml_provided::Support Vector Machine - RBF SVC": "margin 0",
+      "ml_paddleocr::Support Vector Machine - RBF SVC": "margin 0",
+      "ml_combined::Support Vector Machine - RBF SVC": "margin 0",
+      "ml_provided::Neural Network - MLPClassifier": "0.50",
+      "ml_paddleocr::Neural Network - MLPClassifier": "0.50",
+      "ml_combined::Neural Network - MLPClassifier": "0.50",
+      "ml_provided::Extra Tree Classifier": "0.50",
+      "ml_paddleocr::Extra Tree Classifier": "0.50",
+      "ml_combined::Extra Tree Classifier": "0.50",
+      "ml_provided::Bernoulli Naive Bayes": "0.50",
+      "ml_paddleocr::Bernoulli Naive Bayes": "0.50",
+      "ml_combined::Bernoulli Naive Bayes": "0.50",
+      "ml_provided::Gaussian Naive Bayes": "0.50",
+      "ml_paddleocr::Gaussian Naive Bayes": "0.50",
+      "ml_combined::Gaussian Naive Bayes": "0.50",
+      "ml_provided::Decision Tree": "0.50",
+      "ml_paddleocr::Decision Tree": "0.50",
+      "ml_combined::Decision Tree": "0.50",
+      "ml_provided::Random Forest": "0.50",
+      "ml_paddleocr::Random Forest": "0.50",
+      "ml_combined::Random Forest": "0.50",
+      "ml_provided::Hist Gradient Boosting Classifier": "0.50",
+      "ml_paddleocr::Hist Gradient Boosting Classifier": "0.50",
+      "ml_combined::Hist Gradient Boosting Classifier": "0.50",
+      "ml_provided::Gradient Boosting Classifier": "0.50",
+      "ml_paddleocr::Gradient Boosting Classifier": "0.50",
+      "ml_combined::Gradient Boosting Classifier": "0.50",
+      "ml_provided::XGBoost": "0.50",
+      "ml_paddleocr::XGBoost": "0.50",
+      "ml_combined::XGBoost": "0.50",
+      "ml_provided::LightGBM": "0.50",
+      "ml_paddleocr::LightGBM": "0.50",
+      "ml_combined::LightGBM": "0.50",
+      "ml_provided::Extra Trees Classifier": "0.50",
+      "ml_paddleocr::Extra Trees Classifier": "0.50",
+      "ml_combined::Extra Trees Classifier": "0.50",
+      "ml_provided::AdaBoost Classifier": "0.50",
+      "ml_paddleocr::AdaBoost Classifier": "0.50",
+      "ml_combined::AdaBoost Classifier": "0.50",
+      "ml_provided::Bagging Classifier": "0.50",
+      "ml_paddleocr::Bagging Classifier": "0.50",
+      "ml_combined::Bagging Classifier": "0.50"
+    },
+    "calibration_csv": "results/threshold_calibration_results.csv",
+    "calibration_rows_matched": 17,
+    "provided_test_matches_default_tau": 13,
+    "provided_test_matches_calibrated_only": 0,
+    "per_model": [
+      {
+        "model": "AdaBoost Classifier",
+        "calibrated_tau": 0.51,
+        "matches_default": true,
+        "matches_calibrated": false
+      },
+      {
+        "model": "Bagging Classifier",
+        "calibrated_tau": 0.41,
+        "matches_default": false,
+        "matches_calibrated": false
+      },
+      {
+        "model": "Bernoulli Naive Bayes",
+        "calibrated_tau": 0.81,
+        "matches_default": true,
+        "matches_calibrated": false
+      },
+      {
+        "model": "Decision Tree",
+        "calibrated_tau": 0.05,
+        "matches_default": true,
+        "matches_calibrated": true
+      },
+      {
+        "model": "Extra Tree Classifier",
+        "calibrated_tau": 0.05,
+        "matches_default": true,
+        "matches_calibrated": true
+      },
+      {
+        "model": "Extra Trees Classifier",
+        "calibrated_tau": 0.5,
+        "matches_default": false,
+        "matches_calibrated": false
+      },
+      {
+        "model": "Gaussian Naive Bayes",
+        "calibrated_tau": 0.91,
+        "matches_default": true,
+        "matches_calibrated": false
+      },
+      {
+        "model": "Gradient Boosting Classifier",
+        "calibrated_tau": 0.51,
+        "matches_default": true,
+        "matches_calibrated": false
+      },
+      {
+        "model": "Hist Gradient Boosting Classifier",
+        "calibrated_tau": 0.54,
+        "matches_default": true,
+        "matches_calibrated": false
+      },
+      {
+        "model": "KNN",
+        "calibrated_tau": 0.61,
+        "matches_default": true,
+        "matches_calibrated": false
+      },
+      {
+        "model": "LightGBM",
+        "calibrated_tau": 0.52,
+        "matches_default": true,
+        "matches_calibrated": false
+      },
+      {
+        "model": "Linear Discriminant Analysis",
+        "calibrated_tau": 0.54,
+        "matches_default": true,
+        "matches_calibrated": false
+      },
+      {
+        "model": "Logistic Regression",
+        "calibrated_tau": 0.54,
+        "matches_default": true,
+        "matches_calibrated": false
+      },
+      {
+        "model": "Neural Network - MLPClassifier",
+        "calibrated_tau": 0.49,
+        "matches_default": true,
+        "matches_calibrated": true
+      },
+      {
+        "model": "Random Forest",
+        "calibrated_tau": 0.48,
+        "matches_default": false,
+        "matches_calibrated": false
+      },
+      {
+        "model": "Support Vector Machine - RBF SVC",
+        "calibrated_tau": 0.49,
+        "matches_default": false,
+        "matches_calibrated": false
+      },
+      {
+        "model": "XGBoost",
+        "calibrated_tau": 0.41,
+        "matches_default": true,
+        "matches_calibrated": false
+      }
+    ],
+    "conclusion": "Calibrated taus were never applied: 13/17 ML rows equal the tau=0.50 column of the calibration CSV, none equal only the calibrated column; the rest (Bagging Classifier, Extra Trees, Random Forest, SVM-RBF) match neither (SVC predict() uses the margin, not predict_proba >= 0.50; the tree ensembles differ by fit)."
+  },
+  "validation_to_test_drop": {
+    "unit": "Score A points (x100), validation minus test; mean over seeds",
+    "per_model": [
+      {
+        "key": "gemini",
+        "name": "Gemini 3.1 Flash Lite",
+        "variant": null,
+        "trained": false,
+        "val_score_a": 0.8873810462300805,
+        "test_score_a": 0.8818468735481184,
+        "drop_points": 0.5534172681962102,
+        "val_complete": false
+      },
+      {
+        "key": "qwen7b_ft",
+        "name": "Qwen2-VL-7B QLoRA",
+        "variant": null,
+        "trained": true,
+        "val_score_a": 0.8878979595815841,
+        "test_score_a": 0.7694111133256447,
+        "drop_points": 11.848684625593942,
+        "val_complete": true
+      },
+      {
+        "key": "qwen7b_zs",
+        "name": "Qwen2-VL-7B (Zero-Shot)",
+        "variant": null,
+        "trained": false,
+        "val_score_a": 0.7672169177111803,
+        "test_score_a": 0.7660113981572142,
+        "drop_points": 0.12055195539660835,
+        "val_complete": true
+      },
+      {
+        "key": "qwen2b_ft",
+        "name": "Qwen2-VL-2B QLoRA",
+        "variant": null,
+        "trained": true,
+        "val_score_a": 0.8592952266484858,
+        "test_score_a": 0.683358887232676,
+        "drop_points": 17.593633941580975,
+        "val_complete": true
+      },
+      {
+        "key": "qwen2b_zs",
+        "name": "Qwen2-VL-2B (Zero-Shot)",
+        "variant": null,
+        "trained": false,
+        "val_score_a": 0.7394956636047387,
+        "test_score_a": 0.7249975249777247,
+        "drop_points": 1.449813862701399,
+        "val_complete": true
+      },
+      {
+        "key": "llava_ft",
+        "name": "LLaVA-1.5-7B QLoRA",
+        "variant": null,
+        "trained": true,
+        "val_score_a": 0.6976301765083845,
+        "test_score_a": 0.6297119158705473,
+        "drop_points": 6.7918260637837236,
+        "val_complete": true
+      },
+      {
+        "key": "clipL_ft",
+        "name": "CLIP ViT-L-14 (Fine-Tuned)",
+        "variant": null,
+        "trained": true,
+        "val_score_a": 0.8673263614499155,
+        "test_score_a": 0.7314204882968446,
+        "drop_points": 13.59058731530709,
+        "val_complete": true
+      },
+      {
+        "key": "clipB_ft",
+        "name": "CLIP ViT-B-32 (Fine-Tuned)",
+        "variant": null,
+        "trained": true,
+        "val_score_a": 0.8466622465350425,
+        "test_score_a": 0.6949954752258591,
+        "drop_points": 15.166677130918337,
+        "val_complete": true
+      },
+      {
+        "key": "clipL_zs",
+        "name": "CLIP ViT-L-14 (Zero-Shot)",
+        "variant": null,
+        "trained": false,
+        "val_score_a": 0.7171333965623388,
+        "test_score_a": 0.5826074332171893,
+        "drop_points": 13.452596334514944,
+        "val_complete": true
+      },
+      {
+        "key": "clipB_zs",
+        "name": "CLIP ViT-B-32 (Zero-Shot)",
+        "variant": null,
+        "trained": false,
+        "val_score_a": 0.7364537212734557,
+        "test_score_a": 0.58719915744001,
+        "drop_points": 14.92545638334457,
+        "val_complete": true
+      },
+      {
+        "key": "visualbert",
+        "name": "VisualBERT (Zero-Shot)",
+        "variant": null,
+        "trained": false,
+        "val_score_a": 0.5796553173602355,
+        "test_score_a": 0.47310756010168703,
+        "drop_points": 10.654775725854842,
+        "val_complete": false
+      },
+      {
+        "key": "ml_provided::KNN",
+        "name": "KNN",
+        "variant": "provided",
+        "trained": true,
+        "val_score_a": 0.813897,
+        "test_score_a": 0.636727,
+        "drop_points": 17.716999999999995,
+        "val_complete": true
+      },
+      {
+        "key": "ml_paddleocr::KNN",
+        "name": "KNN",
+        "variant": "paddleocr",
+        "trained": true,
+        "val_score_a": 0.8101477532644038,
+        "test_score_a": 0.6687041888280278,
+        "drop_points": 14.144356443637596,
+        "val_complete": true
+      },
+      {
+        "key": "ml_combined::KNN",
+        "name": "KNN",
+        "variant": "combined",
+        "trained": true,
+        "val_score_a": 0.822153,
+        "test_score_a": 0.647427,
+        "drop_points": 17.472600000000003,
+        "val_complete": true
+      },
+      {
+        "key": "ml_provided::Logistic Regression",
+        "name": "Logistic Regression",
+        "variant": "provided",
+        "trained": true,
+        "val_score_a": 0.821942,
+        "test_score_a": 0.703751,
+        "drop_points": 11.819099999999993,
+        "val_complete": true
+      },
+      {
+        "key": "ml_paddleocr::Logistic Regression",
+        "name": "Logistic Regression",
+        "variant": "paddleocr",
+        "trained": true,
+        "val_score_a": 0.817999271997088,
+        "test_score_a": 0.7138876449221276,
+        "drop_points": 10.411162707496036,
+        "val_complete": true
+      },
+      {
+        "key": "ml_combined::Logistic Regression",
+        "name": "Logistic Regression",
+        "variant": "combined",
+        "trained": true,
+        "val_score_a": 0.820991,
+        "test_score_a": 0.700665,
+        "drop_points": 12.032600000000004,
+        "val_complete": true
+      },
+      {
+        "key": "ml_provided::SGD Classifier",
+        "name": "SGD Classifier",
+        "variant": "provided",
+        "trained": true,
+        "val_score_a": 0.797,
+        "test_score_a": 0.706621,
+        "drop_points": 9.037899999999999,
+        "val_complete": true
+      },
+      {
+        "key": "ml_paddleocr::SGD Classifier",
+        "name": "SGD Classifier",
+        "variant": "paddleocr",
+        "trained": true,
+        "val_score_a": 0.7969949248731218,
+        "test_score_a": 0.7113305817610063,
+        "drop_points": 8.566434311211557,
+        "val_complete": true
+      },
+      {
+        "key": "ml_combined::SGD Classifier",
+        "name": "SGD Classifier",
+        "variant": "combined",
+        "trained": true,
+        "val_score_a": 0.813993,
+        "test_score_a": 0.694407,
+        "drop_points": 11.958599999999997,
+        "val_complete": true
+      },
+      {
+        "key": "ml_provided::Ridge Classifier",
+        "name": "Ridge Classifier",
+        "variant": "provided",
+        "trained": true,
+        "val_score_a": 0.847998,
+        "test_score_a": 0.720139,
+        "drop_points": 12.785900000000005,
+        "val_complete": true
+      },
+      {
+        "key": "ml_paddleocr::Ridge Classifier",
+        "name": "Ridge Classifier",
+        "variant": "paddleocr",
+        "trained": true,
+        "val_score_a": 0.846998622987607,
+        "test_score_a": 0.7173254640055914,
+        "drop_points": 12.967315898201559,
+        "val_complete": true
+      },
+      {
+        "key": "ml_combined::Ridge Classifier",
+        "name": "Ridge Classifier",
+        "variant": "combined",
+        "trained": true,
+        "val_score_a": 0.838981,
+        "test_score_a": 0.70851,
+        "drop_points": 13.0471,
+        "val_complete": true
+      },
+      {
+        "key": "ml_provided::Perceptron",
+        "name": "Perceptron",
+        "variant": "provided",
+        "trained": true,
+        "val_score_a": 0.805825,
+        "test_score_a": 0.699331,
+        "drop_points": 10.649399999999998,
+        "val_complete": true
+      },
+      {
+        "key": "ml_paddleocr::Perceptron",
+        "name": "Perceptron",
+        "variant": "paddleocr",
+        "trained": true,
+        "val_score_a": 0.7869230792316027,
+        "test_score_a": 0.664389209077236,
+        "drop_points": 12.253387015436667,
+        "val_complete": true
+      },
+      {
+        "key": "ml_combined::Perceptron",
+        "name": "Perceptron",
+        "variant": "combined",
+        "trained": true,
+        "val_score_a": 0.800976,
+        "test_score_a": 0.69126,
+        "drop_points": 10.971600000000004,
+        "val_complete": true
+      },
+      {
+        "key": "ml_provided::PassiveAggressiveClassifier",
+        "name": "Passive-Aggressive",
+        "variant": "provided",
+        "trained": true,
+        "val_score_a": 0.780995,
+        "test_score_a": 0.707847,
+        "drop_points": 7.314799999999999,
+        "val_complete": true
+      },
+      {
+        "key": "ml_paddleocr::PassiveAggressiveClassifier",
+        "name": "Passive-Aggressive",
+        "variant": "paddleocr",
+        "trained": true,
+        "val_score_a": 0.7849946248656217,
+        "test_score_a": 0.686737197321448,
+        "drop_points": 9.825742754417366,
+        "val_complete": true
+      },
+      {
+        "key": "ml_combined::PassiveAggressiveClassifier",
+        "name": "Passive-Aggressive",
+        "variant": "combined",
+        "trained": true,
+        "val_score_a": 0.782982,
+        "test_score_a": 0.689722,
+        "drop_points": 9.326,
+        "val_complete": true
+      },
+      {
+        "key": "ml_provided::Linear Discriminant Analysis",
+        "name": "Linear Discriminant Analysis",
+        "variant": "provided",
+        "trained": true,
+        "val_score_a": 0.84399,
+        "test_score_a": 0.727972,
+        "drop_points": 11.601800000000006,
+        "val_complete": true
+      },
+      {
+        "key": "ml_paddleocr::Linear Discriminant Analysis",
+        "name": "Linear Discriminant Analysis",
+        "variant": "paddleocr",
+        "trained": true,
+        "val_score_a": 0.8509962749068725,
+        "test_score_a": 0.7177533163985323,
+        "drop_points": 13.324295850834012,
+        "val_complete": true
+      },
+      {
+        "key": "ml_combined::Linear Discriminant Analysis",
+        "name": "Linear Discriminant Analysis",
+        "variant": "combined",
+        "trained": true,
+        "val_score_a": 0.838999,
+        "test_score_a": 0.707842,
+        "drop_points": 13.115700000000007,
+        "val_complete": true
+      },
+      {
+        "key": "ml_provided::Support Vector Machine - LinearSVC",
+        "name": "Linear SVC",
+        "variant": "provided",
+        "trained": true,
+        "val_score_a": 0.815997,
+        "test_score_a": 0.703053,
+        "drop_points": 11.294399999999992,
+        "val_complete": true
+      },
+      {
+        "key": "ml_paddleocr::Support Vector Machine - LinearSVC",
+        "name": "Linear SVC",
+        "variant": "paddleocr",
+        "trained": true,
+        "val_score_a": 0.8149465195441481,
+        "test_score_a": 0.7039778749337573,
+        "drop_points": 11.096864461039079,
+        "val_complete": true
+      },
+      {
+        "key": "ml_combined::Support Vector Machine - LinearSVC",
+        "name": "Linear SVC",
+        "variant": "combined",
+        "trained": true,
+        "val_score_a": 0.820978,
+        "test_score_a": 0.702497,
+        "drop_points": 11.848099999999995,
+        "val_complete": true
+      },
+      {
+        "key": "ml_provided::Support Vector Machine - RBF SVC",
+        "name": "SVM-RBF",
+        "variant": "provided",
+        "trained": true,
+        "val_score_a": 0.879,
+        "test_score_a": 0.720363,
+        "drop_points": 15.863700000000003,
+        "val_complete": true
+      },
+      {
+        "key": "ml_paddleocr::Support Vector Machine - RBF SVC",
+        "name": "SVM-RBF",
+        "variant": "paddleocr",
+        "trained": true,
+        "val_score_a": 0.8709781953150082,
+        "test_score_a": 0.7289018655914146,
+        "drop_points": 14.207632972359363,
+        "val_complete": true
+      },
+      {
+        "key": "ml_combined::Support Vector Machine - RBF SVC",
+        "name": "SVM-RBF",
+        "variant": "combined",
+        "trained": true,
+        "val_score_a": 0.876,
+        "test_score_a": 0.716121,
+        "drop_points": 15.9879,
+        "val_complete": true
+      },
+      {
+        "key": "ml_provided::Neural Network - MLPClassifier",
+        "name": "MLP",
+        "variant": "provided",
+        "trained": true,
+        "val_score_a": 0.860977,
+        "test_score_a": 0.718515,
+        "drop_points": 14.246199999999998,
+        "val_complete": true
+      },
+      {
+        "key": "ml_paddleocr::Neural Network - MLPClassifier",
+        "name": "MLP",
+        "variant": "paddleocr",
+        "trained": true,
+        "val_score_a": 0.8539906554019457,
+        "test_score_a": 0.7401050969428697,
+        "drop_points": 11.3885558459076,
+        "val_complete": true
+      },
+      {
+        "key": "ml_combined::Neural Network - MLPClassifier",
+        "name": "MLP",
+        "variant": "combined",
+        "trained": true,
+        "val_score_a": 0.852988,
+        "test_score_a": 0.721524,
+        "drop_points": 13.146399999999991,
+        "val_complete": true
+      },
+      {
+        "key": "ml_provided::Extra Tree Classifier",
+        "name": "Extra Tree",
+        "variant": "provided",
+        "trained": true,
+        "val_score_a": 0.638982,
+        "test_score_a": 0.592188,
+        "drop_points": 4.6794,
+        "val_complete": true
+      },
+      {
+        "key": "ml_paddleocr::Extra Tree Classifier",
+        "name": "Extra Tree",
+        "variant": "paddleocr",
+        "trained": true,
+        "val_score_a": 0.6359941759068145,
+        "test_score_a": 0.6020500452215858,
+        "drop_points": 3.3944130685228724,
+        "val_complete": true
+      },
+      {
+        "key": "ml_combined::Extra Tree Classifier",
+        "name": "Extra Tree",
+        "variant": "combined",
+        "trained": true,
+        "val_score_a": 0.624955,
+        "test_score_a": 0.608188,
+        "drop_points": 1.6767000000000087,
+        "val_complete": true
+      },
+      {
+        "key": "ml_provided::Bernoulli Naive Bayes",
+        "name": "Bernoulli NB",
+        "variant": "provided",
+        "trained": true,
+        "val_score_a": 0.807827,
+        "test_score_a": 0.691147,
+        "drop_points": 11.668000000000001,
+        "val_complete": true
+      },
+      {
+        "key": "ml_paddleocr::Bernoulli Naive Bayes",
+        "name": "Bernoulli NB",
+        "variant": "paddleocr",
+        "trained": true,
+        "val_score_a": 0.8118524923540056,
+        "test_score_a": 0.6927996644911012,
+        "drop_points": 11.905282786290439,
+        "val_complete": true
+      },
+      {
+        "key": "ml_combined::Bernoulli Naive Bayes",
+        "name": "Bernoulli NB",
+        "variant": "combined",
+        "trained": true,
+        "val_score_a": 0.803773,
+        "test_score_a": 0.704654,
+        "drop_points": 9.911899999999996,
+        "val_complete": true
+      },
+      {
+        "key": "ml_provided::Gaussian Naive Bayes",
+        "name": "Gaussian NB",
+        "variant": "provided",
+        "trained": true,
+        "val_score_a": 0.802564,
+        "test_score_a": 0.692165,
+        "drop_points": 11.039900000000003,
+        "val_complete": true
+      },
+      {
+        "key": "ml_paddleocr::Gaussian Naive Bayes",
+        "name": "Gaussian NB",
+        "variant": "paddleocr",
+        "trained": true,
+        "val_score_a": 0.8097801058023075,
+        "test_score_a": 0.6823446749607663,
+        "drop_points": 12.743543084154119,
+        "val_complete": true
+      },
+      {
+        "key": "ml_combined::Gaussian Naive Bayes",
+        "name": "Gaussian NB",
+        "variant": "combined",
+        "trained": true,
+        "val_score_a": 0.80273,
+        "test_score_a": 0.689434,
+        "drop_points": 11.329600000000006,
+        "val_complete": true
+      },
+      {
+        "key": "ml_provided::Decision Tree",
+        "name": "Decision Tree",
+        "variant": "provided",
+        "trained": true,
+        "val_score_a": 0.72688,
+        "test_score_a": 0.678736,
+        "drop_points": 4.8143999999999965,
+        "val_complete": true
+      },
+      {
+        "key": "ml_paddleocr::Decision Tree",
+        "name": "Decision Tree",
+        "variant": "paddleocr",
+        "trained": true,
+        "val_score_a": 0.6949923748093703,
+        "test_score_a": 0.6600771848691602,
+        "drop_points": 3.4915189940210034,
+        "val_complete": true
+      },
+      {
+        "key": "ml_combined::Decision Tree",
+        "name": "Decision Tree",
+        "variant": "combined",
+        "trained": true,
+        "val_score_a": 0.69684,
+        "test_score_a": 0.654516,
+        "drop_points": 4.232400000000003,
+        "val_complete": true
+      },
+      {
+        "key": "ml_provided::Random Forest",
+        "name": "Random Forest",
+        "variant": "provided",
+        "trained": true,
+        "val_score_a": 0.831644,
+        "test_score_a": 0.731695,
+        "drop_points": 9.994900000000007,
+        "val_complete": true
+      },
+      {
+        "key": "ml_paddleocr::Random Forest",
+        "name": "Random Forest",
+        "variant": "paddleocr",
+        "trained": true,
+        "val_score_a": 0.8225740001744188,
+        "test_score_a": 0.7359853959859508,
+        "drop_points": 8.658860418846803,
+        "val_complete": true
+      },
+      {
+        "key": "ml_combined::Random Forest",
+        "name": "Random Forest",
+        "variant": "combined",
+        "trained": true,
+        "val_score_a": 0.837594,
+        "test_score_a": 0.719708,
+        "drop_points": 11.788599999999994,
+        "val_complete": true
+      },
+      {
+        "key": "ml_provided::Hist Gradient Boosting Classifier",
+        "name": "HistGB",
+        "variant": "provided",
+        "trained": true,
+        "val_score_a": 0.852935,
+        "test_score_a": 0.728238,
+        "drop_points": 12.469699999999994,
+        "val_complete": true
+      },
+      {
+        "key": "ml_paddleocr::Hist Gradient Boosting Classifier",
+        "name": "HistGB",
+        "variant": "paddleocr",
+        "trained": true,
+        "val_score_a": 0.8479702021596234,
+        "test_score_a": 0.7288188924218336,
+        "drop_points": 11.915130973778975,
+        "val_complete": true
+      },
+      {
+        "key": "ml_combined::Hist Gradient Boosting Classifier",
+        "name": "HistGB",
+        "variant": "combined",
+        "trained": true,
+        "val_score_a": 0.850988,
+        "test_score_a": 0.718983,
+        "drop_points": 13.200499999999993,
+        "val_complete": true
+      },
+      {
+        "key": "ml_provided::Gradient Boosting Classifier",
+        "name": "Gradient Boosting",
+        "variant": "provided",
+        "trained": true,
+        "val_score_a": 0.849971,
+        "test_score_a": 0.720559,
+        "drop_points": 12.94120000000001,
+        "val_complete": true
+      },
+      {
+        "key": "ml_paddleocr::Gradient Boosting Classifier",
+        "name": "Gradient Boosting",
+        "variant": "paddleocr",
+        "trained": true,
+        "val_score_a": 0.8369802746132282,
+        "test_score_a": 0.7159773655808264,
+        "drop_points": 12.100290903240186,
+        "val_complete": true
+      },
+      {
+        "key": "ml_combined::Gradient Boosting Classifier",
+        "name": "Gradient Boosting",
+        "variant": "combined",
+        "trained": true,
+        "val_score_a": 0.844,
+        "test_score_a": 0.716868,
+        "drop_points": 12.713200000000002,
+        "val_complete": true
+      },
+      {
+        "key": "ml_provided::XGBoost",
+        "name": "XGBoost",
+        "variant": "provided",
+        "trained": true,
+        "val_score_a": 0.847951,
+        "test_score_a": 0.732125,
+        "drop_points": 11.5826,
+        "val_complete": true
+      },
+      {
+        "key": "ml_paddleocr::XGBoost",
+        "name": "XGBoost",
+        "variant": "paddleocr",
+        "trained": true,
+        "val_score_a": 0.8559717704670115,
+        "test_score_a": 0.7194408768407796,
+        "drop_points": 13.653089362623183,
+        "val_complete": true
+      },
+      {
+        "key": "ml_combined::XGBoost",
+        "name": "XGBoost",
+        "variant": "combined",
+        "trained": true,
+        "val_score_a": 0.83999,
+        "test_score_a": 0.712689,
+        "drop_points": 12.7301,
+        "val_complete": true
+      },
+      {
+        "key": "ml_provided::LightGBM",
+        "name": "LightGBM",
+        "variant": "provided",
+        "trained": true,
+        "val_score_a": 0.850957,
+        "test_score_a": 0.728462,
+        "drop_points": 12.24949999999999,
+        "val_complete": true
+      },
+      {
+        "key": "ml_paddleocr::LightGBM",
+        "name": "LightGBM",
+        "variant": "paddleocr",
+        "trained": true,
+        "val_score_a": 0.8549882540485779,
+        "test_score_a": 0.7162088411861016,
+        "drop_points": 13.87794128624763,
+        "val_complete": true
+      },
+      {
+        "key": "ml_combined::LightGBM",
+        "name": "LightGBM",
+        "variant": "combined",
+        "trained": true,
+        "val_score_a": 0.84,
+        "test_score_a": 0.712259,
+        "drop_points": 12.774099999999999,
+        "val_complete": true
+      },
+      {
+        "key": "ml_provided::Extra Trees Classifier",
+        "name": "Extra Trees",
+        "variant": "provided",
+        "trained": true,
+        "val_score_a": 0.824613,
+        "test_score_a": 0.724887,
+        "drop_points": 9.972600000000009,
+        "val_complete": true
+      },
+      {
+        "key": "ml_paddleocr::Extra Trees Classifier",
+        "name": "Extra Trees",
+        "variant": "paddleocr",
+        "trained": true,
+        "val_score_a": 0.8255639097744362,
+        "test_score_a": 0.7085905635194794,
+        "drop_points": 11.697334625495682,
+        "val_complete": true
+      },
+      {
+        "key": "ml_combined::Extra Trees Classifier",
+        "name": "Extra Trees",
+        "variant": "combined",
+        "trained": true,
+        "val_score_a": 0.839792,
+        "test_score_a": 0.724216,
+        "drop_points": 11.5576,
+        "val_complete": true
+      },
+      {
+        "key": "ml_provided::AdaBoost Classifier",
+        "name": "AdaBoost",
+        "variant": "provided",
+        "trained": true,
+        "val_score_a": 0.819,
+        "test_score_a": 0.692836,
+        "drop_points": 12.616399999999995,
+        "val_complete": true
+      },
+      {
+        "key": "ml_paddleocr::AdaBoost Classifier",
+        "name": "AdaBoost",
+        "variant": "paddleocr",
+        "trained": true,
+        "val_score_a": 0.822999822999823,
+        "test_score_a": 0.6847660870732248,
+        "drop_points": 13.823373592659816,
+        "val_complete": true
+      },
+      {
+        "key": "ml_combined::AdaBoost Classifier",
+        "name": "AdaBoost",
+        "variant": "combined",
+        "trained": true,
+        "val_score_a": 0.804984,
+        "test_score_a": 0.686501,
+        "drop_points": 11.8483,
+        "val_complete": true
+      },
+      {
+        "key": "ml_provided::Bagging Classifier",
+        "name": "Bagging Classifier",
+        "variant": "provided",
+        "trained": true,
+        "val_score_a": 0.792175,
+        "test_score_a": 0.701453,
+        "drop_points": 9.072199999999997,
+        "val_complete": true
+      },
+      {
+        "key": "ml_paddleocr::Bagging Classifier",
+        "name": "Bagging Classifier",
+        "variant": "paddleocr",
+        "trained": true,
+        "val_score_a": 0.7858588417677805,
+        "test_score_a": 0.7088509316770186,
+        "drop_points": 7.700791009076191,
+        "val_complete": true
+      },
+      {
+        "key": "ml_combined::Bagging Classifier",
+        "name": "Bagging Classifier",
+        "variant": "combined",
+        "trained": true,
+        "val_score_a": 0.785859,
+        "test_score_a": 0.721693,
+        "drop_points": 6.4165999999999945,
+        "val_complete": true
+      }
+    ],
+    "trained_paper_rows": {
+      "n": 27,
+      "min": 4.6794,
+      "max": 17.716999999999995,
+      "mean": 11.497126262117929,
+      "min_model": "Extra Tree",
+      "max_model": "KNN",
+      "val_score_a_range": [
+        0.638982,
+        0.8878979595815841
+      ],
+      "test_score_a_range": [
+        0.592188,
+        0.7694111133256447
+      ]
+    },
+    "ml_provided": {
+      "n": 22,
+      "min": 4.6794,
+      "max": 17.716999999999995,
+      "mean": 11.155954545454543,
+      "min_model": "Extra Tree",
+      "max_model": "KNN",
+      "val_score_a_range": [
+        0.638982,
+        0.879
+      ],
+      "test_score_a_range": [
+        0.592188,
+        0.732125
+      ]
+    },
+    "ml_paddleocr": {
+      "n": 22,
+      "min": 3.3944130685228724,
+      "max": 14.207632972359363,
+      "mean": 11.05215083479535,
+      "min_model": "Extra Tree",
+      "max_model": "SVM-RBF",
+      "val_score_a_range": [
+        0.6359941759068145,
+        0.8709781953150082
+      ],
+      "test_score_a_range": [
+        0.6020500452215858,
+        0.7401050969428697
+      ]
+    },
+    "finetuned_vlm_clip": {
+      "n": 5,
+      "min": 6.7918260637837236,
+      "max": 17.593633941580975,
+      "mean": 12.998281815436815,
+      "min_model": "LLaVA-1.5-7B QLoRA",
+      "max_model": "Qwen2-VL-2B QLoRA",
+      "val_score_a_range": [
+        0.6976301765083845,
+        0.8878979595815841
+      ],
+      "test_score_a_range": [
+        0.6297119158705473,
+        0.7694111133256447
+      ]
+    },
+    "zero_shot": [
+      {
+        "name": "Gemini 3.1 Flash Lite",
+        "drop_points": 0.5534172681962102,
+        "drops": true,
+        "val_complete": false
+      },
+      {
+        "name": "Qwen2-VL-7B (Zero-Shot)",
+        "drop_points": 0.12055195539660835,
+        "drops": true,
+        "val_complete": true
+      },
+      {
+        "name": "Qwen2-VL-2B (Zero-Shot)",
+        "drop_points": 1.449813862701399,
+        "drops": true,
+        "val_complete": true
+      },
+      {
+        "name": "CLIP ViT-L-14 (Zero-Shot)",
+        "drop_points": 13.452596334514944,
+        "drops": true,
+        "val_complete": true
+      },
+      {
+        "name": "CLIP ViT-B-32 (Zero-Shot)",
+        "drop_points": 14.92545638334457,
+        "drops": true,
+        "val_complete": true
+      },
+      {
+        "name": "VisualBERT (Zero-Shot)",
+        "drop_points": 10.654775725854842,
+        "drops": true,
+        "val_complete": false
+      }
+    ]
+  },
+  "inputs_sha256": {
+    "auto_benchmark/config/data/mami_pre_extracted.yaml": "6df016cdafdea094ce70930d4e2dd1135484c3100b2360f1a22122262b7e7aca",
+    "auto_benchmark/config/data/mami_pre_extracted_multiclass.yaml": "eea0f372237f37d04693086b0752f9b23127e0a9c1f5430382602bf9af6e498a",
+    "auto_benchmark/config/data/mami_pre_extracted_multiclass_test.yaml": "17f7a4f5ab3f5efbc34467ab8c8fd50f0d54f7cfd27c76df82cbbd0937a33907",
+    "auto_benchmark/config/data/mami_pre_extracted_test.yaml": "20a98a56f2eb0b0dc69fcc4f95ebd62c6358d18c95cca53f84b1c4a031d2323f",
+    "auto_benchmark/config/model/mami_tabular_model.yaml": "bc745ebfd83c8d95ac766d94496e8e65635b69e7daba8038a9b3e57849012127",
+    "auto_benchmark/config/model/mami_tabular_model_multiclass.yaml": "eda96e6c35bf9f26d659c58758d53e4ecb8a9920067750b4ec72ec1665d7dd83",
+    "auto_benchmark/config/model/mami_tabular_model_multiclass_test.yaml": "a305f8007701e5ae5d3d7dadcf4d1e090d04c5c55926c55c52b9a37accc001d6",
+    "auto_benchmark/config/model/mami_tabular_model_test.yaml": "de2a69266e3c8602ee9836d2cc49273468097840ee6473f1a91baee0895e89d5",
+    "auto_benchmark/results/model_results/mami_tabular_model/mami_tabular_model_predictions.csv": "a215486862d18e53821f068acd3a5a7f54f5c5804e1d71818c74ac4e8a8a8c13",
+    "auto_benchmark/results/model_results/mami_tabular_model_multiclass/mami_tabular_model_multiclass_predictions.csv": "e3abc06873494ab66572382fbe1b347e85a917b147b9091e0e19bda5b2f7fecb",
+    "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv": "b25914d3a790999d19d4e64ce6ad9fb9f9caa13797bcb2a300c77b916ccdee96",
+    "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv": "ebae520a3aa21e9190ecba308c896233dbfa297d97372b597b797b6bcf9300e6",
+    "results/embeddings/test_vit_l_14_quickgelu_ocr_paddleocr.npz": "3c6a894c363e10d53642356841bbc8852e4d60850b28ba1672dedab738d50bff",
+    "results/embeddings/validation_vit_l_14_quickgelu_ocr_paddleocr.npz": "3f79c6127024c5a078076baab4429ee9b76765fc44a17422ae6486b74027acbb",
+    "results/test/clip_test_finetuned_multiclass_vit_b_32_quickgelu_seed1.json": "785c1c9d96f0c106f091239c835524ab054dcdc35fd67ead48bf5a9ec65add04",
+    "results/test/clip_test_finetuned_multiclass_vit_b_32_quickgelu_seed2.json": "30ff40f39404e0d9a680e3bc86aaf4ebfe1751ca4d948c3c618e7a36a2d8d8a7",
+    "results/test/clip_test_finetuned_multiclass_vit_b_32_quickgelu_seed3.json": "6ae9629bf89d246b87de28a9488e88fd665b35272310f84fafde2db51e8ebb46",
+    "results/test/clip_test_finetuned_multiclass_vit_l_14_quickgelu_seed1.json": "e3b6245cc3e156bd9355fe12af189e0f69415ad80820ccd353a40203fb9ed0b9",
+    "results/test/clip_test_finetuned_multiclass_vit_l_14_quickgelu_seed2.json": "b29365ec9a944ee4757f04be5811d674bf58c54f54f917ab9e92532fd3c1946a",
+    "results/test/clip_test_finetuned_multiclass_vit_l_14_quickgelu_seed3.json": "41fdb0437b02a22141d4d7467e80daaf4897c65c3aa10e7f40dcf17ca2cc15c5",
+    "results/test/clip_test_finetuned_singleclass_vit_b_32_quickgelu_seed1.json": "547b83883433ed28708c713cd605df857ea620a990b4c1942a2f5a1a95762c0f",
+    "results/test/clip_test_finetuned_singleclass_vit_b_32_quickgelu_seed2.json": "d9d0d2bd03a0209a5009e2c2d9c9ed8e133e725679e7544256ae494430c1d988",
+    "results/test/clip_test_finetuned_singleclass_vit_b_32_quickgelu_seed3.json": "ae158358dd9c63dd5cb09bf121d8de1bfb573e3d069f3a6075abb9cb1778c24e",
+    "results/test/clip_test_finetuned_singleclass_vit_l_14_quickgelu_seed1.json": "686dbb182b801be277cf87aa5a40cc188b8238ed86682155e092e53bbba91766",
+    "results/test/clip_test_finetuned_singleclass_vit_l_14_quickgelu_seed2.json": "e2f5f494199d49c19a96adf0497b34ade39fce31e37dcf832035c7f57f48ef2c",
+    "results/test/clip_test_finetuned_singleclass_vit_l_14_quickgelu_seed3.json": "a003abe319ba7688bce1d365ad6a43995e2b0b399e6739a1cfe689b1c38e3465",
+    "results/test/clip_test_multiclass_vit_b_32_quickgelu.json": "0d1133e2493fbb3376a23fb67144e9b347dd3bcd9591765d5926c041a4b042eb",
+    "results/test/clip_test_multiclass_vit_l_14_quickgelu.json": "922f543eb18935be597a09fc8dbd71d7513f3e30f5d2c72311faf0cf63164bc1",
+    "results/test/clip_test_vit_b_32_quickgelu.json": "86c327298f03217e067efd6171e7eb32ecdf0e4634bceca465549b65fc3d5004",
+    "results/test/clip_test_vit_l_14_quickgelu.json": "53f14da5c9e72659eddca9d1461b8aa162f162d05e0c1910fbca57e398aa4d6f",
+    "results/test/gemini_test.json": "855ed1bde64076bf409d38120524a3dacaa563d6a1384ba6aa422f8826fc67db",
+    "results/test/gemini_test_multiclass.json": "c722f660622fbd5a7d6d7884e6a9afeeabb9a03ab303494979299c3b95bb93a6",
+    "results/test/llava_test_llava_1_5_7b_hf.json": "c20016d99b6bbb5b4619e4f25207cfc25c0953b992678f94460141534c751a62",
+    "results/test/llava_test_llava_1_5_7b_hf_finetuned.json": "f1c539864c51d69980cd0eeecdeb8164809c7fadf7a617826a2e005afbcf0c14",
+    "results/test/llava_test_llava_1_5_7b_hf_multiclass.json": "6bd759767983aba9042811f42b1e2ab279c28fc29d3f9bcbcd96aa4fcfc3c5c1",
+    "results/test/llava_test_llava_1_5_7b_hf_multiclass_finetuned.json": "506acdfb5a9dc4b22d9d3187ef36f6fbf69c8c30b4976164912d67185b1235d1",
+    "results/test/qwen2vl_test_qwen2_vl_2b_instruct.json": "4f6ff86ebdafbd235c100e86cf28ea7e5d83359a6e7110fb5e5a963f1c71e63d",
+    "results/test/qwen2vl_test_qwen2_vl_2b_instruct_finetuned_seed1.json": "2f397b84349d959408dda7665f5bf004f62a6c9150787cb6cc195c8a16ec0d87",
+    "results/test/qwen2vl_test_qwen2_vl_2b_instruct_finetuned_seed2.json": "1bac813d78bafa04be40dbcaef73239791631bf0bee5e2e69daf1a9a12865db3",
+    "results/test/qwen2vl_test_qwen2_vl_2b_instruct_finetuned_seed3.json": "d95f6fe79d2d811dc3c30582426e9daff174380a2836a4a40138ac9ceb6d1963",
+    "results/test/qwen2vl_test_qwen2_vl_2b_instruct_multiclass.json": "ca79c05ad0ccf03e193ab64621f7a02a50c0d599b390d319da6a75678107106a",
+    "results/test/qwen2vl_test_qwen2_vl_2b_instruct_multiclass_finetuned_seed1.json": "0b57c8f92446daf45a688c8bf8693ba83c429e0c1f48c8a4c254069085c061c4",
+    "results/test/qwen2vl_test_qwen2_vl_2b_instruct_multiclass_finetuned_seed2.json": "1f7015d8671b7dab73a625f2aab6324b8b5ba36bc8bfc041693a6185aeffc6f0",
+    "results/test/qwen2vl_test_qwen2_vl_2b_instruct_multiclass_finetuned_seed3.json": "87c3cdf65213e0f663c8d374dd4df2fb01b7e7a63062871e67ca93682a3caa2c",
+    "results/test/qwen2vl_test_qwen2_vl_2b_instruct_multiclass_finetuned_seed4.json": "b87781ab940943dc029d0713561112a596f65b3c59e382a6e967cfd0bcdbe1ab",
+    "results/test/qwen2vl_test_qwen2_vl_2b_instruct_multiclass_finetuned_seed5.json": "80f3a5527f1ab3ba085d8198f2b13f4ee60f72c531c129e5b414d28e4e03b759",
+    "results/test/qwen2vl_test_qwen2_vl_7b_instruct.json": "75b779539d2afb2f2049ffa03911a8dcd46b51aae2290225380a050b6a67399c",
+    "results/test/qwen2vl_test_qwen2_vl_7b_instruct_finetuned_seed1.json": "8c0b1df7ff7bc522b0093800c9adc7abe4738d86cd01fe9af15837db6feb748a",
+    "results/test/qwen2vl_test_qwen2_vl_7b_instruct_finetuned_seed2.json": "553c67d52b443bce8540526f3aa4f00f01dd9c57470c3a299e0ab551431d98ff",
+    "results/test/qwen2vl_test_qwen2_vl_7b_instruct_finetuned_seed3.json": "03aeffe15450e8eba239b7b0efeaffbe97f5ebe3066149a9e234bb51e167f3cb",
+    "results/test/qwen2vl_test_qwen2_vl_7b_instruct_finetuned_seed4.json": "f1d925b82ba9a6b6ee60b6e6a06b9fc241085f8b17e19c2866726351326a5a74",
+    "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass.json": "484d8e54ab13bb8eb9d366fcf2405034ea5941ab76d8fe31381795e4f9ed7cf5",
+    "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass_finetuned_seed1.json": "ca361ae7d36b296644176078fafc1e2a887145ec80f00bea6c6cbb1ffeb3a273",
+    "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass_finetuned_seed2.json": "7f125a8deb124a965a24036895efc4c70c1da5404b69e5f4b0582a41f764078b",
+    "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass_finetuned_seed3.json": "498e096071085f3f244a57c74a7a5a91b9799c217ea727648c747a0eaca2bcb8",
+    "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass_finetuned_seed4.json": "c0244e4390e47d4591305c636f994cdb81a0582fbe5e6bca59e713ebda4e203b",
+    "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass_finetuned_seed5.json": "36e5550d8c7fa0f5d148a37aea41926b9ba79b5bb61c5c6c93de5a7c1720fb0a",
+    "results/test/tabular_combined_binary.json": "5cec97ba138dddd49db4f50c6fbda9f055763a4e886a080cfabfedc586dfcc78",
+    "results/test/tabular_combined_multiclass_mami.json": "6ecfc7f5e5dcf0b084c7f3757a96389889e443053692048674f395868254aa9c",
+    "results/test/tabular_paddleocr_binary.json": "5662d54c0f1268c6c3887c1812ba157f24948b995e88a3084e4fef71de3fcbdf",
+    "results/test/tabular_paddleocr_multiclass_mami.json": "c51396eb91069fec58bd5ac94feb9406b4719df476bbe66e19f46a1725f01326",
+    "results/test/tabular_provided_binary.json": "149bd12156600f2a8b40c72c38e571b0ee004833df3b457871d32324a7c8f9ea",
+    "results/test/tabular_provided_multiclass_mami.json": "af25a1164399516e6dbfb0d8ae0e77aba7b91e197a12ab4fbad5d3f34126e6c1",
+    "results/test/visualbert_test.json": "9922e996046dfbf7f037a6e797c0343ed57906ea0cfd01d9660921c451036021",
+    "results/test/visualbert_test_multiclass.json": "fd421631218e6fc23897a1b465fc8c8b649f0c9300cdff1351d1869ab3ac1b1f",
+    "results/threshold_calibration_results.csv": "0d2a97975f93760779a349f2cd474fb3a2fb4216743d7182d34c9072376ce735",
+    "results/validation/clip_validation_finetuned_multiclass_vit_b_32_quickgelu_seed1.json": "4f73fad3dabd03d5acfafcc775d55b00c2873ca5c7e01ccca61a0f50fff6c286",
+    "results/validation/clip_validation_finetuned_multiclass_vit_b_32_quickgelu_seed2.json": "b13e6e52f30f8f4a9d01a41848fbb41931170b7c3d42b35bce80d49f31bfc18f",
+    "results/validation/clip_validation_finetuned_multiclass_vit_b_32_quickgelu_seed3.json": "8e6ab183c0f2e592a75e7d9ef0bc758b62c417093a71d8303f89563909a7e2db",
+    "results/validation/clip_validation_finetuned_multiclass_vit_l_14_quickgelu_seed1.json": "d8f4231cc3fd4392ac4b6ced3d88e782251c65a97c1f5b2f24f2b2ab0b0e3bd6",
+    "results/validation/clip_validation_finetuned_multiclass_vit_l_14_quickgelu_seed2.json": "3adc6ec72475c95866aac6c8a0694e892b041bc82acf1f5fdeacc29b441a9a60",
+    "results/validation/clip_validation_finetuned_multiclass_vit_l_14_quickgelu_seed3.json": "3a4d6389c7d8e52a69ed9ad7d8ce119af4484534ce3722ed9924b0c85c5c0497",
+    "results/validation/clip_validation_finetuned_singleclass_vit_b_32_quickgelu_seed1.json": "be73315590d6e7482c81da0cd7f8fbba9040f26b818ef617596c58d090c9cf9d",
+    "results/validation/clip_validation_finetuned_singleclass_vit_b_32_quickgelu_seed2.json": "c7782b1ac3b60bc9d91311305ab036bb064e9030b853fcd63cd7ef887e08c743",
+    "results/validation/clip_validation_finetuned_singleclass_vit_b_32_quickgelu_seed3.json": "1d93e0134ad40b048348ca6bac5022d49532aa6097fe48166318149a0498d21d",
+    "results/validation/clip_validation_finetuned_singleclass_vit_l_14_quickgelu_seed1.json": "1fc04010a76780d69c934544827bfc3ba042273b262b69ba147edf4df4625bc1",
+    "results/validation/clip_validation_finetuned_singleclass_vit_l_14_quickgelu_seed2.json": "feb0fd01742c5410160d3056f741837ce81897b57c0b76f256948002adca87be",
+    "results/validation/clip_validation_finetuned_singleclass_vit_l_14_quickgelu_seed3.json": "65497b73308f03f494528c512ce5270b1cf680931630ab6ed33945885c6b5f04",
+    "results/validation/clip_validation_multiclass_vit_b_32_quickgelu.json": "7606fad7143975e102ad5196800b0e9d0846e69ea8cd758d7fc72fcc381c9222",
+    "results/validation/clip_validation_multiclass_vit_l_14_quickgelu.json": "8e7a9e805faf57b1540cbc830194982e7cc4114adc9015bda9f3fe319e96dd19",
+    "results/validation/clip_validation_vit_b_32_quickgelu.json": "cdec6ca5d2d33feaf1a9f1c0bd49a50242eafc894b6b43feecebd9ed378747df",
+    "results/validation/clip_validation_vit_l_14_quickgelu.json": "852e194c91b1c43875cae4d0213201c1de950a968d10f958b6886f8837d2f892",
+    "results/validation/gemini_validation.json": "0187fbe3a159775dce78e0a06669a16f894e2f8d2312b8eff0d07e716f3ca601",
+    "results/validation/gemini_validation_multiclass.json": "e717063526a03f19367829ca2cbfe2a5d5f5ab015a77db8bc1d4745d46cd8a21",
+    "results/validation/llava_validation_llava_1_5_7b_hf_finetuned.json": "c30a3fcf985f455ee99689473b8ff0b360e811443041852994e6faae12749bb5",
+    "results/validation/llava_validation_llava_1_5_7b_hf_multiclass_finetuned.json": "082a9117826de20acfed56b054db701c0ba9e62b5dd0f7ef51b9e8c8599b5c16",
+    "results/validation/qwen2vl_validation_qwen2_vl_2b_instruct.json": "5abe31f72af66aa1801cd23da6df6e5d5fe46d53e5459b3ec5050c11c2f3c69a",
+    "results/validation/qwen2vl_validation_qwen2_vl_2b_instruct_finetuned_seed1.json": "86c2e159c16d8f9b214f97975448e04b021f1b7140d9c91b20afe083747f0ee4",
+    "results/validation/qwen2vl_validation_qwen2_vl_2b_instruct_finetuned_seed2.json": "7bcef6b1ad6327880d23cb791cf6f5c476694800af0ee181f960e739082c78ec",
+    "results/validation/qwen2vl_validation_qwen2_vl_2b_instruct_finetuned_seed3.json": "8cf969112b23eb03905ac0381bf047c13b67040d94b8008abba2a49c02bf7d4f",
+    "results/validation/qwen2vl_validation_qwen2_vl_2b_instruct_multiclass.json": "2a3e239ed5b27f72271ea879d5f58eb9fdfaab768b4eab642cfb108fbb983179",
+    "results/validation/qwen2vl_validation_qwen2_vl_2b_instruct_multiclass_finetuned_seed1.json": "cd8a4a46efaf97c3a41caf4594e01d1c32559b5b5ec85675dd66133b6123140e",
+    "results/validation/qwen2vl_validation_qwen2_vl_2b_instruct_multiclass_finetuned_seed2.json": "a3d4f23b160aceb80e99905af4b02af6bf0625f74cc86ff5af51b53c9617394e",
+    "results/validation/qwen2vl_validation_qwen2_vl_2b_instruct_multiclass_finetuned_seed3.json": "fda592b98733a1f46930159ab0a90e952c8fadeb2514a283f40d5d715726b974",
+    "results/validation/qwen2vl_validation_qwen2_vl_2b_instruct_multiclass_finetuned_seed4.json": "2c4a4f8ea01665635fa1b7d3561985542bedcd5d9d6e7a6c2061a07f6ebfc844",
+    "results/validation/qwen2vl_validation_qwen2_vl_2b_instruct_multiclass_finetuned_seed5.json": "df9ecd280a1ad3870572f01de8814c590344748b7e7761b10eab2dbad9bb2753",
+    "results/validation/qwen2vl_validation_qwen2_vl_7b_instruct.json": "55585a0877cdc8a80684a33e55bdb94829c58c8f5a8fcd79c20b122c01f26127",
+    "results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_finetuned_seed1.json": "9269c406f6299d9bae88d321c257cb282f5b1cbdd1e27d951588bde72e052f54",
+    "results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_finetuned_seed2.json": "3a4552559cbbb7384a6cb1cb91e0d2fd44a9223dea45e8640eaaa06c3e91e35e",
+    "results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_finetuned_seed3.json": "817c47607eee94e736360250c773bddc44d053f4f53a8edb9c71ed76e4531557",
+    "results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_finetuned_seed4.json": "1276ea9cf7e5fc5b4f7d38352899b86e8b3c64fa1928b0b1ac89aac7dec1ef5c",
+    "results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_multiclass.json": "c5716d7b4c3cb2080a8afac8f3efc4255fe88294496ada65def7481fce62ed90",
+    "results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_multiclass_finetuned_seed1.json": "d1385b0fee19253a9261c89b0a8316e2acc0cca23fffff0ee627877cdaae1c9c",
+    "results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_multiclass_finetuned_seed2.json": "a64a47a837a0fea8e2a95f4ca5045a52bd48519bcf2a62a537b5239dd056f765",
+    "results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_multiclass_finetuned_seed3.json": "03b8590ea561f913bf7a73dbdc98b73041f6ddd4577fee600376a0adb445ffb3",
+    "results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_multiclass_finetuned_seed4.json": "dbe16be7604e26f76c6ea46bf83d49faba249023ae3bc5c8e742158cea107e8c",
+    "results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_multiclass_finetuned_seed5.json": "8959b645ea80588764d251d799aa848f0e46c6cbe83315aaaa50b751d92ce20b",
+    "results/validation/tabular_combined_binary.json": "897fb9aeaabd9ab77e94a8cf7abb7da24a1f3c69514f7f21fd097af6b36598d2",
+    "results/validation/tabular_combined_multiclass_mami.json": "7692c145774c98ef6f68c359c78d027c74be0f2dab5e660cba82fb5c03d0a150",
+    "results/validation/tabular_paddleocr_binary.json": "28ec56ed0c88cecca5b678d02b3514b963679b30570204be7ee7af7421a87ad3",
+    "results/validation/tabular_paddleocr_multiclass_mami.json": "107b751edf9542e303beb7a01483f95b617d820c7b6526985ea8408f79a59c6a",
+    "results/validation/tabular_provided_binary.json": "1b6e87ebc854474ad684cf01e72df712fdcabdd577c1424e6de80b1f1298cf77",
+    "results/validation/tabular_provided_multiclass_mami.json": "179afe03d86e83fba6cdced124ff3de97bd1a7bfe90223d085dad185b4a6f029",
+    "results/validation/visualbert_validation.json": "80e4507113250c2e6712e3ff4b30de1f563ed78e9207fb912a9f3d6123a02078",
+    "results/validation/visualbert_validation_multiclass.json": "0b7e02beac9c8445f6416bca75dbb4c212d46aee550d61b861c5f2ab73bd3929",
+    "scripts/official_mami_evaluation.py": "d3a2329c603d6bf5350d1cedd87b07ac7b74b6e9b432ee0f96cdfb3f1e4b062f",
+    "submission/main.tex": "50d46880696988c60c60b463c6349842407e9f17c952b239e4a2ea703ece4426"
+  }
+}

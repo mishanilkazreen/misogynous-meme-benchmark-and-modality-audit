@@ -1,0 +1,48 @@
+=== JOB exp08-rationales (3577536) on gpu10.pri.sciama.icg.port at 2026-09-29T21:35:03+01:00 ===
+git commit: unknown
+Tue Sep 29 21:35:03 2026
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 565.57.01              Driver Version: 565.57.01      CUDA Version: 12.7     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA L40                     Off |   00000000:21:00.0 Off |                    0 |
+| N/A   32C    P8             37W /  300W |       1MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+PREREQS OK
+Loading MAMI dataset split 'test'...
+Selected 200 samples for explanation generation.
+Initializing VLMExplainer using model=Qwen/Qwen2-VL-7B-Instruct on device=cuda
+Attaching LoRA adapter from results/models/lora_qwen2_vl_7b_instruct_singleclass
+Saving results to results/rationales/qwen7b_test_n200.jsonl...
+Saved 200 explanation records to results/rationales/qwen7b_test_n200.jsonl
+  model: Qwen/Qwen2-VL-7B-Instruct+lora_qwen2_vl_7b_instruct_singleclass   split: test   mock: False
+Explanation generation completed successfully!
+Loading MAMI dataset split 'test'...
+Selected 200 samples for explanation generation.
+Initializing VLMExplainer using model=Qwen/Qwen2-VL-2B-Instruct on device=cuda
+Attaching LoRA adapter from results/models/lora_qwen2_vl_2b_instruct_singleclass
+Saving results to results/rationales/qwen2b_test_n200.jsonl...
+Saved 200 explanation records to results/rationales/qwen2b_test_n200.jsonl
+  model: Qwen/Qwen2-VL-2B-Instruct+lora_qwen2_vl_2b_instruct_singleclass   split: test   mock: False
+Explanation generation completed successfully!
+Loading MAMI dataset split 'test'...
+Selected 200 samples for explanation generation.
+Initializing VLMExplainer using model=llava-hf/llava-1.5-7b-hf on device=cuda
+Attaching LoRA adapter from results/models/lora_llava_1.5_7b_hf_singleclass
+Saving results to results/rationales/llava7b_test_n200.jsonl...
+Saved 200 explanation records to results/rationales/llava7b_test_n200.jsonl
+  model: llava-hf/llava-1.5-7b-hf+lora_llava_1.5_7b_hf_singleclass   split: test   mock: False
+Explanation generation completed successfully!
+=== DONE exp08 rationales N=200 ===

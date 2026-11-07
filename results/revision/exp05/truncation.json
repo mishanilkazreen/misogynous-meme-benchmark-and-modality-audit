@@ -1,0 +1,467 @@
+{
+  "task_id": "EXP-05",
+  "split": "train/validation/test",
+  "model": "open_clip ViT-L-14 tokenizer; tabular SVM-RBF/XGBoost; Qwen2-VL-7B QLoRA seed1",
+  "provenance": {
+    "script": "scripts/revision/ocr_quality.py",
+    "command": "uv run --with jiwer==4.0.0 python -m scripts.revision.ocr_quality",
+    "git_commit": "dd5196e7c046455bbc33d315febf47d388adac13",
+    "generated_utc": "2026-09-29T22:13:07+00:00",
+    "jiwer_version": "4.0.0",
+    "open_clip_version": "3.3.0",
+    "tokenizer": "open_clip.get_tokenizer('ViT-L-14'), context_length 77",
+    "bootstrap_resamples": 10000,
+    "seed": 20260505,
+    "inputs_sha256": {
+      "dataset:train.tsv": "43a5927f2755d80c9964c9397a170349362b199b60c37ce6cac67a566b1ea9f2",
+      "results/embeddings/train_vit_l_14_quickgelu_ocr_paddleocr.npz": "9416c427b9a245336ba889dfbeb22e455f4370880cbf42e7dc959c540aec947a",
+      "dataset:validation.tsv": "f534d05957db3977617673d67f62124a5519dcf898864a4a7e8bae542382f7c7",
+      "results/embeddings/validation_vit_l_14_quickgelu_ocr_paddleocr.npz": "3f79c6127024c5a078076baab4429ee9b76765fc44a17422ae6486b74027acbb",
+      "dataset:test.tsv": "3bd51f7a5ea82209c7d6b73f1cb8334e771b96156ec0931e86f51ceaac7f915b",
+      "results/embeddings/test_vit_l_14_quickgelu_ocr_paddleocr.npz": "3c6a894c363e10d53642356841bbc8852e4d60850b28ba1672dedab738d50bff",
+      "results/test/qwen2vl_test_qwen2_vl_2b_instruct.json": "4f6ff86ebdafbd235c100e86cf28ea7e5d83359a6e7110fb5e5a963f1c71e63d",
+      "results/test/qwen2vl_test_qwen2_vl_2b_instruct_ocr_paddleocr.json": "aba2bf88dadc1c82ae3e3a38df91d2fd5855aa261fa6e303a2078d7915648db6",
+      "results/test/qwen2vl_test_qwen2_vl_7b_instruct.json": "75b779539d2afb2f2049ffa03911a8dcd46b51aae2290225380a050b6a67399c",
+      "results/test/qwen2vl_test_qwen2_vl_7b_instruct_ocr_paddleocr.json": "f59d9a97ea97adeb386e45d9f6adc083b4576304a1fab5ed061527f96e1c1971",
+      "results/test/qwen2vl_test_qwen2_vl_2b_instruct_multiclass.json": "ca79c05ad0ccf03e193ab64621f7a02a50c0d599b390d319da6a75678107106a",
+      "results/test/qwen2vl_test_qwen2_vl_2b_instruct_ocr_paddleocr_multiclass.json": "e32b034c327c43f7e093b7a9600921b2ab172d5159e601cc467ff8f60919d309",
+      "results/test/qwen2vl_test_qwen2_vl_7b_instruct_multiclass.json": "484d8e54ab13bb8eb9d366fcf2405034ea5941ab76d8fe31381795e4f9ed7cf5",
+      "results/test/qwen2vl_test_qwen2_vl_7b_instruct_ocr_paddleocr_multiclass.json": "ae6f18f0b6b95789779ad9964c39837016685ad43c160380218d1bad20537d98",
+      "auto_benchmark/results/model_results/mami_tabular_model_test/mami_tabular_model_test_predictions.csv": "ebae520a3aa21e9190ecba308c896233dbfa297d97372b597b797b6bcf9300e6",
+      "auto_benchmark/results/model_results/mami_tabular_model_multiclass_test/mami_tabular_model_multiclass_test_predictions.csv": "b25914d3a790999d19d4e64ce6ad9fb9f9caa13797bcb2a300c77b916ccdee96",
+      "results/test/tabular_paddleocr_binary.json": "5662d54c0f1268c6c3887c1812ba157f24948b995e88a3084e4fef71de3fcbdf",
+      "results/test/tabular_paddleocr_multiclass_mami.json": "c51396eb91069fec58bd5ac94feb9406b4719df476bbe66e19f46a1725f01326",
+      "auto_benchmark/results/model_results/mami_tabular_model/mami_tabular_model_predictions.csv": "a215486862d18e53821f068acd3a5a7f54f5c5804e1d71818c74ac4e8a8a8c13",
+      "results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_finetuned_seed1.json": "9269c406f6299d9bae88d321c257cb282f5b1cbdd1e27d951588bde72e052f54",
+      "results/test/qwen2vl_test_qwen2_vl_7b_instruct_finetuned_seed1.json": "8c0b1df7ff7bc522b0093800c9adc7abe4738d86cd01fe9af15837db6feb748a"
+    },
+    "dataset_root": "~\\.cache\\kagglehub\\datasets\\chukwuebukaanulunko\\multimodal-misogyny-detection-mami-2022\\versions\\1"
+  },
+  "definition": "length = len(tokenizer.encode(text.strip() or 'empty text')) + 2; truncated if > 77",
+  "lengths": {
+    "train": {
+      "split": "train",
+      "gold": {
+        "n": 9000,
+        "n_over_77": 254,
+        "pct_over_77": 2.8222222222222224,
+        "mean": 26.66311111111111,
+        "median": 21.0,
+        "p90": 44.0,
+        "p95": 59.0,
+        "p99": 124.01000000000022,
+        "max": 372,
+        "histogram": {
+          "<=16": 2652,
+          "17-32": 4464,
+          "33-48": 1174,
+          "49-64": 328,
+          "65-77": 128,
+          "78-100": 112,
+          "101-150": 94,
+          ">150": 48
+        }
+      },
+      "ocr": {
+        "n": 9000,
+        "n_over_77": 165,
+        "pct_over_77": 1.8333333333333333,
+        "mean": 23.48911111111111,
+        "median": 19.0,
+        "p90": 39.0,
+        "p95": 52.0,
+        "p99": 99.0,
+        "max": 315,
+        "histogram": {
+          "<=16": 3384,
+          "17-32": 4189,
+          "33-48": 889,
+          "49-64": 269,
+          "65-77": 104,
+          "78-100": 78,
+          "101-150": 65,
+          ">150": 22
+        }
+      }
+    },
+    "validation": {
+      "split": "validation",
+      "gold": {
+        "n": 1000,
+        "n_over_77": 27,
+        "pct_over_77": 2.7,
+        "mean": 26.101,
+        "median": 21.0,
+        "p90": 42.10000000000002,
+        "p95": 60.0,
+        "p99": 96.18999999999983,
+        "max": 343,
+        "histogram": {
+          "<=16": 307,
+          "17-32": 495,
+          "33-48": 129,
+          "49-64": 28,
+          "65-77": 14,
+          "78-100": 17,
+          "101-150": 8,
+          ">150": 2
+        }
+      },
+      "ocr": {
+        "n": 1000,
+        "n_over_77": 15,
+        "pct_over_77": 1.5,
+        "mean": 22.997,
+        "median": 19.0,
+        "p90": 38.0,
+        "p95": 48.0,
+        "p99": 85.01999999999998,
+        "max": 319,
+        "histogram": {
+          "<=16": 385,
+          "17-32": 459,
+          "33-48": 108,
+          "49-64": 21,
+          "65-77": 12,
+          "78-100": 8,
+          "101-150": 6,
+          ">150": 1
+        }
+      }
+    },
+    "test": {
+      "split": "test",
+      "gold": {
+        "n": 1000,
+        "n_over_77": 2,
+        "pct_over_77": 0.2,
+        "mean": 20.138,
+        "median": 18.0,
+        "p90": 32.0,
+        "p95": 37.0,
+        "p99": 52.01999999999998,
+        "max": 100,
+        "histogram": {
+          "<=16": 404,
+          "17-32": 504,
+          "33-48": 75,
+          "49-64": 15,
+          "65-77": 0,
+          "78-100": 2,
+          "101-150": 0,
+          ">150": 0
+        }
+      },
+      "ocr": {
+        "n": 1000,
+        "n_over_77": 2,
+        "pct_over_77": 0.2,
+        "mean": 18.038,
+        "median": 16.0,
+        "p90": 29.0,
+        "p95": 34.0,
+        "p99": 44.00999999999999,
+        "max": 86,
+        "histogram": {
+          "<=16": 514,
+          "17-32": 416,
+          "33-48": 63,
+          "49-64": 5,
+          "65-77": 0,
+          "78-100": 2,
+          "101-150": 0,
+          ">150": 0
+        }
+      }
+    }
+  },
+  "subgroups": [
+    {
+      "split": "validation",
+      "model": "Tabular SVM-RBF (PaddleOCR text)",
+      "flag_text": "ocr",
+      "pct_misogynous_truncated": 40.0,
+      "pct_misogynous_not_truncated": 50.15228426395939,
+      "comparison": {
+        "n_truncated": 15,
+        "n_not_truncated": 985,
+        "correct_truncated": 14,
+        "correct_not_truncated": 857,
+        "acc_truncated": 0.9333333333333333,
+        "acc_not_truncated": 0.8700507614213198,
+        "diff_truncated_minus_not": 0.06328257191201359,
+        "two_proportion_z": 0.7256779606323207,
+        "two_proportion_p": 0.46803621580290045,
+        "fisher_exact_p": 0.7076059768994036,
+        "bootstrap_ci95": [
+          -0.07918781725888324,
+          0.14517766497461926
+        ]
+      }
+    },
+    {
+      "split": "validation",
+      "model": "Tabular SVM-RBF (PaddleOCR text)",
+      "flag_text": "gold",
+      "pct_misogynous_truncated": 33.33333333333333,
+      "pct_misogynous_not_truncated": 50.46248715313464,
+      "comparison": {
+        "n_truncated": 27,
+        "n_not_truncated": 973,
+        "correct_truncated": 22,
+        "correct_not_truncated": 849,
+        "acc_truncated": 0.8148148148148148,
+        "acc_not_truncated": 0.8725590955806783,
+        "diff_truncated_minus_not": -0.057744280765863576,
+        "two_proportion_z": -0.8829647094164509,
+        "two_proportion_p": 0.3772553392135286,
+        "fisher_exact_p": 0.37892921064780855,
+        "bootstrap_ci95": [
+          -0.21719767043508054,
+          0.07597731338738534
+        ]
+      }
+    },
+    {
+      "split": "validation",
+      "model": "Tabular SVM-RBF (provided text)",
+      "flag_text": "gold",
+      "pct_misogynous_truncated": 33.33333333333333,
+      "pct_misogynous_not_truncated": 50.46248715313464,
+      "comparison": {
+        "unavailable": true,
+        "n_truncated": 27
+      }
+    },
+    {
+      "split": "validation",
+      "model": "Tabular XGBoost (PaddleOCR text)",
+      "flag_text": "ocr",
+      "pct_misogynous_truncated": 40.0,
+      "pct_misogynous_not_truncated": 50.15228426395939,
+      "comparison": {
+        "n_truncated": 15,
+        "n_not_truncated": 985,
+        "correct_truncated": 14,
+        "correct_not_truncated": 842,
+        "acc_truncated": 0.9333333333333333,
+        "acc_not_truncated": 0.8548223350253807,
+        "diff_truncated_minus_not": 0.0785109983079526,
+        "two_proportion_z": 0.8595598394026049,
+        "two_proportion_p": 0.39003172100905537,
+        "fisher_exact_p": 0.7095294567330357,
+        "bootstrap_ci95": [
+          -0.06598984771573602,
+          0.1624365482233503
+        ]
+      }
+    },
+    {
+      "split": "validation",
+      "model": "Tabular XGBoost (PaddleOCR text)",
+      "flag_text": "gold",
+      "pct_misogynous_truncated": 33.33333333333333,
+      "pct_misogynous_not_truncated": 50.46248715313464,
+      "comparison": {
+        "n_truncated": 27,
+        "n_not_truncated": 973,
+        "correct_truncated": 23,
+        "correct_not_truncated": 833,
+        "acc_truncated": 0.8518518518518519,
+        "acc_not_truncated": 0.8561151079136691,
+        "diff_truncated_minus_not": -0.004263256061817211,
+        "two_proportion_z": -0.06223885466658061,
+        "two_proportion_p": 0.9503726209024671,
+        "fisher_exact_p": 1.0,
+        "bootstrap_ci95": [
+          -0.15241140420996535,
+          0.1160975981119865
+        ]
+      }
+    },
+    {
+      "split": "validation",
+      "model": "Tabular XGBoost (provided text)",
+      "flag_text": "gold",
+      "pct_misogynous_truncated": 33.33333333333333,
+      "pct_misogynous_not_truncated": 50.46248715313464,
+      "comparison": {
+        "unavailable": true,
+        "n_truncated": 27
+      }
+    },
+    {
+      "split": "validation",
+      "model": "Qwen2-VL-7B QLoRA seed1 (provided text, no CLIP)",
+      "flag_text": "gold",
+      "pct_misogynous_truncated": 33.33333333333333,
+      "pct_misogynous_not_truncated": 50.46248715313464,
+      "comparison": {
+        "n_truncated": 27,
+        "n_not_truncated": 973,
+        "correct_truncated": 23,
+        "correct_not_truncated": 866,
+        "acc_truncated": 0.8518518518518519,
+        "acc_not_truncated": 0.8900308324768756,
+        "diff_truncated_minus_not": -0.038178980625023784,
+        "two_proportion_z": -0.6229457983297856,
+        "two_proportion_p": 0.5333201406103468,
+        "fisher_exact_p": 0.5298657927189879,
+        "bootstrap_ci95": [
+          -0.18838262723154808,
+          0.08218187354877993
+        ]
+      },
+      "file": "results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_finetuned_seed1.json"
+    },
+    {
+      "split": "test",
+      "model": "Tabular SVM-RBF (PaddleOCR text)",
+      "flag_text": "ocr",
+      "pct_misogynous_truncated": 50.0,
+      "pct_misogynous_not_truncated": 50.0,
+      "comparison": {
+        "n_truncated": 2,
+        "n_not_truncated": 998,
+        "correct_truncated": 0,
+        "correct_not_truncated": 739,
+        "acc_truncated": 0.0,
+        "acc_not_truncated": 0.7404809619238477,
+        "diff_truncated_minus_not": -0.7404809619238477,
+        "two_proportion_z": -2.382054494816333,
+        "two_proportion_p": 0.017216349506340014,
+        "fisher_exact_p": 0.06792792792792793,
+        "bootstrap_ci95": [
+          -0.7675350701402806,
+          -0.7124248496993988
+        ],
+        "small_n_warning": "fewer than 10 memes in a group: z-test and bootstrap CI are unreliable; use Fisher p"
+      }
+    },
+    {
+      "split": "test",
+      "model": "Tabular SVM-RBF (PaddleOCR text)",
+      "flag_text": "gold",
+      "pct_misogynous_truncated": 100.0,
+      "pct_misogynous_not_truncated": 49.899799599198396,
+      "comparison": {
+        "n_truncated": 2,
+        "n_not_truncated": 998,
+        "correct_truncated": 1,
+        "correct_not_truncated": 738,
+        "acc_truncated": 0.5,
+        "acc_not_truncated": 0.7394789579158316,
+        "diff_truncated_minus_not": -0.23947895791583163,
+        "two_proportion_z": -0.7703802764020344,
+        "two_proportion_p": 0.44107434974069826,
+        "fisher_exact_p": 0.4540720720720722,
+        "bootstrap_ci95": [
+          -0.7575150300601202,
+          0.27855711422845686
+        ],
+        "small_n_warning": "fewer than 10 memes in a group: z-test and bootstrap CI are unreliable; use Fisher p"
+      }
+    },
+    {
+      "split": "test",
+      "model": "Tabular SVM-RBF (provided text)",
+      "flag_text": "gold",
+      "pct_misogynous_truncated": 100.0,
+      "pct_misogynous_not_truncated": 49.899799599198396,
+      "comparison": {
+        "unavailable": true,
+        "n_truncated": 2
+      }
+    },
+    {
+      "split": "test",
+      "model": "Tabular XGBoost (PaddleOCR text)",
+      "flag_text": "ocr",
+      "pct_misogynous_truncated": 50.0,
+      "pct_misogynous_not_truncated": 50.0,
+      "comparison": {
+        "n_truncated": 2,
+        "n_not_truncated": 998,
+        "correct_truncated": 1,
+        "correct_not_truncated": 729,
+        "acc_truncated": 0.5,
+        "acc_not_truncated": 0.7304609218436874,
+        "diff_truncated_minus_not": -0.23046092184368738,
+        "two_proportion_z": -0.7333887624274569,
+        "two_proportion_p": 0.4633213511876205,
+        "fisher_exact_p": 0.4672972972972973,
+        "bootstrap_ci95": [
+          -0.748496993987976,
+          0.2865731462925851
+        ],
+        "small_n_warning": "fewer than 10 memes in a group: z-test and bootstrap CI are unreliable; use Fisher p"
+      }
+    },
+    {
+      "split": "test",
+      "model": "Tabular XGBoost (PaddleOCR text)",
+      "flag_text": "gold",
+      "pct_misogynous_truncated": 100.0,
+      "pct_misogynous_not_truncated": 49.899799599198396,
+      "comparison": {
+        "n_truncated": 2,
+        "n_not_truncated": 998,
+        "correct_truncated": 2,
+        "correct_not_truncated": 728,
+        "acc_truncated": 1.0,
+        "acc_not_truncated": 0.7294589178356713,
+        "diff_truncated_minus_not": 0.2705410821643287,
+        "two_proportion_z": 0.8609346341539712,
+        "two_proportion_p": 0.38927404512552244,
+        "fisher_exact_p": 1.0,
+        "bootstrap_ci95": [
+          0.24248496993987978,
+          0.2985971943887775
+        ],
+        "small_n_warning": "fewer than 10 memes in a group: z-test and bootstrap CI are unreliable; use Fisher p"
+      }
+    },
+    {
+      "split": "test",
+      "model": "Tabular XGBoost (provided text)",
+      "flag_text": "gold",
+      "pct_misogynous_truncated": 100.0,
+      "pct_misogynous_not_truncated": 49.899799599198396,
+      "comparison": {
+        "unavailable": true,
+        "n_truncated": 2
+      }
+    },
+    {
+      "split": "test",
+      "model": "Qwen2-VL-7B QLoRA seed1 (provided text, no CLIP)",
+      "flag_text": "gold",
+      "pct_misogynous_truncated": 100.0,
+      "pct_misogynous_not_truncated": 49.899799599198396,
+      "comparison": {
+        "n_truncated": 2,
+        "n_not_truncated": 998,
+        "correct_truncated": 1,
+        "correct_not_truncated": 786,
+        "acc_truncated": 0.5,
+        "acc_not_truncated": 0.7875751503006012,
+        "diff_truncated_minus_not": -0.2875751503006012,
+        "two_proportion_z": -0.9923261954517391,
+        "two_proportion_p": 0.3210384288124728,
+        "fisher_exact_p": 0.3807987987987988,
+        "bootstrap_ci95": [
+          -0.8056112224448898,
+          0.2294589178356713
+        ],
+        "small_n_warning": "fewer than 10 memes in a group: z-test and bootstrap CI are unreliable; use Fisher p"
+      },
+      "file": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_finetuned_seed1.json"
+    }
+  ],
+  "caveats": [
+    "Provided-text tabular CSVs/embeddings are absent locally (gitignored; SCIAMA unreachable): tabular is OCR-side only.",
+    "Qwen2-VL also sees the image and can read the overlay: OCR-vs-provided gaps bound, not isolate, OCR-error effects.",
+    "CER buckets are observational (layout and text length co-vary with CER); bucket gaps are not causal.",
+    "Few test memes exceed 77 tokens, so those tests are underpowered; validation is supplementary."
+  ]
+}

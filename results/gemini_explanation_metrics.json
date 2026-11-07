@@ -1,0 +1,283 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "split": "validation",
+  "input_file": "results/gemini_explanations.jsonl",
+  "num_samples": 30,
+  "mean_bleu_1": 0.17348897098283686,
+  "mean_bleu_4": 0.016368752087427576,
+  "mean_rouge_l": 0.16386479483289887,
+  "std_bleu_4": 0.01145462818528947,
+  "std_rouge_l": 0.0772468374357629,
+  "details": [
+    {
+      "image_id": "1377",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme promotes a harmful gender stereotype by implying that women do not perform 'equal work' and are therefore undeserving of equal pay, specifically demeaning their contributions in labor-intensive fields.",
+      "bleu_1": 0.19614147909967844,
+      "bleu_4": 0.017206759225780285,
+      "rouge_l": 0.14723517654896737
+    },
+    {
+      "image_id": "5498",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme relies on a sexist stereotype that associates women with childishness and femininity, using the pink, plush steering wheel cover and stuffed animals to mock the idea of a woman driving.",
+      "bleu_1": 0.12772585669781927,
+      "bleu_4": 0.008274937793646894,
+      "rouge_l": 0.10861730013106159
+    },
+    {
+      "image_id": "5697",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme relies on the sexist trope that women are inherently bad or anxious drivers by contrasting a calm male driver with a dog that appears startled or nervous when a woman is driving.",
+      "bleu_1": 0.14956011730205276,
+      "bleu_4": 0.008202204545674217,
+      "rouge_l": 0.10517131979695432
+    },
+    {
+      "image_id": "5182",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme uses the derogatory slur 'bitches' to refer to women and reduces them to objects that can be made 'sexier' through external manipulation, reinforcing harmful objectification.",
+      "bleu_1": 0.18819188191881916,
+      "bleu_4": 0.010448823746762257,
+      "rouge_l": 0.15774446823697358
+    },
+    {
+      "image_id": "6162",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme uses a 'brainlet' caricature to mock feminist perspectives on consent, framing the discussion of sexual autonomy as inherently unintelligent or absurd to demean the movement.",
+      "bleu_1": 0.15129151291512913,
+      "bleu_4": 0.009893975340685092,
+      "rouge_l": 0.11830835117773018
+    },
+    {
+      "image_id": "6772",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme uses the term 'milf' to objectify a teacher and depicts a sexual fantasy involving a student-teacher power imbalance, which reinforces harmful tropes regarding the sexualization of women in positions of authority.",
+      "bleu_1": 0.061583577712609965,
+      "bleu_4": 0.006570416117057813,
+      "rouge_l": 0.07755746622214424
+    },
+    {
+      "image_id": "3932",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme uses a popular template to make a joke about the anti-vaccination movement and child mortality; it targets a specific belief system rather than demeaning women based on their gender.",
+      "bleu_1": 0.09657320872274144,
+      "bleu_4": 0.00771630164943276,
+      "rouge_l": 0.1205673758865248
+    },
+    {
+      "image_id": "5457",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme is a humorous take on a disappointing or unconventional birthday celebration and does not target, demean, or promote hostility toward women.",
+      "bleu_1": 0.3939393939393939,
+      "bleu_4": 0.03623144212714163,
+      "rouge_l": 0.38443139813002825
+    },
+    {
+      "image_id": "10007",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme uses a dismissive and hostile tone to mock feminist perspectives, framing the woman's attempt to set a boundary as an opportunity for 'destruction' through gender-based insults.",
+      "bleu_1": 0.06976744186046512,
+      "bleu_4": 0.007490676642336481,
+      "rouge_l": 0.08341196452160785
+    },
+    {
+      "image_id": "7391",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme uses a popular reaction image to express self-deprecating humor about the creator's own lack of a romantic partner, rather than demeaning or expressing hostility toward women.",
+      "bleu_1": 0.16943521594684383,
+      "bleu_4": 0.017029697807966752,
+      "rouge_l": 0.1668239290432157
+    },
+    {
+      "image_id": "2991",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme uses dehumanizing, body-shaming language ('huge disgusting bovine cow woman') to attack a woman's appearance and undermine her professional role, which constitutes misogynistic harassment.",
+      "bleu_1": 0.1143911439114391,
+      "bleu_4": 0.009226038931602535,
+      "rouge_l": 0.07887223411848679
+    },
+    {
+      "image_id": "6324",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme uses the 'Success Kid' template to express a personal positive experience regarding a consensual sexual encounter between spouses, which does not demean, objectify, or express hostility toward women.",
+      "bleu_1": 0.23588039867109634,
+      "bleu_4": 0.02174380962626599,
+      "rouge_l": 0.25023589356482356
+    },
+    {
+      "image_id": "1804",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme uses a stock photo depicting domestic violence to make a joke about feminism, trivializing abuse and reinforcing harmful stereotypes by equating the concept of a 'hit-woman' with the victimization of a woman.",
+      "bleu_1": 0.11680911680911676,
+      "bleu_4": 0.007535244241682476,
+      "rouge_l": 0.13803872579637724
+    },
+    {
+      "image_id": "552",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "The meme depicts a common comedic trope about unexpected life changes and financial priorities; it does not demean, objectify, or express hostility toward women, but rather highlights a situational conflict between personal goals and parenthood.",
+      "bleu_1": 0.20227920227920226,
+      "bleu_4": 0.03369915038991621,
+      "rouge_l": 0.2070580886945659
+    },
+    {
+      "image_id": "13261",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme objectifies a woman by focusing exclusively on her body parts and using derogatory, sexualized language to reduce her to a visual commodity.",
+      "bleu_1": 0.12863070539419086,
+      "bleu_4": 0.010453566482248057,
+      "rouge_l": 0.125
+    },
+    {
+      "image_id": "10285",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme depicts a happy dog with text about programming success; it contains no references to gender or women and does not promote misogynistic stereotypes.",
+      "bleu_1": 0.3625498007968127,
+      "bleu_4": 0.05107867096227332,
+      "rouge_l": 0.2763075640758491
+    },
+    {
+      "image_id": "6225",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme implies a dynamic of dominance and submission by suggesting the user is commanding their girlfriend to 'sit' like a pet, which objectifies and demeans her.",
+      "bleu_1": 0.07749077490774907,
+      "bleu_4": 0.00837008142966031,
+      "rouge_l": 0.08841768353670733
+    },
+    {
+      "image_id": "7602",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "The meme is a critique of costume design choices for a television character compared to fan cosplay, rather than an attack based on the subject's gender.",
+      "bleu_1": 0.1143911439114391,
+      "bleu_4": 0.016802095707054654,
+      "rouge_l": 0.11830835117773018
+    },
+    {
+      "image_id": "5988",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme uses a graphic image of a bloodied face to make a crude, sexually suggestive joke about menstruation, which objectifies women and reduces them to their biological functions.",
+      "bleu_1": 0.10652920962199315,
+      "bleu_4": 0.008556342227219687,
+      "rouge_l": 0.07615437629221226
+    },
+    {
+      "image_id": "991",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme uses derogatory labels to objectify the female characters, specifically labeling one as 'the prostitute,' which reinforces harmful gender stereotypes and demeans the character based on her appearance.",
+      "bleu_1": 0.14089347079037798,
+      "bleu_4": 0.009175794686124266,
+      "rouge_l": 0.12752452394691285
+    },
+    {
+      "image_id": "10270",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme explicitly states that 'WOMEN ARE INFERIOR TO MEN,' which is a direct expression of misogyny that promotes gender-based discrimination and demeans women.",
+      "bleu_1": 0.2430278884462151,
+      "bleu_4": 0.01185519506783637,
+      "rouge_l": 0.2044781643227239
+    },
+    {
+      "image_id": "2588",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "This is a technical meme about web development that contrasts the complex process of setting up a LAMP stack with the shortcut of using PHP's built-in development server; it contains no gender-based content.",
+      "bleu_1": 0.11357340720221602,
+      "bleu_4": 0.007317231434088292,
+      "rouge_l": 0.11239193083573486
+    },
+    {
+      "image_id": "132",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The image is a promotional graphic for two video games, 'Ni no Kuni: Wrath of the White Witch' and 'Ni no Kuni II: Revenant Kingdom,' and contains no content that demeans, objectifies, or expresses hostility toward women.",
+      "bleu_1": 0.137466307277628,
+      "bleu_4": 0.013677447724483484,
+      "rouge_l": 0.1473578929821637
+    },
+    {
+      "image_id": "10293",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "While the meme depicts a shocking and taboo scenario, it is a dark humor joke focused on the theme of incest rather than demeaning, objectifying, or expressing hostility toward women based on their gender.",
+      "bleu_1": 0.20821114369501464,
+      "bleu_4": 0.01622560166432488,
+      "rouge_l": 0.1938936655553606
+    },
+    {
+      "image_id": "6391",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "This meme promotes a harmful gender stereotype by framing women as hypocritical and emotionally fragile, while trivializing the impact of body shaming directed at them.",
+      "bleu_1": 0.28286852589641437,
+      "bleu_4": 0.02636001520639034,
+      "rouge_l": 0.2044781643227239
+    },
+    {
+      "image_id": "7197",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme is a comparison between a man with a thick neck and a walrus; it does not target, demean, or reference women, and therefore does not meet the criteria for misogynistic content.",
+      "bleu_1": 0.24471299093655588,
+      "bleu_4": 0.040822055776789094,
+      "rouge_l": 0.27629933916770855
+    },
+    {
+      "image_id": "7184",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme uses a humorous, self-deprecating observation about human error and does not target, demean, or stereotype women.",
+      "bleu_1": 0.26701570680628267,
+      "bleu_4": 0.02770813105922082,
+      "rouge_l": 0.2631578947368421
+    },
+    {
+      "image_id": "1118",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme uses a derogatory comparison between a hairless, wrinkled cat and the bodies of women over 40, reinforcing harmful stereotypes and body-shaming women based on their age and grooming choices.",
+      "bleu_1": 0.15887850467289721,
+      "bleu_4": 0.008738991511904368,
+      "rouge_l": 0.18102883355176935
+    },
+    {
+      "image_id": "3289",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme uses a popular quote format from the movie 'Elf' to express a personal preference for yoga, which does not demean, objectify, or promote hostility toward women.",
+      "bleu_1": 0.2882562277580071,
+      "bleu_4": 0.026635706349205812,
+      "rouge_l": 0.30339282212198465
+    },
+    {
+      "image_id": "3029",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme reinforces a harmful gender stereotype by suggesting that men operate under a 'bro code' that excuses male infidelity while promoting the policing and exposure of women's behavior, thereby demeaning women through a double standard.",
+      "bleu_1": 0.05660377358490567,
+      "bleu_4": 0.006016157148052119,
+      "rouge_l": 0.07367894649108185
+    }
+  ]
+}

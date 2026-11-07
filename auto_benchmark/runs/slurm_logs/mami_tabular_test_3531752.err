@@ -1,0 +1,12 @@
+Loading system/sciama
+  Loading requirement: services/slurm
+Traceback (most recent call last):
+  File "${CONDA_PREFIX}/lib/python3.10/runpy.py", line 187, in _run_module_as_main
+    mod_name, mod_spec, code = _get_module_details(mod_name, _Error)
+  File "${CONDA_PREFIX}/lib/python3.10/runpy.py", line 110, in _get_module_details
+    __import__(pkg_name)
+  File "auto_benchmark/src/autobenchmark/__init__.py", line 7, in <module>
+    from .data import load_data, prepare_data
+  File "auto_benchmark/src/autobenchmark/data.py", line 10, in <module>
+    from imblearn.over_sampling import SMOTE
+ModuleNotFoundError: No module named 'imblearn'

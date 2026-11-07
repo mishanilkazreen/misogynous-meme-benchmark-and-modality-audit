@@ -1,0 +1,23 @@
+{
+  "job": "S4",
+  "params": {
+    "model": "7b",
+    "task": "singleclass",
+    "seed": 1
+  },
+  "passed": true,
+  "checked_utc": "2026-10-17T12:52:49+00:00",
+  "git_commit": "5940306ee1cc096b2a276649604d2c3e2cde9490",
+  "files": [
+    {
+      "path": "results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_finetuned_seed1_tdisjoint.json",
+      "sha256": "0c8da822ad08fe198af5401b484316efeb67ac47775310ed6734abd497c1c202",
+      "errors": []
+    },
+    {
+      "path": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_finetuned_seed1_tdisjoint.json",
+      "sha256": "b3469c39c18764c03d54ca4808c1afee2a261fde275c5a1bd7e55591e6fe8d68",
+      "errors": []
+    }
+  ]
+}

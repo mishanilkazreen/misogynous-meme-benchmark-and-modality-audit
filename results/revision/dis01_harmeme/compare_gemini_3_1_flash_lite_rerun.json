@@ -1,0 +1,57 @@
+{
+  "model": "gemini_3_1_flash_lite",
+  "tag": "_rerun",
+  "reproduced": true,
+  "validation_macro_f1_bar": 0.5269186712485681,
+  "clears_validation_bar": false,
+  "splits": {
+    "validation": {
+      "verification_errors": [],
+      "memes": 177,
+      "changed_answers": 0,
+      "changed_share": 0.0,
+      "reference": {
+        "accuracy": 0.6497175141242938,
+        "macro_f1": 0.45951536643026003,
+        "harmful_recall": 0.08196721311475409,
+        "predicted_harmful_share": 0.062146892655367235
+      },
+      "new": {
+        "accuracy": 0.6497175141242938,
+        "macro_f1": 0.45951536643026003,
+        "harmful_recall": 0.08196721311475409,
+        "predicted_harmful_share": 0.062146892655367235
+      },
+      "prompt_variant": "baseline",
+      "elapsed_seconds": 220.1,
+      "retries": 0,
+      "api_model_versions": [
+        "gemini-3.1-flash-lite"
+      ]
+    },
+    "test": {
+      "verification_errors": [],
+      "memes": 354,
+      "changed_answers": 0,
+      "changed_share": 0.0,
+      "reference": {
+        "accuracy": 0.6581920903954802,
+        "macro_f1": 0.4642200457803294,
+        "harmful_recall": 0.08064516129032258,
+        "predicted_harmful_share": 0.0480225988700565
+      },
+      "new": {
+        "accuracy": 0.6581920903954802,
+        "macro_f1": 0.4642200457803294,
+        "harmful_recall": 0.08064516129032258,
+        "predicted_harmful_share": 0.0480225988700565
+      },
+      "prompt_variant": "baseline",
+      "elapsed_seconds": 392.6,
+      "retries": 0,
+      "api_model_versions": [
+        "gemini-3.1-flash-lite"
+      ]
+    }
+  }
+}

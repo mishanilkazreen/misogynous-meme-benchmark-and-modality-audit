@@ -1,0 +1,47 @@
+=== JOB exp07-llava-seed (3577544) on gpu11.pri.sciama.icg.port at 2026-09-30T09:20:44+01:00 ===
+git commit: unknown
+Wed Sep 30 09:20:44 2026
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 565.57.01              Driver Version: 565.57.01      CUDA Version: 12.7     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA L40                     Off |   00000000:21:00.0 Off |                    0 |
+| N/A   56C    P0             72W /  300W |       1MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+PREREQS OK
+trainable params: 47,267,840 || all params: 7,110,694,912 || trainable%: 0.6647
+Split: validation | Filters: ['none'] | Limit: None | LoRA Path: results/models/lora_llava_1.5_7b_hf_multiclass_seed2
+Pre-loading model …
+  Loading llava-hf/llava-1.5-7b-hf (4-bit NF4) …
+  Loading LoRA adapters from results/models/lora_llava_1.5_7b_hf_multiclass_seed2 …
+  Quantized model detected; running with active adapters (unmerged).
+Loaded 1000 samples
+
+--- Filter: none ---
+  acc=0.613  refusals=61.10%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/validation/llava_validation_llava_1_5_7b_hf_multiclass_finetuned_seed2.json
+Split: test | Filters: ['none'] | Limit: None | LoRA Path: results/models/lora_llava_1.5_7b_hf_multiclass_seed2
+Pre-loading model …
+  Loading llava-hf/llava-1.5-7b-hf (4-bit NF4) …
+  Loading LoRA adapters from results/models/lora_llava_1.5_7b_hf_multiclass_seed2 …
+  Quantized model detected; running with active adapters (unmerged).
+Loaded 1000 samples
+
+--- Filter: none ---
+  acc=0.453  refusals=46.90%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/test/llava_test_llava_1_5_7b_hf_multiclass_finetuned_seed2.json
+=== DONE exp07 llava TASK=multiclass SEED=2 ===

@@ -1,0 +1,25 @@
+# Image Classification Data Configuration
+# Used to benchmark image classification pipelines
+
+dataset:
+  data_type: "image_classification"
+  dataset_dir: "data_files/synthetic_class_data"   # path to folder containing class folders (or train/val folders)
+  image_size: 224                                  # resized resolution for models
+  validation_split: 0.2                            # ratio to split if no pre-split train/val folder
+
+mode: "extract_features"                         # "extract_features" (ML suite) or "fine_tune" (Deep Learning fine-tuning)
+backbone_model: "resnet50"                         # backbone feature extractor (for extract_features mode)
+use_cache: true                                    # cache extracted image embeddings to speed up subsequent runs
+
+training:
+  epochs: 5                                        # epochs for fine_tune mode
+  batch_size: 8                                    # batch size for training/extracting
+  learning_rate: 0.001
+  optimizer: "AdamW"
+  device: "auto"                                   # "cuda", "cpu", or "auto"
+  workers: 0                                       # safer to keep 0 on Windows to avoid process serialization bugs
+
+augmentation:
+  random_horizontal_flip: true
+  random_rotation_degrees: 15
+  color_jitter: true

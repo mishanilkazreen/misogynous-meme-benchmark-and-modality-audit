@@ -1,0 +1,333 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[codz]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+#   For a library or package, you might want to ignore these files since the code is
+#   intended to run in multiple environments; otherwise, check them in:
+# .python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# UV
+#   Similar to Pipfile.lock, it is generally recommended to include uv.lock in version control.
+#   This is especially recommended for binary packages to ensure reproducibility, and is more
+#   commonly ignored for libraries.
+#uv.lock
+
+# poetry
+#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
+#   This is especially recommended for binary packages to ensure reproducibility, and is more
+#   commonly ignored for libraries.
+#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
+#poetry.lock
+#poetry.toml
+
+# pdm
+#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
+#   pdm recommends including project-wide configuration in pdm.toml, but excluding .pdm-python.
+#   https://pdm-project.org/en/latest/usage/project/#working-with-version-control
+#pdm.lock
+#pdm.toml
+.pdm-python
+.pdm-build/
+
+# pixi
+#   Similar to Pipfile.lock, it is generally recommended to include pixi.lock in version control.
+#pixi.lock
+#   Pixi creates a virtual environment in the .pixi directory, just like venv module creates one
+#   in the .venv directory. It is recommended not to include this directory in version control.
+.pixi
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.envrc
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# PyCharm
+#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
+#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
+#  and can be added to the global gitignore or merged into this file.  For a more nuclear
+#  option (not recommended) you can uncomment the following to ignore the entire idea folder.
+#.idea/
+
+# Abstra
+# Abstra is an AI-powered process automation framework.
+# Ignore directories containing user credentials, local state, and settings.
+# Learn more at https://abstra.io/docs
+.abstra/
+
+# Visual Studio Code
+#  Visual Studio Code specific template is maintained in a separate VisualStudioCode.gitignore
+#  that can be found at https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
+#  and can be added to the global gitignore or merged into this file. However, if you prefer,
+#  you could uncomment the following to ignore the entire vscode folder
+# .vscode/
+
+# Ruff stuff:
+.ruff_cache/
+
+# PyPI configuration file
+.pypirc
+
+# Cursor
+#  Cursor is an AI-powered code editor. `.cursorignore` specifies files/directories to
+#  exclude from AI features like autocomplete and code analysis. Recommended for sensitive data
+#  refer to https://docs.cursor.com/context/ignore-files
+.cursorignore
+.cursorindexingignore
+
+# Marimo
+marimo/_static/
+marimo/_lsp/
+__marimo__/
+
+# VLM Content Moderation Project Specific
+# Data files
+data/raw/
+data/processed/
+data/annotations/*.json
+data/annotations/*.xml
+
+# Model checkpoints and weights
+*.pth
+*.pt
+*.ckpt
+models/checkpoints/
+models/saved_models/
+
+# Experiment outputs
+experiments/
+outputs/
+logs/
+wandb/
+
+# Large files
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+
+# macOS system files
+.DS_Store
+
+# Local symlinks
+*.lnk
+
+
+.idea/misc.xml
+yolo_test_results.png
+.idea/modules.xml
+.idea/vcs.xml
+
+# Ignore generated training and benchmark outputs
+results/trained_models/
+results/*.jsonl
+
+# Rationale generation files ARE tracked. They are the only evidence behind the
+# reported explanation-quality numbers and they are a few KB each. Never re-ignore these.
+!results/rationales/
+!results/rationales/**
+!results/*_explanations.jsonl
+!results/*_explanations_*.jsonl
+!results/vlm_explanations.jsonl
+
+# Track benchmark result JSONs explicitly by split subfolder
+# - results/validation/  → validation-split metrics (committed)
+# - results/test/        → final test-split metrics (committed)
+# - results/rationales/  → rationale generations + metrics, per model per split (committed)
+# - results/*.json       → misc root-level JSONs (committed, e.g. catalogues, label stats)
+# Anything else (e.g. scratch/intermediate files) should live outside results/
+!results/validation/
+!results/test/
+!results/figures/
+
+
+# macOS metadata
+.DS_Store
+
+.claude/
+
+# VLM documentation scratch folder
+vlm_docs/
+models/yolo/trainer.py
+tests/unit/test_train_yolo.py
+ww2/*
+results/figures/yolo_detections_ww2_best.png
+results/figures/yolo_detections_ww2_yolo11n.png
+results/figures/yolo_detections_ww2_yolov8n.png
+
+# VLM documentation scratch folder
+vlm_docs/
+task_4/
+
+# Ignore large pre-extracted embeddings
+results/embeddings/
+*.npz
+
+# Ignore large model checkpoints and adapters
+results/models/
+!results/models/README.md
+*.safetensors
+
+# Ignore nested auto_benchmark local files/folders
+auto_benchmark/.venv/
+auto_benchmark/results/
+auto_benchmark/models/
+auto_benchmark/data_files/
+auto_benchmark/*.joblib
+auto_benchmark/*.npz
+auto_benchmark/*.csv
+auto_benchmark/*.xlsx
+
+# Ignore large binary model weights in results folders
+results/validation/*/models/
+results/test/*/models/
+results/validation/*/*.joblib
+results/test/*/*.joblib
+
+scratch/
+
+# Template-disjoint split TSVs are large data artefacts, reproducible from
+# scripts/revision/template_overlap.py + results/revision/exp02/template_clusters.csv.
+data/splits/template_disjoint/*.tsv
+
+# HarMeme (Harm-C) dataset files downloaded via scripts/revision/harmeme_eval.py download.
+# data/harmeme/README.md remains tracked; results in results/{validation,test}/harmeme_*.json
+# and results/revision/dis01_harmeme/ remain tracked.
+data/harmeme/images/
+data/harmeme/*.zip
+data/harmeme/annotations/*.jsonl
+
+# SCIAMA raw outputs are ALWAYS tracked: job logs (.log/.err), ledger and artefact manifests.
+# These rules must stay LAST so no earlier pattern (*.log, *.npz, ...) can hide them.
+# See sciama/README.md section 6. Never add ignore rules for these locations.
+!runs/
+!runs/slurm_logs/
+!runs/slurm_logs/**
+!results/sciama/
+!results/sciama/**

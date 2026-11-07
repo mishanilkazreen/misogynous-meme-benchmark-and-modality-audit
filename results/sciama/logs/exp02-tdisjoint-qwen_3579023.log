@@ -1,0 +1,47 @@
+=== JOB exp02-tdisjoint-qwen (3579023) on gpu11.pri.sciama.icg.port at 2026-10-04T19:34:24+01:00 ===
+git commit: unknown
+Sun Oct  4 19:34:24 2026
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 565.57.01              Driver Version: 565.57.01      CUDA Version: 12.7     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA L40                     Off |   00000000:21:00.0 Off |                    0 |
+| N/A   32C    P8             36W /  300W |       1MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+PREREQS OK
+trainable params: 29,220,864 || all params: 2,238,206,464 || trainable%: 1.3055
+Split: validation | Filters: ['none'] | Limit: None | LoRA Path: results/models/lora_qwen2_vl_2b_instruct_multiclass_seed1_tdisjoint
+Pre-loading model …
+Loading Qwen/Qwen2-VL-2B-Instruct (4-bit NF4) …
+Loading LoRA adapters from results/models/lora_qwen2_vl_2b_instruct_multiclass_seed1_tdisjoint …
+Quantized model detected; running with active adapters (unmerged).
+Loaded 1000 samples
+
+--- Filter: none ---
+  acc=0.628  refusals=0.00%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/validation/qwen2vl_validation_qwen2_vl_2b_instruct_multiclass_finetuned_seed1_tdisjoint.json
+Split: test | Filters: ['none'] | Limit: None | LoRA Path: results/models/lora_qwen2_vl_2b_instruct_multiclass_seed1_tdisjoint
+Pre-loading model …
+Loading Qwen/Qwen2-VL-2B-Instruct (4-bit NF4) …
+Loading LoRA adapters from results/models/lora_qwen2_vl_2b_instruct_multiclass_seed1_tdisjoint …
+Quantized model detected; running with active adapters (unmerged).
+Loaded 1000 samples
+
+--- Filter: none ---
+  acc=0.640  refusals=0.00%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/test/qwen2vl_test_qwen2_vl_2b_instruct_multiclass_finetuned_seed1_tdisjoint.json
+=== DONE exp02 MODEL=2b TASK=multiclass SEED=1 ===

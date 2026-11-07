@@ -1,0 +1,104 @@
+=== JOB exp07-llava-zeroshot (3577539) on gpu11.pri.sciama.icg.port at 2026-09-29T23:06:52+01:00 ===
+git commit: unknown
+Tue Sep 29 23:06:52 2026
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 565.57.01              Driver Version: 565.57.01      CUDA Version: 12.7     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA L40                     Off |   00000000:21:00.0 Off |                    0 |
+| N/A   54C    P0            113W /  300W |       1MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+PREREQS OK
+=== ZERO-SHOT llava TASK=singleclass text=provided split=validation ===
+Split: validation | Filters: ['none'] | Limit: None | LoRA Path: None
+Pre-loading model …
+  Loading llava-hf/llava-1.5-7b-hf (4-bit NF4) …
+Loaded 1000 samples
+
+--- Filter: none ---
+  acc=0.654  refusals=0.00%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/validation/llava_validation_llava_1_5_7b_hf.json
+=== ZERO-SHOT llava TASK=singleclass text=provided split=test ===
+Split: test | Filters: ['none'] | Limit: None | LoRA Path: None
+Pre-loading model …
+  Loading llava-hf/llava-1.5-7b-hf (4-bit NF4) …
+Loaded 1000 samples
+
+--- Filter: none ---
+  acc=0.584  refusals=0.00%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/test/llava_test_llava_1_5_7b_hf.json
+=== ZERO-SHOT llava TASK=singleclass text=ocr split=validation ===
+Split: validation | Filters: ['none'] | Limit: None | LoRA Path: None
+Pre-loading model …
+  Loading llava-hf/llava-1.5-7b-hf (4-bit NF4) …
+Loaded 1000 samples
+
+--- Filter: none ---
+  acc=0.693  refusals=0.00%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/validation/llava_validation_llava_1_5_7b_hf_ocr_paddleocr.json
+=== ZERO-SHOT llava TASK=singleclass text=ocr split=test ===
+Split: test | Filters: ['none'] | Limit: None | LoRA Path: None
+Pre-loading model …
+  Loading llava-hf/llava-1.5-7b-hf (4-bit NF4) …
+Loaded 1000 samples
+
+--- Filter: none ---
+  acc=0.633  refusals=0.00%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/test/llava_test_llava_1_5_7b_hf_ocr_paddleocr.json
+=== ZERO-SHOT llava TASK=multiclass text=provided split=validation ===
+Split: validation | Filters: ['none'] | Limit: None | LoRA Path: None
+Pre-loading model …
+  Loading llava-hf/llava-1.5-7b-hf (4-bit NF4) …
+Loaded 1000 samples
+
+--- Filter: none ---
+  acc=0.169  refusals=16.20%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/validation/llava_validation_llava_1_5_7b_hf_multiclass.json
+=== ZERO-SHOT llava TASK=multiclass text=provided split=test ===
+Split: test | Filters: ['none'] | Limit: None | LoRA Path: None
+Pre-loading model …
+  Loading llava-hf/llava-1.5-7b-hf (4-bit NF4) …
+Loaded 1000 samples
+
+--- Filter: none ---
+  acc=0.115  refusals=8.80%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/test/llava_test_llava_1_5_7b_hf_multiclass.json
+=== ZERO-SHOT llava TASK=multiclass text=ocr split=validation ===
+Split: validation | Filters: ['none'] | Limit: None | LoRA Path: None
+Pre-loading model …
+  Loading llava-hf/llava-1.5-7b-hf (4-bit NF4) …
+Loaded 1000 samples
+
+--- Filter: none ---
+  acc=0.263  refusals=30.20%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/validation/llava_validation_llava_1_5_7b_hf_ocr_paddleocr_multiclass.json
+=== ZERO-SHOT llava TASK=multiclass text=ocr split=test ===
+Split: test | Filters: ['none'] | Limit: None | LoRA Path: None
+Pre-loading model …
+  Loading llava-hf/llava-1.5-7b-hf (4-bit NF4) …
+Loaded 1000 samples
+
+--- Filter: none ---
+  acc=0.233  refusals=22.30%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/test/llava_test_llava_1_5_7b_hf_ocr_paddleocr_multiclass.json
+=== DONE exp07 llava zero-shot ===

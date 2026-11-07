@@ -1,0 +1,71 @@
+{
+  "job": "S2",
+  "params": {
+    "model": "7b"
+  },
+  "passed": true,
+  "checked_utc": "2026-10-01T00:03:38+00:00",
+  "git_commit": "0535da0c672f6dd20f1b8620c2483a34e4d643c1",
+  "files": [
+    {
+      "path": "results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_ocr_paddleocr_finetuned_seed1.json",
+      "sha256": "ed7a5a5bbfd37995a22ac3691d494f05d10826f80d2189f1eb2cf63025eef8bc",
+      "errors": []
+    },
+    {
+      "path": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_ocr_paddleocr_finetuned_seed1.json",
+      "sha256": "20067138b389b61360749ad1ab2790b68389bfac0f59b5062e071e0a753b64c3",
+      "errors": []
+    },
+    {
+      "path": "results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_ocr_paddleocr_finetuned_seed2.json",
+      "sha256": "a311eced06bb00b08ab4298f8b87c913f980ba061fe50b4e68f1d781a269d1f5",
+      "errors": []
+    },
+    {
+      "path": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_ocr_paddleocr_finetuned_seed2.json",
+      "sha256": "9425daa41b28bf5759d3b602ec8fa41a5da3a7464914b4fad1c2be8b74072290",
+      "errors": []
+    },
+    {
+      "path": "results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_ocr_paddleocr_finetuned_seed3.json",
+      "sha256": "32738be9a0f651a103bfad9739b6a2176b5849cc9ca2715f0d5e02726fbe241c",
+      "errors": []
+    },
+    {
+      "path": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_ocr_paddleocr_finetuned_seed3.json",
+      "sha256": "48c24edfd7d8d5353112c7cfa70ade5ecece352a782fe856a0586c2357c3a622",
+      "errors": []
+    },
+    {
+      "path": "results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_ocr_paddleocr_multiclass_finetuned_seed1.json",
+      "sha256": "6e710f18a89ad71ef62c55100c22c5ca96867037e4bee524434b5dbb9bcdde9b",
+      "errors": []
+    },
+    {
+      "path": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_ocr_paddleocr_multiclass_finetuned_seed1.json",
+      "sha256": "75c209b6b4bd7c62cd3d6ad91bc461d3aedfffaa50292928454f3ff2f1a2dc74",
+      "errors": []
+    },
+    {
+      "path": "results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_ocr_paddleocr_multiclass_finetuned_seed2.json",
+      "sha256": "2f7282b6f7ad8c3f5ad71d350d3ac618355b654b58609fa388219c32e8e53f56",
+      "errors": []
+    },
+    {
+      "path": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_ocr_paddleocr_multiclass_finetuned_seed2.json",
+      "sha256": "149ae4abc232dc31f73b433a4ceaa2338a66a14cb2fb09f5853f3683244cf263",
+      "errors": []
+    },
+    {
+      "path": "results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_ocr_paddleocr_multiclass_finetuned_seed3.json",
+      "sha256": "8451c78e7e621bff9f01af8db42c9c6e46dfd908e3f10e6970e728aa291dbe2b",
+      "errors": []
+    },
+    {
+      "path": "results/test/qwen2vl_test_qwen2_vl_7b_instruct_ocr_paddleocr_multiclass_finetuned_seed3.json",
+      "sha256": "b69f8815f522d7f6280623fd6f97adc131f64e01d168355a752509171a37c758",
+      "errors": []
+    }
+  ]
+}

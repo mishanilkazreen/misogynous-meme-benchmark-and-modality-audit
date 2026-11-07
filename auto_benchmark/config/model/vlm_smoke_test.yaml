@@ -1,0 +1,12 @@
+# VLM Smoke Test Model Config
+
+data_config_name: "vlm_data1"
+config_name: "vlm_smoke_test"
+
+models_to_run:
+  - name: "Florence-2-Base"
+    model_id: "microsoft/Florence-2-base"
+    type: "florence"
+    quantization: null
+
+optimize_metric: "Accuracy"

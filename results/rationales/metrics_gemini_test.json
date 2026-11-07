@@ -1,0 +1,283 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "split": "test",
+  "input_file": "results/rationales/gemini_test.jsonl",
+  "num_samples": 30,
+  "mean_bleu_1": 0.1783873408081547,
+  "mean_bleu_4": 0.020582261412612584,
+  "mean_rouge_l": 0.18023132243928985,
+  "std_bleu_4": 0.016291189263422007,
+  "std_rouge_l": 0.09067286920446412,
+  "details": [
+    {
+      "image_id": "15236",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme uses a humorous image from 'The Big Bang Theory' to comment on the social dynamics of online dating groups, specifically highlighting the overwhelming and often uncomfortable attention a new female member might receive. It is a critique of the behavior of men in these groups rather than an expression of hostility or prejudice toward women.",
+      "bleu_1": 0.12434325744308228,
+      "bleu_4": 0.009509896713309016,
+      "rouge_l": 0.1657707213401675
+    },
+    {
+      "image_id": "15805",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "This meme uses a popular reaction image to present a logical argument comparing feminist ideology with the ethics of the dairy industry; it does not demean, objectify, or express hostility toward women.",
+      "bleu_1": 0.22118380062305293,
+      "bleu_4": 0.04079171413079157,
+      "rouge_l": 0.253440366972477
+    },
+    {
+      "image_id": "16254",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme uses the 'Forever Alone' rage comic character to express personal feelings of rejection or social awkwardness after being left on 'seen.' It does not demean, objectify, or express hostility toward women, but rather focuses on the sender's own emotional reaction.",
+      "bleu_1": 0.1879350348027842,
+      "bleu_4": 0.03100083983512711,
+      "rouge_l": 0.23442945900894072
+    },
+    {
+      "image_id": "16191",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme relies on a sexist stereotype that women use their bodies to sexualize and draw attention to objects in photographs, thereby objectifying women to make a point about gendered behavior.",
+      "bleu_1": 0.13183279742765272,
+      "bleu_4": 0.008554889726381899,
+      "rouge_l": 0.11042638241172552
+    },
+    {
+      "image_id": "15952",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme relies on the sexist trope of women being subservient to men by demanding they 'make a sandwich,' and the caption 'I should have bought the boat' reinforces the misogynistic stereotype that a partner is a burden compared to a material possession.",
+      "bleu_1": 0.09512761020881667,
+      "bleu_4": 0.006084985869560175,
+      "rouge_l": 0.06697984543112592
+    },
+    {
+      "image_id": "15662",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme is a relatable joke about the physical toll of parenting and aging, rather than an attack on women or a reinforcement of harmful gender stereotypes.",
+      "bleu_1": 0.18819188191881916,
+      "bleu_4": 0.01902898285177192,
+      "rouge_l": 0.17683536707341466
+    },
+    {
+      "image_id": "15828",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme uses a sexually suggestive image of a woman surrounded by men and pairs it with explicit text referencing sexual violence, which constitutes severe misogyny and the promotion of non-consensual sexual acts.",
+      "bleu_1": 0.12023460410557185,
+      "bleu_4": 0.007766655030361891,
+      "rouge_l": 0.1402284263959391
+    },
+    {
+      "image_id": "15905",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme uses a popular image of Adele to express a relatable, non-gendered frustration regarding parental advice about screen time. It does not demean, objectify, or promote hostility toward women.",
+      "bleu_1": 0.3247588424437299,
+      "bleu_4": 0.04939044402586257,
+      "rouge_l": 0.3684015558436748
+    },
+    {
+      "image_id": "15971",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme uses an image of a person pointing a gun at people lying on the ground, with the labels 'Women' on the victims and 'Respect' on the weapon, implying that 'respect' is a tool used to target or eliminate women.",
+      "bleu_1": 0.1484184914841849,
+      "bleu_4": 0.00706009389362303,
+      "rouge_l": 0.15776699029126215
+    },
+    {
+      "image_id": "16197",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme promotes rape culture by using a smiling image of a woman to justify sexual violence and blame the victim, which is a severe form of misogynistic hostility.",
+      "bleu_1": 0.14089347079037798,
+      "bleu_4": 0.009175794686124266,
+      "rouge_l": 0.11423156443831839
+    },
+    {
+      "image_id": "15916",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme uses the term 'milfs' to objectify women, reducing them to sexualized targets in a context that equates them with computer viruses and deceptive spam.",
+      "bleu_1": 0.08045977011494254,
+      "bleu_4": 0.008711020000126225,
+      "rouge_l": 0.09022249438660951
+    },
+    {
+      "image_id": "16130",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme uses a sexualized image of a woman to objectify her, while the text overlay pairs her physical appearance with derogatory claims about her sexual health to demean and shame her.",
+      "bleu_1": 0.15887850467289721,
+      "bleu_4": 0.008738991511904368,
+      "rouge_l": 0.10861730013106159
+    },
+    {
+      "image_id": "15742",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme uses the 'Most Interesting Man in the World' template to promote the objectification of women by explicitly referencing non-consensual sexual servitude ('sex slave') as a punchline.",
+      "bleu_1": 0.10652920962199315,
+      "bleu_4": 0.008556342227219687,
+      "rouge_l": 0.07615437629221226
+    },
+    {
+      "image_id": "15502",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme depicts a common humorous trope regarding hobbyists and their partners, focusing on the relatable tension of acquiring new gear rather than demeaning or expressing hostility toward women.",
+      "bleu_1": 0.17525773195876287,
+      "bleu_4": 0.01764771325188569,
+      "rouge_l": 0.17003269859588382
+    },
+    {
+      "image_id": "15037",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme objectifies the women in the image by focusing on their bodies and uses the text to mock their physical appearance, specifically implying that aging and gravity have negatively impacted them.",
+      "bleu_1": 0.15887850467289721,
+      "bleu_4": 0.008738991511904368,
+      "rouge_l": 0.10861730013106159
+    },
+    {
+      "image_id": "15592",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme depicts a positive, supportive relationship dynamic where a partner's affection helps boost the other's self-esteem; it does not demean, objectify, or express hostility toward women.",
+      "bleu_1": 0.2691029900332226,
+      "bleu_4": 0.04511033742484542,
+      "rouge_l": 0.2919418758256275
+    },
+    {
+      "image_id": "15540",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme objectifies the female athlete by focusing the camera on her buttocks rather than her sport, using the text to mock the viewer and reinforce a sexualized framing of women in sports.",
+      "bleu_1": 0.1540785498489426,
+      "bleu_4": 0.00846208856381084,
+      "rouge_l": 0.17811089619600257
+    },
+    {
+      "image_id": "16323",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme expresses a fan's desire to perform a domestic act of kindness (making a sandwich) for a celebrity they admire; while it references a gendered stereotype, it is used here as a lighthearted expression of affection rather than to demean or express hostility toward women.",
+      "bleu_1": 0.17197452229299362,
+      "bleu_4": 0.011984921258483201,
+      "rouge_l": 0.18945563651950276
+    },
+    {
+      "image_id": "15136",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme uses an image of a woman in a suggestive pose and attire to create a crude, objectifying joke, reducing her presence to a punchline about bodily functions.",
+      "bleu_1": 0.03780068728522338,
+      "bleu_4": 0.006603830146953918,
+      "rouge_l": 0.042508174648970956
+    },
+    {
+      "image_id": "16298",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme uses a common template to make a joke about people who skip to the end of content; it lists 'Man' and 'Woman' as identical skulls to emphasize equality, rather than demeaning or stereotyping either gender.",
+      "bleu_1": 0.11051212938005389,
+      "bleu_4": 0.007111485230906494,
+      "rouge_l": 0.11051841973662277
+    },
+    {
+      "image_id": "15846",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme uses a suggestive image of a woman to objectify her body, using the text labels to equate her chest with 'movie subtitles' for the male character's focus, thereby reducing the woman to a sexualized object.",
+      "bleu_1": 0.08136482939632544,
+      "bleu_4": 0.0064500357615599035,
+      "rouge_l": 0.06593078758949882
+    },
+    {
+      "image_id": "16203",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "This meme uses a common comparative format to contrast different social dynamics between genders; while it relies on gender stereotypes, it does not demean, objectify, or express hostility toward women.",
+      "bleu_1": 0.33554817275747506,
+      "bleu_4": 0.05111998351203331,
+      "rouge_l": 0.3336478580864314
+    },
+    {
+      "image_id": "15560",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "This meme is a self-deprecating joke about one's own singing ability and does not target, demean, or stereotype women.",
+      "bleu_1": 0.33649289099526064,
+      "bleu_4": 0.06374638600739065,
+      "rouge_l": 0.3516708342805182
+    },
+    {
+      "image_id": "16056",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme uses a popular television scene to humorously depict the contrast between social expectations and internal thoughts regarding mental health and internet culture; it does not target or demean women.",
+      "bleu_1": 0.19614147909967844,
+      "bleu_4": 0.03683442590016065,
+      "rouge_l": 0.24560103722911647
+    },
+    {
+      "image_id": "15038",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme uses a popular character to express a relatable, universal struggle with dieting and cravings, and does not demean or promote hostility toward women.",
+      "bleu_1": 0.3227091633466135,
+      "bleu_4": 0.030028796289917413,
+      "rouge_l": 0.3223588247551573
+    },
+    {
+      "image_id": "15676",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme is a dark humor subversion of the 'Three Little Pigs' fairy tale and does not contain any content that demeans, objectifies, or expresses hostility toward women.",
+      "bleu_1": 0.2882562277580071,
+      "bleu_4": 0.026635706349205812,
+      "rouge_l": 0.30339282212198465
+    },
+    {
+      "image_id": "15457",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "This meme uses a 'hypocrisy' trope to mock feminist principles by suggesting that a woman's interest in a specific film invalidates her demand for respect and bodily autonomy.",
+      "bleu_1": 0.14089347079037798,
+      "bleu_4": 0.016710592882547483,
+      "rouge_l": 0.11423156443831839
+    },
+    {
+      "image_id": "15692",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "The meme uses a reference to domestic violence to establish a boundary regarding sexual preferences, rather than demeaning or objectifying women.",
+      "bleu_1": 0.12736120802016887,
+      "bleu_4": 0.010453235649692449,
+      "rouge_l": 0.13249400479616308
+    },
+    {
+      "image_id": "16334",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "This meme uses a common comparative format to highlight a difference in social media behavior between genders, focusing on the tendency of some men to include themselves in photos of objects, rather than demeaning or expressing hostility toward women.",
+      "bleu_1": 0.15601023017902813,
+      "bleu_4": 0.015918112557524143,
+      "rouge_l": 0.17825455718664301
+    },
+    {
+      "image_id": "17077",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme depicts a scene from Star Trek involving a fictional fight between a human and an alien; it does not contain any references to women, gender stereotypes, or misogynistic themes.",
+      "bleu_1": 0.26045016077170413,
+      "bleu_4": 0.039540549577392066,
+      "rouge_l": 0.20466753102426377
+    }
+  ]
+}

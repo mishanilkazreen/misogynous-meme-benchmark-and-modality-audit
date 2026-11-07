@@ -1,0 +1,22 @@
+{
+  "job": "S1-seed",
+  "params": {
+    "task": "singleclass",
+    "seed": 1
+  },
+  "passed": true,
+  "checked_utc": "2026-10-01T00:03:46+00:00",
+  "git_commit": "0535da0c672f6dd20f1b8620c2483a34e4d643c1",
+  "files": [
+    {
+      "path": "results/validation/llava_validation_llava_1_5_7b_hf_finetuned_seed1.json",
+      "sha256": "610090c5774a955448a2ad841818d2c7c4ef6c37c2397d1de0cecdb7d6fc3f6a",
+      "errors": []
+    },
+    {
+      "path": "results/test/llava_test_llava_1_5_7b_hf_finetuned_seed1.json",
+      "sha256": "47b3363ff29643af978ce8c66f73986faf856c7a78eef0d54350d6ee950d8eaf",
+      "errors": []
+    }
+  ]
+}

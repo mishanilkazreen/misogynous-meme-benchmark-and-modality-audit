@@ -1,0 +1,88 @@
+{
+  "task": "DIS-01",
+  "dataset": "HarMeme (Harm-C)",
+  "test_split_size": 354,
+  "generated_utc": "2026-11-06T14:32:12+00:00",
+  "models": [
+    {
+      "file": "results/test/harmeme_test_clip_svm_rbf.json",
+      "sha256": "e9bad5e3d736884995e0477f8fe446d71882b161cd36d4fc5ca3b95659166f0b",
+      "model": "CLIP ViT-L-14 + SVM-RBF",
+      "table_label": "This work: SVM-RBF on CLIP",
+      "setting": "Supervised, frozen CLIP",
+      "accuracy": 0.8389830508474576,
+      "macro_f1": 0.8326241134751773,
+      "accuracy_pct": 83.9,
+      "macro_f1_pct": 83.26,
+      "accuracy_ci95_pct": [
+        79.94,
+        87.57
+      ],
+      "macro_f1_ci95_pct": [
+        78.97,
+        87.03
+      ],
+      "refusal_rate": 0.0
+    },
+    {
+      "file": "results/test/harmeme_test_clip_xgboost.json",
+      "sha256": "7fca7544f3b21b6404e150b0628b2e2a729457e26ee0c5358e50e414936e5fb5",
+      "model": "CLIP ViT-L-14 + XGBoost",
+      "table_label": "This work: XGBoost on CLIP",
+      "setting": "Supervised, frozen CLIP",
+      "accuracy": 0.8163841807909604,
+      "macro_f1": 0.8045810084333359,
+      "accuracy_pct": 81.64,
+      "macro_f1_pct": 80.46,
+      "accuracy_ci95_pct": [
+        77.4,
+        85.59
+      ],
+      "macro_f1_ci95_pct": [
+        75.87,
+        84.52
+      ],
+      "refusal_rate": 0.0
+    },
+    {
+      "file": "results/test/harmeme_test_qwen2_vl_7b_instruct.json",
+      "sha256": "20395b4504a36aad90a1d4478b3eba7b6a1fdf09b6885508cc689876541b1dc2",
+      "model": "Qwen/Qwen2-VL-7B-Instruct",
+      "table_label": "This work: Qwen2-VL-7B",
+      "setting": "Zero-shot VLM",
+      "accuracy": 0.6468926553672316,
+      "macro_f1": 0.4279619934070196,
+      "accuracy_pct": 64.69,
+      "macro_f1_pct": 42.8,
+      "accuracy_ci95_pct": [
+        59.89,
+        69.5
+      ],
+      "macro_f1_ci95_pct": [
+        39.34,
+        46.87
+      ],
+      "refusal_rate": 0.0
+    },
+    {
+      "file": "results/test/harmeme_test_gemini_3_1_flash_lite.json",
+      "sha256": "63ccfe68d884bd42ef9d7b9e69c604079976401eb85ae170b10357b3c729bb84",
+      "model": "gemini-3.1-flash-lite",
+      "table_label": "This work: Gemini 3.1 Flash Lite",
+      "setting": "Zero-shot VLM",
+      "accuracy": 0.6581920903954802,
+      "macro_f1": 0.4642200457803294,
+      "accuracy_pct": 65.82,
+      "macro_f1_pct": 46.42,
+      "accuracy_ci95_pct": [
+        61.02,
+        70.62
+      ],
+      "macro_f1_ci95_pct": [
+        41.86,
+        51.12
+      ],
+      "refusal_rate": 0.0
+    }
+  ]
+}

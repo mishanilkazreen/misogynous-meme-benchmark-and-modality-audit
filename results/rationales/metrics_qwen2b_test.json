@@ -1,0 +1,283 @@
+{
+  "model": "Qwen/Qwen2-VL-2B-Instruct+lora_qwen2_vl_2b_instruct_singleclass",
+  "split": "test",
+  "input_file": "results/rationales/qwen2b_test.jsonl",
+  "num_samples": 30,
+  "mean_bleu_1": 0.20761600719711998,
+  "mean_bleu_4": 0.022021101444086522,
+  "mean_rouge_l": 0.19684038405933751,
+  "std_bleu_4": 0.017134970191407053,
+  "std_rouge_l": 0.06925718243562363,
+  "details": [
+    {
+      "image_id": "15236",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains text that demeans and objectifies women by comparing them to groups of men and using derogatory language. The text reads: 'facebooksingles groupsbelike when anewwomanjoins the group'.",
+      "bleu_1": 0.10652920962199315,
+      "bleu_4": 0.008556342227219687,
+      "rouge_l": 0.08501634929794191
+    },
+    {
+      "image_id": "15805",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains the text 'so, if you're a feminist how can you eat dairy?' which demeans and objectifies women by implying that only women can eat dairy. This is misogynistic because it reinforces harmful gender stereotypes and expresses hostility or violence toward women.",
+      "bleu_1": 0.3348115299334811,
+      "bleu_4": 0.04356637249013968,
+      "rouge_l": 0.2686385737439222
+    },
+    {
+      "image_id": "16254",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains the text 'WHENACUTE GIRL LEFT YOUR MESSAGE ON SEEN'. This text is misogynistic because it demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women.",
+      "bleu_1": 0.35691318327974275,
+      "bleu_4": 0.019984687776547903,
+      "rouge_l": 0.327468049638822
+    },
+    {
+      "image_id": "16191",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains a visual and textual element that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women. The text reads 'Photographing something you want to show everyone OBJECT Males Females Woman'. This meme is misogynistic because it demeans and objectifies women, reinforces harmful gender stereotypes, and expresses hostility or violence toward women.",
+      "bleu_1": 0.28196147110332753,
+      "bleu_4": 0.04225639006877727,
+      "rouge_l": 0.2825430032543003
+    },
+    {
+      "image_id": "15952",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains text that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women. The text reads, 'Hey babe can you make me a sandwich? Hey babe can you make me a sandwich? I should have bought the boat...'. This text demeans women by objectifying them and reinforcing harmful gender stereotypes. The meme's content is misogynistic.",
+      "bleu_1": 0.1653027823240589,
+      "bleu_4": 0.009688547902410347,
+      "rouge_l": 0.131563281343017
+    },
+    {
+      "image_id": "15662",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains text that demeans and objectifies women. The text reads, 'Me at 25 after a quick 5 mile run Me at 35 after buckling my kid into the car seat', which implies that the woman is not fit and that the woman's child is not safe. This text reinforces harmful gender stereotypes and expresses hostility or violence toward women.",
+      "bleu_1": 0.16264090177133655,
+      "bleu_4": 0.009528615967735686,
+      "rouge_l": 0.18202141428403343
+    },
+    {
+      "image_id": "15828",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains a text that demeans and objectifies women by comparing them to a woman in a provocative pose. The text also implies that the woman in the picture is going to get it, which is a form of sexual harassment. The meme's content is misogynistic and should be avoided.",
+      "bleu_1": 0.1746641074856046,
+      "bleu_4": 0.006105424818015408,
+      "rouge_l": 0.13635241855873645
+    },
+    {
+      "image_id": "15905",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains a black and white image of a woman's face with text that reads, 'when ur mom says you shouldn't 'waste the day' watching netflix'. This text is misogynistic because it demeans and objectifies women, reinforcing harmful gender stereotypes and expressing hostility or violence toward women.",
+      "bleu_1": 0.2215568862275449,
+      "bleu_4": 0.012166274630608468,
+      "rouge_l": 0.242224962323606
+    },
+    {
+      "image_id": "15971",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains text that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women. The text reads 'Women Women Women Respect', which is misogynistic.",
+      "bleu_1": 0.395017793594306,
+      "bleu_4": 0.05248339004607694,
+      "rouge_l": 0.3099579242636746
+    },
+    {
+      "image_id": "16197",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains the text 'you rape her sheknows sheaskedforit', which demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women.",
+      "bleu_1": 0.33609958506224064,
+      "bleu_4": 0.05181414210060026,
+      "rouge_l": 0.29166666666666674
+    },
+    {
+      "image_id": "15916",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains text that demeans and objectifies women by referring to them as 'hot milfs' and mentioning that their computers have 20 viruses. This text is misogynistic because it demeans and objectifies women and expresses hostility or violence toward them.",
+      "bleu_1": 0.27007299270072993,
+      "bleu_4": 0.008199903903215712,
+      "rouge_l": 0.24175652445694637
+    },
+    {
+      "image_id": "16130",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains text that demeans and objectifies women. The text reads, 'I gotta a big fat ass and a couple std's', which is misogynistic and reinforces harmful gender stereotypes. The visual element of the meme is a woman lying on the ground, which is also misogynistic and reinforces harmful gender stereotypes. Therefore, the meme is misogynistic.",
+      "bleu_1": 0.2082616179001721,
+      "bleu_4": 0.027009018532681655,
+      "rouge_l": 0.203125
+    },
+    {
+      "image_id": "15742",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains text that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women. The text reads, 'I dont always steal your wife but when i do, i make her my sex slave'. This text is misogynistic because it demeans women and reinforces harmful gender stereotypes. The meme's content is misogynistic.",
+      "bleu_1": 0.26916221033868093,
+      "bleu_4": 0.03673584576091041,
+      "rouge_l": 0.2338899341486359
+    },
+    {
+      "image_id": "15502",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The text on the meme is misogynistic. It contains derogatory language about women and implies that a man should sell his old guitar to prove his worth. The meme also contains a reference to a movie character, which is not relevant to the content of the meme.",
+      "bleu_1": 0.15074309978768574,
+      "bleu_4": 0.011596542327359174,
+      "rouge_l": 0.18945563651950276
+    },
+    {
+      "image_id": "15037",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The text on the meme is misogynistic. It demeans, objectifies, reinforces harmful gender stereotypes, and expresses hostility or violence toward women. The meme depicts two women in revealing costumes and poses, which reinforces harmful gender stereotypes. The text implies that women's vulnerability is their downfall and that they are inherently flawed. The meme also contains a derogatory term, 'gravitas', which is a derogatory term for women. The meme's content is misogynistic and should be avoided.",
+      "bleu_1": 0.1699092088197147,
+      "bleu_4": 0.01923233980607868,
+      "rouge_l": 0.2084119200301773
+    },
+    {
+      "image_id": "15592",
+      "ground_truth": 0,
+      "predicted_misogynous": null,
+      "explanation": "The meme contains text that demeans and objectifies women by comparing a man's failure to a woman's kiss. The text also reinforces harmful gender stereotypes and expresses hostility or violence toward women.",
+      "bleu_1": 0.20821114369501464,
+      "bleu_4": 0.01622560166432488,
+      "rouge_l": 0.1938936655553606
+    },
+    {
+      "image_id": "15540",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains a sexualized image of a woman's buttocks and hands, with the text 'ERGA ULIAN BEACH VOLLEYBALL If you can see the hand signals, you're probably gay memecenter.com'. This meme demeans, objectifies, reinforces harmful gender stereotypes, and expresses hostility or violence toward women.",
+      "bleu_1": 0.20997920997920996,
+      "bleu_4": 0.029242067515841276,
+      "rouge_l": 0.2008047767393562
+    },
+    {
+      "image_id": "16323",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains a meme of a man with a caption that reads 'TOM HIDDLESTON make him a sommich'. This meme demeans and objectifies women by making them appear as objects of admiration and admiration. The meme also contains a meme of a man with a caption that reads 'TOM HIDDLESTON images Sammich HD wallpaper and background photos'. This meme also demeans and objectifies women by making them appear as objects of admiration and admiration. Therefore, the meme is misogynistic.",
+      "bleu_1": 0.08863920099875157,
+      "bleu_4": 0.007906618931513756,
+      "rouge_l": 0.08583357607534711
+    },
+    {
+      "image_id": "15136",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains a woman in a bikini who is depicted as being in a dirty, barren environment. The text reads 'Where will you be when diarrhea hits', which is misogynistic because it demeans and objectifies women by depicting them as dirty and unclean. The meme also contains the text 'In Deep Shit by LikeaBoss - Meme Center', which is misogynistic because it reinforces harmful gender stereotypes and expresses hostility or violence toward women.",
+      "bleu_1": 0.1655266757865937,
+      "bleu_4": 0.008436930056963303,
+      "rouge_l": 0.23023231586623608
+    },
+    {
+      "image_id": "16298",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains text that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women. The text reads: 'Man Woman White Black Poor Rich Asian Black People who skip to the end of the meme'.",
+      "bleu_1": 0.18635170603674542,
+      "bleu_4": 0.01445055267972484,
+      "rouge_l": 0.18117724217084766
+    },
+    {
+      "image_id": "15846",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The text 'H.H MOVIE SUBTITLES E ME' is misogynistic because it demeans, objectifies, reinforces harmful gender stereotypes, and expresses hostility or violence toward women.",
+      "bleu_1": 0.4422310756972111,
+      "bleu_4": 0.07458607922633724,
+      "rouge_l": 0.32716506291635833
+    },
+    {
+      "image_id": "16203",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains text that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women. The text reads, 'Girls Am I fat? Omg no you are so beautiful Kings Bro ami fat? Bro i know 5 fat people and you are 4 of them', which are misogynistic and reinforce harmful gender stereotypes. The meme's visual elements, such as the text and illustrations, reinforce these misogynistic messages. Therefore, the meme is misogynistic.",
+      "bleu_1": 0.1344873501997337,
+      "bleu_4": 0.009221625274548926,
+      "rouge_l": 0.11276660883763648
+    },
+    {
+      "image_id": "15560",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains text that demeans and objectifies women. The text reads, 'How i think i sing' and 'How i actually sing', which are derogatory and sexist. The visual elements of the meme, such as the text and the characters, reinforce harmful gender stereotypes and hostility toward women.",
+      "bleu_1": 0.1476091476091476,
+      "bleu_4": 0.011347544532649837,
+      "rouge_l": 0.1556557261586139
+    },
+    {
+      "image_id": "16056",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains text that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women. The text reads: 'My Friends and Family Um...whatcha thinking about? Existentialism, depression, anxiety, memes. meirl uh, thoughts'.",
+      "bleu_1": 0.19667590027700832,
+      "bleu_4": 0.015286694474141101,
+      "rouge_l": 0.1873198847262248
+    },
+    {
+      "image_id": "15038",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains a woman eating a spoonful of food, which is a common object used to symbolize food and dieting. The text on the meme is derogatory and sexist, implying that women who eat food are not clean and should be ashamed of their dieting habits. The meme also contains a derogatory term for a type of food, which further reinforces harmful gender stereotypes. The meme's content is misogynistic and should be considered as such.",
+      "bleu_1": 0.10505836575875488,
+      "bleu_4": 0.007227617005644842,
+      "rouge_l": 0.11051105110511049
+    },
+    {
+      "image_id": "15676",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains a cartoon of a wolf standing in front of a house made of wolf skulls. The text reads, 'The fourth little pig's house was made of wolf skulls. They aren't very sturdy, but they send a message.' This text reinforces harmful gender stereotypes and objectifies women, as it suggests that the wolf is sturdy and strong, while women are weak and fragile. The meme's visual elements, such as the wolf and the house, reinforce these harmful stereotypes. Therefore, the meme is misogynistic.",
+      "bleu_1": 0.10329171396140747,
+      "bleu_4": 0.00763542961387,
+      "rouge_l": 0.07964681502838093
+    },
+    {
+      "image_id": "15457",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains text that demeans and objectifies women by comparing them to sexual objects and stating that they stand in a line for three hours to watch a movie about a rich man who abuses sexually and psychologically a girl. The meme also contains a visual of a woman in a t-shirt with the text on it. The visual elements and text together reinforce harmful gender stereotypes and hostility toward women.",
+      "bleu_1": 0.1655266757865937,
+      "bleu_4": 0.04570200322660711,
+      "rouge_l": 0.21658173265386121
+    },
+    {
+      "image_id": "15692",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains text that demeans and objectifies women. The text reads, 'When I say I like it rough that doesn't mean Chris Brown me', which is misogynistic and reinforces harmful gender stereotypes. The meme also contains a picture of a woman holding up her glasses, which is not relevant to the meme's content and may be considered offensive. The meme's purpose is to demeans and objectifies women, which is misogynistic.",
+      "bleu_1": 0.16329284750337383,
+      "bleu_4": 0.01963359484477769,
+      "rouge_l": 0.19303183229813667
+    },
+    {
+      "image_id": "16334",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains a drawing of a man's face with a block of wood placed on his head, labeled 'OBJECT'. The text reads, 'Photographing something you want to show everyone women males'. This meme demeans and objectifies women by placing a block of wood on their heads, reinforcing harmful gender stereotypes and expressing hostility or violence toward women.",
+      "bleu_1": 0.1370558375634518,
+      "bleu_4": 0.011151555051924897,
+      "rouge_l": 0.16172703988291254
+    },
+    {
+      "image_id": "17077",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains the text 'diplo-macy words don't always solve problems. sometimes you just have to punch an alien in the face. fakeposters.com'. This text demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women. The visual element of the meme is a woman being punched by a man. This meme is misogynistic.",
+      "bleu_1": 0.17089678510998307,
+      "bleu_4": 0.023655290865348712,
+      "rouge_l": 0.13477253323576044
+    }
+  ]
+}

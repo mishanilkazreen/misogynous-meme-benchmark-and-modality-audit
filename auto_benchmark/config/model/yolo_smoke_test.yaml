@@ -1,0 +1,7 @@
+# Quick smoke-test config: 1 model, 5 epochs
+data_config_name: "image_smoke_test"
+models_to_run:
+  - name: "YOLOv8n"
+    weights: "yolov8n.pt"
+optimize_metric: "mAP50"
+save_models: true

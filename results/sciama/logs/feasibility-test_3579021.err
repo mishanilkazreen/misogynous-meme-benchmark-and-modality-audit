@@ -1,0 +1,97 @@
+Loading system/sciama
+  Loading requirement: services/slurm
+2026-10-04 19:27:33,435 [INFO] Seeded RNGs with 99 (deterministic_cudnn=True)
+2026-10-04 19:27:38,187 [INFO] Initializing processor for Qwen/Qwen2-VL-2B-Instruct...
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+2026-10-04 19:27:38,743 [INFO] Using compute_dtype: torch.bfloat16
+2026-10-04 19:27:38,744 [INFO] Loading model Qwen/Qwen2-VL-2B-Instruct (4bit)...
+
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]$PROJECT_ROOT/.venv/lib/python3.10/site-packages/bitsandbytes/backends/cuda/ops.py:213: FutureWarning: _check_is_size will be removed in a future PyTorch release along with guard_size_oblivious.     Use _check(i >= 0) instead.
+  torch._check_is_size(blocksize)
+
+Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.04s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.01s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.16s/it]
+2026-10-04 19:27:43,346 [INFO] Injecting LoRA adapters...
+2026-10-04 19:27:43,927 [INFO] Loading MAMI dataset split...
+2026-10-04 19:27:44,783 [INFO] Capped training samples to 16
+2026-10-04 19:27:44,783 [INFO] Text source for training: provided
+2026-10-04 19:27:44,787 [INFO] Validation dataset loaded (1000 samples; will validate on up to 4 per epoch).
+2026-10-04 19:27:44,795 [INFO] Starting VLM fine-tuning loop...
+$PROJECT_ROOT/.venv/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py:1263: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. Starting in PyTorch 2.9, calling checkpoint without use_reentrant will raise an exception. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+$PROJECT_ROOT/.venv/lib/python3.10/site-packages/torch/utils/checkpoint.py:232: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  check_backward_validity(args)
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`...
+2026-10-04 19:27:50,001 [INFO] Epoch 1/1 completed | Avg Loss: 4.1535 | Time: 5.20 seconds
+2026-10-04 19:27:50,001 [INFO] Running validation on up to 4 samples after epoch 1...
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+2026-10-04 19:27:50,817 [INFO] Epoch 1 val_metric=0.3333
+2026-10-04 19:27:50,882 [INFO] New best val_metric=0.3333 saved at epoch 1.
+2026-10-04 19:27:50,882 [INFO] Restoring best-val checkpoint (val_metric=0.3333) before saving.
+$PROJECT_ROOT/.venv/lib/python3.10/site-packages/peft/utils/save_and_load.py:372: UserWarning: Could not find a config file in Qwen/Qwen2-VL-2B-Instruct - will assume that the vocabulary was not modified.
+  warnings.warn(
+2026-10-04 19:27:51,231 [INFO] Successfully saved fine-tuned LoRA adapters to $PROJECT_ROOT/results/models/lora_qwen2_vl_2b_instruct_singleclass_seed99_tdisjoint_smoke
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]$PROJECT_ROOT/.venv/lib/python3.10/site-packages/bitsandbytes/backends/cuda/ops.py:213: FutureWarning: _check_is_size will be removed in a future PyTorch release along with guard_size_oblivious.     Use _check(i >= 0) instead.
+  torch._check_is_size(blocksize)
+
+Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.23s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.03s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.21s/it]
+
+qwen2vl/none:   0%|          | 0/10 [00:00<?, ?img/s]The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+
+qwen2vl/none:  40%|████      | 4/10 [00:00<00:01,  4.85img/s]
+qwen2vl/none:  80%|████████  | 8/10 [00:01<00:00,  6.36img/s]
+qwen2vl/none: 100%|██████████| 10/10 [00:01<00:00,  6.25img/s]
+qwen2vl/none: 100%|██████████| 10/10 [00:01<00:00,  6.06img/s]
+$PROJECT_ROOT/.venv/lib/python3.10/site-packages/bitsandbytes/backends/cuda/ops.py:213: FutureWarning: _check_is_size will be removed in a future PyTorch release along with guard_size_oblivious.     Use _check(i >= 0) instead.
+  torch._check_is_size(blocksize)
+
+internvl/none:   0%|          | 0/10 [00:00<?, ?img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  40%|████      | 4/10 [00:01<00:01,  3.84img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  80%|████████  | 8/10 [00:01<00:00,  5.07img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none: 100%|██████████| 10/10 [00:01<00:00,  5.43img/s]
+internvl/none: 100%|██████████| 10/10 [00:01<00:00,  5.10img/s]
+2026-10-04 19:28:34,458 [INFO] Seeded RNGs with 99 (deterministic_cudnn=True)
+2026-10-04 19:28:39,101 [INFO] Initializing processor for OpenGVLab/InternVL3-1B-hf...
+2026-10-04 19:28:39,747 [INFO] Using compute_dtype: torch.bfloat16
+2026-10-04 19:28:39,748 [INFO] Loading model OpenGVLab/InternVL3-1B-hf (4bit)...
+$PROJECT_ROOT/.venv/lib/python3.10/site-packages/bitsandbytes/backends/cuda/ops.py:213: FutureWarning: _check_is_size will be removed in a future PyTorch release along with guard_size_oblivious.     Use _check(i >= 0) instead.
+  torch._check_is_size(blocksize)
+2026-10-04 19:28:43,406 [INFO] Injecting LoRA adapters...
+2026-10-04 19:28:43,813 [INFO] Loading MAMI dataset split...
+2026-10-04 19:28:44,414 [INFO] Capped training samples to 16
+2026-10-04 19:28:44,414 [INFO] Text source for training: provided
+2026-10-04 19:28:44,417 [INFO] Validation dataset loaded (1000 samples; will validate on up to 4 per epoch).
+2026-10-04 19:28:44,424 [INFO] Starting VLM fine-tuning loop...
+$PROJECT_ROOT/.venv/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py:1263: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. Starting in PyTorch 2.9, calling checkpoint without use_reentrant will raise an exception. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+$PROJECT_ROOT/.venv/lib/python3.10/site-packages/torch/utils/checkpoint.py:232: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  check_backward_validity(args)
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+2026-10-04 19:29:04,545 [INFO] Epoch 1/1 completed | Avg Loss: 18.2125 | Time: 20.11 seconds
+2026-10-04 19:29:04,547 [INFO] Running validation on up to 4 samples after epoch 1...
+Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+2026-10-04 19:29:05,716 [INFO] Epoch 1 val_metric=1.0000
+2026-10-04 19:29:05,772 [INFO] New best val_metric=1.0000 saved at epoch 1.
+2026-10-04 19:29:05,772 [INFO] Restoring best-val checkpoint (val_metric=1.0000) before saving.
+$PROJECT_ROOT/.venv/lib/python3.10/site-packages/peft/utils/save_and_load.py:372: UserWarning: Could not find a config file in OpenGVLab/InternVL3-1B-hf - will assume that the vocabulary was not modified.
+  warnings.warn(
+2026-10-04 19:29:06,061 [INFO] Successfully saved fine-tuned LoRA adapters to $PROJECT_ROOT/results/models/lora_internvl3_1b_hf_singleclass_seed99
+$PROJECT_ROOT/.venv/lib/python3.10/site-packages/bitsandbytes/backends/cuda/ops.py:213: FutureWarning: _check_is_size will be removed in a future PyTorch release along with guard_size_oblivious.     Use _check(i >= 0) instead.
+  torch._check_is_size(blocksize)
+
+internvl/none:   0%|          | 0/10 [00:00<?, ?img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  40%|████      | 4/10 [00:01<00:01,  3.54img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  80%|████████  | 8/10 [00:02<00:00,  3.62img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none: 100%|██████████| 10/10 [00:02<00:00,  3.61img/s]
+internvl/none: 100%|██████████| 10/10 [00:02<00:00,  3.61img/s]

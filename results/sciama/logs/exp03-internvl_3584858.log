@@ -1,0 +1,42 @@
+=== JOB exp03-internvl (3584858) on gpu11.pri.sciama.icg.port at 2026-10-17T16:27:12+01:00 ===
+git commit: unknown
+Sat Oct 17 16:27:12 2026
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 565.57.01              Driver Version: 565.57.01      CUDA Version: 12.7     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA L40                     Off |   00000000:21:00.0 Off |                    0 |
+| N/A   57C    P0            115W /  300W |       1MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+PREREQS OK
+Split: validation | Filters: ['none'] | Limit: None | LoRA Path: None
+Pre-loading model …
+Loading OpenGVLab/InternVL3_5-8B-hf (4-bit NF4) …
+Loaded 1000 samples
+
+--- Filter: none ---
+  acc=0.801  refusals=0.00%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/validation/internvl_validation_internvl3_5_8b_hf.json
+Split: test | Filters: ['none'] | Limit: None | LoRA Path: None
+Pre-loading model …
+Loading OpenGVLab/InternVL3_5-8B-hf (4-bit NF4) …
+Loaded 1000 samples
+
+--- Filter: none ---
+  acc=0.734  refusals=0.00%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/test/internvl_test_internvl3_5_8b_hf.json
+trainable params: 50,987,008 || all params: 8,579,305,472 || trainable%: 0.5943

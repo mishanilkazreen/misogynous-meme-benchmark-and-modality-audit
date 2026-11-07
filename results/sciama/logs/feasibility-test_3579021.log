@@ -1,0 +1,78 @@
+=== JOB feasibility-test (3579021) on gpu10.pri.sciama.icg.port at 2026-10-04T19:27:30+01:00 ===
+git commit: unknown
+Sun Oct  4 19:27:30 2026
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 565.57.01              Driver Version: 565.57.01      CUDA Version: 12.7     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA L40                     Off |   00000000:81:00.0 Off |                    0 |
+| N/A   32C    P8             38W /  300W |       1MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+==========================================================
+=== STEP 1: FEASIBILITY TEST FOR EXP-02 (QWEN2-VL-2B) ===
+==========================================================
+Running train_vlm.py on template-disjoint split (1 epoch, limit 16)...
+trainable params: 29,220,864 || all params: 2,238,206,464 || trainable%: 1.3055
+EXP-02 adapter created successfully at results/models/lora_qwen2_vl_2b_instruct_singleclass_seed99_tdisjoint_smoke
+Running benchmark_qwen2vl.py on validation set with fine-tuned adapter (limit 10)...
+Split: validation | Filters: ['none'] | Limit: 10 | LoRA Path: results/models/lora_qwen2_vl_2b_instruct_singleclass_seed99_tdisjoint_smoke
+Pre-loading model …
+Loading Qwen/Qwen2-VL-2B-Instruct (4-bit NF4) …
+Loading LoRA adapters from results/models/lora_qwen2_vl_2b_instruct_singleclass_seed99_tdisjoint_smoke …
+Quantized model detected; running with active adapters (unmerged).
+Loaded 10 samples
+
+--- Filter: none ---
+  acc=0.600  refusals=0.00%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/validation/qwen2vl_validation_qwen2_vl_2b_instruct_finetuned_seed99_tdisjoint_smoke.json
+EXP-02 benchmark prediction file created successfully at results/validation/qwen2vl_validation_qwen2_vl_2b_instruct_finetuned_seed99_tdisjoint_smoke.json
+EXP-02 Validation Accuracy: 0.6
+==========================================================
+=== STEP 2: FEASIBILITY TEST FOR EXP-03 (INTERNVL3-1B) ===
+==========================================================
+Running benchmark_internvl.py zero-shot on validation (limit 10)...
+Split: validation | Filters: ['none'] | Limit: 10 | LoRA Path: None
+Pre-loading model …
+Loading OpenGVLab/InternVL3-1B-hf (4-bit NF4) …
+Loaded 10 samples
+
+--- Filter: none ---
+  acc=0.500  refusals=0.00%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/validation/internvl_validation_internvl3_1b_hf.json
+EXP-03 zero-shot benchmark prediction file created at results/validation/internvl_validation_internvl3_1b_hf.json
+EXP-03 Zero-Shot Accuracy: 0.5
+Running train_vlm.py for InternVL3-1B-hf (1 epoch, limit 16)...
+trainable params: 15,984,640 || all params: 954,177,664 || trainable%: 1.6752
+EXP-03 adapter created successfully at results/models/lora_internvl3_1b_hf_singleclass_seed99
+Running benchmark_internvl.py on validation set with fine-tuned adapter (limit 10)...
+Split: validation | Filters: ['none'] | Limit: 10 | LoRA Path: results/models/lora_internvl3_1b_hf_singleclass_seed99
+Pre-loading model …
+Loading OpenGVLab/InternVL3-1B-hf (4-bit NF4) …
+Loading LoRA adapters from results/models/lora_internvl3_1b_hf_singleclass_seed99 …
+Quantized model detected; running with active adapters (unmerged).
+Loaded 10 samples
+
+--- Filter: none ---
+  acc=0.500  refusals=0.00%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/validation/internvl_validation_internvl3_1b_hf_finetuned_seed99.json
+EXP-03 fine-tuned benchmark prediction file created at results/validation/internvl_validation_internvl3_1b_hf_finetuned_seed99.json
+EXP-03 Fine-tuned Accuracy: 0.5
+==========================================================
+=== CLEANING UP FEASIBILITY TEST ARTIFACTS ===
+==========================================================
+=== FEASIBILITY SMOKE TESTS COMPLETED SUCCESSFULLY ===

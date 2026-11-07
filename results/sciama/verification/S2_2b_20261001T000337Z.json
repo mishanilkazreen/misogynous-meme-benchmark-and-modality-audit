@@ -1,0 +1,71 @@
+{
+  "job": "S2",
+  "params": {
+    "model": "2b"
+  },
+  "passed": true,
+  "checked_utc": "2026-10-01T00:03:37+00:00",
+  "git_commit": "0535da0c672f6dd20f1b8620c2483a34e4d643c1",
+  "files": [
+    {
+      "path": "results/validation/qwen2vl_validation_qwen2_vl_2b_instruct_ocr_paddleocr_finetuned_seed1.json",
+      "sha256": "9c229c463b50f6a6df385d907fd5946a0ff852cccabc57b0cca590de6130d9c4",
+      "errors": []
+    },
+    {
+      "path": "results/test/qwen2vl_test_qwen2_vl_2b_instruct_ocr_paddleocr_finetuned_seed1.json",
+      "sha256": "d31fa0fc76d22c7d62e5fed95b49c50d61f8c58f9607bfbce78e14422931ae2e",
+      "errors": []
+    },
+    {
+      "path": "results/validation/qwen2vl_validation_qwen2_vl_2b_instruct_ocr_paddleocr_finetuned_seed2.json",
+      "sha256": "15d93ea652e3c9b8b6c406382175a14c207daca61dcb53cfd11e50377f992a16",
+      "errors": []
+    },
+    {
+      "path": "results/test/qwen2vl_test_qwen2_vl_2b_instruct_ocr_paddleocr_finetuned_seed2.json",
+      "sha256": "ac887f567bba6806e475d1d61dc38a377ca729ac07e483c67d0bcadcd4888e1e",
+      "errors": []
+    },
+    {
+      "path": "results/validation/qwen2vl_validation_qwen2_vl_2b_instruct_ocr_paddleocr_finetuned_seed3.json",
+      "sha256": "76a12df3f16623c3d8c9084fb8a1fdf597350673b675f4033ea7ad70c336752b",
+      "errors": []
+    },
+    {
+      "path": "results/test/qwen2vl_test_qwen2_vl_2b_instruct_ocr_paddleocr_finetuned_seed3.json",
+      "sha256": "d1ce344612e365c136816dbf827899a6084fcb484059017bf1e85aae84066279",
+      "errors": []
+    },
+    {
+      "path": "results/validation/qwen2vl_validation_qwen2_vl_2b_instruct_ocr_paddleocr_multiclass_finetuned_seed1.json",
+      "sha256": "99a48b3fdc4616df7f29e1e9bf7e1d3bce8ce0c69f4ea3818266ae52ce3b2b89",
+      "errors": []
+    },
+    {
+      "path": "results/test/qwen2vl_test_qwen2_vl_2b_instruct_ocr_paddleocr_multiclass_finetuned_seed1.json",
+      "sha256": "b9427b79c39d11521bb6b775b934ca401bc4cede19e09ec73494b959db293a7c",
+      "errors": []
+    },
+    {
+      "path": "results/validation/qwen2vl_validation_qwen2_vl_2b_instruct_ocr_paddleocr_multiclass_finetuned_seed2.json",
+      "sha256": "92ab14c484e8517ca7b98296d1280305fc7d8c8c3e81a21512cb26e50bfb397e",
+      "errors": []
+    },
+    {
+      "path": "results/test/qwen2vl_test_qwen2_vl_2b_instruct_ocr_paddleocr_multiclass_finetuned_seed2.json",
+      "sha256": "45653b1080e6b2c57f63905dba47db231089cadef135431c8705e767a55fd674",
+      "errors": []
+    },
+    {
+      "path": "results/validation/qwen2vl_validation_qwen2_vl_2b_instruct_ocr_paddleocr_multiclass_finetuned_seed3.json",
+      "sha256": "21df5bd950ba9b3105d002a237d97a58ab379c8767fe542b7c42b802dac8ce12",
+      "errors": []
+    },
+    {
+      "path": "results/test/qwen2vl_test_qwen2_vl_2b_instruct_ocr_paddleocr_multiclass_finetuned_seed3.json",
+      "sha256": "8e49c610b8c04cbf1f9222e502ad2742c004319af0d9a9243358e57d338c3287",
+      "errors": []
+    }
+  ]
+}

@@ -1,0 +1,439 @@
+{
+  "experiment": "EXP-06 prompt sensitivity",
+  "model": "gemini-3.1-flash-lite",
+  "split": "test",
+  "n_test": 1000,
+  "temperature": 0.0,
+  "safety": "BLOCK_NONE on harassment, hate speech, sexually explicit, dangerous content",
+  "scorer": "scripts/official_mami_evaluation.py (compute_scoreA / compute_scoreB)",
+  "primary_scoring": "answered subset (status == ok); failures are not labels",
+  "secondary_scoring": "all 1000 memes; non-ok items scored as negative (no / all false)",
+  "bootstrap": {
+    "n": 1000,
+    "seed": 20260708,
+    "ci": "percentile 95%"
+  },
+  "pricing_usd_per_m": {
+    "input": 0.25,
+    "output": 1.5
+  },
+  "generated": "2026-09-29T22:08:43.077897+00:00",
+  "variants": {
+    "P0": {
+      "task": "A",
+      "system_id": "SYSTEM_A",
+      "description": "Paper Task A prompt (baseline)",
+      "counts": {
+        "ok": 1000,
+        "refusal": 0,
+        "blocked": 0,
+        "unparsable": 0,
+        "api_error": 0,
+        "missing": 0
+      },
+      "refusal_rate": 0.0,
+      "blocked_rate": 0.0,
+      "parse_failure_rate": 0.0,
+      "coverage": 1.0,
+      "usage": {
+        "input_tokens": 1171476,
+        "output_tokens": 1000,
+        "est_cost_usd": 0.2944
+      },
+      "complete": true,
+      "primary": {
+        "n": 1000,
+        "acc": 0.872,
+        "score_a": 0.8718518607510282
+      },
+      "primary_ci95": {
+        "acc": [
+          0.85,
+          0.893
+        ],
+        "score_a": [
+          0.8572176007455168,
+          0.8880646180293019
+        ]
+      },
+      "secondary_all": {
+        "n": 1000,
+        "acc": 0.872,
+        "score_a": 0.8718518607510282
+      },
+      "vs_committed_paper_run": {
+        "n": 1000,
+        "agreement": 0.972,
+        "kappa": 0.9437244750297457,
+        "note": "committed run used default temperature; this re-run uses temperature 0"
+      }
+    },
+    "P1": {
+      "task": "A",
+      "system_id": "SYSTEM_A",
+      "description": "Paraphrased definition",
+      "counts": {
+        "ok": 1000,
+        "refusal": 0,
+        "blocked": 0,
+        "unparsable": 0,
+        "api_error": 0,
+        "missing": 0
+      },
+      "refusal_rate": 0.0,
+      "blocked_rate": 0.0,
+      "parse_failure_rate": 0.0,
+      "coverage": 1.0,
+      "usage": {
+        "input_tokens": 1180476,
+        "output_tokens": 1000,
+        "est_cost_usd": 0.2966
+      },
+      "complete": true,
+      "primary": {
+        "n": 1000,
+        "acc": 0.869,
+        "score_a": 0.8688004454775713
+      },
+      "primary_ci95": {
+        "acc": [
+          0.847,
+          0.889025
+        ],
+        "score_a": [
+          0.8533770526882646,
+          0.884986517322605
+        ]
+      },
+      "secondary_all": {
+        "n": 1000,
+        "acc": 0.869,
+        "score_a": 0.8688004454775713
+      }
+    },
+    "P2": {
+      "task": "A",
+      "system_id": "SYSTEM_A",
+      "description": "Definition removed",
+      "counts": {
+        "ok": 1000,
+        "refusal": 0,
+        "blocked": 0,
+        "unparsable": 0,
+        "api_error": 0,
+        "missing": 0
+      },
+      "refusal_rate": 0.0,
+      "blocked_rate": 0.0,
+      "parse_failure_rate": 0.0,
+      "coverage": 1.0,
+      "usage": {
+        "input_tokens": 1149476,
+        "output_tokens": 1001,
+        "est_cost_usd": 0.2889
+      },
+      "complete": true,
+      "primary": {
+        "n": 1000,
+        "acc": 0.868,
+        "score_a": 0.867999471997888
+      },
+      "primary_ci95": {
+        "acc": [
+          0.847,
+          0.888
+        ],
+        "score_a": [
+          0.8518917503079427,
+          0.8847191461232959
+        ]
+      },
+      "secondary_all": {
+        "n": 1000,
+        "acc": 0.868,
+        "score_a": 0.867999471997888
+      }
+    },
+    "P3": {
+      "task": "A",
+      "system_id": "SYSTEM_A",
+      "description": "MAMI taxonomy (4 sub-types) then yes/no",
+      "counts": {
+        "ok": 1000,
+        "refusal": 0,
+        "blocked": 0,
+        "unparsable": 0,
+        "api_error": 0,
+        "missing": 0
+      },
+      "refusal_rate": 0.0,
+      "blocked_rate": 0.0,
+      "parse_failure_rate": 0.0,
+      "coverage": 1.0,
+      "usage": {
+        "input_tokens": 1244476,
+        "output_tokens": 1000,
+        "est_cost_usd": 0.3126
+      },
+      "complete": true,
+      "primary": {
+        "n": 1000,
+        "acc": 0.87,
+        "score_a": 0.8691626409017714
+      },
+      "primary_ci95": {
+        "acc": [
+          0.849,
+          0.891
+        ],
+        "score_a": [
+          0.8535343297098222,
+          0.8850412879569777
+        ]
+      },
+      "secondary_all": {
+        "n": 1000,
+        "acc": 0.87,
+        "score_a": 0.8691626409017714
+      }
+    },
+    "B0": {
+      "task": "B",
+      "system_id": "SYSTEM_B",
+      "description": "Paper Task B JSON prompt (baseline)",
+      "counts": {
+        "ok": 1000,
+        "refusal": 0,
+        "blocked": 0,
+        "unparsable": 0,
+        "api_error": 0,
+        "missing": 0
+      },
+      "refusal_rate": 0.0,
+      "blocked_rate": 0.0,
+      "parse_failure_rate": 0.0,
+      "coverage": 1.0,
+      "usage": {
+        "input_tokens": 1284476,
+        "output_tokens": 22000,
+        "est_cost_usd": 0.3541
+      },
+      "complete": true,
+      "primary": {
+        "n": 1000,
+        "score_b": 0.7468773220727186,
+        "subtype_f1": 0.6305469530527767,
+        "em": 0.474,
+        "per_label_macro_f1": {
+          "shaming": 0.6924759623760246,
+          "stereotype": 0.6535383270319163,
+          "objectification": 0.8213598636838345,
+          "violence": 0.8428990364474236
+        }
+      },
+      "primary_ci95": {
+        "score_b": [
+          0.7350023816392823,
+          0.7580234090091882
+        ],
+        "subtype_f1": [
+          0.6066060298857615,
+          0.6546197713601706
+        ],
+        "em": [
+          0.441,
+          0.5030249999999999
+        ]
+      },
+      "secondary_all": {
+        "n": 1000,
+        "score_b": 0.7468773220727186,
+        "subtype_f1": 0.6305469530527767,
+        "em": 0.474,
+        "per_label_macro_f1": {
+          "shaming": 0.6924759623760246,
+          "stereotype": 0.6535383270319163,
+          "objectification": 0.8213598636838345,
+          "violence": 0.8428990364474236
+        }
+      }
+    },
+    "B1": {
+      "task": "B",
+      "system_id": "SYSTEM_B",
+      "description": "Four per-sub-type yes/no questions in one JSON",
+      "counts": {
+        "ok": 1000,
+        "refusal": 0,
+        "blocked": 0,
+        "unparsable": 0,
+        "api_error": 0,
+        "missing": 0
+      },
+      "refusal_rate": 0.0,
+      "blocked_rate": 0.0,
+      "parse_failure_rate": 0.0,
+      "coverage": 1.0,
+      "usage": {
+        "input_tokens": 1295476,
+        "output_tokens": 26000,
+        "est_cost_usd": 0.3629
+      },
+      "complete": true,
+      "primary": {
+        "n": 1000,
+        "score_b": 0.7682155324474511,
+        "subtype_f1": 0.6542194606386362,
+        "em": 0.504,
+        "per_label_macro_f1": {
+          "shaming": 0.676150000221815,
+          "stereotype": 0.71084989399648,
+          "objectification": 0.8317010642025858,
+          "violence": 0.8428990364474236
+        }
+      },
+      "primary_ci95": {
+        "score_b": [
+          0.7570624867581148,
+          0.7800111394504798
+        ],
+        "subtype_f1": [
+          0.6300548902159806,
+          0.677138802947331
+        ],
+        "em": [
+          0.472,
+          0.535
+        ]
+      },
+      "secondary_all": {
+        "n": 1000,
+        "score_b": 0.7682155324474511,
+        "subtype_f1": 0.6542194606386362,
+        "em": 0.504,
+        "per_label_macro_f1": {
+          "shaming": 0.676150000221815,
+          "stereotype": 0.71084989399648,
+          "objectification": 0.8317010642025858,
+          "violence": 0.8428990364474236
+        }
+      }
+    }
+  },
+  "agreement": {
+    "P0-P1": {
+      "n": 1000,
+      "agreement": 0.963,
+      "kappa": 0.9256054111004769
+    },
+    "P0-P2": {
+      "n": 1000,
+      "agreement": 0.944,
+      "kappa": 0.8880304557160452
+    },
+    "P0-P3": {
+      "n": 1000,
+      "agreement": 0.938,
+      "kappa": 0.8746360401164671
+    },
+    "P1-P2": {
+      "n": 1000,
+      "agreement": 0.931,
+      "kappa": 0.862043042570718
+    },
+    "P1-P3": {
+      "n": 1000,
+      "agreement": 0.931,
+      "kappa": 0.8602559948152949
+    },
+    "P2-P3": {
+      "n": 1000,
+      "agreement": 0.912,
+      "kappa": 0.8241125679565079
+    },
+    "B0-B1": {
+      "n": 1000,
+      "kappa_per_subtype": {
+        "shaming": 0.8555525116429656,
+        "stereotype": 0.7144345346882082,
+        "objectification": 0.9177758860857452,
+        "violence": 0.9695983947952452
+      },
+      "kappa_mean": 0.864340331803041,
+      "exact_vector_agreement": 0.791
+    }
+  },
+  "spread": {
+    "A.primary.acc": {
+      "max": 0.872,
+      "min": 0.868,
+      "max_minus_min": 0.0040000000000000036,
+      "argmax": "P0",
+      "argmin": "P2"
+    },
+    "A.primary.score_a": {
+      "max": 0.8718518607510282,
+      "min": 0.867999471997888,
+      "max_minus_min": 0.0038523887531402012,
+      "argmax": "P0",
+      "argmin": "P2"
+    },
+    "A.secondary_all.acc": {
+      "max": 0.872,
+      "min": 0.868,
+      "max_minus_min": 0.0040000000000000036,
+      "argmax": "P0",
+      "argmin": "P2"
+    },
+    "A.secondary_all.score_a": {
+      "max": 0.8718518607510282,
+      "min": 0.867999471997888,
+      "max_minus_min": 0.0038523887531402012,
+      "argmax": "P0",
+      "argmin": "P2"
+    },
+    "B.primary.score_b": {
+      "max": 0.7682155324474511,
+      "min": 0.7468773220727186,
+      "max_minus_min": 0.02133821037473249,
+      "argmax": "B1",
+      "argmin": "B0"
+    },
+    "B.primary.subtype_f1": {
+      "max": 0.6542194606386362,
+      "min": 0.6305469530527767,
+      "max_minus_min": 0.02367250758585948,
+      "argmax": "B1",
+      "argmin": "B0"
+    },
+    "B.primary.em": {
+      "max": 0.504,
+      "min": 0.474,
+      "max_minus_min": 0.030000000000000027,
+      "argmax": "B1",
+      "argmin": "B0"
+    },
+    "B.secondary_all.score_b": {
+      "max": 0.7682155324474511,
+      "min": 0.7468773220727186,
+      "max_minus_min": 0.02133821037473249,
+      "argmax": "B1",
+      "argmin": "B0"
+    },
+    "B.secondary_all.subtype_f1": {
+      "max": 0.6542194606386362,
+      "min": 0.6305469530527767,
+      "max_minus_min": 0.02367250758585948,
+      "argmax": "B1",
+      "argmin": "B0"
+    },
+    "B.secondary_all.em": {
+      "max": 0.504,
+      "min": 0.474,
+      "max_minus_min": 0.030000000000000027,
+      "argmax": "B1",
+      "argmin": "B0"
+    }
+  },
+  "incomplete_variants": []
+}

@@ -1,0 +1,76 @@
+{
+  "task": "EXP-04/EXP-06 feature extraction",
+  "created_utc": "2026-10-01T02:36:40+00:00",
+  "command": "scripts\\revision\\extract_features.py --features siglip --log results/revision/exp04_exp06/extraction_log_siglip.json",
+  "features": [
+    "siglip"
+  ],
+  "clip": {
+    "model": "ViT-L-14-quickgelu",
+    "pretrained": "openai",
+    "context_tokens": 77
+  },
+  "siglip": {
+    "model": "ViT-SO400M-14-SigLIP-384",
+    "pretrained": "webli",
+    "hf_equivalent": "google/siglip-so400m-patch14-384",
+    "context_tokens": 64
+  },
+  "text_source": "provided",
+  "l2_normalised": true,
+  "masking": {
+    "detector": "easyocr-craft",
+    "easyocr_version": "1.7.2",
+    "min_size": 10,
+    "text_threshold": 0.7,
+    "low_text": 0.4,
+    "link_threshold": 0.4,
+    "add_margin": 0.1,
+    "dilate_px": 5,
+    "fill": "cv2.inpaint INPAINT_TELEA radius=5",
+    "example_and_audit_selection": "random.Random(20260708) over test indices"
+  },
+  "device": "NVIDIA GeForce RTX 4080 Laptop GPU",
+  "torch": "2.11.0+cu128",
+  "open_clip": "3.3.0",
+  "limit": null,
+  "splits": {
+    "train": {
+      "n": 9000,
+      "seconds": 907.3,
+      "files": {
+        "siglip": {
+          "path": "results/embeddings/train_vit_so400m_14_siglip_384.npz",
+          "sha256": "c1526ff27f3c789b9020224e0c857fdab6f0dbf1d941d05924eff361be02e720",
+          "image_dim": 1152,
+          "text_dim": 1152
+        }
+      }
+    },
+    "validation": {
+      "n": 1000,
+      "seconds": 99.9,
+      "files": {
+        "siglip": {
+          "path": "results/embeddings/validation_vit_so400m_14_siglip_384.npz",
+          "sha256": "9f6600efba05e008d520fcea1bee2a2396b1ef8add2e1c9c49159249a699c1ce",
+          "image_dim": 1152,
+          "text_dim": 1152
+        }
+      }
+    },
+    "test": {
+      "n": 1000,
+      "seconds": 102.0,
+      "files": {
+        "siglip": {
+          "path": "results/embeddings/test_vit_so400m_14_siglip_384.npz",
+          "sha256": "9df2cc2dd6a2d2120b8075b8cf7e6b8727dc429e180c6eb20f2856d0bfe9858c",
+          "image_dim": 1152,
+          "text_dim": 1152
+        }
+      }
+    }
+  },
+  "total_seconds": 1114.1
+}

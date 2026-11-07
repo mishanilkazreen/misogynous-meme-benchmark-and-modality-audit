@@ -1,0 +1,4018 @@
+[
+  {
+    "benchmark_date": "2026-06-12T15:03:28.131634+00:00",
+    "model": "gemini",
+    "filter": "none",
+    "split": "validation",
+    "task": "a",
+    "exact_match_accuracy": 0.8875,
+    "precision": 0.8911762483946514,
+    "recall": 0.8885054021608644,
+    "f1": 0.8898388211497718,
+    "avg_latency_s": 1.1239050985001813,
+    "refusal_rate": 0.0,
+    "safety_block_rate": 0.0,
+    "sample_predictions": [
+      {
+        "image_id": "1377",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5498",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5697",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5182",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6162",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6772",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3932",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5457",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "10007",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "7391",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "2991",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6324",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "1804",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 1
+      },
+      {
+        "image_id": "552",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "13261",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "10285",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6225",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "7602",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5988",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "991",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "10270",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "2588",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "132",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "10293",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6391",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "7197",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "7184",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "1118",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3289",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3029",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "865",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "10033",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "4599",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "4937",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9799",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "4010",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "2460",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "220",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 1
+      },
+      {
+        "image_id": "8245",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "4824",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9923",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "shaming": 1,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "1317",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6504",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "2732",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5201",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "11512",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5025",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6119",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3990",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "3238",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "22",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "8806",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "4576",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "3739",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "4296",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6483",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5967",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "8308",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "10574",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "1892",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "1381",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "1590",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "8909",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3462",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3552",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "8068",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "732",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "11600",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "8180",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6190",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "464",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9711",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "7635",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "8982",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "83",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "8730",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3235",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5488",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "7713",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3791",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "7674",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6131",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "7491",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "2814",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 1
+      },
+      {
+        "image_id": "1023",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9007",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 1
+      },
+      {
+        "image_id": "11694",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "8039",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "8380",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "10174",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "1599",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "shaming": 1,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "13360",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "4421",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "7865",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "1614",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9340",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "7487",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "2645",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5302",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "10040",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 1
+      },
+      {
+        "image_id": "2208",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 1
+      },
+      {
+        "image_id": "5758",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "2063",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "408",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9835",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6883",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9484",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "5474",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3201",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 1
+      },
+      {
+        "image_id": "181",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "2592",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 1
+      },
+      {
+        "image_id": "9192",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "13264",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "4034",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9516",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6615",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "10421",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "3663",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "1490",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 1
+      },
+      {
+        "image_id": "7794",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "8952",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "35",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "4683",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "8942",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3748",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 1
+      },
+      {
+        "image_id": "6644",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "8322",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9678",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9444",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "11664",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "11679",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9989",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "1863",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "2210",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6385",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "4530",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "11596",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "2522",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "5800",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9964",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "8977",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "4073",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "304",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "7833",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "13117",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6981",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "10479",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 1
+      },
+      {
+        "image_id": "10697",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "10555",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6393",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "2367",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9375",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3414",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "5220",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9990",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9482",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "10564",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "shaming": 1,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "4639",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6039",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "4610",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "7700",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5006",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "11558",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "11399",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "2905",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "9126",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9849",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "2746",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 1
+      },
+      {
+        "image_id": "11470",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "10305",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "555",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "13237",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "6416",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9532",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5492",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9011",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "10425",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "5404",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "1675",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 1
+      },
+      {
+        "image_id": "8664",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3059",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "1940",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9813",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3033",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6260",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "8207",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "4519",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "8135",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3432",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3258",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9617",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 1
+      },
+      {
+        "image_id": "4821",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9495",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3852",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 1
+      },
+      {
+        "image_id": "3241",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "8852",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5296",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "10364",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3689",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 1
+      },
+      {
+        "image_id": "7371",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "4460",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "4302",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "2964",
+        "ground_truth": 1,
+        "prediction": 0,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 1
+      },
+      {
+        "image_id": "585",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 1
+      },
+      {
+        "image_id": "2903",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "1165",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5854",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "10042",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "8473",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "4690",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "8737",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "14035",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "1521",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "8467",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "2192",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6319",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6839",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "2671",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6801",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6424",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "10284",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "52",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5276",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "8415",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3121",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "8422",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "2008",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "10404",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9880",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9459",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 1
+      },
+      {
+        "image_id": "1938",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "10251",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3669",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 1
+      },
+      {
+        "image_id": "4765",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "2377",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5766",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "10320",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "5138",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5299",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "5241",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "11327",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3051",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5026",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5538",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "6454",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 1
+      },
+      {
+        "image_id": "1642",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "8693",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "2842",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6889",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "7076",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "11055",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "7728",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5361",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "8212",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "2931",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "2699",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "10877",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "1696",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "11247",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6227",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "11319",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9619",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3466",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 1
+      },
+      {
+        "image_id": "5300",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6900",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "2571",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3866",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "8521",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "3457",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "10413",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 1
+      },
+      {
+        "image_id": "7626",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "1935",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "7034",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "691",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "200",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6781",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "1707",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5764",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "255",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 1
+      },
+      {
+        "image_id": "1139",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6199",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "10829",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "350",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9372",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "10583",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "8927",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "133",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "11119",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "11688",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "1298",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "8955",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9003",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3746",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3272",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "7633",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5995",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "98",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "921",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6060",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6705",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "1939",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "2738",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "8243",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "7377",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "1389",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3105",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 1
+      },
+      {
+        "image_id": "2297",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5119",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5447",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6837",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3523",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 1
+      },
+      {
+        "image_id": "13072",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "10928",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "10907",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5315",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "8311",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "4723",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "2641",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "165",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "7162",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6817",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "10244",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9473",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5566",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "10653",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9010",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "1272",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 1
+      },
+      {
+        "image_id": "8564",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "4075",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 1
+      },
+      {
+        "image_id": "11006",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "8986",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "13537",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 1
+      },
+      {
+        "image_id": "3737",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9648",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "1557",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9716",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6051",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3333",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "1260",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "4214",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5030",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "10389",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3243",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 1
+      },
+      {
+        "image_id": "9740",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "985",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "625",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9055",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "9770",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 1
+      },
+      {
+        "image_id": "6067",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "4890",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "11704",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5814",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "11468",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "4283",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "8159",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5793",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "8163",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3810",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "1991",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 1
+      },
+      {
+        "image_id": "3762",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "1820",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 1
+      },
+      {
+        "image_id": "11232",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6107",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "7702",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "260",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6999",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3979",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "7428",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "681",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3348",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "7283",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "6910",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "7932",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6527",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "6669",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "104",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "8702",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "2959",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "11407",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "1105",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "6727",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5716",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "8400",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "2369",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "10559",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "10153",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9789",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "9220",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "7938",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "3264",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "617",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5780",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 1
+      },
+      {
+        "image_id": "6412",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 1,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      },
+      {
+        "image_id": "1087",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 1,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "7645",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "5834",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "952",
+        "ground_truth": 0,
+        "prediction": 0,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "678",
+        "ground_truth": 0,
+        "prediction": 1,
+        "correct": false,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 0,
+        "violence": 0
+      },
+      {
+        "image_id": "8332",
+        "ground_truth": 1,
+        "prediction": 1,
+        "correct": true,
+        "shaming": 0,
+        "stereotype": 0,
+        "objectification": 1,
+        "violence": 0
+      }
+    ]
+  }
+]

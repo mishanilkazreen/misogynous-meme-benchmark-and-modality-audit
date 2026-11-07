@@ -1,0 +1,47 @@
+{
+  "dataset": "HarMeme (Harm-C)",
+  "model": "ViT-L-14-quickgelu",
+  "pretrained": "openai",
+  "extracted_utc": "2026-11-02T14:48:24+00:00",
+  "splits": {
+    "train": {
+      "path": "results/embeddings/harmeme_train_vit_l_14_quickgelu.npz",
+      "sha256": "e0685283411048a7447b5bb0f84973f1de356810abb47f1cead201447b498eab",
+      "num_samples": 3013,
+      "image_shape": [
+        3013,
+        768
+      ],
+      "text_shape": [
+        3013,
+        768
+      ]
+    },
+    "validation": {
+      "path": "results/embeddings/harmeme_validation_vit_l_14_quickgelu.npz",
+      "sha256": "5fc96568476264826fa9026928d8155e5fd065c1aac64608a045628258164e3b",
+      "num_samples": 177,
+      "image_shape": [
+        177,
+        768
+      ],
+      "text_shape": [
+        177,
+        768
+      ]
+    },
+    "test": {
+      "path": "results/embeddings/harmeme_test_vit_l_14_quickgelu.npz",
+      "sha256": "e2069f9fd61dbeeff53c531b8f0a0c66847f31300b5d3e8e908f89c6cdb197e1",
+      "num_samples": 354,
+      "image_shape": [
+        354,
+        768
+      ],
+      "text_shape": [
+        354,
+        768
+      ]
+    }
+  }
+}

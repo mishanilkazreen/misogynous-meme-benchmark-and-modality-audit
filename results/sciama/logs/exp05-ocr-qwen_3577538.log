@@ -1,0 +1,167 @@
+=== JOB exp05-ocr-qwen (3577538) on gpu10.pri.sciama.icg.port at 2026-09-29T22:21:34+01:00 ===
+git commit: unknown
+Tue Sep 29 22:21:34 2026
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 565.57.01              Driver Version: 565.57.01      CUDA Version: 12.7     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA L40                     Off |   00000000:21:00.0 Off |                    0 |
+| N/A   45C    P8             55W /  300W |       1MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+PREREQS OK
+=== OCR-FINETUNED 7b TASK=singleclass seed=1 split=validation ===
+Split: validation | Filters: ['none'] | Limit: None | LoRA Path: results/models/lora_qwen2_vl_7b_instruct_singleclass_seed1
+Pre-loading model …
+Loading Qwen/Qwen2-VL-7B-Instruct (4-bit NF4) …
+Loading LoRA adapters from results/models/lora_qwen2_vl_7b_instruct_singleclass_seed1 …
+Quantized model detected; running with active adapters (unmerged).
+Loaded 1000 samples
+
+--- Filter: none ---
+  acc=0.890  refusals=0.00%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_ocr_paddleocr_finetuned_seed1.json
+=== OCR-FINETUNED 7b TASK=singleclass seed=1 split=test ===
+Split: test | Filters: ['none'] | Limit: None | LoRA Path: results/models/lora_qwen2_vl_7b_instruct_singleclass_seed1
+Pre-loading model …
+Loading Qwen/Qwen2-VL-7B-Instruct (4-bit NF4) …
+Loading LoRA adapters from results/models/lora_qwen2_vl_7b_instruct_singleclass_seed1 …
+Quantized model detected; running with active adapters (unmerged).
+Loaded 1000 samples
+
+--- Filter: none ---
+  acc=0.791  refusals=0.00%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/test/qwen2vl_test_qwen2_vl_7b_instruct_ocr_paddleocr_finetuned_seed1.json
+=== OCR-FINETUNED 7b TASK=singleclass seed=2 split=validation ===
+Split: validation | Filters: ['none'] | Limit: None | LoRA Path: results/models/lora_qwen2_vl_7b_instruct_singleclass_seed2
+Pre-loading model …
+Loading Qwen/Qwen2-VL-7B-Instruct (4-bit NF4) …
+Loading LoRA adapters from results/models/lora_qwen2_vl_7b_instruct_singleclass_seed2 …
+Quantized model detected; running with active adapters (unmerged).
+Loaded 1000 samples
+
+--- Filter: none ---
+  acc=0.875  refusals=0.00%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_ocr_paddleocr_finetuned_seed2.json
+=== OCR-FINETUNED 7b TASK=singleclass seed=2 split=test ===
+Split: test | Filters: ['none'] | Limit: None | LoRA Path: results/models/lora_qwen2_vl_7b_instruct_singleclass_seed2
+Pre-loading model …
+Loading Qwen/Qwen2-VL-7B-Instruct (4-bit NF4) …
+Loading LoRA adapters from results/models/lora_qwen2_vl_7b_instruct_singleclass_seed2 …
+Quantized model detected; running with active adapters (unmerged).
+Loaded 1000 samples
+
+--- Filter: none ---
+  acc=0.766  refusals=0.00%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/test/qwen2vl_test_qwen2_vl_7b_instruct_ocr_paddleocr_finetuned_seed2.json
+=== OCR-FINETUNED 7b TASK=singleclass seed=3 split=validation ===
+Split: validation | Filters: ['none'] | Limit: None | LoRA Path: results/models/lora_qwen2_vl_7b_instruct_singleclass_seed3
+Pre-loading model …
+Loading Qwen/Qwen2-VL-7B-Instruct (4-bit NF4) …
+Loading LoRA adapters from results/models/lora_qwen2_vl_7b_instruct_singleclass_seed3 …
+Quantized model detected; running with active adapters (unmerged).
+Loaded 1000 samples
+
+--- Filter: none ---
+  acc=0.869  refusals=0.00%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_ocr_paddleocr_finetuned_seed3.json
+=== OCR-FINETUNED 7b TASK=singleclass seed=3 split=test ===
+Split: test | Filters: ['none'] | Limit: None | LoRA Path: results/models/lora_qwen2_vl_7b_instruct_singleclass_seed3
+Pre-loading model …
+Loading Qwen/Qwen2-VL-7B-Instruct (4-bit NF4) …
+Loading LoRA adapters from results/models/lora_qwen2_vl_7b_instruct_singleclass_seed3 …
+Quantized model detected; running with active adapters (unmerged).
+Loaded 1000 samples
+
+--- Filter: none ---
+  acc=0.757  refusals=0.00%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/test/qwen2vl_test_qwen2_vl_7b_instruct_ocr_paddleocr_finetuned_seed3.json
+=== OCR-FINETUNED 7b TASK=multiclass seed=1 split=validation ===
+Split: validation | Filters: ['none'] | Limit: None | LoRA Path: results/models/lora_qwen2_vl_7b_instruct_multiclass_seed1
+Pre-loading model …
+Loading Qwen/Qwen2-VL-7B-Instruct (4-bit NF4) …
+Loading LoRA adapters from results/models/lora_qwen2_vl_7b_instruct_multiclass_seed1 …
+Quantized model detected; running with active adapters (unmerged).
+Loaded 1000 samples
+
+--- Filter: none ---
+  acc=0.660  refusals=0.00%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_ocr_paddleocr_multiclass_finetuned_seed1.json
+=== OCR-FINETUNED 7b TASK=multiclass seed=1 split=test ===
+Split: test | Filters: ['none'] | Limit: None | LoRA Path: results/models/lora_qwen2_vl_7b_instruct_multiclass_seed1
+Pre-loading model …
+Loading Qwen/Qwen2-VL-7B-Instruct (4-bit NF4) …
+Loading LoRA adapters from results/models/lora_qwen2_vl_7b_instruct_multiclass_seed1 …
+Quantized model detected; running with active adapters (unmerged).
+Loaded 1000 samples
+
+--- Filter: none ---
+  acc=0.529  refusals=0.00%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/test/qwen2vl_test_qwen2_vl_7b_instruct_ocr_paddleocr_multiclass_finetuned_seed1.json
+=== OCR-FINETUNED 7b TASK=multiclass seed=2 split=validation ===
+Split: validation | Filters: ['none'] | Limit: None | LoRA Path: results/models/lora_qwen2_vl_7b_instruct_multiclass_seed2
+Pre-loading model …
+Loading Qwen/Qwen2-VL-7B-Instruct (4-bit NF4) …
+Loading LoRA adapters from results/models/lora_qwen2_vl_7b_instruct_multiclass_seed2 …
+Quantized model detected; running with active adapters (unmerged).
+Loaded 1000 samples
+
+--- Filter: none ---
+  acc=0.649  refusals=0.00%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_ocr_paddleocr_multiclass_finetuned_seed2.json
+=== OCR-FINETUNED 7b TASK=multiclass seed=2 split=test ===
+Split: test | Filters: ['none'] | Limit: None | LoRA Path: results/models/lora_qwen2_vl_7b_instruct_multiclass_seed2
+Pre-loading model …
+Loading Qwen/Qwen2-VL-7B-Instruct (4-bit NF4) …
+Loading LoRA adapters from results/models/lora_qwen2_vl_7b_instruct_multiclass_seed2 …
+Quantized model detected; running with active adapters (unmerged).
+Loaded 1000 samples
+
+--- Filter: none ---
+  acc=0.505  refusals=0.00%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/test/qwen2vl_test_qwen2_vl_7b_instruct_ocr_paddleocr_multiclass_finetuned_seed2.json
+=== OCR-FINETUNED 7b TASK=multiclass seed=3 split=validation ===
+Split: validation | Filters: ['none'] | Limit: None | LoRA Path: results/models/lora_qwen2_vl_7b_instruct_multiclass_seed3
+Pre-loading model …
+Loading Qwen/Qwen2-VL-7B-Instruct (4-bit NF4) …
+Loading LoRA adapters from results/models/lora_qwen2_vl_7b_instruct_multiclass_seed3 …
+Quantized model detected; running with active adapters (unmerged).
+Loaded 1000 samples
+
+--- Filter: none ---
+  acc=0.668  refusals=0.00%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/validation/qwen2vl_validation_qwen2_vl_7b_instruct_ocr_paddleocr_multiclass_finetuned_seed3.json
+=== OCR-FINETUNED 7b TASK=multiclass seed=3 split=test ===
+Split: test | Filters: ['none'] | Limit: None | LoRA Path: results/models/lora_qwen2_vl_7b_instruct_multiclass_seed3
+Pre-loading model …
+Loading Qwen/Qwen2-VL-7B-Instruct (4-bit NF4) …
+Loading LoRA adapters from results/models/lora_qwen2_vl_7b_instruct_multiclass_seed3 …
+Quantized model detected; running with active adapters (unmerged).
+Loaded 1000 samples
+
+--- Filter: none ---
+  acc=0.519  refusals=0.00%
+
+Saved 1 filter rows to $PROJECT_ROOT/results/test/qwen2vl_test_qwen2_vl_7b_instruct_ocr_paddleocr_multiclass_finetuned_seed3.json

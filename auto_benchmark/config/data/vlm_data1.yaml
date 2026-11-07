@@ -1,0 +1,21 @@
+# VLM (Vision-Language Model) Benchmarking Data Configuration
+
+dataset:
+  data_type: "vlm"
+  dataset_dir: "data_files/vlm_synthetic_data"            # Directory containing test images
+  annotation_file: "data_files/vlm_synthetic_data/labels.csv" # Ground truth labels mapping file
+  image_col: "filename"                                    # CSV column for image filenames
+  label_col: "label"                                      # CSV column for ground truth labels
+
+# Prompt sent to the VLM model alongside the image
+prompt: "Analyze this image and identify the dominant color. Answer with exactly one of these words: 'red', 'blue', or 'green'."
+
+# Expected target classes to evaluate and parse from VLM text responses
+classes:
+  - "red"
+  - "blue"
+  - "green"
+
+training:
+  device: "auto"                                          # "cuda", "cpu", or "auto"
+  batch_size: 1                                           # standard batching for VLM inference

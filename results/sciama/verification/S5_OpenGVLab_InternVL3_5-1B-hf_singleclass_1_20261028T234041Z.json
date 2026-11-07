@@ -1,0 +1,33 @@
+{
+  "job": "S5",
+  "params": {
+    "model_id": "OpenGVLab/InternVL3_5-1B-hf",
+    "task": "singleclass",
+    "seed": 1
+  },
+  "passed": true,
+  "checked_utc": "2026-10-28T23:40:41+00:00",
+  "git_commit": "b4bf93b18e3514abcdc36f57ec6ee01c543e81b8",
+  "files": [
+    {
+      "path": "results/validation/internvl_validation_internvl3_5_1b_hf.json",
+      "sha256": "b0706e724429f05532fe4e5a96f813c22721a4bdaad6ede58e4d6732d07af4d0",
+      "errors": []
+    },
+    {
+      "path": "results/test/internvl_test_internvl3_5_1b_hf.json",
+      "sha256": "6ac4e983322ea9b4b6cf03f1bc32911e91770d478dd738cb9a99bde202f5bf37",
+      "errors": []
+    },
+    {
+      "path": "results/validation/internvl_validation_internvl3_5_1b_hf_finetuned_seed1.json",
+      "sha256": "7eaa86bcaa4ff6d6f3e52540e51f0c8cf67c9f55d0208e1040bfc6c8b8b39326",
+      "errors": []
+    },
+    {
+      "path": "results/test/internvl_test_internvl3_5_1b_hf_finetuned_seed1.json",
+      "sha256": "766f9eff4af58095e512e4156918ff2c3c89fecab7286992c1d5e7be4852bb18",
+      "errors": []
+    }
+  ]
+}

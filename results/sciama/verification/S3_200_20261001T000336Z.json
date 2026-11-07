@@ -1,0 +1,26 @@
+{
+  "job": "S3",
+  "params": {
+    "n": 200
+  },
+  "passed": true,
+  "checked_utc": "2026-10-01T00:03:36+00:00",
+  "git_commit": "0535da0c672f6dd20f1b8620c2483a34e4d643c1",
+  "files": [
+    {
+      "path": "results/rationales/qwen7b_test_n200.jsonl",
+      "sha256": "f86cda7720f0de32da6e5253d17eb8cb2c36d92dc3b67c0fdef844b4cef5af90",
+      "errors": []
+    },
+    {
+      "path": "results/rationales/qwen2b_test_n200.jsonl",
+      "sha256": "461123726ea41b5916c86d9efa2569bab436792d1139bf813425162b05c7e9c3",
+      "errors": []
+    },
+    {
+      "path": "results/rationales/llava7b_test_n200.jsonl",
+      "sha256": "708c7b023cf37a13596c1a2658d10df3ec14b7753267a9577371ae40e29e9680",
+      "errors": []
+    }
+  ]
+}

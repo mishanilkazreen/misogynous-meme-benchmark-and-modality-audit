@@ -1,0 +1,284 @@
+{
+  "labels": [
+    "shaming",
+    "stereotype",
+    "objectification",
+    "violence"
+  ],
+  "source": "MAMI 2022 (SemEval-2022 Task 5), Sub-task B",
+  "datasets": {
+    "test_validation": {
+      "n": 2000,
+      "misogynous": {
+        "positive": 1000,
+        "negative": 1000
+      },
+      "subtype_counts": {
+        "shaming": 269,
+        "stereotype": 626,
+        "objectification": 576,
+        "violence": 253
+      },
+      "active_count_distribution_all": {
+        "0": 1023,
+        "1": 396,
+        "2": 428,
+        "3": 140,
+        "4": 13
+      },
+      "active_count_distribution_misogynous": {
+        "0": 24,
+        "1": 395,
+        "2": 428,
+        "3": 140,
+        "4": 13
+      },
+      "cooccurrence": {
+        "shaming": {
+          "shaming": 269,
+          "stereotype": 156,
+          "objectification": 137,
+          "violence": 31
+        },
+        "stereotype": {
+          "shaming": 156,
+          "stereotype": 626,
+          "objectification": 330,
+          "violence": 144
+        },
+        "objectification": {
+          "shaming": 137,
+          "stereotype": 330,
+          "objectification": 576,
+          "violence": 128
+        },
+        "violence": {
+          "shaming": 31,
+          "stereotype": 144,
+          "objectification": 128,
+          "violence": 253
+        }
+      },
+      "conditional_prob_col_given_row": {
+        "shaming": {
+          "shaming": 1.0,
+          "stereotype": 0.5799,
+          "objectification": 0.5093,
+          "violence": 0.1152
+        },
+        "stereotype": {
+          "shaming": 0.2492,
+          "stereotype": 1.0,
+          "objectification": 0.5272,
+          "violence": 0.23
+        },
+        "objectification": {
+          "shaming": 0.2378,
+          "stereotype": 0.5729,
+          "objectification": 1.0,
+          "violence": 0.2222
+        },
+        "violence": {
+          "shaming": 0.1225,
+          "stereotype": 0.5692,
+          "objectification": 0.5059,
+          "violence": 1.0
+        }
+      },
+      "pair_cooccurrence": {
+        "shaming|stereotype": 156,
+        "shaming|objectification": 137,
+        "shaming|violence": 31,
+        "stereotype|objectification": 330,
+        "stereotype|violence": 144,
+        "objectification|violence": 128
+      },
+      "annotation_inconsistencies": {
+        "subtype_active_when_not_misogynous": 1,
+        "misogynous_without_any_subtype": 24
+      }
+    },
+    "train": {
+      "n": 9000,
+      "misogynous": {
+        "positive": 4500,
+        "negative": 4500
+      },
+      "subtype_counts": {
+        "shaming": 1151,
+        "stereotype": 2534,
+        "objectification": 1974,
+        "violence": 853
+      },
+      "active_count_distribution_all": {
+        "0": 4721,
+        "1": 2609,
+        "2": 1149,
+        "3": 479,
+        "4": 42
+      },
+      "active_count_distribution_misogynous": {
+        "0": 224,
+        "1": 2606,
+        "2": 1149,
+        "3": 479,
+        "4": 42
+      },
+      "cooccurrence": {
+        "shaming": {
+          "shaming": 1151,
+          "stereotype": 621,
+          "objectification": 467,
+          "violence": 112
+        },
+        "stereotype": {
+          "shaming": 621,
+          "stereotype": 2534,
+          "objectification": 833,
+          "violence": 509
+        },
+        "objectification": {
+          "shaming": 467,
+          "stereotype": 833,
+          "objectification": 1974,
+          "violence": 296
+        },
+        "violence": {
+          "shaming": 112,
+          "stereotype": 509,
+          "objectification": 296,
+          "violence": 853
+        }
+      },
+      "conditional_prob_col_given_row": {
+        "shaming": {
+          "shaming": 1.0,
+          "stereotype": 0.5395,
+          "objectification": 0.4057,
+          "violence": 0.0973
+        },
+        "stereotype": {
+          "shaming": 0.2451,
+          "stereotype": 1.0,
+          "objectification": 0.3287,
+          "violence": 0.2009
+        },
+        "objectification": {
+          "shaming": 0.2366,
+          "stereotype": 0.422,
+          "objectification": 1.0,
+          "violence": 0.1499
+        },
+        "violence": {
+          "shaming": 0.1313,
+          "stereotype": 0.5967,
+          "objectification": 0.347,
+          "violence": 1.0
+        }
+      },
+      "pair_cooccurrence": {
+        "shaming|stereotype": 621,
+        "shaming|objectification": 467,
+        "shaming|violence": 112,
+        "stereotype|objectification": 833,
+        "stereotype|violence": 509,
+        "objectification|violence": 296
+      },
+      "annotation_inconsistencies": {
+        "subtype_active_when_not_misogynous": 3,
+        "misogynous_without_any_subtype": 224
+      }
+    },
+    "full": {
+      "n": 11000,
+      "misogynous": {
+        "positive": 5500,
+        "negative": 5500
+      },
+      "subtype_counts": {
+        "shaming": 1420,
+        "stereotype": 3160,
+        "objectification": 2550,
+        "violence": 1106
+      },
+      "active_count_distribution_all": {
+        "0": 5744,
+        "1": 3005,
+        "2": 1577,
+        "3": 619,
+        "4": 55
+      },
+      "active_count_distribution_misogynous": {
+        "0": 248,
+        "1": 3001,
+        "2": 1577,
+        "3": 619,
+        "4": 55
+      },
+      "cooccurrence": {
+        "shaming": {
+          "shaming": 1420,
+          "stereotype": 777,
+          "objectification": 604,
+          "violence": 143
+        },
+        "stereotype": {
+          "shaming": 777,
+          "stereotype": 3160,
+          "objectification": 1163,
+          "violence": 653
+        },
+        "objectification": {
+          "shaming": 604,
+          "stereotype": 1163,
+          "objectification": 2550,
+          "violence": 424
+        },
+        "violence": {
+          "shaming": 143,
+          "stereotype": 653,
+          "objectification": 424,
+          "violence": 1106
+        }
+      },
+      "conditional_prob_col_given_row": {
+        "shaming": {
+          "shaming": 1.0,
+          "stereotype": 0.5472,
+          "objectification": 0.4254,
+          "violence": 0.1007
+        },
+        "stereotype": {
+          "shaming": 0.2459,
+          "stereotype": 1.0,
+          "objectification": 0.368,
+          "violence": 0.2066
+        },
+        "objectification": {
+          "shaming": 0.2369,
+          "stereotype": 0.4561,
+          "objectification": 1.0,
+          "violence": 0.1663
+        },
+        "violence": {
+          "shaming": 0.1293,
+          "stereotype": 0.5904,
+          "objectification": 0.3834,
+          "violence": 1.0
+        }
+      },
+      "pair_cooccurrence": {
+        "shaming|stereotype": 777,
+        "shaming|objectification": 604,
+        "shaming|violence": 143,
+        "stereotype|objectification": 1163,
+        "stereotype|violence": 653,
+        "objectification|violence": 424
+      },
+      "annotation_inconsistencies": {
+        "subtype_active_when_not_misogynous": 4,
+        "misogynous_without_any_subtype": 248
+      }
+    }
+  }
+}

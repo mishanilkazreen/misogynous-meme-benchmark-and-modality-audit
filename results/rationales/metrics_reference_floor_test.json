@@ -1,0 +1,253 @@
+{
+  "model": "Canonical Category Reference (self-similarity floor)",
+  "split": "test",
+  "is_model_output": false,
+  "description": "Canonical MAMI sub-type taxonomy statement scored against itself over the same instances as the model rows. Not a system result; it contextualises the model scores rather than competing with them.",
+  "source_file": "results/rationales/qwen7b_test.jsonl",
+  "num_samples": 30,
+  "mean_bleu_1": 1.0,
+  "mean_bleu_4": 1.0,
+  "mean_rouge_l": 1.0,
+  "details": [
+    {
+      "image_id": "15236",
+      "ground_truth": 0,
+      "reference": "This meme is classified as non-misogynistic as it does not promote hostility, violence, or derogatory stereotypes toward women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "15805",
+      "ground_truth": 1,
+      "reference": "This meme is classified as misogynistic because it contains text overlays and visual imagery that demean, objectify, or reinforce harmful gender stereotypes against women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "16254",
+      "ground_truth": 0,
+      "reference": "This meme is classified as non-misogynistic as it does not promote hostility, violence, or derogatory stereotypes toward women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "16191",
+      "ground_truth": 1,
+      "reference": "This meme is classified as misogynistic because it contains text overlays and visual imagery that demean, objectify, or reinforce harmful gender stereotypes against women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "15952",
+      "ground_truth": 0,
+      "reference": "This meme is classified as non-misogynistic as it does not promote hostility, violence, or derogatory stereotypes toward women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "15662",
+      "ground_truth": 0,
+      "reference": "This meme is classified as non-misogynistic as it does not promote hostility, violence, or derogatory stereotypes toward women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "15828",
+      "ground_truth": 1,
+      "reference": "This meme is classified as misogynistic because it contains text overlays and visual imagery that demean, objectify, or reinforce harmful gender stereotypes against women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "15905",
+      "ground_truth": 0,
+      "reference": "This meme is classified as non-misogynistic as it does not promote hostility, violence, or derogatory stereotypes toward women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "15971",
+      "ground_truth": 1,
+      "reference": "This meme is classified as misogynistic because it contains text overlays and visual imagery that demean, objectify, or reinforce harmful gender stereotypes against women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "16197",
+      "ground_truth": 1,
+      "reference": "This meme is classified as misogynistic because it contains text overlays and visual imagery that demean, objectify, or reinforce harmful gender stereotypes against women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "15916",
+      "ground_truth": 0,
+      "reference": "This meme is classified as non-misogynistic as it does not promote hostility, violence, or derogatory stereotypes toward women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "16130",
+      "ground_truth": 1,
+      "reference": "This meme is classified as misogynistic because it contains text overlays and visual imagery that demean, objectify, or reinforce harmful gender stereotypes against women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "15742",
+      "ground_truth": 1,
+      "reference": "This meme is classified as misogynistic because it contains text overlays and visual imagery that demean, objectify, or reinforce harmful gender stereotypes against women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "15502",
+      "ground_truth": 0,
+      "reference": "This meme is classified as non-misogynistic as it does not promote hostility, violence, or derogatory stereotypes toward women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "15037",
+      "ground_truth": 1,
+      "reference": "This meme is classified as misogynistic because it contains text overlays and visual imagery that demean, objectify, or reinforce harmful gender stereotypes against women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "15592",
+      "ground_truth": 0,
+      "reference": "This meme is classified as non-misogynistic as it does not promote hostility, violence, or derogatory stereotypes toward women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "15540",
+      "ground_truth": 1,
+      "reference": "This meme is classified as misogynistic because it contains text overlays and visual imagery that demean, objectify, or reinforce harmful gender stereotypes against women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "16323",
+      "ground_truth": 0,
+      "reference": "This meme is classified as non-misogynistic as it does not promote hostility, violence, or derogatory stereotypes toward women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "15136",
+      "ground_truth": 0,
+      "reference": "This meme is classified as non-misogynistic as it does not promote hostility, violence, or derogatory stereotypes toward women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "16298",
+      "ground_truth": 0,
+      "reference": "This meme is classified as non-misogynistic as it does not promote hostility, violence, or derogatory stereotypes toward women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "15846",
+      "ground_truth": 1,
+      "reference": "This meme is classified as misogynistic because it contains text overlays and visual imagery that demean, objectify, or reinforce harmful gender stereotypes against women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "16203",
+      "ground_truth": 0,
+      "reference": "This meme is classified as non-misogynistic as it does not promote hostility, violence, or derogatory stereotypes toward women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "15560",
+      "ground_truth": 0,
+      "reference": "This meme is classified as non-misogynistic as it does not promote hostility, violence, or derogatory stereotypes toward women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "16056",
+      "ground_truth": 0,
+      "reference": "This meme is classified as non-misogynistic as it does not promote hostility, violence, or derogatory stereotypes toward women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "15038",
+      "ground_truth": 0,
+      "reference": "This meme is classified as non-misogynistic as it does not promote hostility, violence, or derogatory stereotypes toward women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "15676",
+      "ground_truth": 0,
+      "reference": "This meme is classified as non-misogynistic as it does not promote hostility, violence, or derogatory stereotypes toward women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "15457",
+      "ground_truth": 1,
+      "reference": "This meme is classified as misogynistic because it contains text overlays and visual imagery that demean, objectify, or reinforce harmful gender stereotypes against women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "15692",
+      "ground_truth": 1,
+      "reference": "This meme is classified as misogynistic because it contains text overlays and visual imagery that demean, objectify, or reinforce harmful gender stereotypes against women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "16334",
+      "ground_truth": 0,
+      "reference": "This meme is classified as non-misogynistic as it does not promote hostility, violence, or derogatory stereotypes toward women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    },
+    {
+      "image_id": "17077",
+      "ground_truth": 0,
+      "reference": "This meme is classified as non-misogynistic as it does not promote hostility, violence, or derogatory stereotypes toward women.",
+      "bleu_1": 1.0,
+      "bleu_4": 1.0,
+      "rouge_l": 1.0
+    }
+  ]
+}

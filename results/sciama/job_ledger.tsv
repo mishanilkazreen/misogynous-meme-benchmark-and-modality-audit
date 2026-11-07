@@ -1,0 +1,26 @@
+date	job_id	script	exports	git_commit	status	notes
+2026-09-29T21:34:58+01:00	3577536	sciama/jobs/exp08_rationales.slurm	N=200,N=200	0535da0	COMPLETED 0:0	S3
+2026-09-29T21:35:26+01:00	3577537	sciama/jobs/exp05_ocr_finetuned_qwen.slurm	MODEL=2b	0535da0	COMPLETED 0:0	S2
+2026-09-29T21:40:34+01:00	3577538	sciama/jobs/exp05_ocr_finetuned_qwen.slurm	MODEL=7b	0535da0	COMPLETED 0:0	S2
+2026-09-29T21:41:51+01:00	3577539	sciama/jobs/exp07_llava_zeroshot.slurm		0535da0	COMPLETED 0:0	S1-zeroshot
+2026-09-29T21:43:00+01:00	3577540	sciama/jobs/exp07_llava_seed.slurm	TASK=singleclass,SEED=1	0535da0	COMPLETED 0:0	S1-seed
+2026-09-29T21:43:24+01:00	3577541	sciama/jobs/exp07_llava_seed.slurm	TASK=singleclass,SEED=2	0535da0	COMPLETED 0:0	S1-seed
+2026-09-29T21:43:43+01:00	3577542	sciama/jobs/exp07_llava_seed.slurm	TASK=singleclass,SEED=3	0535da0	COMPLETED 0:0	S1-seed
+2026-09-29T21:44:26+01:00	3577543	sciama/jobs/exp07_llava_seed.slurm	TASK=multiclass,SEED=1	0535da0	COMPLETED 0:0	S1-seed
+2026-09-29T21:44:47+01:00	3577544	sciama/jobs/exp07_llava_seed.slurm	TASK=multiclass,SEED=2	0535da0	COMPLETED 0:0	S1-seed
+2026-09-29T21:45:09+01:00	3577545	sciama/jobs/exp07_llava_seed.slurm	TASK=multiclass,SEED=3	0535da0	COMPLETED 0:0	S1-seed
+2026-10-04T19:33:52+01:00	3579022	sciama/jobs/exp02_template_disjoint_qwen.slurm	MODEL=2b,TASK=singleclass,SEED=1	5940306	COMPLETED 0:0	S4
+2026-10-04T19:34:01+01:00	3579023	sciama/jobs/exp02_template_disjoint_qwen.slurm	MODEL=2b,TASK=multiclass,SEED=1	5940306	COMPLETED 0:0	S4
+2026-10-04T19:34:10+01:00	3579024	sciama/jobs/exp02_template_disjoint_qwen.slurm	MODEL=7b,TASK=singleclass,SEED=1	5940306	COMPLETED 0:0	S4
+2026-10-04T19:34:19+01:00	3579025	sciama/jobs/exp02_template_disjoint_qwen.slurm	MODEL=7b,TASK=multiclass,SEED=1	5940306	COMPLETED 0:0	S4
+2026-10-04T19:34:29+01:00	3579026	sciama/jobs/exp03_internvl_scaling.slurm	MODEL_ID=OpenGVLab/InternVL3-1B-hf,TASK=singleclass,SEED=1	5940306	COMPLETED 0:0	S5
+2026-10-17T14:56:30+01:00	3584853	sciama/jobs/exp03_internvl_scaling.slurm	MODEL_ID=OpenGVLab/InternVL3-2B-hf,TASK=singleclass,SEED=1	5940306	FAILED 1:0 (CUDA OOM in QLoRA fine-tuning; zero-shot outputs written)	S5
+2026-10-17T14:56:31+01:00	3584854	sciama/jobs/exp03_internvl_scaling.slurm	MODEL_ID=OpenGVLab/InternVL3-8B-hf,TASK=singleclass,SEED=1	5940306	FAILED 1:0 (CUDA OOM in QLoRA fine-tuning; zero-shot outputs written)	S5
+2026-10-17T14:56:32+01:00	3584855	sciama/jobs/exp03_internvl_scaling.slurm	MODEL_ID=OpenGVLab/InternVL3_5-1B-hf,TASK=singleclass,SEED=1	5940306	COMPLETED 0:0	S5
+2026-10-17T14:56:33+01:00	3584856	sciama/jobs/exp03_internvl_scaling.slurm	MODEL_ID=OpenGVLab/InternVL3_5-2B-hf,TASK=singleclass,SEED=1	5940306	FAILED 1:0 (CUDA OOM in QLoRA fine-tuning; zero-shot outputs written)	S5
+2026-10-17T14:56:34+01:00	3584857	sciama/jobs/exp03_internvl_scaling.slurm	MODEL_ID=OpenGVLab/InternVL3_5-4B-hf,TASK=singleclass,SEED=1	5940306	FAILED 1:0 (CUDA OOM in QLoRA fine-tuning; zero-shot outputs written)	S5
+2026-10-17T14:56:35+01:00	3584858	sciama/jobs/exp03_internvl_scaling.slurm	MODEL_ID=OpenGVLab/InternVL3_5-8B-hf,TASK=singleclass,SEED=1	5940306	FAILED 1:0 (CUDA OOM in QLoRA fine-tuning; zero-shot outputs written)	S5
+2026-11-02T14:46:51+00:00	3589203	sciama/jobs/dis01_harmeme.slurm		a6e73ef	COMPLETED 0:0	S6
+2026-11-02T17:44:29+00:00	3589397	sciama/jobs/dis01_harmeme_qwen_raw.slurm		914befe	COMPLETED 0:0	S6-qwen-raw
+2026-11-02T17:44:29+00:00	3589398	sciama/jobs/dis01_harmeme_qwen_raw.slurm		914befe	CANCELLED (duplicate submission, cancelled before writing outputs)	S6-qwen-raw
+2026-11-05T18:52:42+00:00	3592765	sciama/jobs/dis01_harmeme_qwen_def.slurm		8c52462	COMPLETED 0:0	S6-qwen-def

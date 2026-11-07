@@ -1,0 +1,51 @@
+Loading system/sciama
+  Loading requirement: services/slurm
+Traceback (most recent call last):
+  File "auto_benchmark/.venv/bin/autobench", line 10, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "auto_benchmark/src/autobenchmark/cli.py", line 546, in main
+    run_train(args)
+    ~~~~~~~~~^^^^^^
+  File "auto_benchmark/src/autobenchmark/cli.py", line 89, in run_train
+    X_train, X_test, y_train, y_test, feat_labels, preprocessor = prepare_data(df, data_cfg, init_cfg)
+                                                                  ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "auto_benchmark/src/autobenchmark/data.py", line 418, in prepare_data
+    from sentence_transformers import SentenceTransformer
+  File "auto_benchmark/.venv/lib/python3.13/site-packages/sentence_transformers/__init__.py", line 10, in <module>
+    from sentence_transformers.backend import (
+    ...<3 lines>...
+    )
+  File "auto_benchmark/.venv/lib/python3.13/site-packages/sentence_transformers/backend/__init__.py", line 3, in <module>
+    from .load import load_onnx_model, load_openvino_model
+  File "auto_benchmark/.venv/lib/python3.13/site-packages/sentence_transformers/backend/load.py", line 7, in <module>
+    from transformers.configuration_utils import PretrainedConfig
+  File "auto_benchmark/.venv/lib/python3.13/site-packages/transformers/__init__.py", line 30, in <module>
+    from . import dependency_versions_check
+  File "auto_benchmark/.venv/lib/python3.13/site-packages/transformers/dependency_versions_check.py", line 16, in <module>
+    from .utils.versions import require_version, require_version_core
+  File "auto_benchmark/.venv/lib/python3.13/site-packages/transformers/utils/__init__.py", line 76, in <module>
+    from .hub import (
+    ...<20 lines>...
+    )
+  File "auto_benchmark/.venv/lib/python3.13/site-packages/transformers/utils/hub.py", line 29, in <module>
+    from huggingface_hub import (
+    ...<11 lines>...
+    )
+  File "auto_benchmark/.venv/lib/python3.13/site-packages/huggingface_hub/__init__.py", line 1180, in __getattr__
+    submod = importlib.import_module(submod_path)
+  File "/opt/apps/pkgs/cpython/3.13.2/intel64/gnu_13.2.0/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "auto_benchmark/.venv/lib/python3.13/site-packages/huggingface_hub/hf_api.py", line 35, in <module>
+    import httpcore
+  File "auto_benchmark/.venv/lib/python3.13/site-packages/httpcore/__init__.py", line 1, in <module>
+    from ._api import request, stream
+  File "auto_benchmark/.venv/lib/python3.13/site-packages/httpcore/_api.py", line 6, in <module>
+    from ._models import URL, Extensions, HeaderTypes, Response
+  File "auto_benchmark/.venv/lib/python3.13/site-packages/httpcore/_models.py", line 4, in <module>
+    import ssl
+  File "/opt/apps/pkgs/cpython/3.13.2/intel64/gnu_13.2.0/lib/python3.13/ssl.py", line 100, in <module>
+    import _ssl             # if we can't import it, let the error propagate
+    ^^^^^^^^^^^
+ModuleNotFoundError: No module named '_ssl'

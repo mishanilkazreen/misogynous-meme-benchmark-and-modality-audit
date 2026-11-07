@@ -1,0 +1,25 @@
+# Image / Object Detection Data Configuration
+# Used with data_type: "image" to benchmark YOLO models
+
+dataset:
+  data_type: "image"                          # triggers the YOLO detection pipeline
+  data_yaml_path: "data_files/coco8/coco8_data.yaml"  # path to YOLO-format data.yaml
+
+training:
+  epochs: 100                 # default training epochs per model
+  patience: 10                # early stopping patience (0 = disabled)
+  image_size: 640             # input image resolution
+  batch_size: 16              # training batch size
+  optimizer: "AdamW"          # optimizer (SGD, Adam, AdamW, etc.)
+  lr0: 0.001                  # initial learning rate
+  lrf: 0.1                    # final learning rate factor (lr0 * lrf)
+  device: "0"                 # "0" for GPU 0, "cpu" for CPU, "auto" for auto-detect
+  workers: 0                  # dataloader workers (0 = main process, safer on Windows)
+
+augmentation:
+  mosaic: 1.0
+  scale: 0.5
+  fliplr: 0.5
+  hsv_h: 0.015
+  hsv_s: 0.7
+  hsv_v: 0.4

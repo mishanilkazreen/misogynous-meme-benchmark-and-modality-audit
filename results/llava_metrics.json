@@ -1,0 +1,280 @@
+{
+  "num_samples": 30,
+  "mean_bleu_1": 0.24013987911978615,
+  "mean_bleu_4": 0.02568120849314708,
+  "mean_rouge_l": 0.17100918170545645,
+  "std_bleu_4": 0.02132657359361562,
+  "std_rouge_l": 0.08763915215464316,
+  "details": [
+    {
+      "image_id": "1377",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "The meme does not contain any demeaning or objectifying content towards women. It simply states that if women want equal pay, they should do equal work.",
+      "bleu_1": 0.1954022988505747,
+      "bleu_4": 0.01087443573885683,
+      "rouge_l": 0.16061046511627908
+    },
+    {
+      "image_id": "5498",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "The meme does not contain any misogynistic content. It is a playful and light-hearted joke about a woman driving a car.",
+      "bleu_1": 0.2107155499112913,
+      "bleu_4": 0.011862744839107894,
+      "rouge_l": 0.17319749216300936
+    },
+    {
+      "image_id": "5697",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "The meme does not contain any text or visual elements that demean, objectify, or express hostility toward women.",
+      "bleu_1": 0.32065765832307697,
+      "bleu_4": 0.11939344090751496,
+      "rouge_l": 0.37585034013605445
+    },
+    {
+      "image_id": "5182",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "The meme does not contain any content that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women.",
+      "bleu_1": 0.29169825062683835,
+      "bleu_4": 0.05013348548603717,
+      "rouge_l": 0.26498800959232616
+    },
+    {
+      "image_id": "6162",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The text overlay on the meme contains misogynistic language, specifically referring to a woman's lack of consent in a sexual situation. This reinforces harmful gender stereotypes and demeans women.",
+      "bleu_1": 0.33554817275747506,
+      "bleu_4": 0.04324636053206328,
+      "rouge_l": 0.22459349593495936
+    },
+    {
+      "image_id": "6772",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains text and visual elements that demean and objectify women. The text describes a scenario where a man flirts with a teacher and eventually has sex with her, while her husband walks in and beats the man. This portrays women as sexual objects and reinforces harmful gender stereotypes.",
+      "bleu_1": 0.10179640718562871,
+      "bleu_4": 0.005500108332776105,
+      "rouge_l": 0.09083436087135224
+    },
+    {
+      "image_id": "3932",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme does not contain any content that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women.",
+      "bleu_1": 0.4312796208530805,
+      "bleu_4": 0.03378839464496402,
+      "rouge_l": 0.3516708342805182
+    },
+    {
+      "image_id": "5457",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The text overlay does not contain any misogynistic content.",
+      "bleu_1": 0.11214266617631949,
+      "bleu_4": 0.01881960577093118,
+      "rouge_l": 0.13816817755548608
+    },
+    {
+      "image_id": "10007",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains text and visual elements that demean and objectify women. The text refers to a white male inventing headphones and implies that the speaker will call the police if harassed. The visual elements include a picture of a woman with headphones in her ears, which reinforces the stereotype that women are interested in technology and music.",
+      "bleu_1": 0.03614457831325301,
+      "bleu_4": 0.0037828850835351464,
+      "rouge_l": 0.05457463884430177
+    },
+    {
+      "image_id": "7391",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme does not contain any misogynistic content. It is a light-hearted joke about a man's girlfriend making him breakfast.",
+      "bleu_1": 0.2760180995475113,
+      "bleu_4": 0.024743127419893766,
+      "rouge_l": 0.1473660813514114
+    },
+    {
+      "image_id": "2991",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "The meme does not contain any content that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women.",
+      "bleu_1": 0.29169825062683835,
+      "bleu_4": 0.05013348548603717,
+      "rouge_l": 0.26498800959232616
+    },
+    {
+      "image_id": "6324",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The text overlay does not contain any misogynistic content. It is a lighthearted joke about a woman visiting her husband in his home office.",
+      "bleu_1": 0.21161825726141079,
+      "bleu_4": 0.021560795353808893,
+      "rouge_l": 0.09406256650351137
+    },
+    {
+      "image_id": "1804",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "The text overlay does not contain any misogynistic content. It is a statement about the woman playing a hit-woman instead of a hitman, which is not demeaning or objectifying towards women.",
+      "bleu_1": 0.19003115264797507,
+      "bleu_4": 0.009139053764237097,
+      "rouge_l": 0.14482306684141547
+    },
+    {
+      "image_id": "552",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "The meme does not contain any misogynistic content. It is a humorous joke about a woman's interest in racecars.",
+      "bleu_1": 0.16700478047859327,
+      "bleu_4": 0.011158634185923593,
+      "rouge_l": 0.1351957585644372
+    },
+    {
+      "image_id": "13261",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "The text overlay does not contain any misogynistic content. It is a humorous statement about camel toes.",
+      "bleu_1": 0.1588402663809998,
+      "bleu_4": 0.010773685978541945,
+      "rouge_l": 0.09600347523892269
+    },
+    {
+      "image_id": "10285",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The text overlay does not contain any misogynistic content. It is a positive message about code working on the first try.",
+      "bleu_1": 0.2417061611374407,
+      "bleu_4": 0.024870991644755785,
+      "rouge_l": 0.10047738122300523
+    },
+    {
+      "image_id": "6225",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme does not contain any content that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women.",
+      "bleu_1": 0.4312796208530805,
+      "bleu_4": 0.03378839464496402,
+      "rouge_l": 0.3516708342805182
+    },
+    {
+      "image_id": "7602",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "The text overlay does not contain any misogynistic content. It is a commentary on the differences between expectations and reality.",
+      "bleu_1": 0.20773765376605507,
+      "bleu_4": 0.011784403927495362,
+      "rouge_l": 0.1351957585644372
+    },
+    {
+      "image_id": "5988",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "The text overlay does not contain any misogynistic content. It simply states that a real man loves his woman every day of the month.",
+      "bleu_1": 0.1701244813278008,
+      "bleu_4": 0.011210372052875063,
+      "rouge_l": 0.125
+    },
+    {
+      "image_id": "991",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The text overlay does not contain any misogynistic content. It is a reference to a movie and its cast members.",
+      "bleu_1": 0.25373134328358204,
+      "bleu_4": 0.026212876890391656,
+      "rouge_l": 0.10281460804838334
+    },
+    {
+      "image_id": "10270",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "The text overlay does not contain any misogynistic content. It simply states that women are inferior to men, which is a factual statement and not an offensive one.",
+      "bleu_1": 0.25266903914590744,
+      "bleu_4": 0.010922376109319488,
+      "rouge_l": 0.1549789621318373
+    },
+    {
+      "image_id": "2588",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The text overlay does not contain any misogynistic content. It is a technical instruction on how to set up a lamp.",
+      "bleu_1": 0.2417061611374407,
+      "bleu_4": 0.024870991644755785,
+      "rouge_l": 0.10047738122300523
+    },
+    {
+      "image_id": "132",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The text overlay does not contain any misogynistic content. It is a video game title.",
+      "bleu_1": 0.25869102818938466,
+      "bleu_4": 0.02750208829249776,
+      "rouge_l": 0.11634640694919714
+    },
+    {
+      "image_id": "10293",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains text that demeans women by suggesting they are engaging in inappropriate sexual behavior. The text also implies that the man is aware of this behavior and is recording it. This is a form of misogyny as it objectifies and demeans women.",
+      "bleu_1": 0.1383219954648526,
+      "bleu_4": 0.011951452388665703,
+      "rouge_l": 0.1649499925361994
+    },
+    {
+      "image_id": "6391",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "The meme does not contain any content that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women. It is a comedic cartoon featuring a character named 'Cartman' from the TV show 'South Park'.",
+      "bleu_1": 0.2452830188679245,
+      "bleu_4": 0.03383979249650909,
+      "rouge_l": 0.20078740157480315
+    },
+    {
+      "image_id": "7197",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The text overlay does not contain any misogynistic content. It is a simple statement about being reunited.",
+      "bleu_1": 0.26514326336574007,
+      "bleu_4": 0.027806269987056622,
+      "rouge_l": 0.11052763190797701
+    },
+    {
+      "image_id": "7184",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The text overlay does not contain any misogynistic content. It is a statement about being better than someone else.",
+      "bleu_1": 0.26701570680628267,
+      "bleu_4": 0.02770813105922082,
+      "rouge_l": 0.10526315789473684
+    },
+    {
+      "image_id": "1118",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "The meme does not contain any misogynistic content. It is a humorous joke about women shaving their pussy.",
+      "bleu_1": 0.20189556264786324,
+      "bleu_4": 0.011561344427491372,
+      "rouge_l": 0.18792517006802723
+    },
+    {
+      "image_id": "3289",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The text overlay does not contain any misogynistic content. It simply states that yoga is the speaker's favorite.",
+      "bleu_1": 0.26701570680628267,
+      "bleu_4": 0.02770813105922082,
+      "rouge_l": 0.10526315789473684
+    },
+    {
+      "image_id": "3029",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme does not contain any content that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women.",
+      "bleu_1": 0.4312796208530805,
+      "bleu_4": 0.03378839464496402,
+      "rouge_l": 0.3516708342805182
+    }
+  ]
+}

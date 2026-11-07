@@ -1,0 +1,39 @@
+{
+  "job": "S6",
+  "params": {},
+  "passed": true,
+  "checked_utc": "2026-11-02T17:30:15+00:00",
+  "git_commit": "02113e97c3064aa3b60fc5e71a754dfd309aff8c",
+  "files": [
+    {
+      "path": "results/validation/harmeme_validation_clip_svm_rbf.json",
+      "sha256": "0d0873d822b21470ede885ebfb649885de64773ad5136fb1c9398b02c6dd2d4d",
+      "errors": []
+    },
+    {
+      "path": "results/test/harmeme_test_clip_svm_rbf.json",
+      "sha256": "e9bad5e3d736884995e0477f8fe446d71882b161cd36d4fc5ca3b95659166f0b",
+      "errors": []
+    },
+    {
+      "path": "results/validation/harmeme_validation_clip_xgboost.json",
+      "sha256": "c05d187752068a2734ec019b153c31678c4ab52ca86852bc2dc2eb0b9b43770a",
+      "errors": []
+    },
+    {
+      "path": "results/test/harmeme_test_clip_xgboost.json",
+      "sha256": "7fca7544f3b21b6404e150b0628b2e2a729457e26ee0c5358e50e414936e5fb5",
+      "errors": []
+    },
+    {
+      "path": "results/validation/harmeme_validation_qwen2_vl_7b_instruct.json",
+      "sha256": "8432d74c9cba97fafd965e6b400dcf32a667fb9c6a37f719d036f0866730881e",
+      "errors": []
+    },
+    {
+      "path": "results/test/harmeme_test_qwen2_vl_7b_instruct.json",
+      "sha256": "20395b4504a36aad90a1d4478b3eba7b6a1fdf09b6885508cc689876541b1dc2",
+      "errors": []
+    }
+  ]
+}

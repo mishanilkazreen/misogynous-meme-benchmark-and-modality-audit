@@ -1,0 +1,8 @@
+{"prompt_id": "P0", "model": "gemini-3.1-flash-lite", "split": "test", "started": "2026-09-29T21:59:58.719777+00:00", "wall_s": 1.6, "requests_written": 3, "api_errors": 0, "quota_hit": false, "workers": 3}
+{"prompt_id": "B1", "model": "gemini-3.1-flash-lite", "split": "test", "started": "2026-09-29T22:00:00.334031+00:00", "wall_s": 1.0, "requests_written": 3, "api_errors": 0, "quota_hit": false, "workers": 3}
+{"prompt_id": "P0", "model": "gemini-3.1-flash-lite", "split": "test", "started": "2026-09-29T22:01:14.510138+00:00", "wall_s": 84.8, "requests_written": 997, "api_errors": 0, "quota_hit": false, "workers": 16}
+{"prompt_id": "P1", "model": "gemini-3.1-flash-lite", "split": "test", "started": "2026-09-29T22:02:39.291142+00:00", "wall_s": 62.3, "requests_written": 1000, "api_errors": 0, "quota_hit": false, "workers": 16}
+{"prompt_id": "P2", "model": "gemini-3.1-flash-lite", "split": "test", "started": "2026-09-29T22:03:41.571751+00:00", "wall_s": 60.4, "requests_written": 1000, "api_errors": 0, "quota_hit": false, "workers": 16}
+{"prompt_id": "P3", "model": "gemini-3.1-flash-lite", "split": "test", "started": "2026-09-29T22:04:41.969120+00:00", "wall_s": 60.5, "requests_written": 1000, "api_errors": 0, "quota_hit": false, "workers": 16}
+{"prompt_id": "B0", "model": "gemini-3.1-flash-lite", "split": "test", "started": "2026-09-29T22:05:42.439764+00:00", "wall_s": 60.2, "requests_written": 1000, "api_errors": 0, "quota_hit": false, "workers": 16}
+{"prompt_id": "B1", "model": "gemini-3.1-flash-lite", "split": "test", "started": "2026-09-29T22:06:42.639088+00:00", "wall_s": 61.4, "requests_written": 997, "api_errors": 0, "quota_hit": false, "workers": 16}

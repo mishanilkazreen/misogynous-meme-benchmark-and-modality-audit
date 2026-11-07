@@ -1,0 +1,795 @@
+{
+  "generated_utc": "2026-09-29T22:18:07+00:00",
+  "script": "scripts/revision/template_overlap.py",
+  "inputs": {
+    "images": "Kaggle MAMI 2022 (training_images, test_images)",
+    "phash": "results/revision/exp02/phash.csv (imagehash.phash, hash_size=8)",
+    "clip": "results/embeddings/{split}_vit_l_14_quickgelu_ocr_paddleocr.npz"
+  },
+  "same_template_rule": "phash Hamming <= h OR CLIP image cosine >= c; connected components",
+  "threshold_selection": {
+    "rule": "For each metric, the number of chance matches at a threshold is estimated by extrapolating a log-linear fit of the all-pairs tail (:func:`tail_fit`) from the chance-dominated region to the near-duplicate end. The excess of observed over extrapolated pairs are template matches. Each setting takes the loosest threshold whose estimated chance matches per meme (2 * pairs / n) do not exceed lambda = 0.01 (strict), 0.03 (central) or 0.1 (loose). The extrapolation overestimates chance matches for the (sub-exponential) pHash tail, which errs towards stricter thresholds.",
+    "all_pairs": 60494500,
+    "phash_log_tail_intercept_slope": [
+      2.1874,
+      0.5149
+    ],
+    "phash_fit_region_hamming": [
+      12.0,
+      21.0
+    ],
+    "clip_log_tail_intercept_slope": [
+      35.51,
+      -33.531
+    ],
+    "clip_fit_region_cosine": [
+      0.66,
+      0.798
+    ],
+    "phash_pairs_at_distance_0_to_20": [
+      101,
+      0,
+      164,
+      0,
+      370,
+      0,
+      808,
+      0,
+      1290,
+      0,
+      1698,
+      0,
+      2329,
+      0,
+      5858,
+      0,
+      21902,
+      0,
+      87501,
+      0,
+      317852
+    ]
+  },
+  "settings": {
+    "strict": {
+      "chance_matches_per_meme_max": 0.01,
+      "phash_max_hamming": 3,
+      "clip_min_cosine": 0.94,
+      "phash_pairs_observed": 265,
+      "phash_pairs_chance_est": 41.8,
+      "clip_pairs_observed": 153,
+      "clip_pairs_chance_est": 54.1,
+      "edges": {
+        "phash": 265,
+        "clip": 153,
+        "union": 399
+      },
+      "n_clusters": 10757,
+      "n_multi_member_clusters": 176,
+      "memes_in_multi_member_clusters": 419,
+      "largest_cluster_sizes": [
+        17,
+        9,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        4
+      ],
+      "validation_seen_in_train_pct": 3.3,
+      "validation_seen_in_train_n": 33,
+      "test_seen_in_train_pct": 1.8,
+      "test_seen_in_train_n": 18,
+      "test_seen_in_train_or_validation_pct": 1.9,
+      "within_cluster_label_agreement": 0.731,
+      "chance_label_agreement": 0.5,
+      "within_cluster_pairs": 461,
+      "largest_clusters": [
+        {
+          "cluster_id": 436,
+          "size": 17,
+          "by_split": {
+            "train": 15,
+            "validation": 2,
+            "test": 0
+          },
+          "misogynous_share": 0.176,
+          "example_ids": [
+            "train/9739",
+            "train/8390",
+            "train/4770",
+            "train/835",
+            "train/6628"
+          ]
+        },
+        {
+          "cluster_id": 2177,
+          "size": 9,
+          "by_split": {
+            "train": 7,
+            "validation": 2,
+            "test": 0
+          },
+          "misogynous_share": 0.556,
+          "example_ids": [
+            "train/8223",
+            "train/8085",
+            "train/2573",
+            "train/9774",
+            "train/7993"
+          ]
+        },
+        {
+          "cluster_id": 777,
+          "size": 5,
+          "by_split": {
+            "train": 5,
+            "validation": 0,
+            "test": 0
+          },
+          "misogynous_share": 0.0,
+          "example_ids": [
+            "train/497",
+            "train/3002",
+            "train/6433",
+            "train/6753",
+            "train/10387"
+          ]
+        },
+        {
+          "cluster_id": 926,
+          "size": 5,
+          "by_split": {
+            "train": 4,
+            "validation": 1,
+            "test": 0
+          },
+          "misogynous_share": 0.8,
+          "example_ids": [
+            "train/3679",
+            "train/3613",
+            "train/6966",
+            "train/3092",
+            "validation/10907"
+          ]
+        },
+        {
+          "cluster_id": 1478,
+          "size": 5,
+          "by_split": {
+            "train": 5,
+            "validation": 0,
+            "test": 0
+          },
+          "misogynous_share": 0.6,
+          "example_ids": [
+            "train/10963",
+            "train/9755",
+            "train/322",
+            "train/7948",
+            "train/13084"
+          ]
+        },
+        {
+          "cluster_id": 2514,
+          "size": 5,
+          "by_split": {
+            "train": 4,
+            "validation": 1,
+            "test": 0
+          },
+          "misogynous_share": 0.2,
+          "example_ids": [
+            "train/1019",
+            "train/3090",
+            "train/11361",
+            "train/2613",
+            "validation/5628"
+          ]
+        },
+        {
+          "cluster_id": 2793,
+          "size": 5,
+          "by_split": {
+            "train": 5,
+            "validation": 0,
+            "test": 0
+          },
+          "misogynous_share": 1.0,
+          "example_ids": [
+            "train/9553",
+            "train/1120",
+            "train/6934",
+            "train/9506",
+            "train/9313"
+          ]
+        },
+        {
+          "cluster_id": 4045,
+          "size": 5,
+          "by_split": {
+            "train": 5,
+            "validation": 0,
+            "test": 0
+          },
+          "misogynous_share": 1.0,
+          "example_ids": [
+            "train/7892",
+            "train/1062",
+            "train/2651",
+            "train/10049",
+            "train/1215"
+          ]
+        },
+        {
+          "cluster_id": 4538,
+          "size": 5,
+          "by_split": {
+            "train": 5,
+            "validation": 0,
+            "test": 0
+          },
+          "misogynous_share": 0.2,
+          "example_ids": [
+            "train/8891",
+            "train/5061",
+            "train/7832",
+            "train/10646",
+            "train/1511"
+          ]
+        },
+        {
+          "cluster_id": 266,
+          "size": 4,
+          "by_split": {
+            "train": 4,
+            "validation": 0,
+            "test": 0
+          },
+          "misogynous_share": 0.5,
+          "example_ids": [
+            "train/6923",
+            "train/6062",
+            "train/978",
+            "train/9210"
+          ]
+        }
+      ]
+    },
+    "central": {
+      "chance_matches_per_meme_max": 0.03,
+      "phash_max_hamming": 5,
+      "clip_min_cosine": 0.907,
+      "phash_pairs_observed": 635,
+      "phash_pairs_chance_est": 117.0,
+      "clip_pairs_observed": 315,
+      "clip_pairs_chance_est": 163.6,
+      "edges": {
+        "phash": 635,
+        "clip": 315,
+        "union": 913
+      },
+      "n_clusters": 10428,
+      "n_multi_member_clusters": 334,
+      "memes_in_multi_member_clusters": 906,
+      "largest_cluster_sizes": [
+        38,
+        18,
+        15,
+        14,
+        13,
+        11,
+        10,
+        10,
+        8,
+        8
+      ],
+      "validation_seen_in_train_pct": 7.1,
+      "validation_seen_in_train_n": 71,
+      "test_seen_in_train_pct": 5.0,
+      "test_seen_in_train_n": 50,
+      "test_seen_in_train_or_validation_pct": 5.1,
+      "within_cluster_label_agreement": 0.7523,
+      "chance_label_agreement": 0.5,
+      "within_cluster_pairs": 1978,
+      "largest_clusters": [
+        {
+          "cluster_id": 259,
+          "size": 38,
+          "by_split": {
+            "train": 30,
+            "validation": 7,
+            "test": 1
+          },
+          "misogynous_share": 0.105,
+          "example_ids": [
+            "train/1634",
+            "train/4178",
+            "train/3684",
+            "train/10931",
+            "train/6639"
+          ]
+        },
+        {
+          "cluster_id": 436,
+          "size": 18,
+          "by_split": {
+            "train": 16,
+            "validation": 2,
+            "test": 0
+          },
+          "misogynous_share": 0.167,
+          "example_ids": [
+            "train/9739",
+            "train/8390",
+            "train/4770",
+            "train/9259",
+            "train/835"
+          ]
+        },
+        {
+          "cluster_id": 352,
+          "size": 15,
+          "by_split": {
+            "train": 13,
+            "validation": 1,
+            "test": 1
+          },
+          "misogynous_share": 0.4,
+          "example_ids": [
+            "train/4128",
+            "train/11494",
+            "train/7154",
+            "train/7727",
+            "train/5761"
+          ]
+        },
+        {
+          "cluster_id": 126,
+          "size": 14,
+          "by_split": {
+            "train": 13,
+            "validation": 1,
+            "test": 0
+          },
+          "misogynous_share": 0.143,
+          "example_ids": [
+            "train/4326",
+            "train/6197",
+            "train/8126",
+            "train/374",
+            "train/4339"
+          ]
+        },
+        {
+          "cluster_id": 772,
+          "size": 13,
+          "by_split": {
+            "train": 11,
+            "validation": 2,
+            "test": 0
+          },
+          "misogynous_share": 0.231,
+          "example_ids": [
+            "train/497",
+            "train/3002",
+            "train/6433",
+            "train/6753",
+            "train/4020"
+          ]
+        },
+        {
+          "cluster_id": 1898,
+          "size": 11,
+          "by_split": {
+            "train": 11,
+            "validation": 0,
+            "test": 0
+          },
+          "misogynous_share": 0.091,
+          "example_ids": [
+            "train/4088",
+            "train/8412",
+            "train/1655",
+            "train/8891",
+            "train/5061"
+          ]
+        },
+        {
+          "cluster_id": 63,
+          "size": 10,
+          "by_split": {
+            "train": 8,
+            "validation": 1,
+            "test": 1
+          },
+          "misogynous_share": 1.0,
+          "example_ids": [
+            "train/8615",
+            "train/8394",
+            "train/6702",
+            "train/3517",
+            "train/14005"
+          ]
+        },
+        {
+          "cluster_id": 2151,
+          "size": 10,
+          "by_split": {
+            "train": 8,
+            "validation": 2,
+            "test": 0
+          },
+          "misogynous_share": 0.6,
+          "example_ids": [
+            "train/8223",
+            "train/2793",
+            "train/8085",
+            "train/2573",
+            "train/9774"
+          ]
+        },
+        {
+          "cluster_id": 1520,
+          "size": 8,
+          "by_split": {
+            "train": 7,
+            "validation": 1,
+            "test": 0
+          },
+          "misogynous_share": 0.75,
+          "example_ids": [
+            "train/4579",
+            "train/3449",
+            "train/11472",
+            "train/4181",
+            "train/8734"
+          ]
+        },
+        {
+          "cluster_id": 1634,
+          "size": 8,
+          "by_split": {
+            "train": 6,
+            "validation": 2,
+            "test": 0
+          },
+          "misogynous_share": 0.0,
+          "example_ids": [
+            "train/177",
+            "train/1449",
+            "train/10139",
+            "train/7453",
+            "train/3378"
+          ]
+        }
+      ]
+    },
+    "loose": {
+      "chance_matches_per_meme_max": 0.1,
+      "phash_max_hamming": 8,
+      "clip_min_cosine": 0.871,
+      "phash_pairs_observed": 2733,
+      "phash_pairs_chance_est": 548.2,
+      "clip_pairs_observed": 669,
+      "clip_pairs_chance_est": 547.0,
+      "edges": {
+        "phash": 2733,
+        "clip": 669,
+        "union": 3296
+      },
+      "n_clusters": 9687,
+      "n_multi_member_clusters": 586,
+      "memes_in_multi_member_clusters": 1899,
+      "largest_cluster_sizes": [
+        76,
+        56,
+        51,
+        28,
+        26,
+        21,
+        20,
+        16,
+        15,
+        15
+      ],
+      "validation_seen_in_train_pct": 15.1,
+      "validation_seen_in_train_n": 151,
+      "test_seen_in_train_pct": 13.1,
+      "test_seen_in_train_n": 131,
+      "test_seen_in_train_or_validation_pct": 13.7,
+      "within_cluster_label_agreement": 0.7526,
+      "chance_label_agreement": 0.5,
+      "within_cluster_pairs": 9288,
+      "largest_clusters": [
+        {
+          "cluster_id": 124,
+          "size": 76,
+          "by_split": {
+            "train": 70,
+            "validation": 5,
+            "test": 1
+          },
+          "misogynous_share": 0.145,
+          "example_ids": [
+            "train/4326",
+            "train/3340",
+            "train/10241",
+            "train/10567",
+            "train/8701"
+          ]
+        },
+        {
+          "cluster_id": 145,
+          "size": 56,
+          "by_split": {
+            "train": 46,
+            "validation": 9,
+            "test": 1
+          },
+          "misogynous_share": 0.196,
+          "example_ids": [
+            "train/3038",
+            "train/9870",
+            "train/1634",
+            "train/4178",
+            "train/7891"
+          ]
+        },
+        {
+          "cluster_id": 28,
+          "size": 51,
+          "by_split": {
+            "train": 41,
+            "validation": 4,
+            "test": 6
+          },
+          "misogynous_share": 1.0,
+          "example_ids": [
+            "train/13141",
+            "train/8615",
+            "train/9687",
+            "train/13342",
+            "train/6417"
+          ]
+        },
+        {
+          "cluster_id": 341,
+          "size": 28,
+          "by_split": {
+            "train": 22,
+            "validation": 3,
+            "test": 3
+          },
+          "misogynous_share": 0.786,
+          "example_ids": [
+            "train/7632",
+            "train/13405",
+            "train/169",
+            "train/6364",
+            "train/8009"
+          ]
+        },
+        {
+          "cluster_id": 345,
+          "size": 26,
+          "by_split": {
+            "train": 22,
+            "validation": 3,
+            "test": 1
+          },
+          "misogynous_share": 0.462,
+          "example_ids": [
+            "train/4128",
+            "train/11494",
+            "train/7154",
+            "train/7727",
+            "train/5761"
+          ]
+        },
+        {
+          "cluster_id": 397,
+          "size": 21,
+          "by_split": {
+            "train": 18,
+            "validation": 3,
+            "test": 0
+          },
+          "misogynous_share": 0.048,
+          "example_ids": [
+            "train/423",
+            "train/130",
+            "train/6792",
+            "train/1018",
+            "train/11301"
+          ]
+        },
+        {
+          "cluster_id": 29,
+          "size": 20,
+          "by_split": {
+            "train": 18,
+            "validation": 2,
+            "test": 0
+          },
+          "misogynous_share": 0.15,
+          "example_ids": [
+            "train/6835",
+            "train/9739",
+            "train/8390",
+            "train/4770",
+            "train/9259"
+          ]
+        },
+        {
+          "cluster_id": 1825,
+          "size": 16,
+          "by_split": {
+            "train": 16,
+            "validation": 0,
+            "test": 0
+          },
+          "misogynous_share": 0.188,
+          "example_ids": [
+            "train/4088",
+            "train/8412",
+            "train/1372",
+            "train/1951",
+            "train/1655"
+          ]
+        },
+        {
+          "cluster_id": 251,
+          "size": 15,
+          "by_split": {
+            "train": 10,
+            "validation": 0,
+            "test": 5
+          },
+          "misogynous_share": 0.467,
+          "example_ids": [
+            "train/2126",
+            "train/6708",
+            "train/13114",
+            "train/10489",
+            "train/13426"
+          ]
+        },
+        {
+          "cluster_id": 750,
+          "size": 15,
+          "by_split": {
+            "train": 12,
+            "validation": 3,
+            "test": 0
+          },
+          "misogynous_share": 0.2,
+          "example_ids": [
+            "train/497",
+            "train/3002",
+            "train/6433",
+            "train/6753",
+            "train/4020"
+          ]
+        }
+      ]
+    }
+  },
+  "label_distribution": {
+    "train": {
+      "n": 9000,
+      "label": 0.5,
+      "shaming": 0.1279,
+      "stereotype": 0.2816,
+      "objectification": 0.2193,
+      "violence": 0.0948
+    },
+    "validation": {
+      "n": 1000,
+      "label": 0.5,
+      "shaming": 0.123,
+      "stereotype": 0.276,
+      "objectification": 0.228,
+      "violence": 0.1
+    },
+    "test": {
+      "n": 1000,
+      "label": 0.5,
+      "shaming": 0.146,
+      "stereotype": 0.35,
+      "objectification": 0.348,
+      "violence": 0.153
+    },
+    "train_vs_test_chi2": {
+      "label": {
+        "chi2": 0.0,
+        "p_value": 1.0
+      },
+      "shaming": {
+        "chi2": 2.457,
+        "p_value": 0.117
+      },
+      "stereotype": {
+        "chi2": 20.212,
+        "p_value": 6.932e-06
+      },
+      "objectification": {
+        "chi2": 82.853,
+        "p_value": 8.841e-20
+      },
+      "violence": {
+        "chi2": 33.078,
+        "p_value": 8.853e-09
+      }
+    }
+  },
+  "visual_proximity_to_train_max_cosine": {
+    "validation": {
+      "mean": 0.7306,
+      "median": 0.7271,
+      "p10": 0.6275,
+      "p90": 0.8399
+    },
+    "test": {
+      "mean": 0.7387,
+      "median": 0.7378,
+      "p10": 0.6444,
+      "p90": 0.8337
+    }
+  },
+  "template_disjoint_split": {
+    "setting": "central",
+    "seed": 20260517,
+    "max_eval_cluster": 25,
+    "train": {
+      "n": 9000,
+      "misogynous": 4500,
+      "templates": 8515,
+      "from_source_split": {
+        "train": 7362,
+        "validation": 817,
+        "test": 821
+      },
+      "shaming": 1142,
+      "stereotype": 2577,
+      "objectification": 2070,
+      "violence": 913
+    },
+    "validation": {
+      "n": 1000,
+      "misogynous": 500,
+      "templates": 958,
+      "from_source_split": {
+        "train": 824,
+        "validation": 90,
+        "test": 86
+      },
+      "shaming": 151,
+      "stereotype": 291,
+      "objectification": 233,
+      "violence": 90
+    },
+    "test": {
+      "n": 1000,
+      "misogynous": 500,
+      "templates": 955,
+      "from_source_split": {
+        "train": 814,
+        "validation": 93,
+        "test": 93
+      },
+      "shaming": 127,
+      "stereotype": 292,
+      "objectification": 247,
+      "violence": 103
+    },
+    "shared_templates": {
+      "train_validation": 0,
+      "train_test": 0,
+      "validation_test": 0
+    }
+  }
+}

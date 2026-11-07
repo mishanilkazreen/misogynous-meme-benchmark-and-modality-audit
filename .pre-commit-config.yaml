@@ -1,0 +1,107 @@
+# Lint/format hooks run at the pre-commit stage only. This prevents them from
+# re-running (and failing on zero files, e.g. cspell) when the commit-msg and
+# pre-push hook types are installed. commit-msg-check and pytest-check below
+# opt in to their own stages explicitly. CI runs `pre-commit run --all-files`,
+# which uses the pre-commit stage, so this keeps local and CI identical.
+default_stages: [pre-commit]
+default_install_hook_types: [pre-commit, commit-msg, pre-push]
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: "v4.6.0"
+    hooks:
+      - id: trailing-whitespace
+        exclude: '^(runs/slurm_logs(\.local)?/|auto_benchmark/runs/|results/)'
+      - id: end-of-file-fixer
+        exclude: '^(runs/slurm_logs(\.local)?/|auto_benchmark/runs/|results/)'
+      - id: check-yaml
+      - id: check-added-large-files
+        args: ['--maxkb=1000']
+        # Raw experiment outputs must never be blocked (sciama/README.md section 6).
+        exclude: '^(results/(test|validation|rationales|sciama)/|runs/slurm_logs(\.local)?/|auto_benchmark/runs/)'
+      - id: check-merge-conflict
+      - id: check-toml
+      - id: check-json
+      - id: debug-statements
+      - id: mixed-line-ending
+        exclude: '^(runs/slurm_logs(\.local)?/|auto_benchmark/runs/|results/)'
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: "v0.14.10"
+    hooks:
+      - id: ruff
+        args: ["--fix", "--exit-non-zero-on-fix"]
+      - id: ruff-format
+
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: "v0.42.0"
+    hooks:
+      - id: markdownlint-fix
+        args: ["--config", ".markdownlint.json"]
+        exclude: '^(\.venv/|node_modules/|auto_benchmark/)'
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: "v1.7.1"
+    hooks:
+      - id: mypy
+        additional_dependencies:
+          - types-PyYAML
+          - types-tqdm
+        args: [--ignore-missing-imports]
+        files: ^(models/|utils/|scripts/)
+        exclude: ^tests/
+
+  - repo: https://github.com/streetsidesoftware/cspell-cli
+    rev: "v8.17.3"
+    hooks:
+      - id: cspell
+        # --no-must-find-files: cspell-cli otherwise exits 1 when a commit
+        # touches only ignored files (0 files to check), which would wrongly
+        # block the commit. CI runs --all-files so this never hides real issues.
+        args: ["--config", "cspell.json", "--no-must-find-files"]
+        files: ^(README\.md|CONTRIBUTING\.md)
+
+  - repo: local
+    hooks:
+      - id: pylint-root
+        name: pylint-root
+        entry: uv run pylint
+        language: system
+        types: [python]
+        files: ^(models/|utils/)
+        args: ["--errors-only", "-j", "1"]
+
+      - id: pylint-autobenchmark
+        name: pylint-autobenchmark
+        entry: uv run --project auto_benchmark pylint
+        language: system
+        types: [python]
+        files: ^auto_benchmark/src/autobenchmark/
+        args: ["--errors-only", "-j", "1"]
+
+      - id: commit-msg-check
+        name: commit message format
+        entry: uv run python scripts/check_commit_msg.py
+        language: system
+        stages: [commit-msg]
+        always_run: true
+
+      - id: ci-preflight
+        name: CI preflight (pre-commit --all-files + pytest)
+        entry: bash scripts/preflight.sh
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-push]
+
+ci:
+  autofix_commit_msg: |
+    [pre-commit.ci] auto fixes from pre-commit.com hooks
+
+    for more information, see https://pre-commit.ci
+  autofix_prs: true
+  autoupdate_branch: ''
+  autoupdate_commit_msg: '[pre-commit.ci] pre-commit autoupdate'
+  autoupdate_schedule: weekly
+  skip: [ci-preflight]
+  submodules: false

@@ -1,0 +1,36 @@
+# Image Classification Model Configuration
+
+data_config_name: "image_class_data1"   # references config/data/image_class_data1.yaml
+config_name: "image_class_model1"      # output base naming prefix
+
+# Models to run when mode is "fine_tune" (Deep Learning fine-tuning)
+deep_models:
+  - name: "ResNet-18"
+    model_name: "resnet18"
+    pretrained: true
+  - name: "MobileNetV3-Small"
+    model_name: "mobilenet_v3_small"
+    pretrained: true
+
+# Models to run when mode is "extract_features" (Traditional ML suite)
+# Can specify a list of model names or "all" to run the 22 classifiers
+traditional_models:
+  - "Logistic Regression"
+  - "Random Forest"
+  - "XGBoost"
+  - "LightGBM"
+  - "SVM"
+  - "KNN"
+
+# Metric used to rank the models (options: Accuracy, F1, Precision, Recall)
+optimize_metric: "Accuracy"
+
+# Whether to save trained models
+save_models: true
+
+# Tabular CV settings (used for extract_features mode)
+cv_settings:
+  run_cv: true
+  folds: 3
+  n_jobs: -1
+  stratify: true

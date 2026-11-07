@@ -1,0 +1,283 @@
+{
+  "model": "Qwen/Qwen2-VL-7B-Instruct+lora_qwen2_vl_7b_instruct_singleclass",
+  "split": "test",
+  "input_file": "results/rationales/qwen7b_test.jsonl",
+  "num_samples": 30,
+  "mean_bleu_1": 0.2705931942850862,
+  "mean_bleu_4": 0.026070083915911625,
+  "mean_rouge_l": 0.24113601309275656,
+  "std_bleu_4": 0.012959480294947933,
+  "std_rouge_l": 0.10649168324563274,
+  "details": [
+    {
+      "image_id": "15236",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "This meme objectifies women by implying that they are the source of competition or conflict among men.",
+      "bleu_1": 0.2131543881959871,
+      "bleu_4": 0.026329714830687904,
+      "rouge_l": 0.16579144786196548
+    },
+    {
+      "image_id": "15805",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "This meme contains a misogynistic stereotype by implying that feminists should not consume dairy products.",
+      "bleu_1": 0.18536022146222084,
+      "bleu_4": 0.019706107367739485,
+      "rouge_l": 0.20072661217075385
+    },
+    {
+      "image_id": "16254",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "This meme does not contain any text or visual elements that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women.",
+      "bleu_1": 0.41908713692946054,
+      "bleu_4": 0.03313941434063785,
+      "rouge_l": 0.3762502660140455
+    },
+    {
+      "image_id": "16191",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "This meme objectifies women by comparing their anatomy to an object, and it also reinforces the harmful stereotype that women's bodies are for viewing and consumption.",
+      "bleu_1": 0.2619926199261992,
+      "bleu_4": 0.020669863941044527,
+      "rouge_l": 0.19718058529621696
+    },
+    {
+      "image_id": "15952",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "This meme objectifies women by implying that they are only useful for making sandwiches and not for other important tasks like buying a boat.",
+      "bleu_1": 0.1701244813278008,
+      "bleu_4": 0.020415884383373224,
+      "rouge_l": 0.14109384975526706
+    },
+    {
+      "image_id": "15662",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "This meme does not contain any text that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women.",
+      "bleu_1": 0.47867298578199047,
+      "bleu_4": 0.038227258487127234,
+      "rouge_l": 0.4019095248920209
+    },
+    {
+      "image_id": "15828",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains text that implies violence against a woman and uses degrading language.",
+      "bleu_1": 0.2117875264749939,
+      "bleu_4": 0.019852746470913347,
+      "rouge_l": 0.25673791821561337
+    },
+    {
+      "image_id": "15905",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme does not contain any text or visual elements that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women.",
+      "bleu_1": 0.37759336099585056,
+      "bleu_4": 0.029291339592702203,
+      "rouge_l": 0.3292189827622899
+    },
+    {
+      "image_id": "15971",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains the text 'Women Women Women', which demeans and objectifies women, reinforcing harmful gender stereotypes.",
+      "bleu_1": 0.3138063799234386,
+      "bleu_4": 0.04979578675948142,
+      "rouge_l": 0.33601216333622935
+    },
+    {
+      "image_id": "16197",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "This meme objectifies a woman by implying that her consent is not necessary and that she is responsible for her own rape.",
+      "bleu_1": 0.2107155499112913,
+      "bleu_4": 0.021603959793874198,
+      "rouge_l": 0.21649686520376177
+    },
+    {
+      "image_id": "15916",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "This meme objectifies women by referring to them as 'hot milfs' and implies that they are available for sexual encounters.",
+      "bleu_1": 0.2039800995024875,
+      "bleu_4": 0.024820933326807522,
+      "rouge_l": 0.154221912072575
+    },
+    {
+      "image_id": "16130",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "This meme objectifies a woman by focusing on her body parts and includes a misogynistic slur.",
+      "bleu_1": 0.15445811831191283,
+      "bleu_4": 0.0192009884602476,
+      "rouge_l": 0.147202486678508
+    },
+    {
+      "image_id": "15742",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "This meme objectifies women by referring to them as 'sex slaves' and implies that men have the right to control and possess them.",
+      "bleu_1": 0.2528340062864555,
+      "bleu_4": 0.02259058979830564,
+      "rouge_l": 0.212336664104535
+    },
+    {
+      "image_id": "15502",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains a text that implies a woman is questioning a man's decision to buy a new guitar, suggesting that he should sell his old one. This implies that the man's decision to buy a new guitar is based on his need to sell his old one, which is a misogynistic stereotype that suggests women are more concerned with men's possessions than their own.",
+      "bleu_1": 0.07488986784140968,
+      "bleu_4": 0.004013095769714636,
+      "rouge_l": 0.09715353335531378
+    },
+    {
+      "image_id": "15037",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "This meme objectifies women by reducing them to their physical attributes and implying that their vulnerability lies in their bodies.",
+      "bleu_1": 0.20773765376605507,
+      "bleu_4": 0.02146128843681079,
+      "rouge_l": 0.18026101141924958
+    },
+    {
+      "image_id": "15592",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "This meme does not contain misogynistic elements. It depicts a man receiving a kiss from his girlfriend, which is a positive and supportive gesture.",
+      "bleu_1": 0.29460580912863066,
+      "bleu_4": 0.027529192523004283,
+      "rouge_l": 0.18812513300702274
+    },
+    {
+      "image_id": "15540",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme objectifies a woman by focusing on her body and using a derogatory term to describe her.",
+      "bleu_1": 0.08313346697264959,
+      "bleu_4": 0.00926127156891107,
+      "rouge_l": 0.09396258503401361
+    },
+    {
+      "image_id": "16323",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains the text 'I'd make him a sammich', which implies that the male subject is being objectified and reduced to a sexual object.",
+      "bleu_1": 0.08045977011494254,
+      "bleu_4": 0.008711020000126225,
+      "rouge_l": 0.09022249438660951
+    },
+    {
+      "image_id": "15136",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "The meme objectifies a woman by showing her in a compromising position and using a vulgar expression to describe the situation.",
+      "bleu_1": 0.052132701421800945,
+      "bleu_4": 0.009306803780412034,
+      "rouge_l": 0.050238690611502615
+    },
+    {
+      "image_id": "16298",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "This meme does not contain any text or visual elements that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women.",
+      "bleu_1": 0.41908713692946054,
+      "bleu_4": 0.03313941434063785,
+      "rouge_l": 0.3762502660140455
+    },
+    {
+      "image_id": "15846",
+      "ground_truth": 1,
+      "predicted_misogynous": false,
+      "explanation": "This meme does not contain any text that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women.",
+      "bleu_1": 0.3738667719301731,
+      "bleu_4": 0.058797554086038935,
+      "rouge_l": 0.35331734612310145
+    },
+    {
+      "image_id": "16203",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "This meme does not contain misogynistic elements. It is a comparison between women and men, but it does not demeans, objectifies, or reinforce harmful gender stereotypes.",
+      "bleu_1": 0.38697318007662834,
+      "bleu_4": 0.05543488173910425,
+      "rouge_l": 0.36088997754643803
+    },
+    {
+      "image_id": "15560",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "This meme does not contain any misogynistic elements. It is a meme comparing a person's perception of their singing ability to their actual singing ability, which is humorously depicted as a chicken.",
+      "bleu_1": 0.24471299093655588,
+      "bleu_4": 0.02033579244727178,
+      "rouge_l": 0.157885336667262
+    },
+    {
+      "image_id": "16056",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "This meme does not contain any text or visual elements that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women.",
+      "bleu_1": 0.41908713692946054,
+      "bleu_4": 0.03313941434063785,
+      "rouge_l": 0.3762502660140455
+    },
+    {
+      "image_id": "15038",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "This meme does not contain any elements that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women.",
+      "bleu_1": 0.47867298578199047,
+      "bleu_4": 0.038227258487127234,
+      "rouge_l": 0.4019095248920209
+    },
+    {
+      "image_id": "15676",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "This meme does not contain any elements that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women.",
+      "bleu_1": 0.47867298578199047,
+      "bleu_4": 0.038227258487127234,
+      "rouge_l": 0.4019095248920209
+    },
+    {
+      "image_id": "15457",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "This meme objectifies women by portraying them as objects to be watched and consumed, and it reinforces the harmful stereotype that women are only valuable when they are pleasing to men.",
+      "bleu_1": 0.26045016077170413,
+      "bleu_4": 0.01847089236784457,
+      "rouge_l": 0.22085276482345104
+    },
+    {
+      "image_id": "15692",
+      "ground_truth": 1,
+      "predicted_misogynous": true,
+      "explanation": "The meme contains a text that implies women should not be violent, which is a misogynistic stereotype.",
+      "bleu_1": 0.27506485153782895,
+      "bleu_4": 0.012358988723436774,
+      "rouge_l": 0.24000868809730672
+    },
+    {
+      "image_id": "16334",
+      "ground_truth": 0,
+      "predicted_misogynous": true,
+      "explanation": "This meme objectifies women by comparing them to objects and men by comparing them to objects. It also implies that men are more important than women.",
+      "bleu_1": 0.15708812260536395,
+      "bleu_4": 0.018752463233498638,
+      "rouge_l": 0.18044498877321902
+    },
+    {
+      "image_id": "17077",
+      "ground_truth": 0,
+      "predicted_misogynous": false,
+      "explanation": "The meme does not contain any text or visual elements that demeans, objectifies, reinforces harmful gender stereotypes, or expresses hostility or violence toward women.",
+      "bleu_1": 0.37759336099585056,
+      "bleu_4": 0.029291339592702203,
+      "rouge_l": 0.3292189827622899
+    }
+  ]
+}

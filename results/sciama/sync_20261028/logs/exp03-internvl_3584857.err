@@ -1,0 +1,1055 @@
+Loading system/sciama
+  Loading requirement: services/slurm
+
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]$PROJECT_ROOT/.venv/lib/python3.10/site-packages/bitsandbytes/backends/cuda/ops.py:213: FutureWarning: _check_is_size will be removed in a future PyTorch release along with guard_size_oblivious.     Use _check(i >= 0) instead.
+  torch._check_is_size(blocksize)
+
+Loading checkpoint shards:  50%|█████     | 1/2 [00:28<00:28, 28.64s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:55<00:00, 27.75s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:55<00:00, 27.88s/it]
+
+internvl/none:   0%|          | 0/1000 [00:00<?, ?img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   0%|          | 4/1000 [00:02<11:38,  1.43img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   1%|          | 8/1000 [00:04<09:59,  1.65img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   1%|          | 12/1000 [00:08<12:01,  1.37img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   2%|▏         | 16/1000 [00:12<12:58,  1.26img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   2%|▏         | 20/1000 [00:15<13:54,  1.17img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   2%|▏         | 24/1000 [00:19<14:07,  1.15img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   3%|▎         | 28/1000 [00:21<12:39,  1.28img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   3%|▎         | 32/1000 [00:23<10:17,  1.57img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   4%|▎         | 36/1000 [00:24<08:12,  1.96img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   4%|▍         | 40/1000 [00:27<10:03,  1.59img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   4%|▍         | 44/1000 [00:29<09:28,  1.68img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   5%|▍         | 48/1000 [00:32<09:40,  1.64img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   5%|▌         | 52/1000 [00:36<11:17,  1.40img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   6%|▌         | 56/1000 [00:38<10:28,  1.50img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   6%|▌         | 60/1000 [00:42<11:53,  1.32img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   6%|▋         | 64/1000 [00:45<12:30,  1.25img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   7%|▋         | 68/1000 [00:49<13:08,  1.18img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   7%|▋         | 72/1000 [00:53<13:47,  1.12img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   8%|▊         | 76/1000 [00:56<12:28,  1.23img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   8%|▊         | 80/1000 [00:59<12:54,  1.19img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   8%|▊         | 84/1000 [01:02<11:47,  1.29img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   9%|▉         | 88/1000 [01:04<10:44,  1.42img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   9%|▉         | 92/1000 [01:06<10:18,  1.47img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  10%|▉         | 96/1000 [01:09<09:43,  1.55img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  10%|█         | 100/1000 [01:11<09:26,  1.59img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  10%|█         | 104/1000 [01:14<09:34,  1.56img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  11%|█         | 108/1000 [01:16<09:05,  1.64img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  11%|█         | 112/1000 [01:18<09:04,  1.63img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  12%|█▏        | 116/1000 [01:21<09:01,  1.63img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  12%|█▏        | 120/1000 [01:23<08:49,  1.66img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  12%|█▏        | 124/1000 [01:26<08:46,  1.66img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  13%|█▎        | 128/1000 [01:29<10:12,  1.42img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  13%|█▎        | 132/1000 [01:32<09:43,  1.49img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  14%|█▎        | 136/1000 [01:34<09:18,  1.55img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  14%|█▍        | 140/1000 [01:38<10:41,  1.34img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  14%|█▍        | 144/1000 [01:42<11:33,  1.23img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  15%|█▍        | 148/1000 [01:44<10:14,  1.39img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  15%|█▌        | 152/1000 [01:46<09:43,  1.45img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  16%|█▌        | 156/1000 [01:48<09:02,  1.55img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  16%|█▌        | 160/1000 [01:51<09:05,  1.54img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  16%|█▋        | 164/1000 [01:53<08:36,  1.62img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  17%|█▋        | 168/1000 [01:55<08:17,  1.67img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  17%|█▋        | 172/1000 [01:59<09:47,  1.41img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  18%|█▊        | 176/1000 [02:03<10:41,  1.28img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  18%|█▊        | 180/1000 [02:04<08:23,  1.63img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  18%|█▊        | 184/1000 [02:06<08:03,  1.69img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  19%|█▉        | 188/1000 [02:09<07:57,  1.70img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  19%|█▉        | 192/1000 [02:11<08:01,  1.68img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  20%|█▉        | 196/1000 [02:12<06:49,  1.96img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  20%|██        | 200/1000 [02:14<07:02,  1.89img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  20%|██        | 204/1000 [02:17<07:08,  1.86img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  21%|██        | 208/1000 [02:21<08:53,  1.48img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  21%|██        | 212/1000 [02:23<08:30,  1.54img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  22%|██▏       | 216/1000 [02:25<08:04,  1.62img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  22%|██▏       | 220/1000 [02:27<07:43,  1.68img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  22%|██▏       | 224/1000 [02:29<07:26,  1.74img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  23%|██▎       | 228/1000 [02:33<08:52,  1.45img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  23%|██▎       | 232/1000 [02:36<08:18,  1.54img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  24%|██▎       | 236/1000 [02:40<09:38,  1.32img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  24%|██▍       | 240/1000 [02:42<08:56,  1.42img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  24%|██▍       | 244/1000 [02:46<09:40,  1.30img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  25%|██▍       | 248/1000 [02:50<10:26,  1.20img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  25%|██▌       | 252/1000 [02:53<10:48,  1.15img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  26%|██▌       | 256/1000 [02:57<10:53,  1.14img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  26%|██▌       | 260/1000 [02:59<09:40,  1.27img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  26%|██▋       | 264/1000 [03:01<08:47,  1.39img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  27%|██▋       | 268/1000 [03:04<08:03,  1.51img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  27%|██▋       | 272/1000 [03:06<07:50,  1.55img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  28%|██▊       | 276/1000 [03:10<08:50,  1.37img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  28%|██▊       | 280/1000 [03:12<08:08,  1.47img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  28%|██▊       | 284/1000 [03:13<06:44,  1.77img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  29%|██▉       | 288/1000 [03:14<05:29,  2.16img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  29%|██▉       | 292/1000 [03:18<07:11,  1.64img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  30%|██▉       | 296/1000 [03:20<07:09,  1.64img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  30%|███       | 300/1000 [03:22<06:51,  1.70img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  30%|███       | 304/1000 [03:25<06:55,  1.67img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  31%|███       | 308/1000 [03:28<07:55,  1.46img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  31%|███       | 312/1000 [03:30<07:15,  1.58img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  32%|███▏      | 316/1000 [03:33<07:01,  1.62img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  32%|███▏      | 320/1000 [03:35<06:57,  1.63img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  32%|███▏      | 324/1000 [03:38<06:49,  1.65img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  33%|███▎      | 328/1000 [03:41<07:55,  1.41img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  33%|███▎      | 332/1000 [03:45<08:32,  1.30img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  34%|███▎      | 336/1000 [03:47<07:45,  1.43img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  34%|███▍      | 340/1000 [03:49<07:14,  1.52img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  34%|███▍      | 344/1000 [03:53<08:03,  1.36img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  35%|███▍      | 348/1000 [03:55<07:24,  1.47img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  35%|███▌      | 352/1000 [03:57<06:41,  1.61img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  36%|███▌      | 356/1000 [04:00<06:31,  1.64img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  36%|███▌      | 360/1000 [04:02<06:20,  1.68img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  36%|███▋      | 364/1000 [04:04<06:08,  1.72img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  37%|███▋      | 368/1000 [04:07<06:17,  1.67img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  37%|███▋      | 372/1000 [04:09<06:14,  1.68img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  38%|███▊      | 376/1000 [04:11<06:00,  1.73img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  38%|███▊      | 380/1000 [04:13<05:59,  1.72img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  38%|███▊      | 384/1000 [04:17<07:16,  1.41img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  39%|███▉      | 388/1000 [04:21<08:08,  1.25img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  39%|███▉      | 392/1000 [04:25<08:23,  1.21img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  40%|███▉      | 396/1000 [04:27<07:35,  1.33img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  40%|████      | 400/1000 [04:30<07:05,  1.41img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  40%|████      | 404/1000 [04:31<05:45,  1.73img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  41%|████      | 408/1000 [04:33<05:35,  1.76img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  41%|████      | 412/1000 [04:35<05:29,  1.79img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  42%|████▏     | 416/1000 [04:39<06:36,  1.47img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  42%|████▏     | 420/1000 [04:43<07:14,  1.33img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  42%|████▏     | 424/1000 [04:45<06:42,  1.43img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  43%|████▎     | 428/1000 [04:47<06:23,  1.49img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  43%|████▎     | 432/1000 [04:50<06:01,  1.57img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  44%|████▎     | 436/1000 [04:52<05:31,  1.70img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  44%|████▍     | 440/1000 [04:54<05:20,  1.75img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  44%|████▍     | 444/1000 [04:56<05:15,  1.76img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  45%|████▍     | 448/1000 [04:58<05:07,  1.80img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  45%|████▌     | 452/1000 [04:59<04:25,  2.07img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  46%|████▌     | 456/1000 [05:03<05:32,  1.64img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  46%|████▌     | 460/1000 [05:05<05:28,  1.65img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  46%|████▋     | 464/1000 [05:08<05:22,  1.66img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  47%|████▋     | 468/1000 [05:10<05:06,  1.73img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  47%|████▋     | 472/1000 [05:14<06:09,  1.43img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  48%|████▊     | 476/1000 [05:16<05:49,  1.50img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  48%|████▊     | 480/1000 [05:20<06:32,  1.33img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  48%|████▊     | 484/1000 [05:24<06:55,  1.24img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  49%|████▉     | 488/1000 [05:26<06:19,  1.35img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  49%|████▉     | 492/1000 [05:29<06:03,  1.40img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  50%|████▉     | 496/1000 [05:31<05:32,  1.51img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  50%|█████     | 500/1000 [05:34<06:08,  1.36img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  50%|█████     | 504/1000 [05:37<05:39,  1.46img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  51%|█████     | 508/1000 [05:39<05:25,  1.51img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  51%|█████     | 512/1000 [05:42<05:15,  1.55img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  52%|█████▏    | 516/1000 [05:44<05:01,  1.60img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  52%|█████▏    | 520/1000 [05:46<04:56,  1.62img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  52%|█████▏    | 524/1000 [05:47<04:10,  1.90img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  53%|█████▎    | 528/1000 [05:49<03:34,  2.21img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  53%|█████▎    | 532/1000 [05:51<03:41,  2.11img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  54%|█████▎    | 536/1000 [05:53<03:54,  1.98img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  54%|█████▍    | 540/1000 [05:57<04:49,  1.59img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  54%|█████▍    | 544/1000 [05:59<04:38,  1.64img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  55%|█████▍    | 548/1000 [06:00<03:50,  1.96img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  55%|█████▌    | 552/1000 [06:01<03:19,  2.25img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  56%|█████▌    | 556/1000 [06:04<03:35,  2.06img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  56%|█████▌    | 560/1000 [06:06<03:50,  1.91img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  56%|█████▋    | 564/1000 [06:08<03:49,  1.90img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  57%|█████▋    | 568/1000 [06:10<03:50,  1.88img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  57%|█████▋    | 572/1000 [06:12<03:49,  1.87img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  58%|█████▊    | 576/1000 [06:14<03:13,  2.19img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  58%|█████▊    | 580/1000 [06:16<03:24,  2.05img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  58%|█████▊    | 584/1000 [06:19<04:14,  1.64img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  59%|█████▉    | 588/1000 [06:23<04:47,  1.43img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  59%|█████▉    | 592/1000 [06:27<05:11,  1.31img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  60%|█████▉    | 596/1000 [06:28<04:03,  1.66img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  60%|██████    | 600/1000 [06:31<04:42,  1.42img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  60%|██████    | 604/1000 [06:34<04:28,  1.47img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  61%|██████    | 608/1000 [06:36<04:20,  1.51img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  61%|██████    | 612/1000 [06:39<04:06,  1.57img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  62%|██████▏   | 616/1000 [06:42<04:34,  1.40img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  62%|██████▏   | 620/1000 [06:43<03:43,  1.70img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  62%|██████▏   | 624/1000 [06:46<03:38,  1.72img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  63%|██████▎   | 628/1000 [06:49<04:12,  1.47img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  63%|██████▎   | 632/1000 [06:52<03:56,  1.56img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  64%|██████▎   | 636/1000 [06:53<03:13,  1.88img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  64%|██████▍   | 640/1000 [06:55<03:14,  1.85img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  64%|██████▍   | 644/1000 [06:57<03:21,  1.76img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  65%|██████▍   | 648/1000 [07:01<04:01,  1.46img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  65%|██████▌   | 652/1000 [07:05<04:29,  1.29img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  66%|██████▌   | 656/1000 [07:06<03:22,  1.70img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  66%|██████▌   | 660/1000 [07:08<03:15,  1.74img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  66%|██████▋   | 664/1000 [07:10<03:06,  1.80img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  67%|██████▋   | 668/1000 [07:12<03:02,  1.82img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  67%|██████▋   | 672/1000 [07:14<03:00,  1.82img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  68%|██████▊   | 676/1000 [07:17<02:58,  1.82img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  68%|██████▊   | 680/1000 [07:19<03:02,  1.76img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  68%|██████▊   | 684/1000 [07:22<03:06,  1.70img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  69%|██████▉   | 688/1000 [07:22<02:17,  2.27img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  69%|██████▉   | 692/1000 [07:24<02:25,  2.11img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  70%|██████▉   | 696/1000 [07:28<03:12,  1.58img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  70%|███████   | 700/1000 [07:32<03:38,  1.37img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  70%|███████   | 704/1000 [07:34<03:20,  1.48img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  71%|███████   | 708/1000 [07:38<03:37,  1.34img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  71%|███████   | 712/1000 [07:42<03:53,  1.23img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  72%|███████▏  | 716/1000 [07:44<03:29,  1.35img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  72%|███████▏  | 720/1000 [07:47<03:24,  1.37img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  72%|███████▏  | 724/1000 [07:48<02:45,  1.67img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  73%|███████▎  | 728/1000 [07:52<03:08,  1.44img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  73%|███████▎  | 732/1000 [07:54<03:00,  1.48img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  74%|███████▎  | 736/1000 [07:56<02:46,  1.58img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  74%|███████▍  | 740/1000 [07:58<02:38,  1.64img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  74%|███████▍  | 744/1000 [08:01<02:37,  1.62img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  75%|███████▍  | 748/1000 [08:04<02:41,  1.56img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  75%|███████▌  | 752/1000 [08:06<02:32,  1.63img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  76%|███████▌  | 756/1000 [08:08<02:28,  1.64img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  76%|███████▌  | 760/1000 [08:10<02:19,  1.72img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  76%|███████▋  | 764/1000 [08:14<02:43,  1.44img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  77%|███████▋  | 768/1000 [08:17<02:35,  1.50img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  77%|███████▋  | 772/1000 [08:19<02:31,  1.50img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  78%|███████▊  | 776/1000 [08:20<01:58,  1.89img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  78%|███████▊  | 780/1000 [08:24<02:20,  1.57img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  78%|███████▊  | 784/1000 [08:26<02:12,  1.63img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  79%|███████▉  | 788/1000 [08:30<02:30,  1.41img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  79%|███████▉  | 792/1000 [08:32<02:19,  1.49img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  80%|███████▉  | 796/1000 [08:34<02:09,  1.58img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  80%|████████  | 800/1000 [08:38<02:24,  1.39img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  80%|████████  | 804/1000 [08:40<02:14,  1.45img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  81%|████████  | 808/1000 [08:43<02:04,  1.54img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  81%|████████  | 812/1000 [08:45<01:59,  1.57img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  82%|████████▏ | 816/1000 [08:49<02:14,  1.36img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  82%|████████▏ | 820/1000 [08:51<02:02,  1.48img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  82%|████████▏ | 824/1000 [08:53<01:51,  1.58img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  83%|████████▎ | 828/1000 [08:56<01:48,  1.58img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  83%|████████▎ | 832/1000 [08:58<01:43,  1.62img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  84%|████████▎ | 836/1000 [09:00<01:38,  1.66img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  84%|████████▍ | 840/1000 [09:03<01:35,  1.67img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  84%|████████▍ | 844/1000 [09:05<01:30,  1.72img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  85%|████████▍ | 848/1000 [09:09<01:44,  1.45img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  85%|████████▌ | 852/1000 [09:11<01:37,  1.51img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  86%|████████▌ | 856/1000 [09:13<01:32,  1.55img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  86%|████████▌ | 860/1000 [09:16<01:29,  1.57img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  86%|████████▋ | 864/1000 [09:20<01:39,  1.36img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  87%|████████▋ | 868/1000 [09:22<01:29,  1.47img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  87%|████████▋ | 872/1000 [09:24<01:24,  1.52img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  88%|████████▊ | 876/1000 [09:27<01:18,  1.57img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  88%|████████▊ | 880/1000 [09:31<01:29,  1.34img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  88%|████████▊ | 884/1000 [09:34<01:31,  1.27img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  89%|████████▉ | 888/1000 [09:37<01:22,  1.35img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  89%|████████▉ | 892/1000 [09:38<01:05,  1.64img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  90%|████████▉ | 896/1000 [09:40<01:02,  1.66img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  90%|█████████ | 900/1000 [09:44<01:10,  1.42img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  90%|█████████ | 904/1000 [09:46<01:03,  1.51img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  91%|█████████ | 908/1000 [09:48<00:56,  1.63img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  91%|█████████ | 912/1000 [09:51<00:55,  1.60img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  92%|█████████▏| 916/1000 [09:53<00:52,  1.60img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  92%|█████████▏| 920/1000 [09:54<00:37,  2.16img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  92%|█████████▏| 924/1000 [09:56<00:36,  2.06img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  93%|█████████▎| 928/1000 [09:58<00:37,  1.94img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  93%|█████████▎| 932/1000 [10:00<00:35,  1.91img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  94%|█████████▎| 936/1000 [10:04<00:41,  1.55img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  94%|█████████▍| 940/1000 [10:06<00:37,  1.60img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  94%|█████████▍| 944/1000 [10:09<00:33,  1.66img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  95%|█████████▍| 948/1000 [10:12<00:36,  1.43img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  95%|█████████▌| 952/1000 [10:16<00:36,  1.30img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  96%|█████████▌| 956/1000 [10:18<00:31,  1.42img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  96%|█████████▌| 960/1000 [10:21<00:26,  1.49img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  96%|█████████▋| 964/1000 [10:23<00:22,  1.57img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  97%|█████████▋| 968/1000 [10:25<00:19,  1.62img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  97%|█████████▋| 972/1000 [10:28<00:17,  1.63img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  98%|█████████▊| 976/1000 [10:30<00:14,  1.71img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  98%|█████████▊| 980/1000 [10:32<00:11,  1.77img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  98%|█████████▊| 984/1000 [10:34<00:09,  1.73img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  99%|█████████▉| 988/1000 [10:36<00:06,  1.84img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  99%|█████████▉| 992/1000 [10:38<00:04,  1.81img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none: 100%|█████████▉| 996/1000 [10:41<00:02,  1.77img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none: 100%|██████████| 1000/1000 [10:44<00:00,  1.52img/s]
+internvl/none: 100%|██████████| 1000/1000 [10:44<00:00,  1.55img/s]
+
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]$PROJECT_ROOT/.venv/lib/python3.10/site-packages/bitsandbytes/backends/cuda/ops.py:213: FutureWarning: _check_is_size will be removed in a future PyTorch release along with guard_size_oblivious.     Use _check(i >= 0) instead.
+  torch._check_is_size(blocksize)
+
+Loading checkpoint shards:  50%|█████     | 1/2 [00:15<00:15, 15.66s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:37<00:00, 19.20s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:37<00:00, 18.67s/it]
+
+internvl/none:   0%|          | 0/1000 [00:00<?, ?img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   0%|          | 4/1000 [00:04<18:03,  1.09s/img]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   1%|          | 8/1000 [00:07<15:50,  1.04img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   1%|          | 12/1000 [00:09<10:54,  1.51img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   2%|▏         | 16/1000 [00:11<10:12,  1.61img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   2%|▏         | 20/1000 [00:13<10:08,  1.61img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   2%|▏         | 24/1000 [00:16<10:01,  1.62img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   3%|▎         | 28/1000 [00:18<10:04,  1.61img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   3%|▎         | 32/1000 [00:22<11:39,  1.38img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   4%|▎         | 36/1000 [00:24<10:46,  1.49img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   4%|▍         | 40/1000 [00:26<10:07,  1.58img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   4%|▍         | 44/1000 [00:28<08:24,  1.90img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   5%|▍         | 48/1000 [00:30<09:03,  1.75img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   5%|▌         | 52/1000 [00:33<09:00,  1.75img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   6%|▌         | 56/1000 [00:36<10:36,  1.48img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   6%|▌         | 60/1000 [00:38<09:55,  1.58img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   6%|▋         | 64/1000 [00:42<11:16,  1.38img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   7%|▋         | 68/1000 [00:44<10:30,  1.48img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   7%|▋         | 72/1000 [00:47<10:15,  1.51img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   8%|▊         | 76/1000 [00:49<09:29,  1.62img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   8%|▊         | 80/1000 [00:51<09:07,  1.68img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   8%|▊         | 84/1000 [00:53<08:47,  1.74img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   9%|▉         | 88/1000 [00:55<08:44,  1.74img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:   9%|▉         | 92/1000 [00:58<08:40,  1.75img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  10%|▉         | 96/1000 [01:00<08:46,  1.72img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  10%|█         | 100/1000 [01:04<10:38,  1.41img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  10%|█         | 104/1000 [01:07<10:00,  1.49img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  11%|█         | 108/1000 [01:09<09:44,  1.53img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  11%|█         | 112/1000 [01:10<08:10,  1.81img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  12%|█▏        | 116/1000 [01:14<09:56,  1.48img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  12%|█▏        | 120/1000 [01:18<11:00,  1.33img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  12%|█▏        | 124/1000 [01:20<09:55,  1.47img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  13%|█▎        | 128/1000 [01:24<10:55,  1.33img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  13%|█▎        | 132/1000 [01:27<11:39,  1.24img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  14%|█▎        | 136/1000 [01:29<10:29,  1.37img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  14%|█▍        | 140/1000 [01:33<11:26,  1.25img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  14%|█▍        | 144/1000 [01:35<10:16,  1.39img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  15%|█▍        | 148/1000 [01:38<09:29,  1.50img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  15%|█▌        | 152/1000 [01:40<09:04,  1.56img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  16%|█▌        | 156/1000 [01:42<08:49,  1.60img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  16%|█▌        | 160/1000 [01:44<08:22,  1.67img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  16%|█▋        | 164/1000 [01:47<08:31,  1.63img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  17%|█▋        | 168/1000 [01:50<08:44,  1.58img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  17%|█▋        | 172/1000 [01:52<08:46,  1.57img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  18%|█▊        | 176/1000 [01:55<08:23,  1.64img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  18%|█▊        | 180/1000 [01:57<08:13,  1.66img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  18%|█▊        | 184/1000 [01:59<08:05,  1.68img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  19%|█▉        | 188/1000 [02:02<08:04,  1.68img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  19%|█▉        | 192/1000 [02:04<08:03,  1.67img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  20%|█▉        | 196/1000 [02:06<08:05,  1.66img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  20%|██        | 200/1000 [02:09<07:50,  1.70img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  20%|██        | 204/1000 [02:12<09:09,  1.45img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  21%|██        | 208/1000 [02:16<10:01,  1.32img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  21%|██        | 212/1000 [02:20<10:37,  1.24img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  22%|██▏       | 216/1000 [02:22<09:40,  1.35img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  22%|██▏       | 220/1000 [02:24<08:53,  1.46img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  22%|██▏       | 224/1000 [02:27<08:44,  1.48img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  23%|██▎       | 228/1000 [02:30<08:40,  1.48img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  23%|██▎       | 232/1000 [02:32<08:17,  1.54img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  24%|██▎       | 236/1000 [02:36<09:20,  1.36img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  24%|██▍       | 240/1000 [02:39<09:58,  1.27img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  24%|██▍       | 244/1000 [02:43<10:33,  1.19img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  25%|██▍       | 248/1000 [02:47<10:39,  1.18img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  25%|██▌       | 252/1000 [02:50<10:47,  1.15img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  26%|██▌       | 256/1000 [02:52<09:28,  1.31img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  26%|██▌       | 260/1000 [02:56<10:11,  1.21img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  26%|██▋       | 264/1000 [02:59<09:12,  1.33img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  27%|██▋       | 268/1000 [03:02<09:40,  1.26img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  27%|██▋       | 272/1000 [03:05<08:58,  1.35img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  28%|██▊       | 276/1000 [03:08<09:37,  1.25img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  28%|██▊       | 280/1000 [03:11<09:11,  1.31img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  28%|██▊       | 284/1000 [03:14<08:44,  1.36img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  29%|██▉       | 288/1000 [03:17<09:17,  1.28img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  29%|██▉       | 292/1000 [03:21<09:40,  1.22img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  30%|██▉       | 296/1000 [03:25<09:58,  1.18img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  30%|███       | 300/1000 [03:27<08:52,  1.31img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  30%|███       | 304/1000 [03:31<09:41,  1.20img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  31%|███       | 308/1000 [03:33<08:48,  1.31img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  31%|███       | 312/1000 [03:37<09:19,  1.23img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  32%|███▏      | 316/1000 [03:41<09:51,  1.16img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  32%|███▏      | 320/1000 [03:43<08:53,  1.27img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  32%|███▏      | 324/1000 [03:47<09:30,  1.18img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  33%|███▎      | 328/1000 [03:49<07:42,  1.45img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  33%|███▎      | 332/1000 [03:51<07:04,  1.57img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  34%|███▎      | 336/1000 [03:55<08:13,  1.35img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  34%|███▍      | 340/1000 [03:58<08:45,  1.26img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  34%|███▍      | 344/1000 [04:00<07:48,  1.40img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  35%|███▍      | 348/1000 [04:03<07:20,  1.48img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  35%|███▌      | 352/1000 [04:05<07:03,  1.53img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  36%|███▌      | 356/1000 [04:07<06:49,  1.57img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  36%|███▌      | 360/1000 [04:10<06:48,  1.57img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  36%|███▋      | 364/1000 [04:12<06:15,  1.69img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  37%|███▋      | 368/1000 [04:16<07:19,  1.44img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  37%|███▋      | 372/1000 [04:18<07:06,  1.47img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  38%|███▊      | 376/1000 [04:21<07:01,  1.48img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  38%|███▊      | 380/1000 [04:25<07:41,  1.34img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  38%|███▊      | 384/1000 [04:28<08:15,  1.24img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  39%|███▉      | 388/1000 [04:32<08:32,  1.19img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  39%|███▉      | 392/1000 [04:33<06:45,  1.50img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  40%|███▉      | 396/1000 [04:35<06:21,  1.58img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  40%|████      | 400/1000 [04:37<06:04,  1.64img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  40%|████      | 404/1000 [04:39<05:04,  1.96img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  41%|████      | 408/1000 [04:41<05:19,  1.85img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  41%|████      | 412/1000 [04:45<06:32,  1.50img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  42%|████▏     | 416/1000 [04:48<07:09,  1.36img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  42%|████▏     | 420/1000 [04:52<07:40,  1.26img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  42%|████▏     | 424/1000 [04:55<07:03,  1.36img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  43%|████▎     | 428/1000 [04:58<07:41,  1.24img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  43%|████▎     | 432/1000 [05:02<08:07,  1.17img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  44%|████▎     | 436/1000 [05:06<08:10,  1.15img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  44%|████▍     | 440/1000 [05:08<07:17,  1.28img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  44%|████▍     | 444/1000 [05:12<07:43,  1.20img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  45%|████▍     | 448/1000 [05:14<06:55,  1.33img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  45%|████▌     | 452/1000 [05:18<07:26,  1.23img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  46%|████▌     | 456/1000 [05:22<07:54,  1.15img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  46%|████▌     | 460/1000 [05:26<08:07,  1.11img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  46%|████▋     | 464/1000 [05:30<08:12,  1.09img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  47%|████▋     | 468/1000 [05:31<06:29,  1.36img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  47%|████▋     | 472/1000 [05:35<07:05,  1.24img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  48%|████▊     | 476/1000 [05:38<06:39,  1.31img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  48%|████▊     | 480/1000 [05:40<06:11,  1.40img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  48%|████▊     | 484/1000 [05:42<05:45,  1.49img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  49%|████▉     | 488/1000 [05:45<05:40,  1.50img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  49%|████▉     | 492/1000 [05:46<04:43,  1.79img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  50%|████▉     | 496/1000 [05:48<04:39,  1.80img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  50%|█████     | 500/1000 [05:51<04:40,  1.79img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  50%|█████     | 504/1000 [05:53<04:29,  1.84img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  51%|█████     | 508/1000 [05:55<04:22,  1.87img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  51%|█████     | 512/1000 [05:57<04:25,  1.84img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  52%|█████▏    | 516/1000 [05:59<04:22,  1.84img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  52%|█████▏    | 520/1000 [06:02<04:26,  1.80img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  52%|█████▏    | 524/1000 [06:04<04:22,  1.82img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  53%|█████▎    | 528/1000 [06:07<05:10,  1.52img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  53%|█████▎    | 532/1000 [06:09<04:49,  1.62img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  54%|█████▎    | 536/1000 [06:11<04:04,  1.90img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  54%|█████▍    | 540/1000 [06:13<04:04,  1.88img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  54%|█████▍    | 544/1000 [06:15<04:07,  1.84img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  55%|█████▍    | 548/1000 [06:18<04:14,  1.78img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  55%|█████▌    | 552/1000 [06:21<05:03,  1.48img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  56%|█████▌    | 556/1000 [06:24<04:46,  1.55img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  56%|█████▌    | 560/1000 [06:27<05:21,  1.37img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  56%|█████▋    | 564/1000 [06:30<04:59,  1.45img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  57%|█████▋    | 568/1000 [06:31<04:08,  1.74img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  57%|█████▋    | 572/1000 [06:33<04:01,  1.77img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  58%|█████▊    | 576/1000 [06:36<04:12,  1.68img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  58%|█████▊    | 580/1000 [06:38<04:06,  1.70img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  58%|█████▊    | 584/1000 [06:39<03:29,  1.98img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  59%|█████▉    | 588/1000 [06:40<03:01,  2.27img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  59%|█████▉    | 592/1000 [06:44<03:55,  1.73img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  60%|█████▉    | 596/1000 [06:45<03:21,  2.01img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  60%|██████    | 600/1000 [06:48<03:30,  1.90img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  60%|██████    | 604/1000 [06:50<03:41,  1.79img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  61%|██████    | 608/1000 [06:54<04:22,  1.49img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  61%|██████    | 612/1000 [06:56<04:08,  1.56img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  62%|██████▏   | 616/1000 [06:58<03:51,  1.66img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  62%|██████▏   | 620/1000 [07:01<03:49,  1.66img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  62%|██████▏   | 624/1000 [07:03<03:37,  1.73img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  63%|██████▎   | 628/1000 [07:05<03:35,  1.73img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  63%|██████▎   | 632/1000 [07:07<03:31,  1.74img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  64%|██████▎   | 636/1000 [07:10<03:31,  1.72img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  64%|██████▍   | 640/1000 [07:12<03:31,  1.70img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  64%|██████▍   | 644/1000 [07:13<02:59,  1.98img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  65%|██████▍   | 648/1000 [07:16<03:04,  1.90img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  65%|██████▌   | 652/1000 [07:18<03:05,  1.88img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  66%|██████▌   | 656/1000 [07:20<03:09,  1.82img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  66%|██████▌   | 660/1000 [07:24<03:43,  1.52img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  66%|██████▋   | 664/1000 [07:24<02:49,  1.99img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  67%|██████▋   | 668/1000 [07:27<02:57,  1.87img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  67%|██████▋   | 672/1000 [07:29<02:55,  1.86img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  68%|██████▊   | 676/1000 [07:31<02:57,  1.82img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  68%|██████▊   | 680/1000 [07:34<03:08,  1.69img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  68%|██████▊   | 684/1000 [07:37<03:08,  1.68img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  69%|██████▉   | 688/1000 [07:39<03:05,  1.68img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  69%|██████▉   | 692/1000 [07:41<02:57,  1.73img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  70%|██████▉   | 696/1000 [07:44<03:00,  1.68img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  70%|███████   | 700/1000 [07:46<02:55,  1.71img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  70%|███████   | 704/1000 [07:50<03:28,  1.42img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  71%|███████   | 708/1000 [07:53<03:43,  1.31img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  71%|███████   | 712/1000 [07:56<03:23,  1.42img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  72%|███████▏  | 716/1000 [07:58<03:10,  1.49img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  72%|███████▏  | 720/1000 [08:02<03:29,  1.33img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  72%|███████▏  | 724/1000 [08:06<03:47,  1.21img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  73%|███████▎  | 728/1000 [08:08<03:19,  1.36img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  73%|███████▎  | 732/1000 [08:10<03:06,  1.43img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  74%|███████▎  | 736/1000 [08:12<02:49,  1.56img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  74%|███████▍  | 740/1000 [08:15<02:43,  1.59img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  74%|███████▍  | 744/1000 [08:19<03:06,  1.38img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  75%|███████▍  | 748/1000 [08:22<03:16,  1.28img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  75%|███████▌  | 752/1000 [08:24<02:54,  1.42img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  76%|███████▌  | 756/1000 [08:26<02:37,  1.55img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  76%|███████▌  | 760/1000 [08:28<02:26,  1.64img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  76%|███████▋  | 764/1000 [08:31<02:19,  1.70img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  77%|███████▋  | 768/1000 [08:35<02:43,  1.42img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  77%|███████▋  | 772/1000 [08:36<02:13,  1.70img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  78%|███████▊  | 776/1000 [08:39<02:33,  1.46img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  78%|███████▊  | 780/1000 [08:42<02:23,  1.53img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  78%|███████▊  | 784/1000 [08:44<02:22,  1.52img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  79%|███████▉  | 788/1000 [08:47<02:14,  1.58img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  79%|███████▉  | 792/1000 [08:49<02:11,  1.58img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  80%|███████▉  | 796/1000 [08:53<02:29,  1.37img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  80%|████████  | 800/1000 [08:55<02:15,  1.47img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  80%|████████  | 804/1000 [08:59<02:30,  1.30img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  81%|████████  | 808/1000 [09:03<02:35,  1.24img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  81%|████████  | 812/1000 [09:07<02:38,  1.19img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  82%|████████▏ | 816/1000 [09:09<02:20,  1.31img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  82%|████████▏ | 820/1000 [09:12<02:24,  1.25img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  82%|████████▏ | 824/1000 [09:15<02:14,  1.31img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  83%|████████▎ | 828/1000 [09:19<02:19,  1.24img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  83%|████████▎ | 832/1000 [09:21<02:06,  1.33img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  84%|████████▎ | 836/1000 [09:23<01:41,  1.61img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  84%|████████▍ | 840/1000 [09:25<01:37,  1.63img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  84%|████████▍ | 844/1000 [09:27<01:35,  1.64img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  85%|████████▍ | 848/1000 [09:29<01:20,  1.90img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  85%|████████▌ | 852/1000 [09:33<01:37,  1.52img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  86%|████████▌ | 856/1000 [09:36<01:46,  1.35img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  86%|████████▌ | 860/1000 [09:38<01:35,  1.47img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  86%|████████▋ | 864/1000 [09:42<01:45,  1.30img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  87%|████████▋ | 868/1000 [09:45<01:34,  1.40img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  87%|████████▋ | 872/1000 [09:46<01:14,  1.72img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  88%|████████▊ | 876/1000 [09:50<01:26,  1.44img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  88%|████████▊ | 880/1000 [09:50<01:05,  1.82img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  88%|████████▊ | 884/1000 [09:53<01:06,  1.73img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  89%|████████▉ | 888/1000 [09:55<01:03,  1.76img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  89%|████████▉ | 892/1000 [09:57<00:59,  1.82img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  90%|████████▉ | 896/1000 [09:59<00:56,  1.83img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  90%|█████████ | 900/1000 [10:02<00:55,  1.80img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  90%|█████████ | 904/1000 [10:06<01:06,  1.45img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  91%|█████████ | 908/1000 [10:08<01:02,  1.47img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  91%|█████████ | 912/1000 [10:10<00:50,  1.76img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  92%|█████████▏| 916/1000 [10:13<00:56,  1.49img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  92%|█████████▏| 920/1000 [10:15<00:51,  1.56img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  92%|█████████▏| 924/1000 [10:18<00:48,  1.58img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  93%|█████████▎| 928/1000 [10:20<00:45,  1.59img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  93%|█████████▎| 932/1000 [10:24<00:48,  1.40img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  94%|█████████▎| 936/1000 [10:26<00:43,  1.48img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  94%|█████████▍| 940/1000 [10:29<00:39,  1.52img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  94%|█████████▍| 944/1000 [10:32<00:40,  1.37img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  95%|█████████▍| 948/1000 [10:33<00:29,  1.74img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  95%|█████████▌| 952/1000 [10:35<00:26,  1.78img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  96%|█████████▌| 956/1000 [10:39<00:30,  1.46img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  96%|█████████▌| 960/1000 [10:43<00:30,  1.33img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  96%|█████████▋| 964/1000 [10:47<00:29,  1.21img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  97%|█████████▋| 968/1000 [10:49<00:23,  1.34img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  97%|█████████▋| 972/1000 [10:52<00:19,  1.41img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  98%|█████████▊| 976/1000 [10:54<00:16,  1.47img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  98%|█████████▊| 980/1000 [10:58<00:15,  1.30img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  98%|█████████▊| 984/1000 [11:00<00:11,  1.41img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  99%|█████████▉| 988/1000 [11:03<00:08,  1.49img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none:  99%|█████████▉| 992/1000 [11:05<00:05,  1.59img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none: 100%|█████████▉| 996/1000 [11:07<00:02,  1.64img/s]Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+
+internvl/none: 100%|██████████| 1000/1000 [11:09<00:00,  1.73img/s]
+internvl/none: 100%|██████████| 1000/1000 [11:09<00:00,  1.49img/s]
+2026-10-17 16:37:48,392 [INFO] Seeded RNGs with 1 (deterministic_cudnn=True)
+2026-10-17 16:37:54,595 [INFO] Initializing processor for OpenGVLab/InternVL3_5-4B-hf...
+2026-10-17 16:37:55,233 [INFO] Using compute_dtype: torch.bfloat16
+2026-10-17 16:37:55,235 [INFO] Loading model OpenGVLab/InternVL3_5-4B-hf (4bit)...
+
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]$PROJECT_ROOT/.venv/lib/python3.10/site-packages/bitsandbytes/backends/cuda/ops.py:213: FutureWarning: _check_is_size will be removed in a future PyTorch release along with guard_size_oblivious.     Use _check(i >= 0) instead.
+  torch._check_is_size(blocksize)
+
+Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.13s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.90s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.93s/it]
+2026-10-17 16:38:01,683 [INFO] Injecting LoRA adapters...
+2026-10-17 16:38:02,297 [INFO] Loading MAMI dataset split...
+2026-10-17 16:38:03,160 [INFO] Text source for training: provided
+2026-10-17 16:38:03,164 [INFO] Validation dataset loaded (1000 samples; will validate on up to 200 per epoch).
+2026-10-17 16:38:03,174 [INFO] Starting VLM fine-tuning loop...
+$PROJECT_ROOT/.venv/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py:1263: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. Starting in PyTorch 2.9, calling checkpoint without use_reentrant will raise an exception. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+$PROJECT_ROOT/.venv/lib/python3.10/site-packages/torch/utils/checkpoint.py:232: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  check_backward_validity(args)
+`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+Traceback (most recent call last):
+  File "$PROJECT_ROOT/scripts/train_vlm.py", line 794, in <module>
+    main()
+  File "$PROJECT_ROOT/scripts/train_vlm.py", line 704, in main
+    loss.backward()
+  File "$PROJECT_ROOT/.venv/lib/python3.10/site-packages/torch/_tensor.py", line 631, in backward
+    torch.autograd.backward(
+  File "$PROJECT_ROOT/.venv/lib/python3.10/site-packages/torch/autograd/__init__.py", line 381, in backward
+    _engine_run_backward(
+  File "$PROJECT_ROOT/.venv/lib/python3.10/site-packages/torch/autograd/graph.py", line 869, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 7.64 GiB. GPU 0 has a total capacity of 44.42 GiB of which 622.12 MiB is free. Including non-PyTorch memory, this process has 43.80 GiB memory in use. Of the allocated memory 33.60 GiB is allocated by PyTorch, and 9.70 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
