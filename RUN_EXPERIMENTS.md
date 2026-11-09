@@ -74,7 +74,7 @@ models in a `StandardScaler` pipeline, and reports the MAMI
 official Task B metric.
 
 ```bash
-# Validation split (hyperparameter tuning + threshold pick)
+# Validation split (fixed settings, no search; threshold fixed at 0.50)
 uv run autobench train --model auto_benchmark/config/model/mami_tabular_model.yaml
 
 # Test split (final evaluation, same seed)
