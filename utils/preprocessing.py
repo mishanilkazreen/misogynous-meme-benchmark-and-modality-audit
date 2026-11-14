@@ -1,8 +1,8 @@
 """
-PreprocessingPipeline for image preprocessing.
-Implements transformations from the HatefulIllusion paper for Pathway B.
+PreprocessingPipeline for image preprocessing ablation transformations.
 
-Transformations include:
+Supports MAMI 2022 visual preprocessing ablations (note: primary benchmarks
+use unfiltered ``--filters none``). Transformations include:
 - Gaussian Blur: Obscures fine details to reveal hidden patterns
 - Downscale: Reduces resolution to simulate viewing from distance
 - Grid Repetition: Repeats image in grid layout
@@ -25,10 +25,7 @@ import torch
 
 
 class ImageTransformations:
-    """
-    Individual image transformations for hateful illusion detection.
-    Based on the HatefulIllusion paper's mitigation strategies.
-    """
+    """Individual image transformations for preprocessing ablation."""
 
     @staticmethod
     def gaussian_blur(
@@ -221,9 +218,8 @@ class PreprocessingPipeline:
     """
     Preprocessing pipeline for content moderation images.
 
-    Supports individual transformations and combinations.
-    The default pipeline applies Gaussian blur followed by histogram equalization,
-    which is the most effective combination according to the HatefulIllusion paper.
+    Supports individual transformations and combinations for ablation runs;
+    the default ``filters="none"`` mode passes MAMI 2022 images unmodified.
     """
 
     # Available transformation names

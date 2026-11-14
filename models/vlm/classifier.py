@@ -2,7 +2,7 @@
 Base classifier interface for VLM content moderation benchmarks.
 
 Defines the shared ClassificationResult dataclass and BaseVLMClassifier ABC used
-by all model wrappers (CLIP, YOLO-World, cloud APIs).
+by MAMI 2022 model wrappers (CLIP, open-weight VLMs, cloud APIs).
 
 Primary task (MAMI 2022): binary misogyny classification.
   Prompt the VLM with a yes/no question about whether the meme is misogynistic;
@@ -170,31 +170,11 @@ def yesno_to_int(label: str | None) -> int | None:
 
 # ---------------------------------------------------------------------------
 # Backward-compat aliases (kept so existing per-model scripts compile)
-# NOTE: These were previously used for HatefulIllusion closed-set tasks.
-#       They are retained only to avoid import errors; new code uses the
-#       MISOGYNY_* constants above.
 # ---------------------------------------------------------------------------
 
 BINARY_PROMPT = MISOGYNY_PROMPT
 BINARY_LABELS: list[str] = MISOGYNY_LABELS
 BINARY_GROUND_TRUTH = MISOGYNY_GROUND_TRUTH
-
-# NOTE: _PROMPT_BASES is HatefulIllusion-specific catalogue logic.
-# Kept for prompt_templates.py import compatibility; not used in MAMI benchmarks.
-_PROMPT_BASES: dict[str, str] = {
-    "digits": (
-        "A single digit (0–9) is hidden within this image using visual steganography techniques "
-        "such as colour patterns, textures, or shapes. Identify the hidden digit."
-    ),
-    "hate_symbols": (
-        "A hate symbol is concealed within this image. It may appear as a shape, glyph, or icon "
-        "embedded in the visual content. Identify the hidden symbol."
-    ),
-    "hate_slangs": (
-        "A word or slang term is hidden within this image using visual steganography. "
-        "Identify the hidden word."
-    ),
-}
 
 
 @dataclass
@@ -234,32 +214,14 @@ def build_binary_prompt() -> str:
 def build_prompt(
     subset: str | None = None, labels: list[str] | None = None, shuffle: bool = True
 ) -> str:
-    """Build a classification prompt.
+    """Return the binary yes/no misogyny classification prompt for MAMI 2022.
 
-    For the MAMI misogyny task (primary use), call with no arguments or
-    ``subset=None`` to obtain the standard misogyny yes/no prompt.
-
-    The ``subset`` and ``labels`` parameters are retained for backward
-    compatibility with ``prompt_templates.py`` (HatefulIllusion catalogue
-    path) and generative-model scripts that still pass them.  When ``subset``
-    is provided, the function falls back to the HatefulIllusion closed-set
-    prompt behaviour so that ``prompt_templates.py`` continues to work without
-    modification.
+    The ``subset``, ``labels``, and ``shuffle`` parameters remain accepted as
+    no-ops for caller signature compatibility; legacy HatefulIllusion
+    closed-set prompts have been retired and removed from this repository.
     """
-    import random as _random
-
-    if subset is None or subset not in _PROMPT_BASES:
-        # MAMI misogyny mode — ignore labels, return the yes/no prompt
-        return MISOGYNY_PROMPT
-
-    # HatefulIllusion closed-set fallback (used by prompt_templates.py only)
-    base = _PROMPT_BASES[subset]
-    effective_labels = labels if labels is not None else []
-    ordered = (
-        _random.sample(effective_labels, len(effective_labels)) if shuffle else effective_labels
-    )
-    options = ", ".join(f'"{label}"' for label in ordered)
-    return f"{base}\nReply with exactly one of the following options: {options}"
+    del subset, labels, shuffle
+    return MISOGYNY_PROMPT
 
 
 def extract_label(response: str, labels: list[str]) -> str | None:

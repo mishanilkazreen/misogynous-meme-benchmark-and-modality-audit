@@ -3,10 +3,11 @@
 
 Code, results and logs for the paper above (under review).
 
-We benchmark 46 model configurations on the SemEval-2022 Task 5 (MAMI) misogynous meme dataset. The models are a
-closed model (Gemini 3.1 Flash-Lite), fine-tuned open Vision-Language Models (Qwen2-VL, LLaVA-1.5), CLIP encoders, and
-23 classical classifiers trained on frozen CLIP embeddings. We also add a seven-model InternVL scaling series, a SigLIP
-backbone, and a smaller test on the HarMeme (Harm-C) dataset.
+We evaluate 44 model configurations (34 benchmarked models and 10 literature baselines) on the SemEval-2022 Task 5
+(MAMI) misogynous meme dataset. The evaluated models comprise a closed model (Gemini 3.1 Flash-Lite), fine-tuned open
+Vision-Language Models (Qwen2-VL, LLaVA-1.5), CLIP encoders, and 22 classical classifiers trained on frozen CLIP
+embeddings, alongside a seven-model InternVL scaling series, a SigLIP backbone, and a transfer evaluation on the
+HarMeme (Harm-C) dataset.
 
 Main results:
 

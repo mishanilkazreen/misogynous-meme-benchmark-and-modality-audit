@@ -38,3 +38,8 @@ and test suites depend on their canonical paths:
 - Table generation: `scripts/generate_consolidated_table.py` and `scripts/recompute_paper_metrics.py`.
 - Analysis and visualization: `scripts/plot_ocr_impact.py` and the evaluation scripts in `scripts/revision/`.
 - Unit and integration tests: `tests/unit/test_tabular_mami_metrics.py` and `tests/integration/test_consolidated_table.py`.
+
+## Retired Prototype Removal
+
+Legacy pre-MAMI prototype assets (`results/embedded_hate/`, symbol catalogue, and standalone YOLO scripts) were
+retired and removed from this repository. They are not part of MAMI 2022 or Harm-C evaluations.

@@ -188,7 +188,7 @@ class TestDatasetManager:
         root = _make_fake_dataset_root(tmp_path, num_samples=4)
         manager = DatasetManager(dataset_path=root)
         # Should not raise even though subset is ignored
-        ds = manager.load_dataset(split="train", subset="hate_symbols")
+        ds = manager.load_dataset(split="train", subset="ignored")
         assert len(ds) == 4
 
     def test_get_dataset_stats_structure(self, tmp_path: Path) -> None:
@@ -252,24 +252,3 @@ class TestDatasetManager:
 
         mock_dl.assert_called_once()
         assert len(ds) == 4
-
-
-# ---------------------------------------------------------------------------
-# Backward-compat aliases
-# ---------------------------------------------------------------------------
-
-
-class TestBackwardCompatAliases:
-    """Ensure old import names still resolve."""
-
-    def test_hateful_illusion_alias(self) -> None:
-        """HatefulIllusionDataset is importable and is MamiDataset."""
-        from utils.dataset import HatefulIllusionDataset, MamiDataset
-
-        assert HatefulIllusionDataset is MamiDataset
-
-    def test_download_alias(self) -> None:
-        """download_hateful_illusion_dataset is importable."""
-        from utils.dataset import download_hateful_illusion_dataset, download_mami_dataset
-
-        assert download_hateful_illusion_dataset is download_mami_dataset

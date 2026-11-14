@@ -1,8 +1,7 @@
 """
-Vision-Language Model (VLM) wrappers for text-prompted detection.
+Vision-Language Model (VLM) wrappers for MAMI 2022 content moderation.
 
-Includes YOLO-World (arXiv:2401.17270), CLIP-prompted YOLO variants, and
-YOLO-UniOW (arXiv:2412.20645).
+Provides CLIP, VisualBERT, and generative VLM classification/rationale utilities.
 """
 
 __all__: list[str] = []

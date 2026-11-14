@@ -88,44 +88,6 @@ def test_clip_misogyny_labels_cover_both_classes() -> None:
 
 
 # ---------------------------------------------------------------------------
-# HatefulIllusion backward-compat path in build_prompt
-# ---------------------------------------------------------------------------
-
-
-def test_build_prompt_digits_subset_closed_set() -> None:
-    """build_prompt with 'digits' subset still produces a closed-set prompt (backward compat)."""
-    prompt = build_prompt("digits", ["0", "1", "2"])
-    assert '"0"' in prompt
-    assert '"1"' in prompt
-    assert '"2"' in prompt
-
-
-def test_build_prompt_digits_mentions_digit() -> None:
-    """Closed-set digits prompt should reference 'digit'."""
-    prompt = build_prompt("digits", ["5"])
-    assert "digit" in prompt.lower()
-
-
-def test_build_prompt_hate_symbols_mentions_symbol() -> None:
-    """Closed-set hate_symbols prompt should reference 'symbol'."""
-    prompt = build_prompt("hate_symbols", ["swastika"])
-    assert "symbol" in prompt.lower()
-
-
-def test_build_prompt_hate_slangs_mentions_hidden() -> None:
-    """Closed-set hate_slangs prompt should reference 'hidden' or 'slang'."""
-    prompt = build_prompt("hate_slangs", ["slur_a"])
-    lower = prompt.lower()
-    assert "hidden" in lower or "slang" in lower
-
-
-def test_build_prompt_options_line_format() -> None:
-    """Closed-set prompt should include the reply-format instruction line."""
-    prompt = build_prompt("digits", ["cat", "dog"])
-    assert "Reply with exactly one of the following options:" in prompt
-
-
-# ---------------------------------------------------------------------------
 # extract_label
 # ---------------------------------------------------------------------------
 

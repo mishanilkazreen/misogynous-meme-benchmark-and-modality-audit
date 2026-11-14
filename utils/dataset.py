@@ -342,12 +342,3 @@ def download_mami_dataset() -> str:
     root = _kaggle_download()
     print(f"MAMI 2022 dataset path: {root}")
     return root
-
-
-# ---------------------------------------------------------------------------
-# Backward-compat shim — deprecated aliases kept so old import sites compile.
-# Use MamiDataset / download_mami_dataset in new code.
-# ---------------------------------------------------------------------------
-
-HatefulIllusionDataset = MamiDataset  # deprecated alias
-download_hateful_illusion_dataset = download_mami_dataset  # deprecated alias
